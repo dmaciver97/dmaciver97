@@ -5,12 +5,14 @@
 \geometry{margin=20mm}
 \usepackage{graphicx}
 \usepackage{subcaption}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
 
 
+\title{Investigating the applications and limits of single particle light scattering using limited detection schemes}
 
-
-\title{notes on how light scattering set up is evaluated and optimised}
-
+\author{Maciver, Daniel}
+	
 \begin{document}
 	
 \maketitle
@@ -26,40 +28,44 @@ This has already been achieved with single microsphere using dynamic light scatt
 \section*{Theory}
 
 Consider a dimer with unequal sphere diameters $a_1, a_2$ in an optical trap positioned in some orientation $\hat{s}$. Due to the Brownian motion from the surrounding fluid the dimer's orientation changes with time. Assuming we cannot accurately determine the dimer's orientation from imaging alone we instead rely on it's light scattering. We collect the near field intensity, via optical fibres,from a probe laser at 3 predetermined angles $\theta_1, \theta_2, \theta_3$. To determine the particle's orientation we compare the produced light scattering signal to a collection of reference orientations that are evenly spaced around the orientation space.   
-
-\begin{table}[tb]
-\caption{\label{tab:n}}
-\begin{tabular}{rrrr}
-\hline\hline
-orientation & $\hat{n}_x$ &  $\hat{n}_y$ &  $\hat{n}_z$ \\
-\hline
-$1$ & $ 0.29588$ &  $ 0.29588$ & $ 0.90825$ \\
-$2$ & $ 0.90825$ &  $ 0.29588$ & $ 0.29588$ \\
-$3$ & $ 0.29588$ &  $ 0.90825$ & $ 0.29588$ \\
-$4$ & $ 0.29588$ &  $ 0.29588$ & $-0.90825$ \\
-$5$ & $ 0.90825$ &  $ 0.29588$ & $-0.29588$ \\
-$6$ & $ 0.29588$ &  $ 0.90825$ & $-0.29588$ \\
-$7$ & $ 0.29588$ &  $-0.29588$ & $ 0.90825$ \\
-$8$ & $ 0.90825$ &  $-0.29588$ & $ 0.29588$ \\
-$9$ & $ 0.29588$ &  $-0.90825$ & $ 0.29588$ \\
-$10$ & $ 0.29588$ &  $-0.29588$ & $-0.90825$ \\
-$11$ & $ 0.90825$ &  $-0.29588$ & $-0.29588$ \\
-$12$ & $ 0.29588$ &  $-0.90825$ & $-0.29588$ \\
-$13$ & $-0.29588$ &  $ 0.29588$ & $ 0.90825$ \\
-$14$ & $-0.90825$ &  $ 0.29588$ & $ 0.29588$ \\
-$15$ & $-0.29588$ &  $ 0.90825$ & $ 0.29588$ \\
-$16$ & $-0.29588$ &  $ 0.29588$ & $-0.90825$ \\
-$17$ & $-0.90825$ &  $ 0.29588$ & $-0.29588$ \\
-$18$ & $-0.29588$ &  $ 0.90825$ & $-0.29588$ \\
-$19$ & $-0.29588$ &  $-0.29588$ & $ 0.90825$ \\
-$20$ & $-0.90825$ &  $-0.29588$ & $ 0.29588$ \\
-$21$ & $-0.29588$ &  $-0.90825$ & $ 0.29588$ \\
-$22$ & $-0.29588$ &  $-0.29588$ & $-0.90825$ \\
-$23$ & $-0.90825$ &  $-0.29588$ & $-0.29588$ \\
-$24$ & $-0.29588$ &  $-0.90825$ & $-0.29588$ \\
-\hline\hline
-\end{tabular}
-\end{table}
+\begin{figure}
+	\begin{subfigure}{0.45\textwidth}
+			\begin{tabular}{rrrr}
+				\hline\hline
+				orientation & $\hat{n}_x$ &  $\hat{n}_y$ &  $\hat{n}_z$ \\
+				\hline
+				$1$ & $ 0.29588$ &  $ 0.29588$ & $ 0.90825$ \\
+				$2$ & $ 0.90825$ &  $ 0.29588$ & $ 0.29588$ \\
+				$3$ & $ 0.29588$ &  $ 0.90825$ & $ 0.29588$ \\
+				$4$ & $ 0.29588$ &  $ 0.29588$ & $-0.90825$ \\
+				$5$ & $ 0.90825$ &  $ 0.29588$ & $-0.29588$ \\
+				$6$ & $ 0.29588$ &  $ 0.90825$ & $-0.29588$ \\
+				$7$ & $ 0.29588$ &  $-0.29588$ & $ 0.90825$ \\
+				$8$ & $ 0.90825$ &  $-0.29588$ & $ 0.29588$ \\
+				$9$ & $ 0.29588$ &  $-0.90825$ & $ 0.29588$ \\
+				$10$ & $ 0.29588$ &  $-0.29588$ & $-0.90825$ \\
+				$11$ & $ 0.90825$ &  $-0.29588$ & $-0.29588$ \\
+				$12$ & $ 0.29588$ &  $-0.90825$ & $-0.29588$ \\
+				$13$ & $-0.29588$ &  $ 0.29588$ & $ 0.90825$ \\
+				$14$ & $-0.90825$ &  $ 0.29588$ & $ 0.29588$ \\
+				$15$ & $-0.29588$ &  $ 0.90825$ & $ 0.29588$ \\
+				$16$ & $-0.29588$ &  $ 0.29588$ & $-0.90825$ \\
+				$17$ & $-0.90825$ &  $ 0.29588$ & $-0.29588$ \\
+				$18$ & $-0.29588$ &  $ 0.90825$ & $-0.29588$ \\
+				$19$ & $-0.29588$ &  $-0.29588$ & $ 0.90825$ \\
+				$20$ & $-0.90825$ &  $-0.29588$ & $ 0.29588$ \\
+				$21$ & $-0.29588$ &  $-0.90825$ & $ 0.29588$ \\
+				$22$ & $-0.29588$ &  $-0.29588$ & $-0.90825$ \\
+				$23$ & $-0.90825$ &  $-0.29588$ & $-0.29588$ \\
+				$24$ & $-0.29588$ &  $-0.90825$ & $-0.29588$ \\
+				\hline\hline
+			\end{tabular}
+	\end{subfigure}
+	\begin{subfigure}{0.45\textwidth}
+		\includegraphics[width=1.35\textwidth]{junk_00000.png}
+	\end{subfigure}
+\caption{Reference orientations plotted in the physical space. Green arrow points in the direction of the dimers orientation.}
+\end{figure}
 
 We use the a Fortran package specialised for calculating non spherical t-matrices (MSTM) \cite{6} to determine the light scattering intensity of our dimer in each reference orientation. We assume that the for each detection fibre the intensities can be distributed on a Gaussian curve centred at $y_k$, the normalised intensity at detection fibre k. Based on the light scattering from the dimer we can assign a probability that the produced light scattering pattern produced belongs to the reference orientation $\hat{n}$
 
@@ -68,6 +74,13 @@ We use the a Fortran package specialised for calculating non spherical t-matrice
 	(2\pi\sigma_k^2)^{-1/2} e^{-(y(\hat{n})_k-y(\hat{s})_k)^2/2\sigma_k^2}
 \end{align}
 
+Where $\sigma_k$ is the average error in our signal collection; we assumed that in a best case scenario for our set up there will be roughly a $17\%$ error in the signal we collected. This was implemented by adjusting the values of $y(\hat{s}_k)$. 
+\begin{eqnarray*}
+	\sigma_k = 0.17\bar{y}(\hat{n}_k) \\
+	\Rightarrow y(\hat{s}_k) = y(\hat{s})_k \pm n\sigma_k \\ 
+	n \in \mathbb{R}, n\in[0,1]
+\end{eqnarray*}
+	
 We can view this result as a conditional probability, if the orientation is determined ($\hat{n}$) then what is the probability that expected scattering signal matches our dimer's scattering signal. We instead want to know the inverse conditional, that with a given signal y the dimer was in orientation $\hat{n}$. We can calculate this using Bayes' theory:
 
 \begin{align}
@@ -86,7 +99,7 @@ We use the Brownian OT package by Jerome Fung \cite{5} to simulate how our targe
 
 Since we are testing with a simulation we already know the exact orientation of the dimer, we want to know if our model can correctly predict the closest reference orientation. We take the dot product between our estimated $\hat{n}$ and the correct $\hat{n}$ and calculate the angle between the two. Performing a summation over the full simulation data we should see that the model has a total  
 
-$$ {\LARGE K_l(B \parallel D) = - \sum_{n=1}^{no. steps} B_n \ln(\frac{D_n}{B_n})}$$
+$$  K_l(B \parallel D) = - \sum_{n=1}^{no. steps} B_n \ln(\frac{D_n}{B_n})$$
 
 
 Where $B_n$ is the Bayesian estimate and $D_n$ is the dot product result; the closer our estimate is to the dot product result the more accurate the model, and the divergence will approach 0. We can therefore evaluate the overall accuracy of our estimate based on the divergence - which is determined primarily by the detection angles. 
@@ -101,18 +114,29 @@ In cases like this its best to implement Monte Carlo techniques to intelligently
 \section*{Results}
 The Brownian OT software was used to simulate the motion of a trapped dimer ($a_1=1\mu m, a_2=0.5\mu m$) over the first 10 seconds of entering the optical trap. The initial orientation was assumed as strictly vertical (in line with the beam propagation direction). The dimer's position orientation was recorded every $10 \mu s$ for using as a test dataset for our model. 
 
-
-\begin{figure}
-	\begin{subfigure}{0.5\textwidth}
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{0.45\textwidth}
 		\includegraphics[width =\textwidth]{traj.png}
 	\end{subfigure}
-	\begin{subfigure}{0.5\textwidth]}
+	\begin{subfigure}{0.45\textwidth}
 		\includegraphics[width=\textwidth]{pos.png}
 	\end{subfigure}
+	\caption{Simulation results of: a) the dimers orientation vector with time, b) the dimer's [x,y,z] position with time.}
 \end{figure}
 
-\includegraphics{Divergance.png}[h]
+As can be seen from Figure 2, the dimer undergoes a full $180^{\circ}$ rotation upon entering the trap. This rotation is caused by the dimer realigning itself so that the gradient forces are minimised. Its interesting to note that the dimer is furthest from the trap centre as it goes into a horizontal orientation before drawing closer again as it inverts completely. In Vigilante's work with dimers \cite{5} simulations of trapped symmetrical dimers was investigated; their findings showed that the optical torque on the dimer goes to zero while aligned vertically and is at its maximum in a horizontal alignment. Therefore, the inversion of an asymmetric dimer suggests that if the size difference is significant the optical torque goes is minimal for a dimer in both horizontal and vertical orientations. 
+
+The data from Figure 2a was used to test the efficacy of our predictive model. By recording how much our estimate diverges from the true orientation we get a rough score of how well our model can predict the dimer's orientation. 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{Divergance.png}
+	\caption{Divergence between our model estimate and best estimate calculated via taking the dot product}
+\end{figure}
+
+Large spikes in the divergence plot indicate that the model is deviating far from the desired prediction. From Figure 3 we can see our model has short bursts of being highly accurate in its prediction before suddenly shooting off. This can be in part be due to the fact that our $y(\hat{s}_k)$ values are not set but fluctuate due to the signal error. Reduction of the signal error results in closer and closer 
 
 \bibliography{bib}
-\bibliographystyle{ieeetr}
+\bibliographystyle{ieeetran}
 \end{document}
