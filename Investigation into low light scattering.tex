@@ -57,7 +57,7 @@
 		p(\hat{n}\parallel y(\hat{s}))&= \frac{p(y(\hat{s})\parallel\hat{n})p(\hat{n})}{p(y)}
 	\end{align}
 	
-	Where $p(\hat{n})$ and $p(y)$ are our estimations of the priori distributions of particle orientations and scattering signals respectively. The former can be estimated by some Boltzmann distribution based on the radial distance between neighbouring reference orientations. This essentially is biasing our estimate by tying it to its proximity in the orientation space. The latter priori can be taken as the integral of  $p(y(\hat{s})\parallel \hat{n})$ and $p(\hat{n})$ across all possible reference orientations. In order to evaluate if our model is accurate we need first test it using an idealised simulation of the target dimer. 
+	Where $p(\hat{n})$ and $p(y)$ are our estimations of the priori distributions of particle orientations and scattering signals respectively. The former can be estimated by some Boltzmann distribution based on the radial distance between neighbouring reference orientations. This essentially is biasing our estimate by tying it to its proximity in the orientation space. The latter priori can be taken as the integral of $p(y(\hat{s})\parallel \hat{n})$ and $p(\hat{n})$ across all possible reference orientations. In order to test the accuracy of our model we first test it using an idealised simulation of the target dimer. 
 	
 	\subsection*{Testing the model}
 	We use the Brownian OT package by Jerome Fung \cite{Brownian_OT} to simulate how our target dimer moves while subject to an optical trap. At each time step we determine the dimer's orientation and use MSTM to calculate its scattering pattern. We then use the above method to estimate the dimer orientation based on its scattering pattern. The priori estimate of the particle's orientation can be defined as a Boltzmann's distribution based on the radial distance between our previous estimate and each reference orientation. 
@@ -67,20 +67,38 @@
 		{\Sigma_{i=1}^{24}e^{r_i(t, \hat{n})}}
 	\end{align}
 	
-	Since we are testing with a simulation we already know the exact orientation of the dimer, we want to know if our model can correctly predict the closest reference orientation. We take the dot product between our estimated $\hat{n}$ and the correct $\hat{n}$ and calculate the angle between the two. Performing a summation over the full simulation data we should see that the model has a total 
-	 
+	Since we are testing with a simulation we already know the exact orientation of the dimer, we want to know how often our model can determine the closest reference orientation $\hat{n}$ to the true orientation $\hat{s}$, and how precise our prediction is. For a perfect model our probability distribution should be peaked at the correct result and zero elsewhere.
+	\begin{equation}
+		p_{ideal}=
+		\begin{cases}
+			1 & \text{when $\hat{n}$ = $\hat{n}_{best}$}\\
+			0 & \text{anywhere else}
+		\end{cases}
+	\end{equation}
+
+	In reality our model will be some probability distribution that has some probability of any orientation being correct. To evaluate our model's accuracy and confidence we calculate the Kullback-Leibler divergence of the two probability distributions. 
+	
 	\begin{align}
-		K_l(B \parallel D) &= - \sum_{n=1}^{no. steps} B_n \ln(\frac{D_n}{B_n})
+		K_{l, \#}(p_{guess} \parallel p_{ideal}) &= 
+		p(\hat{n}\parallel y_k(\hat{s})) \ln \left[
+		\frac{p_{ideal}}{p(\hat{n}\parallel y_k(\hat{s}))}
+		\right]
 	\end{align}
 
-	Where $B_n$ is the Bayesian estimate and $D_n$ is the dot product result; the closer our estimate is to the dot product result the more accurate the model, and the divergence will approach 0. We can therefore evaluate the overall accuracy of our estimate based on the divergence - which is determined primarily by the detection angles. 
+	Where the divergence goes to zero if $p_{ideal}=0$, for a single estimation this gives us an idea of both the accuracy and the spread of our probability distribution. We sum the divergence of each measurement across the entire simulation to get a score for the entire simulation.
 	
+	\begin{align}
+		K_{l,total} = \sum\limits_{\# =1}^{no. of steps} K_{l,\#}
+	\end{align}
+
+	Since our divergence result is a product of our choice of angles we can see analyse how the choice of angles can be altered to improve our estimate.   
+
 	\subparagraph*{Optimization of angle choice}
 	The efficacy of our estimation is a function of our detection angles, testing every possible configuration manually is time consuming, therefore we utilised Ultra nest to apply a Monte Carlo simulation to our model. 
 	
 	Ultra-nest is a sophisticated python package for fitting models with complex parameter interactions \cite{Ultranest}. Basic fitting methods (i.e. sum of least squares) are intended for finding the parameter choice with the best overall fit to the data. While this works well for functions with few fitting parameters and where the parameters are already constrained to predefined values; the computation time required for more functions where the parameters are less constrained or where there is no analytical solution connecting the parameters to the final output. In cases like this its best to implement Monte Carlo techniques to intelligently sample across the entire parameter space. Ultra-nest implements a variation of this called nested-sampling, where the likelihood contour is used to update a group of live points chosen from the prior estimation.
 	
-	We used the Ultra-nest software to create a set of live points of different choices of detection angles, with each point being evaluated by the divergence ($K_l(B\parallel D)$) produced. After evaluating every live point, the worst results are removed and new live points are created based on the information provided by the previous live points. This results in a convergence on parameter choices that result in an average divergence result of almost 0. A common issue with complex parameter spaces, such as ours, is the issue of degeneracies (where two or more parameters have identical parameter spaces), to combat this we implemented a random step sampler that selects a new live point some 'n' steps away in the parameter space.
+	We used the Ultra-nest software to create a set of live points of different choices of detection angles, with each point being evaluated by the divergence ($K_{l, total}$) produced. After evaluating every live point, the worst results are removed and new live points are created based on the information provided by the previous live points. This results in a convergence on parameter choices that result in an average divergence result of almost 0. A common issue with complex parameter spaces, such as ours, is the issue of degeneracies (where two or more parameters have identical parameter spaces), to combat this we implemented a random step sampler that selects a new live point some 'n' steps away in the parameter space.
 	
 	\section*{Results}
 	\subparagraph*{Asymmetric dimer dynamics}
