@@ -44,7 +44,7 @@
 		(2\pi\sigma_k^2)^{-1/2} e^{-(y(\hat{n})_k-y(\hat{s})_k)^2/2\sigma_k^2}
 	\end{align}
 	
-	Where $\sigma_k$ is the average error in our signal collection; we assumed that in a best case scenario for our set up there will be roughly a $17\%$ error in the signal we collected. This was implemented by adjusting the values of $y(\hat{s}_k)$. 
+	Where $\sigma_k$ is the average error in our signal collection; we left this as a tuneable variable to measure how the influence of experimental error would effect our predictive model. This was implemented by adjusting the values of $y(\hat{s}_k)$. 
 	\begin{eqnarray*}
 		\sigma_k = 0.17\bar{y}(\hat{n}_k) \\
 		\Rightarrow y(\hat{s}_k) = y(\hat{s})_k \pm n\sigma_k \\ 
@@ -57,10 +57,15 @@
 		p(\hat{n}\parallel y(\hat{s}))&= \frac{p(y(\hat{s})\parallel\hat{n})p(\hat{n})}{p(y)}
 	\end{align}
 	
-	Where $p(\hat{n})$ and $p(y)$ are our estimations of the priori distributions of particle orientations and scattering signals respectively. The former can be estimated by some Boltzmann distribution based on the radial distance between neighbouring reference orientations. This essentially is biasing our estimate by tying it to its proximity in the orientation space. The latter priori can be taken as the integral of $p(y(\hat{s})\parallel \hat{n})$ and $p(\hat{n})$ across all possible reference orientations. In order to test the accuracy of our model we first test it using an idealised simulation of the target dimer. 
+	Where $p(\hat{n})$ and $p(y)$ are our estimations of the priori distributions of particle orientations and scattering signals respectively. The former can be estimated by some Boltzmann distribution based on the spacing between reference orientations. The latter priori $p(y)$ is the probability of our dimer producing the signal $y$ and is given as. 
+	
+	\begin{align}
+		p(y) = \int p(y(\hat{s})\parallel \hat{n}) p(\hat{n}) d\hat{n}
+	\end{align}
+	In order to test the accuracy of our model we first test it using an idealised simulation of the target dimer. 
 	
 	\subsection*{Testing the model}
-	We use the Brownian OT package by Jerome Fung \cite{Brownian_OT} to simulate how our target dimer moves while subject to an optical trap. At each time step we determine the dimer's orientation and use MSTM to calculate its scattering pattern. We then use the above method to estimate the dimer orientation based on its scattering pattern. The priori estimate of the particle's orientation can be defined as a Boltzmann's distribution based on the radial distance between our previous estimate and each reference orientation. 
+	We use the Brownian OT package by Jerome Fung \cite{Brownian_OT} to simulate how our target dimer moves while subject to an optical trap. At each time step we determine the dimer's orientation and use MSTM to calculate its scattering pattern. We then use the above method to estimate the dimer orientation based on its scattering pattern. The priori estimate $p(\hat{n})$ can be defined as a Boltzmann's distribution based on the radial distance between our previous estimate and each reference orientation. 
 	\begin{align}
 		r_j(t, \hat{n})&= \hat{n}_{t} \cdot \hat{n}_{t-\Delta t} \\
 		p(\hat{n})&= \frac{e^{r_j(t,\hat{n})}}
@@ -80,12 +85,12 @@
 	
 	\begin{align}
 		K_{l, \#}(p_{guess} \parallel p_{ideal}) &= 
-		p(\hat{n}\parallel y_k(\hat{s})) \ln \left[
+		p_{ideal} \ln \left[
 		\frac{p_{ideal}}{p(\hat{n}\parallel y_k(\hat{s}))}
 		\right]
 	\end{align}
 
-	Where the divergence goes to zero if $p_{ideal}=0$, for a single estimation this gives us an idea of both the accuracy and the spread of our probability distribution. We sum the divergence of each measurement across the entire simulation to get a score for the entire simulation.
+	Where the divergence goes to zero if $p_{ideal}=0$, for a single estimation this gives us an idea of both how confident our model is in it's estimation. We sum the divergence of each measurement across the entire simulation to get an idea of how well the model performs across the entire simulation. 
 	
 	\begin{align}
 		K_{l,total} = \sum\limits_{\# =1}^{no. of steps} K_{l,\#}
@@ -94,11 +99,9 @@
 	Since our divergence result is a product of our choice of angles we can see analyse how the choice of angles can be altered to improve our estimate.   
 
 	\subparagraph*{Optimization of angle choice}
-	The efficacy of our estimation is a function of our detection angles, testing every possible configuration manually is time consuming, therefore we utilised Ultra nest to apply a Monte Carlo simulation to our model. 
+	The efficacy of our estimation is a function of our detection angles, testing every possible configuration manually is time consuming, therefore we utilised Ultra nest to apply a Monte Carlo simulation to our model. Ultra-nest is a sophisticated python package for fitting models with complex parameter interactions \cite{Ultranest}. Ultra-nest implements a variation of Monte Carlo integration,nested-sampling, where the likelihood contour is used to update a group of live points chosen from the prior estimation.
 	
-	Ultra-nest is a sophisticated python package for fitting models with complex parameter interactions \cite{Ultranest}. Basic fitting methods (i.e. sum of least squares) are intended for finding the parameter choice with the best overall fit to the data. While this works well for functions with few fitting parameters and where the parameters are already constrained to predefined values; the computation time required for more functions where the parameters are less constrained or where there is no analytical solution connecting the parameters to the final output. In cases like this its best to implement Monte Carlo techniques to intelligently sample across the entire parameter space. Ultra-nest implements a variation of this called nested-sampling, where the likelihood contour is used to update a group of live points chosen from the prior estimation.
-	
-	We used the Ultra-nest software to create a set of live points of different choices of detection angles, with each point being evaluated by the divergence ($K_{l, total}$) produced. After evaluating every live point, the worst results are removed and new live points are created based on the information provided by the previous live points. This results in a convergence on parameter choices that result in an average divergence result of almost 0. A common issue with complex parameter spaces, such as ours, is the issue of degeneracies (where two or more parameters have identical parameter spaces), to combat this we implemented a random step sampler that selects a new live point some 'n' steps away in the parameter space.
+	We used the Ultra-nest software to create a set of live points of different choices of $\theta_1, \theta_2, \ \& \ \theta_3$, with each point being evaluated by the divergence ($K_{l, total}$) produced. After evaluating every live point, the worst results are removed and new live points are created based on the information provided by the previous live points. This results in a convergence on parameter choices that result in an average divergence result of almost 0. A common issue with complex parameter spaces, such as ours, is the issue of degeneracies (where two or more parameters have identical parameter spaces), to combat this we implemented a random step sampler that selects a new live point some 'n' steps away in the parameter space.
 	
 	\section*{Results}
 	\subparagraph*{Asymmetric dimer dynamics}
@@ -116,18 +119,16 @@
 	\end{figure}
 	
 	As can be seen from \figurename{ 2}, the dimer undergoes a full $180^{\circ}$ rotation upon entering the trap. Typically horizontal alignment of a dimer is unstable and will result in the particle rotating to align along its vertical axis. It is interesting to note that the dimer is furthest from the trap centre as it goes into a horizontal orientation before drawing closer again as it inverts completely. Further simulations of differently sized dimers showed similar results, but only when $a_1 \geq 2a_2$. Dimers with more symmetrical size ratios immediately aligned into a fixed vertical position. 
-	In Vigilante's work with dimers \cite{Brownian_OT} simulations of trapped symmetrical dimers was investigated; their findings showed that the optical torque on the dimer goes to zero while aligned vertically and is at its maximum in a horizontal alignment. Therefore, the inversion of an asymmetric dimer suggests that if the size difference is significant the optical torque goes is minimal for a dimer in both horizontal and vertical orientations. 
+	In Vigilante's work with dimers \cite{Brownian_OT} simulations of trapped symmetrical dimers was investigated; their findings showed that the optical torque on the dimer goes to zero while aligned vertically and is at its maximum in a horizontal alignment. Therefore, the inversion of an asymmetric dimer suggests that if the size difference is significant the optical torque goes is minimal for a dimer in both horizontal and vertical orientations. Once we have our experimental set up complete we can confirm this by trapping an asymmetric dimer and monitoring its orientation. 
 	
 	\subparagraph*{Predictive efficacy of model}
-	The data from Figure 2a was used to test the efficacy of our predictive model. By recording how much our estimate diverges from the true orientation we get a rough score of how well our model can predict the dimer's orientation.
+	The data from \figurename{ 2a} was used to test the efficacy of our predictive model. To visualise how well our model tracks the dimer's orientation we plot the radial distance between our model's prediction and the true orientation, and between the best possible orientation and the true orientation. For a perfect estimation these two plots should overlap. 
 	
-	\begin{figure}[h]
-		\centering
-		\includegraphics[width=0.5\textwidth]{Divergance.png}
-		\caption{Divergence between our model estimate and best estimate calculated via taking the dot product}
+	\begin{figure}
+		
 	\end{figure}
 	
-	Spikes in the divergence plot indicate that the model is deviating from the desired prediction. From \figurename{ 3} we can see our model has short bursts of being highly accurate in its prediction before suddenly shooting off. This can be in part be due to the fact that our $y(\hat{s}_k)$ values are not set but fluctuate due to the signal error. Reduction of the signal error results in a higher accuracy in the models predictive efficacy to an extent; in truth the most significant factor in the prediction is our priori estimate of the dimer orientation $p(\hat{n})$. Since our choice of reference orientations have mirror copies in the physical space the conditional probabilities $p(y_k\parallel\hat{n})$ can be very close to each other. The addition of $p(\hat{n})$ results in a significant improvement in the prediction by restraining our prediction to orientations close by in the physical space. 
+	We first tested how varying the error value would effect our model's efficacy; as can be seen from \figurename{ 3} our model actually benefits from some degree of signal noise. The introduction of noise allows the prediction to correct itself if it strays to much from the correct result, the trade off comes in a reduction in our model's precision and the occurence of random spikes away from the result. To combat these spikes we time averaged our estimation over $10 \ \mu s$ increments to reduce the effects of noise. This significantly reduced the sharp deviations from the correct result while still allowing the model to correct itself if it ever deviates to far from the correct orientation. Our model is therefore capable of taking a noisy signal and converting it into a close approximation of the 
 	
 	\subsection*{Ultra-nest results}
 	We first allowed ultra nest to traverse the parameter space while each angle was constrained to a predefined area. We assumed that the each fibre would be placed within a roughly $30^{\circ}$ range so that we get a sampling of the entire light scattering pattern, we didn't search further than $100^{\circ}$ as the signals would be to low to detect for a micron scale scatterer. The sampler ran until the divergence result was in the order of $10^1$.
