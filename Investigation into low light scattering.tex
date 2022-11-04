@@ -90,13 +90,14 @@
 		\right]
 	\end{align}
 
-	Where the divergence goes to zero if $p_{ideal}=0$, for a single estimation this gives us an idea of both how confident our model is in it's estimation. We sum the divergence of each measurement across the entire simulation to get an idea of how well the model performs across the entire simulation. 
+	Where the divergence goes to zero if $p_{ideal}=0$, for a single estimation this gives us an idea of both how confident our model is in it's estimation. We sum the divergence of each measurement across the entire simulation to get an idea of how well the model performs across the entire simulation. To measure how much our result had improved we compare it to a worse case scenario, where every $\hat{n}$ is given uniform probability, and evaluate the improvement factor $F(K_l)$
 	
 	\begin{align}
 		K_{l,total} = \sum\limits_{\# =1}^{no. of steps} K_{l,\#}
+		F(K_l) = \frac{K_{l,\ worst}}{K_{l,total}}
 	\end{align}
 
-	Since our divergence result is a product of our choice of angles we can see analyse how the choice of angles can be altered to improve our estimate.   
+	To measure how much our result had improved we compare it to a worse case scenario, where every $\hat{n}$ is given uniform probability. Since our divergence result is a product of our choice of angles we can see analyse how the choice of angles can be altered to improve our estimate.   
 
 	\subparagraph*{Optimization of angle choice}
 	The efficacy of our estimation is a function of our detection angles, testing every possible configuration manually is time consuming, therefore we utilised Ultra nest to apply a Monte Carlo simulation to our model. Ultra-nest is a sophisticated python package for fitting models with complex parameter interactions \cite{Ultranest}. Ultra-nest implements a variation of Monte Carlo integration,nested-sampling, where the likelihood contour is used to update a group of live points chosen from the prior estimation.
@@ -124,11 +125,23 @@
 	\subparagraph*{Predictive efficacy of model}
 	The data from \figurename{ 2a} was used to test the efficacy of our predictive model. To visualise how well our model tracks the dimer's orientation we plot the radial distance between our model's prediction and the true orientation, and between the best possible orientation and the true orientation. For a perfect estimation these two plots should overlap. 
 	
-	\begin{figure}
-		
+	We first tested how varying the error value would effect our model's efficacy; calculating the improvement factor $F(K_l)$ with each test.
+	As can be seen from \figurename{ 3} our model actually performs better with noisy signals, to the extent that a signal error of $10\%$ resulted in a worse performance than if we had just guessed each orientation at random. 
+	\begin{figure}[b]
+		\begin{subfigure}{0.33\textwidth}
+			\includegraphics[width=\textwidth]{Error_10_percent.png}
+			\subcaption{$F(K_l) = 0.9422$}
+		\end{subfigure}
+		\begin{subfigure}{0.33\textwidth}
+			\includegraphics[width=\textwidth]{Error_20_percent.png}
+			\subcaption{$F(K_l) = 1.366$}
+		\end{subfigure}
+		\begin{subfigure}{0.33\textwidth}
+			\includegraphics[width=\textwidth]{Error_30_percent.png}
+			\subcaption{$F(K_l)=1.440$}
+		\end{subfigure}
+		\caption{Model predictions with signal error at a) $10 \%$, b)  $20\%$, and c) $30\%$}
 	\end{figure}
-	
-	We first tested how varying the error value would effect our model's efficacy; as can be seen from \figurename{ 3} our model actually benefits from some degree of signal noise. The introduction of noise allows the prediction to correct itself if it strays to much from the correct result, the trade off comes in a reduction in our model's precision and the occurence of random spikes away from the result. To combat these spikes we time averaged our estimation over $10 \ \mu s$ increments to reduce the effects of noise. This significantly reduced the sharp deviations from the correct result while still allowing the model to correct itself if it ever deviates to far from the correct orientation. Our model is therefore capable of taking a noisy signal and converting it into a close approximation of the 
 	
 	\subsection*{Ultra-nest results}
 	We first allowed ultra nest to traverse the parameter space while each angle was constrained to a predefined area. We assumed that the each fibre would be placed within a roughly $30^{\circ}$ range so that we get a sampling of the entire light scattering pattern, we didn't search further than $100^{\circ}$ as the signals would be to low to detect for a micron scale scatterer. The sampler ran until the divergence result was in the order of $10^1$.
