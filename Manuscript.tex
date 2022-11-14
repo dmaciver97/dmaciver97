@@ -98,23 +98,52 @@
 
 Since their invention in the late 1980's, Optical Tweezers have found application in experiments ranging from single molecule biophysics \cite{Bustamante2021Biophysics} to those that test the fundamental assumptions of Quantum Mechanics  \cite{yin2013large} thanks mainly to the ability of the tweezer to transduce and detect forces on the order of a few piconewtons. \textit{Further characterisation of the trapped entity would provide useful information, as explored in for example} metrological measurements \cite{arita2020coherent} and colloidal aggregation \cite{burns1990optical}. Chemical characterisation of the trapped entities has been achieved using spectroscopic techniques such as Raman Scattering \cite{gupta2014raman}, while dynamical characterisation has been demonstrated using a Quadrant Photo Detector,  by following the centre-of-mass Brownian motion of the trapped entity  \cite{friedrich2012tuning} and measuring rotation  of the centre-of-mass \cite{yifat2021facile}. 
 
-The possibility of integrating light scattering with optical trapping was demonstrated by Saffran and co-workers in \cite{Bar-Ziv_1998} where a single-mode optical fibre was aligned to detect the scattered light from a trapped bead and its Brownian motion was studied. While this allowed for studying the dynamics, structural information about the trapped bead was precluded as the measurement was obtained only at a single angle. In this work, we propose a scheme that expands on the technique in \cite{Bar-Ziv_1998} to detect scattered light simultaneously at 3 angles as shown in Figure~\ref{fig:setup}, combined with a novel Bayesian Inference based analysis technique to enable interpretation of the resulting multi-angle data as well as optimisation of the setup to provide maximal information from the signal. 
+The possibility of integrating light scattering with optical trapping
+was demonstrated by Saffran and co-workers in \cite{Bar-Ziv_1998}
+where a single-mode optical fibre was aligned to detect the scattered
+light from a trapped bead and its Brownian motion was studied.  While
+this allowed for studying the dynamics, structural information about
+the trapped bead was precluded as the measurement was obtained only at
+a single angle.  In this work, we propose a scheme that expands on the
+technique in \cite{Bar-Ziv_1998} to detect scattered light
+simultaneously at 3 angles as shown in Figure~\ref{fig:setup},
+combined with a novel Bayesian Inference based analysis technique to
+enable interpretation of the resulting multi-angle data as well as
+optimisation of the setup to provide maximal information from the
+signal.
 
-To demonstrate the analysis, we study a simple paradigmatic example of a trapped entity more complex than a single sphere, i.e. a trapped asymmetric dimer; and we explore how to optimise the experimental measurement to obtain the best estimate of the dimer's instantaneous orientation, as a further paradigmatic example of interpretation of the scattering data to obtain dynamical information on the trapped entity. There is a paucity of literature on measuring the orientation of trapped non-spherical particles till the recent attempt in \cite{raudsepp2022estimating} where imaging was employed to study the orientation of trapped dimers and a resolution of () was achieved. Here, we simulate the Brownian motion of a dimer and calculate the resulting scattered light, and show how Bayesian inference can be used to optimise extraction of the true dimer orientation from the light scattering signals given a choice of scattering measurement angles. 
+To demonstrate the analysis, we study a simple, illustrative example
+of a trapped entity more complex than a single sphere (i.e.\ a trapped
+asymmetric dimer).  We explore how to optimise the experimental
+measurement to obtain the best estimate of the dimer's instantaneous
+orientation, as a further paradigmatic example of interpretation of
+the scattering data to obtain dynamical information on the trapped
+entity.  There is a paucity of literature on measuring the orientation
+of trapped non-spherical particles till the recent attempt in
+Ref.~\citenum{raudsepp2022estimating} where imaging was employed to
+study the orientation of trapped dimers and a resolution of () was
+achieved.  Here, we simulate the Brownian motion of a dimer and
+calculate the resulting scattered light, and show how Bayesian
+inference can be used to optimise extraction of the true dimer
+orientation from the light scattering signals given a choice of
+scattering measurement angles.
 
 
 \begin{figure}
-	\centering
-	\begin{subfigure}{0.45\textwidth}
-		\includegraphics[width=\textwidth, height=0.25\textheight]{./Images/fig1a.png}
-		\subcaption{}
-	\end{subfigure}
-	\begin{subfigure}{0.45\textwidth}
-		\includegraphics[width=\textwidth, height=0.25\textheight]{./Images/fig1b.png}
-		\subcaption{}
-	\end{subfigure}
-	\caption{Experimental set up, a) Side view, b) Top view }
-	\label{fig:setup}
+\centering
+\begin{subfigure}{0.45\textwidth}
+	\includegraphics[width=\textwidth, height=0.25\textheight]{./Images/fig1a.png}
+	\subcaption{}
+\end{subfigure}
+\begin{subfigure}{0.45\textwidth}
+	\includegraphics[width=\textwidth, height=0.25\textheight]{./Images/fig1b.png}
+	\subcaption{}
+\end{subfigure}
+\caption{\label{fig:setup}
+  %
+  Experimental set up, a) Side view, b) Top view
+%
+}
 \end{figure}
 
 
@@ -193,69 +222,78 @@ focus, and the orientation represented as a quaternion.
 \label{sec:2.2}
 
 We represent the instantaneous orientation of the moving dimer in the
-trap as a three component unit vector, $\hat{\bf s}$, pointing from
-the centre of the larger sphere to the centre of the smaller sphere.
-A plane wave ``probe'' laser beam directed perpendicular to the
-trapping laser, incident on the dimer, generates a scattering pattern
-dependent on the dimer's instantaneous orientation,
-$I(\bar{\bf s},\ \theta)$. This scattering pattern was computed using MSTM
-for each time step of our Brownian simulation.  To represent a
-simulated 'measurement', three angles ($\theta_1$, $\theta_2$,
-$\theta_3$) were chosen and the calculated intensity at each angle k
-recorded as $I(\hat{\bf s}, \theta_k)$.
+trap as a unit vector $\hat{\bf s}$, pointing from the centre of the
+larger sphere to the centre of the smaller sphere.  A plane wave
+``probe'' laser beam directed perpendicular to the trapping laser,
+incident on the dimer, generates a scattering pattern dependent on the
+dimer's instantaneous orientation, $I(\bar{\bf s},\theta_k)$.  This
+scattering pattern was computed using MSTM for each time step of the
+Brownian dynamics simulation.  To represent a simulated measurement,
+three angles ($\theta_1$, $\theta_2$, $\theta_3$) were chosen, and the
+calculated intensity at each angle $\theta_k$ is recorded as
+$I(\hat{\bf s}, \theta_k)$.
 
 Our goal is to estimate the dimer orientation $\bar{\bf s}$ over time,
 based on the scattering measurements $I(\bar{\bf s},\ \theta_k)$: the
 question then is what set of angles ($\theta_1$, $\theta_2$,
 $\theta_3$) give us the most useful information on $\hat{\bf s}$.  To
 initially simplify the problem, rather than trying to get an exact
-estimation of $\hat{\bf s}$ we discretise the orientation space into
-$30$ possible reference orientations $\hat{\bf n}_i$ that divide up a
-unit sphere evenly \cite{Rey2006}: our question becomes, how can we
-optimise the experiment to identify the reference orientation
-$\hat{\bf n}_i$ closest to the real orientation $\hat{\bf s}$.
-(Ultimately our method could be extended to an arbitrarily large
-number of reference orientations but for clarity and practicability we
-use a relatively small number here; additionally, the choice of a
-small number of discrete reference or 'candidate' orientations also
-accounts for the fact that any experiment will necessarily have a
-limited precision.)  Using MSTM we compute the scattering that would
-be produced by the dimer if it were in each of the reference
-orientations, denoted as $I(\hat{\bf n}_i, \ \theta)$ and obtain
-'measurements' $I(\hat{\bf n}_i, \ \theta_k)$ at our chosen set of angles
-$\theta_k$. These raw intensities are normalised according to
-\eqref{eq:scale}:
-
+estimation of $\hat{\bf s}$, we discretise the orientation into
+$n_{\rm ref}=30$ possible reference orientations $\hat{\bf n}_\alpha$
+that are evenly distributed on the unit sphere \cite{Rey2006}.
+%
+We then consider how to optimise an experiment to identify the
+reference orientation $\hat{\bf n}_\alpha$ that is closest to the
+actual orientation $\hat{\bf s}$ of the dimer.
+%
+The method can be extended to an arbitrarily large number of reference
+orientations, but for clarity and practicability we use a relatively
+small number here; additionally, the choice of a small number of
+discrete reference or ``candidate'' orientations also accounts for the
+fact that any experiment will necessarily have a limited precision.
+%
+Using MSTM we compute the scattering that would be produced by the
+dimer in each of the reference orientations, denoted as
+$I(\hat{\bf n}_\alpha, \theta)$ and obtain ``measurements''
+$I(\hat{\bf n}_\alpha, \theta_k)$ at our chosen set of angles
+($\theta_1$, $\theta_2$, $\theta_3$).
+%
+These raw intensities are normalised according to
 \begin{align}
-	\label{eq:scale}
-	y_k(\hat{\bf n}_i,\ \theta_k) = 
-	 \frac{\left[I(\hat{\bf n}_i, \ \theta_k)- \langle I(\hat{\bf n}, \ \theta_k) \rangle \right]} 
-	{\langle I^2(\hat{\bf n},\ \theta_k) \rangle -\langle I(\hat{\bf n}, \ \theta_k)\rangle^2}
+\label{eq:scale}
+  y_k(\hat{\bf n}_\alpha)
+  = 
+  \frac{I(\hat{\bf n}_\alpha, \theta_k) - \langle I(\hat{\bf n},\theta_k) \rangle } 
+  {\langle I^2(\hat{\bf n},\theta_k) \rangle -\langle I(\hat{\bf n}, \theta_k)\rangle^2}
 \end{align}
 where the denominator is simply the standard deviation for our values
 of $I(\hat{\bf n}, \theta_k)$.  The dimer's \emph{actual}
-instantaneous scattered intensity based on the real instantaneous
-orientation $\bar{\bf s}$ is similarly scaled using \eqref{eq:scale}
-to give $y(\bar{\bf s},\ \theta_k)$.  See Tables A.1 and \ref{tab:A2}
-for numerical values of our reference orientation, raw intensities,
-and scaled signals.  In practice, $y(\bar{\bf s}\, \theta_k)$ will
-have an inherent amount of uncertainty in our measurement due to noise
-from our detector.  We compare our instantaneous signal to our
-reference signal by assuming that the measurement uncertainty for each
-detection fibre is Gaussian and is centred about $y_k(\bar{\bf s})$
-Combining all three detection angles provides us with the conditional
-probability that, should the dimer be in orientation $\hat{\bf n}_i$,
-it would produce a signal $y(\bar{\bf s})$:
+instantaneous scattered intensity, based on the real instantaneous
+orientation $\bar{\bf s}$, is similarly scaled using
+Eq.~\eqref{eq:scale} to give $y(\bar{\bf s},\theta_k)$.
+%
+The reference orientations, raw intensities, and scaled signals are
+given in Tables~\ref{tab:A1} and \ref{tab:A2}.
+%
+In practice, $y_k(\bar{\bf s})$ will have an inherent amount of
+uncertainty in our measurement due to noise from our detector.  We
+compare our instantaneous signal to our reference signal by assuming
+that the measurement uncertainty for each detection fibre is Gaussian
+and is centred about $y_k(\bar{\bf s})$ Combining all three detection
+angles provides us with the conditional probability that, should the
+dimer be in orientation $\hat{\bf n}_\alpha$, it would produce a
+signal $y(\bar{\bf s})$:
 \begin{align}
-	\label{eq:conditional}
-	p_i(y(\bar{\bf s})|\hat{\bf n}_i) = \Pi^3_{k=1}
-	(2\pi\sigma_k^2)^{-1/2} 
-	e^{-(y_{k}(\hat{\bf n}_i)-y_{k}(\bar{\bf s}))^2/2\sigma_k^2}
+\label{eq:conditional}
+  p(y(\bar{\bf s})|\hat{\bf n}_\alpha)
+  = \prod^3_{k=1}
+(2\pi\sigma_k^2)^{-1/2} 
+e^{-(y_{k}(\hat{\bf n}_\alpha)-y_{k}(\bar{\bf s}))^2/2\sigma_k^2}
 \end{align}
-where $\sigma_k$ is the average error in the detected signal from our
-dimer $y_k(\bar{\bf s})$.  We left this as a tuneable variable to
-measure how the influence of experimental error would effect our
-predictive model.  The signal error was simulated in our model by
+where $\sigma_k$ is related to the uncertainty in the detected signal
+from our dimer $y_k(\bar{\bf s})$.  We left this as a tuneable
+parameter to characterize the influence of experimental error on our
+predictive method.  The signal error was simulated in our model by
 stochastically adjusting our values of $y_k(\bar{\bf s})$.
 \begin{eqnarray*}
   \sigma_k
@@ -267,36 +305,38 @@ n \in \mathbb{R}, n\in[0,1]
 \end{eqnarray*} 
 where $\epsilon$ is the percent error expected from our detection
 fibres.  Equation~\eqref{eq:conditional} assigns a probability to each
-reference orientation based on how similar the 'reference orientation
-signal' $y_{k}(\hat{\bf n}_i)$ is to the actual signal
+reference orientation based on how similar the ``reference orientation
+signal'' $y_{k}(\hat{\bf n}_\alpha)$ is to the actual signal
 $y_{k}(\bar{\bf s})$ generated by the dimer in its real orientation
-$\bar{\bf s}$.  However, if our values of $y_k(\hat{\bf n}_i)$ are
-similar to one another the probability distribution from
-Eq.~\eqref{eq:conditional} will therefore assign similar
-probability for multiple reference orientations. Bayesian inference
-allows one to update a probability distribution by accounting for
-information known prior to making a measurement.  We apply this by
-accounting for our distribution of reference orientations and
-instantaneous signals.
+$\bar{\bf s}$.  However, if our values of $y_k(\hat{\bf n}_\alpha)$
+are similar to one another, the probability distribution from
+Eq.~\eqref{eq:conditional} will therefore assign similar probability
+for multiple reference orientations. Bayesian inference allows one to
+update a probability distribution by accounting for information known
+prior to making a measurement.  We apply this by accounting for our
+distribution of reference orientations and instantaneous signals.
 \begin{align}
   \label{eq:bayes}
-  p_i(\hat{\bf n}| y(\bar{\bf s}))
+  p(\hat{\bf n}_\alpha| y_1,y_2,y_3)
   &=
-    \frac{p_i(y(\bar{\bf s})|\hat{\bf n})p_i(\hat{\bf n})}{p(y)}
+    \frac{p(y_1,y_2,y_3|\hat{\bf n}_\alpha)
+    p(\hat{\bf n}_\alpha)}{p(y_1, y_2, y_3)}
 \end{align}
-where $p_i(\hat{\bf n})$ and $p(y)$ are our estimations of the prior
-distributions of particle orientations and instantaneous signals
-respectively.  The former can be estimated by some Boltzmann
-distribution based on how far apart reference orientations are in
-physical space, covered in Section~\ref{sec:2.3}.  The latter prior
-$p(y)$ is the probability of our dimer producing a signal
-$y_k(\bar{\bf s})$ that falls with our distribution of reference
-signals $y_k(\hat{\bf n})$.  This is given by taking the discrete
-integral over collection of reference orientations.
+where $p(\hat{\bf n}_\alpha)$ and $p(y_1, y_2, y_3)$ are the prior
+estimates of the distributions of particle orientations and
+instantaneous signals, respectively.  The former can be estimated by
+some Boltzmann distribution based on how far apart reference
+orientations are in physical space, covered in Section~\ref{sec:2.3}.
+The latter prior $p(y)$ is the probability of our dimer producing a
+signal $y_k(\bar{\bf s})$ that falls with our distribution of
+reference signals $y_k(\hat{\bf n})$.  This is given by taking the
+discrete integral over collection of reference orientations.
 \begin{align}
-  p(y)
+  p(y_1, y_2, y_3)
   =
-  \sum_{i=1}^{30} p_i(y(\bar{\bf s})|\hat{\bf n})p_i(\hat{\bf n})
+  \sum_{\alpha=1}^{n_{\rm ref}}
+  p(y_1, y_2, y_3|\hat{\bf n}_\alpha)
+  p(\hat{\bf n}_\alpha)
 \end{align}
 The implementation of Eq.~\eqref{eq:bayes} improves our estimate by
 suppressing reference orientations that are far away from our dimer's
@@ -361,9 +401,9 @@ To compare between different iterations of our model the we compare
 our result of $K_l$ to a worst case scenario and evaluate how much it
 improves upon this, denoted as $F(K_l)$:
 \begin{align}
-	K_{l, \ total} &= \sum\limits_{\# =1}^{timesteps} K_{l,\#} \\
-	K_{l, \ worst} &= -\sum\limits_{\#=1}^{timesteps} \ln \left[\frac{1}{1/30} \right] \\
-	F(K_l) &= \frac{K_{l,\ worst}}{K_{l, \ total}}
+K_{l, \ total} &= \sum\limits_{\# =1}^{timesteps} K_{l,\#} \\
+K_{l, \ worst} &= -\sum\limits_{\#=1}^{timesteps} \ln \left[\frac{1}{1/30} \right] \\
+F(K_l) &= \frac{K_{l,\ worst}}{K_{l, \ total}}
 \end{align}
 
 The worst case scenario is akin to randomly choosing a reference
