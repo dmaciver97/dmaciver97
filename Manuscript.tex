@@ -11,8 +11,8 @@
 \usepackage{geometry}
 \usepackage{fancyref}
 \usepackage{lineno}
-\usepackage{ragged2e}
-\usepackage{xcolor}
+\usepackage{color}
+\usepackage{nomecl}
 
 \journal{Journal of Quantitative Spectroscopy $\&$ Radiative Transfer}
 
@@ -20,7 +20,7 @@
 
 \begin{frontmatter}
 
-\title{Investigations on Limited Detection Schemes for Light Scattering of Optically Trapped Asymmetric Particles}
+\title{Investigating the Applications and Limits of Single Asymmetric Particle Light Scattering using Limited Detection Schemes}
 
 
 \author[aff1]{Dan Maciver\corref{cor1}} 
@@ -42,39 +42,42 @@
 			University of Strathclyde},
             addressline={75 Montrose Street}, 
             city={Glasgow},
-            postcode={G1 1XJ}, 
+            postcode={G1 1XL}, 
             country={Scotland}}
 
 
 \begin{abstract}
-	\label{sec:Abstract}
 \justifying
-While optical trapping is a well understood method for force transduction and detection, further characterisation of trapped entities with complex structure and dynamics would provide valuable information for example on aggregation processes, micro-scale biological processes and so on. Such characterisation using light scattering from the trapped object poses a two-fold challenge - one experimental, concerning the arrangement of scattered light detectors, and the other theoretical, involving solution of the inverse light scattering problem. Experimentally, combining static light scattering techniques with optical trapping poses significant engineering challenges due to the space constraints in a conventional optical trapping setup;  while the theoretical inverse scattering problem is a non-trivial task given the potentially complex structure of the entity being characterised. To address these issues we propose here a plausible scenario of detecting scattered light from an optically trapped asymmetric microstructure using a novel, multi-angle, optical-fibre based detection scheme, combined with a Bayesian inference-based analysis method demonstrating how data simulated to mimic light scattering signals in such a scenario may be used to solve the inverse light scattering problem. As an example problem we discuss the application of our method to infer the instantaneous orientation of a simulated trapped asymmetric microsphere dimer from the scattered light signal. We argue that this method can be extended for determining in principle any characteristics of the trapped microstructure that influence the light scattering pattern.
+While optical trapping is a well understood method for force transduction and detection,characterisation of trapped entities poses a two-fold challenge - one experimental concerning the arrangement of light detectors and the other, theoretical involving solving of the inverse light scattering problem. Combining static light scattering techniques with optical trapping poses significant engineering challenges due to the space constraints in a conventional optical trapping setup. We propose here a plausible scenario of detecting scattered light from an optically trapped asymmetric microstructure using a novel, multi-angle, optical-fibre based detection scheme and demonstrate how a Bayesian inference based analysis of the data simulated to mimic light scattering detection signals in such scenarios maybe used for solving the inverse light scattering problem and help characterise trapped entities. To this end, we discuss the application of our method to infer the instantaneous orientations of an asymmetric microsphere dimer being trapped. We argue that this method can be extended for determining any characteristics of the trapped microstructure that influence the light scattering pattern.
 \end{abstract}
 
 \begin{highlights}
 \item Asymmetric dimers undergo a full inversion in the presence of an potential well. This only occurs if the size ratio is greater than 1:2.  
 \item Orientation can be classified by applying Bayesian Statistics to light intensity readings. 
 \item Choice of detection angles sets a lower limit on possible signal error. 
-\item Method can be reworked to determine other characteristics of trapped entities. 
+\item Future applications in continuos processes where dimer shape is changing with time.   
 \end{highlights}
 
 \begin{keyword}
-	Optical Trapping \sep Light Scattering \sep Measurements \sep Bayesian Statistics 
+	Optical Trapping \sep Light Scattering \sep Measurements \sep Bayesian Statistics \sep Theoretical 
 \end{keyword}
 
 \end{frontmatter}
+
+\nomenclature{$\hat{s}$}{Dimer's instantaneous orientation}
+\nomenclature{$\hat{n}_i$}{Reference Orientation i}
+
 
 %\linenumbers
 
 \section{Introduction}
 \label{sec:Intro}
 
-Since their invention in the late 1980's, Optical Tweezers have found application in experiments ranging from single molecule biophysics \cite{Bustamante2021Biophysics} to those that test the fundamental assumptions of Quantum Mechanics \cite{yin2013large} thanks mainly to the ability of the tweezer to transduce and detect forces on the order of a few pico newtons. The ability to characterise the trapped entity has provided useful insights in several fields of research; such as metrological measurements \cite{arita2020coherent} and colloidal aggregation \cite{burns1990optical}. Chemical characterisation of the trapped entities has been achieved using spectroscopic techniques such as Raman Scattering \cite{gupta2014raman}, while dynamical characterisation has been demonstrated using a Quadrant Photo Detector,  by following the centre-of-mass Brownian motion of the trapped entity  \cite{friedrich2012tuning} and measuring rotation  of the centre-of-mass \cite{yifat2021facile}. 
+Since their invention in the late 1980's, Optical Tweezers have found application in experiments ranging from single molecule biophysics \cite{Bustamante2021Biophysics} to those that test the fundamental assumptions of Quantum Mechanics  \cite{yin2013large} thanks mainly to the ability of the tweezer to transduce and detect forces on the order of a few piconewtons. \textit{Further characterisation of the trapped entity would provide useful information, as explored in for example} metrological measurements \cite{arita2020coherent} and colloidal aggregation \cite{burns1990optical}. Chemical characterisation of the trapped entities has been achieved using spectroscopic techniques such as Raman Scattering \cite{gupta2014raman}, while dynamical characterisation has been demonstrated using a Quadrant Photo Detector,  by following the centre-of-mass Brownian motion of the trapped entity  \cite{friedrich2012tuning} and measuring rotation  of the centre-of-mass \cite{yifat2021facile}. 
 
-The possibility of integrating light scattering with optical trapping was demonstrated by Saffran and co-workers in \cite{Bar-Ziv_1998} where a single-mode optical fibre was aligned to detect the scattered light from a trapped bead and its Brownian motion was studied. While this allowed for studying the dynamics, structural information about the trapped bead was precluded as the measurement was obtained only at a single angle. Furthermore, this method cannot be extended for trapped entities that would scatter light non isotopically if their motion is large compared to the dimensions of the trap focus. In this work, we propose a scheme that expands on the technique in \cite{Bar-Ziv_1998} to detect scattered light simultaneously at 3 angles as shown in Figure~\ref{fig:setup}, combined with a novel Bayesian Inference based analysis technique to enable interpretation of the resulting multi-angle data as well as optimisation of the setup to provide maximal information from the signal. 
+The possibility of integrating light scattering with optical trapping was demonstrated by Saffran and co-workers in \cite{Bar-Ziv_1998} where a single-mode optical fibre was aligned to detect the scattered light from a trapped bead and its Brownian motion was studied. While this allowed for studying the dynamics, structural information about the trapped bead was precluded as the measurement was obtained only at a single angle. In this work, we propose a scheme that expands on the technique in \cite{Bar-Ziv_1998} to detect scattered light simultaneously at 3 angles as shown in Figure~\ref{fig:setup}, combined with a novel Bayesian Inference based analysis technique to enable interpretation of the resulting multi-angle data as well as optimisation of the setup to provide maximal information from the signal. 
 
-To demonstrate the analysis, we study a simple paradigmatic example of a trapped entity with more complex dynamics and scattering than a single sphere, i.e. a trapped asymmetric dimer; and we explore how to optimise the experimental measurement to obtain the best estimate of the dimer's instantaneous orientation, as a further paradigmatic example of interpretation of the scattering data to obtain dynamical information on the trapped entity. There is a paucity of literature on measuring the orientation of trapped non-spherical particles till the recent attempt in \cite{raudsepp2022estimating} where imaging was employed to study the orientation of trapped dimers. Here, we simulate the Brownian motion of an asymmetric dimer, calculate its light scattering pattern, and show how Bayesian inference can be used to optimise extraction of the true dimer orientation from the light scattering signals given a choice of scattering measurement angles. 
+To demonstrate the analysis, we study a simple paradigmatic example of a trapped entity more complex than a single sphere, i.e. a trapped asymmetric dimer; and we explore how to optimise the experimental measurement to obtain the best estimate of the dimer's instantaneous orientation, as a further paradigmatic example of interpretation of the scattering data to obtain dynamical information on the trapped entity. There is a paucity of literature on measuring the orientation of trapped non-spherical particles till the recent attempt in \cite{raudsepp2022estimating} where imaging was employed to study the orientation of trapped dimers and a resolution of () was achieved. Here, we simulate the Brownian motion of a dimer and calculate the resulting scattered light, and show how Bayesian inference can be used to optimise extraction of the true dimer orientation from the light scattering signals given a choice of scattering measurement angles. 
 
 \begin{figure}
 	\centering
@@ -94,7 +97,7 @@ To demonstrate the analysis, we study a simple paradigmatic example of a trapped
 \label{sec:Method}
 \subsection{Brownian Simulation}
 \label{sec:2.1}
-We use the Brownian OT package developed by Jerome Fung \textit{et al} \cite{Vigilante2020Brownian_OT} to simulate the motion of a asymmetric dimer within an optical trap. Brownian OT is unique in that it combines MSTM \cite{Mishchenko1996MSTM} and 'Optical Tweezer Toolbox' (\textit{ott}) \cite{Lenton2020} to simulate the motion of arbitrary shaped sphere clusters. We simulated the motion of silica dimer trapped in a 5 mW Gaussian beam; the dimer was comprised of two spheres with radii $1\mu m, \ \& \ 0.5 \ \mu m$ respectively. We ran our simulation over the span of 10 seconds, with Brownian OT calculating the dimer's orientation and position every $1 \ ms$. 
+We use the Brownian OT package developed by Jerome Fung \textit{et al} \cite{Vigilante2020Brownian_OT} to simulate the motion of a asymmetric dimer within an optical trap. Brownian OT is unique in that it combines MSTM \cite{Mishchenko1996MSTM} and 'Optical Tweezer Toolbox' (\textit{ott}) \cite{Lenton2020} to simulate the motion of arbitrary shaped sphere clusters. We simulated the motion of silica dimer trapped in a 5 mW Gaussian beam; the dimer was comprised of two spheres with radii $1\mu m$ and $ 0.5  \mu m$ respectively. We ran our simulation over the span of 10 seconds, with Brownian OT calculating the dimer's orientation and position every $1 \ ms$. 
 
 \begin{figure}[h]
 	\centering
@@ -103,7 +106,7 @@ We use the Brownian OT package developed by Jerome Fung \textit{et al} \cite{Vig
 	\label{fig:dimer}
 \end{figure}
 
-With any trapped particle there are two main sources of motion, Brownian and optical forces. The dimer's Brownian motion ($\Delta q^{\textbf{B}}$) is simulated by generating a set of normally-distributed numbers whose covariance is given by the dimer's diffusion tensor $\textbf{D}$. The diffusion tensor is computed based on Farsund's work \cite{Farsund1996}. For computing the optical force Brownian OT uses the T-Matrix method to calculate the scattering coefficients of the outgoing scattered wave. The T-matirx describes the scattering process by relating the scattering wave to the incident wave in an elegant equation.
+With any trapped particle there are two main sources of motion, Brownian and optical forces. The dimer's Brownian motion ($\Delta q^{\textbf{B}}$) is simulated by generating a set of normally-distributed numbers whose covariance is given by the dimer's diffusion tensor $\textbf{D}$. The diffusion tensor is computed based on Farsund's work \cite{Farsund1996}. For computing the optical force Brownian OT uses the T-Matrix method to calculate the scattering coefficients of the outgoing scattered wave. The T-matrix describes the scattering process by relating the scattering wave to the incident wave:
 
 \begin{align}
 	\begin{pmatrix}
@@ -117,7 +120,7 @@ With any trapped particle there are two main sources of motion, Brownian and opt
 	\end{pmatrix}
 \end{align}
 
-MSTM computes the T-matrix of the dimer, and then passes the T-matrix to \textit{ott} to compute the optical forces. The benefit of this approach is that MSTM can accurately compute the T-matrix for any arbitrary collection of spheres once and then \textit{ott} can calculate the optical forces and toques. The total displacement is the sum of the optical and Brownian contributions.
+MSTM computes the T-matrix of the dimer, and then passes the T-matrix to \textit{ott} to compute the optical forces. The benefit of this approach is that MSTM can accurately compute the T-matrix for any arbitrary collection of spheres once, and then \textit{ott} can calculate the optical forces and torques. The total displacement is the sum of the optical and Brownian contributions:
 
 \begin{align}
 	\langle \Delta q_i^{\textbf{B}} \Delta q_j^{\textbf{B}}\rangle = 2D_{ij} \Delta t \\
@@ -125,32 +128,32 @@ MSTM computes the T-matrix of the dimer, and then passes the T-matrix to \textit
 	\Delta q^{tot} = \Delta q^{\textbf{B}} + \Delta q^{opt}
 \end{align}
 
-Where \textbf{F} is the a 6 component vector that describes the optical force and torque components. Brownian OT returns the dimers motion as a \textit{csv} file; with the $[x,y,z]$ position being relative to the trap focus, and the orientation being returned as a quaternion. 
+where \textbf{F} is the a 6 component vector that describes the optical force and torque components. Brownian OT returns the dimer's motion as a \textit{csv} file containing for each timestep the $[x,y,z]$ position of the dimer's centre of mass relative to the trap focus, and the orientation represented as a quaternion. 
 
-\subsection{Theory}
+\subsection{Orientation estimation from scattering measurements}
 \label{sec:2.2}
 
-If we consider our simulated dimer from before; as it moves within the trap its instantaneous orientation can be represented as a three component unit vector, denoted as $\hat{s}$, one that points from the centre of the larger sphere, to the centre of the smaller sphere. If we shine a plane wave laser, perpendicular to the trapping laser, at the dimer a scattering pattern will be produced that is dependent upon the dimer's instantaneous orientation, denoted as $I(\hat{s},\ \theta)$. This scattering pattern was computed using MSTM for each time step of our Brownian simulation. From the scattering pattern, three angles ($\theta_1,\ \theta_2,\ \& \theta_3$) were chosen and the intensity at each angle k was recorded as $I(\hat{s},\ \theta_k)$. 
+We represent the instantaneous orientation of the moving dimer in the trap as a three component unit vector,  $\hat{s}$, pointing from the centre of the larger sphere to the centre of the smaller sphere. A plane wave 'probe' laser beam directed perpendicular to the trapping laser, incident on the dimer, generates a scattering pattern dependent on the dimer's instantaneous orientation,  $I(\hat{s},\ \theta)$. This scattering pattern was computed using MSTM for each time step of our Brownian simulation. To represent a simulated 'measurement', three angles ($\theta_1,\ \theta_2,\ \& \theta_3$) were chosen and the calculated  intensity at each angle k recorded as $I(\hat{s},\ \theta_k)$. 
 
-Instead of trying to get an exact estimation of $\hat{s}$ we discretise the orientation space into 30 possible reference orientations $\hat{n}_i$ that divide up a unit sphere evenly \cite{Rey2006}. Using MSTM we compute the scattering patterns produced by our dimer in that orientation, denoted as $I(\hat{n}_i, \ \theta)$. We use the same choice of angles to record $I(\hat{n}_i, \ \theta_k)$. These raw intensities can vary by several orders of magnitude across the entire range of possible angles, to correct this each intensity is scaled according to \eqref{eq:scale}:
+Our goal is to estimate the dimer orientation $\hat{s}$ over time, based on the scattering measurements  $I(\hat{s},\ \theta_k)$: the question then is what set of angles ($\theta_1,\ \theta_2,\ \& \theta_3$) give us the most useful information on $\hat{s}$. To initially simplify the problem, rather than trying to get an exact estimation of $\hat{s}$ we discretise the orientation space into 30 possible reference orientations $\hat{n}_i$ that divide up a unit sphere evenly \cite{Rey2006}: our question becomes, how can we optimise the experiment to identify the reference orientation $\hat{n}_i$ closest to the real orientation $\hat{s}$. (Ultimately our method could be extended to an arbitrarily large number of reference orientations but for clarity and practicability we use a relatively small number here; additionally, the choice of a small number of discrete reference or 'candidate' orientations also accounts for the fact that any experiment will necessarily have a limited precision.)   Using MSTM we compute the scattering that would be produced by the dimer if it were in each of the reference orientations, denoted as $I(\hat{n}_i, \ \theta)$ and obtain 'measurements'  $I(\hat{n}_i, \ \theta_k)$ at our chosen set of  angles $\theta_k$. These raw intensities are normalised according to \eqref{eq:scale}:
 
 \begin{align}
 	\label{eq:scale}
 	y_k(\hat{n}_i,\ \theta_k) = 
-	 \frac{\left[I(\hat{n}_i, \ \theta_k)- \langle I(\hat{n}_i, \ \theta_k) \rangle \right]} 
-	{\langle I^2(\hat{n}_i,\ \theta_k) \rangle -\langle I(\hat{n}_i, \ \theta_k)\rangle^2}
+	 \frac{\left[I(\hat{n}_i, \ \theta_k)- \langle I(\hat{n}, \ \theta_k) \rangle \right]} 
+	{\langle I^2(\hat{n},\ \theta_k) \rangle -\langle I(\hat{n}, \ \theta_k)\rangle^2}
 \end{align}
 
-Where the denominator is simply the standard deviation of $I(\hat{n}_i, \theta_k)$; our dimer's instantaneous intensity is also scaled using \eqref{eq:scale} to give $y(\hat{s},\ \theta_k)$. See Table's A.1 and A.2 for numerical values of our reference orientation, raw intensities, and scaled signals. In practice $y(\hat{s}\, \theta_k)$ will have an inherent amount of uncertainty associated with it. We compare our instantaneous signal to our reference signal by assuming that our values of $y(\hat{n}_i,\ \theta_k)$ are normally disturbed at each angle k. Combining all three detection angles provides us with the conditional probability that our dimer in orientation $\hat{n}_i$ will produce a signal $y(\hat{s})$: 
+Where the denominator is simply the standard deviation for our values of $I(\hat{n}, \theta_k)$. The dimer's \emph{actual}  instantaneous scattered intensity based on the real instantaneous orientation $\hat{s}$  is similarly scaled using \eqref{eq:scale} to give $y(\hat{s},\ \theta_k)$. See Table's A.1 and A.2 for numerical values of our reference orientation, raw intensities, and scaled signals. In practice $y(\hat{s}\, \theta_k)$ will have an inherent amount of uncertainty in our measurement due to noise from our detector. We compare our instantaneous signal to our reference signal by assuming that the measurement uncertainty for each detection fibre is Gaussian and is centred about $y_k(\hat{s})$ Combining all three detection angles provides us with the conditional probability that, should the dimer be in orientation $\hat{n}_i$, it would produce a signal $y(\hat{s})$:
 
 \begin{align}
 	\label{eq:conditional}
 	p_i(y(\hat{s})\parallel\hat{n}_i) = \Pi^3_{k=1}
-	(2\pi\sigma&_k^2)^{-1/2}  \nonumber \\
-	&e^{-(y_{k}(\hat{n}_i)-y_{k}(\hat{s}))^2/2\sigma_k^2}
+	(2\pi\sigma_k^2)^{-1/2} 
+	e^{-(y_{k}(\hat{n}_i)-y_{k}(\hat{s}))^2/2\sigma_k^2}
 \end{align}
 
-Where $\sigma_k$ is the average error in our signal collection; we left this as a tuneable variable to measure how the influence of experimental error would effect our predictive model. The signal error was simulated in our model by stochastically adjusting our values of $y_k(\hat{s})$. 
+Where $\sigma_k$ is the average error in the detected signal from our dimer $y_k(\hat{s})$. We left this as a tuneable variable to measure how the influence of experimental error would effect our predictive model. The signal error was simulated in our model by stochastically adjusting our values of $y_k(\hat{s})$. 
 
 \begin{eqnarray*}
 	\sigma_k = \epsilon\bar{y}(\hat{n}_k) \\
@@ -158,20 +161,20 @@ Where $\sigma_k$ is the average error in our signal collection; we left this as 
 	n \in \mathbb{R}, n\in[0,1]
 \end{eqnarray*} 
 
-Where $\epsilon$ is the percent error expected from our detection fibres. Equation~\eqref{eq:conditional} is assigning a probability to each reference orientation based on how similar it's signal is to the signal our dimer produced. If however, our reference signals are similar to one another it can be difficult to parse the correct reference orientation. Bayes Theorem was utilised to update our conditional probability by accounting for the priori distribution of reference orientations and instantaneous signals. 
+Where $\epsilon$ is the percent error expected from our detection fibres. Equation~\eqref{eq:conditional} assigns a probability to each reference orientation based on how similar the 'reference orientation signal' $y_{k}(\hat{n}_i)$ is to the actual signal $y_{k}(\hat{s})$ generated by the dimer in its real orientation $\hat{s}$. However, if our values of $y_k(\hat{n}_i)$ are similar to one another the probability distribution from equation~\ref{eq:conditional} will therefore assign similar probability for multiple reference orientations. Bayesian inference allows one to update a probability distribution by accounting for information known prior to making a measurement. We apply this by accounting for our distribution of reference orientations and instantaneous signals.  
 
 \begin{align}
 	\label{eq:bayes}
 	p_i(\hat{n}\parallel y(\hat{s}))&= \frac{p_i(y(\hat{s})\parallel\hat{n})p_i(\hat{n})}{p(y)}
 \end{align}
 
-Where $p_i(\hat{n})$ and $p(y)$ are our estimations of the priori distributions of particle orientations and instantaneous signals respectively. The former can be estimated by some Boltzmann distribution based on the physical spacing between reference orientations, covered in Section~\ref{sec:2.3}. The latter priori $p(y)$ is the probability of our dimer producing the signal $y(\hat{s})$ and is given as. 
+Where $p_i(\hat{n})$ and $p(y)$ are our estimations of the prior distributions of particle orientations and instantaneous signals respectively. The former can be estimated by some Boltzmann distribution based on how far apart reference orientations are in physical space, covered in Section~\ref{sec:2.3}. The latter prior $p(y)$ is the probability of our dimer producing a signal $y_k(\hat{s})$ that falls with our distribution of reference signals $y_k(\hat{n})$. This is given by taking the discrete integral over collection of reference orientations. 
 
 \begin{align}
 	p(y) = \sum\limits_{i=1}^{30} p_i(y(\hat{s})\parallel\hat{n})p_i(\hat{n})
  \end{align}
 
-The implementation of \eqref{eq:bayes} improves our estimate by now accounting for how our reference orientations are distributed in physical space. In order to evaluate the accuracy of our model we tested it using our Brownian simulation of the dimer, see Section~\ref{sec:2.1}.
+The implementation of \eqref{eq:bayes} improves our estimate by suppressing reference orientations that are far away from our dimer's orientation vector in physical space. In order to evaluate the accuracy of our model we tested it using our Brownian simulation of the dimer, see Section~\ref{sec:2.1}.
 
 \subsection{Testing our Model}
 \label{sec:2.3}
@@ -217,24 +220,24 @@ The signal error $\epsilon$ and the weighting factor $\beta$ are known quantitie
 
 The Ultra-nest software was used to create a set of live points of different choices of $\theta_1, \ \theta_2, \ \& \ \theta_3$, with each point being evaluated by its improvement factor ($F(K_l)$). After evaluating every live point, the worst results are removed and new live points are created based on the information provided by the previous live points. If there is a correlation between the choice of angles and $F(K_l)$ then the live points should congregate around a single (or multiple) choice of angles that will maximise $F(K_l)$ and therefore minimise the error between our estimate and instantaneous orientation. 
 
-\section{Discussion}
+\section{Results $\&$ Discussion}
 \label{sec:Discussion}
 \subsection{Asymmetric dimer dynamics}
 \label{sec:3.1}
 The Brownian OT software was used to simulate the motion of a trapped dimer ($a_1=1\mu m, a_2=0.5\mu m$) over the first 10 seconds of entering the optical trap. The initial orientation was assumed as strictly vertical (in line with the beam propagation direction). The dimer's position orientation was recorded every $10 \mu s$ for using as a test dataset for our model. 
 
 \begin{figure}[h]
+	\label{fig:motion}
 	\centering
 	\begin{subfigure}{0.45\textwidth}
-		\includegraphics[width =\textwidth]{./Images/traj.png}
 		\subcaption{}
+		\includegraphics[width =\textwidth]{./Images/traj.png}
 	\end{subfigure}
 	\begin{subfigure}{0.45\textwidth}
-		\includegraphics[width=\textwidth]{./Images/pos.png}
 		\subcaption{}
+		\includegraphics[width=\textwidth]{./Images/pos.png}
 	\end{subfigure}
 	\caption{Simulation results of: a) the dimers orientation vector with time, b) the dimer's [x,y,z] position with time.}
-	\label{fig:motion}
 \end{figure}
 
 As can be seen from Figure~\ref{fig:motion}, the dimer undergoes a full $180^{\circ}$ rotation upon entering the trap. Typically horizontal alignment of a dimer is unstable and will result in the particle rotating to align along its vertical axis. It is interesting to note that the dimer is furthest from the trap centre as it goes into a horizontal orientation before drawing closer again as it inverts completely. Further simulations of differently sized dimers showed similar results, but only when $a_1 \geq 2a_2$. Dimers with more symmetrical size ratios immediately aligned into a fixed vertical position. 
@@ -242,62 +245,61 @@ In Vigilante's work with dimers \cite{Vigilante2020Brownian_OT} simulations of t
 
 \subsection{Impact of signal error on model predictions}
 \label{sec:3.2}
-A key assumption of our Bayesian model is that we assume our detected light signal will inherently have some degree of noise. This is the central premise that allows us to form equation~\eqref{eq:conditional}, understanding the limits of acceptable signal error is necessary for implementing this to experimental work.
-To this end we ran our model while varying the value of $\epsilon$; \figurename{ 3} shows the model's performance with a selection of angles $15^{\circ},\ 55^{\circ}, \ \& \ 90^{\circ}$ and $\beta$ set at 1. The dotted line indicates the minimum radian distance ($0.137$ radians) between two neighbouring reference orientations, if we are under this line then we know the instantaneous orientation $\hat{s}$ is between two reference orientation.
+A key assumption of equation~\ref{eq:conditional} is that we assume our detected light signal will inherently have some degree of noise. This is the central premise that allows us to form equation~\eqref{eq:conditional}, understanding the limits of acceptable signal error is necessary for implementing this to experimental work.
+To this end we ran our model while varying the value of $\epsilon$. \figurename{ 3} shows the model's performance with a selection of angles $15^{\circ},\ 55^{\circ}, \ \& \ 90^{\circ}$ and $\beta$ set at 1. The dotted line indicates the minimum radian distance ($0.137$ radians) between two neighbouring reference orientations, if we are under this line then we know our model is just off from selecting the correct orientation
 
 \begin{figure}[h]
+	
 	\centering
-	\begin{subfigure}{0.32\textwidth}
+	\begin{subfigure}{0.49\textwidth}
 		\includegraphics[width=\textwidth]{./Images/epsilon_5.png}
 	\end{subfigure}
-	\begin{subfigure}{0.32\textwidth}
+	\begin{subfigure}{0.49\textwidth}
 		\includegraphics[width=\textwidth]{./Images/epsilon_15.png}
 	\end{subfigure}
-	\begin{subfigure}{0.32\textwidth}
+	\begin{subfigure}{0.5\textwidth}
 		\includegraphics[width=\textwidth]{./Images/epsilon_25.png}
 	\end{subfigure}
-	\caption{Model prediction for signal error of a) $5\%$, $15\%$, and $25\%$}
+	\caption{Model prediction for signal error of a) $5\%$, b) $15\%$, and c) $25\%$. Blue line denotes the best result we can achieve, orange line denotes the result provided by eq~\ref{eq:bayes}}
 	\label{fig:epsilon}
 \end{figure}
 
-As can be seen from Figure~\ref{fig:epsilon} there is an optimal point for the signal error; with a $5\%$ error giving an inaccurate estimation, and with a $25\%$ error giving an good estimation but with periodic spikes that indicate a very poor classification of our dimer's orientation. The reason why our low error estimation performed so poorly is that the minimum difference between our reference signals $y_k(\hat{n})$ is larger than our signal error.  As such the model could not distinguish between different reference orientations and was essentially just picking options at random. For our particular choice of angles the minimum difference was around 0.1734 which works out to around a $15\%$ signal error, lowering the signal error any more than this results in the model's performance dropping substantially. This minimum difference is predetermined by our choice of angles and sets a lower limit of how accurate our signals can be. In the future we hope to look at increasing the number of reference orientations to see if this could allow us to achieve a higher degree of accuracy in our estimation of the instantaneous orientation.   
+As can be seen from Figure~\ref{fig:epsilon} there is seemingly a sweet spot for the signal error; with a $5\%$ error giving an inaccurate estimation, and with a $25\%$ error giving an alright estimation but with sudden shifts away from the ideal result. The reason why our low error estimation performed so poorly is that the minimum difference between our values of $y_k$ is larger than our signal error. As such the model could not distinguish between different reference orientations and was essentially just picking options at random. This minimum difference determined by our choice of angles and sets a lower limit of how accurate our signals can be.  In the future we hope to look at increasing the number of reference orientations to see what the true lower bound is.  
 
 The latter issue of a high signal error can be addressed somewhat by adjusting our value of $\beta$ to flatten our probability distribution. We repeated our model estimation at $25\%$ at different values of $\beta$ to see the upper limit we could improve our result to.    
 
-\begin{figure}[h]
+\begin{figure}
+	\label{fig:beta}
 	\centering
-	\begin{subfigure}{0.3\textwidth}
+	\begin{subfigure}{0.49\textwidth}
 		\includegraphics[width=\textwidth]{./Images/beta_5.png}
 	\end{subfigure}
-	\begin{subfigure}{0.3\textwidth}
+	\begin{subfigure}{0.49\textwidth}
 		\includegraphics[width=\textwidth]{./Images/beta_6.png}
 	\end{subfigure}
 	\caption{Model prediction for signal error of $25\%$ when a) $\beta = 5$ and b) $\beta=6$}
-	\label{fig:beta}
 \end{figure}
 
-As shown by \ref{fig:beta} eventually $\beta$ begins to over correct our estimate to the extent that we are a full radian away from the correct result. The exact value of $\beta$ that will optimise our performance varies for each choice of angle, therefore we can use it as variable for finely tuning our results to suit our choice of angles and our signal error. In the future we want to also investigate the possibility of extending our priori estimation so we account for not just the change in orientation after one time step but after 2 or 3 time steps to investigate if we can investigate the auto correlation of our dimer's motion.
+As shown by \ref{fig:beta} eventually $\beta$ begins to over correct our estimate to the extent that we are a full radian away from the correct result. The exact value of $\beta$ that will optimise our performance varies for each choice of angle, therefore we can use it as variable for finely tuning our results to suit our choice of angles and our signal error. In the future we want to also investigate the possibility of extending our prior $p(\hat{n})$ so we account for not just the change in orientation after one time step but after 2 or 3 time steps to investigate if we can investigate the auto correlation of our dimer's motion.
 
-\subsection{Ultra-nest Results}
+\subsection{Parameter Optimisation Results}
 \label{sec:3.3}
-We wanted to see if our choice of angles plays a significant role in our model's efficacy. We employed ultra-nest to analyse the parameter space for our three angles by sampling across the priori of $10^{\circ} \ \& \ 180^{\circ}$. We kept both $\beta$ and $\sigma$ constant during this so we could as these are parameters that can be changed more freely. 
+We wanted to see if our choice of angles plays a significant role in our model's efficacy. We employed ultranest to analyse the parameter space for our three angles by sampling across the priori of $10^{\circ} \ \& \ 180^{\circ}$. We kept both $\beta$ and $\sigma$ constant during this so we could as these are parameters that can be changed more freely. 
 
 \begin{figure}[h]
-	\centering
-	\includegraphics[width=0.4\textwidth]{./Images/corneranglesfreed-1.png}
-	\caption{Corner plot mapping combinations of $\theta$ that generate the best improvement. Contour ranges from $F(K_l) = 1.7 \ \text{to} \ F(K_l)  =  0.1$ }
 	\label{fig:corner}
+	\centering
+	\includegraphics[width=0.45\textwidth]{./Images/corneranglesfreed-1.png}
+	\caption{Corner plot mapping combinations of $\theta$ that generate the best improvement}
 \end{figure}
 
-Figure~\ref{fig:corner} is the resulting corner plot from our ultra-nest sampler, darker areas indicate a choice of angles where the model performed better where as lighter areas are where the model did poorer. Overall from the corner plot provided it's clear that there is no direct correlation between our model's performance and the choice of detection angle. While the choice of angles does not provide a direct improvement in our estimation it does determine how finely we can estimate the orientation, for choices of angles that are close together the minimum spacing between our signals is so small that we can't achieve any greater accuracy than dividing the orientation space into 30 reference orientations. We hope to develop our model further in the future by being able to determine the maximum accuracy given that we know the signal error of our measurements.  
+Figure~\ref{fig:corner} is the resulting corner plot from our ultranest sampler, darker areas indicate a choice of angles where the model performed better where as lighter areas are where the model did poorer. Overall from the corner plot provided it's clear that there is no direct correlation between our model's performance and the choice of detection angle. While the choice of angles does not provide a direct improvement in our estimation it does determine how finely we can estimate the orientation, for choices of angles that are close together the minimum spacing between our signals is so small that we can't achieve any greater accuracy than dividing the orientation space into 30 reference orientations. We hope to develop our model further in the future by being able to determine the maximum accuracy given that we know the signal error of our measurements.  
 
 As covered in Section~\ref{sec:3.2} our choice for beta can help to improve our estimation by restricting it in the physical space. In addition depending on our choice of angles we are also setting the lower limit for our signal error $\epsilon$, so it may be preferable to choose a selection of angles that allows for a large signal error and then adjust the weighting factor to improve upon our estimation. 
 
 \section{Conclusion}
-\label{4}
-We have developed a model for interpreting the dynamics of a trapped particle based purely on the light scattering pattern. In theory the model can be applied to any characteristic that impacts the light scattering pattern produced by the trapped entity. The MSTM package is flexible in calculating the light scattering for a variety of micro-particles; so long as there is a distinguishable difference in the light scattering pattern we can apply this method to characterise the particle to some degree of accuracy. This has potential to be applied to characterise particle size and shape that are changing while in the optical trap. The authors would like to acknowledge and thank the support for this research from the funding provided by the Leverhulme Trust
-
-\noindent \textbf{Funding.} \\
+\label{sec:Conclusion}
+We have developed a model for interpreting the dynamics of a trapped particle based purely on the light scattering pattern. In theory the model can be applied to any characteristic that impacts the light scattering pattern produced by the trapped entity. The MSTM package is flexible in calculating the light scattering for a variety of micro-particles; so long as there is a distinguishable difference in the light scattering pattern we can apply this method to characterise the particle to some degree of accuracy. This has potential to be applied to characterise particle size and shape that are changing while in the optical trap. The authors would like to acknowledge and thank the support for this research from the funding provided by the Leverhulme Trust.\\
 
 \noindent \textbf{Acknowledgement.} The authors thank the support for this research from the funding provided by the Leverhulme Trust. \\
   
