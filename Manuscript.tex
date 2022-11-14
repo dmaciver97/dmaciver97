@@ -12,9 +12,9 @@
 \usepackage{fancyref}
 \usepackage{lineno}
 \usepackage{color}
-\usepackage{nomecl}
+\usepackage{nomencl}
 
-\journal{Journal of Quantitative Spectroscopy $\&$ Radiative Transfer}
+\journal{Journal of Quantitative Spectroscopy \& Radiative Transfer}
 
 \begin{document}
 
@@ -47,8 +47,27 @@
 
 
 \begin{abstract}
-\justifying
-While optical trapping is a well understood method for force transduction and detection,characterisation of trapped entities poses a two-fold challenge - one experimental concerning the arrangement of light detectors and the other, theoretical involving solving of the inverse light scattering problem. Combining static light scattering techniques with optical trapping poses significant engineering challenges due to the space constraints in a conventional optical trapping setup. We propose here a plausible scenario of detecting scattered light from an optically trapped asymmetric microstructure using a novel, multi-angle, optical-fibre based detection scheme and demonstrate how a Bayesian inference based analysis of the data simulated to mimic light scattering detection signals in such scenarios maybe used for solving the inverse light scattering problem and help characterise trapped entities. To this end, we discuss the application of our method to infer the instantaneous orientations of an asymmetric microsphere dimer being trapped. We argue that this method can be extended for determining any characteristics of the trapped microstructure that influence the light scattering pattern.
+  % \justifying
+  %
+  While optical trapping is a well understood method for force
+  transduction and detection,characterisation of trapped entities
+  poses a two-fold challenge --- one experimental concerning the
+  arrangement of light detectors and the other, theoretical involving
+  solving of the inverse light scattering problem. Combining static
+  light scattering techniques with optical trapping poses significant
+  engineering challenges due to the space constraints in a
+  conventional optical trapping setup.  We propose here a plausible
+  scenario of detecting scattered light from an optically trapped
+  asymmetric microstructure using a novel, multi-angle, optical-fibre
+  based detection scheme and demonstrate how a Bayesian inference
+  based analysis of the data simulated to mimic light scattering
+  detection signals in such scenarios maybe used for solving the
+  inverse light scattering problem and help characterise trapped
+  entities.  To this end, we discuss the application of our method to
+  infer the instantaneous orientations of an asymmetric microsphere
+  dimer being trapped. We argue that this method can be extended for
+  determining any characteristics of the trapped microstructure that
+  influence the light scattering pattern.
 \end{abstract}
 
 \begin{highlights}
@@ -64,12 +83,16 @@ While optical trapping is a well understood method for force transduction and de
 
 \end{frontmatter}
 
-\nomenclature{$\hat{s}$}{Dimer's instantaneous orientation}
-\nomenclature{$\hat{n}_i$}{Reference Orientation i}
+\nomenclature{$\bar{\bf s}$}{Dimer's instantaneous orientation}
+\nomenclature{$\hat{\bf n}_i$}{Reference Orientation i}
 
 
 %\linenumbers
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 \label{sec:Intro}
 
@@ -78,6 +101,7 @@ Since their invention in the late 1980's, Optical Tweezers have found applicatio
 The possibility of integrating light scattering with optical trapping was demonstrated by Saffran and co-workers in \cite{Bar-Ziv_1998} where a single-mode optical fibre was aligned to detect the scattered light from a trapped bead and its Brownian motion was studied. While this allowed for studying the dynamics, structural information about the trapped bead was precluded as the measurement was obtained only at a single angle. In this work, we propose a scheme that expands on the technique in \cite{Bar-Ziv_1998} to detect scattered light simultaneously at 3 angles as shown in Figure~\ref{fig:setup}, combined with a novel Bayesian Inference based analysis technique to enable interpretation of the resulting multi-angle data as well as optimisation of the setup to provide maximal information from the signal. 
 
 To demonstrate the analysis, we study a simple paradigmatic example of a trapped entity more complex than a single sphere, i.e. a trapped asymmetric dimer; and we explore how to optimise the experimental measurement to obtain the best estimate of the dimer's instantaneous orientation, as a further paradigmatic example of interpretation of the scattering data to obtain dynamical information on the trapped entity. There is a paucity of literature on measuring the orientation of trapped non-spherical particles till the recent attempt in \cite{raudsepp2022estimating} where imaging was employed to study the orientation of trapped dimers and a resolution of () was achieved. Here, we simulate the Brownian motion of a dimer and calculate the resulting scattered light, and show how Bayesian inference can be used to optimise extraction of the true dimer orientation from the light scattering signals given a choice of scattering measurement angles. 
+
 
 \begin{figure}
 	\centering
@@ -93,21 +117,45 @@ To demonstrate the analysis, we study a simple paradigmatic example of a trapped
 	\label{fig:setup}
 \end{figure}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methodology}
 \label{sec:Method}
+
 \subsection{Brownian Simulation}
 \label{sec:2.1}
-We use the Brownian OT package developed by Jerome Fung \textit{et al} \cite{Vigilante2020Brownian_OT} to simulate the motion of a asymmetric dimer within an optical trap. Brownian OT is unique in that it combines MSTM \cite{Mishchenko1996MSTM} and 'Optical Tweezer Toolbox' (\textit{ott}) \cite{Lenton2020} to simulate the motion of arbitrary shaped sphere clusters. We simulated the motion of silica dimer trapped in a 5 mW Gaussian beam; the dimer was comprised of two spheres with radii $1\mu m$ and $ 0.5  \mu m$ respectively. We ran our simulation over the span of 10 seconds, with Brownian OT calculating the dimer's orientation and position every $1 \ ms$. 
+
+We use the Brownian OT package developed by Fung~\textit{et~al}.
+\cite{Vigilante2020Brownian_OT} to simulate the motion of a asymmetric
+dimer within an optical trap.  Brownian OT combines MSTM
+\cite{Mishchenko1996MSTM} and ``Optical Tweezer Toolbox''
+(\textit{ott}) \cite{Lenton2020} to simulate the motion of arbitrary
+shaped sphere clusters.  We simulated the motion of silica dimer
+trapped in a $5$\,mW Gaussian beam; the dimer was comprised of two
+spheres with radii $1\,{\rm \mu m}$ and $ 0.5\,{\rm \mu m}$,
+respectively.  We ran our simulation over the span of 10 seconds, with
+Brownian OT calculating the dimer's orientation and position every
+$1 \ ms$.
+
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.9\textwidth]{./Images/Dimer.png}
-	\caption{Example dimer in orientation $\hat{s}$}
+	\caption{Example dimer in orientation $\bar{\bf s}$}
 	\label{fig:dimer}
 \end{figure}
 
-With any trapped particle there are two main sources of motion, Brownian and optical forces. The dimer's Brownian motion ($\Delta q^{\textbf{B}}$) is simulated by generating a set of normally-distributed numbers whose covariance is given by the dimer's diffusion tensor $\textbf{D}$. The diffusion tensor is computed based on Farsund's work \cite{Farsund1996}. For computing the optical force Brownian OT uses the T-Matrix method to calculate the scattering coefficients of the outgoing scattered wave. The T-matrix describes the scattering process by relating the scattering wave to the incident wave:
-
+With any trapped particle there are two main sources of motion,
+Brownian and optical forces.  The dimer's Brownian motion
+($\Delta q^{\textbf{B}}$) is simulated by generating a set of
+normally-distributed numbers whose covariance is given by the dimer's
+diffusion tensor $\textbf{D}$.  The diffusion tensor is computed based
+on Farsund's work \cite{Farsund1996}. For computing the optical force
+Brownian OT uses the T-Matrix method to calculate the scattering
+coefficients of the outgoing scattered wave.  The T-matrix describes
+the scattering process by relating the scattering wave to the incident
+wave:
 \begin{align}
 	\begin{pmatrix}
 		p_{mn} \\
@@ -119,101 +167,158 @@ With any trapped particle there are two main sources of motion, Brownian and opt
 		b_{mn}
 	\end{pmatrix}
 \end{align}
-
-MSTM computes the T-matrix of the dimer, and then passes the T-matrix to \textit{ott} to compute the optical forces. The benefit of this approach is that MSTM can accurately compute the T-matrix for any arbitrary collection of spheres once, and then \textit{ott} can calculate the optical forces and torques. The total displacement is the sum of the optical and Brownian contributions:
-
+MSTM computes the T-matrix of the dimer, and then passes the T-matrix
+to \textit{ott} to compute the optical forces. The benefit of this
+approach is that MSTM can accurately compute the T-matrix for any
+arbitrary collection of spheres once, and then \textit{ott} can
+calculate the optical forces and torques. The total displacement is
+the sum of the optical and Brownian contributions:
 \begin{align}
-	\langle \Delta q_i^{\textbf{B}} \Delta q_j^{\textbf{B}}\rangle = 2D_{ij} \Delta t \\
-	\Delta q^{opt} = \frac{\Delta t}{k_BT}\textbf{D} \cdot \textbf{F} \\
-	\Delta q^{tot} = \Delta q^{\textbf{B}} + \Delta q^{opt}
+  \langle \Delta q_i^{\textbf{B}} \Delta q_j^{\textbf{B}}\rangle
+  &= 2D_{ij} \Delta t
+  \\
+  \Delta q^{opt} &= \frac{\Delta t}{k_BT}\textbf{D} \cdot \textbf{F}
+  \\
+\Delta q^{tot} &= \Delta q^{\textbf{B}} + \Delta q^{opt}
 \end{align}
+where \textbf{F} is the a 6-component vector that describes the
+optical force and torque components.  Brownian OT returns the dimer's
+motion as a \textit{csv} file containing for each timestep the
+$[x,y,z]$ position of the dimer's centre of mass relative to the trap
+focus, and the orientation represented as a quaternion.
 
-where \textbf{F} is the a 6 component vector that describes the optical force and torque components. Brownian OT returns the dimer's motion as a \textit{csv} file containing for each timestep the $[x,y,z]$ position of the dimer's centre of mass relative to the trap focus, and the orientation represented as a quaternion. 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Orientation estimation from scattering measurements}
 \label{sec:2.2}
 
-We represent the instantaneous orientation of the moving dimer in the trap as a three component unit vector,  $\hat{s}$, pointing from the centre of the larger sphere to the centre of the smaller sphere. A plane wave 'probe' laser beam directed perpendicular to the trapping laser, incident on the dimer, generates a scattering pattern dependent on the dimer's instantaneous orientation,  $I(\hat{s},\ \theta)$. This scattering pattern was computed using MSTM for each time step of our Brownian simulation. To represent a simulated 'measurement', three angles ($\theta_1,\ \theta_2,\ \& \theta_3$) were chosen and the calculated  intensity at each angle k recorded as $I(\hat{s},\ \theta_k)$. 
+We represent the instantaneous orientation of the moving dimer in the
+trap as a three component unit vector, $\hat{\bf s}$, pointing from
+the centre of the larger sphere to the centre of the smaller sphere.
+A plane wave ``probe'' laser beam directed perpendicular to the
+trapping laser, incident on the dimer, generates a scattering pattern
+dependent on the dimer's instantaneous orientation,
+$I(\bar{\bf s},\ \theta)$. This scattering pattern was computed using MSTM
+for each time step of our Brownian simulation.  To represent a
+simulated 'measurement', three angles ($\theta_1$, $\theta_2$,
+$\theta_3$) were chosen and the calculated intensity at each angle k
+recorded as $I(\hat{\bf s}, \theta_k)$.
 
-Our goal is to estimate the dimer orientation $\hat{s}$ over time, based on the scattering measurements  $I(\hat{s},\ \theta_k)$: the question then is what set of angles ($\theta_1,\ \theta_2,\ \& \theta_3$) give us the most useful information on $\hat{s}$. To initially simplify the problem, rather than trying to get an exact estimation of $\hat{s}$ we discretise the orientation space into 30 possible reference orientations $\hat{n}_i$ that divide up a unit sphere evenly \cite{Rey2006}: our question becomes, how can we optimise the experiment to identify the reference orientation $\hat{n}_i$ closest to the real orientation $\hat{s}$. (Ultimately our method could be extended to an arbitrarily large number of reference orientations but for clarity and practicability we use a relatively small number here; additionally, the choice of a small number of discrete reference or 'candidate' orientations also accounts for the fact that any experiment will necessarily have a limited precision.)   Using MSTM we compute the scattering that would be produced by the dimer if it were in each of the reference orientations, denoted as $I(\hat{n}_i, \ \theta)$ and obtain 'measurements'  $I(\hat{n}_i, \ \theta_k)$ at our chosen set of  angles $\theta_k$. These raw intensities are normalised according to \eqref{eq:scale}:
+Our goal is to estimate the dimer orientation $\bar{\bf s}$ over time,
+based on the scattering measurements $I(\bar{\bf s},\ \theta_k)$: the
+question then is what set of angles ($\theta_1$, $\theta_2$,
+$\theta_3$) give us the most useful information on $\hat{\bf s}$.  To
+initially simplify the problem, rather than trying to get an exact
+estimation of $\hat{\bf s}$ we discretise the orientation space into
+$30$ possible reference orientations $\hat{\bf n}_i$ that divide up a
+unit sphere evenly \cite{Rey2006}: our question becomes, how can we
+optimise the experiment to identify the reference orientation
+$\hat{\bf n}_i$ closest to the real orientation $\hat{\bf s}$.
+(Ultimately our method could be extended to an arbitrarily large
+number of reference orientations but for clarity and practicability we
+use a relatively small number here; additionally, the choice of a
+small number of discrete reference or 'candidate' orientations also
+accounts for the fact that any experiment will necessarily have a
+limited precision.)  Using MSTM we compute the scattering that would
+be produced by the dimer if it were in each of the reference
+orientations, denoted as $I(\hat{\bf n}_i, \ \theta)$ and obtain
+'measurements' $I(\hat{\bf n}_i, \ \theta_k)$ at our chosen set of angles
+$\theta_k$. These raw intensities are normalised according to
+\eqref{eq:scale}:
 
 \begin{align}
 	\label{eq:scale}
-	y_k(\hat{n}_i,\ \theta_k) = 
-	 \frac{\left[I(\hat{n}_i, \ \theta_k)- \langle I(\hat{n}, \ \theta_k) \rangle \right]} 
-	{\langle I^2(\hat{n},\ \theta_k) \rangle -\langle I(\hat{n}, \ \theta_k)\rangle^2}
+	y_k(\hat{\bf n}_i,\ \theta_k) = 
+	 \frac{\left[I(\hat{\bf n}_i, \ \theta_k)- \langle I(\hat{\bf n}, \ \theta_k) \rangle \right]} 
+	{\langle I^2(\hat{\bf n},\ \theta_k) \rangle -\langle I(\hat{\bf n}, \ \theta_k)\rangle^2}
 \end{align}
 
-Where the denominator is simply the standard deviation for our values of $I(\hat{n}, \theta_k)$. The dimer's \emph{actual}  instantaneous scattered intensity based on the real instantaneous orientation $\hat{s}$  is similarly scaled using \eqref{eq:scale} to give $y(\hat{s},\ \theta_k)$. See Table's A.1 and A.2 for numerical values of our reference orientation, raw intensities, and scaled signals. In practice $y(\hat{s}\, \theta_k)$ will have an inherent amount of uncertainty in our measurement due to noise from our detector. We compare our instantaneous signal to our reference signal by assuming that the measurement uncertainty for each detection fibre is Gaussian and is centred about $y_k(\hat{s})$ Combining all three detection angles provides us with the conditional probability that, should the dimer be in orientation $\hat{n}_i$, it would produce a signal $y(\hat{s})$:
+Where the denominator is simply the standard deviation for our values of $I(\hat{\bf n}, \theta_k)$. The dimer's \emph{actual}  instantaneous scattered intensity based on the real instantaneous orientation $\bar{\bf s}$  is similarly scaled using \eqref{eq:scale} to give $y(\bar{\bf s},\ \theta_k)$. See Table's A.1 and A.2 for numerical values of our reference orientation, raw intensities, and scaled signals. In practice $y(\bar{\bf s}\, \theta_k)$ will have an inherent amount of uncertainty in our measurement due to noise from our detector. We compare our instantaneous signal to our reference signal by assuming that the measurement uncertainty for each detection fibre is Gaussian and is centred about $y_k(\bar{\bf s})$ Combining all three detection angles provides us with the conditional probability that, should the dimer be in orientation $\hat{\bf n}_i$, it would produce a signal $y(\bar{\bf s})$:
 
 \begin{align}
 	\label{eq:conditional}
-	p_i(y(\hat{s})\parallel\hat{n}_i) = \Pi^3_{k=1}
+	p_i(y(\bar{\bf s})\parallel\hat{\bf n}_i) = \Pi^3_{k=1}
 	(2\pi\sigma_k^2)^{-1/2} 
-	e^{-(y_{k}(\hat{n}_i)-y_{k}(\hat{s}))^2/2\sigma_k^2}
+	e^{-(y_{k}(\hat{\bf n}_i)-y_{k}(\bar{\bf s}))^2/2\sigma_k^2}
 \end{align}
 
-Where $\sigma_k$ is the average error in the detected signal from our dimer $y_k(\hat{s})$. We left this as a tuneable variable to measure how the influence of experimental error would effect our predictive model. The signal error was simulated in our model by stochastically adjusting our values of $y_k(\hat{s})$. 
+Where $\sigma_k$ is the average error in the detected signal from our dimer $y_k(\bar{\bf s})$. We left this as a tuneable variable to measure how the influence of experimental error would effect our predictive model. The signal error was simulated in our model by stochastically adjusting our values of $y_k(\bar{\bf s})$. 
 
 \begin{eqnarray*}
-	\sigma_k = \epsilon\bar{y}(\hat{n}_k) \\
-	\Rightarrow y(\hat{s}_k) = y(\hat{s})_k \pm n\sigma_k \\ 
+	\sigma_k = \epsilon\bar{y}(\hat{\bf n}_k) \\
+	\Rightarrow y(\bar{\bf s}_k) = y(\bar{\bf s})_k \pm n\sigma_k \\ 
 	n \in \mathbb{R}, n\in[0,1]
 \end{eqnarray*} 
 
-Where $\epsilon$ is the percent error expected from our detection fibres. Equation~\eqref{eq:conditional} assigns a probability to each reference orientation based on how similar the 'reference orientation signal' $y_{k}(\hat{n}_i)$ is to the actual signal $y_{k}(\hat{s})$ generated by the dimer in its real orientation $\hat{s}$. However, if our values of $y_k(\hat{n}_i)$ are similar to one another the probability distribution from equation~\ref{eq:conditional} will therefore assign similar probability for multiple reference orientations. Bayesian inference allows one to update a probability distribution by accounting for information known prior to making a measurement. We apply this by accounting for our distribution of reference orientations and instantaneous signals.  
+Where $\epsilon$ is the percent error expected from our detection fibres. Equation~\eqref{eq:conditional} assigns a probability to each reference orientation based on how similar the 'reference orientation signal' $y_{k}(\hat{\bf n}_i)$ is to the actual signal $y_{k}(\bar{\bf s})$ generated by the dimer in its real orientation $\bar{\bf s}$. However, if our values of $y_k(\hat{\bf n}_i)$ are similar to one another the probability distribution from equation~\ref{eq:conditional} will therefore assign similar probability for multiple reference orientations. Bayesian inference allows one to update a probability distribution by accounting for information known prior to making a measurement. We apply this by accounting for our distribution of reference orientations and instantaneous signals.  
 
 \begin{align}
 	\label{eq:bayes}
-	p_i(\hat{n}\parallel y(\hat{s}))&= \frac{p_i(y(\hat{s})\parallel\hat{n})p_i(\hat{n})}{p(y)}
+	p_i(\hat{\bf n}\parallel y(\bar{\bf s}))&= \frac{p_i(y(\bar{\bf s})\parallel\hat{\bf n})p_i(\hat{\bf n})}{p(y)}
 \end{align}
 
-Where $p_i(\hat{n})$ and $p(y)$ are our estimations of the prior distributions of particle orientations and instantaneous signals respectively. The former can be estimated by some Boltzmann distribution based on how far apart reference orientations are in physical space, covered in Section~\ref{sec:2.3}. The latter prior $p(y)$ is the probability of our dimer producing a signal $y_k(\hat{s})$ that falls with our distribution of reference signals $y_k(\hat{n})$. This is given by taking the discrete integral over collection of reference orientations. 
+Where $p_i(\hat{\bf n})$ and $p(y)$ are our estimations of the prior distributions of particle orientations and instantaneous signals respectively. The former can be estimated by some Boltzmann distribution based on how far apart reference orientations are in physical space, covered in Section~\ref{sec:2.3}. The latter prior $p(y)$ is the probability of our dimer producing a signal $y_k(\bar{\bf s})$ that falls with our distribution of reference signals $y_k(\hat{\bf n})$. This is given by taking the discrete integral over collection of reference orientations. 
 
 \begin{align}
-	p(y) = \sum\limits_{i=1}^{30} p_i(y(\hat{s})\parallel\hat{n})p_i(\hat{n})
+	p(y) = \sum\limits_{i=1}^{30} p_i(y(\bar{\bf s})\parallel\hat{\bf n})p_i(\hat{\bf n})
  \end{align}
 
 The implementation of \eqref{eq:bayes} improves our estimate by suppressing reference orientations that are far away from our dimer's orientation vector in physical space. In order to evaluate the accuracy of our model we tested it using our Brownian simulation of the dimer, see Section~\ref{sec:2.1}.
 
 \subsection{Testing our Model}
 \label{sec:2.3}
-Using our simulation from Section~\ref{sec:2.1} we calculated the instantaneous signal from our dimer at each time step using MSTM.  We applied \eqref{eq:bayes} - covered in Section~\ref{sec:2.2} - and the reference orientation with the highest probability is taken as our estimation of the dimer's instantaneous orientation. The priori of reference orientations $p_i(\hat{n})$ is defined at each time step by accounting for the physical distance between our previous estimation $\hat{n}_{i, \ t - \Delta t}$ and each reference orientation $\hat{n}$ 
+Using our simulation from Section~\ref{sec:2.1} we calculated the instantaneous signal from our dimer at each time step using MSTM.  We applied \eqref{eq:bayes} - covered in Section~\ref{sec:2.2} - and the reference orientation with the highest probability is taken as our estimation of the dimer's instantaneous orientation. The priori of reference orientations $p_i(\hat{\bf n})$ is defined at each time step by accounting for the physical distance between our previous estimation $\hat{\bf n}_{i, \ t - \Delta t}$ and each reference orientation $\hat{\bf n}$ 
 
 \begin{align}
-	r_i(t, \hat{n}_i)= \frac{1}{2}((\hat{n}_{i,\ t} \cdot \hat{n}_{t-\Delta t})-1) \\
-	p_i(\hat{n})= \frac{e^{\beta (r_i(t,\hat{n}_i)-1)}}
-	{\Sigma_{j=1}^{30}e^{\beta(r_j(t, \hat{n}_i)-1)}}
+	r_i(t, \hat{\bf n}_i)= \frac{1}{2}((\hat{\bf n}_{i,\ t} \cdot \hat{\bf n}_{t-\Delta t})-1) \\
+	p_i(\hat{\bf n})= \frac{e^{\beta (r_i(t,\hat{\bf n}_i)-1)}}
+	{\Sigma_{j=1}^{30}e^{\beta(r_j(t, \hat{\bf n}_i)-1)}}
 \end{align}
-
-Where $\beta$ is a weighting factor that controls the significance of our priori estimate. The simulation data from Section~\ref{sec:2.1} was used to check if the estimation was correct by comparing the estimate provided by \eqref{eq:bayes} to the reference orientation closest to the instantaneous orientation, denoted as $\hat{n}_{best}$. To measure the error in the model's estimate the distribution's of $p(\hat{n}\parallel y(\hat{s}))$ and an ideal result, $p_ideal$, were compared. An ideal distribution is one that is 0 for every $\hat{n}$ apart from the correct result. 
-
+where $\beta$ is a weighting factor that controls the significance of
+our priori estimate. The simulation data from Section~\ref{sec:2.1}
+was used to check if the estimation was correct by comparing the
+estimate provided by \eqref{eq:bayes} to the reference orientation
+closest to the instantaneous orientation, denoted as
+$\hat{\bf n}_{best}$.  To measure the error in the model's estimate the
+distribution's of $p(\hat{\bf n}\parallel y(\bar{\bf s}))$ and an ideal
+result, $p_ideal$, were compared. An ideal distribution is one that is
+0 for every $\hat{\bf n}$ apart from the correct result.
 \begin{align}
 	p_{ideal} = 
 	\begin{cases}
-		1 & \text{when $\hat{n}_i$ = $\hat{n}_{best}$}\\
+		1 & \text{when $\hat{\bf n}_i$ = $\hat{\bf n}_{best}$}\\
 		0 & \text{anywhere else}
 	\end{cases}
 \end{align}
-
-The distribution from \eqref{eq:bayes} will assign some non-zero probability to every reference orientation. The model's error was measured by calculating the Kullback-Leibler ($K_l$) divergence between the two distributions 
+The distribution from \eqref{eq:bayes} will assign some non-zero probability to every reference orientation.  The model's error was measured by calculating the Kullback-Leibler ($K_l$) divergence between the two distributions 
 
 \begin{align}
-	K_{l, \#}(p_i(\hat{n}\parallel y_k(\hat{s})) &\parallel p_{ideal}) =\nonumber \\
-	&p_{ideal}\ln \left[\frac{p_{ideal}}{p(\hat{n}_{best}\parallel y(\hat{s}))}
+	K_{l, \#}(p_i(\hat{\bf n}\parallel y_k(\bar{\bf s})) &\parallel p_{ideal}) =\nonumber \\
+	&p_{ideal}\ln \left[\frac{p_{ideal}}{p(\hat{\bf n}_{best}\parallel y(\bar{\bf s}))}
 	\right]
 \end{align}
-
-Where a more negative value of $K_l$ indicates a poorer estimation of the dimer's instantaneous orientation. By summing the divergence of each measurement across the entire simulation we get an evaluation of how well the model performed in estimating the dimer's orientation. To compare between different iterations of our model the we compare our result of $K_l$ to a worst case scenario and evaluate how much it improves upon this, denoted as $F(K_l)$:
-
+where a more negative value of $K_l$ indicates a poorer estimation of
+the dimer's instantaneous orientation. By summing the divergence of
+each measurement across the entire simulation we get an evaluation of
+how well the model performed in estimating the dimer's orientation. To
+compare between different iterations of our model the we compare our
+result of $K_l$ to a worst case scenario and evaluate how much it
+improves upon this, denoted as $F(K_l)$:
 \begin{align}
 	K_{l, \ total} &= \sum\limits_{\# =1}^{timesteps} K_{l,\#} \\
 	K_{l, \ worst} &= -\sum\limits_{\#=1}^{timesteps} \ln \left[\frac{1}{1/30} \right] \\
 	F(K_l) &= \frac{K_{l,\ worst}}{K_{l, \ total}}
 \end{align}
 
-The worst case scenario is akin to randomly choosing a reference orientation at each time step. The greater the value of $F(K_l)$ the lower the error between our estimated orientation and the dimer's instantaneous orientation. Because our model is dependent on several parameters we need to a sophisticated method for understanding how these parameters correlate with $F(K_l)$.
+The worst case scenario is akin to randomly choosing a reference
+orientation at each time step. The greater the value of $F(K_l)$ the
+lower the error between our estimated orientation and the dimer's
+instantaneous orientation. Because our model is dependent on several
+parameters we need to a sophisticated method for understanding how
+these parameters correlate with $F(K_l)$.
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Optimization of parameters}
 \label{sec:2.4}
 The signal error $\epsilon$ and the weighting factor $\beta$ are known quantities whose influence can be measured directly. However, our choice of angles and how they correlate with $F(K_l)$ is not easily understood Evaluating every possible configuration manually is inefficient, therefore we utilised Ultra-nest to apply a Monte Carlo simulation to our model. Ultra-nest is a sophisticated python package for fitting models with complex parameter correlations \cite{Buchner2016Ultranest}. Ultra-nest implements a variation of Monte Carlo integration, nested-sampling, where a likelihood contour is used to update a group of live points chosen from the prior estimation ($0^{\circ} \leq \theta_k \leq 180^{\circ}$).
@@ -264,9 +369,24 @@ To this end we ran our model while varying the value of $\epsilon$. \figurename{
 	\label{fig:epsilon}
 \end{figure}
 
-As can be seen from Figure~\ref{fig:epsilon} there is seemingly a sweet spot for the signal error; with a $5\%$ error giving an inaccurate estimation, and with a $25\%$ error giving an alright estimation but with sudden shifts away from the ideal result. The reason why our low error estimation performed so poorly is that the minimum difference between our values of $y_k$ is larger than our signal error. As such the model could not distinguish between different reference orientations and was essentially just picking options at random. This minimum difference determined by our choice of angles and sets a lower limit of how accurate our signals can be.  In the future we hope to look at increasing the number of reference orientations to see what the true lower bound is.  
+As can be seen from Figure~\ref{fig:epsilon}, there is seemingly a
+sweet spot for the signal error; with a $5$\% error giving an
+inaccurate estimation, and with a $25$\% error giving an alright
+estimation but with sudden shifts away from the ideal result. The
+reason why our low error estimation performed so poorly is that the
+minimum difference between our values of $y_k$ is larger than our
+signal error.  As such the model could not distinguish between
+different reference orientations and was essentially just picking
+options at random.  This minimum difference determined by our choice of
+angles and sets a lower limit of how accurate our signals can be.  In
+the future we hope to look at increasing the number of reference
+orientations to see what the true lower bound is.
 
-The latter issue of a high signal error can be addressed somewhat by adjusting our value of $\beta$ to flatten our probability distribution. We repeated our model estimation at $25\%$ at different values of $\beta$ to see the upper limit we could improve our result to.    
+The latter issue of a high signal error can be addressed somewhat by
+adjusting our value of $\beta$ to flatten our probability
+distribution. We repeated our model estimation at $25\%$ at different
+values of $\beta$ to see the upper limit we could improve our result
+to.
 
 \begin{figure}
 	\label{fig:beta}
@@ -280,7 +400,16 @@ The latter issue of a high signal error can be addressed somewhat by adjusting o
 	\caption{Model prediction for signal error of $25\%$ when a) $\beta = 5$ and b) $\beta=6$}
 \end{figure}
 
-As shown by \ref{fig:beta} eventually $\beta$ begins to over correct our estimate to the extent that we are a full radian away from the correct result. The exact value of $\beta$ that will optimise our performance varies for each choice of angle, therefore we can use it as variable for finely tuning our results to suit our choice of angles and our signal error. In the future we want to also investigate the possibility of extending our prior $p(\hat{n})$ so we account for not just the change in orientation after one time step but after 2 or 3 time steps to investigate if we can investigate the auto correlation of our dimer's motion.
+As shown in Figure~\ref{fig:beta}, eventually $\beta$ begins to over
+correct our estimate to the extent that we are a full radian away from
+the correct result.  The exact value of $\beta$ that will optimise our
+performance varies for each choice of angle, therefore we can use it
+as variable for finely tuning our results to suit our choice of angles
+and our signal error.  In future, we want to also investigate the
+possibility of extending our prior $p(\hat{\bf n})$ so we account for not
+just the change in orientation after one time step but after 2 or 3
+time steps to investigate if we can investigate the auto correlation
+of our dimer's motion.
 
 \subsection{Parameter Optimisation Results}
 \label{sec:3.3}
@@ -297,21 +426,34 @@ Figure~\ref{fig:corner} is the resulting corner plot from our ultranest sampler,
 
 As covered in Section~\ref{sec:3.2} our choice for beta can help to improve our estimation by restricting it in the physical space. In addition depending on our choice of angles we are also setting the lower limit for our signal error $\epsilon$, so it may be preferable to choose a selection of angles that allows for a large signal error and then adjust the weighting factor to improve upon our estimation. 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
 \label{sec:Conclusion}
+
 We have developed a model for interpreting the dynamics of a trapped particle based purely on the light scattering pattern. In theory the model can be applied to any characteristic that impacts the light scattering pattern produced by the trapped entity. The MSTM package is flexible in calculating the light scattering for a variety of micro-particles; so long as there is a distinguishable difference in the light scattering pattern we can apply this method to characterise the particle to some degree of accuracy. This has potential to be applied to characterise particle size and shape that are changing while in the optical trap. The authors would like to acknowledge and thank the support for this research from the funding provided by the Leverhulme Trust.\\
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \noindent \textbf{Acknowledgement.} The authors thank the support for this research from the funding provided by the Leverhulme Trust. \\
   
 \noindent \textbf{Disclosures.} The authors declare no conflict of interest. \\
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bibliography{bib} 
 \bibliographystyle{ieeetr}
+
 
 \newpage
 \appendix
 \onecolumn
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Appendix}
 \setcounter{table}{0}
 \renewcommand{\thetable}{A\arabic{table}}
@@ -322,7 +464,7 @@ We have developed a model for interpreting the dynamics of a trapped particle ba
 		\caption{Reference Orientations vector components$^*$}
 		\begin{tabular}{|c|c|c|c|}
 			\hline\hline
-			Reference Orientation i & $\hat{n}_{i,\ x}$ &  $\hat{n}_{i,\ y}$ &  $\hat{n}_{i,\ z}$ \\
+			Reference Orientation i & $\hat{\bf n}_{i,\ x}$ &  $\hat{\bf n}_{i,\ y}$ &  $\hat{\bf n}_{i,\ z}$ \\
 			\hline
 			$1$ & $ 0.29588$ &  $ 0.29588$ & $ 0.90825$ \\
 			$2$ & $ 0.90825$ &  $ 0.29588$ & $ 0.29588$ \\
@@ -360,6 +502,7 @@ We have developed a model for interpreting the dynamics of a trapped particle ba
 	\end{center}
 \end{table}
 
+
 \newpage
 \begin{table}[h]
 	\label{tab:A2}
@@ -367,7 +510,7 @@ We have developed a model for interpreting the dynamics of a trapped particle ba
 		\caption{Raw intensities $I_k$$^*$ and scaled intensities $y_k$}
 		\begin{tabular}{|c|c|c|c|c|c|c|}
 			\hline\hline
-			Reference Orientation i  & $I(\hat{n}_i,\ 15^{\circ})$ &  $I(\hat{n}_i, \ 45^{\circ})$ &  $I(\hat{n}_i,\ 90^{\circ})$ & $y(\hat{n}_i, \ 15^{\circ})$ & $y(\hat{n}_i, \ 45^{\circ})$ & $y(\hat{n}_i, \ 90^{\circ})$ \\
+			Reference Orientation i  & $I(\hat{\bf n}_i,\ 15^{\circ})$ &  $I(\hat{\bf n}_i, \ 45^{\circ})$ &  $I(\hat{\bf n}_i,\ 90^{\circ})$ & $y(\hat{\bf n}_i, \ 15^{\circ})$ & $y(\hat{\bf n}_i, \ 45^{\circ})$ & $y(\hat{\bf n}_i, \ 90^{\circ})$ \\
 			\hline
 			$1$ & $13.371$ & $0.1264$ & $0.0122$ & $-0.5423$ & $-0.4253$ & $-0.4838$ \\
 			$2$ & $13.237$ & $0.0272$ & $0.0102$ & $0.2429$ & $-1.401$ & $-0.7826$ \\
@@ -405,5 +548,9 @@ We have developed a model for interpreting the dynamics of a trapped particle ba
 	\end{center}
 \end{table}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
 \endinput
