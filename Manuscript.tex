@@ -84,7 +84,7 @@
 \end{frontmatter}
 
 \nomenclature{$\bar{\bf s}$}{Dimer's instantaneous orientation}
-\nomenclature{$\hat{\bf n}_i$}{Reference Orientation i}
+\nomenclature{$\hat{\bf n}_\alpha$}{Reference Orientation $\alpha$}
 
 
 %\linenumbers
@@ -355,17 +355,17 @@ instantaneous signal from our dimer at each time step using MSTM.  We
 applied Eq.~\eqref{eq:bayes} --- covered in Section~\ref{sec:2.2} ---
 and the reference orientation with the highest probability is taken as
 our estimation of the dimer's instantaneous orientation.  The prior of
-the reference orientations $p_i(\hat{\bf n})$ is defined at each time
-step by accounting for the physical distance between our previous
-estimation $\hat{\bf n}_{i, \ t - \Delta t}$ and each reference
-orientation $\hat{\bf n}$
+the reference orientations $p(\hat{\bf n}_\alpha)$ is defined at each
+time step by accounting for the physical distance between the previous
+estimate $\hat{\bf n}_{\alpha}(t - \Delta t)$ and each reference
+orientation $\hat{\bf n}_\alpha$
 \begin{align}
-  r_i(t, \hat{\bf n}_i)
-  &= \frac{1}{2}((\hat{\bf n}_{i,\ t} \cdot \hat{\bf n}_{t-\Delta t})-1)
+  r_i(t, \hat{\bf n}_\alpha)
+  &= \frac{1}{2}((\hat{\bf n}_{\alpha}(t) \cdot \hat{\bf n}_{t-\Delta t})-1)
   \\
   p_i(\hat{\bf n})
   &= \frac{e^{\beta (r_i(t,\hat{\bf n}_i)-1)}}
-{\sum_{j=1}^{30}e^{\beta(r_j(t, \hat{\bf n}_i)-1)}}
+{\sum_{j=1}^{n_{\rm ref}}e^{\beta(r_j(t, \hat{\bf n}_\alpha)-1)}}
 \end{align}
 where $\beta$ is a weighting factor that controls the significance of
 our priori estimate.  The simulation data from Section~\ref{sec:2.1}
@@ -379,7 +379,7 @@ that is 0 for every $\hat{\bf n}$ apart from the correct result.
 \begin{align}
 p_{ideal} = 
 \begin{cases}
-	1 & \text{when $\hat{\bf n}_i$ = $\hat{\bf n}_{best}$}\\
+	1 & \text{when $\hat{\bf n}_\alpha$ = $\hat{\bf n}_{best}$}\\
 	0 & \text{anywhere else}
 \end{cases}
 \end{align}
@@ -388,9 +388,10 @@ probability to every reference orientation.  The model's error was
 measured by calculating the Kullback-Leibler divergence $K_l$ between
 the two distributions
 \begin{align}
-  K_{l, \#}(p_i(\hat{\bf n}| y_k(\bar{\bf s})) &\parallel p_{ideal}) =\nonumber
+  K_{l, \#}(p(\hat{\bf n}_\alpha| y_1, y_2, y_3), p_{ideal})
+  =\nonumber
   \\
-&p_{ideal}\ln \left[\frac{p_{ideal}}{p(\hat{\bf n}_{best}| y(\bar{\bf s}))}
+&p_{ideal}\ln \left[\frac{p_{ideal}}{p(\hat{\bf n}_{best}| y_1,y_2,y_3))}
 \right]
 \end{align}
 where a more negative value of $K_l$ indicates a poorer estimation of
@@ -422,9 +423,9 @@ The signal error $\epsilon$ and the weighting factor $\beta$ are known
 quantities whose influence can be measured directly; however, our
 choice of angles and how they correlate with $F(K_l)$ is not easily
 understood Evaluating every possible configuration manually is
-inefficient, therefore we utilised Ultra-nest to apply a Monte Carlo
-simulation to our model. Ultra-nest is a sophisticated python package
-for fitting models with complex parameter correlations
+inefficient, therefore we utilised UltraNest to apply a Monte Carlo
+simulation to our model.  UltraNest is a Python package for fitting
+models with complex parameter correlations
 \cite{Buchner2016Ultranest}.  UltraNest implements a variation of
 Monte Carlo integration, nested-sampling, where a likelihood contour
 is used to update a group of live points chosen from the prior
@@ -453,11 +454,11 @@ orientation.
 \label{sec:3.1}
 
 The Brownian OT software was used to simulate the motion of a trapped
-dimer ($a_1=1\mu m, a_2=0.5\mu m$) over the first $10$\,seconds of
-entering the optical trap.  The initial orientation was assumed as
-strictly vertical (in line with the beam propagation direction). The
-dimer's position orientation was recorded every $10\,{\rm \mu s}$ for
-using as a test dataset for our model.
+dimer ($a_1=1\,{\rm \mu m}$, $a_2=0.5\,{\rm \mu m}$) over the first
+$10$\,seconds of entering the optical trap.  The initial orientation
+was assumed as strictly vertical (in line with the beam propagation
+direction). The dimer's position orientation was recorded every
+$10\,{\rm \mu s}$ for using as a test dataset for our model.
 
 \begin{figure}[h]
 	\label{fig:motion}
@@ -474,32 +475,33 @@ using as a test dataset for our model.
 \end{figure}
 
 As can be seen from Figure~\ref{fig:motion}, the dimer undergoes a
-full $180^{\circ}$ rotation upon entering the trap. Typically
+full $180^{\circ}$ rotation upon entering the trap.  Typically
 horizontal alignment of a dimer is unstable and will result in the
-particle rotating to align along its vertical axis. It is interesting
+particle rotating to align along its vertical axis.  It is interesting
 to note that the dimer is furthest from the trap centre as it goes
 into a horizontal orientation before drawing closer again as it
 inverts completely. Further simulations of differently sized dimers
-showed similar results, but only when $a_1 \geq 2a_2$. Dimers with
+showed similar results, but only when $a_1 \geq 2a_2$.  Dimers with
 more symmetrical size ratios immediately aligned into a fixed vertical
 position.
 %
-In Vigilante's work with dimers \cite{Vigilante2020Brownian_OT}
-simulations of trapped symmetrical dimers was investigated; their
-findings showed that the optical torque on the dimer goes to zero
-while aligned vertically and is at its maximum in a horizontal
-alignment.  Therefore, the inversion of an asymmetric dimer suggests
-that if the size difference is significant the optical torque goes is
-minimal for a dimer in both horizontal and vertical orientations. Once
-we have our experimental set up complete we can confirm this by
-trapping an asymmetric dimer and monitoring its orientation. The data
-from \figurename{ 2a} was used to test the efficacy of our predictive
-model. To visualise how well our model tracks the dimer's orientation
-we plot the radial distance between our model's prediction and the
-true orientation, and between the best possible orientation and the
-true orientation. For a perfect estimation these two plots should
-overlap, while we cannot achieve an exact estimation we can optimise
-it by adjusting the expected signal error and weighting factor.
+In the simulations of Vigilante~\emph{et~al}.\
+\cite{Vigilante2020Brownian_OT}, trapped symmetrical dimers were
+investigated; their findings showed that the optical torque on the
+dimer goes to zero while aligned vertically and is at its maximum in a
+horizontal alignment.  Therefore, the inversion of an asymmetric dimer
+suggests that if the size difference is significant the optical torque
+goes is minimal for a dimer in both horizontal and vertical
+orientations. Once we have our experimental set up complete we can
+confirm this by trapping an asymmetric dimer and monitoring its
+orientation.  The data from \figurename{ 2a} was used to test the
+efficacy of our predictive model.  To visualise how well our model
+tracks the dimer's orientation we plot the radial distance between our
+model's prediction and the true orientation, and between the best
+possible orientation and the true orientation.  For a perfect
+estimation these two plots should overlap, while we cannot achieve an
+exact estimation we can optimise it by adjusting the expected signal
+error and weighting factor.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -581,7 +583,13 @@ of our dimer's motion.
 
 \subsection{Parameter Optimisation Results}
 \label{sec:3.3}
-We wanted to see if our choice of angles plays a significant role in our model's efficacy. We employed ultranest to analyse the parameter space for our three angles by sampling across the priori of $10^{\circ} \ \& \ 180^{\circ}$. We kept both $\beta$ and $\sigma$ constant during this so we could as these are parameters that can be changed more freely. 
+
+We wanted to see if our choice of angles plays a significant role in
+our model's efficacy. We employed ultranest to analyse the parameter
+space for our three angles by sampling across the priori of
+$10^{\circ} \ \& \ 180^{\circ}$.   We kept both $\beta$ and $\sigma$
+constant during this so we could as these are parameters that can be
+changed more freely.
 
 \begin{figure}[h]
 	\label{fig:corner}
@@ -590,9 +598,27 @@ We wanted to see if our choice of angles plays a significant role in our model's
 	\caption{Corner plot mapping combinations of $\theta$ that generate the best improvement}
 \end{figure}
 
-Figure~\ref{fig:corner} is the resulting corner plot from our ultranest sampler, darker areas indicate a choice of angles where the model performed better where as lighter areas are where the model did poorer. Overall from the corner plot provided it's clear that there is no direct correlation between our model's performance and the choice of detection angle. While the choice of angles does not provide a direct improvement in our estimation it does determine how finely we can estimate the orientation, for choices of angles that are close together the minimum spacing between our signals is so small that we can't achieve any greater accuracy than dividing the orientation space into 30 reference orientations. We hope to develop our model further in the future by being able to determine the maximum accuracy given that we know the signal error of our measurements.  
+Figure~\ref{fig:corner} is the resulting corner plot from our
+ultranest sampler, darker areas indicate a choice of angles where the
+model performed better where as lighter areas are where the model did
+poorer.  Overall from the corner plot provided, it is clear that there
+is no direct correlation between our method's performance and the
+choice of detection angle. While the choice of angles does not provide
+a direct improvement in our estimation it does determine how finely we
+can estimate the orientation, for choices of angles that are close
+together the minimum spacing between our signals is so small that we
+cannot achieve any greater accuracy than dividing the orientation
+space into $n_{\rm ref}=30$ reference orientations.  We hope to
+develop our method further in the future by being able to determine
+the maximum accuracy given that we know the signal error of our
+measurements.
 
-As covered in Section~\ref{sec:3.2} our choice for beta can help to improve our estimation by restricting it in the physical space. In addition depending on our choice of angles we are also setting the lower limit for our signal error $\epsilon$, so it may be preferable to choose a selection of angles that allows for a large signal error and then adjust the weighting factor to improve upon our estimation. 
+As covered in Section~\ref{sec:3.2} our choice for beta can help to
+improve our estimation by restricting it in the physical space. In
+addition depending on our choice of angles we are also setting the
+lower limit for our signal error $\epsilon$, so it may be preferable
+to choose a selection of angles that allows for a large signal error
+and then adjust the weighting factor to improve upon our estimation.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
