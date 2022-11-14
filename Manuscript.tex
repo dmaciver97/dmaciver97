@@ -20,7 +20,7 @@
 
 \begin{frontmatter}
 
-\title{Investigating the Applications and Limits of Single Asymmetric Particle Light Scattering using Limited Detection Schemes}
+\title{Investigations on Limited Detection Schemes for Light Scattering of Optically Trapped Asymmetric Particles}
 
 
 \author[aff1]{Dan Maciver\corref{cor1}} 
@@ -42,24 +42,25 @@
 			University of Strathclyde},
             addressline={75 Montrose Street}, 
             city={Glasgow},
-            postcode={G1 1XL}, 
+            postcode={G1 1XJ}, 
             country={Scotland}}
 
 
 \begin{abstract}
+	\label{sec:Abstract}
 \justifying
-While optical trapping is a well understood method for force transduction and detection, \textcolor{blue}{ further} characterisation of trapped entities \textcolor{blue}{with complex structure and dynamics} \textcolor{blue}{ would provide valuable information for example on aggregation processes, microscale biological processes and so on. Such characterisation using light scattering from the trapped object} poses a two-fold challenge - one experimental, concerning the arrangement of scattered light detectors, and the other theoretical, involving solution of the inverse light scattering problem. \textcolor{blue} {Experimentally,} combining static light scattering techniques with optical trapping poses significant engineering challenges due to the space constraints in a conventional optical trapping setup;  \textcolor{blue} {while the theoretical inverse scattering problem is a non-trivial task given the potentially complex structure of the entity being characterised. To address these issues} we propose here a plausible scenario of detecting scattered light from an optically trapped asymmetric microstructure using a novel, multi-angle, optical-fibre based detection scheme, \textcolor{blue}{combined with}  a Bayesian inference-based analysis method demonstrating how data simulated to mimic light scattering signals in such a scenario may be used to solve the inverse light scattering problem. \textcolor{blue}{As an example problem} we discuss the application of our method to infer the instantaneous orientation of a simulated trapped asymmetric microsphere dimer from the scattered light signal. We argue that this method can be extended for determining in principle any characteristics of the trapped microstructure that influence the light scattering pattern.
+While optical trapping is a well understood method for force transduction and detection, further characterisation of trapped entities with complex structure and dynamics would provide valuable information for example on aggregation processes, micro-scale biological processes and so on. Such characterisation using light scattering from the trapped object poses a two-fold challenge - one experimental, concerning the arrangement of scattered light detectors, and the other theoretical, involving solution of the inverse light scattering problem. Experimentally, combining static light scattering techniques with optical trapping poses significant engineering challenges due to the space constraints in a conventional optical trapping setup;  while the theoretical inverse scattering problem is a non-trivial task given the potentially complex structure of the entity being characterised. To address these issues we propose here a plausible scenario of detecting scattered light from an optically trapped asymmetric microstructure using a novel, multi-angle, optical-fibre based detection scheme, combined with a Bayesian inference-based analysis method demonstrating how data simulated to mimic light scattering signals in such a scenario may be used to solve the inverse light scattering problem. As an example problem we discuss the application of our method to infer the instantaneous orientation of a simulated trapped asymmetric microsphere dimer from the scattered light signal. We argue that this method can be extended for determining in principle any characteristics of the trapped microstructure that influence the light scattering pattern.
 \end{abstract}
 
 \begin{highlights}
 \item Asymmetric dimers undergo a full inversion in the presence of an potential well. This only occurs if the size ratio is greater than 1:2.  
 \item Orientation can be classified by applying Bayesian Statistics to light intensity readings. 
 \item Choice of detection angles sets a lower limit on possible signal error. 
-\item Future applications in continuos processes where dimer shape is changing with time.   
+\item Method can be reworked to determine other characteristics of trapped entities. 
 \end{highlights}
 
 \begin{keyword}
-	Optical Trapping \sep Light Scattering \sep Measurements \sep Bayesian Statistics \sep Theoretical 
+	Optical Trapping \sep Light Scattering \sep Measurements \sep Bayesian Statistics 
 \end{keyword}
 
 \end{frontmatter}
@@ -69,13 +70,11 @@ While optical trapping is a well understood method for force transduction and de
 \section{Introduction}
 \label{sec:Intro}
 
-Since their invention in the late 1980's, Optical Tweezers have found application in experiments ranging from single molecule biophysics \cite{Bustamante2021Biophysics} to those that test the fundamental assumptions of Quantum Mechanics \cite{yin2013large} thanks mainly to the ability of the tweezer to transduce and detect forces on the order of a few piconewtons. The ability to characterise the trapped entity has provided useful insights in several fields of research; such as metrological measurements \cite{arita2020coherent} and colloidal aggregation \cite{burns1990optical}. Chemical characterisation of the trapped entities has been achieved using spectroscopic techniques such as Raman Scattering \cite{gupta2014raman}, while dynamical characterisation has been demonstrated using a Quadrant Photo Detector,  by following the centre-of-mass Brownian motion of the trapped entity  \cite{friedrich2012tuning} and measuring rotation  of the centre-of-mass \cite{yifat2021facile}. 
+Since their invention in the late 1980's, Optical Tweezers have found application in experiments ranging from single molecule biophysics \cite{Bustamante2021Biophysics} to those that test the fundamental assumptions of Quantum Mechanics \cite{yin2013large} thanks mainly to the ability of the tweezer to transduce and detect forces on the order of a few pico newtons. The ability to characterise the trapped entity has provided useful insights in several fields of research; such as metrological measurements \cite{arita2020coherent} and colloidal aggregation \cite{burns1990optical}. Chemical characterisation of the trapped entities has been achieved using spectroscopic techniques such as Raman Scattering \cite{gupta2014raman}, while dynamical characterisation has been demonstrated using a Quadrant Photo Detector,  by following the centre-of-mass Brownian motion of the trapped entity  \cite{friedrich2012tuning} and measuring rotation  of the centre-of-mass \cite{yifat2021facile}. 
 
 The possibility of integrating light scattering with optical trapping was demonstrated by Saffran and co-workers in \cite{Bar-Ziv_1998} where a single-mode optical fibre was aligned to detect the scattered light from a trapped bead and its Brownian motion was studied. While this allowed for studying the dynamics, structural information about the trapped bead was precluded as the measurement was obtained only at a single angle. Furthermore, this method cannot be extended for trapped entities that would scatter light non isotopically if their motion is large compared to the dimensions of the trap focus. In this work, we propose a scheme that expands on the technique in \cite{Bar-Ziv_1998} to detect scattered light simultaneously at 3 angles as shown in Figure~\ref{fig:setup}, combined with a novel Bayesian Inference based analysis technique to enable interpretation of the resulting multi-angle data as well as optimisation of the setup to provide maximal information from the signal. 
 
-To demonstrate the analysis, we study a simple paradigmatic example of a trapped entity with more complex dynamics and scattering than a single sphere, i.e. a trapped asymmetric dimer; and we explore how to optimise the experimental measurement to obtain the best estimate of the dimer's instantaneous orientation, as a further paradigmatic example of interpretation of the scattering data to obtain dynamical information on the trapped entity. There is a paucity of literature on measuring the orientation of trapped non-spherical particles till the recent attempt in \cite{raudsepp2022estimating} where imaging was employed to study the orientation of trapped dimers and a resolution of () was achieved. Here, we simulate the Brownian motion of a dimer and calculate the resulting scattered light, and show how Bayesian inference can be used to optimise extraction of the true dimer orientation form the light scattering signals given a choice of scattering measurement angles. 
-
-\textcolor{blue} {not very happy with the above but I am trying to set out clearly in advance the narrative of what we are doing, starting with the general problem, moving to the specific example we are studying, and introducing how we then go about it. we need to emphasise how oreitnation of a dimer is our choice of example problem, where a dimer is a paradigm of a 'complex object' and its orientation is a paradigm of 'data' that in some way describes it}
+To demonstrate the analysis, we study a simple paradigmatic example of a trapped entity with more complex dynamics and scattering than a single sphere, i.e. a trapped asymmetric dimer; and we explore how to optimise the experimental measurement to obtain the best estimate of the dimer's instantaneous orientation, as a further paradigmatic example of interpretation of the scattering data to obtain dynamical information on the trapped entity. There is a paucity of literature on measuring the orientation of trapped non-spherical particles till the recent attempt in \cite{raudsepp2022estimating} where imaging was employed to study the orientation of trapped dimers. Here, we simulate the Brownian motion of an asymmetric dimer, calculate its light scattering pattern, and show how Bayesian inference can be used to optimise extraction of the true dimer orientation from the light scattering signals given a choice of scattering measurement angles. 
 
 \begin{figure}
 	\centering
@@ -96,6 +95,13 @@ To demonstrate the analysis, we study a simple paradigmatic example of a trapped
 \subsection{Brownian Simulation}
 \label{sec:2.1}
 We use the Brownian OT package developed by Jerome Fung \textit{et al} \cite{Vigilante2020Brownian_OT} to simulate the motion of a asymmetric dimer within an optical trap. Brownian OT is unique in that it combines MSTM \cite{Mishchenko1996MSTM} and 'Optical Tweezer Toolbox' (\textit{ott}) \cite{Lenton2020} to simulate the motion of arbitrary shaped sphere clusters. We simulated the motion of silica dimer trapped in a 5 mW Gaussian beam; the dimer was comprised of two spheres with radii $1\mu m, \ \& \ 0.5 \ \mu m$ respectively. We ran our simulation over the span of 10 seconds, with Brownian OT calculating the dimer's orientation and position every $1 \ ms$. 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{./Images/Dimer.png}
+	\caption{Example dimer in orientation $\hat{s}$}
+	\label{fig:dimer}
+\end{figure}
 
 With any trapped particle there are two main sources of motion, Brownian and optical forces. The dimer's Brownian motion ($\Delta q^{\textbf{B}}$) is simulated by generating a set of normally-distributed numbers whose covariance is given by the dimer's diffusion tensor $\textbf{D}$. The diffusion tensor is computed based on Farsund's work \cite{Farsund1996}. For computing the optical force Brownian OT uses the T-Matrix method to calculate the scattering coefficients of the outgoing scattered wave. The T-matirx describes the scattering process by relating the scattering wave to the incident wave in an elegant equation.
 
@@ -236,7 +242,8 @@ In Vigilante's work with dimers \cite{Vigilante2020Brownian_OT} simulations of t
 
 \subsection{Impact of signal error on model predictions}
 \label{sec:3.2}
-Signal error is an important parameter to control when it comes to understanding how well our model can predict the dimers motion. To this end we ran our model while varying the value of $\epsilon$. \figurename{ 3} shows the model's performance with a selection of angles $15^{\circ},\ 55^{\circ}, \ \& \ 90^{\circ}$ and $\beta$ set at 1. The dotted line indicates the minimum radian distance ($0.137$ radians) between two neighbouring reference orientations, if we are under this line then we know our model is just off from selecting the correct orientation
+A key assumption of our Bayesian model is that we assume our detected light signal will inherently have some degree of noise. This is the central premise that allows us to form equation~\eqref{eq:conditional}, understanding the limits of acceptable signal error is necessary for implementing this to experimental work.
+To this end we ran our model while varying the value of $\epsilon$; \figurename{ 3} shows the model's performance with a selection of angles $15^{\circ},\ 55^{\circ}, \ \& \ 90^{\circ}$ and $\beta$ set at 1. The dotted line indicates the minimum radian distance ($0.137$ radians) between two neighbouring reference orientations, if we are under this line then we know the instantaneous orientation $\hat{s}$ is between two reference orientation.
 
 \begin{figure}[h]
 	\centering
@@ -253,7 +260,7 @@ Signal error is an important parameter to control when it comes to understanding
 	\label{fig:epsilon}
 \end{figure}
 
-As can be seen from Figure~\ref{fig:epsilon} there is seemingly a sweet spot for the signal error; with a $5\%$ error giving an inaccurate estimation, and with a $25\%$ error giving an alright estimation but with sudden shifts away from the ideal result. The reason why our low error estimation performed so poorly is that the minimum difference between our values of $y_k$ is larger than our signal error. As such the model could not distinguish between different reference orientations and was essentially just picking options at random. This minimum difference determined by our choice of angles and sets a lower limit of how accurate our signals can be.  In the future we hope to look at increasing the number of reference orientations to see what the true lower bound is.  
+As can be seen from Figure~\ref{fig:epsilon} there is an optimal point for the signal error; with a $5\%$ error giving an inaccurate estimation, and with a $25\%$ error giving an good estimation but with periodic spikes that indicate a very poor classification of our dimer's orientation. The reason why our low error estimation performed so poorly is that the minimum difference between our reference signals $y_k(\hat{n})$ is larger than our signal error.  As such the model could not distinguish between different reference orientations and was essentially just picking options at random. For our particular choice of angles the minimum difference was around 0.1734 which works out to around a $15\%$ signal error, lowering the signal error any more than this results in the model's performance dropping substantially. This minimum difference is predetermined by our choice of angles and sets a lower limit of how accurate our signals can be. In the future we hope to look at increasing the number of reference orientations to see if this could allow us to achieve a higher degree of accuracy in our estimation of the instantaneous orientation.   
 
 The latter issue of a high signal error can be addressed somewhat by adjusting our value of $\beta$ to flatten our probability distribution. We repeated our model estimation at $25\%$ at different values of $\beta$ to see the upper limit we could improve our result to.    
 
@@ -278,7 +285,7 @@ We wanted to see if our choice of angles plays a significant role in our model's
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.4\textwidth]{./Images/corneranglesfreed-1.png}
-	\caption{Corner plot mapping combinations of $\theta$ that generate the best improvement}
+	\caption{Corner plot mapping combinations of $\theta$ that generate the best improvement. Contour ranges from $F(K_l) = 1.7 \ \text{to} \ F(K_l)  =  0.1$ }
 	\label{fig:corner}
 \end{figure}
 
@@ -288,7 +295,7 @@ As covered in Section~\ref{sec:3.2} our choice for beta can help to improve our 
 
 \section{Conclusion}
 \label{4}
-We have developed a model for interpreting the dynamics of a trapped particle based purely on the light scattering pattern. In theory the model can be applied to any characteristic that impacts the light scattering pattern produced by the trapped entity. The MSTM package is flexible in calculating the light scattering for a variety of micro particles; so long as there is a distinguishable difference in the light scattering pattern we can apply this method to characterise the particle to some degree of accuracy. This has potential to be applied to particles that are changing while in the optical trap. We hope to apply this work in the future to  characterise processes such as nucleation within an optical trap.\\
+We have developed a model for interpreting the dynamics of a trapped particle based purely on the light scattering pattern. In theory the model can be applied to any characteristic that impacts the light scattering pattern produced by the trapped entity. The MSTM package is flexible in calculating the light scattering for a variety of micro-particles; so long as there is a distinguishable difference in the light scattering pattern we can apply this method to characterise the particle to some degree of accuracy. This has potential to be applied to characterise particle size and shape that are changing while in the optical trap. The authors would like to acknowledge and thank the support for this research from the funding provided by the Leverhulme Trust
 
 \noindent \textbf{Funding.} \\
 
