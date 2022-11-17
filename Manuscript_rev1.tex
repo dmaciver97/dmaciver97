@@ -296,21 +296,44 @@ From \eqref{eq:bayes} we get a mass probability distribution that denotes the pr
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Calculation of error}
 \label{sec:divergence}
-Section~\ref{sec:Bayes} covered how Bayes theorem can be applied to estimate the orientation of a dimer based on its scattering signal. To evaluate the estimation we can use the simulation in Section~\ref{sec:brownian}; we denote the dimer's \emph{actual} orientation as $\hat{\bf s}$ and use MSTM to calculate its light scattering $I(\hat{\bf s}, \theta)$. At each angle $\theta_k$ we use \eqref{eq:scale} to scale the measurements collected from our dimer and record them as $y_1(\hat{\bf s})$, $y_2(\hat{\bf s})$, $y_3(\hat{\bf s})$. These measurements signals are used to calculate $p(\hat{\bf n}_{\alpha}\parallel y_1, y_2, y_3)$, because we know $\hat{s}$ we can determine which reference orientation is closest, denoted as $\hat{\bf n}_{best}$
+Section~\ref{sec:Bayes} covered how Bayes theorem can be applied to estimate the orientation of a dimer based on its scattering signal. To evaluate the estimation we can use the simulation in Section~\ref{sec:brownian}; we denote the dimer's \emph{actual} orientation as $\hat{\bf s}$ and use MSTM to calculate its light scattering $I(\hat{\bf s}, \theta)$. At each angle $\theta_k$ we use \eqref{eq:scale} to scale the measurements collected from our dimer and record them as $y_1(\hat{\bf s})$, $y_2(\hat{\bf s})$, $y_3(\hat{\bf s})$. These measurements signals are used to calculate $p(\hat{\bf n}_{\alpha}\parallel y_1, y_2, y_3)$, because we know $\hat{s}$ we can determine which reference orientation is closest, denoted as $\hat{\bf n}_{best}$.
+
+To measure the error in the model's estimate the distribution from Eq.~\eqref{eq:bayes} and an ideal result, $p_ideal$, were compared.  An ideal result would be one that is 0 for every $\hat{\bf n}$ apart from $\hat{\bf n}_{best}$.
+\begin{align}
+	p_{ideal} = 
+	\begin{cases}
+		1 & \text{when $\hat{\bf n}_\alpha$ = $\hat{\bf n}_{best}$}\\
+		0 & \text{anywhere else}
+	\end{cases}
+\end{align}
+The distribution from Eq.~\eqref{eq:bayes} will assign some non-zero
+probability to every reference orientation.  The model's error was
+measured by calculating the Kullback-Leibler divergence $K_l$ between
+the two distributions.
+\begin{align}
+	K_{l, \#}(p_{ideal}\parallel p(\hat{\bf n}_\alpha| y_1, y_2, y_3))
+	= p_{ideal}\ln \left[\frac{p_{ideal}}{p(\hat{\bf n}| y_1,y_2,y_3))}
+	\right]
+	\label{eq;kullback}
+\end{align}
+where a larger value of $K_l$ indicates that our model is less confident in its prediction of the dimer's orientation. The divergence provides us a measure of how confident our measurement is. To better reflect the model's accuracy we implemented a penalty condition that worsens the divergence if our model estimates the wrong reference orientation:
+\begin{align}
+	p(\hat{\bf n}|y_1,y_2,y_3) = 
+	\begin{cases}
+		p(\hat{\bf n}_{estimate}|y_1,y_2,y_3) & 
+		\text{when $\hat{\bf n}_{estimate}$ = $\hat{\bf n}_{best}$}\\
+		p(\hat{\bf n}_{estimate}|y_1,y_2,y_3)-p(\hat{\bf n}_{best}|y_1,y_2,y_3) & \text{when $\hat{\bf n}_{estimate} \ne \hat{\bf n}_{best}$}
+	\end{cases}
+\end{align}
+
+This allows us to account for situations when our collected signal is equally likely to be associated with 2 reference signals. Section~\ref{sec:Bayes} and Section~\ref{sec:divergence} are all for a single measurement of a light scattering signal from our dimer. To properly model it's motion we need to consider how the orientation changes with time. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Testing the Model}
 \label{sec:test}
 
 
-Using our simulation from Section~\ref{sec:brownian} we calculated the
-instantaneous signal from our dimer at each time step using MSTM.  We
-applied Eq.~\eqref{eq:bayes} --- covered in Section~\ref{sec:Bayes} ---
-and the reference orientation with the highest probability is taken as
-our estimation of the dimer's instantaneous orientation.  The prior of
-the reference orientations $p(\hat{\bf n}_\alpha)$ is defined at each
-time step by accounting for the physical distance between the previous
-estimate $\hat{\bf n}_{\alpha}(t - \Delta t)$ and each reference
-orientation $\hat{\bf n}_\alpha$
+Using our simulation from Section~\ref{sec:brownian} we calculated the instantaneous signal from our dimer at each time step using MSTM.  We applied Eq.~\eqref{eq:bayes} --- covered in Section~\ref{sec:Bayes} --- and the reference orientation with the highest probability is taken as our estimation of the dimer's instantaneous orientation. To visualise our model's estimation we plotted the distance between our estimation $\hat{\bf n}_{est}$ of the orientation and the dimer's \emph{actual} instantaneous orientation $\hat{\bf s}$ with time. If we assume our prior of the reference orientations $p(\hat{\bf n}_\alpha)$ to be uniform the performance is rather poor, as seen in. 
+The prior of the reference orientations $p(\hat{\bf n}_\alpha)$ is defined at each time step by accounting for the physical distance between the previous estimate $\hat{\bf n}_{\alpha}(t - \Delta t)$ and each reference orientation $\hat{\bf n}_\alpha$
 \begin{align}
   r_i(t, \hat{\bf n}_\alpha)
   &= \frac{1}{2}((\hat{\bf n}_{\alpha}(t) \cdot \hat{\bf n}_{t-\Delta t})-1)
@@ -319,41 +342,12 @@ orientation $\hat{\bf n}_\alpha$
   &= \frac{e^{\beta (r_i(t,\hat{\bf n}_i)-1)}}
 {\sum_{j=1}^{n_{\rm ref}}e^{\beta(r_j(t, \hat{\bf n}_\alpha)-1)}}
 \end{align}
-where $\beta$ is a weighting factor that controls the significance of
-our priori estimate. The simulation data from Section~\ref{sec:brownian}
-was used to check if the estimation was correct by comparing the
-estimate provided by Eq.~\eqref{eq:bayes} to the reference orientation
-closest to the instantaneous orientation, denoted as
-$\hat{\bf n}_{best}$.  To measure the error in the model's estimate
-the distribution's of $p(\hat{\bf n}| y(\bar{\bf s}))$ and an
-ideal result, $p_ideal$, were compared.  An ideal distribution is one
-that is 0 for every $\hat{\bf n}$ apart from the correct result.
-\begin{align}
-p_{ideal} = 
-\begin{cases}
-	1 & \text{when $\hat{\bf n}_\alpha$ = $\hat{\bf n}_{best}$}\\
-	0 & \text{anywhere else}
-\end{cases}
-\end{align}
-The distribution from Eq.~\eqref{eq:bayes} will assign some non-zero
-probability to every reference orientation.  The model's error was
-measured by calculating the Kullback-Leibler divergence $K_l$ between
-the two distributions
-\begin{align}
-  K_{l, \#}(p(\hat{\bf n}_\alpha| y_1, y_2, y_3), p_{ideal})
-  = p_{ideal}\ln \left[\frac{p_{ideal}}{p(\hat{\bf n}_{best}| y_1,y_2,y_3))}
-\right]
-\end{align}
-where a more negative value of $K_l$ indicates a poorer estimation of
-the dimer's instantaneous orientation.  By summing the divergence of
-each measurement across the entire simulation we get an evaluation of
-how well the model performed in estimating the dimer's orientation.
-To compare between different iterations of our model the we compare
-our result of $K_l$ to a worst case scenario and evaluate how much it
-improves upon this, denoted as $F(K_l)$:
+where $\beta$ is a weighting factor that controls the significance of our priori estimate. The simulation data from Section~\ref{sec:brownian} was used to check if the estimation was correct by comparing the estimate provided by Eq.~\eqref{eq:bayes} to the reference orientation closest to the instantaneous orientation, denoted as
+$\hat{\bf n}_{best}$.  By summing the divergence of each measurement across the entire simulation we get an evaluation of how well the model performed in estimating the dimer's orientation.
+To compare between different iterations of our model the we compare our result of $K_l$ to a worst case scenario and evaluate how much it improves upon this, denoted as $F(K_l)$:
 \begin{align}
 K_{l, \ total} &= \sum\limits_{\# =1}^{timesteps} K_{l,\#} \\
-K_{l, \ worst} &= -\sum\limits_{\#=1}^{timesteps} \ln \left[\frac{1}{1/30} \right] \\
+K_{l, \ worst} &= \sum\limits_{\#=1}^{timesteps} \ln \left[\frac{1}{1/n_{ref}} \right] \\
 F(K_l) &= \frac{K_{l,\ worst}}{K_{l, \ total}}
 \end{align}
 
@@ -469,7 +463,7 @@ of angles $15^{\circ}$, $55^{\circ}$, and $90^{\circ}$ and $\beta$ set
 to $1$.  The dotted line indicates the minimum radian distance
 ($0.137$ radians) between two neighbouring reference orientations, if
 we are under this line then we know our model is just off from
-selecting the correct orientation
+selecting the correct orientation:
 
 
 \begin{figure}[h]
