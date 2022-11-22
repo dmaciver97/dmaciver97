@@ -20,7 +20,7 @@
 
 \begin{frontmatter}
 
-\title{Investigating the Applications and Limits of Single Asymmetric Particle Light Scattering using Limited Detection Schemes}
+\title{Investigation of Limited Detection Schemes for Light Scattering of Optically Trapped Asymmetric Particles}
 
 
 \author[aff1]{Dan Maciver\corref{cor1}} 
@@ -78,7 +78,7 @@
 \end{highlights}
 
 \begin{keyword}
-	Optical Trapping \sep Light Scattering \sep Measurements \sep Bayesian Statistics \sep Theoretical 
+	Optical Trapping \sep Light Scattering \sep Measurements \sep Bayesian Statistics 
 \end{keyword}
 
 \end{frontmatter}
@@ -332,31 +332,34 @@ This allows us to account for situations when our collected signal is equally li
 \label{sec:test}
 
 
-Using our simulation from Section~\ref{sec:brownian} we calculated the instantaneous signal from our dimer at each time step using MSTM.  We applied Eq.~\eqref{eq:bayes} --- covered in Section~\ref{sec:Bayes} --- and the reference orientation with the highest probability is taken as our estimation of the dimer's instantaneous orientation. To visualise our model's estimation we plotted the distance between our estimation $\hat{\bf n}_{est}$ of the orientation and the dimer's \emph{actual} instantaneous orientation $\hat{\bf s}$ with time. If we assume our prior of the reference orientations $p(\hat{\bf n}_\alpha)$ to be uniform the performance is rather poor, as seen in. 
-The prior of the reference orientations $p(\hat{\bf n}_\alpha)$ is defined at each time step by accounting for the physical distance between the previous estimate $\hat{\bf n}_{\alpha}(t - \Delta t)$ and each reference orientation $\hat{\bf n}_\alpha$
+Using our simulation from Section~\ref{sec:brownian} we calculated the instantaneous signal from our dimer at each time step using MSTM.  We applied Eq.~\eqref{eq:bayes} --- covered in Section~\ref{sec:Bayes} --- and the reference orientation with the highest probability is taken as our estimation of the dimer's instantaneous orientation. To visualise our model's performance  we plotted the radial distance between our estimation $\hat{\bf n}_{est}$ of the orientation and the dimer's \emph{actual} instantaneous orientation $\hat{\bf s}$ versus time. For comparison, we also plotted the radial distance between the closest reference orientation, denoted $\hat{\bf n}_{best}$, and the dimer's instantaneous orientation. If we assume our prior of the reference orientations $p(\hat{\bf n}_\alpha)$ to be uniform the performance is rather poor, as seen in \ref{fig:uniform}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{./Images/uniform_pn.png}
+	\caption{Model's estimation of dimer orientation while assuming $p(\hat{\bf n}_\alpha)$ to be uniform.}
+	\label{fig:uniform}
+\end{figure} 
+
+The reasoning for this lies with the fact that differences in reference signals and reference orientation spacing are not directly correlated with each other. To remedy this we need to account for the fact that a trapped dimer's motion is severely limited due to the trap stiffness. Therefore, the prior of the reference orientations $p(\hat{\bf n}_\alpha)$ was defined at each time step by accounting for the physical distance between our previous estimate $\hat{\bf n}_{\alpha}(t - \Delta t)$ and each reference orientation $\hat{\bf n}_\alpha(t)$:
+
 \begin{align}
   r_i(t, \hat{\bf n}_\alpha)
-  &= \frac{1}{2}((\hat{\bf n}_{\alpha}(t) \cdot \hat{\bf n}_{t-\Delta t})-1)
+  &= (\hat{\bf n}_{\alpha}(t) \cdot \hat{\bf n}_\alpha(t-\Delta t))
   \\
   p_i(\hat{\bf n})
   &= \frac{e^{\beta (r_i(t,\hat{\bf n}_i)-1)}}
 {\sum_{j=1}^{n_{\rm ref}}e^{\beta(r_j(t, \hat{\bf n}_\alpha)-1)}}
 \end{align}
-where $\beta$ is a weighting factor that controls the significance of our priori estimate. The simulation data from Section~\ref{sec:brownian} was used to check if the estimation was correct by comparing the estimate provided by Eq.~\eqref{eq:bayes} to the reference orientation closest to the instantaneous orientation, denoted as
-$\hat{\bf n}_{best}$.  By summing the divergence of each measurement across the entire simulation we get an evaluation of how well the model performed in estimating the dimer's orientation.
-To compare between different iterations of our model the we compare our result of $K_l$ to a worst case scenario and evaluate how much it improves upon this, denoted as $F(K_l)$:
+
+where $\beta$ is a weighting factor that controls the significance of our priori estimate. The simulation data from Section~\ref{sec:brownian} was used to evaluate our model's performance --- covered in Section~\ref{sec:divergence}. By summing the divergence of each measurement across the entire simulation we get an evaluation of how well the model performed in estimating the dimer's orientation. To compare the effects of changing certain parameters on the performance of our model we compare our result of $K_{l,total}$ to a worst case scenario and evaluate how much it improves upon this, denoted as $F(K_l)$:
 \begin{align}
 K_{l, \ total} &= \sum\limits_{\# =1}^{timesteps} K_{l,\#} \\
 K_{l, \ worst} &= \sum\limits_{\#=1}^{timesteps} \ln \left[\frac{1}{1/n_{ref}} \right] \\
 F(K_l) &= \frac{K_{l,\ worst}}{K_{l, \ total}}
 \end{align}
 
-The worst case scenario is akin to randomly choosing a reference
-orientation at each time step. The greater the value of $F(K_l)$ the
-lower the error between our estimated orientation and the dimer's
-instantaneous orientation. Because our model is dependent on several
-parameters we need to a sophisticated method for understanding how
-these parameters correlate with $F(K_l)$.
+The worst case scenario is akin to randomly choosing a reference orientation at each time step. The greater the value of $F(K_l)$ the better our model fits the dimer's motion. Because our model is dependent on several parameters we need to a sophisticated method for understanding how these parameters correlate with $F(K_l)$.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -585,8 +588,6 @@ applied to characterise particle size and shape that are changing
 while in the optical trap. The authors would like to acknowledge and
 thank the support for this research from the funding provided by the
 Leverhulme Trust.\\
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
