@@ -306,10 +306,7 @@ To measure the error in the model's estimate the distribution from Eq.~\eqref{eq
 		0 & \text{anywhere else}
 	\end{cases}
 \end{align}
-The distribution from Eq.~\eqref{eq:bayes} will assign some non-zero
-probability to every reference orientation.  The model's error was
-measured by calculating the Kullback-Leibler divergence $K_l$ between
-the two distributions.
+The distribution from Eq.~\eqref{eq:bayes} will assign some non-zero probability to every reference orientation. The model's error was measured by calculating the Kullback-Leibler divergence $K_l$ between the two distributions.
 \begin{align}
 	K_{l, \#}(p_{ideal}\parallel p(\hat{\bf n}_\alpha| y_1, y_2, y_3))
 	= p_{ideal}\ln \left[\frac{p_{ideal}}{p(\hat{\bf n}| y_1,y_2,y_3))}
@@ -331,8 +328,7 @@ This allows us to account for situations when our collected signal is equally li
 \subsection{Testing the Model}
 \label{sec:test}
 
-
-Using our simulation from Section~\ref{sec:brownian} we calculated the instantaneous signal from our dimer at each time step using MSTM.  We applied Eq.~\eqref{eq:bayes} --- covered in Section~\ref{sec:Bayes} --- and the reference orientation with the highest probability is taken as our estimation of the dimer's instantaneous orientation. To visualise our model's performance  we plotted the radial distance between our estimation $\hat{\bf n}_{est}$ of the orientation and the dimer's \emph{actual} instantaneous orientation $\hat{\bf s}$ versus time. For comparison, we also plotted the radial distance between the closest reference orientation, denoted $\hat{\bf n}_{best}$, and the dimer's instantaneous orientation. If we assume our prior of the reference orientations $p(\hat{\bf n}_\alpha)$ to be uniform the performance is rather poor, as seen in \ref{fig:uniform}.
+Using our simulation from Section~\ref{sec:brownian} we calculated the instantaneous signal from our dimer at each time step using MSTM.  We applied Eq.~\eqref{eq:bayes} --- covered in Section~\ref{sec:Bayes} --- and the reference orientation with the highest probability is taken as our estimation of the dimer's instantaneous orientation. To visualise our model's performance  we plotted the radial distance between our estimation $\hat{\bf n}_{est}$ of the orientation and the dimer's \emph{actual} instantaneous orientation $\hat{\bf s}$ versus time. For comparison, we also plotted the radial distance between the closest reference orientation, denoted $\hat{\bf n}_{best}$, and the dimer's instantaneous orientation. If we assume our prior of the reference orientations $p(\hat{\bf n}_\alpha)$ to be uniform the performance is poor, as seen in \ref{fig:uniform}.
 
 \begin{figure}[h]
 	\centering
@@ -341,7 +337,7 @@ Using our simulation from Section~\ref{sec:brownian} we calculated the instantan
 	\label{fig:uniform}
 \end{figure} 
 
-The reasoning for this lies with the fact that differences in reference signals and reference orientation spacing are not directly correlated with each other. To remedy this we need to account for the fact that a trapped dimer's motion is severely limited due to the trap stiffness. Therefore, the prior of the reference orientations $p(\hat{\bf n}_\alpha)$ was defined at each time step by accounting for the physical distance between our previous estimate $\hat{\bf n}_{\alpha}(t - \Delta t)$ and each reference orientation $\hat{\bf n}_\alpha(t)$:
+The reasoning for this lies with the fact that differences in reference signals and reference orientation spacing are not directly correlated with each other. In some cases, two reference orientation will have identical signal responses. To remedy this we need to account for the fact that a trapped dimer's motion is severely limited due to the trap stiffness. Therefore, the prior of the reference orientations $p(\hat{\bf n}_\alpha)$ was defined at each time step by accounting for the physical distance between our previous estimate $\hat{\bf n}_{\alpha}(t - \Delta t)$ and each reference orientation $\hat{\bf n}_\alpha(t)$:
 
 \begin{align}
   r_i(t, \hat{\bf n}_\alpha)
@@ -366,36 +362,15 @@ The worst case scenario is akin to randomly choosing a reference orientation at 
 \subsection{Optimization of parameters}
 \label{sec:ultranest}
 
-The signal error $\epsilon$ and the weighting factor $\beta$ are known
-quantities whose influence can be measured directly; however, our
-choice of angles and how they correlate with $F(K_l)$ is not easily
-understood Evaluating every possible configuration manually is
-inefficient, therefore we utilised UltraNest to apply a Monte Carlo
-simulation to our model.  UltraNest is a Python package for fitting
-models with complex parameter correlations
-\cite{Buchner2016Ultranest}.  UltraNest implements a variation of
-Monte Carlo integration, nested-sampling, where a likelihood contour
-is used to update a group of live points chosen from the prior
-estimation ($0^{\circ} \leq \theta_k \leq 180^{\circ}$).
+The signal error $\epsilon$ and the weighting factor $\beta$ are known quantities whose influence can be measured directly; however, our choice of angles and how they correlate with $F(K_l)$ is not easily understood Evaluating every possible configuration manually is inefficient, therefore we utilised UltraNest to apply a Monte Carlo simulation to our model. UltraNest is a Python package for fitting models with complex parameter correlations \cite{Buchner2016Ultranest}. UltraNest implements a variation of Monte Carlo integration, nested-sampling, where a likelihood contour is used to update a group of live points chosen from the prior estimation ($0^{\circ} \leq \theta_k \leq 180^{\circ}$).
 
-The UltraNest software was used to create a set of live points of
-different choices of $\theta_1$, $\theta_2$, and $\theta_3$, with each
-point being evaluated by its improvement factor ($F(K_l)$).  After
-evaluating every live point, the worst results are removed and new
-live points are created based on the information provided by the
-previous live points.  If there is a correlation between the choice of
-angles and $F(K_l)$ then the live points should congregate around a
-single (or multiple) choice of angles that will maximise $F(K_l)$ and
-therefore minimise the error between our estimate and instantaneous
-orientation.
+The UltraNest software was used to create a set of live points of different choices of $\theta_1$, $\theta_2$, and $\theta_3$, with each point being evaluated by its improvement factor ($F(K_l)$). After evaluating every live point, the worst results are removed and new live points are created based on the information provided by the previous live points. If there is a correlation between the choice of angles and $F(K_l)$ then the live points should congregate around a single (or multiple) choice of angles that will maximise $F(K_l)$ and therefore minimise the error between our estimate and instantaneous orientation.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results and  Discussion}
 \label{sec:Discussion}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Asymmetric dimer dynamics}
 \label{sec:motion}
@@ -618,29 +593,29 @@ Leverhulme Trust.\\
 Reference Orientations vector components$^*$}
 \begin{tabular}{|c|c|c|c|}
 \hline\hline
-Reference Orientation & $\hat{\bf n}_{i,\ x}$ &  $\hat{\bf n}_{i,\ y}$ &  $\hat{\bf n}_{i,\ z}$ \\
+Reference Orientation & $\hat{\bf n}_{\alpha,\ x}$ &  $\hat{\bf n}_{\alpha,\ y}$ &  $\hat{\bf n}_{\alpha,\ z}$ \\
 \hline
-$1$ & $ 0.29588$ &  $ 0.29588$ & $ 0.90825$ \\
-$2$ & $ 0.90825$ &  $ 0.29588$ & $ 0.29588$ \\
-$3$ & $ 0.29588$ &  $ 0.90825$ & $ 0.29588$ \\
-$4$ & $1.0000$ &  $0.00000$ & $0.00000$ \\
-$5$ & $0.00000$ &  $1.0000$ & $0.00000$ \\
-$6$ & $0.00000$ &  $0.00000$ & $1.0000$ \\
-$7$ & $ 0.29588$ &  $ 0.29588$ & $-0.90825$ \\
-$8$ & $ 0.90825$ &  $ 0.29588$ & $-0.29588$ \\
-$9$ & $ 0.29588$ &  $ 0.90825$ & $-0.29588$ \\
-$10$ & $0.00000$ &  $0.00000$ & $-1.0000$ \\
+$1$  & $ 0.29588$ &  $ 0.29588$ & $ 0.90825$ \\
+$2$  & $ 0.90825$ &  $ 0.29588$ & $ 0.29588$ \\
+$3$  & $ 0.29588$ &  $ 0.90825$ & $ 0.29588$ \\
+$4$  & $ 1.00000$ &  $ 0.00000$ & $ 0.00000$ \\
+$5$  & $ 0.00000$ &  $ 1.00000$ & $ 0.00000$ \\
+$6$  & $ 0.00000$ &  $ 0.00000$ & $ 1.00000$ \\
+$7$  & $ 0.29588$ &  $ 0.29588$ & $-0.90825$ \\
+$8$  & $ 0.90825$ &  $ 0.29588$ & $-0.29588$ \\
+$9$  & $ 0.29588$ &  $ 0.90825$ & $-0.29588$ \\
+$10$ & $ 0.00000$ &  $ 0.00000$ & $-1.00000$ \\
 $11$ & $ 0.29588$ &  $-0.29588$ & $ 0.90825$ \\
 $12$ & $ 0.90825$ &  $-0.29588$ & $ 0.29588$ \\
 $13$ & $ 0.29588$ &  $-0.90825$ & $ 0.29588$ \\
-$14$ & $0.00000$ &  $-1.0000$ & $0.00000$ \\
+$14$ & $ 0.00000$ &  $ -1.0000$ & $ 0.00000$ \\
 $15$ & $ 0.29588$ &  $-0.29588$ & $-0.90825$ \\
 $16$ & $ 0.90825$ &  $-0.29588$ & $-0.29588$ \\
 $17$ & $ 0.29588$ &  $-0.90825$ & $-0.29588$ \\
 $18$ & $-0.29588$ &  $ 0.29588$ & $ 0.90825$ \\
 $19$ & $-0.90825$ &  $ 0.29588$ & $ 0.29588$ \\
 $20$ & $-0.29588$ &  $ 0.90825$ & $ 0.29588$ \\
-$21$ & $-1.0000$ &  $0.00000$ & $0.00000$ \\
+$21$ & $-1.00000$ &  $ 0.00000$ & $ 0.00000$ \\
 $22$ & $-0.29588$ &  $ 0.29588$ & $-0.90825$ \\
 $23$ & $-0.90825$ &  $ 0.29588$ & $-0.29588$ \\
 $24$ & $-0.29588$ &  $ 0.90825$ & $-0.29588$ \\
@@ -666,38 +641,38 @@ $30$ & $-0.29588$ &  $-0.90825$ & $-0.29588$ \\
       Raw intensities $I_k^*$ and scaled intensities $y_k$}
     \begin{tabular}{|c|c|c|c|c|c|c|}
       \hline\hline
-      Reference Orientation  & $I(\hat{\bf n}_i,\ 15^{\circ})$ &  $I(\hat{\bf n}_i, \ 45^{\circ})$ &  $I(\hat{\bf n}_i,\ 90^{\circ})$ & $y(\hat{\bf n}_i, \ 15^{\circ})$ & $y(\hat{\bf n}_i, \ 45^{\circ})$ & $y(\hat{\bf n}_i, \ 90^{\circ})$ \\
+      Reference Orientation  & $I(\hat{\bf n}_\alpha\ ,\ 15^{\circ})$ &  $I(\hat{\bf n}_\alpha \ , \ 45^{\circ})$ &  $I(\hat{\bf n}_\alpha \ ,\ 90^{\circ})$ & $y(\hat{\bf n}_\alpha \ , \ 15^{\circ})$ & $y(\hat{\bf n}_\alpha \ , \ 45^{\circ})$ & $y(\hat{\bf n}_\alpha \ , \ 90^{\circ})$ \\
 \hline
-$1$ & $13.371$ & $0.1264$ & $0.0122$ & $-0.5423$ & $-0.4253$ & $-0.4838$ \\
-$2$ & $13.237$ & $0.0272$ & $0.0102$ & $0.2429$ & $-1.401$ & $-0.7826$ \\
-$3$ & $15.840$ & $0.1072$ & $0.0234$ & $1.337$ &$-0.6142$&	$1.162$ \\
-$4$ & $12.657$ & $0.2246$ & $0.0244$ & $-0.0012$ &	$0.5399$ & $0.9695$ \\
-$5$ & $15.351$ & $0.0527$ & $0.0221$ & $1.132$ &	$-1.150$ & $1.303$ \\
-$6$ & $12.046$ & $0.0916$ & $0.0142$ & $-0.2584$ &	$-0.7676$ &	$-0.1886$ \\
-$7$ & $11.376$ & $0.0036$ & $0.0095$ & $-0.5403$ &$-1.633$ & $-0.8792$ \\
-$8$ & $13.130$ & $0.2346$ & $0.0095$ & $0.1977$ & $0.6379$ & $-0.8794$ \\
-$9$ & $15.975$ & $0.2893$ & $0.0273$ & $1.38724$ & $1.175$ & $1.726$ \\
-$10$ & $10.073$ & $0.2933$ & $0.0221$ & $-1.088$	& $1.215$ & $0.9641$ \\
+$1$  & $13.371$ & $0.1264$ & $0.0122$ & $-0.5423$ & $-0.4253$ & $-0.4838$ \\
+$2$  & $13.237$ & $0.0272$ & $0.0102$ & $ 0.2429$ & $-1.4010$ & $-0.7826$ \\
+$3$  & $15.840$ & $0.1072$ & $0.0234$ & $ 1.3370$ & $-0.6142$ & $ 1.1620$ \\
+$4$  & $12.657$ & $0.2246$ & $0.0244$ & $-0.0012$ &	$ 0.5399$ & $ 0.9695$ \\
+$5$  & $15.351$ & $0.0527$ & $0.0221$ & $ 1.1320$ & $-1.1500$ & $ 1.3030$ \\
+$6$  & $12.046$ & $0.0916$ & $0.0142$ & $-0.2584$ &	$-0.7676$ &	$-0.1886$ \\
+$7$  & $11.376$ & $0.0036$ & $0.0095$ & $-0.5403$ & $-1.6330$ & $-0.8792$ \\
+$8$  & $13.130$ & $0.2346$ & $0.0095$ & $ 0.1977$ & $ 0.6379$ & $-0.8794$ \\
+$9$  & $15.975$ & $0.2893$ & $0.0273$ & $ 1.3872$ & $ 1.1750$ & $ 1.7260$ \\
+$10$ & $10.073$ & $0.2933$ & $0.0221$ & $-1.0880$ & $ 1.2150$ & $ 0.9641$ \\
 $11$ & $11.371$ & $0.1264$ & $0.0122$ & $-0.5423$ & $-0.4253$ & $-0.4838$ \\
-$12$ & $13.238$ & $0.0272$ & $0.0102$ & $0.2429$ &	$-1.401$ & $-0.7826$ \\
-$13$ & $15.840$ & $0.1072$ & $0.0234$ & $1.337$ &	$-0.6142$ & $1.162$ \\
-$14$ & $15.351$ & $0.0527$ & $0.0244$ & $1.132$ & $-1.150$ & $1.303$ \\
-$15$ & $13.376$ & $0.0036$ & $0.0095$ & $-0.5403$ & $-1.633$ & $-0.8792$ \\
-$16$ & $13.130$ & $0.2346$ & $0.0095$ & $0.1977$ & $0.6379$ & $-0.8794$ \\
-$17$ & $15.957$ & $0.2893$ & $0.0273$ & $1.387$	& $1.175$	& $1.726$ \\
-$18$ & $14.199$ & $0.0935$ & $0.0076$ & $0.6472$ & $-0.7496$ & $-1.158$ \\
-$19$ & $8.5164$ & $0.3133$ & $0.0076$ & $-1.743$ & $1.411$ & $-1.157$ \\
-$20$ & $12.961$ & $0.2420$ & $0.0188$ & $0.1267$ & $0.7113$ & $0.4765$ \\
-$21$ & $8.2160$ & $0.3217$ & $0.0142$ & $-1.869$ & $1.495$ & $-0.1890$ \\
-$22$ & $14.212$ & $0.2537$ & $0.0102$ & $0.6529$ & $0.8265$ & $-0.7835$ \\
-$23$ & $8.9280$ & $0.1398$ & $0.0123$ & $-1.570$ &	$-0.2934$ & $-0.4840$ \\
-$24$ & $13.328$ & $0.1964$ & $0.0234$ & $0.2807$ & $0.2624$ & $1.162$ \\
-$25$ & $14.199$ & $0.0935$ & $0.0076$ & $0.6472$ & $-0.7496$ & $-1.1580$ \\
-$26$ & $8.5164$ & $0.3133$ & $0.0076$ & $-1.743$	& $1.411$ & $-1.157$ \\
-$27$ & $12.961$ & $0.2420$ & $0.0188$ & $0.1267$	& $0.7113$ & $0.4765$ \\
-$28$ & $14.212$ & $0.2537$ & $0.0102$ & $0.6529$ & $0.8265$ & $-0.7835$ \\
-$29$ & $8.9280$ & $0.1398$ & $0.0122$ & $-1.570$ &	$-0.2934$ & $-0.4840$ \\
-$30$ & $13.328$ & $0.1964$ & $0.0234$ & $0.2807$ & $0.2624$ & $1.162$ \\
+$12$ & $13.238$ & $0.0272$ & $0.0102$ & $ 0.2429$ &	$-1.4010$ & $-0.7826$ \\
+$13$ & $15.840$ & $0.1072$ & $0.0234$ & $ 1.3370$ & $-0.6142$ & $ 1.1620$ \\
+$14$ & $15.351$ & $0.0527$ & $0.0244$ & $ 1.1320$ & $-1.1500$ & $ 1.3030$ \\
+$15$ & $13.376$ & $0.0036$ & $0.0095$ & $-0.5403$ & $-1.6330$ & $-0.8792$ \\
+$16$ & $13.130$ & $0.2346$ & $0.0095$ & $ 0.1977$ & $ 0.6379$ & $-0.8794$ \\
+$17$ & $15.957$ & $0.2893$ & $0.0273$ & $ 1.3870$ & $ 1.1750$ & $ 1.7260$ \\
+$18$ & $14.199$ & $0.0935$ & $0.0076$ & $ 0.6472$ & $-0.7496$ & $-1.1580$ \\
+$19$ & $8.5164$ & $0.3133$ & $0.0076$ & $-1.7430$ & $ 1.4110$ & $-1.1570$ \\
+$20$ & $12.961$ & $0.2420$ & $0.0188$ & $ 0.1267$ & $ 0.7113$ & $ 0.4765$ \\
+$21$ & $8.2160$ & $0.3217$ & $0.0142$ & $-1.8690$ & $ 1.4950$ & $-0.1890$ \\
+$22$ & $14.212$ & $0.2537$ & $0.0102$ & $ 0.6529$ & $ 0.8265$ & $-0.7835$ \\
+$23$ & $8.9280$ & $0.1398$ & $0.0123$ & $-1.5700$ &	$-0.2934$ & $-0.4840$ \\
+$24$ & $13.328$ & $0.1964$ & $0.0234$ & $ 0.2807$ & $ 0.2624$ & $ 1.1620$ \\
+$25$ & $14.199$ & $0.0935$ & $0.0076$ & $ 0.6472$ & $-0.7496$ & $-1.1580$ \\
+$26$ & $8.5164$ & $0.3133$ & $0.0076$ & $-1.7430$ & $ 1.4110$ & $-1.1570$ \\
+$27$ & $12.961$ & $0.2420$ & $0.0188$ & $ 0.1267$ & $ 0.7113$ & $ 0.4765$ \\
+$28$ & $14.212$ & $0.2537$ & $0.0102$ & $ 0.6529$ & $ 0.8265$ & $-0.7835$ \\
+$29$ & $8.9280$ & $0.1398$ & $0.0122$ & $-1.5700$ & $-0.2934$ & $-0.4840$ \\
+$30$ & $13.328$ & $0.1964$ & $0.0234$ & $ 0.2807$ & $ 0.2624$ & $ 1.1620$ \\
 \hline\hline
 \multicolumn{7}{l}{\small *$I_k$ values are calculated using MSTM package.}
 \end{tabular}
