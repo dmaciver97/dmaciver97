@@ -161,12 +161,11 @@ dimer within an optical trap.  Brownian OT combines MSTM
 \cite{Mishchenko1996MSTM} and ``Optical Tweezer Toolbox''
 (\textit{ott}) \cite{Lenton2020} to simulate the motion of arbitrary
 shaped sphere clusters.  We simulated the motion of silica dimer
-trapped in a $5$\,mW Gaussian beam; the dimer was comprised of two
+trapped in a $5$ mW Gaussian beam; the dimer was comprised of two
 spheres with radii $1\,{\rm \mu m}$ and $ 0.5\,{\rm \mu m}$,
 respectively.  We ran our simulation over the span of 10 seconds, with
 Brownian OT calculating the dimer's orientation and position every
 $1 \ ms$.
-
 
 \begin{figure}[h]
 	\centering
@@ -328,7 +327,7 @@ This allows us to account for situations when our collected signal is equally li
 \subsection{Testing the Model}
 \label{sec:test}
 
-Using our simulation from Section~\ref{sec:brownian} we calculated the instantaneous signal from our dimer at each time step using MSTM.  We applied Eq.~\eqref{eq:bayes} --- covered in Section~\ref{sec:Bayes} --- and the reference orientation with the highest probability is taken as our estimation of the dimer's instantaneous orientation. To visualise our model's performance  we plotted the radial distance between our estimation $\hat{\bf n}_{est}$ of the orientation and the dimer's \emph{actual} instantaneous orientation $\hat{\bf s}$ versus time. For comparison, we also plotted the radial distance between the closest reference orientation, denoted $\hat{\bf n}_{best}$, and the dimer's instantaneous orientation. If we assume our prior of the reference orientations $p(\hat{\bf n}_\alpha)$ to be uniform the performance is poor, as seen in \ref{fig:uniform}.
+Using our simulation from Section~\ref{sec:brownian} we calculated the instantaneous signal from our dimer at each time step using MSTM.  We applied Eq.~\eqref{eq:bayes} --- covered in Section~\ref{sec:Bayes} --- and the reference orientation with the highest probability is taken as our estimation of the dimer's instantaneous orientation. To visualise our model's performance  we plotted the radial distance between our estimation $\hat{\bf n}_{est}$ of the orientation and the dimer's \emph{actual} instantaneous orientation $\hat{\bf s}$ versus time. For comparison, we also plotted the radial distance between the closest reference orientation, denoted $\hat{\bf n}_{best}$, and the dimer's instantaneous orientation. The dotted line indicates the maximum radian distance ($0.896$ radians) between two neighbouring reference orientations, if we are under this line then we know our estimate and the best result are beside one another. If we assume our prior of the reference orientations $p(\hat{\bf n}_\alpha)$ to be uniform the performance is poor, as seen in \ref{fig:uniform}.
 
 \begin{figure}[h]
 	\centering
@@ -438,10 +437,7 @@ signal error is necessary for implementing this to experimental work.
 To this end we ran our model while varying the value of $\epsilon$.
 \figurename{ 3} shows the performance of the method with a selection
 of angles $15^{\circ}$, $55^{\circ}$, and $90^{\circ}$ and $\beta$ set
-to $1$.  The dotted line indicates the minimum radian distance
-($0.137$ radians) between two neighbouring reference orientations, if
-we are under this line then we know our model is just off from
-selecting the correct orientation:
+to $1$:
 
 
 \begin{figure}[h]
@@ -461,24 +457,20 @@ selecting the correct orientation:
 \end{figure}
 
 
-As can be seen from Figure~\ref{fig:epsilon}, there is seemingly a
+As can be seen from Figure~\ref{fig:epsilon}, there is a
 sweet spot for the signal error; with a $5$\% error giving an
 inaccurate estimation, and with a $25$\% error giving an alright
 estimation but with sudden shifts away from the ideal result. The
 reason why our low error estimation performed so poorly is that the
 minimum difference between our values of $y_k$ is larger than our
-signal error.  As such the model could not distinguish between
+signal error. As such the model could not distinguish between
 different reference orientations and was essentially just picking
-options at random.  This minimum difference determined by our choice of
-angles and sets a lower limit of how accurate our signals can be.  In
+options at random. This minimum difference determined by our choice of
+angles and sets a lower limit of how accurate our signals can be. In
 the future we hope to look at increasing the number of reference
 orientations to see what the true lower bound is.
 
-The latter issue of a high signal error can be addressed somewhat by
-adjusting our value of $\beta$ to flatten our probability
-distribution. We repeated our model estimation at $25\%$ at different
-values of $\beta$ to see the upper limit we could improve our result
-to.
+The latter issue of a high signal error can be addressed somewhat byadjusting our value of $\beta$ to flatten our probability distribution. We repeated our model estimation at $25\%$ at different values of $\beta$ to see the upper limit we could improve our result to.
 
 \begin{figure}[h]
 	\centering
@@ -492,20 +484,10 @@ to.
 	\label{fig:beta}
 \end{figure}
 
-As shown in Figure~\ref{fig:beta}, eventually $\beta$ begins to over
-correct our estimate to the extent that we are a full radian away from
-the correct result.  The exact value of $\beta$ that will optimise our
-performance varies for each choice of angle, therefore we can use it
-as variable for finely tuning our results to suit our choice of angles
-and our signal error.  In future, we want to also investigate the
-possibility of extending our prior $p(\hat{\bf n})$ so we account for not
-just the change in orientation after one time step but after 2 or 3
-time steps to investigate if we can investigate the auto correlation
-of our dimer's motion.
+As shown in Figure~\ref{fig:beta}, eventually $\beta$ begins to over correct our estimate to the extent that we are a full radian away from the correct result.  The exact value of $\beta$ that will optimise our performance varies for each choice of angle, therefore we can use it as variable for finely tuning our results to suit our choice of angles and our signal error.  In future, we want to also investigate the possibility of extending our prior $p(\hat{\bf n})$ so we account for not just the change in orientation after one time step but after 2 or 3 time steps to investigate the auto correlation function of our dimer's motion.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
 \subsection{Parameter Optimisation Results}
 \label{sec:ultranest_res}
 
@@ -523,27 +505,12 @@ changed more freely.
 	\label{fig:corner}
 \end{figure}
 
-Figure~\ref{fig:corner} is the resulting corner plot from our
-ultranest sampler, darker areas indicate a choice of angles where the
-model performed better where as lighter areas are where the model did
-poorer.  Overall from the corner plot provided, it is clear that there
-is no direct correlation between our method's performance and the
-choice of detection angle. While the choice of angles does not provide
-a direct improvement in our estimation it does determine how finely we
-can estimate the orientation, for choices of angles that are close
-together the minimum spacing between our signals is so small that we
-cannot achieve any greater accuracy than dividing the orientation
-space into $n_{\rm ref}=30$ reference orientations.  We hope to
-develop our method further in the future by being able to determine
-the maximum accuracy given that we know the signal error of our
-measurements.
+Figure~\ref{fig:corner} is the resulting corner plot from our ultranest sampler, darker areas indicate a choice of angles where the model performed better where as lighter areas are where the model did poorer. Overall from the corner plot provided, it is clear that there is no direct correlation between our method's estimation of orientation and the
+choice of detection angle. While the choice of angles does not provide a direct improvement in our estimation it does determine how finely we can estimate the orientation, for choices of angles that are close together the minimum spacing between our signals is so small that we cannot achieve any greater accuracy than dividing the orientation space into $n_{\rm ref}=30$ reference orientations.  We hope to develop our method further in the future by being able to determine the maximum accuracy given that we know the signal error of our measurements. 
 
-As covered in Section~\ref{sec:epsilon} our choice for beta can help to
-improve our estimation by restricting it in the physical space. In
-addition depending on our choice of angles we are also setting the
-lower limit for our signal error $\epsilon$, so it may be preferable
-to choose a selection of angles that allows for a large signal error
-and then adjust the weighting factor to improve upon our estimation.
+As covered in Section~\ref{sec:epsilon} our choice for beta can help to improve our estimation by restricting it in the physical space. In addition depending on our choice of angles we are also setting the lower limit for our signal error $\epsilon$, so it may be preferable to choose a selection of angles that allows for a large signal error and then adjust the weighting factor to improve upon our estimation.
+
+This result only indicates that orientation is not a characteristic that is angularly biased in its scattering. It might well be that for other characteristics, such as size or shape, the choice of detection angles may have a more direct impact on our model's performance. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
