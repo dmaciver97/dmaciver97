@@ -169,7 +169,7 @@ $1 \ ms$.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.9\textwidth]{./Images/Dimer.png}
+	\includegraphics[width=0.9\textwidth]{./Images/fig2.png}
 	\caption{Example dimer in orientation $\bar{\bf s}$}
 	\label{fig:dimer}
 \end{figure}
@@ -211,7 +211,7 @@ the sum of the optical and Brownian contributions:
 \end{align}
 where \textbf{F} is the a 6-component vector that describes the
 optical force and torque components.  Brownian OT returns the dimer's
-motion as a \textit{csv} file containing for each timestep the
+motion as a \textit{csv} file containing for each time step the
 $[x,y,z]$ position of the dimer's centre of mass relative to the trap
 focus, and the orientation represented as a quaternion.
 
@@ -282,7 +282,7 @@ where $p(\hat{\bf n}_\alpha)$ and $p(y_1, y_2, y_3)$ are the prior
 estimates of the distributions of particle orientations and
 instantaneous signals, respectively.
 %
-Without any prior evidence we assume that the orientation priori of our dimer $p(\hat{\bf n}_{\alpha})$ is uniform. Knowledge of the dimer from previous measurement can be used to inform our estimate of $p(\hat{\bf n}_{\alpha})$ covered in Section~\ref{sec:test}.  The latter prior $p(y)$ is the probability of measuring a signal ($y_1$, $y_2$, $y_3$).  This is given by taking the discrete integral over collection of reference orientations.
+Without any prior evidence we assume that the orientation priori of our dimer $p(\hat{\bf n}_{\alpha})$ is uniform. Knowledge of the dimer from previous measurement can be used to inform our estimate of $p(\hat{\bf n}_{\alpha})$, covered in Section~\ref{sec:test}.  The latter prior $p(y)$ is the probability of measuring a signal ($y_1$, $y_2$, $y_3$).  This is given by taking the discrete integral over collection of reference orientations.
 \begin{align}
   p(y_1, y_2, y_3)
   =
@@ -327,16 +327,16 @@ This allows us to account for situations when our collected signal is equally li
 \subsection{Testing the Model}
 \label{sec:test}
 
-Using our simulation from Section~\ref{sec:brownian} we calculated the instantaneous signal from our dimer at each time step using MSTM.  We applied Eq.~\eqref{eq:bayes} --- covered in Section~\ref{sec:Bayes} --- and the reference orientation with the highest probability is taken as our estimation of the dimer's instantaneous orientation. To visualise our model's performance  we plotted the radial distance between our estimation $\hat{\bf n}_{est}$ of the orientation and the dimer's \emph{actual} instantaneous orientation $\hat{\bf s}$ versus time. For comparison, we also plotted the radial distance between the closest reference orientation, denoted $\hat{\bf n}_{best}$, and the dimer's instantaneous orientation. The dotted line indicates the maximum radian distance ($0.896$ radians) between two neighbouring reference orientations, if we are under this line then we know our estimate and the best result are beside one another. If we assume our prior of the reference orientations $p(\hat{\bf n}_\alpha)$ to be uniform the performance is poor, as seen in \ref{fig:uniform}.
+Using our simulation from Section~\ref{sec:brownian} we calculated the instantaneous signal from our dimer at each time step using MSTM.  We applied Eq.~\eqref{eq:bayes} --- covered in Section~\ref{sec:Bayes} --- and the reference orientation with the highest probability is taken as our estimation of the dimer's instantaneous orientation. To visualise our model's performance  we plotted the radial distance between our estimation $\hat{\bf n}_{est}$ of the orientation and the dimer's \emph{actual} instantaneous orientation $\hat{\bf s}$ versus time. For comparison, we also plotted the radial distance between the closest reference orientation, denoted $\hat{\bf n}_{best}$, and the dimer's instantaneous orientation. The dotted line indicates the maximum radian distance ($0.896$ radians) between two neighbouring reference orientations, if we are under this line then we know our estimate and the best result are beside one another. If we assume our prior of the reference orientations $p(\hat{\bf n}_\alpha)$ to be uniform the performance is poor, as seen in Figure~\ref{fig:uniform}.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.5\textwidth]{./Images/uniform_pn.png}
+	\includegraphics[width=0.5\textwidth]{./Images/fig3.png}
 	\caption{Model's estimation of dimer orientation while assuming $p(\hat{\bf n}_\alpha)$ to be uniform.}
 	\label{fig:uniform}
 \end{figure} 
 
-The reasoning for this lies with the fact that differences in reference signals and reference orientation spacing are not directly correlated with each other. In some cases, two reference orientation will have identical signal responses. To remedy this we need to account for the fact that a trapped dimer's motion is severely limited due to the trap stiffness. Therefore, the prior of the reference orientations $p(\hat{\bf n}_\alpha)$ was defined at each time step by accounting for the physical distance between our previous estimate $\hat{\bf n}_{\alpha}(t - \Delta t)$ and each reference orientation $\hat{\bf n}_\alpha(t)$:
+The reasoning for this lies with the fact that differences in reference signals and reference orientation spacing are not directly correlated with each other. In some cases, two reference orientation will have identical signal responses. To remedy this we need to account for the fact that a trapped dimer's motion i limited due to the trap stiffness. Therefore, the prior of the reference orientations $p(\hat{\bf n}_\alpha)$ was defined at each time step by accounting for the physical distance between our previous estimate $\hat{\bf n}_{\alpha}(t - \Delta t)$ and each reference orientation $\hat{\bf n}_\alpha(t)$:
 
 \begin{align}
   r_i(t, \hat{\bf n}_\alpha)
@@ -348,6 +348,7 @@ The reasoning for this lies with the fact that differences in reference signals 
 \end{align}
 
 where $\beta$ is a weighting factor that controls the significance of our priori estimate. The simulation data from Section~\ref{sec:brownian} was used to evaluate our model's performance --- covered in Section~\ref{sec:divergence}. By summing the divergence of each measurement across the entire simulation we get an evaluation of how well the model performed in estimating the dimer's orientation. To compare the effects of changing certain parameters on the performance of our model we compare our result of $K_{l,total}$ to a worst case scenario and evaluate how much it improves upon this, denoted as $F(K_l)$:
+
 \begin{align}
 K_{l, \ total} &= \sum\limits_{\# =1}^{timesteps} K_{l,\#} \\
 K_{l, \ worst} &= \sum\limits_{\#=1}^{timesteps} \ln \left[\frac{1}{1/n_{ref}} \right] \\
@@ -374,162 +375,95 @@ The UltraNest software was used to create a set of live points of different choi
 \subsection{Asymmetric dimer dynamics}
 \label{sec:motion}
 
-The Brownian OT software was used to simulate the motion of a trapped
-dimer ($a_1=1\,{\rm \mu m}$, $a_2=0.5\,{\rm \mu m}$) over the first
-$10$\,seconds of entering the optical trap.  The initial orientation
-was assumed as strictly vertical (in line with the beam propagation
-direction). The dimer's position orientation was recorded every
-$10\,{\rm \mu s}$ for using as a test dataset for our model.
+The Brownian OT software was used to simulate the motion of a trappeddimer ($a_1=1\,{\rm \mu m}$, $a_2=0.5\,{\rm \mu m}$) over the first
+$10$ seconds of entering the optical trap.  The initial orientation was assumed as strictly vertical (in line with the beam propagation direction). The dimer's position orientation was recorded every $10\,{\rm \mu s}$ for using as a test dataset for our model.
 
 \begin{figure}[h]
 	\centering
 	\begin{subfigure}{0.45\textwidth}
 		\subcaption{}
-		\includegraphics[width =\textwidth]{./Images/traj.png}
+		\includegraphics[width =\textwidth]{./Images/fig4a.png}
 	\end{subfigure}
 	\begin{subfigure}{0.45\textwidth}
 		\subcaption{}
-		\includegraphics[width=\textwidth]{./Images/pos.png}
+		\includegraphics[width=\textwidth]{./Images/fig4b.png}
 	\end{subfigure}
 	\caption{Simulation results of: a) the dimers orientation vector with time, b) the dimer's [x,y,z] position with time.}
 	\label{fig:motion}
 \end{figure}
 
-As can be seen from Figure~\ref{fig:motion}, the dimer undergoes a
-full $180^{\circ}$ rotation upon entering the trap.  Typically
-horizontal alignment of a dimer is unstable and will result in the
-particle rotating to align along its vertical axis.  It is interesting
-to note that the dimer is furthest from the trap centre as it goes
-into a horizontal orientation before drawing closer again as it
-inverts completely. Further simulations of differently sized dimers
-showed similar results, but only when $a_1 \geq 2a_2$.  Dimers with
-more symmetrical size ratios immediately aligned into a fixed vertical
-position.
+As can be seen from Figure~\ref{fig:motion}, the dimer undergoes a full $180^{\circ}$ rotation upon entering the trap.  Typically horizontal alignment of a dimer is unstable and will result in the particle rotating to align along its vertical axis.  It is interesting to note that the dimer is furthest from the trap centre as it goes into a horizontal orientation before drawing closer again as it inverts completely. Further simulations of differently sized dimers showed sa similar behaviour of moving away from the trap focus while remaining trapped, but only when $a_1 \geq 2a_2$.  Dimers with size ratios $a_1 < 2a_2$ immediately aligned into a fixed vertical position.
 %
-In the simulations of Vigilante~\emph{et~al}.\
-\cite{Vigilante2020Brownian_OT}, trapped symmetrical dimers were
-investigated; their findings showed that the optical torque on the
-dimer goes to zero while aligned vertically and is at its maximum in a
-horizontal alignment.  Therefore, the inversion of an asymmetric dimer
-suggests that if the size difference is significant the optical torque
-goes is minimal for a dimer in both horizontal and vertical
-orientations. Once we have our experimental set up complete we can
-confirm this by trapping an asymmetric dimer and monitoring its
-orientation.  The data from \figurename{ 2a} was used to test the
-efficacy of our predictive model.  To visualise how well our model
-tracks the dimer's orientation we plot the radial distance between our
-model's prediction and the true orientation, and between the best
-possible orientation and the true orientation.  For a perfect
-estimation these two plots should overlap, while we cannot achieve an
-exact estimation we can optimise it by adjusting the expected signal
-error and weighting factor.
+In the simulations of Vigilante~\emph{et~al}.\ \cite{Vigilante2020Brownian_OT}, trapped symmetrical dimers were investigated; their findings showed that the optical torque on the dimer goes to zero while aligned vertically and is at its maximum in a horizontal alignment.  Therefore, the inversion of an asymmetric dimer suggests that if the size difference is significant the optical torque goes is minimal for a dimer in both horizontal and vertical orientations. Once we have our experimental set up complete we can confirm this by trapping an asymmetric dimer and monitoring its orientation.  The data from Figure~\ref{fig:motion} was used to test the efficacy of our predictive model.  To visualise how well our model tracks the dimer's orientation we plot the radial distance between our model's prediction and the true orientation, and between the best possible orientation and the true orientation.  For a perfect estimation these two plots should overlap, while we cannot achieve an exact estimation we can optimise it by adjusting the expected signal error and weighting factor.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Impact of signal error on model predictions}
 \label{sec:epsilon}
 
-A key assumption of Eq.~\eqref{eq:conditional} is that we assume our
-detected light signal will inherently have some degree of noise. This
-is the central premise that allows us to form
-Eq.~\eqref{eq:conditional}, understanding the limits of acceptable
-signal error is necessary for implementing this to experimental work.
-To this end we ran our model while varying the value of $\epsilon$.
-\figurename{ 3} shows the performance of the method with a selection
-of angles $15^{\circ}$, $55^{\circ}$, and $90^{\circ}$ and $\beta$ set
-to $1$:
+A key assumption of Eq.~\eqref{eq:conditional} is that we assume our detected light signal will inherently have some degree of noise. This is the central premise that allows us to form Eq.~\eqref{eq:conditional}, understanding the limits of acceptable signal error is necessary for implementing this to experimental work. To this end we ran our model while varying the value of $\epsilon$, Figure~\ref{fig:epsilon} shows the performance of the method with a selection of angles $15^{\circ}$, $55^{\circ}$, and $90^{\circ}$ and $\beta$ set to $1$:
 
 
 \begin{figure}[h]
 	
 	\centering
 	\begin{subfigure}{0.32\textwidth}
-		\includegraphics[width=\textwidth]{./Images/epsilon_at_5.png}
+		\includegraphics[width=\textwidth]{./Images/fig5a.png}
 	\end{subfigure}
 	\begin{subfigure}{0.32\textwidth}
-		\includegraphics[width=\textwidth]{./Images/epsilon_at_15.png}
+		\includegraphics[width=\textwidth]{./Images/fig5b.png}
 	\end{subfigure}
 	\begin{subfigure}{0.32\textwidth}
-		\includegraphics[width=\textwidth]{./Images/epsilon_at_25.png}
+		\includegraphics[width=\textwidth]{./Images/fig5c.png}
 	\end{subfigure}
 	\caption{Model prediction for signal error of a) $5\%$, b) $15\%$, and c) $25\%$. Blue line denotes the best result we can achieve, orange line denotes the result provided by eq~\ref{eq:bayes}}
 	\label{fig:epsilon}
 \end{figure}
 
 
-As can be seen from Figure~\ref{fig:epsilon}, there is a
-sweet spot for the signal error; with a $5$\% error giving an
-inaccurate estimation, and with a $25$\% error giving an alright
-estimation but with sudden shifts away from the ideal result. The
-reason why our low error estimation performed so poorly is that the
-minimum difference between our values of $y_k$ is larger than our
-signal error. As such the model could not distinguish between
-different reference orientations and was essentially just picking
-options at random. This minimum difference determined by our choice of
-angles and sets a lower limit of how accurate our signals can be. In
-the future we hope to look at increasing the number of reference
-orientations to see what the true lower bound is.
+As can be seen from Figure~\ref{fig:epsilon}, there is a sweet spot for the signal error; with a $5$\% error giving an inaccurate estimation, and with a $25$\% error providing a satisfactory estimate but with sudden shifts away from the ideal result. A reason why our low error estimation performed so poorly is that the minimum difference between our values of $y_k$ is larger than our signal error. As such the model could not distinguish between different reference orientations and was essentially just picking options at random. This minimum difference determined by our choice of angles and sets a lower limit of how accurate our signals can be. In the future we hope to look at increasing the number of reference orientations to see what the true lower bound is.
 
-The latter issue of a high signal error can be addressed somewhat byadjusting our value of $\beta$ to flatten our probability distribution. We repeated our model estimation at $25\%$ at different values of $\beta$ to see the upper limit we could improve our result to.
+The latter issue of a high signal error can be addressed somewhat by adjusting our value of $\beta$ to flatten our probability distribution. We repeated our model estimation at $25\%$ with different values of $\beta$ to see the upper limit we could improve our result to.
 
 \begin{figure}[h]
 	\centering
 	\begin{subfigure}{0.33\textwidth}
-		\includegraphics[width=\textwidth]{./Images/Beta_2.png}
+		\includegraphics[width=\textwidth]{./Images/fig6a.png}
 	\end{subfigure}
 	\begin{subfigure}{0.33\textwidth}
-		\includegraphics[width=\textwidth]{./Images/Beta_3.png}
+		\includegraphics[width=\textwidth]{./Images/fig6b.png}
 	\end{subfigure}
 	\caption{Model prediction for signal error of $25\%$ when a) $\beta = 5$ and b) $\beta=6$}
 	\label{fig:beta}
 \end{figure}
 
-As shown in Figure~\ref{fig:beta}, eventually $\beta$ begins to over correct our estimate to the extent that we are a full radian away from the correct result.  The exact value of $\beta$ that will optimise our performance varies for each choice of angle, therefore we can use it as variable for finely tuning our results to suit our choice of angles and our signal error.  In future, we want to also investigate the possibility of extending our prior $p(\hat{\bf n})$ so we account for not just the change in orientation after one time step but after 2 or 3 time steps to investigate the auto correlation function of our dimer's motion.
+As shown in Figure~\ref{fig:beta}, eventually $\beta$ begins to over correct our estimate to the extent that we are a full radian away from the correct result. The exact value of $\beta$ that will optimise our performance varies for each choice of angle, therefore we can use it as variable for finely tuning our results to suit our choice of angles and our signal error.  In future, we want to also investigate the possibility of extending our prior $p(\hat{\bf n})$ so we account for not just the change in orientation after one time step but after 2 or 3 time steps to investigate the auto correlation function of our dimer's motion.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Parameter Optimisation Results}
 \label{sec:ultranest_res}
 
-We wanted to see if our choice of angles plays a significant role in
-our model's efficacy. We employed ultranest to analyse the parameter
-space for our three angles by sampling across the priori of
-$10^{\circ} \ \& \ 180^{\circ}$.   We kept both $\beta$ and $\sigma$
-constant during this so we could as these are parameters that can be
-changed more freely.
+We wanted to see if our choice of angles plays a significant role in our model's efficacy. We employed UltraNest to analyse the parameter space for our three angles by sampling across the priori of $10^{\circ} \ \& \ 180^{\circ}$.  We kept both $\beta$ and $\sigma$ constant during this so we could as these are parameters that can be changed more freely.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.45\textwidth]{./Images/corneranglesfreed-1.png}
+	\includegraphics[width=0.45\textwidth]{./Images/fig7.png}
 	\caption{Corner plot mapping combinations of $\theta$ that generate the best improvement}
 	\label{fig:corner}
 \end{figure}
 
-Figure~\ref{fig:corner} is the resulting corner plot from our ultranest sampler, darker areas indicate a choice of angles where the model performed better where as lighter areas are where the model did poorer. Overall from the corner plot provided, it is clear that there is no direct correlation between our method's estimation of orientation and the
-choice of detection angle. While the choice of angles does not provide a direct improvement in our estimation it does determine how finely we can estimate the orientation, for choices of angles that are close together the minimum spacing between our signals is so small that we cannot achieve any greater accuracy than dividing the orientation space into $n_{\rm ref}=30$ reference orientations.  We hope to develop our method further in the future by being able to determine the maximum accuracy given that we know the signal error of our measurements. 
+Figure~\ref{fig:corner} is the resulting corner plot from our UltraNest sampler, darker areas indicate a choice of angles where the model performed better where as lighter areas are where the model did poorer. Overall from the corner plot provided, it is clear that there is no direct correlation between our method's estimation of orientation and the choice of detection angle. This result only indicates that orientation is not a characteristic that is angularly biased in its scattering. It might well be that for other characteristics, such as size or shape, the choice of detection angles may have a more direct impact on our model's performance. 
+
+While the choice of angles does not provide a direct improvement in our estimation it does determine how finely we can estimate the orientation, for choices of angles that are close together the minimum spacing between our signals is so small that we cannot achieve any greater accuracy than dividing the orientation space into $n_{\rm ref}=30$ reference orientations.  We hope to develop our method further in the future by being able to determine the maximum accuracy given that we know the signal error of our measurements. 
 
 As covered in Section~\ref{sec:epsilon} our choice for beta can help to improve our estimation by restricting it in the physical space. In addition depending on our choice of angles we are also setting the lower limit for our signal error $\epsilon$, so it may be preferable to choose a selection of angles that allows for a large signal error and then adjust the weighting factor to improve upon our estimation.
-
-This result only indicates that orientation is not a characteristic that is angularly biased in its scattering. It might well be that for other characteristics, such as size or shape, the choice of detection angles may have a more direct impact on our model's performance. 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
 \label{sec:Conclusion}
 
-We have developed a method for interpreting the dynamics of a trapped
-particle based purely on the light scattering pattern. In theory the
-model can be applied to any characteristic that impacts the light
-scattering pattern produced by the trapped entity. The MSTM package is
-flexible in calculating the light scattering for a variety of
-micro-particles; so long as there is a distinguishable difference in
-the light scattering pattern we can apply this method to characterise
-the particle to some degree of accuracy. This has potential to be
-applied to characterise particle size and shape that are changing
-while in the optical trap. The authors would like to acknowledge and
-thank the support for this research from the funding provided by the
-Leverhulme Trust.\\
+We have developed a method for interpreting the dynamics of a trapped particle based purely on the light scattering pattern. In theory the model can be applied to any characteristic that impacts the light scattering pattern produced by the trapped entity. The MSTM package is flexible in calculating the light scattering for a variety of micro-particles; so long as there is a distinguishable difference in the light scattering pattern we can apply this method to characterise the particle to some degree of accuracy. This has potential to be applied to characterise particle size and shape that are changing while in the optical trap. We hope to in the future apply this to our own experimental work by charactering the orientation of a trapped asymmetric particle.\\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -552,7 +486,6 @@ Leverhulme Trust.\\
 \section*{Appendix}
 \setcounter{table}{0}
 \renewcommand{\thetable}{A\arabic{table}}
-\label{sec:App1}
 \begin{table}[h]
 \begin{center}
 \caption{\label{tab:A1}
@@ -596,6 +529,7 @@ $30$ & $-0.29588$ &  $-0.90825$ & $-0.29588$ \\
 \multicolumn{4}{l}{\small *Orientation vector points from centre of sphere 1 to centre of sphere 2.} \\
 		\end{tabular}
 	\end{center}
+\label{sec:App1}
 \end{table}
 
 
@@ -610,40 +544,41 @@ $30$ & $-0.29588$ &  $-0.90825$ & $-0.29588$ \\
       \hline\hline
       Reference Orientation  & $I(\hat{\bf n}_\alpha\ ,\ 15^{\circ})$ &  $I(\hat{\bf n}_\alpha \ , \ 45^{\circ})$ &  $I(\hat{\bf n}_\alpha \ ,\ 90^{\circ})$ & $y(\hat{\bf n}_\alpha \ , \ 15^{\circ})$ & $y(\hat{\bf n}_\alpha \ , \ 45^{\circ})$ & $y(\hat{\bf n}_\alpha \ , \ 90^{\circ})$ \\
 \hline
-$1$  & $13.371$ & $0.1264$ & $0.0122$ & $-0.5423$ & $-0.4253$ & $-0.4838$ \\
-$2$  & $13.237$ & $0.0272$ & $0.0102$ & $ 0.2429$ & $-1.4010$ & $-0.7826$ \\
-$3$  & $15.840$ & $0.1072$ & $0.0234$ & $ 1.3370$ & $-0.6142$ & $ 1.1620$ \\
-$4$  & $12.657$ & $0.2246$ & $0.0244$ & $-0.0012$ &	$ 0.5399$ & $ 0.9695$ \\
-$5$  & $15.351$ & $0.0527$ & $0.0221$ & $ 1.1320$ & $-1.1500$ & $ 1.3030$ \\
-$6$  & $12.046$ & $0.0916$ & $0.0142$ & $-0.2584$ &	$-0.7676$ &	$-0.1886$ \\
-$7$  & $11.376$ & $0.0036$ & $0.0095$ & $-0.5403$ & $-1.6330$ & $-0.8792$ \\
-$8$  & $13.130$ & $0.2346$ & $0.0095$ & $ 0.1977$ & $ 0.6379$ & $-0.8794$ \\
-$9$  & $15.975$ & $0.2893$ & $0.0273$ & $ 1.3872$ & $ 1.1750$ & $ 1.7260$ \\
-$10$ & $10.073$ & $0.2933$ & $0.0221$ & $-1.0880$ & $ 1.2150$ & $ 0.9641$ \\
-$11$ & $11.371$ & $0.1264$ & $0.0122$ & $-0.5423$ & $-0.4253$ & $-0.4838$ \\
-$12$ & $13.238$ & $0.0272$ & $0.0102$ & $ 0.2429$ &	$-1.4010$ & $-0.7826$ \\
-$13$ & $15.840$ & $0.1072$ & $0.0234$ & $ 1.3370$ & $-0.6142$ & $ 1.1620$ \\
-$14$ & $15.351$ & $0.0527$ & $0.0244$ & $ 1.1320$ & $-1.1500$ & $ 1.3030$ \\
-$15$ & $13.376$ & $0.0036$ & $0.0095$ & $-0.5403$ & $-1.6330$ & $-0.8792$ \\
-$16$ & $13.130$ & $0.2346$ & $0.0095$ & $ 0.1977$ & $ 0.6379$ & $-0.8794$ \\
-$17$ & $15.957$ & $0.2893$ & $0.0273$ & $ 1.3870$ & $ 1.1750$ & $ 1.7260$ \\
-$18$ & $14.199$ & $0.0935$ & $0.0076$ & $ 0.6472$ & $-0.7496$ & $-1.1580$ \\
-$19$ & $8.5164$ & $0.3133$ & $0.0076$ & $-1.7430$ & $ 1.4110$ & $-1.1570$ \\
-$20$ & $12.961$ & $0.2420$ & $0.0188$ & $ 0.1267$ & $ 0.7113$ & $ 0.4765$ \\
-$21$ & $8.2160$ & $0.3217$ & $0.0142$ & $-1.8690$ & $ 1.4950$ & $-0.1890$ \\
-$22$ & $14.212$ & $0.2537$ & $0.0102$ & $ 0.6529$ & $ 0.8265$ & $-0.7835$ \\
-$23$ & $8.9280$ & $0.1398$ & $0.0123$ & $-1.5700$ &	$-0.2934$ & $-0.4840$ \\
-$24$ & $13.328$ & $0.1964$ & $0.0234$ & $ 0.2807$ & $ 0.2624$ & $ 1.1620$ \\
-$25$ & $14.199$ & $0.0935$ & $0.0076$ & $ 0.6472$ & $-0.7496$ & $-1.1580$ \\
-$26$ & $8.5164$ & $0.3133$ & $0.0076$ & $-1.7430$ & $ 1.4110$ & $-1.1570$ \\
-$27$ & $12.961$ & $0.2420$ & $0.0188$ & $ 0.1267$ & $ 0.7113$ & $ 0.4765$ \\
-$28$ & $14.212$ & $0.2537$ & $0.0102$ & $ 0.6529$ & $ 0.8265$ & $-0.7835$ \\
-$29$ & $8.9280$ & $0.1398$ & $0.0122$ & $-1.5700$ & $-0.2934$ & $-0.4840$ \\
-$30$ & $13.328$ & $0.1964$ & $0.0234$ & $ 0.2807$ & $ 0.2624$ & $ 1.1620$ \\
+$1$  & $5.6777$ & $0.0180$ & $0.0122$ & $-0.3137$ & $-0.6242$ & $-0.4838$ \\
+$2$  & $5.2364$ & $0.0088$ & $0.0102$ & $-0.5663$ & $-0.8951$ & $-0.7826$ \\
+$3$  & $9.0297$ & $0.0141$ & $0.0234$ & $ 1.6044$ & $-0.7378$ & $ 1.1622$ \\
+$4$  & $4.5187$ & $0.0459$ & $0.0221$ & $-0.9770$ & $ 0.2062$ & $ 0.9695$ \\
+$5$  & $8.5891$ & $0.0392$ & $0.0244$ & $ 1.3523$ & $ 0.0060$ & $ 1.3031$ \\
+$6$  & $7.1799$ & $0.0377$ & $0.0142$ & $ 0.5458$ & $-0.0383$ & $-0.1886$ \\
+$7$  & $5.0015$ & $0.0071$ & $0.0095$ & $-0.7007$ & $-0.9468$ & $-0.8792$ \\
+$8$  & $4.8573$ & $0.0578$ & $0.0095$ & $-0.7832$ & $ 0.5604$ & $-0.8794$ \\
+$9$  & $9.0184$ & $0.0618$ & $0.0273$ & $ 1.5979$ & $ 0.6774$ & $ 1.7262$ \\
+$10$ & $4.6351$ & $0.1536$ & $0.0221$ & $-0.9103$ & $ 3.4040$ & $ 0.9641$ \\
+$11$ & $5.6777$ & $0.0180$ & $0.0122$ & $-0.3137$ & $-0.6242$ & $-0.4838$ \\
+$12$ & $5.2364$ & $0.0088$ & $0.0102$ & $-0.5663$ & $-0.8951$ & $-0.7826$ \\
+$13$ & $9.0297$ & $0.0141$ & $0.0234$ & $ 1.6044$ & $-0.7378$ & $ 1.1622$ \\
+$14$ & $8.5891$ & $0.0392$ & $0.0244$ & $ 1.3523$ & $ 0.0060$ & $ 1.3031$ \\
+$15$ & $5.0015$ & $0.0071$ & $0.0095$ & $-0.7007$ & $-0.9468$ & $-0.8792$ \\
+$16$ & $4.8573$ & $0.0578$ & $0.0095$ & $-0.7832$ & $ 0.5604$ & $-0.8794$ \\
+$17$ & $9.0184$ & $0.0618$ & $0.0273$ & $ 1.5979$ & $ 0.6774$ & $ 1.7262$ \\
+$18$ & $7.1549$ & $0.0408$ & $0.0076$ & $ 0.5315$ & $ 0.0532$ & $-1.1580$ \\
+$19$ & $4.0546$ & $0.0085$ & $0.0076$ & $-1.2425$ & $-0.9035$ & $-1.1576$ \\
+$20$ & $5.9164$ & $0.0122$ & $0.0188$ & $-0.1771$ & $-0.7945$ & $ 0.4765$ \\
+$21$ & $4.2902$ & $0.0103$ & $0.0142$ & $-1.1077$ & $-0.8510$ & $-0.1890$ \\
+$22$ & $7.9307$ & $0.1005$ & $0.0102$ & $ 0.9754$ & $ 1.8281$ & $-0.7835$ \\
+$23$ & $4.0693$ & $0.0414$ & $0.0122$ & $-1.2342$ & $ 0.0718$ & $-0.4840$ \\
+$24$ & $6.5422$ & $0.0506$ & $0.0234$ & $ 0.1809$ & $ 0.3446$ & $ 1.1622$ \\
+$25$ & $7.1549$ & $0.0408$ & $0.0076$ & $ 0.5315$ & $ 0.0532$ & $-1.1580$ \\
+$26$ & $4.0546$ & $0.0085$ & $0.0076$ & $-1.2425$ & $-0.9035$ & $-1.1576$ \\
+$27$ & $5.9164$ & $0.0122$ & $0.0188$ & $-0.1771$ & $-0.7945$ & $ 0.4765$ \\
+$28$ & $7.9307$ & $0.1005$ & $0.0102$ & $ 0.9754$ & $ 0.1005$ & $ 0.0102$ \\
+$29$ & $4.0693$ & $0.0414$ & $0.0122$ & $-1.2342$ & $ 0.0718$ & $-0.4840$ \\
+$30$ & $6.5422$ & $0.0506$ & $0.0234$ & $ 0.1809$ & $ 0.3446$ & $ 1.1622$ \\
 \hline\hline
 \multicolumn{7}{l}{\small *$I_k$ values are calculated using MSTM package.}
 \end{tabular}
 \end{center}
+\label{sec:App2}
 \end{table}
 
 
