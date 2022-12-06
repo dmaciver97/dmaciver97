@@ -1,0 +1,19 @@
+
+\begin{thenomenclature} 
+\nomgroup{A}
+  \item [{$\hat{\bf s}$}]\begingroup Dimer's instantaneous orientation \nomeqref {0}\nompageref{1}
+  \item [{$\hat{\bf n}_\alpha$}]\begingroup Reference orientation $\alpha$ \nomeqref {0}\nompageref{1}
+  \item [{$I(\hat{\bf s}, \theta_k)$}]\begingroup Raw scattering intensity from dimer in orientation $\hat{\bf s}$ \nomeqref {0}\nompageref{1}
+  \item [{$I(\hat{\bf n}_\alpha, \theta_k)$}]\begingroup Raw scattering intensity from dimer in a given reference orientation \nomeqref {0}\nompageref{1}
+  \item [{$y_k(\hat{\bf s}$}]\begingroup Normalised intensity from dimer in instantaneous orinetation \nomeqref{0}\nompageref{1}
+  \item [{$y_k(\hat{\bf n}_\alpha)$}]\begingroup Normalised intensity from dimer in reference orientation $\alpha$ \nomeqref {0}\nompageref{1}
+  \item [{$p(y_1, y_2, y_3| \hat{\bf n}_\alpha)$}]\begingroup Conditional probability that the dimer in orientation $\hat{\bf n}_\alpha$ produced signal $y_1, y_2, y_3$\nomeqref {0} \nompageref{1}
+  \item [{$p(\hat{\bf n}_\alpha|y_1, y_2, y_3)$}]\begingroup Conditional probability for a given signal $_1, y_2, y_3$ the dimer was in orinentation $\hat{\bf n}_\alpha$ \nomeqref{0}\nompageref{1}
+  \item [{$p(\hat{\bf n}_\alpha$}]\begingroup Prior disturbution of refence orientations \nomeqref{0}\nompageref{1}
+  \item [{$p(\hat{\bf n}_\alpha$}]\begingroup Prior disturbution of scattering signals \nomeqref{0}\nompageref{1}
+  \item [{$\epsilon$}]\begingroup Percent uncertainty in detected signal \nomeqref{0}\nompageref{1}
+  \item [{$p_{ideal}$}]\begingroup Idealised result from light scattering calculations \nomeqref{0}\nompageref{1}
+  \item [{$K_l$}]\begingroup Kullback-Leibler divergence between $p(\hat{\bf n}_\alpha|y_1, y_2, y_3)$ and $p_{ideal}$ \nomeqref{0}\nompageref{1}
+  
+
+\end{thenomenclature}

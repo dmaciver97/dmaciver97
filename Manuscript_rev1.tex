@@ -13,6 +13,7 @@
 \usepackage{lineno}
 \usepackage{color}
 \usepackage{nomencl}
+\makenomenclature
 
 \journal{Journal of Quantitative Spectroscopy \& Radiative Transfer}
 
@@ -83,11 +84,7 @@
 
 \end{frontmatter}
 
-\nomenclature{$\bar{\bf s}$}{Dimer's instantaneous orientation}
-\nomenclature{$\hat{\bf n}_\alpha$}{Reference Orientation $\alpha$}
-
-
-%\linenumbers
+\linenumbers
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -120,7 +117,7 @@ orientation, as a further paradigmatic example of interpretation of
 the scattering data to obtain dynamical information on the trapped
 entity.  There is a paucity of literature on measuring the orientation
 of trapped non-spherical particles till the recent attempt in
-Ref.~\citenum{raudsepp2022estimating} where imaging was employed to
+Ref.~\cite{raudsepp2022estimating} where imaging was employed to
 study the orientation of trapped dimers and a resolution of () was
 achieved.  Here, we simulate the Brownian motion of a dimer and
 calculate the resulting scattered light, and show how Bayesian
@@ -147,6 +144,8 @@ scattering measurement angles.
 \end{figure}
 
 
+\printnomenclature
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methodology}
@@ -155,17 +154,9 @@ scattering measurement angles.
 \subsection{Brownian Simulation}
 \label{sec:brownian}
 
-We use the Brownian OT package developed by Fung~\textit{et~al}.
-\cite{Vigilante2020Brownian_OT} to simulate the motion of a asymmetric
-dimer within an optical trap.  Brownian OT combines MSTM
-\cite{Mishchenko1996MSTM} and ``Optical Tweezer Toolbox''
-(\textit{ott}) \cite{Lenton2020} to simulate the motion of arbitrary
-shaped sphere clusters.  We simulated the motion of silica dimer
-trapped in a $5$ mW Gaussian beam; the dimer was comprised of two
-spheres with radii $1\,{\rm \mu m}$ and $ 0.5\,{\rm \mu m}$,
-respectively.  We ran our simulation over the span of 10 seconds, with
-Brownian OT calculating the dimer's orientation and position every
-$1 \ ms$.
+We use the Brownian OT package developed by Fung~\textit{et~al}. \cite{Vigilante2020Brownian_OT} to simulate the motion of a asymmetric dimer within an optical trap.  Brownian OT combines MSTM \cite{Mishchenko1996MSTM} and ``Optical Tweezer Toolbox'' (\textit{ott}) \cite{Lenton2020} to simulate the motion of arbitrary
+shaped sphere clusters. We simulated the motion of a silica dimer
+trapped in a $5$ mW Gaussian beam; the dimer was comprised of two tangent spheres with radii $1\,{\rm \mu m}$ and $ 0.5\,{\rm \mu m}$, respectively.  We ran our simulation over the span of 10 seconds, with Brownian OT calculating the dimer's orientation and position every $1 \ ms$.
 
 \begin{figure}[h]
 	\centering
@@ -174,16 +165,7 @@ $1 \ ms$.
 	\label{fig:dimer}
 \end{figure}
 
-With any trapped particle there are two main sources of motion,
-Brownian and optical forces.  The dimer's Brownian motion
-($\Delta q^{\textbf{B}}$) is simulated by generating a set of
-normally-distributed numbers whose covariance is given by the dimer's
-diffusion tensor $\textbf{D}$.  The diffusion tensor is computed based
-on Farsund's work \cite{Farsund1996}. For computing the optical force
-Brownian OT uses the T-Matrix method to calculate the scattering
-coefficients of the outgoing scattered wave.  The T-matrix describes
-the scattering process by relating the scattering wave to the incident
-wave:
+With any trapped particle there are two main sources of motion, Brownian and optical forces.  The dimer's Brownian motion ($\Delta q^{\textbf{B}}$) is simulated by generating a set of normally-distributed numbers whose covariance is given by the dimer's diffusion tensor $\textbf{D}$.  The diffusion tensor is computed based on Farsund's work \cite{Farsund1996}. For computing the optical force Brownian OT uses the T-Matrix method to calculate the scattering coefficients of the outgoing scattered wave.  The T-matrix describes the scattering process by relating the scattering wave to the incident wave:
 \begin{align}
 	\begin{pmatrix}
 		p_{mn} \\
@@ -195,12 +177,7 @@ wave:
 		b_{mn}
 	\end{pmatrix}
 \end{align}
-MSTM computes the T-matrix of the dimer, and then passes the T-matrix
-to \textit{ott} to compute the optical forces. The benefit of this
-approach is that MSTM can accurately compute the T-matrix for any
-arbitrary collection of spheres once, and then \textit{ott} can
-calculate the optical forces and torques. The total displacement is
-the sum of the optical and Brownian contributions:
+MSTM computes the T-matrix of the dimer, and then passes the T-matrix to \textit{ott} to compute the optical forces. The benefit of this approach is that MSTM can accurately compute the T-matrix for any arbitrary collection of spheres once, and then \textit{ott} can calculate the optical forces and torques. The total displacement is the sum of the optical and Brownian contributions:
 \begin{align}
   \langle \Delta q_i^{\textbf{B}} \Delta q_j^{\textbf{B}}\rangle
   &= 2D_{ij} \Delta t
@@ -209,11 +186,7 @@ the sum of the optical and Brownian contributions:
   \\
 \Delta q^{tot} &= \Delta q^{\textbf{B}} + \Delta q^{opt}
 \end{align}
-where \textbf{F} is the a 6-component vector that describes the
-optical force and torque components.  Brownian OT returns the dimer's
-motion as a \textit{csv} file containing for each time step the
-$[x,y,z]$ position of the dimer's centre of mass relative to the trap
-focus, and the orientation represented as a quaternion.
+where \textbf{F} is the a 6-component vector that describes the optical force and torque components.  Brownian OT returns the dimer's motion as a \textit{csv} file containing for each time step the $[x,y,z]$ position of the dimer's centre of mass relative to the trap focus, and the orientation represented as a quaternion.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -222,7 +195,7 @@ focus, and the orientation represented as a quaternion.
 
 We consider our dimer from Section~\ref{sec:brownian} in an optical trap; at any point in time we can draw a unit vector $\hat{s}$ that points from the centre of larger sphere, to the centre of the smaller sphere. A plane wave 'probe' laser, directly perpendicular to the trapping laser, is incident on the dimer generating a scattering pattern that is dependent upon the dimer's orientation $I(\hat{\bf s}, \theta)$, computed using MSTM. To represent the experimental set up, three angles  ($\theta_1, \ \theta_2, \ \& \theta_3$) were chosen and the calculated intensity at each angle $\theta_k$ was recorded as $I(\hat{s}, \theta_k)$
 
-Our goal is to determine the orientation of our trapper dimer based on the scattering measurements $I(\hat{n}, \ \theta_k)$ collected from three detection fibres situated at $\theta_1,\ \theta_2, \ \& \ \theta_3$. Rather than get an exact estimate of the dimer's orientation the possible orientation space is discretised into $\textit{n}_ref \ = \ 30$ possible reference orientations $\hat{\bf n}_{\alpha}$ that are evenly distributed on a unit sphere \cite{Rey2006}. Using MSTM we compute the raw intensities that would be collected from the dimer in each reference orientation $I(\hat{\bf n}_{\alpha}, \theta_k)$. 
+Our goal is to determine the orientation of our trapper dimer based on the scattering measurements $I(\hat{n}, \ \theta_k)$ collected from three detection fibres situated at $\theta_1,\ \theta_2, \ \& \ \theta_3$. Rather than get an exact estimate of the dimer's orientation the possible orientation space is discretised into $\textit{n}_{ref} \ = \ 30$ possible reference orientations $\hat{\bf n}_{\alpha}$ that are evenly distributed on a unit sphere \cite{Rey2006}. Using MSTM we compute the raw intensities that would be collected from the dimer in each reference orientation $I(\hat{\bf n}_{\alpha}, \theta_k)$. 
 %
 These raw intensities are normalised according to
 \begin{align}
@@ -232,13 +205,9 @@ These raw intensities are normalised according to
   \frac{I(\hat{\bf n}_\alpha, \theta_k) - \langle I(\hat{\bf n},\theta_k) \rangle } 
   {\langle I^2(\hat{\bf n},\theta_k) \rangle -\langle I(\hat{\bf n}, \theta_k)\rangle^2}
 \end{align}
-where the denominator is simply the standard deviation for our values
-of $I(\hat{\bf n}, \theta_k)$. 
-
-The reference orientations, raw intensities, and scaled signals are given in Tables~\ref{tab:A1} and \ref{tab:A2}.
+where the denominator is simply the standard deviation for our values of $I(\hat{\bf n}, \theta_k)$. The reference orientations, raw intensities, and scaled signals are given in Tables~\ref{tab:A1} and \ref{tab:A2}.
 %
-In practice, $y_k(\bar{\bf s})$ will have an inherent amount of
-uncertainty in our measurement due to noise from our detector.  We can compare any instantaneous signal $y_1, y_2, y_3$ to our reference signals by assuming that the measurement uncertainty for each detection fibre is Gaussian and is centred about $y_k(\bar{\bf n})$.
+In practice, $y_k(\bar{\bf s})$ will have an inherent amount of uncertainty in our measurement due to noise from our detector.  We can compare any instantaneous signal $y_1, y_2, y_3$ to our reference signals by assuming that the measurement uncertainty for each detection fibre is Gaussian and is centred about $y_k(\bar{\bf n})$.
 %
 Combining the signals from all three detection angles provides us with the conditional probability that, should the dimer be in orientation
 $\hat{\bf n}_\alpha$, it would produce a signal ($y_1$, $y_2$, $y_3$):
@@ -260,15 +229,12 @@ We left this as a tuneable parameter to characterize the influence of experiment
   \\ 
 n \in \mathbb{R},&n\in[0,1]
 \end{eqnarray*} 
-where $\epsilon$ is the percent error expected from our detection
-fibres.
+where $\epsilon$ is the percent error expected from our detection fibres.
 
 Equation~\eqref{eq:conditional} gives the probability that a signal
 ($y_1$, $y_2$, $y_3$) will be measured if a dimer is in reference
 orientation $\hat{\rm n}_\alpha$.
-%
-Using Bayes' theorem, the probability that the dimer is in reference
-orientation $\hat{\bf n}_\alpha$, given that the signal ($y_1$, $y_2$,
+Using Bayes' theorem, the probability that the dimer is in reference orientation $\hat{\bf n}_\alpha$, given that the signal ($y_1$, $y_2$,
 $y_3$) is measured, can be estimated:
 %.
 \begin{align}
@@ -282,7 +248,9 @@ where $p(\hat{\bf n}_\alpha)$ and $p(y_1, y_2, y_3)$ are the prior
 estimates of the distributions of particle orientations and
 instantaneous signals, respectively.
 %
-Without any prior evidence we assume that the orientation priori of our dimer $p(\hat{\bf n}_{\alpha})$ is uniform. Knowledge of the dimer from previous measurement can be used to inform our estimate of $p(\hat{\bf n}_{\alpha})$, covered in Section~\ref{sec:test}.  The latter prior $p(y)$ is the probability of measuring a signal ($y_1$, $y_2$, $y_3$).  This is given by taking the discrete integral over collection of reference orientations.
+Without any prior evidence we assume that the orientation priori of our dimer
+$p(\hat{\bf n}_{\alpha})$ is uniform. Knowledge of the dimer from previous
+measurement can be used to inform our estimate of $p(\hat{\bf n}_{\alpha})$, covered in Section~\ref{sec:test}.  The latter prior $p(y)$ is the probability of measuring a signal ($y_1$, $y_2$, $y_3$).  This is given by taking the discrete integral over collection of reference orientations.
 \begin{align}
   p(y_1, y_2, y_3)
   =
@@ -290,29 +258,35 @@ Without any prior evidence we assume that the orientation priori of our dimer $p
   p(y_1, y_2, y_3|\hat{\bf n}_\alpha)
   p(\hat{\bf n}_\alpha)
 \end{align}
-From \eqref{eq:bayes} we get a mass probability distribution that denotes the probability that our dimer is in orientation $\hat{\bf n}_{\alpha}$ given a signal ($y_1$, $y_2$, $y_3$). In order to evaluate the accuracy of our method, we tested it using a Brownian dynamics simulation of the dimer (see Section~\ref{sec:brownian}).
+From \eqref{eq:bayes} we get a mass probability distribution that denotes the
+probability that our dimer is in orientation $\hat{\bf n}_{\alpha}$ given a
+signal ($y_1$, $y_2$, $y_3$). In order to evaluate the accuracy of our method, we tested it using a Brownian dynamics simulation of the dimer (see Section~\ref{sec:brownian}).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Calculation of error}
 \label{sec:divergence}
-Section~\ref{sec:Bayes} covered how Bayes theorem can be applied to estimate the orientation of a dimer based on its scattering signal. To evaluate the estimation we can use the simulation in Section~\ref{sec:brownian}; we denote the dimer's \emph{actual} orientation as $\hat{\bf s}$ and use MSTM to calculate its light scattering $I(\hat{\bf s}, \theta)$. At each angle $\theta_k$ we use \eqref{eq:scale} to scale the measurements collected from our dimer and record them as $y_1(\hat{\bf s})$, $y_2(\hat{\bf s})$, $y_3(\hat{\bf s})$. These measurements signals are used to calculate $p(\hat{\bf n}_{\alpha}\parallel y_1, y_2, y_3)$, because we know $\hat{s}$ we can determine which reference orientation is closest, denoted as $\hat{\bf n}_{best}$.
+Section~\ref{sec:Bayes} covered how Bayes theorem can be applied to estimate
+the orientation of a dimer based on its scattering signal. To evaluate the estimation we can use the simulation in Section~\ref{sec:brownian}; we denote the dimer's \emph{actual} orientation as $\hat{\bf s}$ and use MSTM to calculate its light scattering $I(\hat{\bf s}, \theta)$. At each angle $\theta_k$ we use \eqref{eq:scale} to scale the measurements collected from our dimer and record them as $y_1(\hat{\bf s})$, $y_2(\hat{\bf s})$, $y_3(\hat{\bf s})$. These measurements signals are used to calculate $p(\hat{\bf n}_{\alpha}\parallel y_1, y_2, y_3)$, because we know $\hat{s}$ we can determine which reference orientation is closest, denoted as $\hat{\bf n}_{best}$.
 
-To measure the error in the model's estimate the distribution from Eq.~\eqref{eq:bayes} and an ideal result, $p_ideal$, were compared.  An ideal result would be one that is 0 for every $\hat{\bf n}$ apart from $\hat{\bf n}_{best}$.
+To measure the error in the model's estimate the distribution from
+Eq.~\eqref{eq:bayes} and an ideal result, $p_ideal$, were compared.  An ideal result would be one that is 0 for every $\hat{\bf n}$ apart from $\hat{\bf n}_{best}$.
 \begin{align}
-	p_{ideal} = 
+	p_{best} = 
 	\begin{cases}
 		1 & \text{when $\hat{\bf n}_\alpha$ = $\hat{\bf n}_{best}$}\\
 		0 & \text{anywhere else}
 	\end{cases}
 \end{align}
-The distribution from Eq.~\eqref{eq:bayes} will assign some non-zero probability to every reference orientation. The model's error was measured by calculating the Kullback-Leibler divergence $K_l$ between the two distributions.
+The distribution from Eq.~\eqref{eq:bayes} will assign some non-zero
+probability to every reference orientation. The model's error was measured by calculating the Kullback-Leibler divergence $K_l$ between the two distributions.
 \begin{align}
-	K_{l, \#}(p_{ideal}\parallel p(\hat{\bf n}_\alpha| y_1, y_2, y_3))
-	= p_{ideal}\ln \left[\frac{p_{ideal}}{p(\hat{\bf n}| y_1,y_2,y_3))}
+	K_{l, \#}(p_{best}\parallel p(\hat{\bf n}_\alpha| y_1, y_2, y_3))
+	= p_{best}\ln \left[\frac{p_{best}}{p(\hat{\bf n}| y_1,y_2,y_3))}
 	\right]
 	\label{eq;kullback}
 \end{align}
-where a larger value of $K_l$ indicates that our model is less confident in its prediction of the dimer's orientation. The divergence provides us a measure of how confident our measurement is. To better reflect the model's accuracy we implemented a penalty condition that worsens the divergence if our model estimates the wrong reference orientation:
+where a larger value of $K_l$ indicates that our model is less confident in its 
+prediction of the dimer's orientation. The divergence provides us a measure of how confident our measurement is. To better reflect the model's accuracy we implemented a penalty condition that worsens the divergence if our model estimates the wrong reference orientation:
 \begin{align}
 	p(\hat{\bf n}|y_1,y_2,y_3) = 
 	\begin{cases}
@@ -332,19 +306,19 @@ Using our simulation from Section~\ref{sec:brownian} we calculated the instantan
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.5\textwidth]{./Images/fig3.png}
-	\caption{Model's estimation of dimer orientation while assuming $p(\hat{\bf n}_\alpha)$ to be uniform.}
+	\caption{Model's estimation of dimer orientation while assuming $p(\hat{\bf n}_\alpha)$ to be uniform. Dotted line denotes maximum spacing between two neighbouring $\hat{\bf n}_\alpha$, see text for further description.}
 	\label{fig:uniform}
 \end{figure} 
 
-The reasoning for this lies with the fact that differences in reference signals and reference orientation spacing are not directly correlated with each other. In some cases, two reference orientation will have identical signal responses. To remedy this we need to account for the fact that a trapped dimer's motion i limited due to the trap stiffness. Therefore, the prior of the reference orientations $p(\hat{\bf n}_\alpha)$ was defined at each time step by accounting for the physical distance between our previous estimate $\hat{\bf n}_{\alpha}(t - \Delta t)$ and each reference orientation $\hat{\bf n}_\alpha(t)$:
+The reasoning for this lies with the fact that differences in reference signals and reference orientation spacing are not directly correlated with each other. In some cases, two reference orientation will have identical signal responses. To remedy this we need to account for the fact that a trapped dimer's motion i limited due to the trap stiffness. Therefore, the prior of the reference orientations $p(\hat{\bf n}_\alpha)$ was defined at each time step by accounting for the physical distance between our previous estimate $\hat{\bf n}_{est}(t - \Delta t)$ and each reference orientation $\hat{\bf n}_\alpha(t)$:
 
 \begin{align}
-  r_i(t, \hat{\bf n}_\alpha)
-  &= (\hat{\bf n}_{\alpha}(t) \cdot \hat{\bf n}_\alpha(t-\Delta t))
-  \\
-  p_i(\hat{\bf n})
-  &= \frac{e^{\beta (r_i(t,\hat{\bf n}_i)-1)}}
-{\sum_{j=1}^{n_{\rm ref}}e^{\beta(r_j(t, \hat{\bf n}_\alpha)-1)}}
+  p(\hat{\bf n}_\alpha)
+  &=\frac{e^{\beta (\hat{\bf n}_\alpha (t) 
+  	\cdot \hat{\bf n}_{est}(t-\Delta t))}}
+  {\sum_{j=1}^{n_{\rm ref}}
+	e^{\beta (\hat{\bf n}_\alpha (t) 
+	\cdot \hat{\bf n}_{est}(t-\Delta t)}}
 \end{align}
 
 where $\beta$ is a weighting factor that controls the significance of our priori estimate. The simulation data from Section~\ref{sec:brownian} was used to evaluate our model's performance --- covered in Section~\ref{sec:divergence}. By summing the divergence of each measurement across the entire simulation we get an evaluation of how well the model performed in estimating the dimer's orientation. To compare the effects of changing certain parameters on the performance of our model we compare our result of $K_{l,total}$ to a worst case scenario and evaluate how much it improves upon this, denoted as $F(K_l)$:
