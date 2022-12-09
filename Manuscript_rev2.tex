@@ -179,7 +179,7 @@ $\hat{\bf n}_\alpha$, it would produce a signal ($y_1$, $y_2$, $y_3$):
 (2\pi\sigma_k^2)^{-1/2} 
 e^{-(y_{k}-y_{k}(\hat{\bf n}_\alpha))^2/2\sigma_k^2}
 \end{align}
-where $\sigma_k$ is related to the uncertainty in our measurement $y_k(\hat{\bf s})$. We left this as a tuneable parameter to determine the influence of experimental error on our predictive method. To simulate uncertainty in our measurement we stochastically adjusted our values of $y_k(\hat{\bf s})$. Equation~\eqref{eq:conditional} gives the probability that a signal ($y_1$, $y_2$, $y_3$) will be measured if a dimer is in reference orientation $\hat{\rm n}_\alpha$. Using Bayes' theorem, the probability that the dimer is in reference orientation $\hat{\bf n}_\alpha$, given that the signal ($y_1$, $y_2$, $y_3$) is measured, can be estimated:
+where $\sigma_k$ is related to the uncertainty in our measurement $y_k(\hat{\bf s})$. We left this as a tuneable parameter to determine the influence of experimental error on our predictive method. Equation~\eqref{eq:conditional} gives the probability that a signal ($y_1$, $y_2$, $y_3$) will be measured if a dimer is in reference orientation $\hat{\rm n}_\alpha$. Using Bayes' theorem, the probability that the dimer is in reference orientation $\hat{\bf n}_\alpha$, given that the signal ($y_1$, $y_2$, $y_3$) is measured, can be estimated:
 %.
 \begin{align}
   \label{eq:bayes}
@@ -246,7 +246,7 @@ This allows us to account for situations when our collected signal is equally li
 
 Using our simulation from Section~\ref{sec:brownian} we simulated the motion of a silica dimer trapped within a 5 mW optical trap. The dimer is comprised of two tangent spheres with radii $1 \mu m$ and $0.5 \mu m$ respectively. We simulated the first 10 seconds of motion, calculating the orientation and position every 1 ms. 
 
-We applied Eq.~\eqref{eq:bayes} --- covered in Section~\ref{sec:Bayes} --- and the reference orientation with the highest probability is taken as our estimation of the dimer's instantaneous orientation. To visualise our model's performance  we plotted the radial distance between our estimation $\hat{\bf n}_{est}$ of the orientation and the dimer's \emph{actual} instantaneous orientation $\hat{\bf s}$ versus time. For comparison, we also plotted the radial distance between the closest reference orientation, denoted $\hat{\bf n}_{best}$, and the dimer's instantaneous orientation. The dotted line indicates the maximum radian distance ($0.896$ radians) between two neighbouring reference orientations, if we are under this line then we know our estimate and the best result are beside one another. If we assume our prior of the reference orientations $p(\hat{\bf n}_\alpha)$ to be uniform the performance is poor, as seen in Figure~\ref{fig:uniform}.
+We applied Eq.~\eqref{eq:bayes} --- covered in Section~\ref{sec:Bayes} --- and the reference orientation with the highest probability is taken as our estimation of the dimer's instantaneous orientation. To visualise our model's performance  we plotted the radial distance between our estimation $\hat{\bf n}_{est}$ of the orientation and the dimer's \emph{actual} instantaneous orientation $\hat{\bf s}$ versus time. For comparison, we also plotted the radial distance between the closest reference orientation, denoted $\hat{\bf n}_{best}$, and the dimer's instantaneous orientation. The dotted line indicates the maximum radian distance ($0.896$ radians) between two neighbouring reference orientations, if we are under this line then we know our estimate and the best result are beside one another. If we assume our prior of the reference orientations $p(\hat{\bf n}_\alpha)$ to be uniform the model is somewhat random in it's estimation of the orientation, as seen in Figure~\ref{fig:uniform}.
 
 \begin{figure}[h]
 	\centering
@@ -264,9 +264,19 @@ The reasoning for this lies with the fact that differences in reference signals 
   {\sum_{\alpha=1}^{n_{\rm ref}}
 	e^{\beta (\hat{\bf n}_\alpha (t) 
 	\cdot \hat{\bf n}_{est}(t-\Delta t)}}
+	\label{eq:boltz}
 \end{align}
 
-where $\beta$ is a weighting factor that describes the dimer's freedom of motion within the trap. By summing over each reference orientation $p(\hat{\bf n}_\alpha)$ is normalized. The simulation data from Section~\ref{sec:brownian} was used to evaluate our model's performance --- covered in Section~\ref{sec:divergence}. By summing the divergence of each measurement across the entire simulation we get an evaluation of how well the model performed in estimating the dimer's orientation. To compare the effects of changing certain parameters on the performance of our model we compare our result of $K_{l,total}$ to a worst case scenario and evaluate how much it improves upon this, denoted as $F(K_l)$:
+where $\beta$ is a weighting factor that describes the dimer's freedom of motion within the trap. By summing over each reference orientation $p(\hat{\bf n}_\alpha)$ is normalized. Implementation of Eq~\eqref{eq:boltz} helps to reduce the random elements seen in  Figure~\ref{fig:uniform} to give a better estimation, as shown in Figure~\ref{fig:biased}. 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{./Images/fig4.png}
+	\caption{Model's estimation of dimer orientation with $p(\hat{\bf n}_\alpha)$ being defined by Eq~\eqref{eq:boltz}. Blue line denotes the best result we can achieve, orange line denotes the result provided by eq~\ref{eq:bayes}. Dotted line denotes maximum spacing between two neighbouring $\hat{\bf n}_\alpha$, see Sec~\ref{sec:Bayes}.}
+	\label{fig:biased}
+\end{figure} 
+ 
+The simulation data from Section~\ref{sec:brownian} was used to evaluate our model's performance --- covered in Section~\ref{sec:divergence}. By summing the divergence of each measurement across the entire simulation we get an evaluation of how well the model performed in estimating the dimer's orientation. To compare the effects of changing certain parameters on the performance of our model we compare our result of $K_{l,total}$ to a worst case scenario and evaluate how much it improves upon this, denoted as $F(K_l)$:
 
 \begin{align}
 K_{l, \ total} &= \sum\limits_{\# =1}^{timesteps} K_{l,\#} \\
@@ -319,11 +329,12 @@ In the simulations of Vigilante~\emph{et~al}.\ \cite{Vigilante2020Brownian_OT}, 
 \subsection{Impact of measurement precision on model predictions}
 \label{sec:epsilon}
 
-A key assumption of Eq.~\eqref{eq:conditional} is that we assume our measurement of scattering signals will inherently have some degree of uncertainty. This is the central premise that allows us to form Eq.~\eqref{eq:conditional}. In an experimental situation the most common source of uncertainty is from the detection bias. Therefore, understanding the limits of acceptable uncertainty is necessary for implementing this to experimental work. To this end we redefined $\sigma_k$ as the average reference signal $\bar{y}(\hat{\bf n}_\alpha)$ multiplied by the percent error caused by the signal detectors:
+A key assumption of Eq.~\eqref{eq:conditional} is that we assume our measurement of scattering signals will inherently have some degree of uncertainty. This is the central premise that allows us to form Eq.~\eqref{eq:conditional}. In an experimental situation the most common source of uncertainty is from the detection bias. Therefore, understanding the limits of acceptable uncertainty is necessary for implementing this to experimental work. To this end we implemented implemented a stochastic variable that adjusts our detected signal by some amount of our measurement uncertainty:
 \begin{align}
-	\sigma_k = \epsilon \bar{y}(\hat{\bf n}_\alpha)
-\end{align} 
-We ran our model while varying the value of $\epsilon$, Figure~\ref{fig:epsilon} shows the performance of the method with a selection of angles $15^{\circ}$, $55^{\circ}$, and $90^{\circ}$ and $\beta$ set to $1$:
+	\eta = \epsilon \sigma_k
+	\rightarrow \ y_k(\hat{\bf{s}}) = y_k(\hat{\bf{s}}) \pm \eta
+\end{align}
+Where $\eta$ is our percent error in our detection bias. We ran our model while varying the value of $\eta$, Figure~\ref{fig:epsilon} shows the performance of the method with a selection of angles $15^{\circ}$, $55^{\circ}$, and $90^{\circ}$ and $\beta$ set to $1$:
 
 \begin{figure}[h]
 	
@@ -337,13 +348,11 @@ We ran our model while varying the value of $\epsilon$, Figure~\ref{fig:epsilon}
 	\begin{subfigure}{0.32\textwidth}
 		\includegraphics[width=\textwidth]{./Images/fig5c.png}
 	\end{subfigure}
-	\caption{Model prediction for signal error of (a) $5\%$, (b) $15\%$, and (c) $25\%$. Blue line denotes the best result we can achieve, orange line denotes the result provided by eq~\ref{eq:bayes}. Dotted line denotes maximum spacing between two neighbouring $\hat{\bf n}_\alpha$, see Sec~\ref{sec:Bayes}.}
+	\caption{Model prediction for signal error of (a) $5\%$, (b) $50\%$, and (c) $100\%$. Blue line denotes the best result we can achieve, orange line denotes the result provided by eq~\ref{eq:bayes}. Dotted line denotes maximum spacing between two neighbouring $\hat{\bf n}_\alpha$, see Sec~\ref{sec:Bayes}.}
 	\label{fig:epsilon}
 \end{figure}
 
-As can be seen from Figure~\ref{fig:epsilon}, there is a sweet spot for the signal error; with a $5$\% error giving an inaccurate estimation, and with a $25$\% error providing a satisfactory estimate but with sudden shifts away from the ideal result. A reason why our low error estimation performed so poorly is that the minimum difference between our values of $y_k(\hat{\bf n}_\alpha)$ is larger than our signal error. As such the model could not distinguish between different reference orientations and was essentially just picking options at random. This minimum difference determined by our choice of angles and sets a lower limit of how accurate our signals can be. Because there is not a unique relationship between the reference orientations and their respective signals this cannot be mitigated by increasing $\textit{n}_{ref}$. 
-
-The latter issue of a high signal error can be addressed somewhat by adjusting our value of $\beta$ to flatten our probability distribution. We repeated our model estimation at $25\%$ with different values of $\beta$ to see the upper limit we could improve our result to.
+As can be seen from Figure~\ref{fig:epsilon}, the inclusion of an signal error variable results in a gradual decrease in our model's performance. While still providing a decent estimate of the dimer orientation the model eventually is nearly as correct as it is incorrect. Fortunately we can amend this by adjusting the weighting of our priori distribution $p(\hat{\bf n})$. We repeated our model estimation with different values of $\beta$ to see the upper limit we could improve our result to.
 
 \begin{figure}[h]
 	\centering
@@ -357,7 +366,7 @@ The latter issue of a high signal error can be addressed somewhat by adjusting o
 	\label{fig:beta}
 \end{figure}
 
-As shown in Figure~\ref{fig:beta}, eventually $\beta$ begins to over correct our estimate to the extent that we are a full radian away from the correct result. The exact value of $\beta$ that will optimise our performance varies for each choice of angle, therefore we can use it as variable for finely tuning our results to suit our choice of angles and our signal error. In future, we want to also investigate the possibility of extending our prior $p(\hat{\bf n})$ so we account for not just the change in orientation after one time step but after 2 or 3 time steps to investigate the auto correlation function of our dimer's motion.
+Eventually $\beta$ begins to over correct our estimate to the extent that we are a full radian away from the correct result. The exact value of $\beta$ that will optimise our performance varies based on the expected signal error, therefore we can use it as variable for fine tuning our results to suit our expected signal error. In future, we want to also investigate the possibility of extending our prior $p(\hat{\bf n})$ so we account for not just the change in orientation after one time step but after 2 or 3 time steps to investigate the auto correlation function of our dimer's motion.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Parameter Optimisation Results}
@@ -393,7 +402,6 @@ We have developed a method for interpreting the dynamics of a trapped particle b
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
 \bibliography{bib} 
 \bibliographystyle{ieeetr}
 
