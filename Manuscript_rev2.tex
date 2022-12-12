@@ -97,7 +97,7 @@ Since their invention in the late 1980's, Optical Tweezers have found applicatio
 The possibility of integrating light scattering with optical trapping was demonstrated by Saffran and co-workers in \cite{Bar-Ziv_1998} where a single-mode optical fibre was aligned to detect the scattered
 light from a trapped bead and its Brownian motion was studied.  While this allowed for studying the dynamics, structural information about the trapped bead was precluded as the measurement was obtained only at a single angle.  In this work, we propose a scheme that expands on the technique in \cite{Bar-Ziv_1998} to detect scattered light simultaneously at 3 angles as shown in Figure~\ref{fig:setup}, combined with a novel Bayesian Inference based analysis technique to enable interpretation of the resulting multi-angle data as well as optimisation of the setup to provide maximal information from the signal.
 
-To demonstrate the analysis, we study a simple, illustrative example of a trapped entity more complex than a single sphere (i.e.\ a trapped asymmetric dimer).  We explore how to optimise the experimental measurement to obtain the best estimate of the dimer's instantaneous orientation, as a further paradigmatic example of interpretation of the scattering data to obtain dynamical information on the trapped entity. There is a paucity of literature on measuring the orientation of trapped non-spherical particles till the recent attempt in Ref.~\cite{raudsepp2022estimating} where imaging was employed to study the orientation of trapped dimers.  Here, we simulate the Brownian motion of a dimer and calculate the resulting scattered light, and show how Bayesian inference can be used to optimise extraction of the true dimer orientation from the light scattering signals given a choice of scattering measurement angles.
+To demonstrate the analysis, we study a simple, illustrative example of a trapped entity more complex than a single sphere (i.e.\ a trapped asymmetric dimer).  We explore how to optimise the experimental measurement to obtain the best estimate of the dimer's instantaneous orientation, as a further paradigmatic example of interpretation of the scattering data to obtain dynamical information on the trapped entity. There is a paucity of literature on measuring the orientation of trapped non-spherical particles till the recent attempt in Ref.~\cite{raudsepp2022estimating} where imaging was employed to study the orientation of trapped dimers. Here, we simulate the Brownian motion of a dimer and calculate the resulting scattered light, and show how Bayesian inference can be used to optimise extraction of the true dimer orientation from the light scattering signals given a choice of scattering measurement angles. Furthermore we demonstrate how the model can be fine tuned in situations where measurement uncertainty becomes significant. 
 
 \begin{figure}
 \centering
@@ -228,18 +228,8 @@ probability to every reference orientation. The model's error was measured by ca
 	\right]
 	\label{eq;kullback}
 \end{align}
-where a larger value of $K_l$ indicates that our model is less confident in its 
-prediction of the dimer's orientation. The divergence provides us a measure of how confident our measurement is. To better reflect the model's accuracy we implemented a penalty condition that worsens the divergence if our model estimates the wrong reference orientation:
-\begin{align}
-	p(\hat{\bf n}_\alpha|y_1,y_2,y_3) = 
-	\begin{cases}
-		p(\hat{\bf n}_{est}|y_1,y_2,y_3) & 
-		\text{when $\hat{\bf n}_{estimate}$ = $\hat{\bf n}_{best}$}\\
-		p(\hat{\bf n}_{est}|y_1,y_2,y_3)-p(\hat{\bf n}_{best}|y_1,y_2,y_3) & \text{when $\hat{\bf n}_{est} \ne \hat{\bf n}_{best}$}
-	\end{cases}
-\end{align}
-
-This allows us to account for situations when our collected signal is equally likely to be associated with 2 reference signals. Section~\ref{sec:Bayes} and Section~\ref{sec:divergence} are all for a single measurement of a light scattering signal from our dimer. To properly model it's motion we need to consider how the orientation changes with time. 
+where a larger value of $K_l$ indicates that our model is less confident in its prediction of the dimer's orientation. While the divergence calculations are useful for showing our model's confidence in the prediction it cannot accurately reflect if the model is correct or not with it's estimation. 
+Section~\ref{sec:Bayes} and Section~\ref{sec:divergence} are all for a single measurement of a light scattering signal from our dimer. To properly model it's motion we need to consider how the orientation changes with time. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Testing the Model}
 \label{sec:test}
@@ -284,7 +274,7 @@ K_{l, \ worst} &= \sum\limits_{\#=1}^{timesteps} \ln \left[\frac{1}{1/n_{ref}} \
 F(K_l) &= \frac{K_{l,\ worst}}{K_{l, \ total}}
 \end{align}
 
-The worst case scenario is akin to randomly choosing a reference orientation at each time step. The greater the value of $F(K_l)$ the better our model fits the dimer's motion. Because our model is dependent on several parameters we need to a sophisticated method for understanding how these parameters correlate with $F(K_l)$.
+The worst case scenario is akin to randomly choosing a reference orientation at each time step. The greater the value of $F(K_l)$ the better our model's confidence is in characterising the dimer's motion. Because our model is dependent on several parameters we need to a sophisticated method for understanding how these parameters correlate with $F(K_l)$.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -310,63 +300,63 @@ The Brownian OT software was used to simulate the motion of a trapped dimer ($a_
 	\centering
 	\begin{subfigure}{0.45\textwidth}
 		\subcaption{}
-		\includegraphics[width =\textwidth]{./Images/fig4a.png}
+		\includegraphics[width =\textwidth]{./Images/fig5a.png}
 	\end{subfigure}
 	\begin{subfigure}{0.45\textwidth}
 		\subcaption{}
-		\includegraphics[width=\textwidth]{./Images/fig4b.png}
+		\includegraphics[width=\textwidth]{./Images/fig5b.png}
 	\end{subfigure}
 	\caption{Simulation results of: (a) the dimers orientation vector with time, (b) the dimer's [x,y,z] position with time.}
 	\label{fig:motion}
 \end{figure}
 
-As can be seen from Figure~\ref{fig:motion}, the dimer undergoes a full $180^{\circ}$ rotation upon entering the trap.  Typically horizontal alignment of a dimer is unstable and will result in the particle rotating to align along its vertical axis.  It is interesting to note that the dimer is furthest from the trap centre as it goes into a horizontal orientation before drawing closer again as it inverts completely. Further simulations of differently sized dimers showed sa similar behaviour of moving away from the trap focus while remaining trapped, but only when $a_1 \geq 2a_2$.  Dimers with size ratios $a_1 < 2a_2$ immediately aligned into a fixed vertical position.
+As can be seen from Figure~\ref{fig:motion}, the dimer undergoes a full $180^{\circ}$ rotation upon entering the trap.  Typically horizontal alignment of a dimer is unstable and will result in the particle rotating to align along its vertical axis.  It is interesting to note that the dimer is furthest from the trap centre as it goes into a horizontal orientation before drawing closer again as it inverts completely. Further simulations of differently sized dimers showed a similar behaviour of moving away from the trap focus while remaining trapped, but only when $a_1 \geq 2a_2$.  Dimers with size ratios $a_1 < 2a_2$ immediately aligned into a fixed vertical position.
 %
-In the simulations of Vigilante~\emph{et~al}.\ \cite{Vigilante2020Brownian_OT}, trapped symmetrical dimers were investigated; their findings showed that the optical torque on the dimer goes to zero while aligned vertically and is at its maximum in a horizontal alignment.  Therefore, the inversion of an asymmetric dimer suggests that if the size difference is significant the optical torque goes is minimal for a dimer in both horizontal and vertical orientations. Once we have our experimental set up complete we can confirm this by trapping an asymmetric dimer and monitoring its orientation.  The data from Figure~\ref{fig:motion} was used to test the efficacy of our predictive model.  To visualise how well our model tracks the dimer's orientation we plot the radial distance between our model's prediction and the true orientation, and between the best possible orientation and the true orientation.  For a perfect estimation these two plots should overlap, while we cannot achieve an exact estimation we can optimise it by adjusting the expected signal error and weighting factor.
-
-
+In the simulations of Vigilante~\emph{et~al}.\ = \cite{Vigilante2020Brownian_OT}, trapped symmetrical dimers were investigated; their findings showed that the optical torque on the dimer goes to zero while aligned vertically and is at its maximum in a horizontal alignment. Therefore, the inversion of an asymmetric dimer suggests that if the size difference is significant the optical torque is minimal for a dimer in both horizontal and vertical orientations. Once we have our experimental set up complete we can confirm this by trapping an asymmetric dimer and monitoring its orientation. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Impact of measurement precision on model predictions}
 \label{sec:epsilon}
 
-A key assumption of Eq.~\eqref{eq:conditional} is that we assume our measurement of scattering signals will inherently have some degree of uncertainty. This is the central premise that allows us to form Eq.~\eqref{eq:conditional}. In an experimental situation the most common source of uncertainty is from the detection bias. Therefore, understanding the limits of acceptable uncertainty is necessary for implementing this to experimental work. To this end we implemented implemented a stochastic variable that adjusts our detected signal by some amount of our measurement uncertainty:
+A key assumption of Eq.~\eqref{eq:conditional} is that we assume our measurement of scattering signals will inherently have some degree of uncertainty. This is the central premise that allows us to form Eq.~\eqref{eq:conditional}. In an experimental situation the most common source of uncertainty is from the bias in our detection fibres. Therefore, understanding the limits of acceptable uncertainty is necessary for implementing this to experimental work. To this end we simulated the uncertainty in our signal measurements via the following:
 \begin{align}
 	\eta = \epsilon \sigma_k
 	\rightarrow \ y_k(\hat{\bf{s}}) = y_k(\hat{\bf{s}}) \pm \eta
 \end{align}
-Where $\eta$ is our percent error in our detection bias. We ran our model while varying the value of $\eta$, Figure~\ref{fig:epsilon} shows the performance of the method with a selection of angles $15^{\circ}$, $55^{\circ}$, and $90^{\circ}$ and $\beta$ set to $1$:
+Where $\eta$ is the signal noise and $\epsilon$ is our percent error in our signal measurement. We ran our model while varying the value of $\epsilon$, Figure~\ref{fig:epsilon} shows the performance of the method with a selection of angles $15^{\circ}$, $55^{\circ}$, and $90^{\circ}$ and $\beta$ set to $1$:
 
 \begin{figure}[h]
 	
 	\centering
 	\begin{subfigure}{0.32\textwidth}
-		\includegraphics[width=\textwidth]{./Images/fig5a.png}
+		\includegraphics[width=\textwidth]{./Images/fig6a.png}
 	\end{subfigure}
 	\begin{subfigure}{0.32\textwidth}
-		\includegraphics[width=\textwidth]{./Images/fig5b.png}
+		\includegraphics[width=\textwidth]{./Images/fig6b.png}
 	\end{subfigure}
 	\begin{subfigure}{0.32\textwidth}
-		\includegraphics[width=\textwidth]{./Images/fig5c.png}
+		\includegraphics[width=\textwidth]{./Images/fig6c.png}
 	\end{subfigure}
-	\caption{Model prediction for signal error of (a) $5\%$, (b) $50\%$, and (c) $100\%$. Blue line denotes the best result we can achieve, orange line denotes the result provided by eq~\ref{eq:bayes}. Dotted line denotes maximum spacing between two neighbouring $\hat{\bf n}_\alpha$, see Sec~\ref{sec:Bayes}.}
+	\caption{Model prediction for signal error of (a) $5\%$, (b) $50\%$, and (c) $75\%$. Blue line denotes the best result we can achieve, orange line denotes the result provided by eq~\ref{eq:bayes}. Dotted line denotes maximum spacing between two neighbouring $\hat{\bf n}_\alpha$, see Sec~\ref{sec:Bayes}.}
 	\label{fig:epsilon}
 \end{figure}
 
-As can be seen from Figure~\ref{fig:epsilon}, the inclusion of an signal error variable results in a gradual decrease in our model's performance. While still providing a decent estimate of the dimer orientation the model eventually is nearly as correct as it is incorrect. Fortunately we can amend this by adjusting the weighting of our priori distribution $p(\hat{\bf n})$. We repeated our model estimation with different values of $\beta$ to see the upper limit we could improve our result to.
+As can be seen from Figure~\ref{fig:epsilon}, the inclusion of a signal noise results in a gradual decrease in our model's performance. Eventually after the signal exceeds $X \ \%$ the performance drops of significantly as our estimation begins to fluctuate seemingly at random, similar to the behaviour shown in Figure~\ref{fig:uniform}. One common feature of our model's estimations is the large hump from $t = 1 \ s$ to $t = 4 \ s$; looking at the simulation data this correlates with the point where the dimers is moving very quickly as it inverts within the trap. One way we can alleviate the randomness is by increasing the weighting factor $\beta$ that reflects the degree of freedom our dimer has within the trap. We repeated the model at $75\%$ signal error but this time increasing $\beta$ in order to demonstrate its effect on our model's performance. 
 
 \begin{figure}[h]
 	\centering
 	\begin{subfigure}{0.33\textwidth}
-		\includegraphics[width=\textwidth]{./Images/fig6a.png}
+		\includegraphics[width=\textwidth]{./Images/fig7a.png}
 	\end{subfigure}
 	\begin{subfigure}{0.33\textwidth}
-		\includegraphics[width=\textwidth]{./Images/fig6b.png}
+		\includegraphics[width=\textwidth]{./Images/fig7b.png}
 	\end{subfigure}
 	\caption{Model prediction for signal error of $25\%$ when (a) $\beta = 5$ and (b) $\beta=6$. Blue line denotes the best result we can achieve, orange line denotes the result provided by eq~\ref{eq:bayes}. Dotted line denotes maximum spacing between two neighbouring $\hat{\bf n}_\alpha$, see Sec~\ref{sec:Bayes}.}
 	\label{fig:beta}
 \end{figure}
 
-Eventually $\beta$ begins to over correct our estimate to the extent that we are a full radian away from the correct result. The exact value of $\beta$ that will optimise our performance varies based on the expected signal error, therefore we can use it as variable for fine tuning our results to suit our expected signal error. In future, we want to also investigate the possibility of extending our prior $p(\hat{\bf n})$ so we account for not just the change in orientation after one time step but after 2 or 3 time steps to investigate the auto correlation function of our dimer's motion.
+The exact value of $\beta$ that will best optimise our performance varies based on the expected signal error, therefore we can use it as variable for fine tuning our results to suit our expected signal error. Eventually $\beta$ begins to over correct our estimate to the extent that we are a full radian away from the correct result. The other downside of increasing $\beta$ is that it also reduces our model's confidence significantly; this is not so much a problem for orientation where we can measure the difference between different reference orientation. It may however, pose an issue in scenarios where we want to characterise something more discrete such as scattering shape or size. 
+
+In future, we want to also investigate the possibility of extending our prior $p(\hat{\bf n})$ so we account for not just the change in orientation after one time step but after 2 or 3 time steps to investigate the auto correlation function of our dimer's motion.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Parameter Optimisation Results}
@@ -376,7 +366,7 @@ We wanted to see if our choice of angles plays a significant role in our model's
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.45\textwidth]{./Images/fig7.png}
+	\includegraphics[width=0.45\textwidth]{./Images/fig8.png}
 	\caption{Corner plot mapping combinations of $\theta_k$ that generate the best improvement}
 	\label{fig:corner}
 \end{figure}
