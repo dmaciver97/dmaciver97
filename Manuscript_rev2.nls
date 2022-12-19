@@ -10,7 +10,7 @@
   
   \item [{$y_k(\hat{\bf s})$}]\begingroup Scaled signal response from scattering of dimer in orientation $\hat{s}$, composed of $k$ number signals. \nomeqref {0}\nompageref{2}
   
-  \item [{$p(y_k | \hat{\bf n}_\alpha)$}]\begingroup Conditional probability that the measured signal came from the dimer in orientation $\hat{\bf n}_\alpha$. \nomeqref{0}\nompageref{2}
+  \item [{$p(y_k(\hat{\bf s}) | \hat{\bf n}_\alpha)$}]\begingroup Conditional probability that the measured signal came from the dimer in orientation $\hat{\bf n}_\alpha$. \nomeqref{0}\nompageref{2}
    
   \item [{$\hat{\bf n}_{best}$}]\begingroup Closest reference orientation to $\hat{\bf s}$. \nomeqref {0}\nompageref{2}
   

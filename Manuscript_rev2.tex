@@ -156,7 +156,7 @@ We consider our dimer from Section~\ref{sec:brownian} in an optical trap; at any
 
 Our goal is to determine the orientation of our trapper dimer based on the scattering measurements $I(\hat{n}, \ \theta_k)$ collected from three detection fibres situated at $\theta_1,\ \theta_2, \ \theta3, \ \& \ \theta_4$. Rather than get an exact estimate of the dimer's orientation the possible orientation space is discretized into $\textit{n}_{ref} \ = \ 30$ possible reference orientations $\hat{\bf n}_{\alpha}$ that are evenly distributed on a unit sphere \cite{Rey2006}, see Figure~\ref{fig:dimer} b. The maximum spacing between two neighbouring reference orientations is roughly 0.895 radians. 
 
-Using MSTM we compute the raw intensities that would be collected from the dimer in each reference orientation $I(\hat{\bf n}_{\alpha}, \theta_k)$. We noticed that keeping all four angles in the same plane resulted in identical signals, to counter this we projected one of our angles out of the horizontal plane and into the vertical plane resulting in unique signals for each reference orientation. 
+Using MSTM we compute the raw intensities that would be collected from the dimer in each reference orientation $I(\hat{\bf n}_{\alpha}, \theta_k)$. We noticed that keeping all four angles in the same plane resulted in identical signals, to counter this we projected $\theta_4$ out of the horizontal plane and into the vertical plane ($\phi = 90$) resulting in unique signals for each reference orientation. 
 %
 These raw intensities are normalized according to
 \begin{align}
@@ -267,16 +267,6 @@ F(K_l) &= \frac{K_{l,\ worst}}{K_{l, \ total}}
 
 The worst case scenario is akin to randomly choosing a reference orientation at each time step. The greater the value of $F(K_l)$ the better our model's confidence is in characterising the dimer's motion. Because our model is dependent on several parameters we need to a sophisticated method for understanding how these parameters correlate with $F(K_l)$.
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Optimization of parameters}
-\label{sec:ultranest}
-
-The signal error $\epsilon$ and the weighting factor $\beta$ are known quantities whose influence can be measured directly; however, our choice of angles and how they correlate with $F(K_l)$ is not easily understood Evaluating every possible configuration manually is inefficient, therefore we utilised UltraNest to apply a Monte Carlo simulation to our model. UltraNest is a Python package for fitting models with complex parameter correlations \cite{Buchner2016Ultranest}. UltraNest implements a variation of Monte Carlo integration, nested-sampling, where a likelihood contour is used to update a group of live points chosen from the prior estimation ($0^{\circ} \leq \theta_k \leq 180^{\circ}$).
-
-The UltraNest software was used to create a set of live points of different choices of $\theta_1$, $\theta_2$, and $\theta_3$, with each point being evaluated by its improvement factor ($F(K_l)$). After evaluating every live point, the worst results are removed and new live points are created based on the information provided by the previous live points. If there is a correlation between the choice of angles and $F(K_l)$ then the live points should congregate around a single (or multiple) choice of angles that will maximise $F(K_l)$ and therefore minimise the error between our estimate and instantaneous orientation.
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results and  Discussion}
@@ -308,65 +298,54 @@ In the simulations of Vigilante~\emph{et~al}.\ \cite{Vigilante2020Brownian_OT}, 
 \subsection{Impact of measurement precision on model predictions}
 \label{sec:epsilon}
 
-A key assumption of Eq.~\eqref{eq:conditional} is that we assume our measurement of scattering signals will inherently have some degree of uncertainty. This is the central premise that allows us to form Eq.~\eqref{eq:conditional}. In an experimental situation the most common source of uncertainty is from the bias in our detection fibres. Therefore, understanding the limits of acceptable uncertainty is necessary for implementing this to experimental work. To this end we simulated the uncertainty in our signal measurements via the following:
+A key assumption of our neural network is that the scattering signal we detect has no uncertainty associated with it; in reality it is guaranteed that the signals we detect will have an inherent amount of measurement uncertainty. To demonstrate the impact of measurement uncertainty on our models performance we introduced a Gaussian noise to our measured signal.
 \begin{align}
-	\eta_k = \epsilon \bar{y_k}(\hat{\bf n}_\alpha)
-	\rightarrow \ y_k(\hat{\bf{s}}) = y_k(\hat{\bf{s}}) \pm \eta
+	I(\hat{\bf s}) = I(\hat{\bf s}) \pm \eta I(\hat{\bf s})
 \end{align}
-Where $\eta$ is the signal noise and $\epsilon$ is our percent error in our signal measurement. We ran our model while varying the value of $\epsilon$, Figure~\ref{fig:epsilon} shows the performance of the method with a selection of angles $15^{\circ}$, $55^{\circ}$, and $90^{\circ}$ and $\beta$ set to $1$:
+Where $\eta$ is the percentage error associated with our measurement. We ran our model while varying the value of $\epsilon$, Figure~\ref{fig:epsilon} shows the performance of the method with a selection of angles $15^{\circ}$, $55^{\circ}$, $90^{\circ}$ and the vertical detector at $75^{\circ}$, with $\beta$ set to $1$:
 
 \begin{figure}[h]
-	
 	\centering
 	\begin{subfigure}{0.32\textwidth}
+		\subcaption{}
 		\includegraphics[width=\textwidth]{./Images/fig6a.png}
 	\end{subfigure}
 	\begin{subfigure}{0.32\textwidth}
+		\subcaption{}
 		\includegraphics[width=\textwidth]{./Images/fig6b.png}
 	\end{subfigure}
 	\begin{subfigure}{0.32\textwidth}
+		\subcaption{}
 		\includegraphics[width=\textwidth]{./Images/fig6c.png}
 	\end{subfigure}
-	\caption{Model prediction for signal error of (a) $5\%$, (b) $50\%$, and (c) $75\%$. Blue line denotes the best result we can achieve, orange line denotes the result provided by eq~\ref{eq:bayes}. Dotted line denotes maximum spacing between two neighbouring $\hat{\bf n}_\alpha$, see Sec~\ref{sec:Bayes}.}
+	\caption{Model prediction for signal error of (a) $1\%$ ~  $[F(K_l)=1.174]$, (b) $15\%$ ~ [$[F(K_l)=0.606]$, and (c) $25\%$ ~  $[F(K_l)=0.457]$.}
 	\label{fig:epsilon}
 \end{figure}
 
-As can be seen from Figure~\ref{fig:epsilon}, the inclusion of a signal noise results in a gradual decrease in our model's performance. Eventually after the signal exceeds $X \ \%$ the accuracy drops of significantly as our estimation begins to fluctuate seemingly at random. Similar to the behaviour shown in Figure~\ref{fig:uniform}. One common feature of our model's estimations is the large hump from $t = 1 \ s$ to $t = 4 \ s$; looking at the simulation data this correlates with the point where the dimers is moving very quickly as it inverts within the trap. We can alleviate the randomness by increasing the weighting factor $\beta$ that reflects the degree of freedom our dimer has within the trap. We repeated the model at $75\%$ signal error but this time increasing $\beta$ in order to demonstrate its effect on our model's performance. 
+As can be seen from Figure~\ref{fig:epsilon}, the inclusion of a signal noise quickly leads to a decrease in our model's performance. This is due to an inherent feature of the inverse scattering problem; that being that a two distinct regions of orientation space will become heavily intertwined in the intensity space resulting in poor predictions from our neural network. Fortunately, we can alleviate this by increasing the weighting factor $\beta$ that reflects the degree of freedom our dimer has within the trap. We repeated the model at for the above signal errors, but increasing $\beta$ until the model best fit our dimer's motion 
 
 \begin{figure}[h]
 	\centering
-	\begin{subfigure}{0.33\textwidth}
+	\begin{subfigure}{0.32\textwidth}
+		\subcaption{}
 		\includegraphics[width=\textwidth]{./Images/fig7a.png}
 	\end{subfigure}
-	\begin{subfigure}{0.33\textwidth}
+	\begin{subfigure}{0.32\textwidth}
+		\subcaption{}
 		\includegraphics[width=\textwidth]{./Images/fig7b.png}
 	\end{subfigure}
-	\caption{Model prediction for signal error of $75\%$ when (a) $\beta = 5$ and (b) $\beta=15$. Blue line denotes the best result we can achieve, orange line denotes the result provided by eq~\ref{eq:bayes}. Dotted line denotes maximum spacing between two neighbouring $\hat{\bf n}_\alpha$, see Sec~\ref{sec:Bayes}.}
+	\begin{subfigure}{0.32\textwidth}
+		\subcaption{}
+		\includegraphics[width=\textwidth]{./Images/fig7c.png}
+	\end{subfigure}
+	\caption{Model prediction for signal error of $1\%$, $15\%$, and $25\%$ with (a) $\beta=4$ ~ $[F(K_l)=1.914]$, (b) $\beta=15$ ~  $[F(K_l)=0.734]$, and (c) $\beta=22$ ~ $[F(K_l)=0.621]$.} 
 	\label{fig:beta}
 \end{figure}
 
-As seen from Figure~\ref{fig:beta} $\beta$ helps to significantly reduce the random fluctuations in our model, eventually $\beta$ begins to over correct our estimate as seen in 7b. The exact value of $\beta$ that will best optimise our performance varies based on the expected signal error, therefore we can use it as variable for fine tuning our results to suit our expected signal error. The downside of increasing $\beta$ is that it also reduces our model's confidence significantly; this is not so much a problem for orientation where we can measure the difference between reference orientation. It may however, pose an issue in scenarios where we want to characterise something more discrete such as scattering shape or size. 
+As seen from Figure~\ref{fig:beta} $\beta$ helps to significantly reduce the random fluctuations in our model, eventually $\beta$ will begin to over correct our estimation. The exact value of $\beta$ that will best optimise our performance varies based on the expected signal error, therefore we can use it as variable for fine tuning our results to suit our expected signal error. 
 
 In future, we want to investigate the possibility of extending our prior $p(\hat{\bf n})$ so we account for not just the change in orientation after one time step but after 'n' time steps to investigate the auto correlation function of our dimer's motion.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Parameter Optimisation Results}
-\label{sec:ultranest_res}
-
-We wanted to see if our choice of angles plays a significant role in our model's efficacy. We employed UltraNest to analyse the parameter space for our three angles by sampling across the priori of $10^{\circ} \ \& \ 180^{\circ}$.  We kept both $\beta$ and $\sigma_k$ constant during this so we could as these are parameters that can be changed more freely.
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.45\textwidth]{./Images/fig8.png}
-	\caption{Corner plot mapping combinations of $\theta_k$ that generate the best improvement}
-	\label{fig:corner}
-\end{figure}
-
-Figure~\ref{fig:corner} is the resulting corner plot from our UltraNest sampler, darker areas indicate a choice of angles where the model performed better where as lighter areas are where the model did poorer. Overall from the corner plot provided, it is clear that there is no direct correlation between our method's estimation of orientation and the choice of detection angle. This result only indicates that orientation is not a characteristic that is angularly biased in its scattering. It might well be that for other characteristics, such as size or shape, the choice of detection angles may have a more direct impact on our model's performance. 
-
-While the choice of angles does not provide a direct improvement in our estimation it does determine how finely we can estimate the orientation, for choices of angles that are close together the minimum spacing between our signals is so small that we cannot achieve any greater accuracy than dividing the orientation space into $n_{\rm ref}=30$ reference orientations.  We hope to develop our method further in the future by being able to determine the maximum accuracy given that we know the signal error of our measurements. 
-
-As covered in Section~\ref{sec:epsilon} our choice for beta can help to improve our estimation by restricting it in the physical space. In addition depending on our choice of angles we are also setting the lower limit for our measurement precision, so it may be preferable to choose a selection of angles that allows for a larger measurement uncertainty and then adjust the weighting factor to improve upon our estimation.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
