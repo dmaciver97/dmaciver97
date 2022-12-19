@@ -1,0 +1,30 @@
+
+\begin{thenomenclature} 
+\nomgroup{A}
+
+  \item [{$\hat{\bf s}$}]\begingroup Instantaneous Orientation of dimer. \nomeqref {0}\nompageref{2}
+  
+  \item [{$\hat{\bf n}_\alpha$}]\begingroup Refernece orientation $\alpha$. \nomeqref {0}\nompageref{2}
+  
+  \item [{$I(\hat{\bf s}, \theta_k)$}]\begingroup Raw intensity from scattering of dimer in orientation $\hat{s}$, collected at angle $\theta_k$. \nomeqref {0}\nompageref{2}
+  
+  \item [{$y_k(\hat{\bf s})$}]\begingroup Scaled signal response from scattering of dimer in orientation $\hat{s}$, composed of $k$ number signals. \nomeqref {0}\nompageref{2}
+  
+  \item [{$p(y_k | \hat{\bf n}_\alpha)$}]\begingroup Conditional probability that the measured signal came from the dimer in orientation $\hat{\bf n}_\alpha$. \nomeqref{0}\nompageref{2}
+   
+  \item [{$\hat{\bf n}_{best}$}]\begingroup Closest reference orientation to $\hat{\bf s}$. \nomeqref {0}\nompageref{2}
+  
+  \item [{$\hat{\bf n}_{est}$}]\begingroup Our estimate of the closest reference orientation. \nomeqref {0}\nompageref{2}
+  
+  \item [{$p_{best}$}]\begingroup Best possible result, see \eqref{eq:best}. \nomeqref {0}\nompageref{2}
+  
+  \item [{$p_{est}$}]\begingroup Our estimate of the dimer's orientation \nomeqref {0}\nompageref{2}
+  
+  \item [{$K_l$}]\begingroup Kullback-Leibler divergence between $p_{best}$ and $p_{est}$. \nomeqref {0}\nompageref{2}
+  
+  \item [{$K_{l,worst}$}]\begingroup Approximate kullback-leibler divergence if $p_{est}$ is uniform. \nomeqref {0}\nompageref{2}
+  
+  \item [{$F(K_l)$}]\begingroup Improvement factor, denotes how much better our model performed than $K_{l, worst}$. \nomeqref {0}\nompageref{2}
+  
+
+\end{thenomenclature}

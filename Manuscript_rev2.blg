@@ -1,0 +1,64 @@
+This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Manuscript_rev2.aux
+The style file: ieeetr.bst
+Database file #1: bib.bib
+I was expecting a `,' or a `}'---line 8 of file bib.bib
+ :  
+ :  url = {https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.78.154},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--entry type for "Rey2006" isn't style-file defined
+--line 136 of file bib.bib
+Name 1 in "Carlos J. Bustamante, and others" has a comma at the end for entry Bustamante2021Biophysics
+while executing---line 969 of file ieeetr.bst
+Name 1 in "R. Bar-Ziv, and others" has a comma at the end for entry Bar-Ziv_1998
+while executing---line 969 of file ieeetr.bst
+Warning--empty journal in Bar-Ziv_1998
+Warning--empty year in Bar-Ziv_1998
+Name 1 in "Wyatt Vigilante, Oscar Lopez, and Jerome Fung" has a comma at the end for entry Vigilante2020Brownian_OT
+while executing---line 969 of file ieeetr.bst
+Warning--empty journal in Farsund1996
+Warning--empty year in Farsund1996
+You've used 15 entries,
+            1876 wiz_defined-function locations,
+            582 strings with 6578 characters,
+and the built_in function-call counts, 4284 in all, are:
+= -- 430
+> -- 155
+< -- 0
++ -- 58
+- -- 43
+* -- 286
+:= -- 583
+add.period$ -- 13
+call.type$ -- 15
+change.case$ -- 15
+chr.to.int$ -- 0
+cite$ -- 19
+duplicate$ -- 229
+empty$ -- 395
+format.name$ -- 43
+if$ -- 1060
+int.to.chr$ -- 0
+int.to.str$ -- 15
+missing$ -- 13
+newline$ -- 48
+num.names$ -- 15
+pop$ -- 48
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 189
+stack$ -- 0
+substring$ -- 298
+swap$ -- 111
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 4
+while$ -- 38
+width$ -- 17
+write$ -- 143
+(There were 4 error messages)

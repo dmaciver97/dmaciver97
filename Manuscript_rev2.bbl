@@ -1,0 +1,77 @@
+\begin{thebibliography}{10}
+
+\bibitem{Bustamante2021Biophysics}
+C.~J. Bustamante {\em et~al.}, ``Optical tweezers in single-molecule
+  biophysics,'' {\em Nature Reviews Methods Primer}, 2021.
+
+\bibitem{yin2013large}
+Z.-q. Yin, T.~Li, X.~Zhang, and L.~Duan, ``Large quantum superpositions of a
+  levitated nanodiamond through spin-optomechanical coupling,'' {\em Physical
+  Review A}, vol.~88, no.~3, p.~033614, 2013.
+
+\bibitem{arita2020coherent}
+Y.~Arita, S.~H. Simpson, P.~Zem{\'a}nek, and K.~Dholakia, ``Coherent
+  oscillations of a levitated birefringent microsphere in vacuum driven by
+  nonconservative rotation-translation coupling,'' {\em Science advances},
+  vol.~6, no.~23, p.~eaaz9858, 2020.
+
+\bibitem{burns1990optical}
+M.~M. Burns, J.-M. Fournier, and J.~A. Golovchenko, ``Optical matter:
+  crystallization and binding in intense optical fields,'' {\em Science},
+  vol.~249, no.~4970, pp.~749--754, 1990.
+
+\bibitem{gupta2014raman}
+P.~Gupta and S.~Ahlawat, ``Raman spectroscopic studies on optically trapped red
+  blood cells,'' in {\em International Conference on Fibre Optics and
+  Photonics}, pp.~S3D--2, Optica Publishing Group, 2014.
+
+\bibitem{friedrich2012tuning}
+L.~Friedrich and A.~Rohrbach, ``Tuning the detection sensitivity: a model for
+  axial backfocal plane interferometric tracking,'' {\em Optics letters},
+  vol.~37, no.~11, pp.~2109--2111, 2012.
+
+\bibitem{yifat2021facile}
+Y.~Yifat, J.~Parker, T.-S. Deng, S.~K. Gray, S.~A. Rice, and N.~F. Scherer,
+  ``Facile measurement of the rotation of a single optically trapped
+  nanoparticle using the diagonal ratio of a quadrant photodiode,'' {\em ACS
+  Photonics}, vol.~8, no.~11, pp.~3162--3172, 2021.
+
+\bibitem{Bar-Ziv_1998}
+R.~Bar-Ziv {\em et~al.}, ``Localized dynamic light scattering: Probing single
+  particle dynamics at the nanoscale,'' vol.~78.
+
+\bibitem{raudsepp2022estimating}
+A.~Raudsepp, G.~B. Jameson, and M.~A. Williams, ``Estimating orientation of
+  optically trapped, near vertical, microsphere dimers using central moments
+  and off-focus imaging,'' {\em Applied Optics}, vol.~61, no.~2, pp.~607--614,
+  2022.
+
+\bibitem{Vigilante2020Brownian_OT}
+O.~L. Wyatt~Vigilante and J.~Fung, ``Brownian dynamics simulations of sphere
+  clusters in optical tweezers,'' {\em Optics Express}, vol.~28,
+  pp.~36131--36146, 2020.
+
+\bibitem{Mishchenko1996MSTM}
+D.~W. Michael~I.Mishchenko, Larry~D.Travis, ``T-matrix computations of light
+  scattering by nonspherical particles: A review,'' {\em Light scattering by
+  Non-Spherical Particles}, vol.~55, pp.~535--575, 1996.
+
+\bibitem{Lenton2020}
+I.~C.~D. Lenton, T.~A. Nieminen, V.~L.~Y. Loke, A.~B. Stilgoe, Y.~Hu,
+  G.~Kn{\ifmmode\ddot{o}\else\"{o}\fi}ner, A.~M.
+  Bra{\ifmmode\acute{n}\else\'{n}\fi}czyk, N.~R. Heckenberg, and
+  H.~Rubinsztein-Dunlop, ``Optical tweezers toolbox.''
+  https://github.com/ilent2/ott, 2020.
+
+\bibitem{Farsund1996}
+B.~F. Farsund, ``Force, torque, and absorbed energy for a body of arbitary
+  shape and constitution in an electromagnetic radiation field,''
+
+\bibitem{Rey2006}
+G.~C. Reyuthor, ``Numerical methods for radiative heattransfer.''
+
+\bibitem{Buchner2016Ultranest}
+J.~Buchner, ``A statistical test for nested sampling algorithms,'' {\em
+  Statistics and Computing}, vol.~26, pp.~383--392, 2016.
+
+\end{thebibliography}
