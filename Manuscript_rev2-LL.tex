@@ -184,7 +184,17 @@ represented as a quaternion.
 \subsection{Orientation estimation from scattering measurements}
 \label{sec:Bayes}
 
-We consider our dimer from Section~\ref{sec:brownian} in an optical trap; at any point in time we can draw a unit vector $\hat{s}$ that points from the centre of larger sphere, to the centre of the smaller sphere. A plane wave 'probe' laser, directly perpendicular to the trapping laser, is incident on the dimer generating a scattering pattern that is dependent upon the dimer's orientation $I(\hat{\bf s}, \theta)$, computed using MSTM. To represent the experimental set up, four angles  ($\theta_1, \ \theta_2, \ \theta_3, \ \theta_4$) were chosen and the calculated intensity at each angle $\theta_k$ was recorded as $I(\hat{s}, \theta_k)$. 
+We consider our dimer from Section~\ref{sec:brownian} in an optical
+trap; at any point in time we can draw a unit vector $\hat{\bf s}$
+that points from the centre of larger sphere, to the centre of the
+smaller sphere.  A plane wave 'probe' laser, directly perpendicular to
+the trapping laser, is incident on the dimer generating a scattering
+pattern that is dependent upon the dimer's orientation
+$I(\hat{\bf s}, \theta)$, computed using MSTM. To represent the
+experimental set up, four angles
+$(\theta_1, \theta_2, \theta_3, \theta_4)$ were chosen and the
+calculated intensity at each angle $\theta_k$ was recorded as
+$I(\hat{s}, \theta_k)$.
 
 Our goal is to determine the orientation of our trapper dimer based on
 the scattering measurements $I(\hat{n}, \theta_k)$ collected from
@@ -336,12 +346,21 @@ position every $1\,{\rm ms}$.
 
 We applied Eq.~\eqref{eq:bayes} --- covered in Section~\ref{sec:Bayes} --- and the reference orientation with the highest probability is taken as our estimation of the dimer's instantaneous orientation. To visualise our model's performance  we plotted the radial distance between our estimation $\hat{\bf n}_{est}$ of the orientation and the dimer's \emph{actual} instantaneous orientation $\hat{\bf s}$ versus time. For comparison, we also plotted the radial distance between the closest reference orientation, denoted $\hat{\bf n}_{best}$, and the dimer's instantaneous orientation. The dotted line indicates the maximum radian distance ($0.896$ radians) between two neighbouring reference orientations, if we are under this line then we know our estimate and the best result are beside one another. If we assume our prior of the reference orientations $p(\hat{\bf n}_\alpha)$ to be uniform the neural network's predictions are fairly accurate with the occasional random jump away from the correct result. 
 
+
 \begin{figure}[h]
-	\centering
-	\includegraphics[width=0.5\textwidth]{./Images/fig3.png}
-	\caption{Model's estimation of dimer orientation while assuming $p(\hat{\bf n}_\alpha)$ to be uniform. Blue line denotes the best result we can achieve, orange line denotes the result provided by eq~\ref{eq:bayes}. Dotted line denotes maximum spacing between two neighbouring $\hat{\bf n}_\alpha$, see Sec~\ref{sec:Bayes}.}
-	\label{fig:uniform}
+\centering
+\includegraphics[width=0.5\textwidth]{./Images/fig3.png}
+\caption{\label{fig:uniform}
+%
+Estimation of the dimer orientation, assuming $p(\hat{\bf n}_\alpha)$
+to be uniform. Blue line denotes the best result we can achieve,
+orange line denotes the result provided by eq~\ref{eq:bayes}. Dotted
+line denotes spacing between two neighbouring
+reference orientations $\hat{\bf n}_\alpha$ (see Section~\ref{sec:Bayes}).
+%
+}
 \end{figure} 
+
 
 The reasoning for this is that the distance between reference signals ($\hat{\bf n}_\alpha$) does not correlate with the spacing between reference orientations. To improve our estimation we can account for the fact that the motion of the dimer is limited due to the trapping stiffness. Therefore, our prior of the reference orientations $p(\hat{\bf n}_\alpha$ was redefined at each time step by accounting for the physical distance between our previous estimate $\hat{\bf n}_{est}(t-\Delta t)$ and each reference orientation $\hat{\bf n}_\alpha$
 \begin{align}
@@ -353,15 +372,29 @@ The reasoning for this is that the distance between reference signals ($\hat{\bf
 	\cdot \hat{\bf n}_{est}(t-\Delta t)}}
 	\label{eq:boltz}
 \end{align}
-where $\beta$ is a weighting factor that describes the dimer's freedom of motion within the trap. By summing over each reference orientation $p(\hat{\bf n}_\alpha)$ is normalized. Implementation of Eq.~\eqref{eq:boltz} helps to reduce the random elements seen in  Figure~\ref{fig:uniform} to give a better estimation, as shown in Figure~\ref{fig:biased}. 
+where $\beta$ is a weighting factor that describes the dimer's freedom
+of motion within the trap.  By summing over each reference orientation
+$p(\hat{\bf n}_\alpha)$ is normalized. Implementation of
+Eq.~\eqref{eq:boltz} helps to reduce the random elements seen in
+Figure~\ref{fig:uniform} to give a better estimation, as shown in
+Figure~\ref{fig:biased}.
+
 
 \begin{figure}[h]
-	\centering
-	\includegraphics[width=0.5\textwidth]{./Images/fig4.png}
-	\caption{Model's estimation of dimer orientation with $p(\hat{\bf n}_\alpha)$ being defined by Eq~\eqref{eq:boltz}. Blue line denotes the best result we can achieve, orange line denotes the result provided by eq~\ref{eq:bayes}. Dotted line denotes maximum spacing between two neighbouring $\hat{\bf n}_\alpha$, see Sec~\ref{sec:Bayes}.}
-	\label{fig:biased}
+\centering
+\includegraphics[width=0.5\textwidth]{./Images/fig4.png}
+\caption{\label{fig:biased}
+%
+Estimation of dimer orientation with $p(\hat{\bf n}_\alpha)$ defined
+by Eq~\eqref{eq:boltz}.  Blue line denotes the best result we can
+achieve, orange line denotes the result provided by eq~\ref{eq:bayes}.
+Dotted line denotes spacing between two neighbouring reference
+orientations $\hat{\bf n}_\alpha$ (see Section~\ref{sec:Bayes}).
+  %
+}
 \end{figure} 
- 
+
+
 The simulation data from Section~\ref{sec:brownian} was used to evaluate our model's performance --- covered in Section~\ref{sec:divergence}. By summing the divergence of each measurement across the entire simulation we get an evaluation of how well the model performed in estimating the dimer's orientation. To compare the effects of changing certain parameters on the performance of our model we compare our result of $K_{l,total}$ to a worst case scenario and evaluate how much it improves upon this, denoted as $F(K_l)$:
 \begin{align}
 K_{l, \ total} &= \sum\limits_{\# =1}^{timesteps} K_{l,\#} \\
@@ -389,19 +422,25 @@ was assumed as strictly vertical (in line with the beam propagation
 direction). The dimer's position and orientation was recorded every
 $1\,{\rm ms}$ for using as a test dataset for our model.
 
+
 \begin{figure}[h]
-	\centering
-	\begin{subfigure}{0.45\textwidth}
-		\subcaption{}
-		\includegraphics[width =\textwidth]{./Images/fig5a.png}
-	\end{subfigure}
-	\begin{subfigure}{0.45\textwidth}
-		\subcaption{}
-		\includegraphics[width=\textwidth]{./Images/fig5b.png}
-	\end{subfigure}
-	\caption{Simulation results of: (a) the dimers orientation vector with time, (b) the dimer's [x,y,z] position with time.}
-	\label{fig:motion}
+\centering
+\begin{subfigure}{0.45\textwidth}
+	\subcaption{}
+	\includegraphics[width =\textwidth]{./Images/fig5a.png}
+\end{subfigure}
+\begin{subfigure}{0.45\textwidth}
+	\subcaption{}
+	\includegraphics[width=\textwidth]{./Images/fig5b.png}
+\end{subfigure}
+\caption{\label{fig:motion}
+%
+Simulation results of: (a) the dimers orientation vector with time,
+(b) the dimer's [x,y,z] position with time.
+%
+}
 \end{figure}
+
 
 As can be seen from Figure~\ref{fig:motion}, the dimer undergoes a full $180^{\circ}$ rotation upon entering the trap.  Typically horizontal alignment of a dimer is unstable and will result in the particle rotating to align along its vertical axis.  It is interesting to note that the dimer is furthest from the trap centre as it goes into a horizontal orientation before drawing closer again as it inverts completely. Further simulations of differently sized dimers showed a similar behaviour of moving away from the trap focus while remaining trapped, but only when $a_1 \geq 2a_2$.  Dimers with size ratios $a_1 < 2a_2$ immediately aligned into a fixed vertical position.
 %
@@ -424,21 +463,25 @@ and the vertical detector at $75^{\circ}$, with $\beta=1$:
 
 
 \begin{figure}[h]
-	\centering
-	\begin{subfigure}{0.32\textwidth}
-		\subcaption{}
-		\includegraphics[width=\textwidth]{./Images/fig6a.png}
-	\end{subfigure}
-	\begin{subfigure}{0.32\textwidth}
-		\subcaption{}
-		\includegraphics[width=\textwidth]{./Images/fig6b.png}
-	\end{subfigure}
-	\begin{subfigure}{0.32\textwidth}
-		\subcaption{}
-		\includegraphics[width=\textwidth]{./Images/fig6c.png}
-	\end{subfigure}
-	\caption{Model prediction for signal error of (a) $1\%$ ~  $[F(K_l)=1.174]$, (b) $15\%$ ~ [$[F(K_l)=0.606]$, and (c) $25\%$ ~  $[F(K_l)=0.457]$.}
-	\label{fig:epsilon}
+\centering
+\begin{subfigure}{0.32\textwidth}
+	\subcaption{}
+	\includegraphics[width=\textwidth]{./Images/fig6a.png}
+\end{subfigure}
+\begin{subfigure}{0.32\textwidth}
+	\subcaption{}
+	\includegraphics[width=\textwidth]{./Images/fig6b.png}
+\end{subfigure}
+\begin{subfigure}{0.32\textwidth}
+	\subcaption{}
+	\includegraphics[width=\textwidth]{./Images/fig6c.png}
+\end{subfigure}
+\caption{\label{fig:epsilon}
+%
+Model prediction for signal error of (a) $1\%$ ~ $[F(K_l)=1.174]$, (b)
+$15\%$ ~ [$[F(K_l)=0.606]$, and (c) $25\%$ ~ $[F(K_l)=0.457]$.
+%
+}
 \end{figure}
 
 As can be seen from Figure~\ref{fig:epsilon}, the inclusion of a signal noise quickly leads to a decrease in our model's performance. This is due to an inherent feature of the inverse scattering problem; that being that a two distinct regions of orientation space will become heavily intertwined in the intensity space despite remaining continuous. As the signal error increases our neural network will map the signal to the incorrect reference orientation.
@@ -446,21 +489,24 @@ As can be seen from Figure~\ref{fig:epsilon}, the inclusion of a signal noise qu
 Fortunately, we can alleviate this by increasing the weighting factor $\beta$ that reflects the degree of freedom our dimer has within the trap. We repeated the model at for the above signal errors, but increasing $\beta$ until the model best fit our dimer's motion 
 
 \begin{figure}[h]
-	\centering
-	\begin{subfigure}{0.32\textwidth}
-		\subcaption{}
-		\includegraphics[width=\textwidth]{./Images/fig7a.png}
-	\end{subfigure}
-	\begin{subfigure}{0.32\textwidth}
-		\subcaption{}
-		\includegraphics[width=\textwidth]{./Images/fig7b.png}
-	\end{subfigure}
-	\begin{subfigure}{0.32\textwidth}
-		\subcaption{}
-		\includegraphics[width=\textwidth]{./Images/fig7c.png}
-	\end{subfigure}
-	\caption{Model prediction for signal error of $1\%$, $15\%$, and $25\%$ with (a) $\beta=4$ ~ $[F(K_l)=1.914]$, (b) $\beta=15$ ~  $[F(K_l)=0.734]$, and (c) $\beta=22$ ~ $[F(K_l)=0.621]$.} 
-	\label{fig:beta}
+\centering
+\begin{subfigure}{0.32\textwidth}
+	\subcaption{}
+	\includegraphics[width=\textwidth]{./Images/fig7a.png}
+\end{subfigure}
+\begin{subfigure}{0.32\textwidth}
+	\subcaption{}
+	\includegraphics[width=\textwidth]{./Images/fig7b.png}
+\end{subfigure}
+\begin{subfigure}{0.32\textwidth}
+	\subcaption{}
+	\includegraphics[width=\textwidth]{./Images/fig7c.png}
+\end{subfigure}
+\caption{\label{fig:beta}
+%
+  Model prediction for signal error of $1\%$, $15\%$, and $25\%$ with (a) $\beta=4$ ~ $[F(K_l)=1.914]$, (b) $\beta=15$ ~  $[F(K_l)=0.734]$, and (c) $\beta=22$ ~ $[F(K_l)=0.621]$.
+%
+} 
 \end{figure}
 
 As seen from Figure~\ref{fig:beta} $\beta$ helps to significantly
