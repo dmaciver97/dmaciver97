@@ -289,8 +289,10 @@ Section~\ref{sec:brownian}).
 Section~\ref{sec:Bayes} covered how Bayes theorem can be applied to estimate
 the orientation of a dimer based on its scattering signal. To evaluate the estimation we can use the simulation in Section~\ref{sec:brownian}; we denote the dimer's \emph{actual} orientation as $\hat{\bf s}$ and use MSTM to calculate its light scattering $I(\hat{\bf s}, \theta)$. At each angle $\theta_k$ we use \eqref{eq:scale} to scale the measurements collected from our dimer and record them as $y_1(\hat{\bf s})$, $y_2(\hat{\bf s})$, $y_3(\hat{\bf s})$. These measurements signals are used to calculate $p(\hat{\bf n}_{\alpha}\parallel y_1, y_2, y_3)$, because we know $\hat{s}$ we can determine which reference orientation is closest, denoted as $\hat{\bf n}_{best}$.
 
-To measure the error in the model's estimate the distribution from
-Eq.~\eqref{eq:bayes} and an ideal result, $p_ideal$, were compared.  An ideal result would be one that is 0 for every $\hat{\bf n}$ apart from $\hat{\bf n}_{best}$.
+To measure the error in the model's estimate, the distribution from
+Eq.~\eqref{eq:bayes} and an ideal result, $p_{ideal}$, were compared.
+An ideal result would be one that is 0 for every $\hat{\bf n}$ apart
+from $\hat{\bf n}_{best}$.
 \begin{align}
 	\label{eq:best}
 	p_{best} = 
@@ -300,20 +302,37 @@ Eq.~\eqref{eq:bayes} and an ideal result, $p_ideal$, were compared.  An ideal re
 	\end{cases}
 \end{align}
 The distribution from Eq.~\eqref{eq:bayes} will assign some non-zero
-probability to every reference orientation. The model's error was measured by calculating the Kullback-Leibler divergence $K_l$ between the two distributions.
+probability to every reference orientation. The model's error was
+quantified by calculating the Kullback-Leibler divergence $K_l$
+between the two distributions:
 \begin{align}
-	K_{l, \#}(p_{best}\parallel p(\hat{\bf n}_\alpha| y_1, y_2, y_3))
-	= p_{best}\ln \left[\frac{p_{best}}{p(\hat{\bf n}_{best}| y_1,y_2,y_3))}
-	\right]
-	\label{eq;kullback}
+K_{l, \#}(p_{best}\parallel p(\hat{\bf n}_\alpha| y_1, y_2, y_3))
+= p_{best}\ln \left[\frac{p_{best}}{p(\hat{\bf n}_{best}| y_1,y_2,y_3))}
+\right]
+\label{eq;kullback}
 \end{align}
-where a larger value of $K_l$ indicates that our model is less confident in its prediction of the dimer's orientation. While the divergence calculations are useful for showing our model's confidence in the prediction it cannot accurately reflect if the model is correct or not with it's estimation. 
-Section~\ref{sec:Bayes} and Section~\ref{sec:divergence} are all for a single measurement of a light scattering signal from our dimer. To properly model it's motion we need to consider how the orientation changes with time. 
+where a larger value of $K_l$ indicates that our model is less
+confident in its prediction of the dimer's orientation. While the
+divergence calculations are useful for showing our model's confidence
+in the prediction it cannot accurately reflect if the model is correct
+or not with its estimation.  Section~\ref{sec:Bayes} and
+Section~\ref{sec:divergence} are all for a single measurement of a
+light scattering signal from our dimer.  To properly model it's motion
+we need to consider how the orientation changes with time.
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Testing the Model}
 \label{sec:test}
 
-Using our simulation from Section~\ref{sec:brownian} we simulated the motion of a silica dimer ($n = 1.59$) trapped in water ($n = 1.33$) within a 5 mW optical trap. The trapping laser is 1064nm NIR focused through a 1.25 NA objective. The dimer is comprised of two tangent spheres with radii $1 \mu m$ and $0.5 \mu m$ respectively. We simulated the first 10 seconds of motion, calculating the orientation and position every 1 ms. 
+Using our simulation from Section~\ref{sec:brownian} we simulated the
+motion of a silica dimer (index of refraction $n=1.59$) trapped in
+water ($n = 1.33$) within a $5\,{\rm mW}$ optical trap.  The trapping
+laser is $1064\,{\rm nm}$ NIR focused through a $1.25$~NA objective.
+The dimer is comprised of two tangent spheres with radii
+$1\,\mu{\rm m}$ and $0.5\,\mu{\rm m}$ respectively. We simulated the
+first $10$\,seconds of motion, calculating the orientation and
+position every $1\,{\rm ms}$.
 
 We applied Eq.~\eqref{eq:bayes} --- covered in Section~\ref{sec:Bayes} --- and the reference orientation with the highest probability is taken as our estimation of the dimer's instantaneous orientation. To visualise our model's performance  we plotted the radial distance between our estimation $\hat{\bf n}_{est}$ of the orientation and the dimer's \emph{actual} instantaneous orientation $\hat{\bf s}$ versus time. For comparison, we also plotted the radial distance between the closest reference orientation, denoted $\hat{\bf n}_{best}$, and the dimer's instantaneous orientation. The dotted line indicates the maximum radian distance ($0.896$ radians) between two neighbouring reference orientations, if we are under this line then we know our estimate and the best result are beside one another. If we assume our prior of the reference orientations $p(\hat{\bf n}_\alpha)$ to be uniform the neural network's predictions are fairly accurate with the occasional random jump away from the correct result. 
 
@@ -325,7 +344,6 @@ We applied Eq.~\eqref{eq:bayes} --- covered in Section~\ref{sec:Bayes} --- and t
 \end{figure} 
 
 The reasoning for this is that the distance between reference signals ($\hat{\bf n}_\alpha$) does not correlate with the spacing between reference orientations. To improve our estimation we can account for the fact that the motion of the dimer is limited due to the trapping stiffness. Therefore, our prior of the reference orientations $p(\hat{\bf n}_\alpha$ was redefined at each time step by accounting for the physical distance between our previous estimate $\hat{\bf n}_{est}(t-\Delta t)$ and each reference orientation $\hat{\bf n}_\alpha$
-
 \begin{align}
   p(\hat{\bf n}_\alpha)
   &=\frac{e^{\beta (\hat{\bf n}_\alpha 
@@ -335,8 +353,7 @@ The reasoning for this is that the distance between reference signals ($\hat{\bf
 	\cdot \hat{\bf n}_{est}(t-\Delta t)}}
 	\label{eq:boltz}
 \end{align}
-
-where $\beta$ is a weighting factor that describes the dimer's freedom of motion within the trap. By summing over each reference orientation $p(\hat{\bf n}_\alpha)$ is normalized. Implementation of Eq~\eqref{eq:boltz} helps to reduce the random elements seen in  Figure~\ref{fig:uniform} to give a better estimation, as shown in Figure~\ref{fig:biased}. 
+where $\beta$ is a weighting factor that describes the dimer's freedom of motion within the trap. By summing over each reference orientation $p(\hat{\bf n}_\alpha)$ is normalized. Implementation of Eq.~\eqref{eq:boltz} helps to reduce the random elements seen in  Figure~\ref{fig:uniform} to give a better estimation, as shown in Figure~\ref{fig:biased}. 
 
 \begin{figure}[h]
 	\centering
@@ -346,7 +363,6 @@ where $\beta$ is a weighting factor that describes the dimer's freedom of motion
 \end{figure} 
  
 The simulation data from Section~\ref{sec:brownian} was used to evaluate our model's performance --- covered in Section~\ref{sec:divergence}. By summing the divergence of each measurement across the entire simulation we get an evaluation of how well the model performed in estimating the dimer's orientation. To compare the effects of changing certain parameters on the performance of our model we compare our result of $K_{l,total}$ to a worst case scenario and evaluate how much it improves upon this, denoted as $F(K_l)$:
-
 \begin{align}
 K_{l, \ total} &= \sum\limits_{\# =1}^{timesteps} K_{l,\#} \\
 K_{l, \ worst} &= \sum\limits_{\#=1}^{timesteps} \ln \left[\frac{1}{1/n_{ref}} \right] \\
@@ -355,15 +371,23 @@ F(K_l) &= \frac{K_{l,\ worst}}{K_{l, \ total}}
 
 The worst case scenario is akin to randomly choosing a reference orientation at each time step. The greater the value of $F(K_l)$ the better our model's confidence is in characterising the dimer's motion. Because our model is dependent on several parameters we need to a sophisticated method for understanding how these parameters correlate with $F(K_l)$.
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Results and  Discussion}
-\label{sec:Discussion}
+\section{Results and  Discussion
+\label{sec:Discussion}}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Asymmetric dimer dynamics}
 \label{sec:motion}
 
-The Brownian OT software was used to simulate the motion of a trapped dimer ($a_1=1\,{\rm \mu m}$, $a_2=0.5\,{\rm \mu m}$) over the first $10$ seconds of entering the optical trap.  The initial orientation was assumed as strictly vertical (in line with the beam propagation direction). The dimer's position orientation was recorded every 1 ms for using as a test dataset for our model.
+The Brownian OT software was used to simulate the motion of a trapped
+dimer ($a_1=1\,\mu{\rm m}$, $a_2=0.5\,\mu{\rm m}$) over the first
+$10$ seconds of entering the optical trap.  The initial orientation
+was assumed as strictly vertical (in line with the beam propagation
+direction). The dimer's position and orientation was recorded every
+$1\,{\rm ms}$ for using as a test dataset for our model.
 
 \begin{figure}[h]
 	\centering
@@ -382,7 +406,9 @@ The Brownian OT software was used to simulate the motion of a trapped dimer ($a_
 As can be seen from Figure~\ref{fig:motion}, the dimer undergoes a full $180^{\circ}$ rotation upon entering the trap.  Typically horizontal alignment of a dimer is unstable and will result in the particle rotating to align along its vertical axis.  It is interesting to note that the dimer is furthest from the trap centre as it goes into a horizontal orientation before drawing closer again as it inverts completely. Further simulations of differently sized dimers showed a similar behaviour of moving away from the trap focus while remaining trapped, but only when $a_1 \geq 2a_2$.  Dimers with size ratios $a_1 < 2a_2$ immediately aligned into a fixed vertical position.
 %
 In the simulations of Vigilante~\emph{et~al}.\ \cite{Vigilante2020Brownian_OT}, trapped symmetrical dimers were investigated; their findings showed that the optical torque on the dimer goes to zero while aligned vertically and is at its maximum in a horizontal alignment. Therefore, the inversion of an asymmetric dimer suggests that if the size difference is significant the optical torque is minimal for a dimer in both horizontal and vertical orientations. Once we have our experimental set up complete we can confirm this by trapping an asymmetric dimer and monitoring its orientation. 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \subsection{Impact of measurement precision on model predictions}
 \label{sec:epsilon}
 
@@ -441,15 +467,24 @@ In future, we want to investigate the possibility of extending our prior $p(\hat
 \section{Conclusion}
 \label{sec:Conclusion}
 
-We have developed a method for interpreting the dynamics of a trapped particle based purely on the light scattering pattern. In theory the model can be applied to any characteristic that impacts the light scattering pattern produced by the trapped entity. The MSTM package is flexible in calculating the light scattering for a variety of micro-particles; so long as there is a distinguishable difference in the light scattering pattern we can apply this method to characterise the particle to some degree of accuracy. This has potential to be applied to characterise particle size and shape that are changing while in the optical trap. We hope to in the future apply this to our own experimental work by charactering the orientation of a trapped asymmetric particle.\\
+We have developed a method for interpreting the dynamics of a trapped particle based purely on the light scattering pattern. In theory the model can be applied to any characteristic that impacts the light scattering pattern produced by the trapped entity. The MSTM package is flexible in calculating the light scattering for a variety of micro-particles; so long as there is a distinguishable difference in the light scattering pattern we can apply this method to characterise the particle to some degree of accuracy. This has potential to be applied to characterise particle size and shape that are changing while in the optical trap. We hope to in the future apply this to our own experimental work by charactering the orientation of a trapped asymmetric particle.
 
 Additionally, we found that the due to the inverse light scattering problem that physical space regions can be continuously mapped to a space in the intensity region but with a loss of shape and size. In the future, we believe that we can improve our estimation by utilising a greater number of reference orientations and by optimising our choice of detection angles to better discretise our intensity regions. 
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\noindent \textbf{Acknowledgement.} The authors thank the support for this research from the funding provided by the Leverhulme Trust. \\
-  
-\noindent \textbf{Disclosures.} The authors declare no conflict of interest. \\
+\section*{Acknowledgement}
+
+The authors thank the support for this research from the funding
+provided by the Leverhulme Trust.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Disclosures}
+
+The authors declare no conflict of interest. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
