@@ -245,10 +245,9 @@ signals from light scattering.
 %$10^{-4}$.
 
 
-The estimate provided by the neural network can be improved further by
-accounting for any prior information we know about the dimer. We
-therefore, utilise Bayesian inference to update our neural networks
-estimation.
+The estimate provided by the neural network can be further improved by
+accounting for any prior information known about the dimer orientation
+utilizing Bayesian inference:
 \begin{align}
   \label{eq:bayes}
   p(\hat{\bf n}_\alpha| y_k(\hat{\bf s}))
@@ -256,27 +255,30 @@ estimation.
     \frac{p(y_k(\hat{\bf s})|\hat{\bf n}_\alpha)
     p(\hat{\bf n}_\alpha)}{p(y_k(\hat{\bf s}))}
 \end{align}
-where $p(\hat{\bf n}_\alpha)$ and $p(y_1, y_2, y_3)$ are the prior estimates of the distributions of particle orientations and instantaneous signals, respectively.
+where $p(\hat{\bf n}_\alpha)$ and $p(y_1, y_2, y_3, y_4)$ are the
+prior estimates of the distributions of particle orientations and
+instantaneous signals, respectively.
 %
-Without any prior evidence we assume that the orientation priori of
-our dimer $p(\hat{\bf n}_{\alpha})$ is uniform. Knowledge of the dimer
-from previous measurement can be used to inform our estimate of
-$p(\hat{\bf n}_{\alpha})$, covered in Section~\ref{sec:test}.  The
-latter prior $p(y)$ is the probability of measuring a signal
-$(y_1, y_2, y_3)$.  This is given by taking the discrete integral over
-collection of reference orientations.
+Without any prior information, we assume that
+$p(\hat{\bf n}_{\alpha})$ is uniform.  Knowledge of the dimer
+orientation from a previous measurement can be used to inform our
+estimate of $p(\hat{\bf n}_{\alpha})$, covered in
+Section~\ref{sec:test}.  The latter prior $p(y)$ is the probability of
+measuring a signal $(y_1, y_2, y_3, y_4)$.  This is given by taking
+the discrete integral over collection of reference orientations.
 \begin{align}
-  p(y_1, y_2, y_3)
+  p(y_1, y_2, y_3, y_4)
   =
   \sum_{\alpha=1}^{n_{\rm ref}}
-  p(y_1, y_2, y_3|\hat{\bf n}_\alpha)
+  p(y_1, y_2, y_3, y_4|\hat{\bf n}_\alpha)
   p(\hat{\bf n}_\alpha)
 \end{align}
 From Eq.~\eqref{eq:bayes}, we get a mass probability distribution that
 denotes the probability that our dimer is in orientation
-$\hat{\bf n}_{\alpha}$ given a signal $(y_1, y_2, y_3)$.  In order to
-evaluate the accuracy of our method, we tested it using a Brownian
-dynamics simulation of the dimer (see Section~\ref{sec:brownian}).
+$\hat{\bf n}_{\alpha}$ given a signal $(y_1, y_2, y_3, y_4)$.  In
+order to evaluate the accuracy of our method, we tested it using a
+Brownian dynamics simulation of the dimer (see
+Section~\ref{sec:brownian}).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
