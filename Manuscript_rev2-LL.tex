@@ -1,4 +1,3 @@
-
 \documentclass[final,  3p]{elsarticle}
 
 
@@ -74,9 +73,8 @@
 
 \begin{highlights}
 \item Asymmetric dimers undergo a full inversion in the presence of an potential well. This only occurs if the size ratio is greater than 1:2.  
-\item Orientation can be classified by applying Bayesian inference to light intensity signals. 
-\item The choice of detection angles has no noticeable effect on the performance of characterising orientation.
-\item Performance of model is determined in part due to uncertainty in the measurement precision. 
+\item Orientations are classified by a combination of neural networks and Bayesian inference. 
+\item Signal error has a significant effect on the performance of the neural network, this can be countered via biasing of the priori distribution. 
 \item Future applications in continuos processes where particle size is changing with time are being considered.  
 \end{highlights}
 
@@ -92,7 +90,22 @@
 \section{Introduction}
 \label{sec:Intro}
 
-Since their invention in the late 1980's, Optical Tweezers have found application in experiments ranging from single molecule biophysics \cite{Bustamante2021Biophysics} to those that test the fundamental assumptions of Quantum Mechanics  \cite{yin2013large} thanks mainly to the ability of the tweezer to transduce and detect forces on the order of a few pico newtons. \textit{Further characterisation of the trapped entity would provide useful information, as explored in for example} metrological measurements \cite{arita2020coherent} and colloidal aggregation \cite{burns1990optical}. Chemical characterisation of the trapped entities has been achieved using spectroscopic techniques such as Raman Scattering \cite{gupta2014raman}, while dynamical characterisation has been demonstrated using a Quadrant Photo Detector,  by following the centre-of-mass Brownian motion of the trapped entity  \cite{friedrich2012tuning} and measuring rotation  of the centre-of-mass \cite{yifat2021facile}. 
+Since the invention of optical tweezers in the late 1980's, they have
+found applications in experiments ranging from single molecule
+biophysics \cite{Bustamante2021Biophysics} to those that test the
+fundamental assumptions of quantum mechanics \cite{yin2013large}
+thanks mainly to the ability of the tweezer to transduce and detect
+forces on the order of a few piconewtons. \textit{Further
+  characterisation of the trapped entity would provide useful
+  information, as explored in for example} metrological measurements
+\cite{arita2020coherent} and colloidal aggregation
+\cite{burns1990optical}. Chemical characterisation of the trapped
+entities has been achieved using spectroscopic techniques such as
+Raman Scattering \cite{gupta2014raman}, while dynamical
+characterisation has been demonstrated using a Quadrant Photo
+Detector, by following the centre-of-mass Brownian motion of the
+trapped entity \cite{friedrich2012tuning} and measuring rotation of
+the centre-of-mass \cite{yifat2021facile}.
 
 The possibility of integrating light scattering with optical trapping was demonstrated by Saffran and co-workers in \cite{Bar-Ziv_1998} where a single-mode optical fibre was aligned to detect the scattered
 light from a trapped bead and its Brownian motion was studied.  While this allowed for studying the dynamics, structural information about the trapped bead was precluded as the measurement was obtained only at a single angle.  In this work, we propose a scheme that expands on the technique in \cite{Bar-Ziv_1998} to detect scattered light simultaneously at 3 angles as shown in Figure~\ref{fig:setup}, combined with a novel Bayesian Inference based analysis technique to enable interpretation of the resulting multi-angle data as well as optimisation of the setup to provide maximal information from the signal.
@@ -123,16 +136,34 @@ To demonstrate the analysis, we study a simple, illustrative example of a trappe
 \section{Methodology}
 \label{sec:Method}
 
-\subsection{Brownian Simulation}
+\subsection{Brownian Dynamics Simulation}
 \label{sec:brownian}
 
-We use the Brownian OT package developed by Fung~\textit{et~al}. \cite{Vigilante2020Brownian_OT} to simulate the motion of a asymmetric dimer within an optical trap. Brownian OT combines MSTM \cite{Mishchenko1996MSTM} and ``Optical Tweezer Toolbox'' (\textit{ott}) \cite{Lenton2020} to simulate the motion of arbitrary
-shaped sphere clusters. We simulated the motion of a silica dimer
-trapped in a highly focused Gaussian beam.   
-
-The dimer's Brownian motion is simulated by calculating its diffusion tensor according to Farsund's \emph{et al} work \cite{Farsund1996}. For computing the optical force Brownian OT uses the T-Matrix method to calculate scattering of the dimer. MSTM computes the T-matrix of the dimer, and then passes the T-matrix to \textit{ott} to compute the optical forces. The benefit of this approach is that MSTM can accurately compute the T-matrix for any arbitrary collection of spheres once, and then \textit{ott} can calculate the optical forces and torques. The total displacement is the sum of the optical and Brownian contributions.
-
-Brownian OT returns the dimer's motion as a \textit{csv} file containing for each time step the $[x,y,z]$ position of the dimer's centre of mass relative to the trap focus, and the orientation represented as a quaternion.
+Brownian dynamics simulations of the motion of a silica dimer trapped
+in a highly focused Gaussian beam were performed using software
+package Brownian~OT, developed by Fung~\textit{et~al}.\
+\cite{Vigilante2020Brownian_OT} to simulate the motion of a asymmetric
+dimer within an optical trap.  Brownian~OT combines MSTM
+\cite{Mishchenko1996MSTM} and ``Optical Tweezer Toolbox''
+(\textit{ott}) \cite{Lenton2020} to determine the optical forces and
+torques on arbitrary clusters of spheres using the T-Matrix method.
+%MSTM
+%computes the T-matrix of the dimer, and then passes the T-matrix to
+%\textit{ott} to compute the optical forces.
+%The benefit of this approach is that MSTM can accurately compute the
+%T-matrix for any arbitrary collection of spheres once, and then
+%\textit{ott} can calculate the optical forces and torques.
+%
+The diffusion tensor of the dimer taken from Ref.~\citenum{Nir_Acrivos_1973}.
+%Ref.~\citenum{Farsund1996}.
+%
+%The total displacement is the sum of the optical and Brownian
+%contributions.
+%
+Brownian OT returns the dimer's motion as a \textit{csv} file
+containing for each time step the $[x,y,z]$ position of the dimer's
+centre of mass relative to the trap focus, and the orientation
+represented as a quaternion.
 
 \begin{figure}[h]
 	\centering
@@ -148,15 +179,29 @@ Brownian OT returns the dimer's motion as a \textit{csv} file containing for eac
 	\label{fig:dimer}
 \end{figure}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Orientation estimation from scattering measurements}
 \label{sec:Bayes}
 
 We consider our dimer from Section~\ref{sec:brownian} in an optical trap; at any point in time we can draw a unit vector $\hat{s}$ that points from the centre of larger sphere, to the centre of the smaller sphere. A plane wave 'probe' laser, directly perpendicular to the trapping laser, is incident on the dimer generating a scattering pattern that is dependent upon the dimer's orientation $I(\hat{\bf s}, \theta)$, computed using MSTM. To represent the experimental set up, four angles  ($\theta_1, \ \theta_2, \ \theta_3, \ \theta_4$) were chosen and the calculated intensity at each angle $\theta_k$ was recorded as $I(\hat{s}, \theta_k)$. 
 
-Our goal is to determine the orientation of our trapper dimer based on the scattering measurements $I(\hat{n}, \ \theta_k)$ collected from three detection fibres situated at $\theta_1,\ \theta_2, \ \theta3, \ \& \ \theta_4$. Rather than get an exact estimate of the dimer's orientation the possible orientation space is discretized into $\textit{n}_{ref} \ = \ 30$ possible reference orientations $\hat{\bf n}_{\alpha}$ that are evenly distributed on a unit sphere \cite{Rey2006}, see Figure~\ref{fig:dimer} b. The maximum spacing between two neighbouring reference orientations is roughly 0.895 radians. 
+Our goal is to determine the orientation of our trapper dimer based on
+the scattering measurements $I(\hat{n}, \theta_k)$ collected from
+three detection fibres situated at $\theta_1$, $\theta_2$, $\theta_3$,
+and $\theta_4$.  The dimer's orientation is discretized into
+$n_{ref}=30$ reference orientations $\hat{\bf n}_{\alpha}$ that are
+evenly distributed on a unit sphere \cite{Rey2006} (see
+Figure~\ref{fig:dimer}~b).  The spacing between two neighbouring
+reference orientations is roughly $0.895$~radians.
 
-Using MSTM we compute the raw intensities that would be collected from the dimer in each reference orientation $I(\hat{\bf n}_{\alpha}, \theta_k)$. We noticed that keeping all four angles in the same plane resulted in identical signals, to counter this we projected $\theta_4$ out of the horizontal plane and into the vertical plane ($\phi = 90$) resulting in unique signals for each reference orientation. 
+Using MSTM, we compute the raw intensities that would be collected
+from the dimer in each reference orientation
+$I(\hat{\bf n}_{\alpha}, \theta_k)$. We noticed that keeping all four
+angles in the same plane resulted in identical signals, to counter
+this we projected $\theta_4$ out of the horizontal plane and into the
+vertical plane ($\phi = 90$) resulting in unique signals for each
+reference orientation.
 %
 These raw intensities are normalized according to
 \begin{align}
@@ -166,12 +211,44 @@ These raw intensities are normalized according to
   \frac{I(\hat{\bf n}_\alpha, \theta_k) - \langle I(\hat{\bf n},\theta_k) \rangle } 
   {\langle I^2(\hat{\bf n},\theta_k) \rangle -\langle I(\hat{\bf n}, \theta_k)\rangle^2}
 \end{align}
-where the denominator is simply the standard deviation for our values of $I(\hat{\bf n}, \theta_k)$. The reference orientations, raw intensities, and scaled signals are given in Tables~\ref{tab:A1} and \ref{tab:A2}. The distribution of collected signals bares no specific relationship with its associated reference orientation, this is an inherent problem of the inverse light scattering pattern. Fortunately, for cases where the uncertainty in our signal measurements is low, we can easily predict the orientation by utilising computational techniques such as neural networks. 
+where the denominator is simply the standard deviation for our values
+of $I(\hat{\bf n}, \theta_k)$.  The reference orientations, raw
+intensities, and scaled signals are given in Tables~\ref{tab:A1} and
+\ref{tab:A2}.  The distribution of collected signals bares no specific
+relationship with its associated reference orientation, this is an
+inherent problem of the inverse light scattering pattern.
 
-We utilised a python machine learning program called scikit-learn to build a neural network for identifying the dimer's orientation from its light scattering signal. The network was trained by generating a database of random orientation vectors, calculating the light scattering signals, and then having the network estimate the probability of the signal coming from our dimer in that corresponding reference orientation. After making its estimation the network's loss function was evaluated and used to improve the estimation, we trained the network until the improvement in the loss function was less than 0.0001. 
+%Fortunately, for cases where the uncertainty in our signal
+%measurements is low, we can easily predict the orientation by
+%utilising computational techniques such as neural networks.
+
+
+The inverse mapping from the scaled measured signal to a particular
+reference orientation of the dimer was fit using a multi-layer
+perceptron neural network with four hidden layers, each with 100
+neurons logistic activation function.  This was implemented in Python
+using the scikit-learn \cite{Pedregosa_etal_2011} library.
+%to build a neural network for
+%identifying the dimer's orientation from its light scattering
+%signal.
+The neural network was trained using the stochastic optimizer Adam
+\cite{Kingma_Ba_014} on a data set that was generated by randomly
+choosing $10^4$ orientations and calculating the corresponding scaled
+signals from light scattering.
 %
-The estimation provided by the neural network can be improved further by accounting for any prior information we know about the dimer. We therefore, utilise Bayesian inference to update our neural networks estimation. 
+%
+%and then having the network estimate the probability of the
+%signal coming from our dimer in that corresponding reference
+%orientation.  After making its estimation the network's loss function
+%was evaluated and used to improve the estimation, we trained the
+%network until the improvement in the loss function was less than
+%$10^{-4}$.
 
+
+The estimate provided by the neural network can be improved further by
+accounting for any prior information we know about the dimer. We
+therefore, utilise Bayesian inference to update our neural networks
+estimation.
 \begin{align}
   \label{eq:bayes}
   p(\hat{\bf n}_\alpha| y_k(\hat{\bf s}))
@@ -181,9 +258,13 @@ The estimation provided by the neural network can be improved further by account
 \end{align}
 where $p(\hat{\bf n}_\alpha)$ and $p(y_1, y_2, y_3)$ are the prior estimates of the distributions of particle orientations and instantaneous signals, respectively.
 %
-Without any prior evidence we assume that the orientation priori of our dimer
-$p(\hat{\bf n}_{\alpha})$ is uniform. Knowledge of the dimer from previous
-measurement can be used to inform our estimate of $p(\hat{\bf n}_{\alpha})$, covered in Section~\ref{sec:test}.  The latter prior $p(y)$ is the probability of measuring a signal ($y_1$, $y_2$, $y_3$).  This is given by taking the discrete integral over collection of reference orientations.
+Without any prior evidence we assume that the orientation priori of
+our dimer $p(\hat{\bf n}_{\alpha})$ is uniform. Knowledge of the dimer
+from previous measurement can be used to inform our estimate of
+$p(\hat{\bf n}_{\alpha})$, covered in Section~\ref{sec:test}.  The
+latter prior $p(y)$ is the probability of measuring a signal
+$(y_1, y_2, y_3)$.  This is given by taking the discrete integral over
+collection of reference orientations.
 \begin{align}
   p(y_1, y_2, y_3)
   =
@@ -191,13 +272,18 @@ measurement can be used to inform our estimate of $p(\hat{\bf n}_{\alpha})$, cov
   p(y_1, y_2, y_3|\hat{\bf n}_\alpha)
   p(\hat{\bf n}_\alpha)
 \end{align}
-From \eqref{eq:bayes} we get a mass probability distribution that denotes the
-probability that our dimer is in orientation $\hat{\bf n}_{\alpha}$ given a
-signal ($y_1$, $y_2$, $y_3$). In order to evaluate the accuracy of our method, we tested it using a Brownian dynamics simulation of the dimer (see Section~\ref{sec:brownian}).
+From Eq.~\eqref{eq:bayes}, we get a mass probability distribution that
+denotes the probability that our dimer is in orientation
+$\hat{\bf n}_{\alpha}$ given a signal $(y_1, y_2, y_3)$.  In order to
+evaluate the accuracy of our method, we tested it using a Brownian
+dynamics simulation of the dimer (see Section~\ref{sec:brownian}).
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Calculation of error}
-\label{sec:divergence}
+\subsection{Calculation of error
+\label{sec:divergence}}
+
+
 Section~\ref{sec:Bayes} covered how Bayes theorem can be applied to estimate
 the orientation of a dimer based on its scattering signal. To evaluate the estimation we can use the simulation in Section~\ref{sec:brownian}; we denote the dimer's \emph{actual} orientation as $\hat{\bf s}$ and use MSTM to calculate its light scattering $I(\hat{\bf s}, \theta)$. At each angle $\theta_k$ we use \eqref{eq:scale} to scale the measurements collected from our dimer and record them as $y_1(\hat{\bf s})$, $y_2(\hat{\bf s})$, $y_3(\hat{\bf s})$. These measurements signals are used to calculate $p(\hat{\bf n}_{\alpha}\parallel y_1, y_2, y_3)$, because we know $\hat{s}$ we can determine which reference orientation is closest, denoted as $\hat{\bf n}_{best}$.
 
