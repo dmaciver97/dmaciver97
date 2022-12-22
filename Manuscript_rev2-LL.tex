@@ -51,13 +51,13 @@
   % \justifying
   %
   While optical trapping is a well understood method for force
-  transduction and detection,characterisation of trapped entities
-  poses a two-fold challenge --- one experimental concerning the
+  transduction and detection, characterisation of trapped entities
+  poses a two-fold challenge --- one experimental, concerning the
   arrangement of light detectors and the other, theoretical involving
   solving of the inverse light scattering problem. Combining static
   light scattering techniques with optical trapping poses significant
   engineering challenges due to the space constraints in a
-  conventional optical trapping setup.  We propose here a plausible
+  conventional optical trapping setup.  We propose a plausible
   scenario of detecting scattered light from an optically trapped
   asymmetric microstructure using a novel, multi-angle, optical-fibre
   based detection scheme and demonstrate how a Bayesian inference
@@ -304,12 +304,12 @@ Eq.~\eqref{eq:bayes} and an ideal result, $p_{ideal}$, were compared.
 An ideal result would be one that is 0 for every $\hat{\bf n}$ apart
 from $\hat{\bf n}_{best}$.
 \begin{align}
-	\label{eq:best}
-	p_{best} = 
-	\begin{cases}
-		1 & \text{when $\hat{\bf n}_\alpha$ = $\hat{\bf n}_{best}$}\\
-		0 & \text{anywhere else}
-	\end{cases}
+\label{eq:best}
+p_{best} = 
+\begin{cases}
+1 & \text{when $\hat{\bf n}_\alpha$ = $\hat{\bf n}_{best}$} \\
+0 & \text{anywhere else}
+\end{cases}
 \end{align}
 The distribution from Eq.~\eqref{eq:bayes} will assign some non-zero
 probability to every reference orientation. The model's error was
@@ -397,12 +397,19 @@ orientations $\hat{\bf n}_\alpha$ (see Section~\ref{sec:Bayes}).
 
 The simulation data from Section~\ref{sec:brownian} was used to evaluate our model's performance --- covered in Section~\ref{sec:divergence}. By summing the divergence of each measurement across the entire simulation we get an evaluation of how well the model performed in estimating the dimer's orientation. To compare the effects of changing certain parameters on the performance of our model we compare our result of $K_{l,total}$ to a worst case scenario and evaluate how much it improves upon this, denoted as $F(K_l)$:
 \begin{align}
-K_{l, \ total} &= \sum\limits_{\# =1}^{timesteps} K_{l,\#} \\
-K_{l, \ worst} &= \sum\limits_{\#=1}^{timesteps} \ln \left[\frac{1}{1/n_{ref}} \right] \\
+  K_{l, \ total} &= \sum\limits_{\# =1}^{timesteps} K_{l,\#}
+  \\
+  K_{l, \ worst} &= \sum\limits_{\#=1}^{timesteps} \ln \left[\frac{1}{1/n_{ref}} \right]
+  \\
 F(K_l) &= \frac{K_{l,\ worst}}{K_{l, \ total}}
 \end{align}
 
-The worst case scenario is akin to randomly choosing a reference orientation at each time step. The greater the value of $F(K_l)$ the better our model's confidence is in characterising the dimer's motion. Because our model is dependent on several parameters we need to a sophisticated method for understanding how these parameters correlate with $F(K_l)$.
+The worst case scenario is akin to randomly choosing a reference
+orientation at each time step. The greater the value of $F(K_l)$, the
+better our model's confidence is in characterising the dimer's
+motion. Because our model is dependent on several parameters we need
+to a sophisticated method for understanding how these parameters
+correlate with $F(K_l)$.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -435,7 +442,7 @@ $1\,{\rm ms}$ for using as a test dataset for our model.
 \end{subfigure}
 \caption{\label{fig:motion}
 %
-Simulation results for the dimer: (a) orientation and
+Simulation results for the dimer (a) orientation and
 (b) position with time.
 %
 }
@@ -444,7 +451,16 @@ Simulation results for the dimer: (a) orientation and
 
 As can be seen from Figure~\ref{fig:motion}, the dimer undergoes a full $180^{\circ}$ rotation upon entering the trap.  Typically horizontal alignment of a dimer is unstable and will result in the particle rotating to align along its vertical axis.  It is interesting to note that the dimer is furthest from the trap centre as it goes into a horizontal orientation before drawing closer again as it inverts completely. Further simulations of differently sized dimers showed a similar behaviour of moving away from the trap focus while remaining trapped, but only when $a_1 \geq 2a_2$.  Dimers with size ratios $a_1 < 2a_2$ immediately aligned into a fixed vertical position.
 %
-In the simulations of Vigilante~\emph{et~al}.\ \cite{Vigilante2020Brownian_OT}, trapped symmetrical dimers were investigated; their findings showed that the optical torque on the dimer goes to zero while aligned vertically and is at its maximum in a horizontal alignment. Therefore, the inversion of an asymmetric dimer suggests that if the size difference is significant the optical torque is minimal for a dimer in both horizontal and vertical orientations. Once we have our experimental set up complete we can confirm this by trapping an asymmetric dimer and monitoring its orientation. 
+In the simulations of Vigilante~\emph{et~al}.\
+\cite{Vigilante2020Brownian_OT}, trapped symmetrical dimers were
+investigated; their findings showed that the optical torque on the
+dimer goes to zero while aligned vertically and is at its maximum in a
+horizontal alignment. Therefore, the inversion of an asymmetric dimer
+suggests that if the size difference is significant, the optical
+torque is minimal for a dimer in both horizontal and vertical
+orientations. Once we have our experimental set up complete we can
+confirm this by trapping an asymmetric dimer and monitoring its
+orientation.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
@@ -478,13 +494,20 @@ and the vertical detector at $75^{\circ}$, with $\beta=1$:
 \end{subfigure}
 \caption{\label{fig:epsilon}
 %
-Model prediction for signal error of (a) $1\%$ ~ $[F(K_l)=1.174]$, (b)
-$15\%$ ~ [$[F(K_l)=0.606]$, and (c) $25\%$ ~ $[F(K_l)=0.457]$.
+Model prediction for signal error of (a) $\eta=1\%$ ~
+$[F(K_l)=1.174]$, (b) $\eta=15\%$ ~ [$[F(K_l)=0.606]$, and (c)
+$\eta=25\%$ ~ $[F(K_l)=0.457]$.
 %
 }
 \end{figure}
 
-As can be seen from Figure~\ref{fig:epsilon}, the inclusion of a signal noise quickly leads to a decrease in our model's performance. This is due to an inherent feature of the inverse scattering problem; that being that a two distinct regions of orientation space will become heavily intertwined in the intensity space despite remaining continuous. As the signal error increases our neural network will map the signal to the incorrect reference orientation.
+As can be seen from Figure~\ref{fig:epsilon}, the inclusion of noise
+quickly leads to a decrease in the method's performance.  This is due
+to an inherent feature of the inverse scattering problem: two distinct
+regions of orientation space will become highly intertwined in the
+intensity space despite each remaining continuously connected.  As the
+signal error increases our neural network will map the signal to the
+incorrect reference orientation.
 %
 Fortunately, we can alleviate this by increasing the weighting factor $\beta$ that reflects the degree of freedom our dimer has within the trap. We repeated the model at for the above signal errors, but increasing $\beta$ until the model best fit our dimer's motion 
 
@@ -527,9 +550,25 @@ investigate the auto correlation function of the dimer's motion.
 \section{Conclusion}
 \label{sec:Conclusion}
 
-We have developed a method for interpreting the dynamics of a trapped particle based purely on the light scattering pattern. In theory the model can be applied to any characteristic that impacts the light scattering pattern produced by the trapped entity. The MSTM package is flexible in calculating the light scattering for a variety of micro-particles; so long as there is a distinguishable difference in the light scattering pattern we can apply this method to characterise the particle to some degree of accuracy. This has potential to be applied to characterise particle size and shape that are changing while in the optical trap. We hope to in the future apply this to our own experimental work by charactering the orientation of a trapped asymmetric particle.
+We have developed a method for interpreting the dynamics of a trapped
+particle based purely on the light scattering pattern. In theory the
+model can be applied to any characteristic that impacts the light
+scattering pattern produced by the trapped entity. The MSTM package is
+flexible in calculating the light scattering for a variety of
+micro-particles; so long as there is a distinguishable difference in
+the light scattering pattern we can apply this method to characterise
+the particle to some degree of accuracy.  This has potential to be
+applied to characterise particle size and shape that are changing
+while in the optical trap. We hope to in the future apply this to our
+own experimental work by charactering the orientation of a trapped
+asymmetric particle.
 
-Additionally, we found that the due to the inverse light scattering problem that physical space regions can be continuously mapped to a space in the intensity region but with a loss of shape and size. In the future, we believe that we can improve our estimation by utilising a greater number of reference orientations and by optimising our choice of detection angles to better discretise our intensity regions. 
+Additionally, we found that the due to the inverse light scattering
+problem that physical space regions can be continuously mapped to a
+space in the intensity region but with a loss of shape and size.  In
+the future, we believe that we can improve our estimation by utilising
+a greater number of reference orientations and by optimising our
+choice of detection angles to better discretise our intensity regions.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
