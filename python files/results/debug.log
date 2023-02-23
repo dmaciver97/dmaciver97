@@ -1,0 +1,44 @@
+09:39:01 [ultranest] [DEBUG] ReactiveNestedSampler: dims=2+0, resume=False, log_dir=./results, backend=hdf5, vectorized=True, nbootstraps=30, ndraw=128..65536
+09:39:02 [ultranest] [INFO] Sampling 400 live points from prior ...
+09:39:02 [ultranest] [DEBUG] run_iter dlogz=0.5, dKL=0.5, frac_remain=0.01, Lepsilon=0.1000, min_ess=400
+09:39:02 [ultranest] [DEBUG] max_iters=-1, max_ncalls=-1, max_num_improvement_loops=-1, min_num_live_points=400, cluster_num_live_points=40
+09:39:02 [ultranest] [DEBUG] minimal_widths_sequence: [(-inf, 400.0), (inf, 400.0)]
+09:39:02 [ultranest] [INFO] Explored until L=2e-10  
+09:39:02 [ultranest] [INFO] Likelihood function evaluations: 400
+09:39:02 [ultranest] [INFO] Writing samples and results to disk ...
+09:39:02 [ultranest] [INFO] Writing samples and results to disk ... done
+09:39:02 [ultranest] [DEBUG] did a run_iter pass!
+09:39:02 [ultranest] [INFO]   logZ = 1.919e-10 +- 7.059e-15
+09:39:02 [ultranest] [INFO] Effective samples strategy satisfied (ESS = 400.0, need >400)
+09:39:02 [ultranest] [INFO] Posterior uncertainty strategy is satisfied (KL: 0.45+-0.05 nat, need <0.50 nat)
+09:39:02 [ultranest] [DEBUG]   conservative estimate says at least 40 live points are needed to reach dlogz goal
+09:39:02 [ultranest] [DEBUG]   number of live points vary between 1 and inf, most (122/234 iterations) have 1
+09:39:02 [ultranest] [INFO] Evidency uncertainty strategy wants 40 minimum live points (dlogz from 0.00 to 0.00, need <0.5)
+09:39:02 [ultranest] [INFO]   logZ error budget: single: inf bs:0.00 tail:0.69 total:0.69 required:<0.50
+09:39:02 [ultranest] [INFO] done iterating.
+09:39:02 [ultranest] [DEBUG] Making run plot ... 
+09:39:03 [ultranest] [DEBUG] Making run plot ... done
+09:39:03 [ultranest] [DEBUG] Making corner plot ...
+09:39:03 [ultranest] [DEBUG] Making corner plot ... done
+09:40:12 [ultranest] [DEBUG] ReactiveNestedSampler: dims=2+0, resume=False, log_dir=./results, backend=hdf5, vectorized=True, nbootstraps=30, ndraw=128..65536
+09:40:12 [ultranest] [INFO] Sampling 400 live points from prior ...
+09:40:12 [ultranest] [DEBUG] run_iter dlogz=0.5, dKL=0.5, frac_remain=0.01, Lepsilon=0.1000, min_ess=400
+09:40:12 [ultranest] [DEBUG] max_iters=-1, max_ncalls=-1, max_num_improvement_loops=-1, min_num_live_points=400, cluster_num_live_points=40
+09:40:12 [ultranest] [DEBUG] minimal_widths_sequence: [(-inf, 400.0), (inf, 400.0)]
+09:40:12 [ultranest] [INFO] Explored until L=8e-10  
+09:40:12 [ultranest] [INFO] Likelihood function evaluations: 400
+09:40:12 [ultranest] [INFO] Writing samples and results to disk ...
+09:40:12 [ultranest] [INFO] Writing samples and results to disk ... done
+09:40:12 [ultranest] [DEBUG] did a run_iter pass!
+09:40:12 [ultranest] [INFO]   logZ = 7.67e-10 +- 5.994e-14
+09:40:12 [ultranest] [INFO] Effective samples strategy satisfied (ESS = 400.0, need >400)
+09:40:12 [ultranest] [INFO] Posterior uncertainty strategy is satisfied (KL: 0.46+-0.08 nat, need <0.50 nat)
+09:40:12 [ultranest] [DEBUG]   conservative estimate says at least 40 live points are needed to reach dlogz goal
+09:40:12 [ultranest] [DEBUG]   number of live points vary between 1 and inf, most (219/393 iterations) have 1
+09:40:12 [ultranest] [INFO] Evidency uncertainty strategy wants 40 minimum live points (dlogz from 0.00 to 0.00, need <0.5)
+09:40:12 [ultranest] [INFO]   logZ error budget: single: inf bs:0.00 tail:0.69 total:0.69 required:<0.50
+09:40:12 [ultranest] [INFO] done iterating.
+09:40:12 [ultranest] [DEBUG] Making run plot ... 
+09:40:13 [ultranest] [DEBUG] Making run plot ... done
+09:40:13 [ultranest] [DEBUG] Making corner plot ...
+09:40:14 [ultranest] [DEBUG] Making corner plot ... done

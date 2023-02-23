@@ -12,8 +12,8 @@ class fit(object):
     def prior_transfrom(self, cube):
         self.params = cube.copy()
         for i in range(len(cube)):
-            self.params[i][0] = 10**(cube[i][0]*(8-6)+6)
-            self.params[i][1] = 10**(cube[i][1]*(8-6)+6)
+            self.params[i][0] = 10**(cube[i][0]*8+4)
+            self.params[i][1] = 10**(cube[i][1]*8+4)
 
         return self.params
 
@@ -24,7 +24,7 @@ class fit(object):
             A = self.params[i][0]
             B = self.params[i][1]
             y_model = [1/(A+B*x**2) for x in self.x]
-            likelihood[i] = sum([((y-y_m)/0.05)**2 for y, y_m in zip(self.y, y_model)])
+            likelihood[i] = (((sum([((y-y_m)/1)**2 for y, y_m in zip(self.y, y_model)]))))
 
         return likelihood
 
