@@ -60,7 +60,7 @@ with open(path, 'r') as in_file:
         writer.writerows(row_reader(row) for row in reader)
 
 with open('log.csv', 'r') as file:
-    reader = csv.reader(file.readlines())
+    reader = csv.reader(file.readlines()[:300])
     freq, Px, Py =[], [], []
     for row in reader:
         freq.append(float(row[0]))
@@ -70,6 +70,9 @@ with open('log.csv', 'r') as file:
 #Simplified Lorentzian fit of power spectrum with constants A and B
 def lorentz(x,A,B):
     return (1/(A+B*x**2))
+
+def mod_lorentz(x,a,b,c,fc):
+    return (a+(b/((x**2+fc**2)+c**2)))
 
 #Fitting the data to a Lorentzian and then plotting the plots for the X and Y QPD axis
 # Calculate conversion factor Beta
@@ -117,3 +120,17 @@ ax2.set_xscale('log')
 ax2.set_xlim(1,2.0e03)
 fig.tight_layout()
 plt.savefig(f'/home/daniel/Documents/dmaciver97/python files/figures/{material}/{size}@{power}.png')
+
+#popt, pcov =  curve_fit(mod_lorentz, freq[6:300], Px[6:300])
+#a,b,c,fc = popt
+
+#model = [a+(b/((x**2+fc**2)+c**2)) for x in Px]
+
+#plt.close('all')
+#fig = plt.figure()
+#ax = fig.add_subplot()
+#ax.plot(freq[1:], Px[1:])
+#ax.plot(freq[1:], model[1:])
+#ax.set_yscale('log')
+#ax.set_xscale('log')
+#plt.show()
