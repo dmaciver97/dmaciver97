@@ -2,25 +2,25 @@ import csv
 import numpy as np
 import matplotlib.pyplot as plt;
 from scipy.optimize import curve_fit;
-from fitnest import fit;
+from fitting import fit
 
 #Code for reading and fitting PSD data from FDdat files
 
 #Function reads FDdat file and formats rows into csv cells [Frequency, Px, Py, Sum]
 def row_reader(row):
     for num in row:
-        lst = row[0].split()
-        item1= lst[0]
-        item2=lst[1]
-        item3=lst[2]
-        item4=lst[3]
-
+        lst = (num.split(' '))
+        if len(num)==37:
+            item1= lst[0]
+            item2=lst[1]
+        else:
+            item3=lst[1]
+            item4=lst[2]
+    
     new_row =[float(item1), float(item2), float(item3), float(item4)]
     return new_row
 
-#Simplified Lorentzian fit of power spectrum with constants A and B
-def lorentz(x,A,B):
-    return (1/(A+B*x**2))
+
 
 #Function reads the name of the file and stores the graph in appropriate folder with useful name.  
 def get_label_path(label):
@@ -40,7 +40,7 @@ def get_label_path(label):
 
 #lead path is just the neccesarray jargon to locate directory 
 lead_path = '/home/daniel/Documents/dmaciver97/python files/' 
-label = 'Sillica_2.5A_1.57mu.txt'
+label = 'Vaterite_2.00A_3mu.txt'
 material, power, size= get_label_path(label)
 
 path = lead_path+label
@@ -61,12 +61,15 @@ with open('log.csv', 'r') as file:
         Px.append(float(row[1]))
         Py.append(float(row[2]))
 
-#curve_fit uses lorentzian to fit to data 
-popt, pcov = curve_fit(lorentz, freq[1:300], Px[1:300], p0=[1000,1])
-A,B= popt
+#Simplified Lorentzian fit of power spectrum with constants A and B
+def lorentz(x,A,B):
+    return (1/(A+B*x**2))
+
+popt, pcov  = curve_fit(lorentz, freq[5:300], Px[5:300])
+A,B = popt
 fc = (A/B)**0.5
-D = (2*np.pi**2/(15*B))
-Px_model = [D/(f**2+fc**2) for f in freq]
+D = (2*np.pi**2/(B))
+Px_model = [D/(2*np.pi**2*(f**2+fc**2))  for f in freq]
 
 fig  = plt.figure()
 ax1 = fig.add_subplot(1, 2, 1)  
@@ -79,11 +82,11 @@ ax1.set_yscale('log')
 ax1.set_xscale('log')
 ax1.set_xlim(1,2.0e03)
 
-popt, pcov = curve_fit(lorentz, freq[1:300], Py[1:300], p0=[10000,100])
-A,B= popt
+popt, pcov  = curve_fit(lorentz, freq[5:300], Py[5:300])
+A,B = popt
 fc = (A/B)**0.5
-D = (2*np.pi**2/(15*B))
-Py_model = [D/(f**2+fc**2) for f in freq]
+D = (2*np.pi**2/(B))
+Py_model = [D/(2*np.pi**2*(f**2+fc**2)) for f in freq]
 
 ax2 = fig.add_subplot(1,2,2)
 ax2.plot(freq[1:], Py[1:])
