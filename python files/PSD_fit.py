@@ -1,8 +1,14 @@
 import csv
+import argparse
 import numpy as np
 import matplotlib.pyplot as plt;
 from scipy.optimize import curve_fit;
-from fitting import fit
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--label', type=str, default='Vaterite_2.00A_3mu.txt', help='FDdat text file')
+args = parser.parse_args()
+
+label = args.label
 
 #Code for reading and fitting PSD data from FDdat files
 
@@ -36,12 +42,12 @@ def get_label_path(label):
     
     power = label[1]
     size = label[2][:-4]
-    return material, power, size
+    radius  = float(size[:-2])*1e-6
+    return material, power, size, radius
 
 #lead path is just the neccesarray jargon to locate directory 
-lead_path = '/home/daniel/Documents/dmaciver97/python files/' 
-label = 'Vaterite_2.00A_3mu.txt'
-material, power, size= get_label_path(label)
+lead_path = '/home/daniel/Documents/dmaciver97/python files/FDdat files/' 
+material, power, size, radius= get_label_path(label)
 
 path = lead_path+label
         
@@ -65,18 +71,27 @@ with open('log.csv', 'r') as file:
 def lorentz(x,A,B):
     return (1/(A+B*x**2))
 
+#Fitting the data to a Lorentzian and then plotting the plots for the X and Y QPD axis
+# Calculate conversion factor Beta
+
+gamma0 = 6*np.pi*1.0013e-3*radius 
+D_einstein = 1.38e-23*290/gamma0  #units m^2/s
+
 popt, pcov  = curve_fit(lorentz, freq[5:300], Px[5:300])
 A,B = popt
 fc = (A/B)**0.5
-D = (2*np.pi**2/(B))
-Px_model = [D/(2*np.pi**2*(f**2+fc**2))  for f in freq]
+D = (2*np.pi**2/(B)) #units V^2/s
+Beta = D/D_einstein #V^2/m^2
+Px_model = [D/(Beta*2*np.pi**2*(f**2+fc**2))  for f in freq]
+Px = [x/Beta for x in Px]
 
+D_label = str('{:.2e}'.format(D/Beta))
 fig  = plt.figure()
 ax1 = fig.add_subplot(1, 2, 1)  
 ax1.plot(freq[1:], Px[1:])
-ax1.plot(freq[1:], Px_model[1:], label= f'${np.round(D,3)}/(f^2+{np.round(fc,2)}^2)$')
+ax1.plot(freq[1:], Px_model[1:], label= f'${D_label}/(f^2+{np.round(fc,2)}^2)$')
 ax1.legend()
-ax1.set_ylabel('Power $[V^2/Hz]$')
+ax1.set_ylabel('Power $[m^2/Hz]$')
 ax1.set_xlabel('Frequency [Hz]')
 ax1.set_yscale('log')
 ax1.set_xscale('log')
@@ -86,11 +101,14 @@ popt, pcov  = curve_fit(lorentz, freq[5:300], Py[5:300])
 A,B = popt
 fc = (A/B)**0.5
 D = (2*np.pi**2/(B))
-Py_model = [D/(2*np.pi**2*(f**2+fc**2)) for f in freq]
+Beta = D/D_einstein #V^2/m^2
+Py_model = [D/(Beta*2*np.pi**2*(f**2+fc**2)) for f in freq]
+Py = [y/Beta for y in Py]
 
+D_label = str('{:.2e}'.format(D/Beta))
 ax2 = fig.add_subplot(1,2,2)
 ax2.plot(freq[1:], Py[1:])
-ax2.plot(freq[1:], Py_model[1:], label= f'${np.round(D,4)}/(f^2+{np.round(fc,2)}^2)$')
+ax2.plot(freq[1:], Py_model[1:], label= f'${D_label}/(f^2+{np.round(fc,2)}^2)$')
 ax2.legend()
 #ax2.set_ylabel('Power $[V^2/Hz]$')
 ax2.set_xlabel('Frequency [Hz]')
