@@ -72,7 +72,7 @@ def lorentz(x,A,B):
     return (1/(A+B*x**2))
 
 def mod_lorentz(x,a,b,c,fc):
-    return (a+(b/((x**2+fc**2)+c**2)))
+    return (a+(b/((x-fc)**2+c**2)))
 
 #Fitting the data to a Lorentzian and then plotting the plots for the X and Y QPD axis
 # Calculate conversion factor Beta
@@ -86,7 +86,7 @@ fc = (A/B)**0.5
 D = (2*np.pi**2/(B)) #units V^2/s
 Beta = D/D_einstein #V^2/m^2
 Px_model = [D/(Beta*2*np.pi**2*(f**2+fc**2))  for f in freq]
-Px = [x/Beta for x in Px]
+#Px = [x/Beta for x in Px]
 
 D_label = str('{:.2e}'.format(D/Beta))
 fig  = plt.figure()
@@ -124,7 +124,7 @@ plt.savefig(f'/home/daniel/Documents/dmaciver97/python files/figures/{material}/
 #popt, pcov =  curve_fit(mod_lorentz, freq[6:300], Px[6:300])
 #a,b,c,fc = popt
 
-#model = [a+(b/((x**2+fc**2)+c**2)) for x in Px]
+#model = [a+(b/((x-fc)**2+c**2)) for x in Px]
 
 #plt.close('all')
 #fig = plt.figure()
