@@ -46,7 +46,7 @@ def get_label_path(label):
     return material, power, size, radius
 
 #lead path is just the neccesarray jargon to locate directory 
-lead_path = '/home/daniel/Documents/dmaciver97/python files/FDdat files/' 
+lead_path = 'C:\\Users\\Administrator\\programs\\git repos\\dmaciver97\\python files\\FDdat files\\'
 material, power, size, radius= get_label_path(label)
 
 path = lead_path+label
