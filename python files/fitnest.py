@@ -12,8 +12,8 @@ class fit(object):
     def prior_transfrom(self, cube):
         self.params = cube.copy()
         for i in range(len(cube)):
-            self.params[i][0] = 10**(cube[i][0]*8+4)
-            self.params[i][1] = 10**(cube[i][1]*8+4)
+            self.params[i][0] = 10**(cube[i][0]*4+3)
+            self.params[i][1] = 10**(cube[i][1]*3+2)
 
         return self.params
 
