@@ -1,5 +1,6 @@
 *~
 *.junk
+*.csv
 
 .directory
 python files/.vscode/argv.json
@@ -7,4 +8,5 @@ python files/.vscode
 python files/_pycache_
 python files/python3.10
 python files/FDdat files
-#python files/TDdat files
+python files/TDdat files
+.vscode/settings.json

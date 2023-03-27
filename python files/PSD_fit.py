@@ -15,6 +15,7 @@ label = args.label
 #Function reads FDdat file and formats rows into csv cells [Frequency, Px, Py, Sum]
 def row_reader(row):
     for num in row:
+
         lst = (num.split(' '))
         if len(num)==37:
             item1= lst[0]
@@ -46,7 +47,7 @@ def get_label_path(label):
     return material, power, size, radius
 
 #lead path is just the neccesarray jargon to locate directory 
-lead_path = 'C:\\Users\\Administrator\\programs\\git repos\\dmaciver97\\python files\\FDdat files\\'
+lead_path = "FDdat files\\"
 material, power, size, radius= get_label_path(label)
 
 path = lead_path+label
@@ -60,7 +61,7 @@ with open(path, 'r') as in_file:
         writer.writerows(row_reader(row) for row in reader)
 
 with open('log.csv', 'r') as file:
-    reader = csv.reader(file.readlines()[:300])
+    reader = csv.reader(file.readlines()[:300:2])
     freq, Px, Py =[], [], []
     for row in reader:
         freq.append(float(row[0]))
@@ -80,13 +81,13 @@ def mod_lorentz(x,a,b,c,fc):
 gamma0 = 6*np.pi*1.0013e-3*radius 
 D_einstein = 1.38e-23*290/gamma0  #units m^2/s
 
-popt, pcov  = curve_fit(lorentz, freq[5:300], Px[5:300])
+popt, pcov  = curve_fit(lorentz, freq[10:300], Px[10:300])
 A,B = popt
 fc = (A/B)**0.5
 D = (2*np.pi**2/(B)) #units V^2/s
 Beta = D/D_einstein #V^2/m^2
 Px_model = [D/(Beta*2*np.pi**2*(f**2+fc**2))  for f in freq]
-#Px = [x/Beta for x in Px]
+Px = [x/Beta for x in Px]
 
 D_label = str('{:.2e}'.format(D/Beta))
 fig  = plt.figure()
@@ -100,7 +101,7 @@ ax1.set_yscale('log')
 ax1.set_xscale('log')
 ax1.set_xlim(1,2.0e03)
 
-popt, pcov  = curve_fit(lorentz, freq[5:300], Py[5:300])
+popt, pcov  = curve_fit(lorentz, freq[10:300], Py[10:300])
 A,B = popt
 fc = (A/B)**0.5
 D = (2*np.pi**2/(B))
@@ -119,7 +120,7 @@ ax2.set_yscale('log')
 ax2.set_xscale('log')
 ax2.set_xlim(1,2.0e03)
 fig.tight_layout()
-plt.savefig(f'/home/daniel/Documents/dmaciver97/python files/figures/{material}/{size}@{power}.png')
+plt.show()
 
 #popt, pcov =  curve_fit(mod_lorentz, freq[6:300], Px[6:300])
 #a,b,c,fc = popt
