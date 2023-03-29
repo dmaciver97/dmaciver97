@@ -1,8 +1,9 @@
 \begin{thebibliography}{10}
 
 \bibitem{Bustamante2021Biophysics}
-C.~J. Bustamante {\em et~al.}, ``Optical tweezers in single-molecule
-  biophysics,'' {\em Nature Reviews Methods Primer}, 2021.
+C.~J. Bustamante, Y.~R. Chemla, S.~Liu, and M.~D. Wang, ``Optical tweezers in
+  single-molecule biophysics,'' {\em Nature Reviews Methods Primers}, vol.~1,
+  Mar 2021.
 
 \bibitem{yin2013large}
 Z.-q. Yin, T.~Li, X.~Zhang, and L.~Duan, ``Large quantum superpositions of a
@@ -37,8 +38,9 @@ Y.~Yifat, J.~Parker, T.-S. Deng, S.~K. Gray, S.~A. Rice, and N.~F. Scherer,
   Photonics}, vol.~8, no.~11, pp.~3162--3172, 2021.
 
 \bibitem{Bar-Ziv_1998}
-R.~Bar-Ziv {\em et~al.}, ``Localized dynamic light scattering: Probing single
-  particle dynamics at the nanoscale,'' vol.~78.
+R.~Bar-Ziv, A.~Meller, T.~Tlusty, E.~Moses, J.~Stavans, and S.~A. Safran,
+  ``Localized dynamic light scattering: Probing single particle dynamics at the
+  nanoscale,'' {\em Physical Review Letters}, vol.~78, p.~154–157, Jan 1997.
 
 \bibitem{raudsepp2022estimating}
 A.~Raudsepp, G.~B. Jameson, and M.~A. Williams, ``Estimating orientation of
@@ -46,32 +48,13 @@ A.~Raudsepp, G.~B. Jameson, and M.~A. Williams, ``Estimating orientation of
   and off-focus imaging,'' {\em Applied Optics}, vol.~61, no.~2, pp.~607--614,
   2022.
 
-\bibitem{Vigilante2020Brownian_OT}
-O.~L. Wyatt~Vigilante and J.~Fung, ``Brownian dynamics simulations of sphere
-  clusters in optical tweezers,'' {\em Optics Express}, vol.~28,
-  pp.~36131--36146, 2020.
-
-\bibitem{Mishchenko1996MSTM}
-D.~W. Michael~I.Mishchenko, Larry~D.Travis, ``T-matrix computations of light
-  scattering by nonspherical particles: A review,'' {\em Light scattering by
-  Non-Spherical Particles}, vol.~55, pp.~535--575, 1996.
-
-\bibitem{Lenton2020}
-I.~C.~D. Lenton, T.~A. Nieminen, V.~L.~Y. Loke, A.~B. Stilgoe, Y.~Hu,
-  G.~Kn{\ifmmode\ddot{o}\else\"{o}\fi}ner, A.~M.
-  Bra{\ifmmode\acute{n}\else\'{n}\fi}czyk, N.~R. Heckenberg, and
-  H.~Rubinsztein-Dunlop, ``Optical tweezers toolbox.''
-  https://github.com/ilent2/ott, 2020.
-
-\bibitem{Farsund1996}
-B.~F. Farsund, ``Force, torque, and absorbed energy for a body of arbitary
-  shape and constitution in an electromagnetic radiation field,''
-
 \bibitem{Rey2006}
-G.~C. Reyuthor, ``Numerical methods for radiative heattransfer.''
+G.~C. Reyuthor, {\em Numerical methods for radiative heattransfer}.
+\newblock Doctoral thesis, Universitat Politècnica de Catalunya, 2006.
 
-\bibitem{Buchner2016Ultranest}
-J.~Buchner, ``A statistical test for nested sampling algorithms,'' {\em
-  Statistics and Computing}, vol.~26, pp.~383--392, 2016.
+\bibitem{Vigilante2020Brownian_OT}
+W.~Vigilante, O.~Lopez, and J.~Fung, ``Brownian dynamics simulations of sphere
+  clusters in optical tweezers,'' {\em Optics Express}, vol.~28, p.~36131, Nov
+  2020.
 
 \end{thebibliography}
