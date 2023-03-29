@@ -5,7 +5,6 @@ from scipy.optimize import curve_fit
 import scipy
 from scipy.signal import correlate
 import matplotlib.pyplot as plt
-import statsmodels.api as sm
 
 class autocorr_fit(object):
     def __init__(self, path):
