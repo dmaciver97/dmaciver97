@@ -1,0 +1,81 @@
+\begin{thebibliography}{10}
+
+\bibitem{Bustamante2021Biophysics}
+C.~J. Bustamante, Y.~R. Chemla, S.~Liu, and M.~D. Wang, ``Optical tweezers in
+  single-molecule biophysics,'' {\em Nature Reviews Methods Primers}, vol.~1,
+  Mar 2021.
+
+\bibitem{yin2013large}
+Z.-q. Yin, T.~Li, X.~Zhang, and L.~Duan, ``Large quantum superpositions of a
+  levitated nanodiamond through spin-optomechanical coupling,'' {\em Physical
+  Review A}, vol.~88, no.~3, p.~033614, 2013.
+
+\bibitem{arita2020coherent}
+Y.~Arita, S.~H. Simpson, P.~Zem{\'a}nek, and K.~Dholakia, ``Coherent
+  oscillations of a levitated birefringent microsphere in vacuum driven by
+  nonconservative rotation-translation coupling,'' {\em Science advances},
+  vol.~6, no.~23, p.~eaaz9858, 2020.
+
+\bibitem{burns1990optical}
+M.~M. Burns, J.-M. Fournier, and J.~A. Golovchenko, ``Optical matter:
+  crystallization and binding in intense optical fields,'' {\em Science},
+  vol.~249, no.~4970, pp.~749--754, 1990.
+
+\bibitem{gupta2014raman}
+P.~Gupta and S.~Ahlawat, ``Raman spectroscopic studies on optically trapped red
+  blood cells,'' in {\em International Conference on Fibre Optics and
+  Photonics}, pp.~S3D--2, Optica Publishing Group, 2014.
+
+\bibitem{friedrich2012tuning}
+L.~Friedrich and A.~Rohrbach, ``Tuning the detection sensitivity: a model for
+  axial backfocal plane interferometric tracking,'' {\em Optics letters},
+  vol.~37, no.~11, pp.~2109--2111, 2012.
+
+\bibitem{yifat2021facile}
+Y.~Yifat, J.~Parker, T.-S. Deng, S.~K. Gray, S.~A. Rice, and N.~F. Scherer,
+  ``Facile measurement of the rotation of a single optically trapped
+  nanoparticle using the diagonal ratio of a quadrant photodiode,'' {\em ACS
+  Photonics}, vol.~8, no.~11, pp.~3162--3172, 2021.
+
+\bibitem{Carvalho_2023}
+I.~A. Carvalho, N.~A. Silva, C.~C. Rosa, L.~C. Coelho, and P.~A. Jorge,
+  ``Particle classification through the analysis of the forward scattered
+  signal in optical tweezers,'' {\em Sensors}, vol.~21, no.~18, p.~6181, 2021.
+
+\bibitem{Watson_2023}
+D.~Watson, N.~Hagen, J.~Diver, P.~Marchand, and M.~Chachisvilis, ``Elastic
+  light scattering from single cells: orientational dynamics in optical trap,''
+  {\em Biophysical journal}, vol.~87, no.~2, pp.~1298--1306, 2004.
+
+\bibitem{Bar-Ziv_1998}
+R.~Bar-Ziv, A.~Meller, T.~Tlusty, E.~Moses, J.~Stavans, and S.~A. Safran,
+  ``Localized dynamic light scattering: Probing single particle dynamics at the
+  nanoscale,'' {\em Physical Review Letters}, vol.~78, p.~154–157, Jan 1997.
+
+\bibitem{Vigilante2020Brownian_OT}
+W.~Vigilante, O.~Lopez, and J.~Fung, ``Brownian dynamics simulations of sphere
+  clusters in optical tweezers,'' {\em Optics Express}, vol.~28, p.~36131, Nov
+  2020.
+
+\bibitem{Mishchenko1996MSTM}
+D.~W. Michael~I.Mishchenko, Larry~D.Travis, ``T-matrix computations of light
+  scattering by nonspherical particles: A review,'' {\em Light scattering by
+  Non-Spherical Particles}, vol.~55, pp.~535--575, 1996.
+
+\bibitem{Lenton2020}
+I.~C.~D. Lenton, T.~A. Nieminen, V.~L.~Y. Loke, A.~B. Stilgoe, Y.~Hu,
+  G.~Kn{\ifmmode\ddot{o}\else\"{o}\fi}ner, A.~M.
+  Bra{\ifmmode\acute{n}\else\'{n}\fi}czyk, N.~R. Heckenberg, and
+  H.~Rubinsztein-Dunlop, ``Optical tweezers toolbox.''
+  https://github.com/ilent2/ott, 2020.
+
+\bibitem{nir_acrivos_1973}
+A.~Nir and A.~Acrivos, ``On the creeping motion of two arbitrary-sized touching
+  spheres in a linear shear field,'' {\em Journal of Fluid Mechanics}, vol.~59,
+  p.~209–223, Jun 1973.
+
+\bibitem{Rey2006}
+G.~C. Reyuthor, {\em Numerical methods for radiative heattransfer}.
+\newblock Doctoral thesis, Universitat Politècnica de Catalunya, 2006.
+
+\end{thebibliography}
