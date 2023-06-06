@@ -26,7 +26,7 @@
 \title{Investigation of Limited Detection Schemes for Light Scattering of Optically Trapped Asymmetric Particles}
 
 
-\author[aff1]{Dan Maciver\corref{cor1}} 
+\author[aff1]{Daniel Maciver\corref{cor1}} 
 \ead{Daniel.Maciver.2016@uni.strath.ac.uk}
 
 \author[aff1]{Praveen Parthasarathi}
@@ -124,7 +124,6 @@ To demonstrate the analysis, we study a simple, illustrative example of an aniso
 }
 \end{figure}
 
-\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methodology}
@@ -233,7 +232,7 @@ but it does not directly indicate our estimates actual accuracy, that can be sim
 \label{sec:brownian}
 
 We use the Brownian OT package developed by Fung~\textit{et~al} \cite{Vigilante2020Brownian_OT} to simulate the motion of an asymmetric dimer (Figure~\ref{fig:dimer}a) within an optical trap. Brownian OT combines MSTM \cite{Mishchenko1996MSTM} and ``Optical Tweezer Toolbox'' (\textit{ott}) \cite{Lenton2020} to simulate the motion of arbitrary
-shaped sphere clusters. We simulate the motion of a dimer trapped in a highly focused Gaussian beam by calculating the optical forces imparted by the laser, and the Brownian force due to the surrounding fluid. MSTM provides the necessary T-matrix to compute the optical force via \textit{ott}. The Brownian force is found by computing the dimer's diffusion tensor according to the analytical solutions provided by Nir and Acrivos \cite{nir_acrivos_1973}. We simulated a silica dimer ($n = 1.45$) in a suspension of water ($n_{med} = 1.33$) over the course of $10 \ s$ with a simulation time step of $1 \times 10^{-3} \ s$.
+shaped sphere clusters. We simulate the motion of a dimer trapped in a highly focused Gaussian beam by calculating the optical forces imparted by the laser, and the Brownian force due to the surrounding fluid. MSTM provides the necessary T-matrix to compute the optical force via \textit{ott}. The Brownian force is found by computing the dimer's diffusion tensor according to the analytical solutions provided by Nir and Acrivos \cite{nir_acrivos_1973}. We simulated a polystyrene dimer ($n = 1.59$) in a suspension of water ($n_{med} = 1.33$) over the course of $1 \ s$ with a simulation time step of $1 \times 10^{-5} \ s$. We placed the dimer 4 microns below the trap focus at an angle $30^{\circ}$ from the horizontal, the resulting trajectory is shown below in Sec~\ref{sec:motion}. We chose these initial parameters because it demonstrates our model's performance in non steady state conditions. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -321,7 +320,7 @@ correlate with $F(K_l)$.
 \subsection{Asymmetric dimer dynamics}
 \label{sec:motion}
 
-The Brownian OT software was used to simulate the motion of a trapped dimer ($a_1=1\,\mu{\rm m}$, $a_2=0.5\,\mu{\rm m}$) over the first $10$ seconds of entering the optical trap.  The initial orientation was assumed as strictly vertical (in line with the beam propagation direction). The dimer's position and orientation was recorded every $1\,{\rm ms}$ for using as a test dataset for our model.
+The Brownian OT software was used to simulate the motion of a trapped dimer ($a_1=1\,\mu{\rm m}$, $a_2=0.5\,\mu{\rm m}$) over the first $1$ seconds of entering the optical trap.  The initial orientation was set at $s = (0.923, 0.0, 0.385)$. The dimer's position and orientation was recorded every $10\,{\rm \mu s}$ for using as a test dataset for our model.
 
 \begin{figure}[h]
 	\centering
