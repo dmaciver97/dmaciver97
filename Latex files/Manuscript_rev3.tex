@@ -13,6 +13,8 @@
 \usepackage{lineno}
 \usepackage{color}
 \usepackage{nomencl}
+\usepackage{array}
+\usepackage{tabularx}
 \makenomenclature
 \renewcommand{\nomlabel}[1]{\hfil #1\hfil}
 
@@ -93,7 +95,7 @@
 
 Since their invention in the late 1980s, optical tweezers have found application in experiments ranging from single molecule biophysics \cite{Bustamante2021Biophysics} to testing the fundamental assumptions of quantum mechanics \cite{yin2013large}, thanks mainly to the ability of the tweezer to transduce and detect forces on the order of a few pico-newtons. Going beyond forces, further structural, dynamic and chemical characterisation of complex trapped entities could provide useful information, as demonstrated in areas such as metrology \cite{arita2020coherent} and colloidal aggregation \cite{burns1990optical}.  Spectroscopic techniques such as Raman scattering \cite{gupta2014raman} have been used for chemical characterisation of trapped objects, while dynamical characterisation has been demonstrated using data from tweezer's Quadrant Photo Detector (QPD) by following the centre-of-mass Brownian motion of the trapped entity \cite{friedrich2012tuning} and measuring rotation of the centre-of-mass\cite{yifat2021facile}.  A recent work aimed at characterising trapped entities demonstrated how neural networks maybe trained to distinguish between optically trapped micro-beads of different size and material by means of a principal component analysis of the forward scattered light detected using a QPD \cite{Carvalho_2023}.  A more direct, albeit cumbersome attempt at detecting scattered light from trapped biological cells was attempted in \cite{Watson_2023} where the experimental cuvette was placed inside an elliptical mirror that directed light scattered from the trapped biological-cell onto a photodetector via a rotating aperture that helped select the scattering-angle. Thus, past studies on optical trapping have focused rather heavily on particle-tracking but not particle-characterisation.  
 
-While both \cite{Carvalho_2023} \cite{Watson_2023} demonstrate some ability to characterise trapped entities, \cite{Carvalho_2023} is perhaps best suited to characterise micron-sized particles and \cite{Watson_2023} talks about an experimental setup that is difficult to adopt and suffers from a low-bandwidth that might not be best suited for monitoring dynamics. A light scattering detection scheme built around an optical trap that is both easy to implement and has the advantage of high-bandwidth was demonstrated by Safran and co-workers in \cite{Bar-Ziv_1998}, where a single-mode optical fibre was aligned to detect the scattered light from a trapped bead and study its Brownian motion. While this provided dynamical information, structural information about the trapped bead was precluded as the measurement was obtained only at a single angle. Furthermore, the main drawback to a single fibre detection scheme is that it struggles to characterise isotropically scattering particles. This limits its application to biological matter as the internal structure of many cells makes them inherently isotropic scatterers \cite{Watson_2023}. In this work, we propose a scheme that expands on the technique in \cite{Bar-Ziv_1998} to detect scattered light simultaneously at a number of angles (Figure 1), combined with a novel Bayesian inference-based analysis technique to enable interpretation of the resulting multi-angle data as well as optimisation to provide maximal information from the signal. 
+While both \cite{Carvalho_2023} \cite{Watson_2023} demonstrate some ability to characterise trapped entities, \cite{Carvalho_2023} is perhaps best suited to characterise micron-sized particles and \cite{Watson_2023} talks about an experimental setup that is difficult to adopt and suffers from a low-bandwidth that might not be best suited for monitoring dynamics. A light scattering detection scheme built around an optical trap that is both easy to implement and has the advantage of high-bandwidth was demonstrated by Safran and co-workers in \cite{Bar-Ziv_1998}, where a single-mode optical fibre was aligned to detect the scattered light from a trapped bead and study its Brownian motion. While this provided dynamical information, structural information about the trapped bead was precluded as the measurement was obtained only at a single angle. Furthermore, the main drawback to a single fibre detection scheme is that it struggles to characterise anisotropically scattering particles. This limits its application to biological matter as the internal structure of many cells makes them inherently anisotropic scatterers \cite{Watson_2023}. In this work, we propose a scheme that expands on the technique in \cite{Bar-Ziv_1998} to detect scattered light simultaneously at a number of angles (Figure 1), combined with a novel Bayesian inference-based analysis technique to enable interpretation of the resulting multi-angle data as well as optimisation to provide maximal information from the signal. 
 
 To demonstrate the analysis, we study a simple, illustrative example of an isotropic scattering entity \emph{i.e.} an asymmetric dimer. As a paradigmatic example of extracting structural/dynamic information from the resulting scattering data, we explore how to estimate the dimer's instantaneous orientation from the scattering signals using Bayesian inference, as well as how to optimise the analysis by implementing 'prior knowledge' to obtain the most reliable estimate. As an example of the relatively sparse literature on measuring orientations of complex trapped objects, ref. employs imaging to study the orientation of trapped dimers: scattering can give more quantitative and potentially more rapid time-resolved information, but only of course if the scattering signals can be interpreted. Here, we first train a neural network to effectively identify the mapping between scattering signals and dimer orientation, by calculating the scattering signal from a simulated asymmetric dimer undergoing Brownian motion in an optical trap and mapping to the known instantaneous orientation of the simulated dimer. We then show how Bayesian inference can be used to optimise extraction of the true dimer orientation from the light scattering signals. Furthermore we demonstrate how the model can be fine tuned in situations where measurement uncertainty becomes significant. 
 
@@ -407,9 +409,13 @@ Here we simplify the problem somewhat by employing a relatively small finite num
 \caption{\label{tab:A1}
 %
 Reference Orientations vector components$^*$}
-\begin{tabular}{|c|c|c|c|}
+\begin{tabularx}{0.65\textwidth}{
+		| >{\centering\arraybackslash}X 
+		| >{\centering\arraybackslash}X 
+		| >{\centering\arraybackslash}X 
+		| >{\centering\arraybackslash}X| }
 \hline\hline
-$\alpha$ & $\hat{\bf n}_{\alpha,\ x}$ &  $\hat{\bf n}_{\alpha,\ y}$ &  $\hat{\bf n}_{\alpha,\ z}$ \\
+$\alpha$ & $\hat{\bf n}_{\alpha,\ x}$ & $\hat{\bf n}_{\alpha,\ y}$ &  $\hat{\bf n}_{\alpha,\ z}$ \\
 \hline
 $1$  & $ 0.29588$ &  $ 0.29588$ & $ 0.90825$ \\
 $2$  & $ 0.90825$ &  $ 0.29588$ & $ 0.29588$ \\
@@ -443,8 +449,9 @@ $28$ & $-0.90825$ &  $-0.29588$ & $-0.29588$ \\
 $30$ & $-0.29588$ &  $-0.90825$ & $-0.29588$ \\
 \hline\hline
 \multicolumn{4}{l}{\small *Orientation vector points from centre of sphere 1 to centre of sphere 2.} \\
-		\end{tabular}
-	\end{center}
+
+\end{tabularx}
+\end{center}
 \label{sec:App1}
 \end{table}
 
