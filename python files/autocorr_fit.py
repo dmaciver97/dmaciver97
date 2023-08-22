@@ -9,7 +9,6 @@ import matplotlib.pyplot as plt
 class autocorr_fit(object):
     def __init__(self, path):
         self.path = path
-        self.label = self.path[self.path.rfind("/")+1:]
         #self.material, self.power, self.size, self.radius = self.get_label_path(self.label)
 
     def row_reader(self, row):
