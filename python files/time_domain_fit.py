@@ -25,14 +25,34 @@ class time_domain:
     
     '''
     def __init__(self, beta):
-        # Only necessary constant is the conversion factor
+        # Only necessary constant is the conversion factor beta
         self.beta = beta
         self.kT = 1.38e-23*290
         current_time = datetime()
         self.tag = current_time.now()
+
+    def __call__(self, args):
+        time, x_time, y_time = self.create_csv_file(args)
+        self.dt = time[1]-time[0]
+        kappa_x = self.equipartition_fit(x_time)
+        kappa_y = self.equipartition_fit(y_time)
+        if np.isclose(kappa_x, kappa_y):
+            print('Circular Beam profile')
+        else:
+            print(kappa_x, kappa_y)
+        mu_x = self.acf_fit(x_time)
+        mu_y = self.acf_fit(y_time)
+        print((mu_x+mu_y)/2)
+
     
     def create_csv_file(self, path):
-        # 
+
+        def row_reader(self, row):
+            line = list(row[0].split())
+            new_row = [float(line[0]), float(line[1]), float(line[2]), float(line[3])]
+
+            return new_row
+        
         with open(path, 'r') as input:
             reader = csv.reader(input.readlines()[5:])
 
@@ -45,19 +65,13 @@ class time_domain:
     def get_data(self, file):
         with open(file, 'r') as data:
             reader = csv.reader(data.readlines())
-            time, x_QPD, y_QPD = [], [], []
+            time, x_time, y_time = [], [], []
             for row in reader:
                 time.append(row[0])
-                x_QPD.append(row[1]/np.sqrt(self.beta))
-                y_QPD.append(row[2]/np.sqrt(self.beta))
+                x_time.append(row[1]/np.sqrt(self.beta))
+                y_time.append(row[2]/np.sqrt(self.beta))
 
-        return time, x_QPD, y_QPD
-
-    def row_reader(self, row):
-        line = list(row[0].split())
-        new_row = [float(line[0]), float(line[1]), float(line[2]), float(line[3])]
-
-        return new_row
+        return time, x_time, y_time
 
     def equipartition_fit(self, data):
         data_eq = np.mean(data)
@@ -75,17 +89,16 @@ class time_domain:
         plt.show()
 
         return trap_stiffness
+    
     def get_acf(self, data):
         hatf = np.fft.rfft(data)
         I0 = [f*f.conj() for f in hatf]
         C0 = np.fft.irfft(I0)
         #print(C0[0])
-        #C0 = C0 / C0[0]
-
+        C0 = C0 / C0[0]
         return C0
 
     def get_ACF(self, data, nbatch=50):
-        dt = 7.63e-6
         N = len(data)
         n = int(N / nbatch)
         acf_list = []
@@ -96,7 +109,7 @@ class time_domain:
             tmp = [x-avg for x in tmp]
             acf = self.get_acf(tmp)
             acf_list.append(acf)
-        t_list = np.arange(0.0, n*dt, dt)
+        t_list = np.arange(0.0, n*self.dt, self.dt)
         acf_data = np.array(acf_list)
         acf = [np.mean(acf_data[:,i]) for i in range(n)]
         err = [np.std(acf_data[:,i]) for i in range(n)]
@@ -113,10 +126,12 @@ class time_domain:
         self.acf_data, err, t_list =  self.get_ACF(data) #acf_data has units m^2, t_list units of seconds 
         self.t_list = t_list.tolist()
         popt, _ = curve_fit(self.acf_fit, self.t_list[:self.len], self.acf_data[:self.len], bounds=(0,1))
-        self.A, self.tau = popt #A should have units of m^2, tau units of s 
-        model = [self.acf_fit(t, self.A, self.tau) for t in self.t_list]
-        mu = self.calc_viscosity(self.A, self.tau)
+        A, tau = popt #A should have units of m^2, tau units of s 
+        model = [self.acf_fit(t, A, tau) for t in self.t_list]
+        mu = self.calc_viscosity(A, tau)
         self.plot_acf(model, mu)
+
+        return mu
 
     #plotting of acf should be done before fitting new data to acf
     def plot_acf(self, model):
@@ -132,4 +147,5 @@ if __name__ in '__main__':
     parser.add_argument('--r', type=float, default=1.57e-6, help='Particle Diamter [m]')
     parser.add_argument('--power', type=float, default=100e-3, help = 'laser power [W]')
     args = parser.parse_args()
+
 
