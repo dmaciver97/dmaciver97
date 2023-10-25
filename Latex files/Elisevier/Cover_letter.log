@@ -1,0 +1,81 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.3.31)  5 JUL 2023 14:58
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**./Cover_letter.tex
+(Cover_letter.tex
+LaTeX2e <2022-06-01> patch level 5
+L3 programming layer <2022-09-28>
+(C:\Users\xbb16146\AppData\Local\Programs\MiKTeX\tex/latex/base\letter.cls
+Document Class: letter 2021/12/07 v1.3c Standard LaTeX document class
+(C:\Users\xbb16146\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
+File: size10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
+)
+\longindentation=\dimen138
+\indentedwidth=\dimen139
+\labelcount=\count185
+)
+(C:\Users\xbb16146\AppData\Local\Programs\MiKTeX\tex/latex/textpos\textpos.sty
+Package: textpos 2022/07/23 v1.10.1
+Package textpos Info: choosing support for LaTeX3 on input line 60.
+
+(C:\Users\xbb16146\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks16
+)
+\TP@textbox=\box51
+\TP@holdbox=\box52
+\TPHorizModule=\dimen140
+\TPVertModule=\dimen141
+\TP@margin=\dimen142
+\TP@absmargin=\dimen143
+Grid set 16 x 16 = 38.39343pt x 49.68562pt
+\TPboxrulesize=\dimen144
+\TP@ox=\dimen145
+\TP@oy=\dimen146
+\TP@tbargs=\toks17
+TextBlockOrigin set to 0pt x 0pt
+)
+(C:\Users\xbb16146\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-
+pdftex.def
+File: l3backend-pdftex.def 2022-09-28 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count186
+\l__pdf_internal_box=\box53
+) (Cover_letter.aux)
+\openout1 = `Cover_letter.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+ [1
+
+{C:/Users/xbb16146/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] (Cover_le
+tter.aux) ) 
+Here is how much of TeX's memory you used:
+ 529 strings out of 475385
+ 11260 string characters out of 2775491
+ 354299 words of memory out of 3000000
+ 21982 multiletter control sequences out of 15000+600000
+ 469567 words of font info for 29 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 40i,7n,48p,270b,157s stack positions out of 10000i,1000n,20000p,200000b,80000s
+<C:/Users/xbb16146/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+amsfonts/cm/cmbx10.pfb><C:/Users/xbb16146/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmr10.pfb>
+Output written on Cover_letter.pdf (1 page, 41560 bytes).
+PDF statistics:
+ 16 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

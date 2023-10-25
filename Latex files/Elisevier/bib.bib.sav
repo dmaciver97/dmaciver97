@@ -1,0 +1,256 @@
+@article{Bar-Ziv_1998,
+  author       = {Bar-Ziv, R. and Meller, A. and Tlusty, T. and Moses,
+                  E. and Stavans, J. and Safran, S. A.},
+  title	       = {Localized Dynamic Light Scattering: Probing Single
+                  Particle Dynamics at the Nanoscale},
+  journal      = {Physical Review Letters},
+  year	       = 1997,
+  volume       = 78,
+  number       = 1,
+  month	       = {Jan},
+  pages	       = {154–157},
+  issn	       = {1079-7114},
+  doi	       = {10.1103/physrevlett.78.154},
+  publisher    = {American Physical Society (APS)}
+}
+
+
+
+@article{Bustamante2021Biophysics,
+  author       = {Bustamante, Carlos J. and Chemla, Yann R. and Liu,
+                  Shixin and Wang, Michelle D.},
+  title	       = {Optical tweezers in single-molecule biophysics},
+  journal      = {Nature Reviews Methods Primers},
+  year	       = 2021,
+  volume       = 1,
+  number       = 1,
+  month	       = {Mar},
+  issn	       = {2662-8449},
+  doi	       = {10.1038/s43586-021-00021-6},
+  url	       = {http://dx.doi.org/10.1038/s43586-021-00021-6},
+  publisher    = {Springer Science and Business Media LLC}
+}
+
+@article{Buchner2016Ultranest,
+	author = {Buchner, Johannes},
+	title = {A statistical test for Nested Sampling algorithms},
+	journal = {Statistics and Computing},
+	year = {2016},
+	volume = {26},
+	pages = {383-392},
+	doi  = {0.1007/s11222-014-9512-y}
+}
+
+@article{Vigilante2020Brownian_OT,
+  author       = {Vigilante, Wyatt and Lopez, Oscar and Fung, Jerome},
+  title	       = {Brownian dynamics simulations of sphere clusters in
+                  optical tweezers},
+  year	       = 2020,
+  volume       = 28,
+  number       = 24,
+  month	       = {Nov},
+  pages	       = 36131,
+  issn	       = {1094-4087},
+  doi	       = {10.1364/oe.409078},
+  journal      = {Optics Express},
+  publisher    = {The Optical Society}
+}
+
+@article{Mishchenko1996MSTM,
+	author = {Michael I.Mishchenko, Larry D.Travis, Daniel W.Mackowski},
+	title = {T-matrix computations of light scattering by nonspherical particles: A review},
+	journal = {Light scattering by Non-Spherical Particles},
+	year = {1996},
+	volume = {55},
+	pages = {535-575}
+}
+
+@article{yin2013large,
+	title="Large quantum superpositions of a levitated nanodiamond through spin-optomechanical coupling",
+	author="Yin, Zhang-qi and Li, Tongcang and Zhang, Xiang and Duan, LM",
+	journal="Physical Review A",
+	volume="88",
+	number="3",
+	pages="033614",
+	year="2013",
+	publisher="APS"
+}
+
+@article{arita2020coherent,
+	title="Coherent oscillations of a levitated birefringent microsphere in vacuum driven by nonconservative rotation-translation coupling",
+	author="Arita, Yoshihiko and Simpson, Stephen H and Zem{\'a}nek, Pavel and Dholakia, Kishan",
+	journal="Science advances",
+	volume="6",
+	number="23",
+	pages="eaaz9858",
+	year="2020",
+	publisher="American Association for the Advancement of Science"
+}
+
+@article{burns1990optical,
+	title="Optical matter: crystallization and binding in intense optical fields",
+	author="Burns, Michael M and Fournier, Jean-Marc and Golovchenko, Jene A",
+	journal="Science",
+	volume="249",
+	number="4970",
+	pages="749--754",
+	year="1990",
+	publisher="American Association for the Advancement of Science"
+}
+
+@inproceedings{gupta2014raman,
+	title="Raman Spectroscopic Studies on Optically Trapped Red Blood Cells",
+	author="Gupta, PK and Ahlawat, Sunita",
+	booktitle="International Conference on Fibre Optics and Photonics",
+	pages="S3D--2",
+	year="2014",
+	organization="Optica Publishing Group"
+}
+
+@article{friedrich2012tuning,
+	title="Tuning the detection sensitivity: a model for axial backfocal plane interferometric tracking",
+	author="Friedrich, Lars and Rohrbach, Alexander",
+	journal="Optics letters",
+	volume="37",
+	number="11",
+	pages="2109--2111",
+	year="2012",
+	publisher="Optical Society of America"
+}
+
+@article{yifat2021facile,
+	title="Facile Measurement of the Rotation of a Single Optically Trapped Nanoparticle Using the Diagonal Ratio of a Quadrant Photodiode",
+	author="Yifat, Yuval and Parker, John and Deng, Tian-Song and Gray, Stephen K and Rice, Stuart A and Scherer, Norbert F",
+	journal="ACS Photonics",
+	volume="8",
+	number="11",
+	pages="3162--3172",
+	year="2021",
+	publisher="ACS Publications"
+}
+
+@article{raudsepp2022estimating,
+	title="Estimating orientation of optically trapped, near vertical, microsphere dimers using central moments and off-focus imaging",
+	author="Raudsepp, Allan and Jameson, Geoffrey B and Williams, Martin AK",
+	journal="Applied Optics",
+	volume="61",
+	number="2",
+	pages="607--614",
+	year="2022",
+	publisher="Optical Society of America"
+}
+
+@article{Farsund1996,
+  author       = {Farsund, \O{}. and Felderhof, B. U.},
+  title	       = {Force, torque, and absorbed energy for a body of
+                  arbitrary shape and constitution in an
+                  electromagnetic radiation field},
+  journal      = {Physica A},
+  year	       = 1996,
+  volume       = 227,
+  number       = {1–2},
+  month	       = {May},
+  pages	       = {108–130},
+  issn	       = {0378-4371},
+  doi	       = {10.1016/0378-4371(96)00009-x},
+  publisher    = {Elsevier BV}
+}
+
+
+
+
+@misc{Lenton2020,
+	author = {Lenton, Isaac C. D. and Nieminen, Timo A. and Loke, Vincent L. Y. and Stilgoe, Alexander B. and Y. Hu and Kn{\ifmmode\ddot{o}\else\"{o}\fi}ner, Gregor and Bra{\ifmmode\acute{n}\else\'{n}\fi}czyk, Agata M. and Heckenberg, Norman R. and Rubinsztein-Dunlop, Halina},
+	title = {Optical Tweezers Toolbox},
+	year = {2020},
+	publisher = {GitHub},
+	howpublished = {https://github.com/ilent2/ott},
+	commit = {A specific commit or version (optional)}
+}
+
+@phdthesis{Rey2006,
+	author = {Guillem Colomer Reyuthor},
+	title = {Numerical methods for radiative heattransfer},
+	type = {Doctoral Thesis},
+	institution = {Universitat Polit`ecnica de Catalunya},
+  school = 	 {Universitat Politècnica de Catalunya},
+	date = {June 2006},
+	year = {2006},
+}
+
+@Article{Nir_Acrivos_1973,
+  author       = {Nir, Avinoam and Acrivos, Andreas},
+  title	       = {On the creeping motion of two arbitrary-sized
+                  touching spheres in a linear shear field},
+  year	       = 1973,
+  volume       = 59,
+  number       = 2,
+  month	       = {Jun},
+  pages	       = {209–223},
+  issn	       = {1469-7645},
+  doi	       = {10.1017/s0022112073001527},
+  url	       = {http://dx.doi.org/10.1017/S0022112073001527},
+  journal      = {Journal of Fluid Mechanics},
+  publisher    = {Cambridge University Press (CUP)}
+}
+
+@article{Pedregosa_etal_2011,
+ title={Scikit-learn: Machine Learning in {P}ython},
+ author={Pedregosa, F. and Varoquaux, G. and Gramfort, A. and Michel, V.
+         and Thirion, B. and Grisel, O. and Blondel, M. and Prettenhofer, P.
+         and Weiss, R. and Dubourg, V. and Vanderplas, J. and Passos, A. and
+         Cournapeau, D. and Brucher, M. and Perrot, M. and Duchesnay, E.},
+ journal={Journal of Machine Learning Research},
+ volume={12},
+ pages={2825--2830},
+ year={2011}
+}
+
+@Misc{Kingma_Ba_2014,
+  author       = {Kingma, Diederik P. and Ba, Jimmy},
+  title	       = {Adam: A Method for Stochastic Optimization},
+  year	       = 2014,
+  doi	       = {10.48550/ARXIV.1412.6980},
+  url	       = {https://arxiv.org/abs/1412.6980},
+  keywords     = {Machine Learning (cs.LG), FOS: Computer and
+                  information sciences, FOS: Computer and information
+                  sciences},
+  publisher    = {arXiv},
+  copyright    = {arXiv.org perpetual, non-exclusive license}
+}
+
+@article{Carvalho_2023,
+	author = {Carvalho, In{\^e}s Alves and Silva, Nuno Azevedo and Rosa, Carla C and Coelho, Lu{\'\i}s CC and Jorge, Pedro AS},
+	date-added = {2023-04-01 15:05:14 +0100},
+	date-modified = {2023-04-01 15:09:54 +0100},
+	journal = {Sensors},
+	number = {18},
+	pages = {6181},
+	publisher = {MDPI},
+	title = {Particle classification through the analysis of the forward scattered signal in optical tweezers},
+	volume = {21},
+	year = {2021}}
+
+@article{Watson_2023,
+	author = {Watson, Dakota and Hagen, Norbert and Diver, Jonathan and Marchand, Philippe and Chachisvilis, Mirianas},
+	date-added = {2023-04-01 15:05:14 +0100},
+	date-modified = {2023-04-01 15:10:05 +0100},
+	journal = {Biophysical journal},
+	number = {2},
+	pages = {1298--1306},
+	publisher = {Elsevier},
+	title = {Elastic light scattering from single cells: orientational dynamics in optical trap},
+	volume = {87},
+	year = {2004}}
+
+@Article{Hu2006,
+  author  = {Hu, Cang and Chung, M. Wong and C. Shan, Xu and Abbas, H. Rizvi and Haw, Yang},
+  journal = {Applied Physics Letters},
+  title   = {Confocal three dimensional tracking of a single nanoparticle with concurrent spectroscopic readouts},
+  year    = {2006},
+  volume  = {88},
+  doi     = {https://doi.org/10.1063/1.2204652},
+  url     = {https://pubs.aip.org/aip/apl/article/88/22/223901/328051/Confocal-three-dimensional-tracking-of-a-single},
+}
+
+@Comment{jabref-meta: databaseType:bibtex;}

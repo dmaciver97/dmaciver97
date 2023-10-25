@@ -49,6 +49,7 @@ class time_domain:
 
         def row_reader(self, row):
             line = list(row[0].split())
+            
             new_row = [float(line[0]), float(line[1]), float(line[2]), float(line[3])]
 
             return new_row
@@ -58,7 +59,7 @@ class time_domain:
 
             with open('tmp_tdat.csv', 'w') as output: 
                 writer = csv.writer(output)
-                writer.writerows(self.row_reader(row) for row in reader)
+                writer.writerows(row_reader(row) for row in reader)
 
         return self.get_data('tmp_tdat.csv')
     
