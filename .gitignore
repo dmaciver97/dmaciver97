@@ -2,21 +2,17 @@
 *.junk
 *.csv
 
+# latex files
+*.aux
+*.log
+*.bbl
+*.blg
+*.dvi
+
+
+# code files
+*.o
+
+
+# dolphin
 .directory
-data
-Latex files\Elisevier
-Latex files\Optica
-Latex files\Spie
-Latex files\bib.bib
-Latex files\archive
-python files\.vscode\argv.json
-python files\.vscode
-python files\_pycache_
-python files\python3.10
-python files\results
-python files\Trapping
-python files\__pycache__
-python files\tmp
-
-.vscode/settings.json
-
