@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.3.31)  26 OCT 2023 11:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.3.31)  6 FEB 2024 14:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -456,25 +456,25 @@ Package: array 2022/03/10 v2.5f Tabular extension package (FMi)
 \openout5 = `"Manuscript_Optical Communications.nlo"'.
 
 Package nomencl Info: Writing nomenclature file "Manuscript_Optical Communicati
-ons".nlo on input line 16.
+ons".nlo on input line 18.
 
 (Manuscript_Optical Communications.aux)
 \openout1 = `"Manuscript_Optical Communications.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
 
 (C:\Users\xbb16146\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf
 .mkii
@@ -540,26 +540,26 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 73.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 75.
 
 (C:\Users\xbb16146\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 73.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 75.
 
 
 (C:\Users\xbb16146\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 7
-3.
+5.
 
 (C:\Users\xbb16146\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 
 Package natbib Warning: Citation `Chetana_2022' on page 1 undefined on input li
-ne 78.
+ne 80.
 
 
 Overfull \hbox (2.22168pt too wide) has occurred while \output is active
@@ -569,50 +569,108 @@ Overfull \hbox (2.22168pt too wide) has occurred while \output is active
 [1
 
 {C:/Users/xbb16146/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-[2] (Manuscript_Optical Communications.bbl) [3]
-<./Images/Lab_frame.png, id=26, 602.25pt x 451.6875pt>
+[2]
+<./Images/Lab_frame.png, id=19, 602.25pt x 451.6875pt>
 File: ./Images/Lab_frame.png Graphic file (type png)
 <use ./Images/Lab_frame.png>
-Package pdftex.def Info: ./Images/Lab_frame.png  used on input line 99.
+Package pdftex.def Info: ./Images/Lab_frame.png  used on input line 100.
 (pdftex.def)             Requested size: 351.0pt x 263.26086pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[3]
+<Images/lam=2_theta=0.png, id=29, 920.7198pt x 547.0839pt>
+File: Images/lam=2_theta=0.png Graphic file (type png)
+<use Images/lam=2_theta=0.png>
+Package pdftex.def Info: Images/lam=2_theta=0.png  used on input line 132.
+(pdftex.def)             Requested size: 222.30286pt x 132.08751pt.
+<Images/lam=4_theta=0.png, id=31, 747.2718pt x 485.6544pt>
+File: Images/lam=4_theta=0.png Graphic file (type png)
+<use Images/lam=4_theta=0.png>
+Package pdftex.def Info: Images/lam=4_theta=0.png  used on input line 137.
+(pdftex.def)             Requested size: 222.30286pt x 144.47472pt.
+<Images/lam=10_theta=0.png, id=32, 809.424pt x 600.5637pt>
+File: Images/lam=10_theta=0.png Graphic file (type png)
+<use Images/lam=10_theta=0.png>
+Package pdftex.def Info: Images/lam=10_theta=0.png  used on input line 144.
+(pdftex.def)             Requested size: 222.30286pt x 164.94017pt.
+<Images/theta=0.png, id=33, 94.10156pt x 190.46156pt>
+File: Images/theta=0.png Graphic file (type png)
+<use Images/theta=0.png>
+Package pdftex.def Info: Images/theta=0.png  used on input line 149.
+(pdftex.def)             Requested size: 63.1802pt x 127.87885pt.
  [4 <./Images/Lab_frame.png>]
+<Images/lam=2_theta=180.png, id=38, 946.737pt x 523.2348pt>
+File: Images/lam=2_theta=180.png Graphic file (type png)
+<use Images/lam=2_theta=180.png>
+Package pdftex.def Info: Images/lam=2_theta=180.png  used on input line 157.
+(pdftex.def)             Requested size: 222.30286pt x 122.8564pt.
+<Images/lam=4_theta=180.png, id=39, 766.062pt x 553.5882pt>
+File: Images/lam=4_theta=180.png Graphic file (type png)
+<use Images/lam=4_theta=180.png>
+Package pdftex.def Info: Images/lam=4_theta=180.png  used on input line 162.
+(pdftex.def)             Requested size: 222.30286pt x 160.64627pt.
+<Images/lam=10_theta=180.png, id=40, 806.5332pt x 577.4373pt>
+File: Images/lam=10_theta=180.png Graphic file (type png)
+<use Images/lam=10_theta=180.png>
+Package pdftex.def Info: Images/lam=10_theta=180.png  used on input line 169.
+(pdftex.def)             Requested size: 222.30286pt x 159.15259pt.
+<Images/theta=180.png, id=41, 105.39375pt x 346.29375pt>
+File: Images/theta=180.png Graphic file (type png)
+<use Images/theta=180.png>
+Package pdftex.def Info: Images/theta=180.png  used on input line 174.
+(pdftex.def)             Requested size: 47.50172pt x 156.07909pt.
+ [5 <./Images/lam=2_theta=0.png> <./Images/lam=4_theta=0.png> <./Images/lam=10_
+theta=0.png> <./Images/theta=0.png>] [6 <./Images/lam=2_theta=180.png> <./Image
+s/lam=4_theta=180.png> <./Images/lam=10_theta=180.png> <./Images/theta=180.png>
+]
+Overfull \hbox (5.69354pt too wide) in paragraph at lines 194--195
+[]\T1/cmr/m/n/10 We study by means of computer simulations, the orientation dep
+endent trapping landscapes for asymmetric
+ []
+
+[7] (Manuscript_Optical Communications.bbl)
 
 Package natbib Warning: There were undefined citations.
 
-[5] (Manuscript_Optical Communications.aux) ) 
+[8] (Manuscript_Optical Communications.aux) ) 
 Here is how much of TeX's memory you used:
- 10376 strings out of 475385
- 187629 string characters out of 2775491
- 585074 words of memory out of 3000000
- 31568 multiletter control sequences out of 15000+600000
- 481035 words of font info for 58 fonts, out of 8000000 for 9000
+ 10470 strings out of 475385
+ 189704 string characters out of 2775491
+ 586247 words of memory out of 3000000
+ 31651 multiletter control sequences out of 15000+600000
+ 481707 words of font info for 60 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 110i,13n,106p,1746b,403s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 110i,13n,106p,1746b,554s stack positions out of 10000i,1000n,20000p,200000b,80000s
  <C:\Users\xbb16146\AppData\Local\
-MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\xbb16146\AppDa
-ta\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\xbb16
-146\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Us
-ers\xbb16146\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.p
+MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk> <C:\Users\xbb16146\AppDa
+ta\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm0800.pk> <C:\Users\xbb16
+146\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Us
+ers\xbb16146\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.p
 k> <C:\Users\xbb16146\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\e
-cti0800.pk> <C:\Users\xbb16146\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
-/dpi600\ecti0600.pk> <C:\Users\xbb16146\AppData\Local\MiKTeX\fonts/pk/ljfour/jk
-nappen/ec/dpi600\ecrm0700.pk> <C:\Users\xbb16146\AppData\Local\MiKTeX\fonts/pk/
-ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\xbb16146\AppData\Local\MiKTeX\
-fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1440.pk><C:/Users/xbb16146/AppData/Local
-/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/xbb16146/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/User
-s/xbb16146/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.p
-fb><C:/Users/xbb16146/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
-/cm/cmmi8.pfb><C:/Users/xbb16146/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmr10.pfb><C:/Users/xbb16146/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/xbb16146/AppData/Local/Programs/Mi
-KTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/xbb16146/AppData/Local
-/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/xbb16146/Ap
-pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on "Manuscript_Optical Communications.pdf" (5 pages, 241753 byte
+cti1000.pk> <C:\Users\xbb16146\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
+/dpi600\ecbx1000.pk> <C:\Users\xbb16146\AppData\Local\MiKTeX\fonts/pk/ljfour/jk
+nappen/ec/dpi600\ecti0800.pk> <C:\Users\xbb16146\AppData\Local\MiKTeX\fonts/pk/
+ljfour/jknappen/ec/dpi600\ecti0600.pk> <C:\Users\xbb16146\AppData\Local\MiKTeX\
+fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0700.pk> <C:\Users\xbb16146\AppData\Loca
+l\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\xbb16146\App
+Data\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1440.pk><C:/Users/xbb1
+6146/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C
+:/Users/xbb16146/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
+mmi10.pfb><C:/Users/xbb16146/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
+msfonts/cm/cmmi7.pfb><C:/Users/xbb16146/AppData/Local/Programs/MiKTeX/fonts/typ
+e1/public/amsfonts/cm/cmmi8.pfb><C:/Users/xbb16146/AppData/Local/Programs/MiKTe
+X/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/xbb16146/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/xbb16146/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/xbb1
+6146/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:
+/Users/xbb16146/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
+sy7.pfb>
+Output written on "Manuscript_Optical Communications.pdf" (8 pages, 543563 byte
 s).
 PDF statistics:
- 399 PDF objects out of 1000 (max. 8388607)
+ 452 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
 

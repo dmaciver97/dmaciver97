@@ -13,6 +13,8 @@
 \usepackage{color}
 \usepackage{nomencl}
 \usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage[skip=0.333\baselineskip]{caption}
 \makenomenclature
 \renewcommand{\nomlabel}[1]{\hfil #1\hfil}
 
@@ -79,8 +81,7 @@ Besides multiple trapped beads, trapping and dynamics of asymmetric shapes have 
 In this work, we extend the Brownian dynamical simulations carried out by Vigilante et.al., \cite{Vigilante_2020} to the case of asymmetric dimers. We begin by showing that the optical force on a microsphere-dimer quickly deviates from a simple sum of forces on two spheres and thus underscore the relevance of the choice of mstm, a well-established package for calculating light scattering from a cluster of spheres \cite{Mackowski_2011} and within it ott, a well-established toolbox for computing forces and torques in an OT \cite{Nieminen_2007}.  We show validations of the dynamical simulations for the case of a single trapped bead in both linear and circularly polarized traps with the suspension medium being water at room temperature. We then reproduce the results for dynamics of a symmetric dimer in \cite{Vigilante_2020} as further validation of our codes. We organize our results into 3 sections with the focus on axial and orientation trapping equilibria for different size-ratios of the dimers in the first section, determinations of equilibrium orientations and equilibrium positions of various dimers with varied initial conditions of orientation and position in linearly and circularly polarised traps, Finally, we report interesting rotational dynamics of dimers seen only when the light is not linearly polarised. We hope that our results could inform studies on colloidal aggregation and help design rotors for use in applications such as lab-on-a-chip and micromachines.        
 
 \newpage
-\bibliography{dimer_bib} 
-\bibliographystyle{ieeetr}
+
 
 \section{Methodology}
 \paragraph{Simulating motion within an optical trap}
@@ -126,6 +127,73 @@ Trapping forces on a sphere are often written as the rate of change in momenta o
 
 \subsection{Axial forces and Equilibrium positions}
 We explore the trapping landscape by plotting out the trapping force as the dimer is moved along the z-axis and see that for the case of large-bead-over-small, there are multiple trapping equilibria compared to the case of small-bead-over-large as seen in Fig [4] and Fig [5]. In all these calculations, we maintain the radius of one of the beads making up the dimer at 1micron and vary the size of the other bead to 500nm, 250nm, and 100nm respectively in the case of size-ratios 2, 4, and 10. In Fig. [6] we plot out the force curve for a symmetric dimer with the size of each sphere equal to 1 $\mu m$.  
+\begin{figure}
+\begin{subfigure}{.475\linewidth}
+	\includegraphics[width=\linewidth]{Images/lam=2_theta=0.png}
+	\caption{}
+	\label{lam=2}
+\end{subfigure}\hfill % <-- "\hfill"
+\begin{subfigure}{.475\linewidth}
+	\includegraphics[width=\linewidth]{Images/lam=4_theta=0.png}
+	\caption{}
+	\label{lam=4}
+\end{subfigure}
 
+\medskip % create some *vertical* separation between the graphs
+\begin{subfigure}{.475\linewidth}
+	\includegraphics[width=\linewidth]{Images/lam=10_theta=0.png}
+	\caption{}
+	\label{lam=10}
+\end{subfigure}\hfill % <-- "\hfill"
+\begin{subfigure}{.3\linewidth}
+	\includegraphics[width=0.45\linewidth, keepaspectratio]{Images/theta=0.png}
+	\label{large over small}
+\end{subfigure}
+\caption{Plots of force vs displacement of the point of the contact of the spheres(µm) for the case of a dimer with larger bead above the smaller bead when viewed along the positive z-direction. Size ratios in (a), (b), and (c) are 1:2, 1:4, and 1:10 respectively. The black lines on each force-curve is a linear fit with the slope being reported as the trap stiffness in the legend.}
+\end{figure}
 
+\begin{figure}
+	\begin{subfigure}{.475\linewidth}
+		\includegraphics[width=\linewidth]{Images/lam=2_theta=180.png}
+		\caption{}
+		\label{lam=2_inverted}
+	\end{subfigure}\hfill % <-- "\hfill"
+	\begin{subfigure}{.475\linewidth}
+		\includegraphics[width=\linewidth]{Images/lam=4_theta=180.png}
+		\caption{}
+		\label{lam=4_inverted}
+	\end{subfigure}
+	
+	\medskip % create some *vertical* separation between the graphs
+	\begin{subfigure}{.475\linewidth}
+		\includegraphics[width=\linewidth]{Images/lam=10_theta=180.png}
+		\caption{}
+		\label{lam=10_inverted}
+	\end{subfigure}\hfill % <-- "\hfill"
+	\begin{subfigure}{.29\linewidth}
+		\includegraphics[width=0.35\linewidth, keepaspectratio]{Images/theta=180.png}
+		\label{small_over_large}
+	\end{subfigure}
+	\caption{Plots of force vs displacement of the point of the contact of the spheres(µm) for the case of a dimer with smaller bead above the larger bead when viewed along the positive z-direction. Size ratios in (a), (b), and (c) are 1:2, 1:4, and 1:10 respectively. The black lines on each force-curve is a linear fit with the slope being reported as the trap stiffness in the legend.}
+\end{figure}
+
+Figure 5 shows that there exists a second trap below the focus of the trapping beam, this trap is only stable when the dimer is orientated against the beam propagation direction. We extend this analysis for size ratios between 1 to 10. Not only is the second trap only possible within the range 1.1 to 4, after which the second trap stiffness goes to 0, the trapping positions as a function of size ratio are shown below.
+
+\subsection{Torques and equilibrium orientations:}
+Having determined the axial-equilibrium positions of the dimers, we go about determining the steady-state orientations of the dimers assuming they’ve been trapped at their axial-equilibrium positions. The torques reported here are about the X and Y directions of the dimer as discussed in the section on Methods. Fig. [7] shows plots of Torque as a function of angles made with the X and Y axes of a reference frame whose origin coincides with the point-of-contact of the dimer as described in the section on Methods and the orientation of the dimer is small-over-large looking along the positive z-axis. In Fig 7(a) and Fig 7(b), we show plots of torque vs orientation for a dimer of size-ratio 1:2 at axial positions -1.63µm and 1.2µm respectively. In Fig 7(c) and Fig 7(d), we show torque vs orientation plots for a dimer of size ratio 1:4 at axial positions 0.11µm and -0.84µm respectively and in Fig 7(e) we show torque vs orientation for a dimer of size ratio 1:10 trapped at the focus. In Fig [8] we show torque curves for a symmetric dimer where the microspheres are both assumed to be of radius 1micron. We change the polarisation of light to linear in plots shown in Fig [9]. We assume the light to be polarised along x-axis and see no significant torque along this direction and therefore we only show torque vs angular displacement about y-axis. In Fig. [10], we show these results for a symmetric dimer where the microsphere radius is 1micron. 
+
+Simpson and Hanna have reported a strong coupling between translational and rotational motion of rod-shaped microscopic particles in an OT [] and we feel it’s reasonable to expect a similar effect in case of dimers. Therefore, we probe the stability of the axial-equilibrium to rotations when dimers are rotated after being trapped at their axial equilibrium positions reported in Fig [5]. We therefore plot axial force as a function of displacement about the y-axis when the trap is linearly polarised along x-direction. These are shown in Fig [11]. 
+
+\subsection{Rotation Dynamics}
+Dimers have been shown to rotate within a circularly polarised trap [] meaning they have the potential to be used in micro rotor applications. Interestingly, while the rotation speed is linearly proportional to the laser power it is also dependent on both the orientation and size of the dimer, with the orientation having a greater impact on the rotation speed. We suspect that since the dimer’s trapping position is also dependent on the orientation there is a lower transfer of angular momentum when the dimer is closer to the trap focus. This is reflected in Fig 12b where we see the impact of polarization angle on the rotation speed, maximising at 45o and seeing no rotation at 0¬o and 90o, we simulated dimers of different size ratios with the solid lines representing the rotation speed when the dimer is orientated with the sphere II towards the beam focus and individual points representing the rotation speed when sphere II is orientated away from the beam focus. Despite having the same overall shape and size a 1:4 dimer will not rotate when oriented towards the beam focus, where as the reverse case the dimer rotates at a frequency of roughly 45 Hz. 
+
+This is also the case for our second trap below the focus of the beam, in this case we see an even greater rotation rate than above the focus. Interestingly the direction of rotation is flipped upon crossing the focus of the trap, this suggests that the rotations are not induced by a spin-curl effects as these effects are shown to only be caused by the polarisation of the electromagnetic field. We also note that the relationship is also somewhat related to the dimer’s displacement from the trap focus, where a greater displacement results in a faster rotation rate, where in each case as soon as the dimer is trapped at the focus the rotation frequency goes to 0.
+
+\section{Conclusions and Outlook}
+	
+	We study by means of computer simulations, the orientation dependent trapping landscapes for asymmetric microsphere dimers in both linearly and circularly polarized traps and show that trapping with circularly polarized light can lead to sustained rotations that go roughly as 0.25 Hz/mW for the orientation of small sphere over large when viewed opposite to the beam propagation direction. These results should provide insights with regards development of experiments probing the trapping behaviour of dimers and also make for interesting comparisons with other complex shapes such as ellipsoids and rods. Furthermore, we hope our results might be useful for development of micro-rotors for lab-on-a-chip assays. 
+	
+\newpage
+\bibliography{dimer_bib} 
+\bibliographystyle{ieeetr}
 \end{document}
