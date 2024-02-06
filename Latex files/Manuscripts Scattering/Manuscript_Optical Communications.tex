@@ -160,7 +160,7 @@ Our goal is to determine the orientation of the trapped dimer based on the measu
 \end{align}
 where the denominator is simply the standard deviation across the set of values $I(\hat{\bf n}, \theta_k)$. The reference orientations, raw intensities, and scaled signals are given in Tables~\ref{tab:A1} and \ref{tab:A2}. 
 
-Note that the collected scattering signals are not necessarily simply related to their associated reference orientations: as is well known from such examples of the inverse scattering problem. While it is trivial to compute the light scattering pattern for any given particle with any particular characteristic (i.e. size, shape, or orientation), inferring the light scattering from a unknown particle to determine said characteristic is incredibly difficult due to complex mapping between scattering and said characteristic. Even if the orientation space is divided evenly between reference orientation the subsequent signal space ends up being appearing mixed making simple comparisons of signals useless for inferring information on the particle. Shown below is two clusters of orientation vectors and there respective measured scattering signals - the points have been coloured based on their proximity to the centre of their respective cluster. While the orientation space appears tightly packed and ordered the signal space quickly spreads out in an asymmetric fashion. Furthermore as seen in Fig~\ref{fig:mixing}b the signal mapping can intersect itself which only further increases the complexity. While in some instances the mapping between one reference orientation and another is discrete, in other instances the mapping becomes far more complex to discern. 
+Note that the collected scattering signals are not necessarily simply related to their associated reference orientations: as is well known from such examples of the inverse scattering problem. While it is trivial to compute the light scattering pattern for any given particle with any particular characteristic (i.e. size, shape, or orientation), inferring the light scattering from a unknown particle to determine said characteristic is incredibly difficult due to complex mapping between scattering and said characteristic. Even if the orientation space is divided evenly between reference orientation the subsequent signal space ends up being appearing mixed making simple comparisons of signals useless for inferring information on the particle. Fig~\ref{fig:motion} shows the mapping between two clusters of orientation vectors and there respective measured scattering signals, the colouring represents the distance in orientation space from the centre of each cluster. While the orientation space appears tightly packed and ordered the signal space quickly spreads out in an asymmetric fashion. Furthermore as seen in Fig~\ref{fig:mixing}b the signal mapping can intersect itself which only further increases the complexity. While in some instances the mapping between one reference orientation and another is discrete, in other instances the mapping becomes far more complex to discern. 
 
 \begin{figure}[h]
 	\centering
@@ -172,7 +172,7 @@ Note that the collected scattering signals are not necessarily simply related to
 		\subcaption{}
 		\includegraphics[width=\textwidth]{./Images/fig3b.png}
 	\end{subfigure}
-	\caption{(a) Distribution of orientation vectors and (b) their respective scattering signals. Points are coloured according to their distance from the centre of each cluster (red points centred around [$0.00, 0.00, 1.00$], blue points centred at [$0.71, 0.00, 0.71$])}
+	\caption{Mapping between (a) orientation vectors and (b) their respective scattering signals. Points are coloured according to their distance from the centre of each cluster (red points centred around [$0.00, 0.00, 1.00$], blue points centred at [$0.71, 0.00, 0.71$])}
 	\label{fig:mixing}
 \end{figure}
 
@@ -203,7 +203,7 @@ probability that our dimer is in orientation $\hat{\bf n}_{\alpha}$ given a meas
 signal ($y_1$, $y_2$, $y_3$), \textit{i.e.} an estimated mapping from scattering measurement to orientation estimate. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Calculation of error}
+\subsection{Evaluating model performance}
 \label{sec:divergence}
 To evaluate the above estimation of dimer orientation from scattering signal, we use a Brownian simulation of a dimer in the optical trap (Section~\ref{sec:brownian}) to compare estimated most probable reference orientation, derived from the dimer's scattering through Eq.~\eqref{eq:bayes}, with the dimer's known \emph{actual} orientation $\hat{\bf s}$. MSTM provides calculated light scattering from the simulated dimer $I(\hat{\bf s}, \theta)$ and we use \eqref{eq:scale} to obtain normalized values at each measurement angle $\theta_k$,  $y_1(\hat{\bf s})$, $y_2(\hat{\bf s})$, $y_3(\hat{\bf s})$, from which we obtain $p(\hat{\bf n}_{\alpha}\parallel y_1, y_2, y_3)$. Because we know the actual orientation $\hat{s}$ we can measure the error in the model's estimate by comparing the reference orientation closest to $\hat{s}$, denoted as $\hat{\bf n}_{best}$, with the most probable predicted orientation from Eq.~\eqref{eq:bayes}. An ideal result would be one where the probability distribution is 0 for every $\hat{\bf n}$ apart from $\hat{\bf n}_{best}$:
 \begin{align}
@@ -243,7 +243,7 @@ shaped sphere clusters. We simulate the motion of a dimer trapped in a highly fo
 \label{sec:Discussion}
 \subsection{Minimal number of detectors}
 \label{sec:detectors}
-The exact number of detectors was initially assumed to be arbitrary, in that it made no difference to our estimate whether we used 2 angles or 200. For practical purposes it seemed beneficial that we demonstrate our method works for a minimal number of detection angles, as geometric constraints come into play when trying to install a high number of detection fibres for any optical tweezer set up. 
+The exact number of detectors was initially assumed to be arbitrary, in that it made no difference to our estimate whether we used 2 angles or 200. For practical purposes it seemed beneficial that we demonstrate our method works for a minimal number of detection angles, as geometric constraints come into play when trying to install a high number of detection fibres for any optical tweezer set up. Typically for an inverted microscope set up the most obvious plane to place your fibres is in the x-y plane as it is both easier to align with the trapping beam, and to measure the exact angle from the centre of the beam to each fibre. Ideally with a given number of fibres it should be possible to produce a unique signal at each point in time. 
 
 
 \begin{figure}[h]
@@ -260,9 +260,9 @@ The exact number of detectors was initially assumed to be arbitrary, in that it 
 	\label{fig:detectors}
 \end{figure}
 
- When all of the detectors lie in the same plane the expected signal can appear identical despite the dimer being in completely different orientations. This is shown in Figure~\ref{fig:detectors} which plots the expected signals from 30 reference orientations, each point is labelled with its corresponding reference orientation, the fact that points have multiple labels is because the dimer's scattering is indistinguishable in these two reference orientation. It should be noted that these pairs are reflected in one or more axis which suggests that these are due to the arrangement of our detectors. More specifically, if the detectors are placed say in the x-y plane then only when the dimer is pointed nearly fully upright will the expected signal be entirely unique. This is illustrative of the difficulty behind the inverse light scattering problem; as one cannot always map a given signal to a particular parameter value.
+ When all of the detectors lie in the same plane the expected signal can appear identical despite the dimer being in completely different orientations. This is shown in Figure~\ref{fig:detectors} which plots the expected signals from 30 reference orientations, each point is labelled with its corresponding reference orientation, the fact that points have multiple labels is because the dimer's scattering is indistinguishable in these two reference orientation. It should be noted that these pairs are reflected in one or more axis which suggests that these are due to the arrangement of our detectors, if the fibres were instead placed in say the z-x plane we would see a similar problem with vertical reference orientations. More specifically, if the detectors are placed say in the x-y plane then only when the dimer is pointed nearly fully upright will the expected signal be entirely unique. This is illustrative of the difficulty behind the inverse light scattering problem; as one cannot always map a given signal to a particular parameter value.
 
-To remedy this we raise the third detector out of the x-y plane; as such the expected signals from each reference orientation is unique. As seen between Figures \ref{fig:detectors}a \& b each reference orientation now has a unique scattering signal, though with only three detectors the difference in expected signals can appear insignificant. By adding a $4^{th}$ detector we can differentiate signals more reliably, improving the neural networks performance.   In line with our goal of making this method viable in a laboratory setting we decided not to increase the number of detectors further than 4. 
+To remedy this we raise the third detector out of the x-y plane; as such the expected signals from each reference orientation is unique. As seen between Figures \ref{fig:detectors}a \& b each reference orientation now has a unique scattering signal, though with only three detectors the difference in expected signals can appear insignificant. By adding a $4^{th}$ detector we can differentiate signals more reliably, improving the neural networks performance. The difficulty with placing fibres out of the x-y plane is ensuring the fibre remains at a fixed angle throughout the measurement, and how to actually measure the position of the out of plane fibre accurately. In line with our goal of making this method viable in a laboratory setting we decided not to increase the number of detectors further than 4. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Testing the Model}
@@ -324,7 +324,7 @@ correlate with $F(K_l)$.
 \subsection{Asymmetric dimer dynamics}
 \label{sec:motion}
 
-The Brownian OT software was used to simulate the motion of a trapped dimer ($a_1=1\,\mu{\rm m}$, $a_2=0.5\,\mu{\rm m}$) over the first $1$ seconds of entering the optical trap.  The initial orientation was set at $s = (0.923, 0.0, 0.385)$. The dimer's position and orientation was recorded every $10\,{\rm \mu s}$ for using as a test dataset for our model.
+The Brownian OT software was used to simulate the motion of a trapped dimer ($a_1=1\,\mu{\rm m}$, $a_2=0.5\,\mu{\rm m}$) over the first $1$ seconds of entering the optical trap. The initial orientation was set at $s = (0.923, 0.0, 0.385)$. The dimer's position and orientation was recorded every $10\,{\rm \mu s}$ for using as a test dataset for our model.
 
 \begin{figure}[h]
 	\centering
@@ -340,7 +340,7 @@ The Brownian OT software was used to simulate the motion of a trapped dimer ($a_
 	\label{fig:motion}
 \end{figure}
 
-In the simulations of Vigilante~\emph{et~al}.\ \cite{Vigilante2020Brownian_OT}, trapped symmetrical dimers were investigated; their findings showed that the optical torque on the dimer goes to zero while aligned vertically and is at its maximum in a horizontal alignment. However as seen in Figure~\ref{fig:motion} asymmetric dimers demonstrate dynamics that do not immediately achieve steady state. We chose to use asymmetric dimers as our benchmark due to this fact, as its orientational motion is far more complex than a symmetric dimer. In the future we hope to further investigate the motion of asymmetric dimers. 
+In the simulations of Vigilante~\emph{et~al}.\ \cite{Vigilante2020Brownian_OT}, trapped symmetrical dimers were investigated; their findings showed that the optical torque on the dimer goes to zero while aligned vertically and is at its maximum in a horizontal alignment. However as seen in Figure~\ref{fig:motion} asymmetric dimers demonstrate dynamics that do not immediately achieve steady state. We chose to use asymmetric dimers as our benchmark due to this fact, as its orientational motion is far more complex than a symmetric dimer. In the future we hope to perform a more exhaustive discussion of the behaviour dimers demonstrate within an optical trap, accounting for factors such as polarisation, size, orientation, position, and so on. For now we are more concerned with our model's performance in determining the orientation for an example trajectory, one who's motion is not easily understood based on current literature. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Accounting for sources of error in light scattering measurements}
@@ -395,9 +395,24 @@ Notably the increasing the number of reference orientations had a greater effect
 
 So far a key assumption of the neural network implementation is that the detected scattering signal has no uncertainty associated with it. In reality of course scattering signals will always have some non-zero measurement noise. This can be attributed to a variety of factors, from a measurement bias in the detector, to the Brownian motion of the dimer itself. To explore the impact of measurement uncertainty on orientation estimation model performance we introduce a Gaussian noise to the measured signal:
 \begin{align}
+	\label{eq:var}
 	I(\hat{\bf s}) = I(\hat{\bf s}) \pm \epsilon I(\hat{\bf s})
 \end{align}
-where $\epsilon$ is the percentage error associated with the scattering signal. Figure~\ref{fig:epsilon} shows the performance of the model at a range of $\epsilon$ using in-plane detector angles $15^{\circ}$, $55^{\circ}$, $90^{\circ}$ and out-of-plane detector at $75^{\circ}$, with $\beta$ set to $1$:
+where $\epsilon$ is the percentage error associated with the scattering signal. This assumption that the signal noise is a simple percent error of our collected signal only holds true if we can be sure that the variation across the entire surface of our detector is smaller than that. The variation over for a detector k located by angles $\theta_k$ and $\phi_k$ is given by:
+
+\begin{align}
+	\sigma_k = {\bar{I}_k} \ ^{-1}(I(\theta_k, \phi_k)-\bar{I}_k)
+\end{align}
+
+We know that as we move further away from the centre of the trap this variation decreases with distance. We can use mstm to compute the variation over the surface of our detector as a function of distance for each detector used. 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.75\textwidth]{./Images/Detector vs distance_modified.png}
+	\caption{$\%$ Variation over the surface of our 4 detectors as a function of their distance from the centre of the trap; legend shows the spherical coordinates of each detector ($\theta$ = azimuthal angle, $\phi$ = polar angle). Dotted lines mark 15 $\%$ and 1 $\%$ which correspond to signal error used below.}
+	\label{fig:detector}
+\end{figure}
+As shown in Fig~\ref{fig:detector} the variation over the detector drops off with distance, the parrallel nature of the curves indicates that the variance accross the detector follows an inverse square law. Figure~\ref{fig:epsilon} shows the performance of the model at a range of $\epsilon$ using in-plane detector angles $15^{\circ}$, $55^{\circ}$, $90^{\circ}$ and out-of-plane detector at $75^{\circ}$, with $\beta$ set to $1$. We moved each detector back to a distance of 500 $\mu m$ so that Eq~\ref{eq:var} holds true for a $1 \%$ signal noise.
 
 \begin{figure}[h]
 	\centering
@@ -474,9 +489,9 @@ We have developed a method for measuring the dynamics of an optically-trapped co
 \begin{table}[h]
 	\begin{center}
 		\caption{\label{tab:A1}
-		%
-		Reference Orientations vector components, for $n_{refs} = 30 \ ^*$}
-		\begin{tabularx}{0.65\textwidth}{
+			%
+			Reference Orientations vector components, for $n_{refs} = 30 \ ^*$}
+		\begin{tabularx}{0.9\textwidth}{
 				| >{\centering\arraybackslash}X
 				| >{\centering\arraybackslash}X
 				| >{\centering\arraybackslash}X
@@ -484,16 +499,41 @@ We have developed a method for measuring the dynamics of an optically-trapped co
 			\hline\hline
 			$\alpha$ & $\hat{\bf n}_{\alpha,\ x}$ &  $\hat{\bf n}_{\alpha,\ y}$ &  $\hat{\bf n}_{\alpha,\ z}$ 
 			\\ \hline
-			\csvreader[
-			head to column names
-			]
-			{./data/n_list.csv}{}{
-			\index\ & \nx\ & \ny\ & \nz\ \\
-			} \\
+			$1$ & $0.2958759$ & $0.2958759$ & $0.9082483$ \\
+			$2$ & $0.9082483$ & $0.2958759$ & $0.2958759$ \\
+			$3$ & $0.2958759$ & $0.9082483$ & $0.2958759$ \\
+			$4$ & $0.2958759$ & $0.2958759$ & $-0.9082483$ \\
+			$5$ & $0.9082483$ & $0.2958759$ & $-0.2958759$ \\
+			$6$ & $0.2958759$ & $0.9082483$ & $-0.2958759$ \\
+			$7$ & $0.2958759$ & $-0.2958759$ & $0.9082483$ \\
+			$8$ & $0.9082483$ & $-0.2958759$ & $0.2958759$ \\
+			$9$ & $0.2958759$ & $-0.9082483$ & $0.2958759$ \\
+			$10$ & $0.2958759$ & $-0.2958759$ & $-0.9082483$ \\
+			$11$ & $0.9082483$ & $-0.2958759$ & $-0.2958759$ \\
+			$12$ & $0.2958759$ & $-0.9082483$ & $-0.2958759$ \\
+			$13$ & $-0.2958759$ & $0.2958759$ & $0.9082483$ \\
+			$14$ & $-0.9082483$ & $0.2958759$ & $0.2958759$ \\
+			$15$ & $-0.2958759$ & $0.9082483$ & $0.2958759$ \\
+			$16$ & $-0.2958759$ & $0.2958759$ & $-0.9082483$ \\
+			$17$ & $-0.9082483$ & $0.2958759$ & $-0.2958759$ \\
+			$18$ & $-0.2958759$ & $0.9082483$ & $-0.2958759$ \\
+			$19$ & $-0.2958759$ & $-0.2958759$ & $0.9082483$ \\
+			$20$ & $-0.9082483$ & $-0.2958759$ & $0.2958759$ \\
+			$21$ & $-0.2958759$ & $-0.9082483$ & $0.2958759$ \\
+			$22$ & $-0.2958759$ & $-0.2958759$ & $-0.9082483$ \\
+			$23$ & $-0.9082483$ & $-0.2958759$ & $-0.2958759$ \\
+			$24$ & $-0.2958759$ & $-0.9082483$ & $-0.2958759$ \\
+			$25$ & $1.0000$ & $0.0000$ & $0.0000$ \\
+			$26$ & $0.0000$ & $1.0000$ & $0.0000$ \\
+			$27$ & $0.0000$ & $0.0000$ & $1.0000$ \\
+			$28$ & $-1.000$ & $0.0000$ & $0.0000$ \\
+			$29$ & $0.0000$ & $-1.000$ & $0.0000$ \\
+			$30$ & $0.0000$ & $0.0000$ & $-1.000$ \\
+			
 			\hline\hline 
-		\multicolumn{4}{l}{\small *Orientation vector points from centre of sphere 1 to centre of sphere 2.} \\
+			\multicolumn{4}{l}{\small *Orientation vector points from centre of sphere 1 to centre of sphere 2.} \\
 		\end{tabularx}
-\end{center}
+	\end{center}
 \end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
@@ -505,13 +545,37 @@ We have developed a method for measuring the dynamics of an optically-trapped co
 		\begin{tabular}{|c|c|c|c|c|c|c|}
 			\hline\hline
 			$\alpha$  & $I(\hat{\bf n}_\alpha\ ,\ 15^{\circ})$ &  $I(\hat{\bf n}_\alpha \ , \ 55^{\circ})$ &  $I(\hat{\bf n}_\alpha \ ,\ 90^{\circ})$ & $y(\hat{\bf n}_\alpha \ , \ 15^{\circ})$ & $y(\hat{\bf n}_\alpha \ , \ 55^{\circ})$ & $y(\hat{\bf n}_\alpha \ , \ 90^{\circ})$ \\
-		    \hline
-			\csvreader[
-			head to column names
-			]
-			{./data/y_list.csv}{}{
-				\index\ & \Ix\ & \Iy\ & \Iz\ & \yx\ & \yy\ & \yz\ \\
-			} \\
+			\hline
+			$1$ & $5.236437793$ & $0.008879799$ & $0.01023413$ & $-0.566323866$ & $-0.895169311$ & $-0.782655503$ \\
+			$2$ & $9.029762808$ & $0.014176754$ & $0.023474524$ & $1.604434643$ & $-0.737872411$ & $1.16224444$ \\
+			$3$ & $5.677784222$ & $0.018003042$ & $0.012268563$ & $-0.313760083$ & $-0.624248031$ & $-0.48381477$ \\
+			$4$ & $4.054681384$ & $0.008596164$ & $0.007681417$ & $-1.242592777$ & $-0.903592052$ & $-1.157627171$ \\
+			$5$ & $5.916429873$ & $0.012267124$ & $0.018806686$ & $-0.17719333$ & $-0.794580264$ & $0.47657917$ \\
+			$6$ & $7.154962253$ & $0.040816852$ & $0.007678353$ & $0.531566054$ & $0.053224459$ & $-1.158077234$ \\
+			$7$ & $4.857371303$ & $0.057897419$ & $0.009575087$ & $-0.78324749$ & $0.560444156$ & $-0.87946335$ \\
+			$8$ & $9.018457316$ & $0.061837715$ & $0.027314068$ & $1.597964991$ & $0.677454091$ & $1.726240514$ \\
+			$9$ & $5.001594138$ & $0.007138369$ & $0.009576248$ & $-0.700714897$ & $-0.946882332$ & $-0.879292708$ \\
+			$10$ & $4.069312021$ & $0.041444603$ & $0.012267124$ & $-1.234220286$ & $0.071865963$ & $-0.484026249$ \\
+			$11$ & $6.542222096$ & $0.050631978$ & $0.023474524$ & $0.180920933$ & $0.34469166$ & $1.16224444$ \\
+			$12$ & $7.930714067$ & $0.10058846$ & $0.010228239$ & $0.975495811$ & $1.828185342$ & $-0.78352083$ \\
+			$13$ & $5.236437793$ & $0.008879799$ & $0.01023413$ & $-0.566323866$ & $-0.895169311$ & $-0.782655503$ \\
+			$14$ & $9.029762808$ & $0.014176754$ & $0.023474524$ & $1.604434643$ & $-0.737872411$ & $1.16224444$ \\
+			$15$ & $5.677784222$ & $0.018003042$ & $0.012268563$ & $-0.313760083$ & $-0.624248031$ & $-0.48381477$ \\
+			$16$ & $4.054681384$ & $0.008596164$ & $0.007681417$ & $-1.242592777$ & $-0.903592052$ & $-1.157627171$ \\
+			$17$ & $5.916429873$ & $0.012267124$ & $0.018806686$ & $-0.17719333$ & $-0.794580264$ & $0.47657917$ \\
+			$18$ & $7.154962253$ & $0.040816852$ & $0.007678353$ & $0.531566054$ & $0.053224459$ & $-1.158077234$ \\
+			$19$ & $4.857371303$ & $0.057897419$ & $0.009575087$ & $-0.78324749$ & $0.560444156$ & $-0.87946335$ \\
+			$20$ & $9.018457316$ & $0.061837715$ & $0.027314068$ & $1.597964991$ & $0.677454091$ & $1.726240514$ \\
+			$21$ & $5.001594138$ & $0.007138369$ & $0.009576248$ & $-0.700714897$ & $-0.946882332$ & $-0.879292708$ \\
+			$22$ & $4.069312021$ & $0.041444603$ & $0.012267124$ & $-1.234220286$ & $0.071865963$ & $-0.484026249$ \\
+			$23$ & $6.542222096$ & $0.050631978$ & $0.023474524$ & $0.180920933$ & $0.34469166$ & $1.16224444$ \\
+			$24$ & $7.930714067$ & $0.10058846$ & $0.010228239$ & $0.975495811$ & $1.828185342$ & $-0.78352083$ \\
+			$25$ & $8.589197415$ & $0.039227387$ & $0.024433841$ & $1.352317814$ & $0.006024147$ & $1.303159911$ \\
+			$26$ & $7.179988381$ & $0.037734463$ & $0.014278111$ & $0.545887442$ & $-0.038309302$ & $-0.188629493$ \\
+			$27$ & $4.518783843$ & $0.045969647$ & $0.022162922$ & $-0.977006687$ & $0.206240387$ & $0.9695815$ \\
+			$28$ & $8.589197415$ & $0.039227387$ & $0.024433841$ & $1.352317814$ & $0.006024147$ & $1.303159911$ \\
+			$29$ & $4.635190763$ & $0.153655662$ & $0.02212562$ & $-0.910391959$ & $3.404054059$ & $0.964102078$ \\
+			$30$ & $4.290255329$ & $0.010364637$ & $0.014275348$ & $-1.107783832$ & $-0.851075979$ & $-0.189035408$ \\
 			\hline\hline 
 			\multicolumn{7}{l}{\small *$I_k$ values are calculated using MSTM package.} \\
 		\end{tabular}

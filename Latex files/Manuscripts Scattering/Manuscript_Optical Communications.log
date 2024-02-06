@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.3.31)  25 OCT 2023 09:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.3.31)  26 OCT 2023 14:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -682,78 +682,88 @@ Package pdftex.def Info: ./Images/fig8c.png  used on input line 366.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<./Images/fig9a.png, id=76, 578.16pt x 433.62pt>
+[9 <./Images/fig7a.png> <./Images/fig7b.png>]
+<./Images/fig9a.png, id=81, 578.16pt x 433.62pt>
 File: ./Images/fig9a.png Graphic file (type png)
 <use ./Images/fig9a.png>
 Package pdftex.def Info: ./Images/fig9a.png  used on input line 377.
 (pdftex.def)             Requested size: 145.07886pt x 108.80833pt.
-<./Images/fig9b.png, id=77, 578.16pt x 433.62pt>
+<./Images/fig9b.png, id=82, 578.16pt x 433.62pt>
 File: ./Images/fig9b.png Graphic file (type png)
 <use ./Images/fig9b.png>
 Package pdftex.def Info: ./Images/fig9b.png  used on input line 381.
 (pdftex.def)             Requested size: 145.07886pt x 108.80833pt.
-<./Images/fig9c.png, id=78, 578.16pt x 433.62pt>
+<./Images/fig9c.png, id=83, 578.16pt x 433.62pt>
 File: ./Images/fig9c.png Graphic file (type png)
 <use ./Images/fig9c.png>
 Package pdftex.def Info: ./Images/fig9c.png  used on input line 385.
 (pdftex.def)             Requested size: 145.07886pt x 108.80833pt.
-[9 <./Images/fig7a.png> <./Images/fig7b.png>]
-<./Images/fig10a.png, id=84, 578.16pt x 433.62pt>
+ [10 <./Images/fig8b.png> <./Images/fig8c.png> <./Images/fig9a.png> <./Images/f
+ig9b.png> <./Images/fig9c.png>]
+<./Images/Detector vs distance_modified.png, id=92, 860.4948pt x 535.2798pt>
+File: ./Images/Detector vs distance_modified.png Graphic file (type png)
+<use ./Images/Detector vs distance_modified.png>
+Package pdftex.def Info: ./Images/Detector vs distance_modified.png  used on in
+put line 410.
+(pdftex.def)             Requested size: 351.0pt x 218.34715pt.
+<./Images/fig10a.png, id=93, 578.16pt x 433.62pt>
 File: ./Images/fig10a.png Graphic file (type png)
 <use ./Images/fig10a.png>
-Package pdftex.def Info: ./Images/fig10a.png  used on input line 406.
+Package pdftex.def Info: ./Images/fig10a.png  used on input line 421.
 (pdftex.def)             Requested size: 149.76343pt x 112.3217pt.
-<./Images/fig10b.png, id=85, 578.16pt x 433.62pt>
+<./Images/fig10b.png, id=94, 578.16pt x 433.62pt>
 File: ./Images/fig10b.png Graphic file (type png)
 <use ./Images/fig10b.png>
-Package pdftex.def Info: ./Images/fig10b.png  used on input line 410.
+Package pdftex.def Info: ./Images/fig10b.png  used on input line 425.
 (pdftex.def)             Requested size: 149.76343pt x 112.3217pt.
-<./Images/fig10c.png, id=86, 578.16pt x 433.62pt>
+<./Images/fig10c.png, id=95, 578.16pt x 433.62pt>
 File: ./Images/fig10c.png Graphic file (type png)
 <use ./Images/fig10c.png>
-Package pdftex.def Info: ./Images/fig10c.png  used on input line 414.
+Package pdftex.def Info: ./Images/fig10c.png  used on input line 429.
 (pdftex.def)             Requested size: 149.76343pt x 112.3217pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[10 <./Images/fig8b.png> <./Images/fig8c.png> <./Images/fig9a.png> <./Images/fi
-g9b.png> <./Images/fig9c.png>]
-<./Images/fig11a.png, id=95, 578.16pt x 433.62pt>
+<./Images/fig11a.png, id=96, 578.16pt x 433.62pt>
 File: ./Images/fig11a.png Graphic file (type png)
 <use ./Images/fig11a.png>
-Package pdftex.def Info: ./Images/fig11a.png  used on input line 428.
+Package pdftex.def Info: ./Images/fig11a.png  used on input line 443.
 (pdftex.def)             Requested size: 149.76343pt x 112.3217pt.
-<./Images/fig11b.png, id=96, 578.16pt x 433.62pt>
+<./Images/fig11b.png, id=97, 578.16pt x 433.62pt>
 File: ./Images/fig11b.png Graphic file (type png)
 <use ./Images/fig11b.png>
-Package pdftex.def Info: ./Images/fig11b.png  used on input line 432.
+Package pdftex.def Info: ./Images/fig11b.png  used on input line 447.
 (pdftex.def)             Requested size: 149.76343pt x 112.3217pt.
-<./Images/fig11c.png, id=97, 578.16pt x 433.62pt>
+<./Images/fig11c.png, id=98, 578.16pt x 433.62pt>
 File: ./Images/fig11c.png Graphic file (type png)
 <use ./Images/fig11c.png>
-Package pdftex.def Info: ./Images/fig11c.png  used on input line 436.
+Package pdftex.def Info: ./Images/fig11c.png  used on input line 451.
 (pdftex.def)             Requested size: 149.76343pt x 112.3217pt.
- [11 <./Images/fig10a.png> <./Images/fig10b.png> <./Images/fig10c.png> <./Image
-s/fig11a.png> <./Images/fig11b.png> <./Images/fig11c.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 456--457
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[11 <./Images/Detector vs distance_modified.png>] [12 <./Images/fig10a.png> <./
+Images/fig10b.png> <./Images/fig10c.png> <./Images/fig11a.png> <./Images/fig11b
+.png> <./Images/fig11c.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 471--472
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 458--459
+Underfull \hbox (badness 10000) in paragraph at lines 473--474
 
  []
 
-(Manuscript_Optical Communications.bbl [12]) [13] [14
+(Manuscript_Optical Communications.bbl [13]) [14] [15
 
-] [15]
+] [16]
 (Manuscript_Optical Communications.aux) ) 
 Here is how much of TeX's memory you used:
- 10670 strings out of 475385
- 193027 string characters out of 2775491
- 599379 words of memory out of 3000000
- 31822 multiletter control sequences out of 15000+600000
+ 10678 strings out of 475385
+ 193436 string characters out of 2775491
+ 599389 words of memory out of 3000000
+ 31829 multiletter control sequences out of 15000+600000
  487341 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  110i,19n,106p,1992b,558s stack positions out of 10000i,1000n,20000p,200000b,80000s
@@ -789,10 +799,10 @@ l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/xbb16146/
 AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/User
 s/xbb16146/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.p
 fb>
-Output written on "Manuscript_Optical Communications.pdf" (15 pages, 1579535 by
+Output written on "Manuscript_Optical Communications.pdf" (16 pages, 1753769 by
 tes).
 PDF statistics:
- 587 PDF objects out of 1000 (max. 8388607)
+ 597 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 116 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 121 words of extra memory for PDF output out of 10000 (max. 10000000)
 
