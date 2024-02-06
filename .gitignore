@@ -1,6 +1,8 @@
 *~
 *.junk
 *.csv
+*.xlsx
+
 
 # latex files
 *.aux
