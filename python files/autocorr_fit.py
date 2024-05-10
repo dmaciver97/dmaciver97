@@ -3,6 +3,7 @@ import csv
 import numpy as np
 from scipy.optimize import curve_fit
 import scipy
+from scipy.fft import fft
 from scipy.signal import correlate
 import matplotlib.pyplot as plt
 
@@ -21,8 +22,8 @@ class autocorr_fit(object):
 
     def get_label_path(self, label):
         label = label.split('_')
-        if label[0] == 'Sillica':
-            self.material = 'Sillica'
+        if label[0] == 'Silica':
+            self.material = 'Silica'
         elif label[0] == 'Vaterite':
             self.material = 'Vaterite'
         elif label[0] == 'PS':
@@ -31,7 +32,7 @@ class autocorr_fit(object):
             self.material = 'LC'
         
         self.power = label[1]
-        self. size = label[2][:-4]
+        self.size = label[2][:-4]
         self.radius  = float(self.size[:-2])*1e-6
         return self.material, self.power, self.size, self.radius
     
@@ -48,19 +49,40 @@ class autocorr_fit(object):
                 writer = csv.writer(out_file)
                 writer.writerows(self.row_reader(row) for row in reader)
 
-        with open('tdat.csv', 'r') as file:
-            reader = csv.reader(file.readlines()[:180000])
+        with open('tdat.csv', 'r') as data_file:
+            reader = csv.reader(data_file.readlines()[::2])
             #t, x_data, y_data = 0, 0, 0
-            t=np.zeros(shape=180000)
-            x_data=np.zeros(shape=180000)
-            y_data=np.zeros(shape=180000)
-            for i, row in enumerate(reader):
-                t[i] = row[0]
-                x_data[i] = row[1]
-                y_data[i] = row[2]
+            t, x_data, y_data = [], [], []
+            
+            for row in reader:
+                t.append(row[0])
+                x_data.append(row[1])
+                y_data.append(row[2])
 
         return t, x_data, y_data
     
+    def get_FDat(self, x_data, y_data):
+        window = 100
+
+        N = len(x_data)
+        fs = 131072
+
+        xdft = fft(x_data)
+        xdft = xdft[:int(N/2)+1]
+        n = len(xdft)
+        psd_x = [1/(fs*N)*abs(x)**2 for x in xdft]
+        psd_block_x = [np.mean(psd_x[i*window:(i+1)*window]) for i in range(0, int(n/window))]
+
+        freq = np.linspace(0, int(fs/2), int(len(psd_x)))
+        freq_block = [np.mean(freq[i*window:(i+1)*window]) for i in range(0, int(n/window))]
+        freq_block = [x for x in freq_block if str(x) != 'nan']
+        psd_block_x = psd_block_x[:len(freq_block)]
+
+        plt.plot(freq_block[3:], psd_block_x[3:])
+        plt.yscale('log')
+        plt.xscale('log')
+        plt.show()
+
     
     def equipartition(self, data):
         data_eq = np.mean(data)
@@ -132,8 +154,9 @@ class autocorr_fit(object):
         plt.show()
 
 if __name__ == "__main__":
-    auto = autocorr_fit('/home/daniel/Documents/dmaciver97/python files/Trapping/TDdat files/run9.TDdat')
+    auto = autocorr_fit('C:\\Users\\xbb16146\\dmaciver97\\python files\\tmp\\P=560_7.TDdat')
     time, x, y = auto.create_csv_file()
+    auto.get_FDat(x, y)
     #data = [np.sqrt(i**2+j**2) for i, j in zip(x, y)]
-    model, mu = auto.acf_fitting(x, 1e5)
-    auto.plot_acf(model)
+    #model, mu = auto.acf_fitting(x, 1e5)
+    #auto.plot_acf(model)

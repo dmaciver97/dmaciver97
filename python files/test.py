@@ -1,33 +1,27 @@
 import csv
 import random
+from tkinter import X
 import numpy as np
 import matplotlib.pyplot as plt
 
-import numpy as np
-import matplotlib.pyplot as plt
-vec = [random.normalvariate(0,1),random.normalvariate(0,1),random.normalvariate(0,1)]
-mag = np.dot(vec,vec)
-S = [v/mag for v in vec]
-def get_circle():
-	L = np.hypot(S[0], np.hypot(S[1], S[2]))
-	if S[0] > 0: sig = L
-	else: sig = -L
-	h = S[0]+sig
-	beta = -1/(sig*h)
-	f = beta*S[1]
-	g = beta*S[2]
-	return [f*h, 1+f*S[1], f*S[2]], [g*h, g*S[1], 1+g*S[2]]
+x_list = np.linspace(-1,1,10)
+y_list = np.linspace(-1,1,10)
+
+xx, yy = np.meshgrid(x_list, y_list)
 
 fig = plt.figure()
-ax = fig.add_subplot(projection ='3d')
-ax.quiver(0,0,0, S[0], S[1], S[2])
+ax = fig.add_subplot(projection='3d')
 ax.set_xlim(-1,1)
 ax.set_ylim(-1,1)
 ax.set_zlim(-1,1)
-U, V = get_circle()
-theta_list = np.linspace(0,2*np.pi, 100)
-for theta in theta_list: 
-	pos = [(s+np.cos(theta)*u+np.sin(theta)*v) for s,u,v in zip(S,U,V)]
-	ax.scatter(pos[0], pos[1], pos[2])
+
+for x, y in zip(xx, yy):
+    phi = np.arctan2(x,y)
+    r = (x**2+y**2)**0.5
+    theta = np.arcsin(r)
+    s = [r*np.sin(theta)*np.cos(phi),
+         r*np.sin(theta)*np.sin(phi),
+         r*np.cos(theta)]
+    ax.scatter(s[0], s[1], s[2])
 
 plt.show()
