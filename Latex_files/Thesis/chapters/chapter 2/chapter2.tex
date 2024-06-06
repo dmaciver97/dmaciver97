@@ -81,10 +81,10 @@ Optical tweezing operates on the principle that light carries both linear and an
 \section{Electromagnetism and optical tweezing}
 Proper understanding of optical tweezing requires an understanding of how the trapped particle interacts with the trapping laser. From a electromagnetism perspective the laser creates a spatially and temporally coherent electric field that scatters light off of a trapped particle. The laws governing electric and magnetic fields are summarised most succinctly via the Maxwell equations. The differential forms of which are given below:
 \begin{align}
-	&\nabla \cdot \bold{E} = \frac{\rho_ v}{\epsilon_0} \\
-	&\nabla \cdot \bold{B} = 0 \\
-	&\nabla \times \bold{E}  = \frac{\delta \bold{B}}{\delta t} \\
-	&\nabla \times \bold{B} = j_0 +\frac{\delta \bold{E}}{\delta t}    
+	&\nabla \cdot \mathbf{E} = \frac{\rho_ v}{\epsilon_0} \\
+	&\nabla \cdot \mathbf{B} = 0 \\
+	&\nabla \times \mathbf{E}  = \frac{\delta \mathbf{B}}{\delta t} \\
+	&\nabla \times \mathbf{B} = j_0 +\frac{\delta \mathbf{E}}{\delta t}    
 \end{align}
 These 4 equations describe how the electric and magnetic fields must behave and are also related to one another, any discussion of optical trapping is underpinned by the fact that in all cases the Maxwell Equations must be satisfied. 
 
@@ -102,7 +102,7 @@ Where $Q_i$ is the trapping efficiency, $\Delta n$ is the difference in refracti
 \subsection{Lornez-Mie Theory}
 The Lorenz Mie theory provides an exact solution to the maxwell equations for the scattering caused by an isotropic sphere. The theory describes the scattered wave given off by a dielectric sphere when incident by a plane wave as a summation of partial spherical waves. For any spherical wave the vector fields must solve the Helmholtz wave equation given by:
 \begin{align}
-	\nabla^2\boldsymbol{E} +k^2\boldsymbol{E} = 0
+	\nabla^2\mathbf{E} +k^2\mathbf{E} = 0
 \end{align} 
 This combined with the constraints of Maxwell's Equations leaves very few exact solutions apart from spherical or planar waves, both of which can be converted between with relative ease. For example, a plane wave electric field can be expanded into spherical harmonics and likewise any spherical wave can be described as combination of plane waves offset from one another. For a single plane wave the incident, internal, and scattered fields are given as:
 
@@ -142,6 +142,9 @@ Where $m$ is the relative refractive index ($n_1/n_2$), $\omega_0$ is the beam w
 
 The Rayleigh regime allows for easy computation of the gradient and scattering forces due to the assumption that the particle is a point dipole, so much so that higher order scattering problems can be simplified by subdividing the particle into discrete dipoles (see Sec \ref{sec:scattering}). However as the target particle gets larger this assumption fails to accurately describe the trapping force due to the complexity in the gradient field. For particle sizes close to the laser wavelength the scattered field is best described by Lorenz-Mie theory. 
 
+\section{Scattering methods}
+\label{sec:scattering}
+\subsection{Tmatrix}
 The T matrix method was first developed by Peter Waterman with his 
 research into acoustic wave scattering, this would later be extended to 
 electromagnetic waves. Put simply, the method sets a boundary condition 
@@ -171,6 +174,8 @@ vector waves. Because the boundary condition ensures that the incident field is 
 \end{align}
 
 The T-matrix method is exceptionally useful for computing the scattering from any arbitrary shaped particle. However, the T-matrix method by itself can be limited by computation power for aggregates of particles; while possible to compute the scattering of each individual particle the system of equations cannot be solved analytically and must be solved numerically to determine properties for the aggregate for one particular orientation. 
+
+\subsection{Discrete Dipole Approximation}
 
 \section{Langevin Equation}
 Describing any microscopic motion requires an understanding of a molecules diffusive behaviour, for the case of optical tweezers the most complete model of diffusion is the Langevin equation. Models such as the Fickian, and Einstein derivations are sufficient for macroscopic behaviours the Langevin equation better describes the microscopic characteristics of any diffusive behaviour. The Fickian model is not suitable for the applications of optical tweezers as it assumes that all diffusive motion is driven by a gradient of molecular density, not only is this often not the case but it fails to describe the motion of any single molecule, only the collective behaviour. Einstein's model however considers the collisions experienced by individual molecules, if we assume that all collisions are random and only consider the behaviour after a finite time step $\delta t$ then the individual collisions should cancel out. This is insufficient for our interests as an optical tweezers relaxation time (given by $\tau = \kappa/\gamma$) is often so short that we must consider the individual collisions experienced by any one molecule. The Langevin model of diffusion therefore assumes that the net force on a particular particle is described fully by these individual collisions:
@@ -227,7 +232,7 @@ The Langevin equation for an optically trapped assumes that the trap acts simila
 
 Potential analysis is a useful technique for estimating the strength of an optical trap; this method assumes that the force acting on the particle is purely conservative, an accurate presupposition if we ignore the motion of the particle as it enters the trap. This is because the scattering force is far more significant far away from the potential well and is negligible if the trap strength is much greater than the thermal fluctuations. With this in mind we can write the probability of finding the particle at position $x$ as:
 \begin{align}
-	\frac{\rho(x)}{\rho_0} = e^{-\frac{U(x)}{k_{\small{B}}T}} 
+	\frac{\rho(x)}{\rho_0} = e^{-\frac{U(x)}{k_{B}T}} 
 \end{align}
 which therefore means we can write the potential well as:
 \begin{align}
@@ -237,7 +242,7 @@ which therefore means we can write the potential well as:
 Now assuming our laser acts as a Gaussian beam we should be able to describe the probability distribution $\rho(x)$ centred at some equilibrium position $x_0$:
 \begin{align}
 	\label{eq:prob_dist}
-	\rho(x)= \sqrt{\frac{\kappa_x}{2\pi k_BT}}exp\left(-\frac{\kappa_x}{2k_BT}(x-x_{eq})^2\right)
+	\rho(x)= \sqrt{\frac{\kappa_x}{2\pi k_BT}} exp\left(-\frac{\kappa_x}{2k_BT}(x-x_{eq})^2\right)
 \end{align}
 By inserting eq.~\ref{eq:prob_dist} into eq.~\ref{eq:potential_well} we can fit the potential well in order to determine the trap strength $\kappa_x$, and an estimation of the equilibrium position $x_{eq}$. This has some limitations in that the large fluctuations can throw off the fit meaning a longer acquisition time is necessary to properly fit the potential well, making it difficult to characterise weakly trapped particles who may not remain trapped for long. It also provides no information on the particle itself (i.e. the friction coefficient $\gamma$ and diffusion coefficient $D$).
 
@@ -255,7 +260,7 @@ Mean square displacement (MSD) is a common means of describing the random motion
 \begin{align}
 	mx''(t) + \gamma x'(t) = \eta(t)
 \end{align}
-Where $\eta(t)$ is a random white noise variable that is directly related to the thermal energy of the surrounding fluid. If the motion is truly random then we should see an average displacement of 0 regardless of how long we measure for. If we wish to understand the effects of a given external factor (i.e. an electric field or localised heating), simply looking at displacement will reveal nothing of value as its difficult to differentiate between diffusive and a biased motion. 
+Where $\gamma$ is the objects friction coefficient which for spheres is given as $\gamma = 6\pi\eta r$, and $\eta(t)$ is a random white noise variable that is directly related to the thermal energy of the surrounding fluid. If the motion is truly random then we should see an average displacement of 0 regardless of how long we measure for. If we wish to understand the effects of a given external factor (i.e. an electric field or localised heating), simply looking at displacement will reveal nothing of value as its difficult to differentiate between diffusive and a biased motion. 
 
 For each sphere we can record its position in the $x-y$ plane and measure its displacement from a set reference point; for example with an optical tweezer this could be the beam focus. We can measure the MSD by forming a 'window' between two points in time of the trajectory (i.e. $t \&  t+\tau$) and sliding this window along the entire trajectory length - to eliminate -ve displacements we take the square - we can then take the average of this series. Repeating over a range of time lags allows us to describe the MSD as a function of $\tau$:
 \begin{align}
@@ -297,11 +302,15 @@ where $\hat{\eta}$ is the Fourier transform of the white noise, where the values
 \end{align} 
 We can therefore ignore the white noise from our analysis by looking at the spectral density of $\hat{x}(f)$: 
 \begin{align}
+	\label{eq:lorentzian}
 	S_x = \frac{\hat{x}^2}{t_{msr}} = \frac{D}{2\pi(f_c^2+f^2)}
 \end{align}
-
 We can fit the Lorentzian via a simplified geometric series $S_x = 1/(A+Bf_k^2)$ which allows us to compute both the diffusion coefficient (in arbitrary units) and the corner frequency $f_c$ which is directly related to the trap strength via $f_c = \kappa_x/(2\pi\gamma)$. Like with the analytical expression of the mean squared displacement we see two distinct regions, when $f\ll f_c$ the PSD reaches a plateau value that when converted to length units represents the maximum displacement the particle can move beyond the focus, however when $f\gg f_c$ the PSD falls off exponentially which denotes the particle is freely diffusing within the beam focus.
-
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=0.75\linewidth]{PSD.png}
+	\caption{Example PSD fitted using Eq.~\ref{eq:lorentzian}, power spectra is collected from an optically trapped silica sphere suspended in water. The difference in magnitude is due to the asymmetry of the quadrant photo diode having a stronger signal response in the direction of the polarisation vector. Using a correction factor (see Eq.~\ref{eq:correction_factor}) will adjust the power spectra to better describe the trap shape.}
+\end{figure}
 The Lorentzian relationship is only valid for frequency terms up to the Nyquist frequency (half of our sampling rate), this is because we are only taking a finite sampling of the particle's trajectory meaning the signal is aliased. Berg and Sorensen provide a suitable modified Lorentzian to account for the aliasing effects \cite{BergSoerensen2004}:
 \begin{align}
 	S_x = \frac{(\Delta x)^2\Delta t}{1+c^2-2c\cos{2\pi f_k\Delta t/N}}
@@ -309,12 +318,49 @@ The Lorentzian relationship is only valid for frequency terms up to the Nyquist 
 Where N is the total number of samples taken, $\Delta x \ \& \ c$  have no direct physical interpretation and are defined in \cite{BergSoerensen2004}. Further modifications can be made to the power spectrum model but this is only useful when a high degree of accuracy is necessary. Typically power spectra are recorded using a Quadrant Photo Diode (QPD), which records motion in voltage units, not in units of length. To convert between the two we have a few methods: Firstly if we have a mono-disperse suspension of particles, the laser can be scanned across the surface of our target particle; so long as the particle's size is known a linear conversion factor can be used to convert from voltage to length units. Secondly, if the size distribution is very wide but each particle can be accurately sized, then a conversion factor can be approximated by comparing the fitted value of the diffusion coefficient, and the reported value given by the Stokes-Einstein relation.
 
 \begin{align}
+	\label{eq:correction_factor}
 	D_{SE} = \frac{k_BT}{\gamma_0} \Rightarrow Conversion\ Factor \ [m/V]= \sqrt{\frac{D_{SE}}{D_{fit}}}
 \end{align}
 
 With the latter method, the local fluid viscosity must be known to a high degree of accuracy, depending on the local heating effect this may be as trivial increase or it may be significant enough to drastically alter the characterisation. PSD analysis is often seen as the gold standard for calibration as it can be fine tuned to the point that optical forces can be computed on the order of $10^{-15} N$ \cite{BergSoerensen2004}, it captures all of the information acquired by other calibration techniques while filtering out noise and requiring a relatively small amount of data collected. 
 
+\section{Simulation of spherical aggregates}
+Later chapters cover the dynamics of spherical aggregates and anisotropic scatterers, these subjects are particularly difficult to characterise using conventional calibration techniques \cite{Li2008, Yogesha2011PreciseCO}. As an example consider a symmetric dimer as a paradigmatic aggregate; if we consider the Langevin equation for such a aggregate within an optical trap we have:
+\begin{align}
+	\frac{\mathbf{d}\vec{r}(t)}{\mathbf{dt}} = \frac{\vec{\kappa}_x}{\gamma}\vec{r}(t) + \sqrt{2\vec{D}_x}\eta(t)
+\end{align}
+Where $x(t)$ is replaced with $\vec{r}(t)$ to signify that the translational motion is generalised to a 3 dimensional case. Except now, the dimer is undergoing random rotational motion in addition to its Brownian translational motion the first term on the right hand side is no longer purely a function of the dimer's position but also on its orientation. The rotational form of the Langevin equation for a dipole within an external potential is given as:
+\begin{align}
+	\frac{\mathbf{d}\vec{u}(t)}{\mathbf{dt}} = \frac{\mu}{\gamma_R}\left[\vec{u}(t)\times E(t)\right]\times \vec{u}(t) + \sqrt{2\vec{D}_R}\lambda(t)\times \vec{u}(t)
+\end{align}
+Where $\vec{u}(t)$ is the unit vector aligned along the centres of the two spheres, $\mu$ is its dipole moment, and $\gamma_R$ is the rotational friction coefficient which is given as $\gamma_R = 8\pi\eta r^3$, if the dimer is within a harmonic potential we can write the first term on the right hand side as $\frac{\vec{\kappa}_u}{\gamma} \times \vec{u}(t)$, where $\vec{\kappa}_u$ is the rotational stiffness vector. $\lambda(t)$ is the Brownian rotations from the surrounding fluid, like in the translational case the Brownian rotations are normally distributed and are also uncorrelated so that:
+\begin{align}
+	\left<\lambda(t)\lambda(t')\right> = \delta_{ij}\delta(t-t')
+\end{align}
+For an asymmetric scatterer whose radius is comparable to that of the electric field's wavelength we now have a system of simultaneous equations:
+\begin{align}
+	\label{eq:full_langevin}
+		\frac{\bold{d}\vec{r}(t)}{\bold{dt}} &= \frac{\vec{\kappa}_x(\vec{u}(t))}{\gamma}\vec{r}(t) + \sqrt{2D}\eta(t) \\
+		\frac{\bold{d}\vec{u}(t)}{\bold{dt}} &= \frac{\vec{\kappa}_u(\vec{r}(t))}{\gamma_R}\times \vec{u}(t) + \sqrt{2\vec{D}_R}\lambda(t)\times \vec{u}(t)
+\end{align}
+Fortunately, we do not need to solve these directly as the latter two random variables can be easily approximated if the thermal energy of the system is know, and the rate of change can be assumed as linear if we take a sufficiently small time step that $\Delta t~\ll~\kappa_x/\gamma \ \& \ \Delta t \ll \kappa_u/\gamma_R$. In doing so we now only need to compute the optical force and torque applied to our dimer, this has already been compiled in a MATLAB package called \textit{Optical Tweezer Toolbox} or \textit{ott} \cite{Nieminen2007}. In which they use the results from \cite{Farsund1996} to compute both the optical force and torque using the beam coefficients - the form given by \cite{Crichton2000THEMD} is an easier form to compute: 
+\begin{equation}
+\begin{split}
+	\bold{F_z}=&-\frac{1}{4\pi k^2}\sum_{n,m} \left(\frac{m}{n(n+1)}\Im[a_{n,m}b*_{n,m}-p_{n,m}q*_{n,m}] \right. \\ 
+	&+\frac{1}{n+1}\left[\frac{n(n+2)(n-m+1)(n+m+1)}{(2n+1)(2n+3)} \right]^{1/2}  \\
+	& \left. \times \Im[b_{n,m}b*_{n,m}+a_{n,m}a*_{n+1,m} - q_{n,m}q*_{n,m}+p_{n,m}p*_{n+1,m}] \right)
+\end{split}
+\end{equation}
+\begin{equation}
+\begin{split}
+	\bold{T_z}=&-\frac{1}{8\pi k^3}\sum_{n,m} \left(\frac{m}{n(n+1)}[|a_{n,m}|^2+|b_{n,m}|^2-|p_{n,m}|^2-|q_{n,m}|^2] \right. \\ 
+	&+\frac{2}{n+1}\left[\frac{n(n+2)(n-m+1)(n+m+1)}{(2n+1)(2n+3)} \right]^{1/2}  \\
+	& \left. \times \Re[b_{n,m}a*_{n,m}+a_{n,m}b*_{n+1,m} - p_{n,m}q*_{n,m}+q_{n,m}p*_{n+1,m}] \right)
+\end{split}
+\end{equation}
+Where $a_{n,m}$, $b_{n,m}$, $p_{n,m}$ $q_{n,m}$ are the beam coefficients of the incident and scattered fields respectively. We can get the transverse force and torque components in a similar form by applying a simple rotation transformation. In order to get the scattered beam coefficients we can use \textit{MSTM} \cite{Mackowski2011} to calculate the T-matrix of our dimer (or any spherical aggregate). Vigilante et al compiled together a python package that combines both \textit{ott} and \textit{MSTM} to simulate the behaviour of spherical aggregates within a predefined optical trap. 
+
+Throughout this PhD we use the work of Vigilante to perform a systematic study of the dynamics demonstrated by asymmetric dimers in both plane and circularly polarised light. But furthermore we expand upon their work to create a fully functional quadrant photo-diode to simulate the response from a calibration test. 
 \bibliographystyle{ieeetran}
 \bibliography{thesis_bib}
-
 \end{document}
