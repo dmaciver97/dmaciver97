@@ -30,6 +30,14 @@
 \usepackage{subcaption}
 \usepackage[strict]{changepage}
 
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+%\usepackage{fontspec}
+%\setmainfont{times}
+\usepackage{bookman}
+
+
 % Page Margins - Strath Requirement
 \usepackage[left=4cm,right=2.5cm,top=2cm,bottom=4cm,includehead,includefoot,headheight=15pt]{geometry}
 
@@ -43,7 +51,7 @@
 \pagestyle{fancy}
 
 % Draft Watermark
-\usepackage[draft=true,allpages=true,fontfamily=cmr,angle=90,scale=0.1,mark={\fboxsep=35pt\fboxrule=0pt\relax\fbox{-- DRAFT -- \today~--}},xcoord=-80,ycoord=-20]{draftmark}
+%\usepackage[draft=true,allpages=true,fontfamily=cmr,angle=90,scale=0.1,mark={\fboxsep=35pt\fboxrule=0pt\relax\fbox{-- DRAFT -- \today~--}},xcoord=-80,ycoord=-20]{draftmark}
 
 
 % Line Spacing
@@ -63,7 +71,12 @@
 \setcounter{chapter}{2}
 \include{main}
 
-\bibliographystyle{ieeetran}
-\bibliography{thesis_bib}
+% \bibliographystyle{ieeetran}
+\bibliographystyle{IEEEtran}
+\bibliography{../../thesis_bib}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}

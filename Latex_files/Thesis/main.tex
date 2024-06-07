@@ -45,7 +45,13 @@
 \pagestyle{fancy}
 
 % Draft Watermark
-\usepackage[draft=true,allpages=true,fontfamily=cmr,angle=90,scale=0.1,mark={\fboxsep=35pt\fboxrule=0pt\relax\fbox{-- DRAFT -- \today~--}},xcoord=-80,ycoord=-20]{draftmark}
+%\usepackage[draft=true,allpages=true,fontfamily=cmr,angle=90,scale=0.1,mark={\fboxsep=35pt\fboxrule=0pt\relax\fbox{-- DRAFT -- \today~--}},xcoord=-80,ycoord=-20]{draftmark}
+
+
+\newcommand*\mycommand[1]{\texttt{\emph{#1}}}
+\newcommand{\comment}[1]{{\bf\textcolor{red}{#1}}}
+% \newcommand{\comment}[1]{{{#1}}}
+
 
 
 % Line Spacing
