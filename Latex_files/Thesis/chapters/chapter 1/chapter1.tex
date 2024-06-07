@@ -1,0 +1,152 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Strath PhD Thesis Template
+%	by Jethro Browell [jethro.browell@strath.ac.uk]
+%
+%	Guidelines for thesis format, submission and content are found in
+%	General and Course Regulations for Graduate and Postgraduate
+%	Awards and Degrees, section 20.6.
+%
+%	Using .eps or .pdf is recomended to prduce high quality figures etc.
+%
+%	The Strathclyde logo can be found in other formats at www.strath.ac.uk.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4paper,oneside,11pt]{book}
+\setcounter{secnumdepth}{3}
+\usepackage{amsbsy}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{mathrsfs}
+\usepackage{color}
+\usepackage[hidelinks]{hyperref}
+\usepackage{cite}
+\usepackage{enumitem}
+\usepackage{epsfig}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[strict]{changepage}
+
+% Page Margins - Strath Requirement
+\usepackage[left=4cm,right=2.5cm,top=2cm,bottom=4cm,includehead,includefoot,headheight=15pt]{geometry}
+
+% Page Headers
+\usepackage{fancyhdr}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt} % optional
+%\fancyhead[L]{\nouppercase{\leftmark} \hfill Section \nouppercase{\rightmark}}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\cfoot{\thepage}
+\pagestyle{fancy}
+
+% Draft Watermark
+\usepackage[draft=true,allpages=true,fontfamily=cmr,angle=90,scale=0.1,mark={\fboxsep=35pt\fboxrule=0pt\relax\fbox{-- DRAFT -- \today~--}},xcoord=-80,ycoord=-20]{draftmark}
+
+
+% Line Spacing
+%\def\baselinestretch{1.5} 
+\usepackage{setspace}
+\setstretch{1.5}
+
+
+% Place UoS Logo on Title Page (this package modifies the "\maketitel" command.)
+\usepackage{titling}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\chapter{Introduction}
+Crystallisation, put simply, is the formation and growth of a new structured phase within a disordered bulk phase. This has applications in a 
+number of industries such as pharmaceuticals, food production, and 
+electronics; where the extraction of dilute materials can help improve 
+product quality while keeping production costs low. The industrialisation 
+of crystallisation has allowed engineers to reliably and efficiently 
+induce the crystal formation within a bulk liquid. However, while on a 
+large scale crystallisation is seemingly an understood physical process, 
+just a small amount of investigation into the literature reveals that at 
+a micro level there is yet to be unifying theory that can accurately 
+explain the process of crystallisation, more specifically nucleation.
+
+Nucleation is the initial formation of the crystalline phase and can be 
+broadly divided into two main processes. Firstly there is primary 
+nucleation, in which the nucleus forms from the bulk liquid; and 
+secondary nucleation, where the presence of already existing crystals 
+promotes the formation and growth of new nuclei 
+
+\section{Nucleation Theories}
+Nucleation is a common example of a binary phase separation, where a dilute phase is miscible in a bulk phase solute and solvent respectfully. While the solution remains supersaturated there is a chemical potential driving force for the solute to coalesce and separate from the solution as a crystal, the first formation of the crystal is referred to as the nucleus and understanding its formation of has been the focus of researchers for decades now. In particular there is a growing desire for a concrete theory to describe the process of nucleation.
+
+\subsection{Classical Nucleation Theory (CNT)}
+Sometimes referred to as 'Gibs Nucleation Theory' the original theory was first formed from the works of Volmer and Weber, Becker and Doring, and Frenkel \cite{Frenkel1939, Volmer1926}. While initially it was more focused into describing droplet formation in condensing vapours it was extrapolated to describe crystallisation. The central premise is that in order for a nucleus to form within the bulk phase there must be some local fluctuation in the concentration of the solute. Now the nucleus will result in a local increase in potential ($\Phi$) but will also be subject to surface tension ($\gamma$) trying to dissolve the nucleus. Therefore the free energy change of a nucleus of size $r$ is given by:
+\begin{align}
+	\Delta G = \Phi r - \gamma r^{2/3}
+\end{align}
+From the equation its clear that there must be some critical size of nucleus above which the potential change is always positive. This critical size defines the free energy barrier that determines whether a nucleus will grow or dissolve within the solution. With this in mind the rate of which stable nuclei are formed can be approximated using the Arrhenius reaction rate equation:
+\begin{align}
+	J = A \ exp \left[-\frac{\Delta G^*}{k_BT} \right]
+\end{align}
+Where A is a prefactor that accounts for kinetic contributions. One of the key assumptions made in the original theory is that the nucleus' shape is always spherical, making calculation of the surface tension rather simple. Since the potential change is influenced by the supersaturation the nucleation rate should increase exponentially with supersaturation, and likewise with temperature (assuming the same thermodynamic supersaturation). In addition the theory implies that any collection of solute molecules below the critical size are unstable.  
+
+Conceptually this is a rather idealised theory as it captures all of the microscopic effects into only two terms and provides a rather simple view of nucleation as being a single step process. However, in practice there are a number of challenges to applying this to experimental measurements.
+
+Where $A$ is a pre-factor that can be fine tuned to the exact demands of the system (typically involving Zeldovich Factor, $Z$) $\Delta G^*$ is the free energy barrier, this can be found by finding the point where the gradient goes to 0:
+\begin{align}
+	\Delta G = \gamma n^{2/3}-\phi n \\
+	\frac{\delta G}{\delta n} = \frac{2}{3n^{1/3}}\gamma - \phi  = 0 \\
+	n^* = \left( \frac{2\gamma}{3\phi} \right)^3 \\
+	\Delta G^* = \gamma (n^*)^{2/3} - \phi n^*
+\end{align}
+So to find the critical size $n^*$  - and therefore the nucleation rate - we simply need to know the ratio between the interfacial free energy and the volume free energy. The CNT assumes that the crystal grows is purely spherical and that the interfacial free energy is near constant (aka that of a flat surface), this assumption is not very accurate for small crystal nucleus where the changing curvature means that the surface tension varies as a function of the crystal radius. This also assumes the surrounding fluid is at rest and there are no external forces on the nucleus that might distort the shape of said nucleus; though there has been theoretical work looking into how the CNT behaves under shear flow \cite{Debuysschere2023, Mura2016, Richard2015}
+
+Furthermore, multiple experiments have already verified that crystals can form any number of structures and can even transition through multiple structures as it grows, meaning that the interfacial tension will constantly change as the particle grows. Furthermore, because we are assuming that the surface energy is constant the pre-exponential factor that is computed from experimental data, and the factor predicted by theory often disagree with one another to several degrees of magnitude. 
+
+There are several results that indicate that the CNT is not a good fit for nucleation rates:
+\textcolor{red}{
+	\begin{itemize}
+		\item Discrepancy in vapor-liquid nucleation systems to the extent that CNT was off by a factor of more than 2000 [ ]. 
+		\item In glass formation, nucleation kinetics are incredibly important to understand as the crystallization process is not desired when producing glass. We want to cool the molten solution so that the solid does not have time to reorganize itself into an ordered structure. To understand nucleation kinetics in glass formation we need to understand that as crystals form in the glass the surface energy differs from the stable phase significantly which us poorly predicted by CNT as it assumes that crystals will have a constant structure and interaction with the bulk material [ ]. 
+		\item Metal alloys can demonstrate super-cooling while not experiencing nucleation, this is because in these liquids exhibit short range dynamics which means that the liquid droplet remains unordered as it is cooled. Because CNT assumes that the droplets must be of a similar ordering to that of the bulk crystal it often struggles to consider systems where the local bond order can fluctuate between phases. [ ]
+	\end{itemize}
+}
+
+CNT is often regarded as a good description of the macro system, its obvious that for all crystallization systems there is an inherent energy barrier that dictates the nucleation rate. However, for such a diverse range of possible nucleation events the CNT crudely assumes all interactions between solutes as identical; this makes it difficult to model crystallisation events using CNT without significantly modifying the model for each specific case. Recent developments in studying nucleation events have opened up new possible 'pathways' for a nucleation event to go down, by far the most common is the idea of Two step nucleation.
+
+\subsection{Two Step Nucleation}
+The two step nucleation theory is an extension to the CNT, as in situ techniques for studying nucleation several papers reported the presence of stable liquid-like clusters that formed prior to nucleation.  It can be understood somewhat by Oswald's rule, where he found that for supersaturated solutions with multiple potential polymorphs, the general tendency was for the least stable polymorph to form first, and then over time the more stable polymorph to form afterwards. This was explained as the system preferring to take a quick step to an intermediate state of lower free energy first, before eventually tending towards the lowest possible free energy state. Likewise for two-step nucleation, while nucleation is by far the pathway with lowest free energy, it is still possible for the solutes to find an intermediate state such as a cluster of solute molecules prior to nucleation. The idea of only two steps is merely a convention and so some researchers prefer to refer to it as multi-step nucleation, where any number of intermediate structures can occur between the base solution and final nucleation event.  
+
+\section{Optical Tweezers}
+\subsection{Background}
+Optical tweezing has been a field of applied optics ever since the 1970s when Ashkin \cite{Ashkin1970} first showed that focused light was capable of exerting 'radiation pressure'. The working principle was that a light source such as a laser could trap small objects within a 2D plane, as long as the light source had a symmetrical profile and whose intensity was concentrated around a central axis. Soon after, Ashkin showed that the introduction of a microscope objective would allow one to focus the light source to a diffraction limited point that would stably trap small objects within a confined volume \cite{Ashkin1980}. This allowed Ashkin and others to study biological material and would later be used to probe microscopic properties such as the formation of colloidal aggregates \cite{Yi2021} to the drag forces exerted by a pure vacuum \cite{Ahn2018, Monteiro2018}. Due to the predictable behaviour of light, optical tweezers have become essential for measuring and exerting precise forces on the magnitude of pico-newtons allowing one to probe the material properties of the smallest materials. 
+
+\subsection{Literature related to laser induced nucleation}
+From as early as 1996 it has been known that laser irradiation is a viable method of inducing nucleation within a supersaturated solution \cite{Garetz1996}, the first reported case was notable as it used a 1.064 $\mu m$ laser meaning it was unlikely to be a photo-chemical reaction but rather a physical one. Future research has found nucleation can be induced by 1 of 3 routes involving direct laser induction: firstly, Non-photochemical laser induced nucleation (NPLIN) where the solution is irradiated with a pulsed laser \cite{Garetz1996, Garetz2002,Sun2006}, several papers have debated the exact mechanism that induces NPLIN \cite{Garetz2002, Knott2011}. Two suggested hypothesis are: an optical Kerr effect, where the solute molecules are aligned to lower the nucleation barrier \cite{Knott2011}; a dielectric polarisation effect, in which solute clusters are stabilised within the electric field which drastically increases the likelihood of nucleation\cite{Alexander2008}. Both hypothesise have their limitations and there has yet to be a single theory that explains NLPIN thoroughly. In either case the mean pulse intensity needs to be kept relatively low (on the order of $0.1-0.01 GW/cm^2$), as high intensity pulses lead to a completely different nucleation mechanism.
+
+High intensity laser induced nucleation (HILIN), where the pulse intensity is on the order of several $PW/cm^2$ is far simpler a mechanism to explain in comparison to NPLIN. The production of nuclei can be wholly associated to a cavitation process within the target solution, where the laser focus results in thermo-cavitation and the subsequent pressure change leads to a nucleation event around the focus of the laser \textcolor{red}{[ , , ]}. There is still not a general consensus on how cavitation influences the local supersaturation \textcolor{red}{[ , ]}, nor is there a clear understanding of what properties of the crystal can be controlled \textcolor{red}{[ , ]}. It has been suggested that in theory any solution can undergo HILIN \textcolor{red}{[ ]}, proving such a theory requires a strong understanding of the phenomena both before and after cavitation occurs.  
+
+Lastly, there is trapping induced nucleation, this is where optical tweezers come into play, the optical trap has been shown to have different effects on supersaturated solutions depending on where it has been focused. When focusing on the cover slip, supersaturated solutions of glycine and $D_2O$ were shown to create a dense liquid droplet of glycine and water \textcolor{red}{[ , ]}, applying DLS analysis showed that the dense liquid region was populated by clusters that would consolidate together upon being focused by the optical trap \textcolor{red}{[ ]}. Molecular simulations of glycine solutions showed that these clusters are unstable when using pure glycine below the saturation point \textcolor{red}{[ ]} suggesting that the clusters are formed due to glycine reaction products. When the optical trap was moved from the cover slip to the air-solution interface nucleation would occur before a dense liquid region could form \textcolor{red}{[ ]}. Repeated experiments where the laser is focused on the air-solution interface have lead to a variety of different nucleation events. In some instances the nucleation occurs spontaneously after a short period of time \textcolor{red}{[ ]}; whereas allowing a solution to age results in the formation of amorphous precursors that when irradiated will nucleate immediately \textcolor{red}{[ ]}. The precursors are only seen when the solution is irradiated by an optical tweezer and the growth rate can be controlled somewhat by varying the laser power \textcolor{red}{[ ]}. Notably the only work has been done with simply irradiating the solution with a trapping potential, there has not been an attempt to introduce a trappable object into the solution, the trapping potential has been used to influence the growth of a crystal front \textcolor{red}{[ ]}.
+
+\subsection{Optical Rotation}
+For any electromagnetic field it is possible to transfer both linear and angular momentum \textcolor{red}{[ ]}; more accurately the field is said to have both orbital and spin momentum. Though there is some debate on how to decompose the total momentum into these two components \textcolor{red}{[ ]}, for this thesis we do not need to calculate the exact quantities and will instead look at the broader effects of both components. The orbital momentum can be understood as the shape of the wavefront of the particular field in question, for simple Gaussian beams the wavefronts are uniform and equally spaced resulting in the typical radiation pressure that Ashkin and co demonstrated \textcolor{red}{[ ]}. However, higher order modes of a Gaussian beam (such as the Laguerre-Gaussian modes) have non-uniform wave fronts meaning the orbital momentum has both angular and linear components; depending on the relative size of the target particle one can induce rotation, or orbiting \textcolor{red}{[ ]}. Spin angular momentum (SAM) is attributed to the spin density of the field, early research has shown that the spin density is non-zero for any beam but while the SAM can easily be zero for homogeneous scatterers, this has sparked debate if SAM is even a physical quantity as it does not aid in the transport of energy directly \textcolor{red}{[ ]}. This paradox is resolved by representing the wave as an array of finite loops that all together cancel one-another out when the medium is homogeneous, when inhomogeneity is introduced (such as by being refracted by a birefringent medium) these circular loops no longer cancel out resulting in a non-zero SAM \textcolor{red}{[ ]}, depending on the material a number of rotational effects can occur. 
+
+For a perfectly homogeneous non-absorbing sphere the total SAM transferred from a circularly polarised beam is zero; if, however, the wave front of the beam is helical - for example using a Laguerre-Gaussian beam \textcolor{red}{[ ]} - one can control the rotational motion via transfer of OAM. Due to the structure of the LG beam the individual rays are not perpendicular with the propagation direction; as a trapped particle will experience a constant torque while being pulled towards the centre of the trap focus. This was demonstrated in \textcolor{red}{[ ]} where Copper Oxide micro particles rotated with a frequency of around 2 Hz due to the orbital AM from a LG beam; this was enhanced further by circularly polarising the trapping beam. Typically for a non-absorbing particle the polarization state of the beam has a negligible impact on the angular momentum transferred, this is not the case for particles with a high absorption efficiency as the combined handedness of the LG beam and polarisation vector can lead to an enhanced transfer of SAM. However, by far the best method for inducing rotation is using birefringent materials.
+
+Birefringence is a material property often seen in crystalline materials, if the crystal lattice has a different structures when viewed at different orientations then light will be refracted differently depending on its polarisation. For circularly polarised light the inhomogeneity results in a high degree of SAM being transferred to the target object \textcolor{red}{[ ]}, this has been exploited to rotate microspheres as fast as 1000 Hz while suspended in a bulk medium \textcolor{red}{[ ]} as well as a means of measuring the local temperature and shear response of said medium \textcolor{red}{[ , ]}. Calculating the optical torque applied to a birefringent material is given via:
+
+\begin{equation}
+	\label{eq:opt_torque}
+	\begin{aligned}
+		\tau_{opt} =& -\frac{\epsilon}{2\omega_{laser}}E_0^2sin(kd(\Delta n))cos2\theta sin2\phi \\ &+  \frac{\epsilon}{2\omega_{laser}}E_0^2 (1-cos(kd(\Delta n))sin2\phi)
+	\end{aligned}
+\end{equation}
+
+Where $\theta$ is the angle between the particle's orientation vector and the propagation direction of the EM field, and $\phi$ is the phase shift in the EM field.  The first term represents the 'orientational' torque which is due to the target particle being aligned along the EM field, when aligned $\theta=0$ meaning the entire term is negligible for particle's with a stable orientation. The second term is due purely to the polarisation of the optical trap, for circularly polarised light $\phi=\pi/4$ thus maximising the torque transferred to the target particle. Birefringence can also be induced if the target particle has an anisotropic shape, in particular if the particle shape is elongated along one major axis; the go to particle shape is a silica dimer (two spheres tangentially attached) due to silica's stability and strong adhesion. Using a silica dimer research groups have achieved a rotation frequency in the realm of several GHz \textcolor{red}{[ ]} in a vacuum. 
+\bibliographystyle{ieeetran}
+\bibliography{thesis_bib}
+
+\end{document}
