@@ -1,7 +1,7 @@
 \contentsline {chapter}{Abstract}{ii}{chapter*.1}%
 \contentsline {chapter}{List of Figures}{v}{chapter*.2}%
-\contentsline {chapter}{List of Tables}{vii}{chapter*.3}%
-\contentsline {chapter}{Preface/Acknowledgements}{ix}{chapter*.5}%
+\contentsline {chapter}{List of Tables}{viii}{chapter*.3}%
+\contentsline {chapter}{Preface/Acknowledgements}{x}{chapter*.5}%
 \contentsline {chapter}{\numberline {1}Introduction}{2}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Nucleation Theories}{2}{section.1.1}%
 \contentsline {subsection}{\numberline {1.1.1}Classical Nucleation Theory (CNT)}{3}{subsection.1.1.1}%
@@ -16,34 +16,41 @@
 \contentsline {subsection}{\numberline {2.2.1}Ray-Optics Regime}{13}{subsection.2.2.1}%
 \contentsline {subsection}{\numberline {2.2.2}Lornez-Mie Theory}{14}{subsection.2.2.2}%
 \contentsline {subsection}{\numberline {2.2.3}Rayleigh Regime}{15}{subsection.2.2.3}%
-\contentsline {section}{\numberline {2.3}Langevin Equation}{17}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}Finite Difference}{19}{subsection.2.3.1}%
-\contentsline {section}{\numberline {2.4}Calibration Techniques}{20}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}Potential Well Analysis}{21}{subsection.2.4.1}%
-\contentsline {subsection}{\numberline {2.4.2}Equipartition method}{22}{subsection.2.4.2}%
-\contentsline {subsection}{\numberline {2.4.3}Mean Square Displacement}{22}{subsection.2.4.3}%
-\contentsline {subsubsection}{\numberline {2.4.3.1}Angular Mean Square Displacement (MSAD)}{24}{subsubsection.2.4.3.1}%
-\contentsline {subsection}{\numberline {2.4.4}Power Spectrum Density (PSD)}{25}{subsection.2.4.4}%
-\contentsline {chapter}{\numberline {3}Effects of localised shearing on crystal growth and nucleation}{27}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Optical Tweezer Equipment}{27}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Position detection methods}{28}{subsection.3.1.1}%
-\contentsline {section}{\numberline {3.2}Synthesis of Birefringent Micro spheres}{29}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Rotation of Vaterite micro spheres}{29}{subsection.3.2.1}%
-\contentsline {chapter}{\numberline {4}Complex Langevin dynamics of simple spherical aggregates}{30}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Positional and Orientational dependence of Trapping forces}{31}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Simulative QPD}{34}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Incident beam}{34}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Scattered and Total Fields}{37}{subsection.4.2.2}%
-\contentsline {section}{\numberline {4.3}Rotations and Asymmetric particles}{40}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Power Spectra of single sphere vs spherical aggregates}{41}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Monitoring Stochastic rotational motion using static light scattering}{45}{section.4.5}%
-\contentsline {subsection}{\numberline {4.5.1}Coordinate System}{45}{subsection.4.5.1}%
-\contentsline {subsection}{\numberline {4.5.2}Dimer}{45}{subsection.4.5.2}%
-\contentsline {subsection}{\numberline {4.5.3}Beam}{46}{subsection.4.5.3}%
-\contentsline {subsection}{\numberline {4.5.4}Detectors and Pixels}{46}{subsection.4.5.4}%
-\contentsline {section}{\numberline {4.6}Interpretation of scattering data into orientation estimates}{47}{section.4.6}%
-\contentsline {chapter}{\numberline {5}Effects of shear flow on the nucleation of crystals}{48}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Shear induced Nucleation}{48}{section.5.1}%
-\contentsline {chapter}{\numberline {6}Closing Remarks}{53}{chapter.6}%
-\contentsline {chapter}{\numberline {A}Stuff That Didn't Fit Anywhere Else}{54}{appendix.A}%
-\contentsline {chapter}{Bibliography}{54}{appendix.A}%
+\contentsline {section}{\numberline {2.3}Scattering methods}{17}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Tmatrix}{17}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Discrete Dipole Approximation}{17}{subsection.2.3.2}%
+\contentsline {section}{\numberline {2.4}Langevin Equation}{17}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Finite Difference}{19}{subsection.2.4.1}%
+\contentsline {section}{\numberline {2.5}Calibration Techniques}{20}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Potential Well Analysis}{21}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}Equipartition method}{22}{subsection.2.5.2}%
+\contentsline {subsection}{\numberline {2.5.3}Mean Square Displacement}{22}{subsection.2.5.3}%
+\contentsline {subsubsection}{\numberline {2.5.3.1}Angular Mean Square Displacement (MSAD)}{24}{subsubsection.2.5.3.1}%
+\contentsline {subsection}{\numberline {2.5.4}Power Spectrum Density (PSD)}{25}{subsection.2.5.4}%
+\contentsline {section}{\numberline {2.6}Simulation of spherical aggregates}{27}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}Simulated Quadrant Photodiode}{29}{subsection.2.6.1}%
+\contentsline {chapter}{\numberline {3}Effects of localised shearing on crystal growth and nucleation}{32}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Optical Tweezer Equipment}{32}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Position detection methods}{33}{subsection.3.1.1}%
+\contentsline {section}{\numberline {3.2}Synthesis of Birefringent Micro spheres}{34}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Rotation of Vaterite micro spheres}{34}{subsection.3.2.1}%
+\contentsline {section}{\numberline {3.3}Shear induced Nucleation}{34}{section.3.3}%
+\contentsline {chapter}{\numberline {4}Complex Langevin dynamics of simple spherical aggregates}{39}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Positional and Orientational dependence of Trapping forces}{40}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Continuous rotational motion due to second-order scattering}{42}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Conclusions}{46}{section.4.3}%
+\contentsline {chapter}{\numberline {5}Detection and Characterisation of rotational spherical aggregate rotational dynamics}{47}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Simulative QPD}{47}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Incident beam}{47}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Scattered and Total Fields}{49}{subsection.5.1.2}%
+\contentsline {section}{\numberline {5.2}Rotations and Asymmetric particles}{52}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Power Spectra of single sphere vs spherical aggregates}{53}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Monitoring Stochastic rotational motion using static light scattering}{55}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Coordinate System}{55}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}Dimer}{55}{subsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.4.3}Beam}{56}{subsection.5.4.3}%
+\contentsline {subsection}{\numberline {5.4.4}Detectors and Pixels}{56}{subsection.5.4.4}%
+\contentsline {section}{\numberline {5.5}Interpretation of scattering data into orientation estimates}{57}{section.5.5}%
+\contentsline {chapter}{\numberline {6}Closing Remarks}{58}{chapter.6}%
+\contentsline {chapter}{\numberline {A}Stuff That Didn't Fit Anywhere Else}{59}{appendix.A}%
+\contentsline {chapter}{Bibliography}{59}{appendix.A}%
