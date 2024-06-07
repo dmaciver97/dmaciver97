@@ -89,61 +89,99 @@ The Lorenz Mie theory provides an exact solution to the maxwell equations for th
 	\nabla^2\mathbf{E} +k^2\mathbf{E} = 0
 \end{align} 
 This combined with the constraints of Maxwell's Equations leaves very few exact solutions apart from spherical or planar waves, both of which can be converted between with relative ease. For example, a plane wave electric field can be expanded into spherical harmonics and likewise any spherical wave can be described as combination of plane waves offset from one another. For a single plane wave the incident, internal, and scattered fields are given as:
-
 \begin{align}
-  E_{\rm inc}(r)
+  {\bf E}_{\rm inc}({\bf r})
   &=
-    E_0 \sum_{n=1}^\infty a_{n}M_{1n}^{(1)}(r)+b_{n}N_{1n}^{(1)}(r)
+    E_0 \sum_{nm}^\infty \left[
+    a_{nm}{\bf M}_{nm}^{(1)}({\bf r})
+    + b_{nm}{\bf N}_{nm}^{(1)}({\bf r})\right]
   \\
-  E_{\rm int}(r)
+  {\bf E}_{\rm int}({\bf r})
   &=
-    E_0 \sum_{n=1}^\infty i^n\frac{2n+1}{n(n+1)}\left(-id_{n}N_{1n}^{(1)}(r)+c_{n}M_{1n}^{(1)}(r)\right)
+    E_0 \sum_{n=1}^\infty i^n\frac{2n+1}{n(n+1)}\left[
+    -id_{nm}{\bf N}_{nm}^{(1)}({\bf r}) + c_{nm}{\bf M}_{nm}^{(1)}({\bf r})
+    \right]
   \\
-  E_{scat}(r)
+  {\bf E}_{\rm scat}({\bf r})
   &=
-    E_0 \sum_{n=1}^\infty  i^n\frac{2n+1}{n(n+1)}\left(-ip_{n}N_{1n}^{(3)}(r)+q_{n}M_{1n}^{(3)}(r)\right)
+    E_0 \sum_{n=1}^\infty  i^n\frac{2n+1}{n(n+1)}\left[
+      -i p_{nm}{\bf N}_{nm}^{(3)}({\bf r})+q_{nm}{\bf M}_{nm}^{(3)}({\bf r})
+    \right]
 \end{align}
-where $a_n$, $b_n$, $c_n$, $d_n$, $p_n$, and $q_n$ are the expansion coefficients of each of the fields, for the incident field computing its expansion coefficients is possible via analytical methods and are completely dependent on the beam conditions imposed by the user. However, computing the expansion coefficients of the internal and external fields be far more tedious depending on the shape of the target and what properties of the scattered field are desired - all of which is discussed later on. From an optical trapping perspective the force exerted by a focused electric field can be found by computing the maxwell stress tensor which only requires the total magnitude of the incident and scattered fields, essentially computing the momentum contained in the incident beam and how much of it has been transferred to the target particle. 
+where $a_{nm}$, $b_{nm}$, $c_{nm}$, $d_{nm}$, $p_{nm}$, and $q_{nm}$
+are the expansion coefficients of each of the fields, for the incident
+field computing its expansion coefficients is possible via analytical
+methods and are completely dependent on the beam conditions imposed by
+the user.  However, computing the expansion coefficients of the
+internal and external fields be far more tedious depending on the
+shape of the target and what properties of the scattered field are
+desired --- all of which is discussed later on.  From an optical
+trapping perspective the force exerted by a focused electric field can
+be found by computing the Maxwell stress tensor which only requires
+the total magnitude of the incident and scattered fields, essentially
+computing the momentum contained in the incident beam and how much of
+it has been transferred to the target particle.
 
 Lorenz-Mie theory can be applied to describe the scattering from any particle regardless of size, however as we either increase or decrease the size of the target particles the infinite series converges allowing one to ignore much of the tedium of Lorenz-Mie theory. The ray optics model is what is achieved when the size of the target particle far exceeds that of the laser wavelength and thus individual ray's can have independent contributions. In the latter case we can simplify the scattering problem by approximating our target as a single dipole, focusing only its interactions with the incident field.
 
-\subsection{Rayleigh Regime}
-The Rayleigh approximation is the limiting approximation for describing a particles motion in an electromagnetic field who's wavelength is several times greater than the particle's size. The underlying theory is that a dielectric sphere can be treated as a dipole while in the presence of the electromagnetic field; in which case the scattering force is given simply by the scattering of the induced dipole, and the gradient force is due to the Lorentz force \cite{Gordon1973}. The gradient forces in the principle Cartesian axis are described by Harada et al \cite{YasuhiroHarada1996} in MKS units as a restorative rectangular force field:
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Rayleigh Regime}
+
+The Rayleigh approximation is the limiting approximation for describing a particles motion in an electromagnetic field who's wavelength is several times greater than the particle's size. The underlying theory is that a dielectric sphere can be treated as a dipole while in the presence of the electromagnetic field; in which case the scattering force is given simply by the scattering of the induced dipole, and the gradient force is due to the Lorentz force \cite{Gordon1973}. The gradient forces in the principle Cartesian axis are described by Harada et al \cite{YasuhiroHarada1996} in MKS units as a restorative rectangular force field:
 \begin{align}
-	F_{grad,x} &=-\hat{x} \frac{2\pi n_2 a^3}{c}
-	\left(\frac{m^2-1}{m^2+2}\right) \frac{4\tilde{x}/w_0}{1+(2\tilde{z})^2} \times I(r) \\
-	F_{grad,y} &=-\hat{y} \frac{2\pi n_2 a^3}{c}
-	\left(\frac{m^2-1}{m^2+2}\right) \frac{4\tilde{y}/w_0}{1+(2\tilde{z})^2} \times I(r) \\
-	F_{grad,z} &=-\hat{z} \frac{2\pi n_2 a^3}{c}
-	\left(\frac{m^2-1}{m^2+2}\right) \frac{4\tilde{y}/w_0}{1+(2\tilde{z})^2} \nonumber \times I(r) \\ 
-	& \times \left[1-\frac{2(\tilde{x}^2+\tilde{y}^2)}{1+(2\tilde{z})^2} \right] \\
-	\text{where:} \nonumber \\
+  F_{grad,x}
+  &=-\hat{x} \frac{2\pi n_2 a^3}{c}
+    \left(\frac{m^2-1}{m^2+2}\right) \frac{4\tilde{x}/w_0}{1+(2\tilde{z})^2} \times I(r)
+  \\
+  F_{grad,y}
+  &=-\hat{y} \frac{2\pi n_2 a^3}{c}
+    \left(\frac{m^2-1}{m^2+2}\right) \frac{4\tilde{y}/w_0}{1+(2\tilde{z})^2} \times I(r)
+  \\
+  F_{grad,z}
+  &=-\hat{z} \frac{2\pi n_2 a^3}{c}
+    \left(\frac{m^2-1}{m^2+2}\right) \frac{4\tilde{y}/w_0}{1+(2\tilde{z})^2}
+    \nonumber \times I(r)
+  \\ 
+  & \times \left[1-\frac{2(\tilde{x}^2+\tilde{y}^2)}{1+(2\tilde{z})^2} \right]
+  \\
+  \text{where:}
+  \nonumber
+  \\
 	I(r) &= \left(\frac{2P}{\pi w_0^2}\right) \frac{1}{1+(2\tilde{z}^2)} 
-	exp \left[ - \frac{2(\tilde{x}^2+\tilde{y}^2)}{1+(2\tilde{z})^2} \right]
+	\exp \left[ - \frac{2(\tilde{x}^2+\tilde{y}^2)}{1+(2\tilde{z})^2} \right]
 \end{align}
 
 Where $m$ is the relative refractive index ($n_1/n_2$), $\omega_0$ is the beam waist, and $a$ is the radius of the particle. Scattering force however is dependent on the effective scattering cross sectional area. 
-
 \begin{align}
-	F_{scat} &= \hat{z} \left(\frac{n_2}{2}\right) C_{pr} I(r) \\
-	\text{where:} \nonumber \\
-	C_{pr} &= \frac{8}{3} \pi (ka)^4 a^2 \left(\frac{m^2-1}{m^2+2}\right)^2
+  F_{\rm scat}
+  &= \hat{z} \left(\frac{n_2}{2}\right) C_{pr} I(r) \\
+  \text{where:} \nonumber \\
+  C_{pr} &= \frac{8}{3} \pi (ka)^4 a^2 \left(\frac{m^2-1}{m^2+2}\right)^2
 \end{align}
 
 The Rayleigh regime allows for easy computation of the gradient and scattering forces due to the assumption that the particle is a point dipole, so much so that higher order scattering problems can be simplified by subdividing the particle into discrete dipoles (see Sec \ref{sec:scattering}). However as the target particle gets larger this assumption fails to accurately describe the trapping force due to the complexity in the gradient field. For particle sizes close to the laser wavelength the scattered field is best described by Lorenz-Mie theory. 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Scattering methods}
 \label{sec:scattering}
-\subsection{Tmatrix}
-The T matrix method was first developed by Peter Waterman with his 
-research into acoustic wave scattering, this would later be extended to 
-electromagnetic waves. Put simply, the method sets a boundary condition 
-where the incident field within the interior field is cancelled out via 
-interference; these boundary conditions allows us to solve the Maxwell 
-equations by expanding the incident and scattered fields using spherical 
-vector waves. Because the boundary condition ensures that the incident field is halted at the interior surface of the object, the scattering field can be related to the incident field by the objects T-Matrix:
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Tmatrix}
+
+The $T$-matrix method was first developed by Peter Waterman with his
+research into acoustic wave scattering, this would later be extended
+to electromagnetic waves. Put simply, the method sets a boundary
+condition where the incident field within the interior field is
+cancelled out via interference; these boundary conditions allows us to
+solve the Maxwell equations by expanding the incident and scattered
+fields using spherical vector waves. Because the boundary condition
+ensures that the incident field is halted at the interior surface of
+the object, the scattering field can be related to the incident field
+by the objects $T$-matrix:
 \begin{align}
 	\begin{pmatrix}
 		q_{mn} \\
@@ -164,10 +202,22 @@ vector waves. Because the boundary condition ensures that the incident field is 
 	\end{pmatrix}
 \end{align}
 
-The T-matrix method is exceptionally useful for computing the scattering from any arbitrary shaped particle. However, the T-matrix method by itself can be limited by computation power for aggregates of particles; while possible to compute the scattering of each individual particle the system of equations cannot be solved analytically and must be solved numerically to determine properties for the aggregate for one particular orientation. 
+The $T$-matrix method is exceptionally useful for computing the
+scattering from any arbitrary shaped particle.  However, the
+$T$-matrix method by itself can be limited by computation power for
+aggregates of particles; while possible to compute the scattering of
+each individual particle the system of equations cannot be solved
+analytically and must be solved numerically to determine properties
+for the aggregate for one particular orientation.
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Discrete Dipole Approximation}
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Langevin Equation}
 Describing any microscopic motion requires an understanding of a molecules diffusive behaviour, for the case of optical tweezers the most complete model of diffusion is the Langevin equation. Models such as the Fickian, and Einstein derivations are sufficient for macroscopic behaviours the Langevin equation better describes the microscopic characteristics of any diffusive behaviour. The Fickian model is not suitable for the applications of optical tweezers as it assumes that all diffusive motion is driven by a gradient of molecular density, not only is this often not the case but it fails to describe the motion of any single molecule, only the collective behaviour. Einstein's model however considers the collisions experienced by individual molecules, if we assume that all collisions are random and only consider the behaviour after a finite time step $\delta t$ then the individual collisions should cancel out. This is insufficient for our interests as an optical tweezers relaxation time (given by $\tau = \kappa/\gamma$) is often so short that we must consider the individual collisions experienced by any one molecule. The Langevin model of diffusion therefore assumes that the net force on a particular particle is described fully by these individual collisions:
 \begin{align}
