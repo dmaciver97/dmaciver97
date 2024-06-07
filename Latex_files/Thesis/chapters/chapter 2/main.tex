@@ -1,4 +1,5 @@
 \chapter{Theory and methods}
+
 The two key areas of this project cover two widely different fields; 
 crystallisation theory, which is covered in the previous introduction 
 section, and tweezing theory. The following chapter summarises the 
@@ -6,7 +7,11 @@ working principles behind optical tweezing, the work being done with
 optical tweezers in particle classification, and how tweezing has been 
 used to investigate nucleation events. 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Working Principle}
+
 Optical tweezing operates on the principle that light carries both linear and angular momentum, which can be transferred to other objects. If light is reflected or refracted by a medium part of the light's momentum is transferred to the medium itself. While at large scales this effect is insignificant in most cases, at micron scales the forces imparted by individual photons begin to become significant enough to influence its trajectory. Ashkin's work into optical tweezing found that micron sized entities could be spatially locked by aiming a laser with a Gaussian intensity profile directly upward at a the cell while being suspended in a liquid medium \cite{Ashkin1970}. This is demonstrated diagram below where we have a simple sphere trapped by a Gaussian beam, if we consider two rays of light hitting our sphere we see that while in the centre each ray is refracted in an equal opposite direction to one another and so the net force imparted is 0. However when displaced the net force is unbalanced and points towards the centre of the trap; this principle can be generalised to 3 degrees of freedom if we consider a focused beam instead of a para-axial beam, typically the trap will be weaker along the beam axis compared to the transverse trap strength.  
 
 \begin{figure}[h]
@@ -15,28 +20,50 @@ Optical tweezing operates on the principle that light carries both linear and an
 	\caption{Working principle for an optical trap, upper image shows a sphere at the centre of a trap experiences equal forces directed towards inwards. Lower image shows that when displaced 'ray a' is refracted far more than 'ray b' resulting in a net force back towards the centre.}
 \end{figure}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Electromagnetism and optical tweezing}
+
 Proper understanding of optical tweezing requires an understanding of how the trapped particle interacts with the trapping laser. From a electromagnetism perspective the laser creates a spatially and temporally coherent electric field that scatters light off of a trapped particle. The laws governing electric and magnetic fields are summarised most succinctly via the Maxwell equations. The differential forms of which are given below:
 \begin{align}
-	&\nabla \cdot \mathbf{E} = \frac{\rho_ v}{\epsilon_0} \\
-	&\nabla \cdot \mathbf{B} = 0 \\
-	&\nabla \times \mathbf{E}  = \frac{\delta \mathbf{B}}{\delta t} \\
-	&\nabla \times \mathbf{B} = j_0 +\frac{\delta \mathbf{E}}{\delta t}    
+  \nabla \cdot \mathbf{E}
+  &= \frac{\rho_ v}{\epsilon_0}
+  \\
+  \nabla \cdot \mathbf{B}
+  &= 0
+  \\
+  \nabla \times \mathbf{E}
+  &= \frac{\partial \mathbf{B}}{\partial t}
+  \\
+  \nabla \times \mathbf{B}
+  &= {\bf j} +\frac{\partial \mathbf{E}}{\partial t}    
 \end{align}
+where $\rho_v$ is the free charge density, ${\bf j}_0$ is the charge
+current, $\epsilon_0$ is the permittivity of free space.
+
 These 4 equations describe how the electric and magnetic fields must behave and are also related to one another, any discussion of optical trapping is underpinned by the fact that in all cases the Maxwell Equations must be satisfied. 
 
 The force exerted by an optical tweezer can be subdivided into the gradient and scattering components, for most modelling research this is how the force fields are reported. The gradient force is a conservative force brought about by the polarisation of dielectric materials, anything around 10\% of the trapping wavelength will be attracted along the gradient of the electric field to the region of greatest intensity (for a simple Gaussian Beam this would be at the focal point). The scattering force arises from the scattered field of the trapping beam pushing the target object away from the focal point; unlike the gradient force, the scattering force is non-conservative and is loosely proportional to the particle's Brownian motion. The equilibrium position (where the mean squared displacement is minimised) is found when the gradient force far exceeds the scattering force, interpreting and calculating these forces is dependent on the ratio between the particle size and the trapping wavelength.
 
-\subsection{Ray-Optics Regime}
-The Ray-Optics model is the simplest to understand, the theory models the laser as a collection of individual 'rays' that propagate and are refracted according to Snell's Law. Based on the change in direction momentum is transferred to the target particle; with rays closest to the centre of the beam having greater intensity than those rays at the very edge of the beam. Consider a particle struck by two rays in a Gaussian beam (see Fig below), one coming close to the centre, and the other ray coming from the edge. As each ray is refracted by the target sphere a force is imparted onto it, the total force imparted is given by:
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Ray-Optics Regime}
+
+The Ray-Optics model is the simplest to understand, the theory models the laser as a collection of individual 'rays' that propagate and are refracted according to Snell's Law. Based on the change in direction momentum is transferred to the target particle; with rays closest to the centre of the beam having greater intensity than those rays at the very edge of the beam. Consider a particle struck by two rays in a Gaussian beam (see Fig below), one coming close to the centre, and the other ray coming from the edge. As each ray is refracted by the target sphere a force is imparted onto it, the total force imparted is given by:
 \begin{align}
 	F_i = Q_i\frac{\Delta n P_i}{c}
 \end{align}
+where $Q_i$ is the trapping efficiency, $\Delta n$ is the difference
+in refractive indices between the solution and the target particle,
+and $P_i$ is the power of the individual ray. For a beam with a
+Gaussian intensity distribution $P_i$ will fall off as you move from
+the centre of the beam.  The ray optics model is ideal for
 
-Where $Q_i$ is the trapping efficiency, $\Delta n$ is the difference in refractive indices between the solution and the target particle, and $P_i$ is the power of the individual ray. For a beam with a Gaussian intensity distribution $P_i$ will fall off as you move from the centre of the beam. The ray optics model is ideal for  
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Lornez-Mie Theory}
+
 The Lorenz Mie theory provides an exact solution to the maxwell equations for the scattering caused by an isotropic sphere. The theory describes the scattered wave given off by a dielectric sphere when incident by a plane wave as a summation of partial spherical waves. For any spherical wave the vector fields must solve the Helmholtz wave equation given by:
 \begin{align}
 	\nabla^2\mathbf{E} +k^2\mathbf{E} = 0
@@ -323,5 +350,5 @@ We can if we want further restrict the incident beam by applying setting the tru
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\linewidth]{figs/fixed_polarisation.png}
+	\includegraphics[width=0.75\linewidth]{./figs/fixed_polarisation.png}
 \end{figure}
