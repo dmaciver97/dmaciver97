@@ -84,9 +84,50 @@ We report on computer simulations of the dynamics of trapping, equilibrium posit
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%        
 \section{Introduction}
 
-Ever since their invention in 1986 by Arthur Ashkin \cite{Ashkin_1986}, Optical Traps or Optical Tweezers (OT) have been used extensively in colloidal physics \cite{Leonardo_2008, Koehler_2011, Curran_1999}. Of particular interest has been the use of a single trapped microsphere as a tracer to probe the rheological properties of the fluid of suspension \cite{Atakhorrami_2006}. However, while working with dense colloidal suspensions, one often ends up trapping more than one microbead in a Gaussian beam OT. Li and Arlt \cite{Li_2008} studied the case of two microspheres trapped in a single OT and opined that multiple trapped beads could be mistaken for a single trapped bead with altered trap stiffness. Theoretical studies on the case of two trapped microspheres by Xu et.al., \cite{Xu_2005} employed a ray-optics based model to show that the two trapped beads are brought into physical contact with each other by optical forces and they also calculated the axial equilibrium positions of the two trapped beads as a function of their size. Sheng-Hua et al \cite{ShengHua_2005} assumed that the two trapped beads experience different trap stiffnesses and went on to show that the trapped beads collide. Experiments in \cite{Praveen_2016} confirmed that the two trapped beads indeed experience different trap stiffnesses when trapped in a single Gaussian beam OT.
+Ever since their invention in 1986 by Arthur Ashkin
+\cite{Ashkin_1986}, Optical Traps or Optical Tweezers (OT) have been
+used extensively in colloidal physics
+\cite{Leonardo_2008,Koehler_2011, Curran_1999}.  Of particular
+interest has been the use of a single trapped microsphere as a tracer
+to probe the rheological properties of the fluid of suspension
+\cite{Atakhorrami_2006}.  However, while working with dense colloidal
+suspensions, one often ends up trapping more than one microbead in a
+Gaussian beam OT.  Li and Arlt \cite{Li_2008} studied the case of two
+microspheres trapped in a single OT and opined that multiple trapped
+beads could be mistaken for a single trapped bead with altered trap
+stiffness. Theoretical studies on the case of two trapped microspheres
+by Xu et~al.\ \cite{Xu_2005} employed a ray-optics based model to show
+that the two trapped beads are brought into physical contact with each
+other by optical forces and they also calculated the axial equilibrium
+positions of the two trapped beads as a function of their size.
+Sheng-Hua et~al.\ \cite{ShengHua_2005} assumed that the two trapped
+beads experience different trap stiffnesses and went on to show that
+the trapped beads collide.  Experiments in \cite{Praveen_2016}
+confirmed that the two trapped beads indeed experience different trap
+stiffnesses when trapped in a single Gaussian beam OT.
 
-Besides multiple trapped beads, trapping and dynamics of asymmetric shapes have generated a lot of interest. Mihiretie et.al., \cite{Loudet_2014} studied the trapping of ellipsoidal microparticles and found that particles of aspect ratio ‘k’ greater than 3 and less than 0.3 exhibited oscillatory dynamics with a coupling between translation and rotation in the trap and those with aspect ratio outside this range exhibited less pronounced oscillations with the major axis pre-dominantly pointed along the laser propagation direction. Cao et.al., \cite{Curran_1999} performed T-Matrix based simulations of the trapping dynamics of nanowires and microcylinders in the Rayleigh regime and found that polarization dictated the final equilibrium orientation with the nanowires equilibrating with a large tilt angle about the laser propagation direction when the beam was linearly polarized and along the beam propagation direction in circularly polarized traps. Chetana D et, al., \cite{Chetana_2022} increased the complexity of the problem by considering an object with both shape as well as optical anisotropy in the form of a chicken Red Blood Cell (cRBC) and showed that the trapping dynamics and the final equilibrium orientation of the cRBC was decided by the beam polarization with the cell showing a dual reorientation behaviour in a linearly polarized trap and a partial second reorientation in a circularly polarized trap.  
+Besides multiple trapped beads, trapping and dynamics of asymmetric
+shapes have generated a lot of interest.  Mihiretie et~al.\
+\cite{Loudet_2014} studied the trapping of ellipsoidal microparticles
+and found that particles of aspect ratio ‘k’ greater than $3$ and less
+than $0.3$ exhibited oscillatory dynamics with a coupling between
+translation and rotation in the trap and those with aspect ratio
+outside this range exhibited less pronounced oscillations with the
+major axis pre-dominantly pointed along the laser propagation
+direction.  Cao et~al.\ \cite{Curran_1999} performed T-Matrix based
+simulations of the trapping dynamics of nanowires and microcylinders
+in the Rayleigh regime and found that polarization dictated the final
+equilibrium orientation with the nanowires equilibrating with a large
+tilt angle about the laser propagation direction when the beam was
+linearly polarized and along the beam propagation direction in
+circularly polarized traps.  Chetana et~al.\ \cite{Chetana_2022}
+increased the complexity of the problem by considering an object with
+both shape as well as optical anisotropy in the form of a chicken red
+bloodc Cell (cRBC) and showed that the trapping dynamics and the final
+equilibrium orientation of the cRBC was decided by the beam
+polarization with the cell showing a dual reorientation behaviour in a
+linearly polarized trap and a partial second reorientation in a
+circularly polarized trap.
 
 In this work, we extend the Brownian dynamical simulations carried out by Vigilante et.al., \cite{Vigilante_2020} to the case of asymmetric dimers. We begin by showing that the optical force on a microsphere-dimer quickly deviates from a simple sum of forces on two spheres and thus underscore the relevance of the choice of mstm, a well-established package for calculating light scattering from a cluster of spheres \cite{Mackowski_2011} and within it ott, a well-established toolbox for computing forces and torques in an OT \cite{Nieminen_2007}.  We show validations of the dynamical simulations for the case of a single trapped bead in both linear and circularly polarized traps with the suspension medium being water at room temperature. We then reproduce the results for dynamics of a symmetric dimer in \cite{Vigilante_2020} as further validation of our codes. We organize our results into 3 sections with the focus on axial and orientation trapping equilibria for different size-ratios of the dimers in the first section, determinations of equilibrium orientations and equilibrium positions of various dimers with varied initial conditions of orientation and position in linearly and circularly polarised traps.  Finally, we report interesting rotational dynamics of dimers seen only when the light is not linearly polarised. We hope that our results could inform studies on colloidal aggregation and help design rotors for use in applications such as lab-on-a-chip and micromachines.        
 
@@ -96,7 +137,8 @@ In this work, we extend the Brownian dynamical simulations carried out by Vigila
 \section{Methodology}
 
 \paragraph{Simulating motion within an optical trap}
-We assume the dimers to be low-Reynold’s number objects and write down their dynamics within the trap using the Langevin equation:
+We assume the dimers to be low-Reynolds number objects and write down
+their dynamics within the trap using the Langevin equation:
 \begin{align}
 \label{eq:langevin}
 \frac{dx(t)}{dt}=\frac{F(x)}{\gamma}+\sqrt{2D}\eta_x(t)
