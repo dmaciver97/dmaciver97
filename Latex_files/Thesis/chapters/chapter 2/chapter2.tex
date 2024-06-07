@@ -360,7 +360,35 @@ Fortunately, we do not need to solve these directly as the latter two random var
 \end{equation}
 Where $a_{n,m}$, $b_{n,m}$, $p_{n,m}$ $q_{n,m}$ are the beam coefficients of the incident and scattered fields respectively. We can get the transverse force and torque components in a similar form by applying a simple rotation transformation. In order to get the scattered beam coefficients we can use \textit{MSTM} \cite{Mackowski2011} to calculate the T-matrix of our dimer (or any spherical aggregate). Vigilante et al compiled together a python package that combines both \textit{ott} and \textit{MSTM} to simulate the behaviour of spherical aggregates within a predefined optical trap. 
 
-Throughout this PhD we use the work of Vigilante to perform a systematic study of the dynamics demonstrated by asymmetric dimers in both plane and circularly polarised light. But furthermore we expand upon their work to create a fully functional quadrant photo-diode to simulate the response from a calibration test. 
+Throughout this PhD we use the work of Vigilante to perform a systematic study of the dynamics demonstrated by asymmetric dimers in both plane and circularly polarised light. But furthermore we expand upon their work to create a fully functional quadrant photo-diode to simulate the response from a calibration test. This builds upon the work from \cite{Rohrbach2002} which applied the fundamental principles of Lorenz-Mie theory to replicate the response signal of a QPD being used in back focal-plane interferometry.
+
+\subsection{Simulated Quadrant Photodiode}
+In order to simulate a typical experimental set up with a QPD installed as a position detection system we need to evaluate the total magnitude of the electric field incident on the photo-diode surface. While trapping a micro-particle, the scattered and incident fields combine together and interfere with one another. These fields are collected by a condenser lens in the far field limit and are focused onto the QPD surface, the total intensity can be evaluated as:
+\begin{align}
+I(x,y) = \epsilon_0c\left|
+\begin{bmatrix} 
+	E_{i,x}(x,y)+E_{s,x}(x,y) \\ 
+	E_{i,y}(x,y)+E_{s,y}(x,y) \\ 
+	E_{i,z}(x,y)+E_{s,z}(x,y)
+\end{bmatrix} \right|^2 \times step(NA_c-\sqrt{x^2+y^2})
+\end{align}
+The last term is simply a representative step term that defines the outer limit by which we evaluate the electric field, this is analogous to our condenser lens removing noise from other light sources by only accepting light at a specific acceptance angle defined by its numerical aperture $NA_c$. Depending on the relative size of our particle we can adjust the acceptance angle, this has very little effect on the transverse signals, but for axial evaluations of a trapped particle the numerical aperture should be tuned so that the resultant response curve has negative slope in order to allow for axial position detection, the method for finding this angle $\theta_\Theta$ is discussed in \cite{Friedrich2012}.
+
+The incident beam is simple enough to define given our set up parameters, for the sake of simplicity we assume that our beam is a Laguerre-Gaussian beam of mode $[0.0, 0.0]$ (which is simply a pure Gaussian beam). \textit{Ott} uses a point matching approach to approximate the beam shape coefficients of the incident field by fitting it to the far field estimate, the beam is of the form:
+
+\begin{align}
+	E_{inc}(kr)=\sum^\infty_n\sum^n_{m=-n}a_{mn}RgM_{nm}(kr)+b_{nm}RgN_{nm}(kr)
+\end{align}
+
+Where $RgM_{nm}(kr)$ \& $RgN_{nm}(kr)$ are regular vector spherical wave functions, \textit{ott} allows us to change the basis of the the incident beam to suit our needs, because we are measuring in the far field we want to set our incident beam to be an outgoing spherical wave so that we can compute the intensity on the QPD. For spherical waves the field can either be expressed as an incoming/outgoing wave (with a singularity at the origin) or as a regular wave around the origin; for incoming/outgoing waves the wave functions use the first/second forms of the Hankel function respectfully. In order to compute the regular spherical wave at the origin we replace the Hankel function with the Bessel function which is simply the average of the first and second forms of the Hankel function, so at the origin we avoid a singularity of the EM field.  
+
+We can if we want further restrict the incident beam by applying setting the truncation angle to match our microscope object, this essentially applies a cut off point to the In order to compute the scattering from the target particle \textit{ott} uses the t-matrix method, this is not essential for a simple sphere but is essential for complex shaped particles such as dimers. The scattered and incident fields are then combined
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\linewidth]{fixed_polarisation.png}
+\end{figure}
+
 \bibliographystyle{ieeetran}
 \bibliography{thesis_bib}
 \end{document}
