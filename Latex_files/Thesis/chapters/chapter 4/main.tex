@@ -1,9 +1,7 @@
-\chapter{Complex Langevin dynamics of simple spherical aggregates}
+\chapter{Complex Langevin dynamics of spherical dimers}
 
 \comment{Do you actually examine aggregates larger than dimers?  If
   not, then just change the title to reflect that you just examine dimers.}
-
-
 Much of the calibration theory discussed in Chapter 2 assumes that the target particle in question is a single sphere, one who's scattering and motion is easily computed. However, while working with dense colloidal suspensions, one often ends up trapping more than one sphere. Li and Arlt \cite{Li2008} studied the case of two microspheres trapped in a single OT and found that multiple trapped beads could be mistaken for a single trapped bead with altered trap stiffness. Theoretical studies on the case of two trapped microspheres by Xu~\textit{et~al.} \cite{Xu2005} employed a ray-optics based model to show that the two trapped beads are brought into physical contact with each other by optical forces and they also calculated the axial equilibrium positions of the two trapped beads as a function of their size. Experiments in \cite{Praveen2016} confirmed that the two trapped beads indeed experience different trap stiffnesses in the vicinity of the same potential well. There are further discussions looking into the dynamics of a whole host of asymmetrically shaped particles \cite{Loudet2014, ShengHua2005, Chetana2022}, their results all showing that predicting the behaviour an arbitrary shaped particle comes with great difficulty due to the fact that the optical force is dependent on a greater number of variables such as orientation and size factors.
 
 In this chapter we consider how the addition of a second sphere into an optical trap can radically effect its dynamics, to the extent that one can no longer rely on typical calibration techniques to characterise the interactions.
@@ -150,8 +148,29 @@ polarizability of our dimer can be approximated as:
 where the polarizability is given as a 3D vector for the three
 principle Cartesian directions.  In order to measure the magnitude of
 second order contributions we would need to construct a dipole array
-that fully captures the scattering of a dimer.
+that fully captures the scattering of a dimer. Measuring the optical torque 
+makes it clear that the polarizability is a contributing factor to this optical 
+rotation phenomena. Rotating a symmetric dimer in the $x-z$ plane reveals 
+that while the dimer can be rotated in an orientation perpendicular 
+to the beam rotational torque is maximised when rotated while aligned with 
+the optical axis.
 
+\begin{figure}[t]
+	\begin{subfigure}{\linewidth}
+	\centering
+	\includegraphics[width=0.6\linewidth]{tx_different_polarisations.png}
+	\end{subfigure}
+	\begin{subfigure}{\linewidth}
+	\centering
+	\includegraphics[width=0.6\linewidth]{ty_different_polarisations.png}
+	\end{subfigure}
+	\begin{subfigure}{\linewidth}
+	\centering
+	\includegraphics[width=0.6\linewidth]{tz_different_polarisations.png}
+	\end{subfigure}
+\caption{Calculation of the optical torque about the three primary axis on a symmetric dimer in linear, elliptical, and circular polarisation beams.}
+\end{figure}
+\newpage
 
 \comment{It would be good to have a plot of the torque in each of the
   three axes as a function of the polarization of the trapping beam,

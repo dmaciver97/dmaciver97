@@ -60,10 +60,32 @@ Proper understanding of optical tweezing requires an understanding of how the tr
   &= {\bf j} +\frac{\partial \mathbf{E}}{\partial t}    
 \end{align}
 where $\rho_v$ is the free charge density, ${\bf j}_0$ is the charge
-current, and $\epsilon_0$ is the permittivity of free space.
+current, and $\epsilon_0$ is the permittivity of free space. 
 
-These 4 equations describe how the electric and magnetic fields must behave and are also related to one another, any discussion of optical trapping is underpinned by the fact that in all cases the Maxwell Equations must be satisfied. 
-
+These 4 equations describe how the electric and magnetic fields behave and are related to one another at a microscopic level. Any discussion of optical trapping is underpinned by the fact that in all cases the Maxwell Equations must be satisfied at the macroscopic level, where one must account for the medium's interactions with the EM field. Macroscopic forms of the maxwell equations are given below \cite{Jackson_1975}:
+\begin{align}
+	\nabla \cdot \mathbf{D}
+	&= \rho_f
+	\\
+	\nabla \cdot \mathbf{B}
+	&= 0
+	\\
+	\nabla \times \mathbf{E}
+	&= \frac{\partial \mathbf{B}}{\partial t}
+	\\
+	\nabla \times \mathbf{H}
+	&= \mathbf{J}_f +\frac{\partial \mathbf{D}}{\partial t}  
+\end{align}
+Where $\rho_f$ and $\mathbf{J}_f$ are the charge density and current caused by the presence of free charges in the medium, and $\mathbf{D}$ and $\mathbf{H}$ are the displacement and magnetizing fields respectively. The latter two are defined by:
+\begin{align}
+	\nonumber
+	\mathbf{D} &= \epsilon_0\mathbf{E}+\mathbf{P} 
+	\\ 
+	\nonumber
+	\mathbf{H} &= \frac{1}{\mu_0}\mathbf{B}-\mathbf{M}
+\end{align}
+Where $\mathbf{P}$ is the polarization field and $\mathbf{M}$ is the magnetisation field, these fields arise due to the bound charges throughout the medium interacting with the EM field. 
+ 
 The force exerted by an optical tweezer can be subdivided into the gradient and scattering components, for most modelling research this is how the force fields are reported. The gradient force is a conservative force brought about by the polarisation of dielectric materials, anything around 10\% of the trapping wavelength will be attracted along the gradient of the electric field to the region of greatest intensity (for a simple Gaussian Beam this would be at the focal point). The scattering force arises from the scattered field of the trapping beam pushing the target object away from the focal point; unlike the gradient force, the scattering force is non-conservative and is loosely proportional to the particle's Brownian motion. The equilibrium position (where the mean squared displacement is minimised) is found when the gradient force far exceeds the scattering force, interpreting and calculating these forces is dependent on the ratio between the particle size and the trapping wavelength.
 
 
@@ -88,7 +110,7 @@ The Lorenz Mie theory provides an exact solution to the maxwell equations for th
 \begin{align}
 	\nabla^2\mathbf{E} +k^2\mathbf{E} = 0
 \end{align} 
-This combined with the constraints of Maxwell's Equations leaves very few exact solutions apart from spherical or planar waves, both of which can be converted between with relative ease. For example, a plane wave electric field can be expanded into spherical harmonics and likewise any spherical wave can be described as combination of plane waves offset from one another. For a single plane wave the incident, internal, and scattered fields are given as:
+Where $k$ is the wave number of the electromagnetic radiation ($k = 2\pi/\lambda$) This combined with the constraints of Maxwell's Equations leaves very few exact solutions apart from spherical or planar waves, both of which can be converted between with relative ease. For example, a plane wave electric field can be expanded into spherical harmonics and likewise any spherical wave can be described as combination of plane waves offset from one another. For a single plane wave the incident, internal, and scattered fields are given as:
 \begin{align}
   {\bf E}_{\rm inc}({\bf r})
   &=
@@ -106,7 +128,14 @@ This combined with the constraints of Maxwell's Equations leaves very few exact 
   &=
     E_0 \sum_{n=1}^\infty  i^n\frac{2n+1}{n(n+1)}\left[
       -i p_{nm}{\bf N}_{nm}^{(3)}({\bf r})+q_{nm}{\bf M}_{nm}^{(3)}({\bf r})
-    \right]
+    \right] 
+    \\
+	\mathbf{E}_{tot}({\bf r}) &= 
+	\begin{cases}
+		{\bf E}_{\rm inc}({\bf r}) + {\bf E}_{\rm scat}({\bf r}) & \text{if \textbf{r} outside}
+		\\ 
+		{\bf E}_{\rm int}({\bf r}) & \text{if \textbf{r} inside}
+	\end{cases}
 \end{align}
 where $a_{nm}$, $b_{nm}$, $c_{nm}$, $d_{nm}$, $p_{nm}$, and $q_{nm}$
 are the expansion coefficients of each of the fields, for the incident
@@ -245,8 +274,9 @@ The Finite Difference approach involves discretizing the time and spatial elemen
 \end{align}
 Where $R_n(x(t))$ is the remainder term between the Taylor expansion to term n and the actual expression. If we limit our approach to the first derivative only we find that for sufficiently small values of $R_1$ the velocity and acceleration can be approximated as:
 \begin{align}
-	x'(t) &= \frac{x(t+\Delta t)-x(t)}{\Delta t}=\frac{dx(t))}{dt} \\
-	x^2(t) &= \frac{x'(t+\Delta t)-x'(t)}{\Delta t} = \frac{x(t)-2x(t+\Delta t)+x(t+2\Delta t)}{\Delta t^2}
+	x'(t) &\approx \frac{x(t+\Delta t)-x(t)}{\Delta t}
+	\\
+	x^{''}(t) &\approx \frac{x'(t+\Delta t)-x'(t)}{\Delta t} = \frac{x(t)-2x(t+\Delta t)+x(t+2\Delta t)}{\Delta t^2}
 \end{align}
 By reversing the time step (i.e. use $-\Delta t$) to approximate the velocity and acceleration based on the previous time steps we can discretize the position by taking finitely small  time steps (i.e. $x(t) = x_i,\ x(t-\Delta t) = x_{i-1}$). The same cannot be done for white noise as no information is known about $W(t)$ at any time. We can instead say that the velocity of a Brownian particle should approximate our white noise as a random walk, where at each new time step the position changes randomly within a given range. Constricting the variance to $\sqrt{2D}/\Delta t$ allows us to represent the white noise using the finite-difference approach as:
 \begin{align}
@@ -290,7 +320,7 @@ By inserting eq.~\ref{eq:prob_dist} into eq.~\ref{eq:potential_well} we can fit 
 \subsection{Equipartition method}
 The Equipartition method is by far the fastest and simplest means for estimating the trap strength but unlike Potential Analysis is limited strictly to harmonic potentials. This can be often not the case for highly focused beams, as the trap strength can vary due to polarisation differences. Simply put we can use the equipartition theorem to relate the potential well to the particle's thermal energy using eq.~\ref{eq:prob_dist}:
 \begin{align}
-	\left<U(x)\right> = \frac{1}{2}\kappa\left<(x-x_{eq})^2\right> &= \int_{-\infty}^{\infty}\rho(x)(x-x_{eq})^2 = \frac{1}{2}k_BT \\
+	\left<U(x)\right> = \frac{1}{2}\kappa_x\left<(x-x_{eq})^2\right> &= \int_{-\infty}^{\infty}\rho(x)(x-x_{eq})^2 = \frac{1}{2}k_BT \\
 	\implies \kappa_x &= \frac{k_BT}{\left<(x-x_{eq})^2\right>} 
 \end{align}
 
@@ -409,26 +439,27 @@ or \textit{ott} \cite{Nieminen2007}. In which they use the results
 from \cite{Farsund1996} to compute both the optical force and torque
 using the beam coefficients - the form given by
 \cite{Crichton2000THEMD} is an easier form to compute:
+
 \begin{equation}
 \begin{split}
   \bold{F_z}
   &=
-    -\frac{1}{4\pi k^2}\sum_{n,m} \left(\frac{m}{n(n+1)}\Im[a_{n,m}b*_{n,m}-p_{n,m}q*_{n,m}] \right.
+    -\frac{1}{4\pi k^2}\sum_{n,m} \left(\frac{m}{n(n+1)}\Im[a_{nm}b^*_{nm}-p_{nm}q^*_{nm}] \right.
   \\ 
   &+\frac{1}{n+1}\left[\frac{n(n+2)(n-m+1)(n+m+1)}{(2n+1)(2n+3)} \right]^{1/2}
   \\
-  & \left. \times \Im[b_{n,m}b*_{n,m}+a_{n,m}a*_{n+1,m} - q_{n,m}q*_{n,m}+p_{n,m}p*_{n+1,m}] \right)
+  & \left.\times\Im[b_{nm}b^*_{nm}+a_{nm}a^*_{n+1m}-q_{nm}q^*_{nm}+p_{nm}p^*_{n+1m}] \right)
 \end{split}
 \end{equation}
 \begin{equation}
 \begin{split}
   \bold{T_z}
   &=
-    -\frac{1}{8\pi k^3}\sum_{n,m} \left(\frac{m}{n(n+1)}[|a_{n,m}|^2+|b_{n,m}|^2-|p_{n,m}|^2-|q_{n,m}|^2] \right.
+    -\frac{1}{8\pi k^3}\sum_{n,m} \left(\frac{m}{n(n+1)}[|a_{nm}|^2+|b_{nm}|^2-|p_{nm}|^2-|q_{nm}|^2] \right.
   \\ 
   &+\frac{2}{n+1}\left[\frac{n(n+2)(n-m+1)(n+m+1)}{(2n+1)(2n+3)} \right]^{1/2}
   \\
-  & \left. \times \Re[b_{n,m}a*_{n,m}+a_{n,m}b*_{n+1,m} - p_{n,m}q*_{n,m}+q_{n,m}p*_{n+1,m}] \right)
+  & \left.\times\Re[b_{nm}a^*_{nm}+a_{nm}b^*_{n+1m}-p_{nm}q^*_{nm}+q_{nm}p^*_{n+1m}] \right)
 \end{split}
 \end{equation}
 where $a_{nm}$, $b_{nm}$, $p_{nm}$, and $q_{nm}$ are the beam coefficients of the incident and scattered fields respectively. We can get the transverse force and torque components in a similar form by applying a simple rotation transformation. In order to get the scattered beam coefficients we can use \textit{MSTM} \cite{Mackowski2011} to calculate the T-matrix of our dimer (or any spherical aggregate). Vigilante et al compiled together a python package that combines both \textit{ott} and \textit{MSTM} to simulate the behaviour of spherical aggregates within a predefined optical trap. 
@@ -460,5 +491,5 @@ We can if we want further restrict the incident beam by applying setting the tru
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\linewidth]{./figs/fixed_polarisation.png}
+	\includegraphics[width=0.75\linewidth]{fixed_polarisation.png}
 \end{figure}
