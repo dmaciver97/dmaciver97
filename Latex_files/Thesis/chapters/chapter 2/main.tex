@@ -487,9 +487,20 @@ The incident beam is simple enough to define given our set up parameters, for th
 \end{align}
 where $RgM_{nm}(kr)$ \& $RgN_{nm}(kr)$ are regular vector spherical wave functions, \textit{ott} allows us to change the basis of the the incident beam to suit our needs, because we are measuring in the far field we want to set our incident beam to be an outgoing spherical wave so that we can compute the intensity on the QPD. For spherical waves the field can either be expressed as an incoming/outgoing wave (with a singularity at the origin) or as a regular wave around the origin; for incoming/outgoing waves the wave functions use the first/second forms of the Hankel function respectfully. In order to compute the regular spherical wave at the origin we replace the Hankel function with the Bessel function which is simply the average of the first and second forms of the Hankel function, so at the origin we avoid a singularity of the EM field.  
 
-We can if we want further restrict the incident beam by applying setting the truncation angle to match our microscope object, this essentially applies a cut off point to the In order to compute the scattering from the target particle \textit{ott} uses the t-matrix method, this is not essential for a simple sphere but is essential for complex shaped particles such as dimers. The scattered and incident fields are then combined
-
-\begin{figure}
+We can if we want further restrict the incident beam by applying setting the truncation angle to match our microscope object, this essentially applies a cut off point to the In order to compute the scattering from the target particle \textit{ott} uses the t-matrix method, this is not essential for a simple sphere but is essential for complex shaped particles such as dimers. The scattered and incident fields are then combined together in the far field to get $I(x,y)$, the quadrant and overall signals are calculated via:
+\begin{align}
+	Q_i &= \sum_{n,m} I(x_{i,n}, y_{i,m}) \\
+	S_{x} &= \frac{(Q_1+Q_2)-(Q_3+Q_4)}{\sum I_0(x,y)} \\
+	S_{y} &= \frac{(Q_1+Q_3)-(Q_2+Q_4)}{\sum I_0(x,y)} \\
+	S_{z} &= \frac{(Q_1+Q_2+Q_3+Q_4}{\sum I_0(x,y)}
+\end{align}
+Where the denominator is the total intensity on the QPD while there is no particle within the trap. The QPD sensitivity is dependent on both the polarisation of the incident beam and the displacement of the target sphere, this is shown in fig.~\ref{fig:totalfield}.
+\begin{figure}[h]
 	\centering
-	\includegraphics[width=0.75\linewidth]{fixed_polarisation.png}
+	\includegraphics[width=0.85\linewidth]{fixed_polarisation.png}
+	\captionsetup{margin=0.5cm}
+	\caption{Total Field incident on the quadrant photo diode for a several different displacements. Top Left: $2\mu m $ diameter silica sphere placed at the focus of a  beam. Top Right: silica sphere is now displaced by $1 \mu m$ along the x-axis. Bottom Right: silica sphere is now displaced by $1 \mu m$ along the y-axis. Bottom Left: silica sphere is now displaced by $0.707 \mu m$ along the x and y axis. The trapping beam is a $TEM_00$ Gaussian, polarised along the along the x-axis. $S_x$, $S_y$, and $S_z$ are shown to the right of each graph, $Q_1$, $Q_2$, $Q_3$, and $Q_4$ are shown above each graph.}
+	\label{fig:totalfield}
 \end{figure}
+
+Rather than displacing and rotating the particle itself, we instead rotate and displace the incident beam and recalculate the beam coefficients; the total beam is then inversely rotated in order to record the QPD signal. With this any trajectory can be collected from the QPD by displacing and rotating the beam accordingly, later in chapters \ref{chapter:langevin_dynamics} and \ref{chapter:simulated_detection} we discuss how to extract information from the QPD's outputted signal.
