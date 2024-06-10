@@ -64,8 +64,9 @@ For completeness the harmonic traps were located for dimers across a range of si
 	\end{subfigure}
 	\caption{Equilibrium positions of optically trapped dimers with varying size ratio, dotted lines represent unstable traps whereas solid lines represent stable trapping positions. (a) shows that dimers with their smaller sphere orientated away from the focus have an expected single trapping position. (b) shows that when the same dimer is inverted $180^\circ$ there are now stable traps along the beam axis, one below the focus and one above the focus.}
 \end{figure}
-
-Computing the equilibrium positions when a dimer is aligned with the electric field is relatively trivial as the orientational torque is minimised (see Eq.\ref{eq:opt_torque}), meaning once trapped the dimer is unlikely to change orientation enough to escape the trap. However, that does not rule out the possibility that there is a stable orientation that is not strictly vertical, in fact most experimental work with symmetric dimers will trap them lying perpendicular to the beam direction \cite{Ahn2018}. Unlike before where we can simply find the trap by varying the dimer's vertical position its instead more prudent to run a multitude of smaller simulations at a variety of starting positions and orientations. An example for a dimer of size ratio 2 is shown below:
+\newpage
+\subsection{Non-trivial harmonic traps}\label{sec:off-axis}
+Computing the equilibrium positions when a dimer is aligned with the electric field is relatively simple as the orientational torque is minimised (see Eq.\ref{eq:opt_torque}), meaning once trapped the dimer is unlikely to change orientation enough to escape the trap. However, that does not rule out the possibility that there is a stable orientation that is not strictly vertical, in fact most experimental work with symmetric dimers will trap them lying perpendicular to the beam direction \cite{Ahn2018}. Unlike before where we can simply find the trap by varying the dimer's vertical position its instead more prudent to run a multitude of smaller simulations at a variety of starting positions and orientations. An example for a dimer of size ratio 2 is shown below:
 
 \begin{figure}[h!]
 	\centering
@@ -154,27 +155,16 @@ rotation phenomena. Rotating a symmetric dimer in the $x-z$ plane reveals
 that while the dimer can be rotated in an orientation perpendicular 
 to the beam rotational torque is maximised when rotated while aligned with 
 the optical axis.
-
-\begin{figure}[t]
-	\begin{subfigure}{\linewidth}
-	\centering
-	\includegraphics[width=0.6\linewidth]{tx_different_polarisations.png}
-	\end{subfigure}
-	\begin{subfigure}{\linewidth}
-	\centering
-	\includegraphics[width=0.6\linewidth]{ty_different_polarisations.png}
-	\end{subfigure}
-	\begin{subfigure}{\linewidth}
-	\centering
-	\includegraphics[width=0.6\linewidth]{tz_different_polarisations.png}
-	\end{subfigure}
-\caption{Calculation of the optical torque about the three primary axis on a symmetric dimer in linear, elliptical, and circular polarisation beams.}
-\end{figure}
+\begin{SCfigure}
+	\includegraphics[width=0.7\linewidth,height= 22cm]{torque_different_polarisations.png}
+	\caption{Optical torque against polar angle $\theta$ about the three primary axis (top: torque about the x-axis; middle: torque about the y-axis; bottom: torque about the z-axis) on a symmetric dimer in linear, elliptical, and circular polarisation beams. Diagram to the right is for visual clarity about the direction of $\theta$. \vspace{7.5cm}}
+\end{SCfigure}
 \newpage
 
-\comment{It would be good to have a plot of the torque in each of the
-  three axes as a function of the polarization of the trapping beam,
-  from linearly polarized to elliptically polarized to circularly polarized.}
+\subsection{Gyroscopic Precession using asymmetric dimers}
+As mentioned in section~\ref{sec:off-axis} for specificity sized dimers there is the potential for non-vertical trapping orientations in which the dimer is located in a harmonic trap. When trapped by a circularly polarised light these dimers exhibit gyroscopic precession, demonstrating rotational motion not just about its long axis, but also around the optical axis of the beam. This gyroscopic motion has been demonstrated previously in nanoparticles \cite{Zhu2021, Rashid2018, Hoang2016, Kuhn2016} but has not been observed for micron scale aggregates, typically because it was assumed that an off-axis orientation would not be stable due to the magnitude of the electric field. 
+
+\comment{Need to add figure here demonstrating the rotational behaviour but not sure how to best convey that motion. Perhaps just a simple trajectory diagram showing the particles motion (position in the first column, $u_x$ in the second, then $u_y$, then $u_z$).}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
