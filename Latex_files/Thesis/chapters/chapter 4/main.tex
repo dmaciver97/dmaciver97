@@ -1,11 +1,7 @@
 \chapter{Complex Langevin dynamics of spherical dimers}
-
-\comment{Do you actually examine aggregates larger than dimers?  If
-  not, then just change the title to reflect that you just examine dimers.}
 Much of the calibration theory discussed in Chapter 2 assumes that the target particle in question is a single sphere, one who's scattering and motion is easily computed. However, while working with dense colloidal suspensions, one often ends up trapping more than one sphere. Li and Arlt \cite{Li2008} studied the case of two microspheres trapped in a single OT and found that multiple trapped beads could be mistaken for a single trapped bead with altered trap stiffness. Theoretical studies on the case of two trapped microspheres by Xu~\textit{et~al.} \cite{Xu2005} employed a ray-optics based model to show that the two trapped beads are brought into physical contact with each other by optical forces and they also calculated the axial equilibrium positions of the two trapped beads as a function of their size. Experiments in \cite{Praveen2016} confirmed that the two trapped beads indeed experience different trap stiffnesses in the vicinity of the same potential well. There are further discussions looking into the dynamics of a whole host of asymmetrically shaped particles \cite{Loudet2014, ShengHua2005, Chetana2022}, their results all showing that predicting the behaviour an arbitrary shaped particle comes with great difficulty due to the fact that the optical force is dependent on a greater number of variables such as orientation and size factors.
 
 In this chapter we consider how the addition of a second sphere into an optical trap can radically effect its dynamics, to the extent that one can no longer rely on typical calibration techniques to characterise the interactions.
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -67,15 +63,29 @@ For completeness the harmonic traps were located for dimers across a range of si
 \newpage
 \subsection{Non-trivial harmonic traps}\label{sec:off-axis}
 Computing the equilibrium positions when a dimer is aligned with the electric field is relatively simple as the orientational torque is minimised (see Eq.\ref{eq:opt_torque}), meaning once trapped the dimer is unlikely to change orientation enough to escape the trap. However, that does not rule out the possibility that there is a stable orientation that is not strictly vertical, in fact most experimental work with symmetric dimers will trap them lying perpendicular to the beam direction \cite{Ahn2018}. Unlike before where we can simply find the trap by varying the dimer's vertical position its instead more prudent to run a multitude of smaller simulations at a variety of starting positions and orientations. An example for a dimer of size ratio 2 is shown below:
-
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.75\linewidth]{off_axis_trap.png}
-	\caption{Trajectory map of simulations ran using a dimer of size ratio 2 with a laser power of 500 mW. The stable points are indicated by the larger spheres and the starting conditions are colour coded to match the stable point they end up in.}
+	\begin{subfigure}{0.67\linewidth}
+		\includegraphics[width=\linewidth]{off_axis_trap.png}
+		\caption{}
+	\end{subfigure}
+	\begin{subfigure}{0.32\linewidth}
+		\raisebox{0pt}[0pt][0pt]{\makebox{}\includegraphics[width=\linewidth, keepaspectratio]{off_axis_render.png}}
+		
+		\caption{}
+	\end{subfigure}
+	\captionsetup{hangindent=2.35cm}
+	\caption{Trajectory map of simulations ran using a dimer of size ratio 2 with a laser power of 500 mW. The stable points are indicated by the larger spheres and the starting conditions are colour coded to match the stable point they end up in. Right hand render shows a dimer in its off-axis configuration}
 \end{figure}
-
-Interestingly the trap strength of the these off-axis traps are similar in magnitude to the vertically aligned traps, but when the laser power is lowered (to ~5 mW) the traps become metastable resulting in the dimer escaping from after some random time in the trap. 
-
+Interestingly while the trap strength of these off-axis traps are 
+similar in magnitude to the vertically aligned dimers, but when 
+the laser power is lowered (around 5 mW) the traps become metastable 
+resulting in the dimer escaping from after some random time while 
+within the trap. If the overall potential depth could be characterised 
+then dimers placed into this orientation could be used as a 
+micro-scale temperature alarm, where by fine tuning of the dimer's 
+parameters would allow you to construct a potential well that can 
+only be escaped when the local fluid temperature exceeds a certain maximum value.  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -83,9 +93,23 @@ Interestingly the trap strength of the these off-axis traps are similar in magni
 
 One aspect that has yet to be covered in depth with regards to
 spherical aggregates of any construction is their interaction with
-circularly polarised light.  Typically the spin density of an electric
+circularly polarised light. Typically the spin density of an electric
 field cannot be reduced in homogenous medium due to the fact that the
-spin angular momentum is conserved locally.  However, theoretical and
+spin angular momentum is conserved locally. In which case the only way
+to transfer angular momentum to use an object that is anisotropic.
+This is seen most clearly with birefringent materials, due to fact that
+the crystal lattice itself is anisotropic, a circularly polarised beam
+will transfer an optical torque that is proportional to the difference in 
+the refractive index of the particle. The optical torque is given as:
+\begin{equation}
+	\label{eq:opt_torque}
+	\begin{aligned}
+		\tau_{opt} = \frac{\epsilon}{2\omega_{laser}}E_0^2 (1-cos(kd(\Delta n))sin2\phi)
+	\end{aligned}
+\end{equation}
+Where $\Delta n$ is the difference in refracive indices of the 
+particle, and $\phi$ indicates the phase shift in the electric field
+(for circular polarised light $\phi= \pi/4$) However, theoretical and
 experimental work by \cite{Yevick2017} found that highly focused
 Gaussian beams could produce second order effects in the Rayleigh
 regime resulting in a photo-kinetic force that results in orbital
@@ -95,7 +119,7 @@ $10^{-1}\,{\rm Hz}$, with an order of magnitude difference when
 trapping aggregates of spheres.  They computed the circulation rate by
 computing the time-average probability flux; however, when extended to
 the Mie regime we see a completely different behaviour, instead
-experiencing an optical torque about their long axis.  This rotation
+experiencing an optical torque about their long axis.S This rotation
 was first noted by Vigilante and co-workers who only considered this
 behaviour for a symmetric dimer \cite{Vigilante2020}; we run number of
 simulations for differently sized dimers in a circularly polarised
@@ -162,9 +186,24 @@ the optical axis.
 \newpage
 
 \subsection{Gyroscopic Precession using asymmetric dimers}
-As mentioned in section~\ref{sec:off-axis} for specificity sized dimers there is the potential for non-vertical trapping orientations in which the dimer is located in a harmonic trap. When trapped by a circularly polarised light these dimers exhibit gyroscopic precession, demonstrating rotational motion not just about its long axis, but also around the optical axis of the beam. This gyroscopic motion has been demonstrated previously in nanoparticles \cite{Zhu2021, Rashid2018, Hoang2016, Kuhn2016} but has not been observed for micron scale aggregates, typically because it was assumed that an off-axis orientation would not be stable due to the magnitude of the electric field. 
+As mentioned in section~\ref{sec:off-axis} for specificity sized dimers 
+there is the potential for non-vertical trapping orientations in which 
+the dimer is located in a harmonic trap. When trapped by a circularly 
+polarised light these dimers exhibit gyroscopic precession, demonstrating 
+rotational motion not just about its long axis, but also around the 
+optical axis of the beam. This gyroscopic motion has been demonstrated 
+previously in nanoparticles \cite{Zhu2021, Rashid2018, Hoang2016, Kuhn2016} 
+but has not been observed for micron scale aggregates. Since the torque is 
+computed by evaluating the beam coefficients it can be difficult to 
+apply this result to micro-rheology experiments as one would need to know
+the exact magnitude of the optical torque ahead of time in order to make
+estimations about the local fluid viscosity. This is trivial for a birefringent
+spherical particle, less so for spherical aggregates whose final position and 
+orientation are unknown.
 
 \comment{Need to add figure here demonstrating the rotational behaviour but not sure how to best convey that motion. Perhaps just a simple trajectory diagram showing the particles motion (position in the first column, $u_x$ in the second, then $u_y$, then $u_z$).}
+
+\section{Characterisation of asymmetric dimers via PSD analysis}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
