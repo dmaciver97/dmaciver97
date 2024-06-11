@@ -1,5 +1,5 @@
 \chapter{Theory and methods}
-
+\label{chapter:theory}
 The two key areas of this project cover two widely different fields; 
 crystallisation theory, which is covered in the previous introduction 
 section, and tweezing theory. The following chapter summarises the 
@@ -241,7 +241,7 @@ for the aggregate for one particular orientation.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Discrete Dipole Approximation}
+%\subsection{Discrete Dipole Approximation}
 
 
 
@@ -384,6 +384,7 @@ We can fit the Lorentzian via a simplified geometric series $S_x = 1/(A+Bf_k^2)$
 \end{figure}
 The Lorentzian relationship is only valid for frequency terms up to the Nyquist frequency (half of our sampling rate), this is because we are only taking a finite sampling of the particle's trajectory meaning the signal is aliased. Berg and Sorensen provide a suitable modified Lorentzian to account for the aliasing effects \cite{BergSoerensen2004}:
 \begin{align}
+	\label{eq:alaised_lorentzian}
 	S_x = \frac{(\Delta x)^2\Delta t}{1+c^2-2c\cos{2\pi f_k\Delta t/N}}
 \end{align}
 Where N is the total number of samples taken, $\Delta x \ \& \ c$  have no direct physical interpretation and are defined in \cite{BergSoerensen2004}. Further modifications can be made to the power spectrum model but this is only useful when a high degree of accuracy is necessary. Typically power spectra are recorded using a Quadrant Photo Diode (QPD), which records motion in voltage units, not in units of length. To convert between the two we have a few methods: Firstly if we have a mono-disperse suspension of particles, the laser can be scanned across the surface of our target particle; so long as the particle's size is known a linear conversion factor can be used to convert from voltage to length units. Secondly, if the size distribution is very wide but each particle can be accurately sized, then a conversion factor can be approximated by comparing the fitted value of the diffusion coefficient, and the reported value given by the Stokes-Einstein relation.
@@ -469,7 +470,7 @@ Throughout this PhD we use the work of Vigilante to perform a systematic study o
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Simulated Quadrant Photodiode}
-
+\label{sec:simulated_QPD}
 In order to simulate a typical experimental set up with a QPD installed as a position detection system we need to evaluate the total magnitude of the electric field incident on the photo-diode surface. While trapping a micro-particle, the scattered and incident fields combine together and interfere with one another. These fields are collected by a condenser lens in the far field limit and are focused onto the QPD surface, the total intensity can be evaluated as:
 \begin{align}
 I(x,y) = \epsilon_0c\left|

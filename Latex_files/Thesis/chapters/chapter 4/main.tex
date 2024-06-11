@@ -25,12 +25,13 @@ If we wanted to start from first principles and determine the trap strength on o
 	\medskip
 	\begin{subfigure}{.475\linewidth}
 		\centering
-		\raisebox{65pt}[0pt][0pt]{\makebox{}\includegraphics[width=0.3\linewidth, keepaspectratio]{theta=0.png}}
+		\raisebox{-45pt}[0pt][0pt]{\makebox{}\includegraphics[width=0.3\linewidth, keepaspectratio]{theta=0.png}}
 		\label{large over small}
 	\end{subfigure}
 	\begin{subfigure}{.475\linewidth}
 		\centering
-		\includegraphics[width=0.3\linewidth, keepaspectratio]{theta=180.png}
+		\includegraphics[width=0.3\linewidth,
+		keepaspectratio]{theta=180.png}
 		\label{small_over_large}
 	\end{subfigure}
 	\caption{Plots of force vs displacement of the point of the contact of the spheres (µm) for the case of a dimer of size ratio 2. (a) is the case where the smaller sphere is orientated with the beam propagation direction. (b) is the inverted case, smaller sphere oriented against the propagation direction. Renders to visualise the dimer orientation are shown below each plot The black lines on each force-curve is a linear fit with the slope being reported as the trap stiffness in the legend.}
@@ -40,7 +41,7 @@ We can see that the trap below the focus is comparable in strength to above the 
 \begin{figure}[h!]
 	\centering
 	\label{fig:transverse_force}
-	\includegraphics[width=0.67\linewidth]{transverse_force.png}
+	\includegraphics[width=\linewidth]{transverse_force.png}
 	\caption{Plots of force vs displacement of the point of the contact of the spheres (µm) for the case of a dimer of size ratio 2 while being displaced in the transverse plane. With the blue curve representing the force response for a dimer in its standard orientation, orange being the inverted case, and green the same case but placed below the focus.}
 \end{figure}
 
@@ -68,16 +69,16 @@ Computing the equilibrium positions when a dimer is aligned with the electric fi
 	\centering
 	\begin{subfigure}{0.67\linewidth}
 		\includegraphics[width=\linewidth]{off_axis_trap.png}
-		\caption{}
 	\end{subfigure}
 	\begin{subfigure}{0.32\linewidth}
-		\raisebox{0pt}[0pt][0pt]{\makebox{}\includegraphics[width=\linewidth, keepaspectratio]{off_axis_render.png}}
+		\raisebox{-110pt}[0pt][0pt]{\makebox{}\includegraphics[width=\linewidth, keepaspectratio]{off_axis_render.png}}
 		
 		\caption{}
 	\end{subfigure}
 	\captionsetup{hangindent=2.35cm}
 	\caption{Trajectory map of simulations ran using a dimer of size ratio 2 with a laser power of 500 mW. The stable points are indicated by the larger spheres and the starting conditions are colour coded to match the stable point they end up in. Right hand render shows a dimer in its off-axis configuration}
 \end{figure}
+
 Interestingly while the trap strength of these off-axis traps are 
 similar in magnitude to the vertically aligned dimers, but when 
 the laser power is lowered (around 5 mW) the traps become metastable 
@@ -108,7 +109,7 @@ the refractive index of the particle. The optical torque is given as:
 		\tau_{opt} = \frac{\epsilon}{2\omega_{laser}}E_0^2 (1-cos(kd(\Delta n))sin2\phi)
 	\end{aligned}
 \end{equation}
-Where $\Delta n$ is the difference in refracive indices of the 
+Where $\Delta n$ is the difference in refractive indices of the 
 particle, and $\phi$ indicates the phase shift in the electric field
 (for circular polarised light $\phi= \pi/4$) However, theoretical and
 experimental work by \cite{Yevick2017} found that highly focused
@@ -130,7 +131,7 @@ orientation and therefore their axial position.
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.65\linewidth]{rotation_rate_vs_size.png}
+  \includegraphics[width=\linewidth]{rotation_rate_vs_size.png}
   \caption{Rotation rate plotted against dimer size ratio for a variety of different simulation scenarios. The red line is for the case where the larger sphere is above the smaller sphere. The blue line is the inverted case, while the initial position is above the focus of the trap. And lastly the green line is again for the inverted case, but when the dimer's initial position is below the focus of the trap.}
 \end{figure}
 
@@ -181,32 +182,143 @@ that while the dimer can be rotated in an orientation perpendicular
 to the beam rotational torque is maximised when rotated while aligned with 
 the optical axis.
 \begin{SCfigure}
-	\includegraphics[width=0.7\linewidth,height= 22cm]{torque_different_polarisations.png}
-	\caption{Optical torque against polar angle $\theta$ about the three primary axis (top: torque about the x-axis; middle: torque about the y-axis; bottom: torque about the z-axis) on a symmetric dimer in linear, elliptical, and circular polarisation beams. Diagram to the right is for visual clarity about the direction of $\theta$. \vspace{7.5cm}}
+	\includegraphics[width=0.65\linewidth,height= 15cm]{torque_different_polarisations.png}
+	\caption{Optical torque against polar angle $\theta$ about the three primary axis (top: torque about the x-axis; middle: torque about the y-axis; bottom: torque about the z-axis) on a symmetric dimer in linear, elliptical, and circular polarisation beams. Diagram to the right is for visual clarity about the direction of $\theta$.\vspace{4.5cm}}
 \end{SCfigure}
 \newpage
 
 \subsection{Gyroscopic Precession using asymmetric dimers}
-As mentioned in section~\ref{sec:off-axis} for specificity sized dimers 
-there is the potential for non-vertical trapping orientations in which 
-the dimer is located in a harmonic trap. When trapped by a circularly 
-polarised light these dimers exhibit gyroscopic precession, demonstrating 
-rotational motion not just about its long axis, but also around the 
-optical axis of the beam. This gyroscopic motion has been demonstrated 
-previously in nanoparticles \cite{Zhu2021, Rashid2018, Hoang2016, Kuhn2016} 
-but has not been observed for micron scale aggregates. Since the torque is 
-computed by evaluating the beam coefficients it can be difficult to 
-apply this result to micro-rheology experiments as one would need to know
-the exact magnitude of the optical torque ahead of time in order to make
-estimations about the local fluid viscosity. This is trivial for a birefringent
-spherical particle, less so for spherical aggregates whose final position and 
+As mentioned in section~\ref{sec:off-axis} for specificity 
+sized dimers there is the potential for non-vertical trapping 
+orientations in which the dimer is located in a harmonic 
+trap. When trapped by a circularly polarised light these 
+dimers exhibit gyroscopic precession. As shown in fig~\ref{fig:gyro} 
+the dimer's is rotating about it's long axis (as seen by 
+the periodic behaviour of $u_x$ and $u_y$), while also precessing 
+around the optical axis of the beam, resulting in a second 
+order oscillation in $s_z$.
+\begin{figure}[h]
+	\label{fig:gyro}
+	\centering
+	\includegraphics[width=\linewidth]{gyroscopic_precession.png}
+	\caption{3 second trajectory of a dimer trapped in an off axis orientation, laser power was set to 100 mW. The far left column depicts the dimer's centre of mass position with time; middle two columns are the $x$, $y$, and $z$ components of the vectors $u_x$ and $u_y$; last column depicts the components of the vector $u_z$ which defines the dimer's orientation.}
+\end{figure}
+
+Applying a Fourier analysis to the above trajectory reveals the 3
+fundamental frequencies typically associated with precession; 
+the $u_{z,1}$ and $x(t)$ series show a precession frequency of
+$~1.33\ Hz$ whereas the series $u_{x,1}$ and $u_{y,1}$ show a 
+combined periodic signal - a rotational frequency of $~23\ Hz$
+and a nutation frequency of $~20\ Hz$. Previous studies into 
+amorphous silica nanoparticles found a linear relationship 
+with the rotational frequency and the laser power, but no such
+relationship existed with the precession frequency. Our own 
+results shows a similar linear relationship with vertically
+aligned dimers.
+\begin{figure}
+	\includegraphics[width=\linewidth]{RotationvsPower.png}
+	\caption{Rotational frequency vs laser power for a dimer in both vertical orientations.}
+\end{figure}
+
+The linear relationship could partly be due to fact that we do not
+account for the change in viscous forces with increasing
+laser power. It is far more likely that the rotational frequency
+reaches a maximum value assuming that the bulk fluid can readily 
+absorb the laser.
+
+This gyroscopic motion has been demonstrated previously 
+in nanoparticles \cite{Zhu2021, Rashid2018, Hoang2016, Kuhn2016} 
+but has not been observed for micron scale aggregates. 
+Since the torque is computed by evaluating the beam coefficients 
+it is be difficult to apply this result to micro-rheology 
+experiments as one would need to know the exact magnitude 
+of the optical torque ahead of time in order to make 
+estimations about the local fluid viscosity. This is 
+trivial for a birefringent spherical particle, less 
+so for spherical aggregates whose equilibrium position and 
 orientation are unknown.
 
-\comment{Need to add figure here demonstrating the rotational behaviour but not sure how to best convey that motion. Perhaps just a simple trajectory diagram showing the particles motion (position in the first column, $u_x$ in the second, then $u_y$, then $u_z$).}
 
 \section{Characterisation of asymmetric dimers via PSD analysis}
+As discussed in \ref{sec:simulated_QPD}, one of the methods
+developed to work in conjunction with \cite{Vigilante2020} is 
+a simulated quadrant photo diode for as a position detection
+system. While it is possible to extract all of the relevant 
+dynamical information from a simulation, confirming the same 
+behaviour in an experimental setting can be challenging.
+
+As a benchmark we start by considering a single sphere within 
+an optical trap. After a 3 second trajectory (the typical time
+necessary to collect a power spectrum) the sphere's power 
+spectra was recorded and a fitted to eq.~\ref{eq:alaised_lorentzian}.
+\begin{figure}[h]
+	\label{fig:psd_sphere}
+	\centering
+	\includegraphics[width=\linewidth]{PSD_sphere.png}
+	\caption{Recorded power spectra fitted to eq.~\ref{eq:alaised_lorentzian}, scattered points represents
+	the blocked data ($n_b=100$). Corner frequency for the 
+	Lorentzians are reported in the legend.}
+\end{figure} 
+
+As shown in fig.~\ref{fig:psd_sphere}, the two power spectra
+report different corner frequencies which would be indicate 
+that the trap is not perfectly circular. Using \textit{ott} 
+we can compare the expected trap strength to what is reported
+by a quadrant photo diode:
+\begin{center}
+	\begin{tabular}{ |c|c|c|c|c| } 
+		\hline
+		Trap parameter & \textit{ott} x-axis & \textit{ott} y-axis & QPD x-axis & QPD y-axis \\
+		\hline
+		$f_c\ [Hz]$ & 447 & 450 & 439 & 474 \\
+		$\kappa\ [pN/\mu m]$ & 53.05 & 53.40 & 51.96 & 56.09 \\
+		\hline
+		Ellipticity &
+		\multicolumn{2}{|c|}{8.16 \%} &
+		\multicolumn{2}{|c|}{27.17 \%} \\
+		\hline
+	\end{tabular}
+\end{center}
+
+Where the ellipticity of the beam is given by $e = (1-\kappa_y/\kappa_x)^{0.5}$ and is a measure of the symmetry of 
+the beam wavefront. Its clear from these initial results that the 
+QPD is more sensitive to changes along the y-axis than the x-axis 
+when compared to the direct \textit{ott} calculations. Typically,
+even an industrial Gaussian beam will produce an elliptical diffraction
+limit spot when heavily focused; in their tutorial for optimizing 
+the PSD analysis, Berg and Sorensen reported a ellipticity of
+around 15 \% after a total calibration time of 81 seconds \cite{BergSoerensen2004}. If we now consider a symmetric the 
+discrepancy between \textit{ott} and the simulated QPD grows.
+
+\begin{center}
+	\begin{tabular}{ |c|c|c|c|c| } 
+		\hline
+		Trap parameter & \textit{ott} x-axis & \textit{ott} y-axis & QPD x-axis & QPD y-axis \\
+		\hline
+		$f_c\ [Hz]$ & 409 & 334 & 431 & 424 \\
+		$\kappa\ [pN/\mu m]$ & 48.51 & 39.58 & 51.13 & 50.26 \\
+		\hline
+		Ellipticity &
+		\multicolumn{2}{|c|}{42.8 \%} &
+		\multicolumn{2}{|c|}{12.7 \%} \\
+		\hline
+	\end{tabular}
+\end{center}
+
+Now we see that the \textit{ott} predicts a more elliptical 
+trap compared to the QPD model which says the trap is far
+more symmetrical while trapping a symmetric dimer. This 
+change can be partially explained by the fact that rotational
+effects are not accounted for in the Lorentzian power spectra,
+only translational motion. Typically, rotational motion is only
+ever detected when it is periodic (take for example a power spectra
+from a rotating birefringent sphere), when the motion is stochastic
+the entire power spectra is effected making it near impossible
+to separate the translational and rotational contributions from a 
+single power spectra. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
+\comment{Conclusions still need to be written out}
