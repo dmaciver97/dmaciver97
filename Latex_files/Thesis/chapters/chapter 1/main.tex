@@ -1,44 +1,131 @@
 \chapter{Introduction}
-Crystallisation, put simply, is the formation and growth of a new structured phase within a disordered bulk phase. This has applications in a 
-number of industries such as pharmaceuticals, food production, and 
-electronics; where the extraction of dilute materials can help improve 
-product quality while keeping production costs low. The industrialisation 
-of crystallisation has allowed engineers to reliably and efficiently 
-induce the crystal formation within a bulk liquid. However, while on a 
-large scale crystallisation is seemingly an understood physical process, 
-just a small amount of investigation into the literature reveals that at 
-a micro level there is yet to be unifying theory that can accurately 
-explain the process of crystallisation, more specifically nucleation.
+Crystallisation is one of the oldest forms of phase separation 
+used by humanity\cite{Schoen1956}, put simply, it is the 
+formation and growth of a new structured phase within 
+a disordered bulk phase. This has applications in a 
+number of industries such as pharmaceuticals, food 
+production, and electronics \cite{Myerson2002}; where 
+the extraction of dilute materials can help improve 
+product quality while keeping production costs low. 
+The industrialisation of crystallisation has allowed 
+engineers to reliably and efficiently induce the crystal 
+formation within a bulk phase. However, while on a 
+large scale crystallisation is seemingly an understood 
+physical process, just a small amount of investigation 
+into the literature reveals that at a micro scale there 
+is yet to be unifying theory that can accurately explain 
+the process of crystallisation \cite{Fu2021}. Of which 
+there two primary areas of focus, nucleation and crystal 
+growth. The latter focusing on how an already stable 
+crystal grows and how it takes on its final shape; 
+whereas the former is more concerned with which factors 
+contribute to its formation in order to control crystal growth.
 
-Nucleation is the initial formation of the crystalline phase and can be 
-broadly divided into two main processes. Firstly there is primary 
-nucleation, in which the nucleus forms from the bulk liquid; and 
-secondary nucleation, where the presence of already existing crystals 
-promotes the formation and growth of new nuclei 
+The focus of this research is partly based around investigating
+the impact of a focused electromagnetic field can influence the 
+nucleation process by inducing shear flow within the bulk phase. 
+This in hope that the localised EM field can be used to study 
+different phenomena in nucleation in order to develop a better
+understanding of the underlying mechanisms.
+
+\section{Nucleation}
+Nucleation is an example of a binary phase separation, 
+where a dilute phase is miscible in a bulk phase, more 
+often called the solute and solvent respectively. Because 
+of thermodynamics, the two can only remain miscible while 
+below a certain threshold concentration ($C_{eq}$) 
+- the chemical potential $\mu$ for a miscible solution 
+is greater than the potential required to separate 
+the two phases. Once $C_{eq}$ is exceeded the there is
+a potential difference driving the solution to separate the 
+two phases. Since different combinations of solute and solvent
+will have different threshold concentrations, researchers often 
+instead measure the ratio between the solute and solvent by using 
+'supersaturation', one form of measuring supersaturation is shown 
+below \cite{Mullin2001}:
+\begin{align}
+	S(T) = \frac{C_{solute}}{C_{eq}(T)}
+\end{align}
+Where $C_{solute}$ is just the raw solute concentration, $C_{eq}(T)$
+is the threshold concentration at temperature $T$.
+While the solution remains supersaturated there is a 
+chemical potential driving force for the solute 
+to coalesce and separate from the solution as an ordered solid, 
+the first formation of the crystal is referred to as the 
+nucleus and understanding its formation of has been the 
+focus of researchers for decades now. In particular 
+there is a growing desire for a unified theory to 
+describe the multiple paths that nucleation can take.
+
+\subsection{Primary vs Secondary nucleation}
+From an industrial perspective, the nucleation process can
+be broadly categorised into either primary of secondary 
+nucleation. The former being described as the formation of an
+initial nucleus within the bulk phase; absent of any external
+stimuli primary nucleation is considered stochastic and is typically
+undesirable for industrial applications where consistent 
+residence times are desirable. 
+
+In contrast, secondary nucleation is the result of a initial 
+seed crystal inducing further nucleation within the bulk solution
+\cite{Botsaris1976}, in absence of a seed crystal nucleation is
+near impossible. The research of Secondary Nucleation is fascinating
+for its own merits, not only is it speculated that the supersaturation 
+barrier is non-existent \cite{Cashmore2022}   
 
 \section{Nucleation Theories}
-Nucleation is a common example of a binary phase separation, where a dilute phase is miscible in a bulk phase solute and solvent respectfully. While the solution remains supersaturated there is a chemical potential driving force for the solute to coalesce and separate from the solution as a crystal, the first formation of the crystal is referred to as the nucleus and understanding its formation of has been the focus of researchers for decades now. In particular there is a growing desire for a concrete theory to describe the process of nucleation.
-
 \subsection{Classical Nucleation Theory (CNT)}
-Sometimes referred to as 'Gibs Nucleation Theory' the original theory was first formed from the works of Volmer and Weber, Becker and Doring, and Frenkel \cite{Frenkel1939, Volmer1926}. While initially it was more focused into describing droplet formation in condensing vapours it was extrapolated to describe crystallisation. The central premise is that in order for a nucleus to form within the bulk phase there must be some local fluctuation in the concentration of the solute. Now the nucleus will result in a local increase in potential ($\Phi$) but will also be subject to surface tension ($\gamma$) trying to dissolve the nucleus. Therefore the free energy change of a nucleus of size $r$ is given by:
+Sometimes referred to as 'Gibs Nucleation Theory' the 
+original theory was first formed from the works of Volmer 
+and Weber, and Frenkel \cite{Frenkel1939, Volmer1926}. 
+While initially it was more focused into describing droplet 
+formation in condensing vapours it was extrapolated to describe
+crystallisation. The central premise of classical theory 
+is that nucleation occurs stochastically throughout the bulk
+phase due to collisions between individual solute molecules,
+ions, or atoms; at the same time the bulk phase is resistant
+to the formation of a new phase. The competition between
+these random collisions and the bulk solution can be used to 
+predict the probability of a newly formed nucleus.
+ 
+Consider a supersaturated solution, after some time enough individual
+sub units collide, forming a nucleus of volume $4\pi r^3/3$. 
+The newly formed phase has a lower chemical potential than the 
+surrounding solution, reducing the free energy of the system; 
+at the same time, the formation of a new interface is resited 
+by the bulk phase due to surface tension. The net free energy 
+of the system for a nucleus of radius $r$ is given as \cite{Karthika2016}:
 \begin{align}
-	\Delta G = \Phi r - \gamma r^{2/3}
+	\Delta G = \frac{-4\pi r^3}{3v}k_BT\ln(S) + 4\pi r^{2}\sigma_{inf} 
 \end{align}
-From the equation its clear that there must be some critical size of nucleus above which the potential change is always positive. This critical size defines the free energy barrier that determines whether a nucleus will grow or dissolve within the solution. With this in mind the rate of which stable nuclei are formed can be approximated using the Arrhenius reaction rate equation:
+Where $v$ is the approximate volume of an individual molecule, $k_B$
+is the Boltzmann constant, and $\sigma_{inf}$ is the interfacial 
+tension of the bulk solution. Plotting the free energy of the system
+against nucleus size reveals a critical size above which the gain 
+in free energy exceeds the interfacial tension. 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\linewidth]{Free_Energy_Diagram.png}
+	\caption{Free energy diagram of a newly formed nucleus according 
+		     to the Classical Nucleation Theory. The total free energy (blue)
+		     is due to the competition between the volume free energy gain
+		     (green) and the interfacial free energy cost (orange). Dotted
+		     lines are for a higher supersaturation than the solid lines,
+		     the interfacial energy cost is independent of supersaturation.}
+\end{figure}
+
+The maximum value of $\Delta G_{tot}$ is the free energy barrier 
+that any newly formed nucleus needs to overcome in order to stabilise.
+The nucleation rate (the volume of new crystalline material formed per
+unit time), is therefore commonly defined as being dependent on the 
+energy barrier $\Delta G^*$:
 \begin{align}
 	J = A \ exp \left[-\frac{\Delta G^*}{k_BT} \right]
 \end{align}
-Where A is a prefactor that accounts for kinetic contributions. One of the key assumptions made in the original theory is that the nucleus' shape is always spherical, making calculation of the surface tension rather simple. Since the potential change is influenced by the supersaturation the nucleation rate should increase exponentially with supersaturation, and likewise with temperature (assuming the same thermodynamic supersaturation). In addition the theory implies that any collection of solute molecules below the critical size are unstable.  
+Where $A$ is a pre-factor that can be fine tuned to the exact demands
+of the system (typically involving Zeldovich Factor, $Z$) the free 
+energy barrier can be found by finding the turning point of $\Delta G_{tot}$. 
 
-Conceptually this is a rather idealised theory as it captures all of the microscopic effects into only two terms and provides a rather simple view of nucleation as being a single step process. However, in practice there are a number of challenges to applying this to experimental measurements.
-
-Where $A$ is a pre-factor that can be fine tuned to the exact demands of the system (typically involving Zeldovich Factor, $Z$) $\Delta G^*$ is the free energy barrier, this can be found by finding the point where the gradient goes to 0:
-\begin{align}
-	\Delta G = \gamma n^{2/3}-\phi n \\
-	\frac{\delta G}{\delta n} = \frac{2}{3n^{1/3}}\gamma - \phi  = 0 \\
-	n^* = \left( \frac{2\gamma}{3\phi} \right)^3 \\
-	\Delta G^* = \gamma (n^*)^{2/3} - \phi n^*
-\end{align}
 So to find the critical size $n^*$  - and therefore the nucleation rate - we simply need to know the ratio between the interfacial free energy and the volume free energy. The CNT assumes that the crystal grows is purely spherical and that the interfacial free energy is near constant (aka that of a flat surface), this assumption is not very accurate for small crystal nucleus where the changing curvature means that the surface tension varies as a function of the crystal radius. This also assumes the surrounding fluid is at rest and there are no external forces on the nucleus that might distort the shape of said nucleus; though there has been theoretical work looking into how the CNT behaves under shear flow \cite{Debuysschere2023, Mura2016, Richard2015}
 
 Furthermore, multiple experiments have already verified that crystals can form any number of structures and can even transition through multiple structures as it grows, meaning that the interfacial tension will constantly change as the particle grows. Furthermore, because we are assuming that the surface energy is constant the pre-exponential factor that is computed from experimental data, and the factor predicted by theory often disagree with one another to several degrees of magnitude. 
@@ -46,7 +133,7 @@ Furthermore, multiple experiments have already verified that crystals can form a
 There are several results that indicate that the CNT is not a good fit for nucleation rates:
 \textcolor{red}{
 	\begin{itemize}
-		\item Discrepancy in vapor-liquid nucleation systems to the extent that CNT was off by a factor of more than 2000 [ ]. 
+		\item Discrepancy in vapor-liquid nucleation systems to the extent that CNT was off by a factor of more than 2000 \cite. 
 		\item In glass formation, nucleation kinetics are incredibly important to understand as the crystallization process is not desired when producing glass. We want to cool the molten solution so that the solid does not have time to reorganize itself into an ordered structure. To understand nucleation kinetics in glass formation we need to understand that as crystals form in the glass the surface energy differs from the stable phase significantly which us poorly predicted by CNT as it assumes that crystals will have a constant structure and interaction with the bulk material [ ]. 
 		\item Metal alloys can demonstrate super-cooling while not experiencing nucleation, this is because in these liquids exhibit short range dynamics which means that the liquid droplet remains unordered as it is cooled. Because CNT assumes that the droplets must be of a similar ordering to that of the bulk crystal it often struggles to consider systems where the local bond order can fluctuate between phases. [ ]
 	\end{itemize}
