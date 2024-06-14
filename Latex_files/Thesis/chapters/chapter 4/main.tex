@@ -287,7 +287,12 @@ when compared to the direct \textit{ott} calculations. Typically,
 even an industrial Gaussian beam will produce an elliptical diffraction
 limit spot when heavily focused; in their tutorial for optimizing 
 the PSD analysis, Berg and Sorensen reported a ellipticity of
-around 15 \% after a total calibration time of 81 seconds \cite{BergSoerensen2004}. If we now consider a symmetric the 
+around 15 \% after a total calibration time of 81 seconds \cite{BergSoerensen2004}. The reason for this discrepancy
+can be explained partly by the fact that our estimation of the 
+trap geometry via \textit{ott} is based on the the actual 
+interactions with the beam near close to the focus whereas
+a QPD is estimating the trap geometry by extrapolating from
+far field scattering signals. If we now consider a symmetric the 
 discrepancy between \textit{ott} and the simulated QPD grows.
 
 \begin{center}
@@ -307,8 +312,12 @@ discrepancy between \textit{ott} and the simulated QPD grows.
 
 Now we see that the \textit{ott} predicts a more elliptical 
 trap compared to the QPD model which says the trap is far
-more symmetrical while trapping a symmetric dimer. This 
-change can be partially explained by the fact that rotational
+more symmetrical while trapping a symmetric dimer. The reason that
+\textit{ott} no longer expects a circular trap could be due to
+how it computes the beam shape coefficients; by point matching in 
+the far field before the focus means a loss in accuracy for objects
+that trap above the focus. The change in the QPD estimation  
+can be partially explained by the fact that rotational
 effects are not accounted for in the Lorentzian power spectra,
 only translational motion. Typically, rotational motion is only
 ever detected when it is periodic (take for example a power spectra

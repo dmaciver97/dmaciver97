@@ -290,6 +290,13 @@ Where $w_i$ is a random real number between -1 and 1, we can say that it is norm
 
 This result can be generalised for a 3-dimensional description of an optically trapped particle, where each Cartesian direction has its own unique characteristic restoration time. We see from the result that trajectory is dependent on only a handful of factors, the trap stiffness $\kappa_x$, the fluid viscosity $\gamma$, and the thermal energy of the system $k_BT$ - with the latter two being related by Einstein's formulation of the diffusion coefficient $D = k_BT/\gamma$. Therefore by calculating these parameters to a high degree of precision allows one to get precise description of the forces experienced by a target particle, which in the past has been used for highly accurate force transduction \cite{BergSoerensen2004, Smith2003}.
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.67\linewidth]{finite_differences.png}
+	\caption{Example trajectory created using Finite Differences method
+			 for a $2\mu m$ diameter sphere. Trap stiffness's were estimated using \textit{ott} at $\kappa_x = \kappa_y = -100\ pN/\mu m$ and $\kappa_z = -25\ pN/\mu m$. The particle's motion can be localised around the shaded ellipsoid.}
+\end{figure}
+
 \section{Calibration Techniques}
 \label{sec:calibration_techniques}
 There are several approaches for calibrating and characterizing the optical trap, each approach has its drawbacks and benefits so each option should be chosen based on what elements want to be characterized. The basis for each of these methods stems from the analytical solution of the Langevin equation:
@@ -412,7 +419,7 @@ Where $x(t)$ is replaced with $\vec{r}(t)$ to signify that the translational mot
   \frac{\mu}{\gamma_R}\left[\vec{u}(t)\times E(t)\right]\times \vec{u}(t)
   + \sqrt{2\vec{D}_R}\lambda(t)\times \vec{u}(t)
 \end{align}
-Where $\vec{u}(t)$ is the unit vector aligned along the centres of the two spheres, $\mu$ is its dipole moment, and $\gamma_R$ is the rotational friction coefficient which is given as $\gamma_R = 8\pi\eta r^3$, if the dimer is within a harmonic potential we can write the first term on the right hand side as $\frac{\vec{\kappa}_u}{\gamma} \times \vec{u}(t)$, where $\vec{\kappa}_u$ is the rotational stiffness vector. $\lambda(t)$ is the Brownian rotations from the surrounding fluid, like in the translational case the Brownian rotations are normally distributed and are also uncorrelated so that:
+Where $\vec{u}(t)$ is the unit vector aligned along the centres of the two spheres, $\mu$ is its dipole moment, and $\gamma_R$ is the rotational friction coefficient which is given as $\gamma_R = 8\pi\eta r^3$ for a sphere, if the dimer is within a harmonic potential we can write the first term on the right hand side as $\frac{\vec{\kappa}_u}{\gamma} \times \vec{u}(t)$, where $\vec{\kappa}_u$ is the rotational stiffness vector. $\lambda(t)$ is the Brownian rotations from the surrounding fluid, like in the translational case the Brownian rotations are normally distributed and are also uncorrelated so that:
 \begin{align}
   \left<\lambda(t)\lambda(t')\right> = \delta_{ij}\delta(t-t')
 \end{align}
