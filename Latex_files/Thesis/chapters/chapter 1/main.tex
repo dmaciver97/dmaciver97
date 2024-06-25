@@ -32,30 +32,32 @@ understanding of the underlying mechanisms.
 Nucleation is an example of a binary phase separation, 
 where a dilute phase is miscible in a bulk phase, more 
 often called the solute and solvent respectively. Because 
-of thermodynamics, the two can only remain miscible while 
-below a certain threshold concentration ($C_{eq}$) 
-- the chemical potential $\mu$ for a miscible solution 
+of thermodynamics, the two can only remain in equilibrium while 
+below a specific concentration ($C_{eq}$) - below which 
+the chemical potential $\mu$ for a miscible solution 
 is greater than the potential required to separate 
-the two phases. Once $C_{eq}$ is exceeded the there is
-a potential difference driving the solution to separate the 
+the two phases. Once $C_{eq}$ is exceeded there is a chemical
+ potential difference driving the solution to separate the 
 two phases. Since different combinations of solute and solvent
-will have different threshold concentrations, researchers often 
+will have different equilibrium concentrations, researchers often 
 instead measure the ratio between the solute and solvent by using 
 'supersaturation', one form of measuring supersaturation is shown 
 below \cite{Mullin2001}:
 \begin{align}
-	S(T) = \frac{C_{solute}}{C_{eq}(T)}
+	\label{eq:supersaturation}
+	S(T) = \frac{C_{sol}}{C_{eq}(T)}
 \end{align}
-Where $C_{solute}$ is just the raw solute concentration, $C_{eq}(T)$
-is the threshold concentration at temperature $T$.
+Where $C_{sol}$ is just the solute concentration, $C_{eq}(T)$
+is the equilibrium concentration at temperature $T$.
 While the solution remains supersaturated there is a 
 chemical potential driving force for the solute 
 to coalesce and separate from the solution as an ordered solid, 
 the first formation of the crystal is referred to as the 
 nucleus and understanding its formation of has been the 
-focus of researchers for decades now. In particular 
-there is a growing desire for a unified theory to 
-describe the multiple paths that nucleation can take.
+focus of researchers for decades now. Typically, for an 
+industrial crystallisation process the working principle 
+is based on controlling and manipulating the supersaturation
+of the system. 
 
 \subsection{Primary vs Secondary nucleation}
 From an industrial perspective, the nucleation process can
@@ -63,15 +65,37 @@ be broadly categorised into either primary of secondary
 nucleation. The former being described as the formation of an
 initial nucleus within the bulk phase; absent of any external
 stimuli primary nucleation is considered stochastic and is typically
-undesirable for industrial applications where consistent 
-residence times are desirable. 
+undesirable for industrial applications where short and consistent 
+residence times are desirable. At a small scale one can estimate the 
+nucleation rate by making repeated measurements of sample solutions 
+and seeing how many have nucleated after a given time, giving us a 
+Poisson distribution.
+
+\begin{align}
+	P(t) = 1 - exp\left[-JV(t-t_g)\right] = \frac{M^*(t)}{M}
+\end{align}
+
+Where $J$ is the nucleation rate, $t_g$ is the 'growth time', $V$
+is the volume of the individual samples, and $M^*(t)$ \& $M$ are the 
+number of nucleated samples and the total number of samples used respectively.
+While this is useful for studying the effects of different parameters
+at a small scale, for industrial applications there are so many
+additional factors at play that can throw off this estimation.
 
 In contrast, secondary nucleation is the result of a initial 
 seed crystal inducing further nucleation within the bulk solution
 \cite{Botsaris1976}, in absence of a seed crystal nucleation is
 near impossible. The research of Secondary Nucleation is fascinating
-for its own merits, not only is it speculated that the supersaturation 
-barrier is non-existent \cite{Cashmore2022}   
+for its own merits; is it speculated that the supersaturation 
+barrier is non-existent \cite{Cashmore2022}, and furthermore there 
+are a multitude of mechanisms that can induce secondary 
+nucleation making it imperative that researchers can control the
+nucleation rate at an industrial scale. 
+
+\begin{figure}[h!]
+	\includegraphics[width=\linewidth]{secondary_nucleation.jpg}
+	\caption{Secondary Nucleation mechanisms, classified by Agrawal and Paterson \cite{Agrawal2015}}
+\end{figure}
 
 \section{Nucleation Theories}
 \subsection{Classical Nucleation Theory (CNT)}
@@ -104,6 +128,7 @@ tension of the bulk solution. Plotting the free energy of the system
 against nucleus size reveals a critical size above which the gain 
 in free energy exceeds the interfacial tension. 
 \begin{figure}[h!]
+	\label{fig:free_energy}
 	\centering
 	\includegraphics[width=\linewidth]{Free_Energy_Diagram.png}
 	\caption{Free energy diagram of a newly formed nucleus according 
@@ -142,7 +167,41 @@ There are several results that indicate that the CNT is not a good fit for nucle
 CNT is often regarded as a good description of the macro system, its obvious that for all crystallization systems there is an inherent energy barrier that dictates the nucleation rate. However, for such a diverse range of possible nucleation events the CNT crudely assumes all interactions between solutes as identical; this makes it difficult to model crystallisation events using CNT without significantly modifying the model for each specific case. Recent developments in studying nucleation events have opened up new possible 'pathways' for a nucleation event to go down, by far the most common is the idea of Two step nucleation.
 
 \subsection{Two Step Nucleation}
-The two step nucleation theory is an extension to the CNT, as in situ techniques for studying nucleation several papers reported the presence of stable liquid-like clusters that formed prior to nucleation.  It can be understood somewhat by Oswald's rule, where he found that for supersaturated solutions with multiple potential polymorphs, the general tendency was for the least stable polymorph to form first, and then over time the more stable polymorph to form afterwards. This was explained as the system preferring to take a quick step to an intermediate state of lower free energy first, before eventually tending towards the lowest possible free energy state. Likewise for two-step nucleation, while nucleation is by far the pathway with lowest free energy, it is still possible for the solutes to find an intermediate state such as a cluster of solute molecules prior to nucleation. The idea of only two steps is merely a convention and so some researchers prefer to refer to it as multi-step nucleation, where any number of intermediate structures can occur between the base solution and final nucleation event.  
+The two step nucleation theory is an extension to the CNT, colloid simulations showed that short range (such as in proteins \cite{Wolde1997, Gliko2005}) interactions allow for the formation of a liquid-liquid metastable phase from which a new solid phase could form \cite{Anderson2002, Karthika2016}. \textit{in situ} techniques for studying nucleation several papers reported the presence of stable liquid-like clusters that formed prior to nucleation \cite{Savage2009, Wolde1997, Soga1999}.  It can be understood by Oswald's rule \cite{Ostwald1897}, which says that any crystallising system does not 
+take the path to the lowest possible energy state but instead first transitions to the state with the smallest free energy barrier, further transitions can still occur but this method minimises the overall free energy cost. If we consider the free energy diagram from before (fig.~\ref{fig:free_energy}) we can consider a case where the supersaturation is low ($S\approx1.01$) then a dense liquid droplet will have a lower chemical potential than the surrounding fluid 
+
+\section{Crystallisation methods}
+\subsection{Cooling Crystallisation}
+For some binary mixtures the supersaturation is heavily dependent on 
+the solution temperature, therefore a simple method of producing crystals 
+is by cooling the mixture to induce crystal formation. At ambient 
+temperatures the solute concentration is too high to be fully incorporated
+into the solution ($S\gg 1$), after heating however the solute is fully dissolved
+into the solution ($S<1$). Now as the mixture is allowed to cool to room
+temperature the supersaturation will increase until crystal formation begins,
+the rate of cooling drastically influencing the size and number of crystals
+produced.
+
+If $dT/dt$ is high then the final product will consist of large 
+crystal and be low in number, as the nucleation rate is directly related
+to the supersaturation only a handful of nuclei can form before the remaining
+solute grows onto the surface. If $dT/dt$ is low then the final product will 
+consist of smaller crystals and be far more numerous, as the supersaturation 
+is so large that the new nuclei are forming continuously. Between these two 
+extremes, one can define the meta-stable zone width, a region in the 
+temperature-concentration phase space where both nucleation and crystal growth
+can be reliably controlled. The lower limit being given by the solubility curve
+of the binary mixture, and the upper limit being defined by the metastable zone.
+
+\begin{figure}[h!]
+	\label{fig:MSZW}
+	\includegraphics[width=\linewidth]{MSZW.png}
+	\caption{Typical Concentration vs Temperature plot with the solubility curve (black) and metastable zone (red). 3 different cooling curves are shown as well: a high rate of cooling (orange) shows the mixture quickly dropping below the solubility curve resulting in no new nuclei forming; a low rate of cooling (green) shows the mixture exceeding the metastable zone, where now nucleation occurs freely; and a typical cooling rate (blue) shows how a typical cooling crystalliser will operate, sitting in the middle of the other two curves.}
+\end{figure}
+
+The viability of cooling crystallisation is dependent on the meta-stable 
+zone width, too narrow and the process is difficult to control, too wide 
+and the crystal growth rate may be insufficient for the desired outcome.
 
 \section{Optical Tweezers}
 \subsection{Background}

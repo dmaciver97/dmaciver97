@@ -1,11 +1,55 @@
 \chapter{Effects of localised shearing on crystal growth and nucleation}
-As outlined in Chapter 1, the original outline of the PhD was to investigate the possibility of using optical tweezing as a means of initiating and controlling nucleation by generating fluid flow within a small droplet of supersaturated solution. The goal of which would be to allow the understand the influence of shearing on nucleation at a micro level as compared to larger scale results. It has been shown that for macro-scale systems, the likelihood of nucleation increases to a maximum value under increased shearing \cite{Debuysschere2023, Mura2016}. Theoretical research into the matter identified two competing effects that effect a crystal in moving fluid fields; firstly, nucleation is enhanced due to the increased mass transfer of solute material; and secondly, shear flow against the crystal surface leading to a decrease in growth \cite{Mura2016}. These two competing effects are validated by experimental work using glycine solutions, showing that beyond a certain shear rate the nucleation rate is reduced \cite{Debuysschere2023}. 
+As outlined in Chapter 1, the original outline of the PhD was to investigate the possibility of using optical tweezing as a means of initiating and controlling nucleation by generating fluid flow within a small droplet of supersaturated solution. The goal of which would be to allow the understand the influence of shearing on nucleation at a micro level as compared to larger scale results. It has been shown that for macro-scale systems, the likelihood of nucleation increases to a maximum value under increased shearing \cite{Debuysschere2023, Mura2016}. Theoretical research into the matter identified two competing effects that effect a crystal in moving fluid fields; firstly, nucleation is enhanced due to the increased mass transfer of solute material; and secondly, shear flow against the crystal surface leading to a decrease in growth \cite{Mura2016}. These two competing effects are validated by experimental work using glycine solutions, showing that beyond a certain shear rate the nucleation rate is reduced \cite{Debuysschere2023}. In this chapter I outline the optical tweezer equipment used during this PhD, the initial attempts made to induce nucleation via optical rotation, and the impact of a moving beam on the crystal growth of a newly formed nucleus. 
 
 \section{Optical Tweezer Equipment}
-In general, all optical tweezers require a low power laser driver, two microscope objectives (one for trapping and one for imaging), a means of controlling the position of the loaded sample, and a means of isolating vibration signals. The laser used for this project was a 1064 nm near infrared laser - provided by CNI Lasers – that has an adjustable power supply to vary the energy output of the laser. Experimental work has shown that the trapping efficiency increases with beam diameter up until it exceeds $\frac{2}{3}D_{obj}$ where $D_{obj}$ is the diameter of the objective aperture. To expand the beam front we utilise a Galilean beam expansion arrangement (indicated by $L_1$, and $L_2$) as recommended for high power laser applications. In our initial experiments the beam expansion provides a $4\times$ magnification; however, in later experiments where we utilise a galvano-mirror the beam expansion is $3\times$ and then the 4f correlator provides a further $1.25\times$ magnification. Afterwards the laser is passed through a dichroic mirror that reflects oncoming infrared light but allows the passage of LED light through, this is to prevent the laser from interfering with the CCD imaging. By increasing the numerical aperture of the objective, the gradient force at the focal point is increased; the trade-off being that the for higher NA values the trapping depth is reduced due to spherical aberrations. While it is possible to increase the trapping depth by adjusting the objective's tube length this approach is incompatible with our trapping arrangement. The condenser objective refocuses the scattered laser light and also provide an aperture for an imaging LED to illuminate the focal plane. Samples are loaded onto a piezo driven table to that is inserted between the trapping and condensing objectives; the piezo drivers allow for sub-micron control of the sample position to a degree as small as a 10 nm. To detect and monitor the position of a trapped particle a quadrant photo diode (QPD) was utilised. 
+In general, all optical tweezers require a laser driver, two
+microscope objectives (one for trapping and one for imaging),
+and a means of controlling the position of the loaded sample. 
+While there are other pieces of equipment used in modern tweezer
+experiments these are the bare minimum requirements for any 
+optical tweezer. The laser used for this project was a 1064 
+nm near infrared laser - provided by CNI Lasers – that has 
+an adjustable power supply to vary the energy output of the 
+laser - the remaining optics where supplied by Thor Labs.
+Experimental work has shown that the trapping efficiency 
+increases with beam diameter up until it exceeds $\frac{2}{3}D_{obj}$ 
+\cite{kim2003dependence} where $D_{obj}$ is the diameter
+of the objective aperture. To expand the beam front we 
+utilise a Galilean beam expansion arrangement (indicated 
+by $L_1$, and $L_2$) as recommended for high power laser 
+applications. In our initial experiments the beam expansion 
+provides a $4\times$ magnification; however, in later experiments where we utilise a galvano-mirror the beam expansion is $3\times$ and then 
+the 4f correlator provides a further $1.25\times$ magnification.
+It should be noted that the galvano-mirror requires the use 
+of a Keplerian beam expansion arrangement which reduces
+the transmitted laser power due to localised heating of the air.
+Afterwards the laser is passed through a dichroic mirror that 
+separates incoming infrared and visible light, this is to 
+prevent the laser from damaging the CCD camera used for imaging
+the trapping plane. The laser is then focused to a diffraction
+limited spot by a 1.25 NA objective. By increasing the numerical
+aperture of the objective, the gradient force at the focal point is increased; the trade-off being that the for higher NA values the trapping depth 
+is reduced due to spherical aberrations. While it is possible 
+to increase the trapping depth \cite{Reihani2006} by adjusting 
+the objective's tube length this approach is incompatible with 
+our trapping arrangement. A 0.25 NA condenser objective refocuses
+the scattered laser light and also provide an aperture for an 
+imaging LED to illuminate the focal plane. Samples are loaded 
+onto a piezo driven table to that is inserted between the trapping
+and condensing objectives; the piezo drivers allow for sub-micron
+control of the sample position to a degree as small as a 10 nm. 
+To detect and monitor the position of a trapped particle a 
+quadrant photo diode (QPD) was utilised. 
+
+\begin{figure}
+	\centering
+	\includegraphics[height=\linewidth, angle=270]{tweezer_setup.pdf}
+	\caption{Optical tweezer set up used for the majority of the PhD. The focal lengths of $f_1$, $f_2$, $f_3$, \& $f_4$ are $-20\ mm$, $60\ mm$, $150\ mm$, \& $200\ mm$ respectively.}
+\end{figure}
 
 \subsection{Position detection methods}
-There are several methods for monitoring the position of 
+In order to accurately capture the dynamics of a trapped particle, 
+a position detection system must be utilised. As shown 
 A QPD is a typical example of a position detection system commonly used 
 in optical tweezers due to their high sampling rate, high degree of 
 precision, and ease of set up. The QPD is constructed of four photo 
