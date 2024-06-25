@@ -56,18 +56,36 @@ quadrant photo diode (QPD) was utilised.
 
 \subsection{Position detection methods}
 In order to accurately capture the dynamics of a trapped particle, 
-a position detection system must be utilised. While possible to characterise
-an optical trap using a linear position detector
-A QPD is a typical example of a position detection system commonly used 
-in optical tweezers due to their high sampling rate, high degree of 
+a position detection system must be utilised. There are 3 possible
+methods of position detection: video-analysis, lateral-effect
+position sensing, and quadrant photodiodes. The former being 
+ideally suited for multiple traps or situations where precision
+is not the top priority. In order to match the force measurements
+of back-focal plane interferometry requires the camera's frame
+rate to exceed $1\ kHz$ which can be difficult to achieve while 
+maintaining a decent resolution \cite{Gibson2008}. In comparison
+off the shelf back-focal plane detectors can achieve temporal
+resolutions anywhere from $10-100\ kHz$. 
+ 
+A QPD is frequently used position detection system for optical 
+tweezers due to their high sampling rate, high degree of 
 precision, and ease of set up. The QPD is constructed of four photo 
 diodes assembled in a quadrant formation, when a particle is trapped the 
-interference pattern produced is directed onto the QPD, with the maximum 
-intensity mapping to the particle's centre of mass. By summing the 
-horizontal and vertical quadrants together the particle's centre of mass 
-is tracked in the x-y plane. While the tracking is accurate the QPD 
-needs to be calibrated in order to convert the voltage signals into 
-actual distance reading. 
+interference pattern produced is focused onto the QPD, with 
+the maximum intensity mapping to the particle's centre of mass. 
+By summing the voltages of the horizontal and vertical quadrants 
+together the particle's centre of mass is tracked in the x-y 
+plane. Axial displacement can be estimated by observing the change
+in the total voltage of the QPD. The outputted signal gives an
+indication of the particle's relative displacement from the beam 
+focus, but in order to convert the signal to distance units the
+trap needs to be calibrated (assuming a linear response curve).
+
+A lateral-effect sensor has a similar output but works using a 
+the entire photodiode as a single cell. The four corners of 
+the sensor act as anodes connected to a base plate cathode, as 
+the beam moves across the surface of the detector the 4 corners
+detect a photocurrent and 
 
 
 \section{Synthesis of Birefringent Micro spheres}
