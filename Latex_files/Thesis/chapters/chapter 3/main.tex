@@ -81,11 +81,38 @@ indication of the particle's relative displacement from the beam
 focus, but in order to convert the signal to distance units the
 trap needs to be calibrated (assuming a linear response curve).
 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[height=\linewidth, angle=270]{QPD_Lateral_effect.pdf}
+	\caption{Comparison between QPD and Lateral effect photodiodes.
+	The four quadrants of a QPD (left) experience different photocurrents
+	based on the total intensity of light incident on each section 
+	(labelled A, B, C, D). 
+	Whereas a Lateral effect sensor (right) uses the resistive properties
+	of the photodiode surface to vary the create different photocurrents 
+	passing through the anodes A, B, C, and D.}
+\end{figure}
+
 A lateral-effect sensor has a similar output but works using a 
-the entire photodiode as a single cell. The four corners of 
-the sensor act as anodes connected to a base plate cathode, as 
-the beam moves across the surface of the detector the 4 corners
-detect a photocurrent and 
+the entire sensor as a single cell analogous to the focal plane of
+the trapping beam. The four corners of the sensor act as anodes 
+connected to a base plate cathode, as the beam moves across the
+surface of the detector each anode will experience a different 
+photocurrent depending on how close the centre of the 
+interference pattern is to each anode. The advantage of a 
+lateral effect detector is that the linear regime is much larger 
+than a QPD making it much better for monitoring the position of a
+trapped particle. However, Lateral-effect sensors are often limited
+in their spacial resolution due to high signal-to-noise ratios, 
+requiring a high intensity of light on the sensor in order to 
+get a clean signal. As a result, most optical trapping experiments
+are conducted using a QPD as opposed to a lateral-effect sensor, 
+as often the displacement is small enough that the QPD response 
+curve can be considered linear.
+
+\section{Calibration of Tweezer Setup}
+Prior to testing optical rotation the trapping laser was calibrated 
+using power spectra analysis
 
 
 \section{Synthesis of Birefringent Micro spheres}
@@ -115,31 +142,78 @@ small spherical particles making them ideal for optical trapping.
 Synthesis of vaterite micro spheres requires fine control of the nucleation process in order to maintain polymorphic control. 
 
 \section{Shear induced Nucleation}
+\comment{This belongs in the introduction chapter me thinks}
+
 It has long been known that solution nucleation is influenced by shearing of the fluid, from stirring agents in the container (i.e. propellers) to the container boundary layers, however there has yet to be a clear mechanism by which said shearing effects the nucleation event. Theoretical research into shear induced nucleation suggests that there should be a slight increase in the nucleation rate at low shear rates, reaching a maximum increase in nucleation rate, and then at higher shear rates the nucleation rate begins to drop off. This has been shown theoretically for both simple colloidal \textcolor{red}{[ , ]}  and ice crystal formation\textcolor{red}{[ ]}; however, no experimental work into these systems has been conducted to prove this is the case.  There is some experimental evidence for this phenomena in simple salt and protein solutions - though the authors emphasise that mechanical agitation cannot be ruled out - there has not been a exhaustive study into the shearing effects apart from in glycine solutions. In \textcolor{red}{[ ]} they found that a shear rate of around $3000\ s^{-1}$ was the maximum shear rate that would yield the highest nucleation rate. They tested the theoretical model established in \textcolor{red}{[ ]} which modifies the CNT to account for the effects of a nucleus undergoing shearing; they accounted for the fact that a nucleus' growth is undergoing competition between flow-mediated molecular transport and the strain applied by the flow field which inhibits the growth of the nucleus. There central conclusion (from both the theoretical and experimental results) is that there is an optimal shear rate in which the nucleation rate is maximised. However, a question that arises from this result, if there is a optimal shear rate in which molecular transport is maximised and strain is minimised, then surely there should also be a shear rate in which the molecular transport and strain are equal - allowing one to suspend a nucleus at a constant radius. In this scenario, the molecular transport would prevent the nucleus from dissolving, but the strain would prevent the nucleus from growing. This however would require one to be able to apply a continuous shear rate to a targeted nucleus with high precision, there is also no model for an individual nucleus undergoing growth. 
 
-Optical tweezing has often been used for micro-rheology, by computing the exact forces being exerted on the trapped sphere, one can determine the fluid viscosity of the local surrounding medium. Typically one would use a birefringent particle (i.e. vaterite) and rotating it within the fluid, the maximum rotation rate being a product of the fluid drag resisting the torque of the trapping beam. Likewise, one can use a galvanometric mirror to probe the drag force of the fluid, by understanding the trap strength (calibrating using a low frequency signal) one can compute the force required to escape the trap and likewise determine the drag force applied by a moving sphere. Likewise, one can perform the inverse experiment, by applying a known shear rate one can see how the fluid responds to the fluid shear; this is what we attempt with the galvano-mirror, how does a supersaturated solution respond to a localised fluid field? This requires that we both know the fluid velocity, and the shear rate applied by our probe particle. Furthermore, we also require an understanding of how the fluid is effected by the beam, both the temperature rise and the corresponding change to the fluid viscosity. 
+Optical tweezing has often been used for micro-rheology, by computing the
+exact forces being exerted on the trapped sphere, one can determine the
+local temperature/viscosity of the medium \cite{Millen2014, RodriguezSevilla2018}.
+Typically one would use a birefringent particle (i.e. vaterite, liquid
+crystals, etc) and rotating it within the fluid, the maximum rotation
+rate being a product of the fluid drag resisting the torque of the 
+trapping beam \cite{RodriguezSevilla2018}. Or if you want to measure 
+fluid flow you can instead use a micro-rotor to see how fluid flow 
+propagates in the medium \cite{Knoener2005}. Likewise, one can use 
+a galvanometric mirror to probe the drag force of the fluid, by 
+understanding the trap strength (calibrating using a low frequency 
+signal) one can measure the drag force experienced by the local fluid \cite{RobertsonAnderson2018}. I
 
-Understanding the fluid velocity around our trapped object is determined mostly by the Reynold's number of our system, for a sphere submersed in a moving fluid of velocity $U$ this is given by:
+Understanding the fluid velocity around our trapped object is determined 
+mostly by the Reynold's number of our system, for a sphere submersed 
+in a moving fluid of velocity $U$ this is given by:
 \begin{align}
 	Re = \frac{\rho UD}{\mu}
 \end{align}
 Where $D$ is the sphere's diameter, and $\rho$ and $\mu$ are the fluid's density and viscosity respectively. In our case we do not have a fluid moving around a sphere but a sphere moving through the fluid at some velocity $U$, assuming a no-slip boundary condition we can model the fluid velocity profile based on the velocity of the particle. There are two possible avenues for generating shear flow with a trapped particle; rotation of birefringent particles, and fluid flow induced by particle motion. 
 
 Rotating birefringent particles are by far the most common method for generating and measuring fluid flow in a solution. To see if we can even achieve the theoretical maximum shear rate, vaterite spheres were synthesised (see Sec.\ref{sec:vaterite}) submerged in water and trapped with the 1064 nm laser at set to 450 mW. The rotation frequency was determined using the QPD, and the particle sizes were computed by image analysis. With the particle size and rotation frequency, the tangential rotation speed is calculated via:
-
 \begin{align}
 	\label{eq:birefringent_speed}
 	u(r) = \frac{\pi}{4}\frac{d^3}{r^2}\omega
 \end{align}
 
-Where $d$ is the particle diameter, $\omega$ is the rotation frequency reported by the QPD, and $r$ is the distance from the particle's centre. Using Eq.\ref{eq:birefringent_speed} we computed the fluid flow radiating outward from the centre of the sphere. The shear rate can then be computed as the partial derivative fluid flow (assuming shearing is generated purely by the flow field):
-
+Where $d$ is the particle diameter, $\omega$ is the rotation frequency
+reported by the QPD, and $r$ is the distance from the particle's centre. 
+Using Eq.\ref{eq:birefringent_speed} we computed the fluid flow radiating
+outward from the centre of the sphere. The shear rate can then be computed
+as the partial derivative fluid flow (assuming shearing is generated purely
+by the flow field):
 \begin{align}
 	\label{eq:birefringent_shear}
 	\dot{\gamma}(r)=\left|\frac{\delta u(r)}{\delta r} \right|= \frac{\pi}{2}\frac{d^3}{r^3}\omega
 \end{align}
 
-\begin{figure}[h]
+Vaterite samples were synthesised according to \cite{Parkin2009, Bishop2004} 
+(see sec.~\ref{sec:vaterite}), and then suspended in a droplet of supersaturated solutions of Glycine and water. After locating a singular microsphere the
+vaterite was trapped in a circularly polarised light and brought close
+to the droplet edge. Due to the increased viscosity of the supersaturated 
+solution and the proximity to the droplet edge, the observed rotation rate 
+was rather low or non-existent, the results are tabulated below:
+
+\begin{table}
+	\centering
+	\caption{Results from rotating vaterite within supersaturated solution}
+	\begin{tabular}[width=\textwidth]{|c|c|c|c|}
+		\hline
+		Super Saturation & Particle radius [$\mu$] & $\omega$ [Hz] & Nucleation [$\checkmark/\times$]\\
+		\hline
+		\multirow{3}*{1.01} & 2.34 & 20.7 & $\times$ \\
+		\cline{2-4} & 5.67 & 23.3 & $\times$ \\
+		\cline{2-4} & 3.26 & 15.4 & $\times$ \\
+		\hline
+		\multirow{3}*{1.14} & 1.89 & 1.23 & $\times$ \\
+		\cline{2-4} & 3.75 & 3.54 & $\times$ \\
+		\cline{2-4} & 4.35 & 4.86 & $\times$ \\
+		\hline
+		\multirow{3}*{1.49} & 4.76 & $~0$ & $\times$ \\
+		\cline{2-4} & 7.27 & $~0$ & $\times$ \\
+		\cline{2-4} & 1.52 & $~0$ & $\times$ \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\begin{figure}[h!]
 	\label{fig:vaterite_shear}
 	\begin{subfigure}{0.5\linewidth}
 		\includegraphics[width=\linewidth]{vaterite_fluid_flow.png}
@@ -152,7 +226,13 @@ Where $d$ is the particle diameter, $\omega$ is the rotation frequency reported 
 	\caption{(a) Fluid flow radiating out from the surface of a rotating vaterite sphere. (b) Shear rates computed using Eq.\ref{eq:birefringent_shear}, optimal shear rate is of $3000 s^{-1}$ is indicated by the dotted line. Vaterite radii and rotation frequencies are shown, the laser power was kept constant at 450 mW. Reported rotation rates, and their corresponding fluid flow and shear rates, for vaterite are also plotted alongside lab results.}
 \end{figure}
 
-From Fig.\ref{fig:vaterite_shear} it's clear that 
+From Fig.\ref{fig:vaterite_shear}~(b) it's clear that the rotational speeds
+achieved both in the lab and from experimental literature are well below the 
+theoretical maximum shear rate reported by \cite{Debuysschere2023} as you move 
+away from the surface of your micro-rotor.
+
+
+This would explain partly why we could never seen nucleation even in the case where our vaterite could rotate freely. The closest we could trap a microsphere to the droplet edge was in the range of $5-10\mu\ m$, at that distance the fluid flow would be so low that not even using a liquid droplet rotor would achieve the rotational speeds necessary to localise nucleation.
 
 Using a galvano mirror can A particle's motion can be precisely controlled For a simple circular path one can estimate the sphere's speed by the radius of its path and the frequency of its orbit $U = R\omega$; however for a more complex path, such as an elliptical orbit the curve needs to be parametrised. One can describe the position parameter of an ellipse as such:
 
