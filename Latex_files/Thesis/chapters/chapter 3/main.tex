@@ -127,12 +127,24 @@ polarised light and the challenges of applying this to localising
 nucleation. 
 
 There are several options for particles that can be rotated using 
-optical tweezers []. Over the course of this project two different micro 
+optical tweezers \cite{Parkin2009, Saito2022}. Over the course of 
+the PhD two different micro 
 spheres where investigated, vaterite and liquid crystal droplets. Both 
 can be readily synthesised in the lab and are will rotate at a variety 
 of sizes. While silver nano particles were considered their high cost 
 and small size meant they were disregarded as an option for optical 
 rotation. 
+
+Vaterite samples where made by the first preparing equal amounts of 
+$CaCl_2$ and $NaCO_3$ at a concentration of $0.1M$, at the same time
+a vial of $0.03M\ MgSO_4$ was prepared and set aside for later. First
+a small vial was filled with $1.5mL$ of $CaCl_2$ followed by $60\mu L$ 
+and $90\mu L$ of $MgSO_4$ and $NaCO_3$ respectively, forming a seed solution. 
+Next, a larger vial was filled with $5\ mL$, $1.5\ mL$, and $1\ mL$ of
+$CaCL_2$, $MgSO_4$, and $NaCO_3$ respectively followed by the seed solution. 
+After 10 minutes of slow but continuous mixing a few drops of Agepon was added
+to halt the reaction, the solution was filtered and washed 3 times with 
+distilled water before being suspended in water. 
 
 \subsection{Rotation of Vaterite micro spheres}
 Vaterite is a polymorph of calcium carbonate that is rarely seen in 
@@ -144,7 +156,7 @@ Synthesis of vaterite micro spheres requires fine control of the nucleation proc
 \section{Shear induced Nucleation}
 \comment{This belongs in the introduction chapter me thinks}
 
-It has long been known that solution nucleation is influenced by shearing of the fluid, from stirring agents in the container (i.e. propellers) to the container boundary layers, however there has yet to be a clear mechanism by which said shearing effects the nucleation event. Theoretical research into shear induced nucleation suggests that there should be a slight increase in the nucleation rate at low shear rates, reaching a maximum increase in nucleation rate, and then at higher shear rates the nucleation rate begins to drop off. This has been shown theoretically for both simple colloidal \textcolor{red}{[ , ]}  and ice crystal formation\textcolor{red}{[ ]}; however, no experimental work into these systems has been conducted to prove this is the case.  There is some experimental evidence for this phenomena in simple salt and protein solutions - though the authors emphasise that mechanical agitation cannot be ruled out - there has not been a exhaustive study into the shearing effects apart from in glycine solutions. In \textcolor{red}{[ ]} they found that a shear rate of around $3000\ s^{-1}$ was the maximum shear rate that would yield the highest nucleation rate. They tested the theoretical model established in \textcolor{red}{[ ]} which modifies the CNT to account for the effects of a nucleus undergoing shearing; they accounted for the fact that a nucleus' growth is undergoing competition between flow-mediated molecular transport and the strain applied by the flow field which inhibits the growth of the nucleus. There central conclusion (from both the theoretical and experimental results) is that there is an optimal shear rate in which the nucleation rate is maximised. However, a question that arises from this result, if there is a optimal shear rate in which molecular transport is maximised and strain is minimised, then surely there should also be a shear rate in which the molecular transport and strain are equal - allowing one to suspend a nucleus at a constant radius. In this scenario, the molecular transport would prevent the nucleus from dissolving, but the strain would prevent the nucleus from growing. This however would require one to be able to apply a continuous shear rate to a targeted nucleus with high precision, there is also no model for an individual nucleus undergoing growth. 
+It has long been known that solution nucleation is influenced by shearing of the fluid, from stirring agents in the container (i.e. propellers) to the container boundary layers, however there has yet to be a clear mechanism by which said shearing effects the nucleation event. Theoretical research into shear induced nucleation suggests that there should be a slight increase in the nucleation rate at low shear rates, reaching a maximum increase in nucleation rate, and then at higher shear rates the nucleation rate begins to drop off. This has been shown theoretically for both simple colloidal \cite{Mura2016,Debuysschere2023,Richard2015}  and ice crystal formation \cite{Goswami2020}; however, no experimental work into these systems has been conducted to prove this is the case.  There is some experimental evidence for this phenomena in simple salt and protein solutions - though the authors emphasise that mechanical agitation cannot be ruled out - there has not been a exhaustive study into the shearing effects apart from in glycine solutions. In \cite{Debuysschere2023} it was found that a shear rate of around $3000\ s^{-1}$ was the maximum shear rate that would yield the highest nucleation rate. Using the theoretical model established in \cite{Mura2016,2001} which modifies the CNT to account for the effects of a nucleus undergoing shearing, accounting for the fact that a nucleus' growth is undergoing competition between flow-mediated molecular transport and the strain applied by the flow field which inhibits the growth of the nucleus. There central conclusion (from both the theoretical and experimental results) is that there is an optimal shear rate in which the nucleation rate is maximised. However, a question that arises from this result, if there is a optimal shear rate in which molecular transport is maximised and strain is minimised, then surely there should also be a shear rate in which the molecular transport and strain are equal - allowing one to suspend a nucleus at a constant radius. In this scenario, the molecular transport would prevent the nucleus from dissolving, but the strain would prevent the nucleus from growing. This however would require one to be able to apply a continuous shear rate to a targeted nucleus with high precision, there is also no model for an individual nucleus undergoing growth. 
 
 Optical tweezing has often been used for micro-rheology, by computing the
 exact forces being exerted on the trapped sphere, one can determine the
@@ -184,34 +196,10 @@ by the flow field):
 	\dot{\gamma}(r)=\left|\frac{\delta u(r)}{\delta r} \right|= \frac{\pi}{2}\frac{d^3}{r^3}\omega
 \end{align}
 
-Vaterite samples were synthesised according to \cite{Parkin2009, Bishop2004} 
-(see sec.~\ref{sec:vaterite}), and then suspended in a droplet of supersaturated solutions of Glycine and water. After locating a singular microsphere the
-vaterite was trapped in a circularly polarised light and brought close
-to the droplet edge. Due to the increased viscosity of the supersaturated 
-solution and the proximity to the droplet edge, the observed rotation rate 
-was rather low or non-existent, the results are tabulated below:
-
-\begin{table}
-	\centering
-	\caption{Results from rotating vaterite within supersaturated solution}
-	\begin{tabular}[width=\textwidth]{|c|c|c|c|}
-		\hline
-		Super Saturation & Particle radius [$\mu$] & $\omega$ [Hz] & Nucleation [$\checkmark/\times$]\\
-		\hline
-		\multirow{3}*{1.01} & 2.34 & 20.7 & $\times$ \\
-		\cline{2-4} & 5.67 & 23.3 & $\times$ \\
-		\cline{2-4} & 3.26 & 15.4 & $\times$ \\
-		\hline
-		\multirow{3}*{1.14} & 1.89 & 1.23 & $\times$ \\
-		\cline{2-4} & 3.75 & 3.54 & $\times$ \\
-		\cline{2-4} & 4.35 & 4.86 & $\times$ \\
-		\hline
-		\multirow{3}*{1.49} & 4.76 & $~0$ & $\times$ \\
-		\cline{2-4} & 7.27 & $~0$ & $\times$ \\
-		\cline{2-4} & 1.52 & $~0$ & $\times$ \\
-		\hline
-	\end{tabular}
-\end{table}
+First we tested the rotational behaviour of vaterite in distilled water, 
+samples of vaterite where diluted down and $200\mu L$ was pipetted onto
+the sample stage. Due to Van der Waal's forces some of the microspheres 
+were stuck together, fortunately individual sphere's were still
 
 \begin{figure}[h!]
 	\label{fig:vaterite_shear}
@@ -230,6 +218,45 @@ From Fig.\ref{fig:vaterite_shear}~(b) it's clear that the rotational speeds
 achieved both in the lab and from experimental literature are well below the 
 theoretical maximum shear rate reported by \cite{Debuysschere2023} as you move 
 away from the surface of your micro-rotor.
+
+Vaterite samples were synthesised according to \cite{Parkin2009, Bishop2004} 
+(see sec.~\ref{sec:vaterite}), and then suspended in a droplet of supersaturated solutions of Glycine and water. After locating a singular microsphere the
+vaterite was trapped in a circularly polarised light and brought close
+to the droplet edge, after a period of ten minutes if no nucleation event
+was observed the particle was released and another particle was trapped. 
+Due to the increased viscosity of the supersaturated solution and the 
+proximity to the droplet edge, the observed rotation rate 
+was rather low or non-existent, the results are tabulated below:
+
+\begin{table}
+	\centering
+	\caption{Results from rotating vaterite within supersaturated solution. Solubility concentration for Glycine was at $16^\circ$, $C^*=0.2016g/g$}
+	\begin{tabular}[width=\textwidth]{|c|c|c|c|}
+		\hline
+		Super Saturation & Particle radius [$\mu$] & $\omega$ [Hz] & Nucleation [$\checkmark/\times$]\\
+		\hline
+		\multirow{3}*{1.01} & 2.34 & 20.7 & $\times$ \\
+		\cline{2-4} & 5.67 & 23.3 & $\times$ \\
+		\cline{2-4} & 3.26 & 15.4 & $\times$ \\
+		\hline
+		\multirow{3}*{1.14} & 1.89 & 1.23 & $\times$ \\
+		\cline{2-4} & 3.75 & 3.54 & $\times$ \\
+		\cline{2-4} & 4.35 & 4.86 & $\times$ \\
+		\hline
+		\multirow{3}*{1.29} & 3.47 & 0.00 & $\times$ \\
+		\cline{2-4} & 1.59 & 0.00 & $\times$ \\
+		\cline{2-4} & 6.24 & 0.00 & $\times$ \\
+		\hline
+		\multirow{3}*{1.40} & 6.32 & 0.00 & $\times$ \\
+		\cline{2-4} & 3.68 & 0.00 & $\times$ \\
+		\cline{2-4} & 5.43 & 0.00 & $\times$ \\
+		\hline
+		\multirow{3}*{1.49} & 4.76 & $0.00$ & $\times$ \\
+		\cline{2-4} & 7.27 & $0.00$ & $\times$ \\
+		\cline{2-4} & 1.52 & $0.00$ & $\times$ \\
+		\hline
+	\end{tabular}
+\end{table}
 
 
 This would explain partly why we could never seen nucleation even in the case where our vaterite could rotate freely. The closest we could trap a microsphere to the droplet edge was in the range of $5-10\mu\ m$, at that distance the fluid flow would be so low that not even using a liquid droplet rotor would achieve the rotational speeds necessary to localise nucleation.
