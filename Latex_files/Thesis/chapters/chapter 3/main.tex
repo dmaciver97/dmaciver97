@@ -128,19 +128,20 @@ nucleation.
 
 There are several options for particles that can be rotated using 
 optical tweezers \cite{Parkin2009, Saito2022}. Over the course of 
-the PhD two different micro 
-spheres where investigated, vaterite and liquid crystal droplets. Both 
-can be readily synthesised in the lab and are will rotate at a variety 
-of sizes. While silver nano particles were considered their high cost 
-and small size meant they were disregarded as an option for optical 
-rotation. 
+the PhD two different micro spheres where investigated, vaterite 
+and liquid crystal droplets. Both can be readily synthesised in 
+the lab and are will rotate at a variety of sizes. While silver 
+nano particles were considered their high cost and small size 
+meant they were disregarded as an option for optical rotation. 
 
 Vaterite is a polymorph of calcium carbonate that is rarely seen in 
 nature due to its low stability. However unlike its other polymorphs of 
 calcite and aragonite, when synthesised vaterite will typically form 
-small spherical particles making them ideal for optical trapping. 
+small spherical particles making them ideal for optical trapping and rotation. 
 Synthesis of vaterite micro spheres requires fine control of the nucleation
-process in order to maintain polymorphic control.
+process in order to maintain polymorphic stability, though for the purposes
+of optical rotation the exact polymorph is not as important as its morphology
+as all 3 polymorphs are inherently birefringent. 
 
 Vaterite samples where made by the first preparing equal amounts of 
 $CaCl_2$ and $Na_2CO_3$ at a concentration of $0.33M$, at the same time
@@ -153,7 +154,7 @@ After 10 minutes of slow but continuous mixing a few drops of Agepon was added
 to halt the reaction, the solution was filtered and washed 3 times with 
 distilled water before being suspended in water. 
 
-\begin{figure}
+\begin{figure}[h!]
 	\centering
 	\begin{subfigure}{0.4\linewidth}
 		\includegraphics[width=\linewidth]{vaterite_sample.jpg}
@@ -166,14 +167,31 @@ distilled water before being suspended in water.
 	\caption{(a)Sample vaterite sphere suspended in water and trapped by circular polarised trap. (b) Collected power spectrum from rotating vaterite, peaks in the power spectrum appear at integer multiples of the rotational frequency ($f_{rot} \approx 49.8$ Hz)}
 \end{figure}
 
-\subsection{Rotation of Vaterite micro spheres}
+Liquid crystals are an intriguing example of materials with mixed phase
+properties, unlike typical solutes such as Glycine, a liquid crystal
+can still maintain some degree of order between its individual molecules
+while in the liquid state. This is due to the fact that liquid crystals
+are constructed of long ordered molecules that demonstrate a long range
+ordering. There are three main types of liquid crystal transition methods:
+thermotropic crystals will transition to their liquid crystal phase when 
+sufficiently heated; Lyotropic materials can undergo this transition due 
+to changes in temperature and concentration; and lastly Metallotropic 
+materials - which are composed of both organic and inorganic molecules - 
+change phase according to the ratio of organic to inorganic molecules present.
+Liquid crystal rotors are rather simple in their production, 
+4-Heptyl-4-biphenylcarbonitrile (7CB) was purchased from Sigma Aldrich
+and a small amount was added to a vial of distilled water. The solution 
+was then heated in a water bath to $25^\circ$ in order to transition the
+solid crystal into its liquid crystal state. The individual droplets 
+are inherently birefringent and would rotate readily while suspended in 
+distilled water. 
 
-
-\section{Shear induced Nucleation}
-\comment{This belongs in the introduction chapter me thinks}
-
-It has long been known that solution nucleation is influenced by shearing of the fluid, from stirring agents in the container (i.e. propellers) to the container boundary layers, however there has yet to be a clear mechanism by which said shearing effects the nucleation event. Theoretical research into shear induced nucleation suggests that there should be a slight increase in the nucleation rate at low shear rates, reaching a maximum increase in nucleation rate, and then at higher shear rates the nucleation rate begins to drop off. This has been shown theoretically for both simple colloidal \cite{Mura2016,Debuysschere2023,Richard2015}  and ice crystal formation \cite{Goswami2020}; however, no experimental work into these systems has been conducted to prove this is the case.  There is some experimental evidence for this phenomena in simple salt and protein solutions - though the authors emphasise that mechanical agitation cannot be ruled out - there has not been a exhaustive study into the shearing effects apart from in glycine solutions. In \cite{Debuysschere2023} it was found that a shear rate of around $3000\ s^{-1}$ was the maximum shear rate that would yield the highest nucleation rate. Using the theoretical model established in \cite{Mura2016,2001} which modifies the CNT to account for the effects of a nucleus undergoing shearing, accounting for the fact that a nucleus' growth is undergoing competition between flow-mediated molecular transport and the strain applied by the flow field which inhibits the growth of the nucleus. There central conclusion (from both the theoretical and experimental results) is that there is an optimal shear rate in which the nucleation rate is maximised. However, a question that arises from this result, if there is a optimal shear rate in which molecular transport is maximised and strain is minimised, then surely there should also be a shear rate in which the molecular transport and strain are equal - allowing one to suspend a nucleus at a constant radius. In this scenario, the molecular transport would prevent the nucleus from dissolving, but the strain would prevent the nucleus from growing. This however would require one to be able to apply a continuous shear rate to a targeted nucleus with high precision, there is also no model for an individual nucleus undergoing growth. 
-
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\linewidth]{LC_sample.png}
+	\caption{Liquid crystal undergoing rotation due to the circularly polarised trap.} 
+\end{figure}
+\subsection{Rotation of Vaterite micro spheres} 
 Optical tweezing has often been used for micro-rheology, by computing the
 exact forces being exerted on the trapped sphere, one can determine the
 local temperature/viscosity of the medium \cite{Millen2014, RodriguezSevilla2018}.
@@ -193,9 +211,22 @@ in a moving fluid of velocity $U$ this is given by:
 \begin{align}
 	Re = \frac{\rho UD}{\mu}
 \end{align}
-Where $D$ is the sphere's diameter, and $\rho$ and $\mu$ are the fluid's density and viscosity respectively. In our case we do not have a fluid moving around a sphere but a sphere moving through the fluid at some velocity $U$, assuming a no-slip boundary condition we can model the fluid velocity profile based on the velocity of the particle. There are two possible avenues for generating shear flow with a trapped particle; rotation of birefringent particles, and fluid flow induced by particle motion. 
+Where $D$ is the sphere's diameter, and $\rho$ and $\mu$ are the fluid's 
+density and viscosity respectively. In our case we do not have a fluid
+moving around a sphere but a sphere moving through the fluid at some 
+velocity $U$, assuming a no-slip boundary condition we can model the 
+fluid velocity profile based on the velocity of the particle. There are 
+two possible avenues for generating shear flow with a trapped particle; 
+rotation of birefringent particles, and fluid flow induced by particle motion. 
 
-Rotating birefringent particles are by far the most common method for generating and measuring fluid flow in a solution. To see if we can even achieve the theoretical maximum shear rate, vaterite spheres were synthesised (see Sec.\ref{sec:vaterite}) submerged in water and trapped with the 1064 nm laser at set to 450 mW. The rotation frequency was determined using the QPD, and the particle sizes were computed by image analysis. With the particle size and rotation frequency, the tangential rotation speed is calculated via:
+Rotating birefringent particles are by far the most common method for 
+generating and measuring fluid flow in a solution. To see if we can 
+even achieve the theoretical maximum shear rate, vaterite spheres 
+were synthesised (see Sec.\ref{sec:vaterite}) submerged in water and 
+trapped with the 1064 nm laser at set to 450 mW. The rotation frequency 
+was determined using the QPD, and the particle sizes were computed 
+by image analysis. With the particle size and rotation frequency, the 
+tangential rotation speed is calculated via:
 \begin{align}
 	\label{eq:birefringent_speed}
 	u(r) = \frac{\pi}{4}\frac{d^3}{r^2}\omega
@@ -215,7 +246,9 @@ by the flow field):
 First we tested the rotational behaviour of vaterite in distilled water, 
 samples of vaterite where diluted down and $200\mu L$ was pipetted onto
 the sample stage. Due to Van der Waal's forces some of the microspheres 
-were stuck together, fortunately individual sphere's were still
+were stuck together, fortunately individual sphere's were still present.
+Over the course of a few weeks multiple sphere's where trapped 
+and their rotation speeds were measured via the QPD. 
 
 \begin{figure}[h!]
 	\label{fig:vaterite_shear}
@@ -235,18 +268,23 @@ achieved both in the lab and from experimental literature are well below the
 theoretical maximum shear rate reported by \cite{Debuysschere2023} as you move 
 away from the surface of your micro-rotor.
 
-Vaterite samples were synthesised according to \cite{Parkin2009, Bishop2004} 
-(see sec.~\ref{sec:vaterite}), and then suspended in a droplet of supersaturated solutions of Glycine and water. After locating a singular microsphere the
-vaterite was trapped in a circularly polarised light and brought close
-to the droplet edge, after a period of ten minutes if no nucleation event
-was observed the particle was released and another particle was trapped. 
-Due to the increased viscosity of the supersaturated solution and the 
-proximity to the droplet edge, the observed rotation rate 
-was rather low or non-existent, the results are tabulated below:
+\section{Rotation of Vaterite in supersaturated solutions}
 
+Vaterite samples were synthesised according to \cite{Parkin2009, Bishop2004} 
+(see sec.~\ref{sec:vaterite}), and then suspended in a droplet of 
+supersaturated solutions of Glycine and water. After locating a 
+singular microsphere the vaterite was trapped in a circularly 
+polarised light and brought close to the droplet edge, after a 
+period of ten minutes if no nucleation event was observed the 
+particle was released and another particle was trapped. Due to 
+the increased viscosity of the supersaturated solution and the 
+proximity to the droplet edge, this was done as previous work with
+optical tweezers have only seen nucleation near the solution-air interface
+\cite{Gowayed2021, Liao2022, Walton2018}. The observed rotation rate 
+was rather low or non-existent, the results are tabulated below:
 \begin{table}
 	\centering
-	\caption{Results from rotating vaterite within supersaturated solution. Solubility concentration for Glycine was at $16^\circ$, $C^*=0.2016g/g$}
+	\caption{Results from rotating vaterite within supersaturated solution of $H_2O$ and Glycine. Solubility concentration for Glycine at $16^\circ$ was $C^*=0.2016g/g$}
 	\begin{tabular}[width=\textwidth]{|c|c|c|c|}
 		\hline
 		Super Saturation & Particle radius [$\mu$] & $\omega$ [Hz] & Nucleation [$\checkmark/\times$]\\
@@ -275,7 +313,19 @@ was rather low or non-existent, the results are tabulated below:
 \end{table}
 
 
-This would explain partly why we could never seen nucleation even in the case where our vaterite could rotate freely. The closest we could trap a microsphere to the droplet edge was in the range of $5-10\mu\ m$, at that distance the fluid flow would be so low that not even using a liquid droplet rotor would achieve the rotational speeds necessary to localise nucleation.
+The calculations from fig.\ref{fig:vaterite_shear} indicate that even
+in pure water the rotational speed achieved by a microsphere is
+insufficient to achieve a significant shear rate more than a few microns
+from its surface. The closest we could trap a microsphere to the droplet
+edge was in the range of $5-10\mu\ m$, at that distance the fluid flow
+would be so low that not even using a liquid droplet rotor would achieve
+the rotational speeds necessary to localise nucleation. While in theory
+a sufficiently focused laser could rotate any microsphere to a fast enough 
+to match the speeds expected by \cite{Debuysschere2023} the localised intensity
+would be so large that even using $D_2O$ would see a significant increase in 
+temperature. 
+
+\section{Shearing via a Galvano-mirror}
 
 Using a galvano mirror can A particle's motion can be precisely controlled For a simple circular path one can estimate the sphere's speed by the radius of its path and the frequency of its orbit $U = R\omega$; however for a more complex path, such as an elliptical orbit the curve needs to be parametrised. One can describe the position parameter of an ellipse as such:
 
