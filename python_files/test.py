@@ -1,36 +1,34 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import quaternion
+from quaternion import as_spherical_coords
 
-gamma = 79.97e-3
-v_mol = 1e-30
-kT = 1.38e-23*298
-r_list = np.linspace(0, 1.6e-10, 1000)
-r_star1 = 2*v_mol*gamma/(kT*np.log(1.5))
-r_star2 = 2*v_mol*gamma/(kT*np.log(1.8)) 
-def free_energy(r, S):
-	surface = 4*np.pi*gamma*r**2
-	volume = (4*np.pi*r**3/(3*v_mol))*kT*np.log(S) 
-	return (surface - volume)/kT, surface/kT, volume/kT
+with open('C:\\Users\\xbb16146\\dmaciver97\\python_files\\sphere_in_LCP_Quadrants.txt', 'r') as in_file:
+    lines = in_file.readlines()
+    x_dat, y_dat, z_dat, = [], [], []
+    q1, q2, q3, q4 = [], [], [], []
+    index = []
+    for line in lines[1:-1]:
+        items = line.split(',')
+        x_dat.append(float(items[0])+ float(items[1])- float(items[2]) - float(items[3])) 
+        y_dat.append(float(items[0])+ float(items[2])- float(items[1]) - float(items[3]))
+        z_dat.append(float(items[0])+ float(items[1])+ float(items[2]) + float(items[3]))
+        q1.append(float(items[0]))
+        q2.append(float(items[1]))
+        q3.append(float(items[2]))
+        q4.append(float(items[3]))
+        index.append(int(float(items[4])/1e-5))
 
-plt.plot(r_list, [free_energy(r,1.5)[0] for r in r_list],
-		 c='blue', label = r'$\Delta G_{tot}$ S = 1.5' )
-plt.plot(r_list, [free_energy(r,1.8)[0] for r in r_list],
-		 linestyle= '--', c='blue',label =r'$\Delta G_{tot}$, S = 1.8' )
-plt.plot(r_list, [free_energy(r,1.5)[1] for r in r_list], 
-		 c='orange', label =r'$\Delta G_{inf}$')
-plt.plot(r_list, [-free_energy(r,1.5)[2] for r in r_list],
-		 linestyle= '--',c='green', label =r'$\Delta G_{vol}$, S = 1.5')
-plt.plot(r_list, [-free_energy(r,1.8)[2] for r in r_list], 
-		 c= 'green', label =r'$\Delta G_{vol}$, S = 1.8')
-plt.vlines(r_star1, 0, free_energy(r_star1,1.5)[0], colors='black')
-plt.vlines(r_star2, 0, free_energy(r_star2,1.8)[0], colors='black')
-plt.axhline(0, c='black', )
-plt.legend()
-plt.xlim(0, 1.6e-10)
-plt.ylabel(r'$\frac{\Delta G}{k_B T}$', fontsize = 'large')
-plt.xlabel('Nucleus radius', fontsize = 'large')
-plt.xticks(ticks = [r_star1, r_star2], labels = [r'$r_1^*$', r'$r_2^*$'])
-plt.yticks(ticks = [0], labels = [0])
+traj = np.load('Sphere_in_LCP_Trajectory.npy')
+x_disp, y_disp, z_disp = [], [], []
+for i in index:
+    x_disp.append(traj[i,0])
+    y_disp.append(traj[i,1])
+    z_disp.append(traj[i,2])
+    q = np.quaternion(traj[i,3],traj[i,4],traj[i,5],traj[i,6])
+    
+plt.scatter(x_disp, x_dat)
 plt.show()
-plt.savefig('Free_energy_diagram.png')
-plt.close()
+
+
+

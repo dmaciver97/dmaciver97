@@ -72,7 +72,6 @@ Computing the equilibrium positions when a dimer is aligned with the electric fi
 	\end{subfigure}
 	\begin{subfigure}{0.32\linewidth}
 		\raisebox{-110pt}[0pt][0pt]{\makebox{}\includegraphics[width=\linewidth, keepaspectratio]{off_axis_render.png}}
-		
 		\caption{}
 	\end{subfigure}
 	\captionsetup{hangindent=2.35cm}
@@ -265,29 +264,35 @@ report different corner frequencies which would be indicate
 that the trap is not perfectly circular. Using \textit{ott} 
 we can compare the expected trap strength to what is reported
 by a quadrant photo diode:
+
 \begin{center}
-	\begin{tabular}{ |c|c|c|c|c| } 
+	\begin{tabular}{ |c|c|c|c|c|c|c| } 
 		\hline
-		Trap parameter & \textit{ott} x-axis & \textit{ott} y-axis & QPD x-axis & QPD y-axis \\
+		Fitting parameter & \multicolumn{2}{|c|}{\textit{ott} estimates} & \multicolumn{2}{|c|}{QPD fitting} & \multicolumn{2}{|c|}{Simulation fitting}\\
 		\hline
-		$f_c\ [Hz]$ & 447 & 450 & 439 & 474 \\
-		$\kappa\ [pN/\mu m]$ & 53.05 & 53.40 & 51.96 & 56.09 \\
+		$f_c\ [Hz]$ & 447 & 450 & \parbox{1cm}{\centering 439} & 474 
+		& \parbox{1.25cm}{\centering 523} & 513 \\
+		$\kappa\ [pN/\mu m]$ & 53.05 & 53.40 & 51.96 & 56.09 & 61.94 & 60.7 \\
 		\hline
 		Ellipticity &
 		\multicolumn{2}{|c|}{8.16 \%} &
-		\multicolumn{2}{|c|}{27.17 \%} \\
+		\multicolumn{2}{|c|}{27.17 \%} &
+		\multicolumn{2}{|c|}{13.8 \%} \\
 		\hline
 	\end{tabular}
 \end{center}
 
-Where the ellipticity of the beam is given by $e = (1-\kappa_y/\kappa_x)^{0.5}$ and is a measure of the symmetry of 
+
+Where the ellipticity of the beam is given by 
+$e = (1-\kappa_y/\kappa_x)^{0.5}$ and is a measure of the symmetry of 
 the beam wavefront. Its clear from these initial results that the 
 QPD is more sensitive to changes along the y-axis than the x-axis 
 when compared to the direct \textit{ott} calculations. Typically,
 even an industrial Gaussian beam will produce an elliptical diffraction
 limit spot when heavily focused; in their tutorial for optimizing 
 the PSD analysis, Berg and Sorensen reported a ellipticity of
-around 15 \% after a total calibration time of 81 seconds \cite{BergSoerensen2004}. The reason for this discrepancy
+around 15 \% after a total calibration time of 81 seconds 
+\cite{BergSoerensen2004}. The reason for this discrepancy
 can be explained partly by the fact that our estimation of the 
 trap geometry via \textit{ott} is based on the the actual 
 interactions with the beam near close to the focus whereas
@@ -296,16 +301,18 @@ far field scattering signals. If we now consider a symmetric the
 discrepancy between \textit{ott} and the simulated QPD grows.
 
 \begin{center}
-	\begin{tabular}{ |c|c|c|c|c| } 
+	\begin{tabular}{ |c|c|c|c|c|c|c| } 
 		\hline
-		Trap parameter & \textit{ott} x-axis & \textit{ott} y-axis & QPD x-axis & QPD y-axis \\
+		Fitting parameter & \multicolumn{2}{|c|}{\textit{ott} estimate} & \multicolumn{2}{|c|}{QPD fitting} & \multicolumn{2}{|c|}{Simulation fitting} \\
 		\hline
-		$f_c\ [Hz]$ & 409 & 334 & 431 & 424 \\
-		$\kappa\ [pN/\mu m]$ & 48.51 & 39.58 & 51.13 & 50.26 \\
+		$f_c\ [Hz]$ & 409 & 334 & \parbox{1cm}{\centering 431} & 424 
+		& \parbox{1.25cm}{\centering 274} & 285 \\
+		$\kappa\ [pN/\mu m]$ & 48.51 & 39.58 & 51.13 & 50.26 & 32.45 & 33.75 \\
 		\hline
 		Ellipticity &
 		\multicolumn{2}{|c|}{42.8 \%} &
-		\multicolumn{2}{|c|}{12.7 \%} \\
+		\multicolumn{2}{|c|}{12.7 \%} & 
+		\multicolumn{2}{|c|}{13.8 \%} \\
 		\hline
 	\end{tabular}
 \end{center}
