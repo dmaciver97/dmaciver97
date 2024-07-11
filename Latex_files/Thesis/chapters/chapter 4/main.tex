@@ -3,7 +3,6 @@
 Much of the calibration theory discussed in Chapter 2 assumes that the target particle in question is a single sphere, one who's scattering and motion is easily computed. However, while working with dense colloidal suspensions, one often ends up trapping more than one sphere. Li and Arlt \cite{Li2008} studied the case of two microspheres trapped in a single OT and found that multiple trapped beads could be mistaken for a single trapped bead with altered trap stiffness. Theoretical studies on the case of two trapped microspheres by Xu~\textit{et~al.} \cite{Xu2005} employed a ray-optics based model to show that the two trapped beads are brought into physical contact with each other by optical forces and they also calculated the axial equilibrium positions of the two trapped beads as a function of their size. Experiments in \cite{Praveen2016} confirmed that the two trapped beads indeed experience different trap stiffnesses in the vicinity of the same potential well. There are further discussions looking into the dynamics of a whole host of asymmetrically shaped particles \cite{Loudet2014, ShengHua2005, Chetana2022}, their results all showing that predicting the behaviour an arbitrary shaped particle comes with great difficulty due to the fact that the optical force is dependent on a greater number of variables such as orientation and size factors.
 
 In this chapter we consider how the addition of a second sphere into an optical trap can radically effect its dynamics, to the extent that one can no longer rely on typical calibration techniques to characterise the interactions.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Positional and Orientational dependence of Trapping forces}
@@ -25,7 +24,7 @@ If we wanted to start from first principles and determine the trap strength on o
 	\medskip
 	\begin{subfigure}{.475\linewidth}
 		\centering
-		\raisebox{-45pt}[0pt][0pt]{\makebox{}\includegraphics[width=0.3\linewidth, keepaspectratio]{theta=0.png}}
+		\raisebox{60pt}[0pt][0pt]{\makebox{}\includegraphics[width=0.3\linewidth, keepaspectratio]{theta=0.png}}
 		\label{large over small}
 	\end{subfigure}
 	\begin{subfigure}{.475\linewidth}
@@ -62,8 +61,9 @@ For completeness the harmonic traps were located for dimers across a range of si
 	\end{subfigure}
 	\caption{Equilibrium positions of optically trapped dimers with varying size ratio, dotted lines represent unstable traps whereas solid lines represent stable trapping positions. (a) shows that dimers with their smaller sphere orientated away from the focus have an expected single trapping position. (b) shows that when the same dimer is inverted $180^\circ$ there are now stable traps along the beam axis, one below the focus and one above the focus.}
 \end{figure}
-\newpage
-\subsection{Non-trivial harmonic traps}\label{sec:off-axis}
+
+\subsection{Non-trivial harmonic traps}
+\label{sec:off-axis}
 Computing the equilibrium positions when a dimer is aligned with the electric field is relatively simple as the orientational torque is minimised (see Eq.\ref{eq:opt_torque}), meaning once trapped the dimer is unlikely to change orientation enough to escape the trap. However, that does not rule out the possibility that there is a stable orientation that is not strictly vertical, in fact most experimental work with symmetric dimers will trap them lying perpendicular to the beam direction \cite{Ahn2018}. Unlike before where we can simply find the trap by varying the dimer's vertical position its instead more prudent to run a multitude of smaller simulations at a variety of starting positions and orientations. An example for a dimer of size ratio 2 is shown below:
 \begin{figure}[h!]
 	\centering
@@ -71,7 +71,7 @@ Computing the equilibrium positions when a dimer is aligned with the electric fi
 		\includegraphics[width=\linewidth]{off_axis_trap.png}
 	\end{subfigure}
 	\begin{subfigure}{0.32\linewidth}
-		\raisebox{-110pt}[0pt][0pt]{\makebox{}\includegraphics[width=\linewidth, keepaspectratio]{off_axis_render.png}}
+		\raisebox{0pt}[0pt][0pt]{\makebox{}\includegraphics[width=\linewidth, keepaspectratio]{off_axis_render.png}}
 		\caption{}
 	\end{subfigure}
 	\captionsetup{hangindent=2.35cm}
@@ -94,13 +94,16 @@ only be escaped when the local fluid temperature exceeds a certain maximum value
 
 One aspect that has yet to be covered in depth with regards to
 spherical aggregates of any construction is their interaction with
-circularly polarised light. Typically the spin density of an electric
-field cannot be reduced in homogenous medium due to the fact that the
-spin angular momentum is conserved locally. In which case the only way
-to transfer angular momentum to use an object that is anisotropic.
-This is seen most clearly with birefringent materials, due to fact that
-the crystal lattice itself is anisotropic, a circularly polarised beam
-will transfer an optical torque that is proportional to the difference in 
+circularly polarised light. While most homogenous objects are trapped
+no differently in different polarisations, dimers have been shown to
+experience an optical torque \cite{Vigilante2020, Ahn2018, Reimann2018}. 
+Typically the spin density of an electric field cannot be reduced in 
+homogenous medium due to the fact that the spin angular momentum is 
+conserved locally. In which case the only way to transfer angular 
+momentum to use an object that is anisotropic. This is seen most 
+clearly with birefringent materials, due to fact that the crystal 
+lattice itself is anisotropic, a circularly polarised beam will 
+transfer an optical torque that is proportional to the difference in 
 the refractive index of the particle. The optical torque is given as:
 \begin{equation}
 	\label{eq:opt_torque}
@@ -108,27 +111,37 @@ the refractive index of the particle. The optical torque is given as:
 		\tau_{opt} = \frac{\epsilon}{2\omega_{laser}}E_0^2 (1-cos(kd(\Delta n))sin2\phi)
 	\end{aligned}
 \end{equation}
+
 Where $\Delta n$ is the difference in refractive indices of the 
 particle, and $\phi$ indicates the phase shift in the electric field
-(for circular polarised light $\phi= \pi/4$) However, theoretical and
-experimental work by \cite{Yevick2017} found that highly focused
-Gaussian beams could produce second order effects in the Rayleigh
-regime resulting in a photo-kinetic force that results in orbital
-motion about the beam's central axis. This effect is rather minimal
-for single sphere's, resulting in a orbital frequency on the order of
-$10^{-1}\,{\rm Hz}$, with an order of magnitude difference when
-trapping aggregates of spheres.  They computed the circulation rate by
-computing the time-average probability flux; however, when extended to
-the Mie regime we see a completely different behaviour, instead
-experiencing an optical torque about their long axis.S This rotation
-was first noted by Vigilante and co-workers who only considered this
+(for circular polarised light $\phi= \pi/4$). The optical rotation seen
+with dimers can be attributed to the polarisation of the trapping beam as
+taking a Fourier transform of the transverse components of the dimers 
+orientation time series reveals a clean rotation rate. 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\linewidth]{rotation_vs_pol.png}
+	\caption{Rotation frequency vs component phase difference for differently sized dimers. The solid lines represent the rotation rate experienced while the dimer is in its standard orientation, whereas the solid points are for the case where the orientation is inverted. Laser power $= 100\ mW$}
+\end{figure}
+
+A possible explanation of this phenomena was devised by by \cite{Yevick2017}, 
+who found that highly focused Gaussian beams could produce second 
+order effects in the Rayleigh regime resulting in a photo-kinetic 
+force that results in orbital motion about the beam's central axis. 
+This effect is rather minimal for single sphere's, resulting in a 
+orbital frequency on the order of $10^{-1}\,{\rm Hz}$, with an 
+order of magnitude difference when trapping aggregates of spheres. 
+They computed the circulation rate by computing the time-average 
+probability flux; however, when extended to the Mie regime we 
+see a completely different behaviour, instead experiencing an 
+optical torque about their long axis.S This rotation was first 
+noted by Vigilante and co-workers who only considered this
 behaviour for a symmetric dimer \cite{Vigilante2020}; we run number of
 simulations for differently sized dimers in a circularly polarised
 trap and looked at the rotation rate.  We found that not only is the
 rotation rate dependent on the size of the dimer, but also on its
 orientation and therefore their axial position.
-
-\begin{figure}[h]
+\begin{figure}[h!]
   \centering
   \includegraphics[width=\linewidth]{rotation_rate_vs_size.png}
   \caption{Rotation rate plotted against dimer size ratio for a variety of different simulation scenarios. The red line is for the case where the larger sphere is above the smaller sphere. The blue line is the inverted case, while the initial position is above the focus of the trap. And lastly the green line is again for the inverted case, but when the dimer's initial position is below the focus of the trap.}
@@ -137,13 +150,13 @@ orientation and therefore their axial position.
 It is difficult to see from the graph, but the rotation rate never
 truly goes down to zero, reaching a minimum of $2\,{\rm Hz}$, which would
 imply that a second sphere of radius $200\,{\rm nm}$ is enough to
-induce rotational motion.  We used MSTM to look at the stokes
+induce rotational motion. We used \textit{mstm} to look at the stokes
 parameters from the scattered field from a simple plane wave incident
 on our dimer, the proportion of circularly polarised light is minimal
 compared to the proportion of plane polarised light, which indicates
 that this rotational motion is not due to any inhomogeneity in the
 dimer that might impart angular momentum to the scattered beam - as
-compared to a anisotropic scatterer like Vaterite.
+compared to a anisotropic scatterer like vaterite.
 
 These results are somewhat contrary to other work with silica dimers
 \cite{Ahn2018, Debuysschere2023,Reimann2018}; previous experiments
@@ -171,6 +184,7 @@ polarizability of our dimer can be approximated as:
   + \alpha_yE_y({\bf r},t)\hat{\bf e}_y
   + \alpha_zE_z({\bf r},t)\hat{\bf e}_z
 \end{align}
+
 where the polarizability is given as a 3D vector for the three
 principle Cartesian directions.  In order to measure the magnitude of
 second order contributions we would need to construct a dipole array
@@ -254,9 +268,8 @@ spectra was recorded and a fitted to eq.~\ref{eq:alaised_lorentzian}.
 	\label{fig:psd_sphere}
 	\centering
 	\includegraphics[width=\linewidth]{PSD_sphere.png}
-	\caption{Recorded power spectra fitted to eq.~\ref{eq:alaised_lorentzian}, scattered points represents
-	the blocked data ($n_b=100$). Corner frequency for the 
-	Lorentzians are reported in the legend.}
+	\caption{Recorded power spectra fitted to eq.~\ref{eq:alaised_lorentzian}, scattered points represents the blocked data ($n_b=100$). Corner frequency for the 
+	Lorentzian curves are reported in the legend.}
 \end{figure} 
 
 As shown in fig.~\ref{fig:psd_sphere}, the two power spectra
@@ -282,7 +295,6 @@ by a quadrant photo diode:
 	\end{tabular}
 \end{center}
 
-
 Where the ellipticity of the beam is given by 
 $e = (1-\kappa_y/\kappa_x)^{0.5}$ and is a measure of the symmetry of 
 the beam wavefront. Its clear from these initial results that the 
@@ -294,11 +306,11 @@ the PSD analysis, Berg and Sorensen reported a ellipticity of
 around 15 \% after a total calibration time of 81 seconds 
 \cite{BergSoerensen2004}. The reason for this discrepancy
 can be explained partly by the fact that our estimation of the 
-trap geometry via \textit{ott} is based on the the actual 
-interactions with the beam near close to the focus whereas
-a QPD is estimating the trap geometry by extrapolating from
-far field scattering signals. If we now consider a symmetric the 
-discrepancy between \textit{ott} and the simulated QPD grows.
+trap geometry via \textit{ott} is based on the force-displacement
+curve while the sphere is moving in only one direction, whereas the
+QPD is estimating the trap geometry by extrapolating from far field 
+scattering signals. We now consider a symmetric dimer in identical 
+simulative conditions.
 
 \begin{center}
 	\begin{tabular}{ |c|c|c|c|c|c|c| } 
@@ -319,22 +331,34 @@ discrepancy between \textit{ott} and the simulated QPD grows.
 
 Now we see that the \textit{ott} predicts a more elliptical 
 trap compared to the QPD model which says the trap is far
-more symmetrical while trapping a symmetric dimer. The reason that
-\textit{ott} no longer expects a circular trap could be due to
-how it computes the beam shape coefficients; by point matching in 
-the far field before the focus means a loss in accuracy for objects
-that trap above the focus. The change in the QPD estimation  
-can be partially explained by the fact that rotational
-effects are not accounted for in the Lorentzian power spectra,
-only translational motion. Typically, rotational motion is only
-ever detected when it is periodic (take for example a power spectra
-from a rotating birefringent sphere), when the motion is stochastic
-the entire power spectra is effected making it near impossible
-to separate the translational and rotational contributions from a 
-single power spectra. 
-
+more symmetrical while trapping a symmetric dimer. A potential 
+reason that \textit{ott} no longer expects a circular trap 
+could be due to how it computes the beam shape coefficients; 
+by point matching in the far field before the focus means a 
+loss in accuracy for objects that trap above the focus. 
+The change in the QPD estimation can be partially explained 
+by the fact that rotational effects are not accounted for in 
+the Lorentzian power spectra, only translational motion. 
+Typically, rotational motion is only ever detected when it 
+is periodic (take for example Fig.~\ref{fig:vaterite}), when 
+the motion is stochastic the entire power spectra is effected 
+making it near impossible to separate the translational and 
+rotational contributions from a single power spectra. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
-\comment{Conclusions still need to be written out}
+Considering the simplicity of a scatterer such as a dimer,
+one would assume that the dynamics of such an object would be
+relatively easy to predict. Simulations of dimers in the Mie regime
+show that not only do they have multiple positions and orientations 
+in which they can be trapped but also that their interaction
+with circularly polarised light is heavily dependent on the axial 
+position and trapping orientation. Dimer's have the potential to be used
+as adaptive micro-rotors, being simple to synthesise and can be made 
+out of any material of choice, but in order for these particles to be
+used as such one needs a means of characterising the optical torque
+applied. While estimations can be made in the Rayleigh regime due to 
+the dimer being treated as point dipole, Mie regime micro rotors require 
+an in-depth theoretical description of the mechanism that is creating 
+this optical torque. 

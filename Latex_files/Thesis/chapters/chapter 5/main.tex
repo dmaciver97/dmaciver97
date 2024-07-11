@@ -4,7 +4,7 @@
 A QPD is simply a measure of the total electric field incident on a photo diode, in order to accurately simulate a QPD response careful consideration of how the Electromagnetic fields are defined is required. 
 
 \subsection{Incident beam}
-\label{sec:scattering}
+\label{sec:fibre_scattering}
 The incident beam is simple enough to define given our set up parameters, for the sake of simplicity we assume that our beam is a Laguerre-Gaussian beam of mode $[0.0, 0.0]$ (which is simply a pure Gaussian beam). *Ott* uses a point matching approach to approximate the beam shape coefficients of the incident field by fitting it to the far field estimate, the beam is of the form:
 
 \begin{align}
@@ -113,20 +113,9 @@ Where on the left we have an isotropic sphere, then a symmetrical dimer, and las
 For dimers however, rotating about a given axis gives us a clear change in the signal for even a slight rotation about any axis. 
 
 \section{Power Spectra of single sphere vs spherical aggregates}
-In order to verify that the QPD is outputting correct signals we first compared the module to the only other known instance of simulating a QPD response, that being the work of \textcolor{red}{Rorhbach}. In their paper they looked at the signal response produced by a single sphere ($r = 150\ nm$, $n = 1.57$) being scanned along the three Cartesian axis in the proximity of a $1064\ nm$ NIR beam with a numerical aperture of 1.2. As shown by fig~\ref{fig:Rohrbach} the two responses are remarkably accurate close to the origin; with only slight deviations as you move past the harmonic region, the difference can be explained due to how the two evaluate the total fields. Where in our case the incident and scattered fields are reduced to 0 at the origin, whereas Rohrbach's work evaluates the fields the fields as being non-zero at all points, as you move beyond the origin this discrepancy grows. 
+In order to verify that the QPD is outputting correct signals we first compared the module to the only other known instance of simulating a QPD response, that being the work of \textcolor{red}{Rorhbach}. In their paper they looked at the signal response produced by a single sphere ($r = 150\ nm$, $n = 1.57$) being scanned along the three Cartesian axis in the proximity 
+of a $1064\ nm$ NIR beam with a numerical aperture of 1.2. As shown by fig~\ref{fig:Rohrbach} the two responses are remarkably accurate close to the origin; with only slight deviations as you move past the harmonic region, the difference can be explained due to how the two evaluate the total fields. Where in our case the incident and scattered fields are reduced to 0 at the origin, whereas Rohrbach's work evaluates the fields the fields as being non-zero at all points, as you move beyond the origin this discrepancy grows. 
 
-\begin{figure}[h]
-	\label{fig:Rohrbach}
-	\begin{subfigure}{0.475 \linewidth}
-		\subcaption{}
-		\includegraphics[width=\linewidth]{QPD_axial_tests.png}
-	\end{subfigure}
-	\begin{subfigure}{0.475 \linewidth}
-		\subcaption{}
-		\includegraphics[width=\linewidth]{QPD_lat_tests.png}
-	\end{subfigure}
-	\caption{Comparison between QPD response signal versus work conducted by Rohrbach, single sphere ($r = 150\ nm$, $n=1.57$) is scanned by a $1064\ nm$ laser and the QPD signal recorded. Solid lines represent the signal produced by QPD using \textit{ott} and points represent the signal response collected from \cite{Rohrbach2002}.}
-\end{figure}
 Since we are only interested in the dynamics of spherical aggregates upon reaching equilibrium we do not need to be concerned about the deviation from Rohrbach's results so long as the particle's displacement does not exceed the linear region at the origin. The axial response curve is slightly more involved, requiring that the condenser lens numerical aperture is adjusted until a harmonic response curve is achieved \cite{Friedrich2012}. 
 
 In order to verify that the QPD can accurately capture the dynamics of the target particle we first simulated a single sphere ($a = 1\mu\ m$, $n=1.59$) in the focus of a $1064\ nm$ laser. Using \textit{ott} the trap stiffness is computed by applying a linear fit to the force-displacement curve along the x and y axis'; for a linearly polarised trap the gradient force is greater in the polarisation direction than transverse case. We see this reflected in the simulated QPD, the fitted Lorentzian curves have different corner frequencies indicating that the beam's polarisation is influencing the dynamics of the trap. 

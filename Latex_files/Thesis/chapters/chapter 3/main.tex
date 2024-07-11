@@ -1,5 +1,21 @@
 \chapter{Effects of localised shearing on crystal growth and nucleation}
-As outlined in Chapter 1, the original outline of the PhD was to investigate the possibility of using optical tweezing as a means of initiating and controlling nucleation by generating fluid flow within a small droplet of supersaturated solution. The goal of which would be to allow the understand the influence of shearing on nucleation at a micro level as compared to larger scale results. It has been shown that for macro-scale systems, the likelihood of nucleation increases to a maximum value under increased shearing \cite{Debuysschere2023, Mura2016}. Theoretical research into the matter identified two competing effects that effect a crystal in moving fluid fields; firstly, nucleation is enhanced due to the increased mass transfer of solute material; and secondly, shear flow against the crystal surface leading to a decrease in growth \cite{Mura2016}. These two competing effects are validated by experimental work using glycine solutions, showing that beyond a certain shear rate the nucleation rate is reduced \cite{Debuysschere2023}. In this chapter I outline the optical tweezer equipment used during this PhD, the initial attempts made to induce nucleation via optical rotation, and the impact of a moving beam on the crystal growth of a newly formed nucleus. 
+As outlined in Chapter 1, the original outline of the PhD was to investigate 
+the possibility of using optical tweezing as a means of initiating and 
+controlling nucleation by generating fluid flow within a small droplet of 
+supersaturated solution. The goal of which would be to understand the 
+influence of shearing on nucleation at a micro level as compared to larger 
+scale results. It has been shown that for macro-scale systems, the likelihood 
+of nucleation increases to a maximum value under increased shearing 
+\cite{Debuysschere2023, Mura2016}. Theoretical research into the matter 
+identified two competing effects that effect a crystal in moving fluid fields; 
+firstly, nucleation is enhanced due to the increased mass transfer of solute 
+material; and secondly, shear flow against the crystal surface leading to a 
+decrease in growth \cite{Mura2016}. These two competing effects are validated 
+by experimental work using glycine solutions, showing that beyond a certain 
+shear rate the nucleation rate is reduced \cite{Debuysschere2023}. In this 
+chapter I outline the optical tweezer equipment used during this PhD, the 
+initial attempts made to induce nucleation via optical rotation, and the 
+impact of a moving beam on the crystal growth of a newly formed nucleus. 
 
 \section{Optical Tweezer Equipment}
 In general, all optical tweezers require a laser driver, two
@@ -110,6 +126,22 @@ are conducted using a QPD as opposed to a lateral-effect sensor,
 as often the displacement is small enough that the QPD response 
 curve can be considered linear.
 
+\subsection{Fourier Optics and 4f correlators}
+A 4f correlator is an example of Fourier optics in practice, understanding
+that a focused lens takes a Fourier transform of the light profile. 
+Consider a laser with a circular Gaussian profile, if you were to place 
+a detector there you would pick up the intensity as a function of its 
+position within the beam. If however you focused the light into a single 
+point (using a +ve focal lens) you are actually seeing a measurement of 
+the phase of your laser with position, in which you would see a diffraction
+limited spot ($d = \lambda/2nsin(\theta)$), indicating that the laser is 
+collimated. In imaging systems, a series of focal lenses can be used to 
+filter out unwanted scattering from an image (or in an inverse case 
+differentiate between different images), the placement of each lens is shown below.
+For our applications a 4f correlator is utilised to ensure that the motion
+of the galvano-mirrors does not move the focal point of the laser, allowing 
+for a stable trap even while in motion. 
+
 \section{Calibration of Tweezer Setup}
 Prior to testing optical rotation the trapping laser was calibrated 
 using power spectra analysis
@@ -152,9 +184,14 @@ Next, a larger vial was filled with $5\ mL$, $1.5\ mL$, and $1\ mL$ of
 $CaCL_2$, $MgSO_4$, and $NaCO_3$ respectively followed by the seed solution. 
 After 10 minutes of slow but continuous mixing a few drops of Agepon was added
 to halt the reaction, the solution was filtered and washed 3 times with 
-distilled water before being suspended in water. 
+distilled water before being suspended in water. When trapped in circularly 
+polarised light, the anisotropic scattering of the sphere results in a periodic 
+signal on the QPD. Therefore, the resulting power spectrum is not a Lorentzian
+but now also displays peaks that appear at integer multiples of the particles
+rotational frequency. 
 
 \begin{figure}[h!]
+	\label{fig:vaterite}
 	\centering
 	\begin{subfigure}{0.4\linewidth}
 		\includegraphics[width=\linewidth]{vaterite_sample.jpg}
@@ -183,22 +220,25 @@ Liquid crystal rotors are rather simple in their production,
 and a small amount was added to a vial of distilled water. The solution 
 was then heated in a water bath to $25^\circ$ in order to transition the
 solid crystal into its liquid crystal state. The individual droplets 
-are inherently birefringent and would rotate readily while suspended in 
-distilled water. 
-
+are inherently birefringent and rotate in a circularly polarised trap. 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.5\linewidth]{LC_sample.png}
 	\caption{Liquid crystal undergoing rotation due to the circularly polarised trap.} 
 \end{figure}
-\subsection{Rotation of Vaterite micro spheres} 
+
+The liquid crystal droplets had a much faster rotation rate than comparable 
+vaterite spheres, due to their higher degree of birefringence and the fact
+that the droplets are far closer to perfect spheres making angular momentum
+transfer more efficient. 
+
+\subsection{Rotation of birefringent micro spheres} 
 Optical tweezing has often been used for micro-rheology, by computing the
 exact forces being exerted on the trapped sphere, one can determine the
 local temperature/viscosity of the medium \cite{Millen2014, RodriguezSevilla2018}.
-Typically one would use a birefringent particle (i.e. vaterite, liquid
-crystals, etc) and rotating it within the fluid, the maximum rotation
-rate being a product of the fluid drag resisting the torque of the 
-trapping beam \cite{RodriguezSevilla2018}. Or if you want to measure 
+Using a birefringent particle and rotating it within the fluid, the maximum 
+rotation rate is due to the fluid drag resisting the torque of the 
+trapping beam \cite{RodriguezSevilla2018}. If you want to measure 
 fluid flow you can instead use a micro-rotor to see how fluid flow 
 propagates in the medium \cite{Knoener2005}. Likewise, one can use 
 a galvanometric mirror to probe the drag force of the fluid, by 
@@ -263,13 +303,20 @@ and their rotation speeds were measured via the QPD.
 	\caption{(a) Fluid flow radiating out from the surface of a rotating vaterite sphere. (b) Shear rates computed using Eq.\ref{eq:birefringent_shear}, optimal shear rate is of $3000 s^{-1}$ is indicated by the dotted line. Vaterite radii and rotation frequencies are shown, the laser power was kept constant at 450 mW. Reported rotation rates, and their corresponding fluid flow and shear rates, for vaterite are also plotted alongside lab results.}
 \end{figure}
 
-From Fig.\ref{fig:vaterite_shear}~(b) it's clear that the rotational speeds
-achieved both in the lab and from experimental literature are well below the 
-theoretical maximum shear rate reported by \cite{Debuysschere2023} as you move 
-away from the surface of your micro-rotor.
+From Fig.\ref{fig:vaterite_shear} there is not a strong relationship between
+particle size and rotation rate, this is contrary to much of the theoretical
+predictions that predict an exponential decay with particle size. This can
+be in part due to the fact that synthesising perfectly spherical spheres that
+have uniform birefringence is difficult over multiple experiments and tests. 
+Despite our best efforts at controlling the growth rate the vaterite spheres
+would often combine together while suspended in water after a short period of 
+time. The fastest reported rotation rate found during this PhD was by \cite{Arita2016}
+that achieved a rotation rate of $5\ kHz$, this is plotted on Fig~\ref{fig:vaterite_shear}
+as the dotted line. Even at that extreme a rotation rate the region in which 
+nucleation is at its optimal likelihood is only $20\ nm$ wide meaning that 
+localising nucleation around a rotating sphere is vanishingly small. 
 
-\section{Rotation of Vaterite in supersaturated solutions}
-
+\section{Rotation of micro-rotors in supersaturated solutions}
 Vaterite samples were synthesised according to \cite{Parkin2009, Bishop2004} 
 (see sec.~\ref{sec:vaterite}), and then suspended in a droplet of 
 supersaturated solutions of Glycine and water. After locating a 
@@ -282,7 +329,7 @@ proximity to the droplet edge, this was done as previous work with
 optical tweezers have only seen nucleation near the solution-air interface
 \cite{Gowayed2021, Liao2022, Walton2018}. The observed rotation rate 
 was rather low or non-existent, the results are tabulated below:
-\begin{table}
+\begin{table}[h!]
 	\centering
 	\caption{Results from rotating vaterite within supersaturated solution of $H_2O$ and Glycine. Solubility concentration for Glycine at $16^\circ$ was $C^*=0.2016g/g$}
 	\begin{tabular}[width=\textwidth]{|c|c|c|c|}
@@ -312,10 +359,9 @@ was rather low or non-existent, the results are tabulated below:
 	\end{tabular}
 \end{table}
 
-
 The calculations from fig.\ref{fig:vaterite_shear} indicate that even
 in pure water the rotational speed achieved by a microsphere is
-insufficient to achieve a significant shear rate more than a few microns
+insufficient to achieve a significant shear rate more than a few tenths of a microns
 from its surface. The closest we could trap a microsphere to the droplet
 edge was in the range of $5-10\mu\ m$, at that distance the fluid flow
 would be so low that not even using a liquid droplet rotor would achieve
@@ -326,29 +372,53 @@ would be so large that even using $D_2O$ would see a significant increase in
 temperature. 
 
 \section{Shearing via a Galvano-mirror}
+Rather than utilising birefringence rotation, which is subject to issues
+during synthesis and achieving an ideal particle size, a galvano-mirror
+was installed to induce controlled particle motion. While typically 
+galvano and gimble mirrors are used to trap multiple particles in a 
+regular pattern, in a sufficiently dilute solution a single silica 
+micro sphere can be moved quickly through a fluid along a preset path.
+Calculating the shear rate around an individual particle is difficult to
+do precisely but for low Reynolds numbers we can get an adequate approximation.
 
-Using a galvano mirror can A particle's motion can be precisely controlled For a simple circular path one can estimate the sphere's speed by the radius of its path and the frequency of its orbit $U = R\omega$; however for a more complex path, such as an elliptical orbit the curve needs to be parametrised. One can describe the position parameter of an ellipse as such:
+For a simple circular path one can estimate the sphere's speed by the 
+radius of its path and the frequency of its orbit $U = R\omega$; however 
+for a more complex path, such as an elliptical orbit the curve needs 
+to be parametrised. One can describe the position parameter of an ellipse 
+as such:
 
 \begin{align}
 	r(u) = \left[acos(2\pi u),bsin(2\pi u), 0 \right]
 \end{align}
 
-where a and b are the different characteristic radii of an ellipse, if we assume that u describes time from some initial point we can say $u=t\omega$ where omega is the frequency of orbit. Subbing this in and then taking the partial derivative of position gives:
+where a and b are the different characteristic radii of an ellipse, if 
+we say that $u$ describes time from some initial point we can say $u=t\omega$ 
+where omega is the frequency of orbit. Substituting this in and then taking 
+the partial derivative of position gives:
 
 \begin{align}
 	v(t) = \frac{dr(t)}{dt} = \left[-2\pi a\omega \ sin(2\pi t\omega),\ 2\pi b\omega \ cos(2\pi t\omega),0 \right]
 \end{align}
 
-In order to compute U we simply take the magnitude of our velocity. For low velocities the fluid flow around the entire sphere can be computed based on the sphere's velocity.
+In order to compute U we simply take the magnitude of our velocity. 
+For low velocities the fluid flow at the sphere's surface can be computed 
+based on its velocity.
 
 \begin{align}
 	u_r(r)=-v(t)cos(\theta)\left(1-\frac{3R}{2r}+\frac{R^3}{2r^3}\right)
 \end{align}
 
-Where $\theta$ is the angle from the direction of movement to the point you wish to measure, and $r$ is the radial distance to that point. Again taking the partial derivative we can get the shear rate for a particle moving through the fluid:
+Where $\theta$ is the angle from the direction of movement to the point
+you wish to measure, and $r$ is the radial distance to that point. Again
+taking the partial derivative we can get the shear rate for a particle moving 
+through the fluid:
 
 \begin{align}
 	\dot{\gamma}(r) = \left| \frac{\delta u_r(r)}{\delta r}\right| = v(t)cos(\theta)\left(\frac{3R}{r^2} -\frac{2R^3}{r^4} \right)
 \end{align}
 
 Silica beads ($r=1,57 \mu m$) were trapped and moved along an elliptical path
+
+\section{Nucleation using a moving beam}
+As mentioned previously, shearing via optical rotation and particle displacement
+did not result in 
