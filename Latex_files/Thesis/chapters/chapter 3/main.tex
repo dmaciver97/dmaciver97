@@ -15,8 +15,9 @@ by experimental work using glycine solutions, showing that beyond a certain
 shear rate the nucleation rate is reduced \cite{Debuysschere2023}. In this 
 chapter I outline the optical tweezer equipment used during this PhD, the 
 initial attempts made to induce nucleation via optical rotation, and the 
-impact of a moving beam on the crystal growth of a newly formed nucleus. 
-
+impact of a moving beam on the crystal growth of a newly formed nucleus.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \section{Optical Tweezer Equipment}
 In general, all optical tweezers require a laser driver, two
 microscope objectives (one for trapping and one for imaging),
@@ -41,6 +42,7 @@ and then the 4f correlator provides a further $1.25\times$ magnification
 \begin{align}
 	\frac{D_2}{D_1} = \frac{f_2}{f_1}
 \end{align}
+
 It should be noted that the galvano-mirror requires the use 
 of a Keplerian beam expansion arrangement which reduces
 the transmitted laser power due to localised heating of the air.
@@ -69,7 +71,7 @@ quadrant photo diode (QPD) was utilised.
 	\includegraphics[height=\linewidth, angle=270]{tweezer_setup.pdf}
 	\caption{Optical tweezer set up used for the majority of the PhD. The focal lengths of $f_1$, $f_2$, $f_3$, \& $f_4$ are $-20\ mm$, $60\ mm$, $150\ mm$, \& $200\ mm$ respectively. Diagram not drawn to scale.}
 \end{figure}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Position detection methods}
 In order to accurately capture the dynamics of a trapped particle, 
 a position detection system must be utilised. There are 3 possible
@@ -96,7 +98,6 @@ in the total voltage of the QPD. The outputted signal gives an
 indication of the particle's relative displacement from the beam 
 focus, but in order to convert the signal to distance units the
 trap needs to be calibrated (assuming a linear response curve).
-
 \begin{figure}[h!]
 	\centering
 	\includegraphics[height=\linewidth, angle=270]{QPD_Lateral_effect.pdf}
@@ -126,6 +127,7 @@ are conducted using a QPD as opposed to a lateral-effect sensor,
 as often the displacement is small enough that the QPD response 
 curve can be considered linear.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Fourier Optics and 4f correlators}
 A 4f correlator is an example of Fourier optics in practice, understanding
 that a focused lens takes a Fourier transform of the light profile. 
@@ -142,11 +144,14 @@ For our applications a 4f correlator is utilised to ensure that the motion
 of the galvano-mirrors does not move the focal point of the laser, allowing 
 for a stable trap even while in motion. 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Calibration of Tweezer Setup}
 Prior to testing optical rotation the trapping laser was calibrated 
 using power spectra analysis
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Synthesis of Birefringent Micro spheres}
 \label{sec:vaterite}
 Generation of fluid shear can be achieved via two avenues: Firstly, by 
@@ -189,7 +194,6 @@ polarised light, the anisotropic scattering of the sphere results in a periodic
 signal on the QPD. Therefore, the resulting power spectrum is not a Lorentzian
 but now also displays peaks that appear at integer multiples of the particles
 rotational frequency. 
-
 \begin{figure}[h!]
 	\label{fig:vaterite}
 	\centering
@@ -232,6 +236,7 @@ vaterite spheres, due to their higher degree of birefringence and the fact
 that the droplets are far closer to perfect spheres making angular momentum
 transfer more efficient. 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Rotation of birefringent micro spheres} 
 Optical tweezing has often been used for micro-rheology, by computing the
 exact forces being exerted on the trapped sphere, one can determine the
@@ -251,6 +256,7 @@ in a moving fluid of velocity $U$ this is given by:
 \begin{align}
 	Re = \frac{\rho UD}{\mu}
 \end{align}
+
 Where $D$ is the sphere's diameter, and $\rho$ and $\mu$ are the fluid's 
 density and viscosity respectively. In our case we do not have a fluid
 moving around a sphere but a sphere moving through the fluid at some 
@@ -289,7 +295,6 @@ the sample stage. Due to Van der Waal's forces some of the microspheres
 were stuck together, fortunately individual sphere's were still present.
 Over the course of a few weeks multiple sphere's where trapped 
 and their rotation speeds were measured via the QPD. 
-
 \begin{figure}[h!]
 	\label{fig:vaterite_shear}
 	\begin{subfigure}{0.5\linewidth}
@@ -316,19 +321,36 @@ as the dotted line. Even at that extreme a rotation rate the region in which
 nucleation is at its optimal likelihood is only $20\ nm$ wide meaning that 
 localising nucleation around a rotating sphere is vanishingly small. 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Rotation of micro-rotors in supersaturated solutions}
 Vaterite samples were synthesised according to \cite{Parkin2009, Bishop2004} 
-(see sec.~\ref{sec:vaterite}), and then suspended in a droplet of 
-supersaturated solutions of Glycine and water. After locating a 
-singular microsphere the vaterite was trapped in a circularly 
-polarised light and brought close to the droplet edge, after a 
-period of ten minutes if no nucleation event was observed the 
-particle was released and another particle was trapped. Due to 
-the increased viscosity of the supersaturated solution and the 
-proximity to the droplet edge, this was done as previous work with
-optical tweezers have only seen nucleation near the solution-air interface
-\cite{Gowayed2021, Liao2022, Walton2018}. The observed rotation rate 
-was rather low or non-existent, the results are tabulated below:
+(see sec.~\ref{sec:vaterite}), and then suspended in distilled 
+water, at the same time a supersaturated solution of Glycine 
+and water was prepared and $50\ \mu L$ was pipetted onto a 
+glass cover slip. A single microsphere the vaterite was trapped 
+in a circularly polarised light and brought close to the droplet 
+edge.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\linewidth]{vaterite_diagram.pdf}
+	\caption{Diagram of optical trapping set up for rotating birefringent 
+		particles in a supersaturated solution. Left: side view of the 
+		trapping set up showing the location of the trap focus at the 
+		edge of the droplet of a supersaturated solution. Right: top down 
+		view of the glycine droplet with a trapped birefringent particle 
+		shown close to edge of the trap. As the particle rotates the drag 
+		force from the surrounding fluid generates a flow field around 
+		itself (see Eq.~\ref{eq:birefringent_speed}).}
+\end{figure}
+
+After a period of ten minutes if no nucleation event was 
+observed the particle was released and another particle was 
+trapped. Due to the increased viscosity of the supersaturated 
+solution and the proximity to the droplet edge, as previous works
+have only seen nucleation near the solution-air interface \cite{Gowayed2021, 
+Liao2022, Walton2018}, the observed rotation rate was rather low or 
+non-existent, the results are tabulated below:
 \begin{table}[h!]
 	\centering
 	\caption{Results from rotating vaterite within supersaturated solution of $H_2O$ and Glycine. Solubility concentration for Glycine at $16^\circ$ was $C^*=0.2016g/g$}
@@ -344,11 +366,11 @@ was rather low or non-existent, the results are tabulated below:
 		\cline{2-4} & 3.75 & 3.54 & $\times$ \\
 		\cline{2-4} & 4.35 & 4.86 & $\times$ \\
 		\hline
-		\multirow{3}*{1.29} & 3.47 & 0.00 & $\times$ \\
+		\multirow{3}*{1.4} & 3.47 & 0.00 & $\times$ \\
 		\cline{2-4} & 1.59 & 0.00 & $\times$ \\
 		\cline{2-4} & 6.24 & 0.00 & $\times$ \\
 		\hline
-		\multirow{3}*{1.40} & 6.32 & 0.00 & $\times$ \\
+		\multirow{3}*{1.45} & 6.32 & 0.00 & $\times$ \\
 		\cline{2-4} & 3.68 & 0.00 & $\times$ \\
 		\cline{2-4} & 5.43 & 0.00 & $\times$ \\
 		\hline
@@ -371,6 +393,8 @@ to match the speeds expected by \cite{Debuysschere2023} the localised intensity
 would be so large that even using $D_2O$ would see a significant increase in 
 temperature. 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Shearing via a Galvano-mirror}
 Rather than utilising birefringence rotation, which is subject to issues
 during synthesis and achieving an ideal particle size, a galvano-mirror
@@ -419,6 +443,36 @@ through the fluid:
 
 Silica beads ($r=1,57 \mu m$) were trapped and moved along an elliptical path
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Nucleation using a moving beam}
 As mentioned previously, shearing via optical rotation and particle displacement
-did not result in 
+did not result in any localised nucleation events even while in the proximity of 
+the droplet edge. During the experiments with the galvano-mirror, it was found 
+that when no particle was present in the optical trap nucleation events would 
+occur while the beam was close to the edge of the droplet, even though the solution
+was undersaturated. This has been reported prior \cite{Rungsimanon2010, Liao2022}, 
+but was more interesting is how the beam's motion influenced the growth of the nucleus.
+
+Consider below in Fig.~\ref{fig:stationary_beam} the frames taken from a nucleation 
+event in supersaturated glycine solution (S=1.03), the beam is a stationary being 
+$\approx3.5 \mu m$ from the droplet edge. After a period of roughly 5 minutes a 
+nucleus forms at the trap focus, growing quickly until after roughly $6$ seconds 
+the crystal escapes the trap. The key take away to remember is that the beam has no 
+real influence over the crystal front,instead the crystal grows outward from the 
+centre of the focus.
+\begin{figure}[h!]
+	\label{fig:stationary_beam}
+	\centering
+	\includegraphics[width=0.7\linewidth]{frames_no_beam_movement.pdf}
+	\caption{Laser induced nucleation at the edge of a droplet of supersaturated 
+	glycine solution. (b) shows the first instance of a crystal nucleus, growing 
+	quickly through (c)-(e) until after $6.665\ s$ the crystal begins to escape the
+	trap.}
+\end{figure}
+
+Now while trying to induce fluid flow by optically trapping a silica particle and 
+using a galvano-mirror to move the particle through the solution, nucleation events
+were observed in which the crystal front follows the path of the laser. See below 
+in \textcolor{red}{Fig.XX} where we have the laser focus moving in a small elliptical 
+pattern, 
