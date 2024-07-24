@@ -7,7 +7,6 @@ working principles behind optical tweezing, the work being done with
 optical tweezers in particle classification, and how tweezing has been 
 used to investigate nucleation events. 
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Working Principle}
@@ -18,25 +17,29 @@ objects. If light is reflected or refracted by a medium part of the
 light's momentum is transferred to the medium itself. While at large
 scales this effect is insignificant in most cases, at micron scales
 the forces imparted by individual photons begin to become significant
-enough to influence its trajectory. Ashkin's work into optical
-tweezing found that micron sized entities could be spatially locked by
-aiming a laser with a Gaussian intensity profile directly upward at a
-the cell while being suspended in a liquid medium \cite{Ashkin1970}.
-This is demonstrated diagram below where we have a simple sphere
-trapped by a Gaussian beam, if we consider two rays of light hitting
-our sphere we see that while in the centre each ray is refracted in an
-equal opposite direction to one another and so the net force imparted
-is 0.  However when displaced the net force is unbalanced and points
-towards the centre of the trap; this principle can be generalised to 3
-degrees of freedom if we consider a focused beam instead of a
-para-axial beam, typically the trap will be weaker along the beam axis
-compared to the transverse trap strength.
+enough to influence the trajectory of individual particles. Ashkin's 
+work into optical tweezing found that micron sized entities could be 
+spatially locked by aiming a laser with a Gaussian intensity profile 
+directly upward at a the cell while being suspended in a liquid medium 
+\cite{Ashkin1970}. 
+
+This is demonstrated in fig.~\ref{fig:working_principle} where we have 
+a simple sphere trapped by a circularly symmetrical beam with the intensity
+falling off from the centre in a normal distribution (commonly referred to
+as a Gaussian beam). If we consider two rays of light hitting our sphere 
+we see that while in the centre each ray is refracted in an equal opposite 
+direction to one another and so the net force imparted is 0. When displaced 
+in the x-y plane the net force is unbalanced and points towards the centre 
+of the trap; this principle can be generalised to 3 degrees of freedom if we 
+consider a focused beam instead of a para-axial beam, typically the trap will be
+weaker along the beam axis compared to the transverse trap strength.
 
 
-\begin{figure}[h]
+\begin{figure}[h!]
   \centering
   \includegraphics[width=0.65\linewidth]{ot_working_principal.png}
   \caption{Working principle for an optical trap, upper image shows a sphere at the centre of a trap experiences equal forces directed towards inwards. Lower image shows that when displaced 'ray a' is refracted far more than 'ray b' resulting in a net force back towards the centre.}
+  \label{fig:working_principle}
 \end{figure}
 
 
@@ -97,6 +100,7 @@ The latter two are defined by:
 	\nonumber
 	\mathbf{H} &= \frac{1}{\mu_0}\mathbf{B}-\mathbf{M}
 \end{align}
+
 Where $\mathbf{P}$ is the polarization field and $\mathbf{M}$ is the 
 magnetisation field, these fields arise due to the bound charges 
 throughout the medium interacting with the EM field. 
@@ -104,19 +108,19 @@ throughout the medium interacting with the EM field.
 The force exerted by an optical tweezer can be subdivided into the 
 gradient and scattering components, for most modelling research this 
 is how the force fields are reported. The gradient force is a conservative 
-force brought about by the polarisation of dielectric materials, 
-anything around 10\% of the trapping wavelength will be attracted along 
-the gradient of the electric field to the region of greatest intensity 
-(for a simple Gaussian Beam this would be at the focal point). The 
-scattering force arises from the scattered field of the trapping beam 
-pushing the target object away from the focal point; unlike the gradient \\
-force, the scattering force is non-conservative and is loosely 
-proportional to the particle's Brownian motion. The equilibrium position 
-(where the mean squared displacement is minimised) is found when the 
-gradient force far exceeds the scattering force, interpreting and 
-calculating these forces is dependent on the ratio between the particle 
-size and the trapping wavelength.
+force brought about by the polarisation of dielectric materials which 
+is directed towards the point of maximum intensity (for a simple Gaussian 
+beam this would be at it's focal point) \cite{YasuhiroHarada1996}. 
+Typically, optical tweezers will utilise higher numerical aperture lenses 
+in order to increase the intensity, thus allowing for stronger 
+gradient forces.
 
+The scattering force arises from the scattered field of the trapping beam 
+pushing the target object away from the focal point. The equilibrium position 
+(where the mean squared displacement is minimised) is found when the 
+gradient force far exceeds the both the scattering force, and the thermal 
+energy of the particle. Describing and calculating the optical forces is 
+dependent on the ratio between the particle size and the trapping wavelength. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Ray-Optics Regime}
@@ -134,11 +138,15 @@ is given by:
 \begin{align}
 	F_i = Q_i\frac{\Delta n P_i}{c}
 \end{align}
+
 where $Q_i$ is the trapping efficiency, $\Delta n$ is the difference
 in refractive indices between the solution and the target particle,
-and $P_i$ is the power of the individual ray. For a beam with a
+and $P_i$ is the power of the individual ray. The net force can be 
+subdivided into its gradient and scattering components, where the latter
+directs the particle to the centre of the beam, and the latter acts on 
+the particle in the direction of beam propagation. For a beam with a
 Gaussian intensity distribution $P_i$ will fall off as you move from
-the centre of the beam.  The ray optics model is ideal for
+the centre of the beam.  
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -154,17 +162,17 @@ vector fields must solve the Helmholtz wave equation given by:
 \end{align} 
 
 Where $k$ is the wave number of the electromagnetic radiation ($k = 2\pi/\lambda$)
- This combined with the constraints of Maxwell's Equations leaves 
- very few exact solutions apart from spherical or planar waves, 
- both of which can be converted between with relative ease. For 
- example, a plane wave electric field can be expanded into spherical 
- harmonics and likewise any spherical wave can be described as 
- combination of plane waves offset from one another. For a single 
- plane wave the incident, internal, and scattered fields are given as:
+This combined with the constraints of Maxwell's Equations leaves 
+very few exact solutions apart from spherical or planar waves, 
+both of which can be converted between with relative ease. For 
+example, a plane wave electric field can be expanded into spherical 
+harmonics and likewise any spherical wave can be described as 
+combination of plane waves offset from one another. For a single 
+plane wave the incident, internal, and scattered fields are given as: 
 \begin{align}
-	\label{eq:lornez_mie}
-  {\bf E}_{\rm inc}({\bf r})
-  &=
+	\label{eq:incident}
+	{\bf E}_{\rm inc}({\bf r})
+	&=
     E_0 \sum_{nm}^\infty \left[
     a_{nm}{\bf M}_{nm}^{(1)}({\bf r})
     + b_{nm}{\bf N}_{nm}^{(1)}({\bf r})\right]
@@ -176,6 +184,7 @@ Where $k$ is the wave number of the electromagnetic radiation ($k = 2\pi/\lambda
     -id_{nm}{\bf N}_{nm}^{(1)}({\bf r}) + c_{nm}{\bf M}_{nm}^{(1)}({\bf r})
     \right]
   \\
+  \label{eq:scattered}
   {\bf E}_{\rm scat}({\bf r})
   &=
     E_0 \sum_{n=1}^\infty  i^n\frac{2n+1}{n(n+1)}\left[
@@ -189,15 +198,16 @@ Where $k$ is the wave number of the electromagnetic radiation ($k = 2\pi/\lambda
 		{\bf E}_{\rm int}({\bf r}) & \text{if \textbf{r} inside}
 	\end{cases}
 \end{align}
+
 where $a_{nm}$, $b_{nm}$, $c_{nm}$, $d_{nm}$, $p_{nm}$, and $q_{nm}$
 are the expansion coefficients of each of the fields, and $M^{(1)}_{nm}$ 
 and $N^{(1)}_{nm}$ are the vector spherical harmonics. For the incident
 field computing its expansion coefficients is possible via analytical
 methods and are completely dependent on the beam conditions imposed by
 the user. However, computing the expansion coefficients of the
-internal and external fields be far more tedious depending on the
+internal and scattered fields is far more tedious depending on the
 shape of the target and what properties of the scattered field are
-desired --- all of which is discussed later on.  From an optical
+desired --- see sec.~\ref{sec:scattering}.  From an optical
 trapping perspective the force exerted by a focused electric field can
 be found by computing the Maxwell stress tensor which only requires
 the total magnitude of the incident and scattered fields, essentially
@@ -205,20 +215,20 @@ computing the momentum contained in the incident beam and how much of
 it has been transferred to the target particle. 
 
 Lorenz-Mie theory can be applied to describe the scattering from any 
-particle regardless of size, however as we either increase or decrease 
-the size of the target particles the infinite series converges allowing 
-one to ignore much of the tedium of Lorenz-Mie theory. The ray optics 
-model is what is achieved when the size of the target particle far exceeds that of the laser wavelength and thus individual ray's can have independent contributions. 
-In the latter case we can simplify the scattering problem by approximating 
-our target as a single dipole, focusing only its interactions with the 
-incident field.
+particle regardless of size, though as the size of the target particle 
+changes - relative to the light being scattered - the theory describing
+the scattered light is better approximated by alternative theories. For 
+particles that are far larger than the wavelength of light the scattering
+is best described by the Ray-Optics theory. In the opposite case the 
+target particle is better approximated as a single electric dipole as 
+described by the Rayleigh scattering field.  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Rayleigh Regime}
 
 The Rayleigh approximation is the limiting approximation for describing 
 a particles motion in an electromagnetic field who's wavelength is several 
-times greater than the particle's size. The underlying theory is that a \\
+times greater than the particle's size. The underlying theory is that a 
 dielectric sphere can be treated as a dipole while in the presence of the 
 electromagnetic field; in which case the scattering force is given simply 
 by the scattering of the induced dipole, and the gradient force is due 
@@ -283,13 +293,14 @@ research into acoustic wave scattering \cite{Waterman1969}, this
 would later be extended to electromagnetic waves. Sometimes being 
 referred to as the extended boundary condition method (ECBM), 
 the method replaces the scatterer with a series of surface currents
-over the targets surface, these currents are chosen so that the
+over the targets surface. These currents are chosen so that the
 electric field outside is identical to the original problem \cite{Wriedt1998}. 
 This choice of currents negates the need to compute the internal fields
 which reduces the scattering problem to a system of linear equations 
 relating the incident beam coefficients to the scattered beam coefficients
 the relationship between each can be summarised as:
 \begin{align}
+	\label{eq:t_matrix}
 	\begin{pmatrix}
 		q_{mn} \\
 		p_{mn} 
@@ -311,23 +322,24 @@ the relationship between each can be summarised as:
 
 Where $q_{mn}$, and $p_{mn}$ are the scattering beam coefficients, and
 $a_{mn}$, and $b_{mn}$ are the coefficients of the incident beam. For 
-this PhD in particular we utilise an extension of the ECBM known 
-as multi-sphere $T$-matrix method (\textit{mstm}), developed by Mackowski
+this PhD in particular we utilise an extension of the ECBM known as 
+multi-sphere $T$-matrix method (\textit{mstm}). Developed by Mackowski
 \cite{Mackowski2011} the computational code computes the scattered field 
-from each sphere within the target cluster and the incident field itself, 
-this scattering between spheres converges to a final result but modern codes 
-truncate the calculations to fit a desired accuracy and computational time.
+from each sphere within the target cluster and the incident field itself. 
+The scattering between spheres slowly converges to a final result but modern 
+codes truncate the calculations to an upper number of iterations (denoted by
+$N_{max}$) to fit a desired accuracy and computational time. 
 
 The $T$-matrix method is exceptionally useful for computing the scattering 
 from any arbitrary spherical aggregate. However, the $T$-matrix method by 
 itself can be computationally taxing as the number of spheres increases 
-\cite{Mackowski2011}. While it is possible to solve for the scattering of
-each individual sphere this is only applicable for a single orientation and 
-can be even slower for large aggregates \cite{Mackowski1996, Xu1995}. The 
-benefit of \textit{mstm} is that the major scattering properties (scattering 
-and extinction cross sections, scattering matrices, etc) can all be computed 
-both for single orientations, or averaged over multiple orientations to determine
-the average scattering from the target particle. 
+\cite{Mackowski2011}. While it is possible to solve for the full electromagnetic 
+field of each the entire cluster this is only applicable for a single 
+orientation and can be even slower for large aggregates \cite{Mackowski1996, 
+Xu1995}. The benefit of \textit{mstm} is that the major scattering properties 
+(scattering and extinction cross sections, scattering matrices, etc) can 
+all be computed both for single orientations, or averaged over multiple 
+orientations to determine the average scattering from the target particle. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Discrete Dipole Approximation}
@@ -338,7 +350,7 @@ the DDA method approximates the particle as being constructed of dipoles.
 Each dipole interacts with both the incident field and the scattered fields
 from every other dipole surrounding it. The resulting scattered field is 
 identical to the scattered field produced by direct integration of 
-Eq.~\ref{eq:internal} throughout the full particle volume \cite{Goedecke1988}.
+Eq.~\eqref{eq:internal} throughout the full particle volume \cite{Goedecke1988}.
 The integral form for the internal electric field inside a scatterer is 
 given as:
 \begin{align}
@@ -365,22 +377,40 @@ Describing any microscopic motion requires an understanding of a molecules
 diffusive behaviour, for the case of optical tweezers the most complete model 
 of diffusion is the Langevin equation. Models such as the Fickian, and Einstein 
 derivations are sufficient for macroscopic behaviours the Langevin equation 
-better describes the microscopic characteristics of any diffusive behaviour. 
-The Fickian model is not suitable for the applications of optical tweezers as 
-it assumes that all diffusive motion is driven by a gradient of molecular density
-\cite{Gillespie2012}, not only is this often not the case but it fails to describe 
-the motion of any single molecule, only the collective behaviour. Einstein's model 
-however considers the collisions experienced by individual molecules \cite{Gillespie2012a}, 
-if we assume that all collisions are random and only consider the behaviour 
-after a finite time step $\delta t$ then the individual collisions should 
-cancel out, of course trying to understand the dynamics over a shorter period
-of time is not described by Einstein's model as you would have to consider
-each collision in turn \cite{Gillespie2012, Gillespie2012}. This is insufficient 
-for our interests as an optical tweezers relaxation time (given by 
-$\tau = \kappa/\gamma$) is often so short that we must consider the individual 
-collisions experienced by any one molecule. The Langevin model of diffusion 
-therefore assumes that the net force on a particular particle is described 
-fully by these individual collisions \cite{Gillespie2012c}:
+better describes the microscopic characteristics of any diffusive behaviour.
+ 
+The Fickian model describes the net flux of solute molecules into a finite
+volume of fluid being proportional to the density gradient $\delta\rho(u,t)/\delta u$
+\cite{Gillespie2012}. It assumes that the solute molecules do not collide with 
+one another or with molecules in the solution; overall, the Fickian model is
+used to describe how solute molecules disperse over long periods of time. It 
+does not provide any incite into the forces acting on individual molecules, 
+whereas the Langevin model captures the physical interactions between an 
+individual molecule and the surrounding fluid over a wide range of time scales.
+
+The Einstein model of diffusion expands upon the Fickian model by considering
+the collisions between individual molecules. If we consider a single particle 
+suspended in a solution it will experience multiple collisions with other 
+molecules \cite{Gillespie2012a} over a given time interval $\delta t$. The 
+Einstein molecule allows us to consider how individual molecules behave while
+suspended in a surrounding fluid. Where it begins to falter is when we consider
+bringing $\delta t$ to $0$; in this scenario the molecule experiences not many
+but only individual collisions. The Einstein model does not consider the inertia 
+of the molecule in question and so for very short time frames the model implies 
+that the molecule's velocity changes instantly after each collision \cite{Gillespie2012a,
+Gillespie2012b}. Furthermore, the kinetic energy of each collision is not limited
+by the thermal energy of the system, meaning that using the Einstein model to 
+predict a particle's trajectory to an finite degree of accuracy implies that 
+the particle has infinite kinetic energy \cite{Gillespie2012b}. This failure to 
+describe motion over smaller time frames is addressed in the Langevin model by 
+accounting for the fluid drag of the system, where any sudden change in velocity 
+must result in a proportionally opposed drag force \cite{Gillespie2012c}. 
+
+The Langevin model of diffusion assumes that the net force on a particular 
+particle is described fully by these individual collisions \cite{Gillespie2012c}. 
+Unlike the Fickian model it provides a full description of the interactions 
+between the target molecule and the surrounding fluid; while also being able
+to describe its motion over any time scale, unlike the Einstein model:
 \begin{align}
 	m\frac{dv}{dt} + \gamma_0 v + F(t) = W(t)
 \end{align}
@@ -411,7 +441,7 @@ The full Langevin equation for an optically trapped particle is therefore given 
 	m\frac{\delta^2x(t)}{\delta t^2} + \gamma_0 \frac{\delta x(t)}{\delta t} + \kappa_x x(t) = \sqrt{2k_BT}\eta(t)
 \end{align}
 
-Eq.~\ref{eq:langevin} provides an accurate description of strongly trapped 
+\eqref{eq:langevin} provides an accurate description of strongly trapped 
 particles, however the analytical solution of the Langevin equation requires 
 integration of the white noise term making it difficult to simulate the 
 trajectory of a given particle \cite{Volpe2013}. Instead it is often far 
@@ -427,6 +457,7 @@ we can use the Taylor series expansion to get:
 \begin{align}
 	x(t+\Delta t) = x(t)+\frac{x'(t)}{1!}\Delta t + \frac{x^2(t)}{2!}\Delta t^2+...+\frac{x^n(t)}{n!}\Delta t^n+R_n(x(t))	
 \end{align}
+
 Where $R_n(x(t))$ is the remainder term between the Taylor expansion to 
 term n and the actual expression. If we limit our approach to the first 
 derivative only we find that for sufficiently small values of $R_1$ the 
@@ -436,6 +467,7 @@ velocity and acceleration can be approximated as:
 	\\
 	x^{''}(t) &\approx \frac{x'(t+\Delta t)-x'(t)}{\Delta t} = \frac{x(t)-2x(t+\Delta t)+x(t+2\Delta t)}{\Delta t^2}
 \end{align}
+
 By reversing the time step (i.e. use $-\Delta t$) to approximate the \\
 velocity and acceleration based on the previous time steps we can 
 discretize the position by taking finitely small  time steps (i.e. 
@@ -449,6 +481,7 @@ noise using the finite-difference approach as:
 \begin{align}
 	m\frac{x_i-2x_{i-1}+x_{i-2}}{\Delta t^2} = -\gamma\frac{x_i-x_{i-1}}{\Delta t}+\sqrt{2k_BT\gamma}\frac{w_i}{\sqrt{\Delta t}}
 \end{align}
+
 Where $w_i$ is a random real number between -1 and 1, we can say that 
 it is normally distributed around 0 for simulation purposes. We can 
 rearrange this for $x_i$ to approximate the Brownian motion of a 
@@ -460,7 +493,7 @@ purposes we can neglect the particle's inertia which allows us to
 write the motion of an optically trapped particle as:
 \begin{align}
 	\label{eq:sim_langevin}
-	x_i = x_{i-1} + \tau_{OT}\ x_{i-1}\Delta t + \sqrt{2D\Delta t}\ w_i
+	x_i = x_{i-1} - \tau_{OT}\ x_{i-1}\Delta t + \sqrt{2D\Delta t}\ w_i
 \end{align} 
 
 This result can be generalised for a 3-dimensional description of an 
@@ -474,8 +507,7 @@ Therefore by calculating these parameters to a high degree of precision
 allows one to get precise description of the forces experienced by a 
 target particle, which in the past has been used for highly accurate 
 force transduction \cite{BergSoerensen2004, Smith2003}.
-
-\begin{figure}[h]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.67\linewidth]{finite_differences.png}
 	\caption{Example trajectory created using Finite Differences method
@@ -494,6 +526,14 @@ of the Langevin equation:
 	x(t) = x(0)e^{-t/\tau_{OT}}+\sqrt{2D}\int^t_0dsW_x(s)e^{-(t-s)/\tau_{OT}}
 \end{align}
 
+Positional data is often acquired in an experimental setting either using
+image analysis or photodiodes to infer the particles position relative to
+the beam focus. The former is often used in cases when precision is not a 
+key concern, as often a standard CCD camera will have limited spacial and 
+temporal resolution. The latter method often requires the use of a quadrant
+photo diode(QPD), the data provided by the QPD will often need to be converted
+to physical units to compute the force directly - see Eq.~\eqref{eq:conversion_factor}.
+
 \subsection{Potential Well Analysis}
 The Langevin equation for an optically trapped assumes that the trap 
 acts similar to a Hookean spring that creates a potential well about 
@@ -511,11 +551,13 @@ write the probability of finding the particle at position $x$ as:
 \begin{align}
 	\frac{\rho(x)}{\rho_0} = e^{-\frac{U(x)}{k_{B}T}} 
 \end{align}
+
 which therefore means we can write the potential well as:
 \begin{align}
 	\label{eq:potential_well}
 	U(x)=-k_BT\ ln\left(\frac{\rho(x)}{\rho_0} \right)
 \end{align}
+
 Now assuming our laser acts as a Gaussian beam we should be able 
 to describe the probability distribution $\rho(x)$ centred at 
 some equilibrium position $x_0$:
@@ -524,7 +566,7 @@ some equilibrium position $x_0$:
 	\rho(x)= \sqrt{\frac{\kappa_x}{2\pi k_BT}} exp\left(-\frac{\kappa_x}{2k_BT}(x-x_{eq})^2\right)
 \end{align}
 
-By inserting eq.~\ref{eq:prob_dist} into eq.~\ref{eq:potential_well} 
+By inserting \eqref{eq:prob_dist} into \eqref{eq:potential_well} 
 we can fit the potential well in order to determine the trap strength 
 $\kappa_x$, and an estimation of the equilibrium position $x_{eq}$. 
 This has some limitations in that the large fluctuations can throw 
@@ -541,7 +583,7 @@ limited strictly to harmonic potentials. This can be often not the
 case for highly focused beams, as the trap strength can vary due to 
 polarisation differences. Simply put we can use the equipartition 
 theorem to relate the potential well to the particle's thermal 
-energy using eq.~\ref{eq:prob_dist}:
+energy using \eqref{eq:prob_dist}:
 \begin{align}
 	\left<U(x)\right> = \frac{1}{2}\kappa_x\left<(x-x_{eq})^2\right> &= \int_{-\infty}^{\infty}\rho(x)(x-x_{eq})^2 = \frac{1}{2}k_BT \\
 	\implies \kappa_x &= \frac{k_BT}{\left<(x-x_{eq})^2\right>} 
@@ -591,7 +633,7 @@ of $\tau$:
 	MSD(\tau) = \left<|x(t+\tau) - x(t)|^2\right>
 \end{align}
 
-If we use eq.~\ref{eq:anylitical_lang} for an optical tweezer we can 
+If we use \eqref{eq:anylitical_lang} for an optical tweezer we can 
 expand out the squared term to get an analytical expression for the 
 MSD as a function of time lags:
 \begin{align}
@@ -605,7 +647,7 @@ value as shown below by the dotted line.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\linewidth]{MSD.png}
-	\caption{Example mean squared displacement using eq.~\ref{eq:MSD}, for a $1\mu m$ sphere trapped by an optical potential well. The dotted line represents the upper limit of the sphere's displacement due to the optical trap.}
+	\caption{Example mean squared displacement using \eqref{eq:MSD}, for a $1\mu m$ sphere trapped by an optical potential well. The dotted line represents the upper limit of the sphere's displacement due to the optical trap.}
 \end{figure}
 
 The MSD plot can be subdivided into two regimes, when $\tau \gg \tau_{OT}$ 
@@ -623,11 +665,11 @@ speed CCD.
 
 \subsubsection{Angular Mean Square Displacement (MSAD)}
 It is also possible to plot the angular MSD (MSAD) using simulative data, 
-however there is yet to be a analytical expression for the MSAD of a 
-freely diffusing particle. Vigilante \textit{et al} \cite{Vigilante2020} 
-derived the upper limit of a dimer's MSAD along its long axis by assuming 
-it was strongly trapped and so had limited angular motion, there expression 
-gives:
+however using this to describe the torque acting on an asymmetric object 
+is difficult due to fact there is no simple approximation of the rotational
+stiffness. Vigilante \textit{et al} \cite{Vigilante2020} derived the upper 
+limit of a dimer's MSAD along its long axis by assuming it was strongly 
+trapped and so had limited angular motion, there expression gives:
 \begin{align}
 	\lim_{\tau\to\infty}\left<(\Delta u_z)^2\right> = 
 	2\left[1-\frac{1}{4\beta\kappa_r} 
@@ -636,13 +678,16 @@ gives:
 	}\right)^2\right]
 \end{align}  
 
-Vigilante's paper expressed that they couldn't compute $MSD(\tau)$ because 
-they couldn't solve the Einstein-Smoluchowski equation which describes the 
-diffusion constant for dielectric particles. This would require a full 
-description of a particle's electrical mobility and charge distribution 
-- the latter could be achieved via a discrete dipole approximation, the 
-former would be dependent on both the particle's position but relative 
-orientation to the electric field.
+Where, $u_z$ is the unit vector connecting the two spheres of the dimer, 
+$\beta=1/k_BT$, $\kappa_r$ is the rotational stiffness of the trap, and $F$ 
+is Dawson's integral \cite{Oldham2008}. Vigilante's paper expressed that 
+they couldn't compute $MSD(\tau)$ because they couldn't solve the 
+Einstein-Smoluchowski equation which describes the diffusion constant for 
+dielectric particles. This would require a full description of a 
+particle's electrical mobility and charge distribution - the latter could 
+be achieved via a discrete dipole approximation, the former would be 
+dependent on both the particle's position and relative orientation to the 
+electric field.
 
 \subsection{Power Spectrum Density (PSD)}
 The power spectral density (PSD) method is by far the most versatile 
@@ -669,21 +714,28 @@ at the spectral density of $\hat{x}(f)$:
 	S_x = \frac{\hat{x}^2}{t_{msr}} = \frac{D}{2\pi(f_c^2+f^2)}
 \end{align}
 
-We can fit the Lorentzian via a simplified geometric series 
-$S_x = 1/(A+Bf_k^2)$ which allows us to compute both the diffusion 
-coefficient (in arbitrary units) and the corner frequency $f_c$ 
-which is directly related to the trap strength via 
-$f_c = \kappa_x/(2\pi\gamma)$. Like with the analytical expression 
-of the mean squared displacement we see two distinct regions, when 
-$f\ll f_c$ the PSD reaches a plateau value that when converted to 
-length units represents the maximum displacement the particle can 
-move beyond the focus, however when $f\gg f_c$ the PSD falls off 
-exponentially which denotes the particle is freely diffusing within 
-the beam focus.
-\begin{figure}[t]
+Where $t_msr$ is the period over which we collected data. The Lorentzian 
+can be fitted via a simplified geometric series $S_x = 1/(A+Bf_k^2)$ 
+which allows us to compute both the diffusion coefficient (in arbitrary 
+units) and the corner frequency $f_c$ which is directly related to 
+the trap strength via $f_c = \kappa_x/(2\pi\gamma)$. The Lorentzian shape
+implies that the trap is harmonic - but not symmetric - which assumes that 
+the particle itself is an isotropic scatterer. Anisotropic scatterers will
+not produce a Lorentzian curve due to the coupled rotation and translation, 
+though depending on the nature of that rotation (i.e. whether it is stochastic
+\cite{Bang2020} or periodic \cite{Yogesha2012}) will effect how drastically it 
+departs from a typical Lorentzian curve.
+
+Like with the analytical expression of the mean squared displacement we 
+see two distinct regions, when $f\ll f_c$ the PSD reaches a plateau value 
+that when converted to length units represents the maximum displacement 
+the particle can move beyond the focus, however when $f\gg f_c$ the 
+PSD falls off exponentially which denotes the particle is freely diffusing 
+within the beam focus.
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=\linewidth]{PSD.png}
-	\caption{Example PSD fitted using Eq.~\ref{eq:lorentzian}, power spectra is collected from an optically trapped silica sphere suspended in water. The difference in magnitude is due to the asymmetry of the quadrant photo diode having a stronger signal response in the direction of the polarisation vector. Using a correction factor (see Eq.~\ref{eq:correction_factor}) will adjust the power spectra to better describe the trap shape.}
+	\caption{Example PSD fitted using \eqref{eq:lorentzian}, power spectra is collected from an optically trapped silica sphere suspended in water. The difference in magnitude is due to the asymmetry of the quadrant photo diode having a stronger signal response in the direction of the polarisation vector. Using a correction factor (see \eqref{eq:correction_factor}) will adjust the power spectra to better describe the trap shape.}
 \end{figure}
 
 The Lorentzian relationship is only valid for frequency terms up to 
@@ -695,23 +747,26 @@ Lorentzian to account for the aliasing effects \cite{BergSoerensen2004}:
 	\label{eq:alaised_lorentzian}
 	S_x = \frac{(\Delta x)^2\Delta t}{1+c^2-2c\cos{2\pi f_k\Delta t/N}}
 \end{align}
+
 Where N is the total number of samples taken, $\Delta x \ \& \ c$ 
 have no direct physical interpretation and are defined in 
 \cite{BergSoerensen2004}. Further modifications can be made to the 
 power spectrum model but this is only useful when a high degree of 
 accuracy is necessary. Typically power spectra are recorded using 
-a Quadrant Photo Diode (QPD), which records motion in voltage units
-, not in units of length. To convert between the two we have a few 
-methods: Firstly if we have a mono-disperse suspension of particles, 
-the laser can be scanned across the surface of our target particle; 
-so long as the particle's size is known a linear conversion factor 
-can be used to convert from voltage to length units. Secondly, if 
-the size distribution is very wide but each particle can be accurately 
-sized, then a conversion factor can be approximated by comparing the 
-fitted value of the diffusion coefficient, and the reported value 
+a Quadrant Photo Diode (QPD), which records motion in voltage units, 
+not in units of length. There are two main methods for converting to
+physical units: If multiple photodetectors are available then a 
+differential interference contrast (DIC) system can be used to compute
+the linear relationship between the beads displacement and the photodiodes
+signal \cite{Capitanio2002}. While this is useful when high force precision 
+is necessary it also allows you to collect information about the particle's 
+motion along a single direction, making it ideal for less focused beams. 
+Alternatively, if the size distribution is very wide but each particle can be 
+accurately sized, then a conversion factor can be approximated by comparing 
+the fitted value of the diffusion coefficient, and the reported value 
 given by the Stokes-Einstein relation.
 \begin{align}
-	\label{eq:correction_factor}
+	\label{eq:conversion_factor}
 	D_{SE} = \frac{k_BT}{\gamma_0} \Rightarrow Conversion\ Factor \ [m/V]= \sqrt{\frac{D_{SE}}{D_{fit}}}
 \end{align}
 
@@ -783,15 +838,16 @@ electric field's wavelength we now have a system of simultaneous equations:
 Fortunately, we do not need to solve these directly as the latter two
 random variables can be easily approximated if the thermal energy of
 the system is known, and the rate of change can be assumed as linear if
-we take a sufficiently small time step that
-$\Delta t~\ll~\kappa_x/\gamma \ \& \ \Delta t \ll
-\kappa_u/\gamma_R$. In doing so we now only need to compute the
-optical force and torque applied to our dimer, this has already been
-compiled in a MATLAB package called \textit{Optical Tweezer Toolbox}
-or \textit{ott} \cite{Nieminen2007}. In which they use the results
-from \cite{Farsund1996} to compute both the optical force and torque
-using the beam coefficients - the form given by
-\cite{Crichton2000THEMD} is an easier form to compute:
+we take a sufficiently small time step that $\Delta t~\ll~\kappa_x/\gamma 
+\ \& \ \Delta t \ll \kappa_u/\gamma_R$. In doing so we now only need 
+to compute the optical force and torque applied to th dimer. 
+
+Using a  MATLAB package called \textit{Optical Tweezer Toolbox} or \textit{ott} \cite{Nieminen2007} we can compute the beam shape coefficients ($a_{nm}$ \& $b_{nm}$)
+for any desired beam type. Using the results from \cite{Farsund1996} we can then 
+compute both the optical force and torque using the beam coefficients and the 
+scattering coefficients ($q_{nm}$ \& $p_{nm}$) which are found by calculating
+the dimer's $T$-matrix via \textit{mstm} \cite{Mackowski2011} and then using \eqref{eq:t_matrix}. The form given by \cite{Crichton2000THEMD} is an easier 
+form to compute for higher orders of $N_{max}$:
 \begin{equation}
 \begin{split}
   \bold{F_z}
@@ -818,11 +874,15 @@ using the beam coefficients - the form given by
 where $a_{nm}$, $b_{nm}$, $p_{nm}$, and $q_{nm}$ are the beam coefficients
 of the incident and scattered fields respectively. We can get the transverse 
 force and torque components in a similar form by applying a simple rotation 
-transformation. In order to get the scattered beam coefficients we can use 
-\textit{mstm} \cite{Mackowski2011} to calculate the T-matrix of our dimer 
-(or any spherical aggregate). Vigilante et al compiled together a python 
-package that combines both \textit{ott} and \textit{MSTM} to simulate the 
-behaviour of spherical aggregates within a predefined optical trap. 
+transformation. With the optical forces and torques computed all that remains
+is to compute the Brownian forces and torques which are constrained by the relation.
+\begin{align}
+	\langle q_iq_j\rangle =2D_{ij}\Delta t
+\end{align}
+
+Vigilante et al compiled together a python package that combines both \textit{ott} 
+and \textit{MSTM} to simulate the behaviour of spherical aggregates within 
+a predefined optical trap \cite{Vigilante2020}. 
 
 Throughout this PhD we use the work of Vigilante to perform a systematic 
 study of the dynamics demonstrated by asymmetric dimers in both plane and 
@@ -874,7 +934,7 @@ the beam is of the form:
 \end{align}
 
 where $RgM_{nm}(kr)$ \& $RgN_{nm}(kr)$ are regular vector spherical wave 
-functions, these differ from Eq.~\ref{eq:lornez_mie} in the fact that the 
+functions, these differ from \eqref{eq:lornez_mie} in the fact that the 
 field can either be expressed as an incoming/outgoing wave (with a 
 singularity at the origin) or as a regular wave around the origin; for 
 incoming/outgoing waves the wave functions use the first/second forms of 
@@ -908,9 +968,17 @@ the polarisation of the incident beam and the displacement of the target
 sphere, this is shown in fig.~\ref{fig:totalfield}.
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.85\linewidth]{fixed_polarisation.png}
+	\includegraphics[width=\linewidth]{fixed_polarisation.png}
 	\captionsetup{margin=0.5cm}
-	\caption{Total Field incident on the quadrant photo diode for a several different displacements. Top Left: $2\mu m $ diameter silica sphere placed at the focus of a  beam. Top Right: silica sphere is now displaced by $1 \mu m$ along the x-axis. Bottom Right: silica sphere is now displaced by $1 \mu m$ along the y-axis. Bottom Left: silica sphere is now displaced by $0.707 \mu m$ along the x and y axis. The trapping beam is a $TEM_{00}$ Gaussian, polarised along the along the x-axis. $S_x$, $S_y$, and $S_z$ are shown to the right of each graph, $Q_1$, $Q_2$, $Q_3$, and $Q_4$ are shown above each graph.}
+	\caption{Total Field incident on the quadrant photo diode for a several
+		different displacements. Top Left: $2\mu m $ diameter silica sphere
+		placed at the focus of a  beam. Top Right: silica sphere is now
+		displaced by $1 \mu m$ along the x-axis. Bottom Right: silica sphere 
+		is now displaced by $1 \mu m$ along the y-axis. Bottom Left: silica 
+		sphere is now displaced by $0.707 \mu m$ along the x and y axis. 
+		The trapping beam is a $TEM_{00}$ Gaussian, polarised along the 
+		along the x-axis. $S_x$, $S_y$, and $S_z$ are shown to the right of 
+		each graph, $Q_1$, $Q_2$, $Q_3$, and $Q_4$ are shown above each graph.}
 	\label{fig:totalfield}
 \end{figure}
 
@@ -928,7 +996,6 @@ suspended in water ($n_{med}=1.33$) and the condenser lens has its numerical ape
 set to 0.5 ($\theta_{max} = 30^\circ$). Scanning across all three primary axis 
 produced the following response curve.
 \begin{figure}[h!]
-	\label{fig:Rohrbach}
 	\begin{subfigure}{0.475 \linewidth}
 		\subcaption{}
 		\includegraphics[width=\linewidth]{QPD_axial_tests.png}
@@ -938,6 +1005,7 @@ produced the following response curve.
 		\includegraphics[width=\linewidth]{QPD_lat_tests.png}
 	\end{subfigure}
 	\caption{Comparison between QPD response signal versus work conducted by Rohrbach, single sphere ($r = 150\ nm$, $n=1.57$) is scanned by a $1064\ nm$ laser and the QPD signal recorded. Solid lines represent the signal produced by QPD using \textit{ott} and points represent the signal response collected from \cite{Rohrbach2002}.}
+	\label{fig:Rohrbach}
 \end{figure}
 
 With this any trajectory can be collected from the QPD by displacing and 

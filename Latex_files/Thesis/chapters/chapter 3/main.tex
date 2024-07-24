@@ -64,26 +64,26 @@ and condensing objectives; the piezo drivers allow for sub-micron
 control of the sample position to a degree as small as a 10 nm. 
 To detect and monitor the position of a trapped particle a 
 quadrant photo diode (QPD) was utilised. 
-
-\begin{figure}
-	\label{fig:setup}
+\begin{figure}[h!]
 	\centering
 	\includegraphics[height=\linewidth, angle=270]{tweezer_setup.pdf}
 	\caption{Optical tweezer set up used for the majority of the PhD. The focal lengths of $f_1$, $f_2$, $f_3$, \& $f_4$ are $-20\ mm$, $60\ mm$, $150\ mm$, \& $200\ mm$ respectively. Diagram not drawn to scale.}
+	\label{fig:setup}
 \end{figure}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Position detection methods}
 In order to accurately capture the dynamics of a trapped particle, 
-a position detection system must be utilised. There are 3 possible
+a position detection system is utilised. There are 3 possible
 methods of position detection: video-analysis, lateral-effect
-position sensing, and quadrant photodiodes. The former being 
+position sensing, and photodiodes. The former being 
 ideally suited for multiple traps or situations where precision
 is not the top priority. In order to match the force measurements
 of back-focal plane interferometry requires the camera's frame
 rate to exceed $1\ kHz$ which can be difficult to achieve while 
 maintaining a decent resolution \cite{Gibson2008}. In comparison
 off the shelf back-focal plane detectors can achieve temporal
-resolutions anywhere from $10-100\ kHz$. 
+resolutions anywhere from $10-100\ kHz$ \cite{BergSoerensen2004}. 
  
 A QPD is frequently used position detection system for optical 
 tweezers due to their high sampling rate, high degree of 
@@ -140,15 +140,34 @@ limited spot ($d = \lambda/2nsin(\theta)$), indicating that the laser is
 collimated. In imaging systems, a series of focal lenses can be used to 
 filter out unwanted scattering from an image (or in an inverse case 
 differentiate between different images), the placement of each lens is shown below.
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}{0.475\linewidth}
+		\includegraphics[width=\linewidth]{signal_generator.jpg}
+		\caption{}
+	\end{subfigure}
+	\begin{subfigure}{0.475\linewidth}
+		\includegraphics[width=\linewidth, height=0.7\linewidth]
+		{galvano_mirror_controllers.jpg}
+		\caption{}
+	\end{subfigure}
+
+	\caption{Signal generator galvano mirror controller, channel 1 controls the x-axis 
+		mirror, while channel 2 controls the y-axis mirror. Both channels can be manipulated
+		independently.}
+\end{figure}
+
 For our applications a 4f correlator is utilised to ensure that the motion
 of the galvano-mirrors does not move the focal point of the laser, allowing 
-for a stable trap even while in motion. 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Calibration of Tweezer Setup}
-Prior to testing optical rotation the trapping laser was calibrated 
-using power spectra analysis
+for a stable trap even while in motion. As shown in Fig.~\ref{fig:setup}, after
+the galvano-mirror we have our two lenses - $f_3$ and $f_4$ - the former being 
+installed $150\ mm$ from the second mirror of the galvano, and the latter being 
+installed $200\ mm$ from the back focal plane of the trapping objective. The 
+signal generator used was supplied by 'MCS Test Equipment Ltd', allowing for 
+dual channel signal control. This allowed us to precisely control the alignment,
+amplitude, phase, and frequency of both mirrors making alignment much easier. For
+basic trapping calibration the galvano-mirrors were set to a simple DC output, 
+providing a fixed spot which operates like a typical optical trap.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -195,7 +214,6 @@ signal on the QPD. Therefore, the resulting power spectrum is not a Lorentzian
 but now also displays peaks that appear at integer multiples of the particles
 rotational frequency. 
 \begin{figure}[h!]
-	\label{fig:vaterite}
 	\centering
 	\begin{subfigure}{0.4\linewidth}
 		\includegraphics[width=\linewidth]{vaterite_sample.jpg}
@@ -206,8 +224,22 @@ rotational frequency.
 		\subcaption{}
 	\end{subfigure}
 	\caption{(a)Sample vaterite sphere suspended in water and trapped by circular polarised trap. (b) Collected power spectrum from rotating vaterite, peaks in the power spectrum appear at integer multiples of the rotational frequency ($f_{rot} \approx 49.8$ Hz)}
+	\label{fig:vaterite}
 \end{figure}
 
+As shown by Fig.~\ref{fig:vaterite}(b) the power spectra produced still 
+demonstrates a Lorentzian curve but modified with these periodic peaks, 
+while the Lorentzian can be loosely fitted to the end tail there exists 
+no current model for describing the power spectra. The closest approximation
+to this was conducted by \cite{Yogesha2012} where they describe the 
+rotational motion of ellipsoidal polystyrene particles. The critical assumption
+being that the particle perfectly rotates in the $x-y$ plane; however it
+has long been suspected that birefringent microspheres experience random
+rotations outside of the $x-y$ plane \cite{Bang2020} making it very difficult 
+to characterise the forces on rotating microspheres without a proper understanding 
+of the optical torque being applied to it.
+
+\subsection{Liquid Crystal Rotors}
 Liquid crystals are an intriguing example of materials with mixed phase
 properties, unlike typical solutes such as Glycine, a liquid crystal
 can still maintain some degree of order between its individual molecules
@@ -296,7 +328,6 @@ were stuck together, fortunately individual sphere's were still present.
 Over the course of a few weeks multiple sphere's where trapped 
 and their rotation speeds were measured via the QPD. 
 \begin{figure}[h!]
-	\label{fig:vaterite_shear}
 	\begin{subfigure}{0.5\linewidth}
 		\includegraphics[width=\linewidth]{vaterite_fluid_flow.png}
 		\subcaption{}
@@ -306,6 +337,7 @@ and their rotation speeds were measured via the QPD.
 		\subcaption{}
 	\end{subfigure}
 	\caption{(a) Fluid flow radiating out from the surface of a rotating vaterite sphere. (b) Shear rates computed using Eq.\ref{eq:birefringent_shear}, optimal shear rate is of $3000 s^{-1}$ is indicated by the dotted line. Vaterite radii and rotation frequencies are shown, the laser power was kept constant at 450 mW. Reported rotation rates, and their corresponding fluid flow and shear rates, for vaterite are also plotted alongside lab results.}
+	\label{fig:vaterite_shear}
 \end{figure}
 
 From Fig.\ref{fig:vaterite_shear} there is not a strong relationship between
@@ -393,6 +425,16 @@ to match the speeds expected by \cite{Debuysschere2023} the localised intensity
 would be so large that even using $D_2O$ would see a significant increase in 
 temperature. 
 
+It is not impossible that fluid shearing could be used in the future to localise
+nucleation; but from these results, using individual micro-rotors do not seem like 
+an appropriate method. If multiple micro-rotors could be trapped in close proximity 
+to one another they could create a large region of fluid where nucleation is more 
+likely than the bulk fluid. Micro-rotors have been created that allow for precise
+control of suspended micro-particles \cite{Butaite2019} and could potentially be
+used to generate sufficient shearing, however these could not be used in this PhD 
+as we lacked the necessary hardware to form multiple gradient traps.  
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Shearing via a Galvano-mirror}
@@ -408,20 +450,20 @@ do precisely but for low Reynolds numbers we can get an adequate approximation.
 For a simple circular path one can estimate the sphere's speed by the 
 radius of its path and the frequency of its orbit $U = R\omega$; however 
 for a more complex path, such as an elliptical orbit the curve needs 
-to be parametrised. One can describe the position parameter of an ellipse 
-as such:
+to be parametrised. One can describe the position parameter of a circular 
+path as such:
 
 \begin{align}
-	r(u) = \left[acos(2\pi u),bsin(2\pi u), 0 \right]
+	r(u) = \left[rcos(2\pi u), rsin(2\pi u), 0 \right]
 \end{align}
 
-where a and b are the different characteristic radii of an ellipse, if 
-we say that $u$ describes time from some initial point we can say $u=t\omega$ 
+If we say that $u$ describes time from some initial point we can say $u=t\omega$ 
 where omega is the frequency of orbit. Substituting this in and then taking 
 the partial derivative of position gives:
 
 \begin{align}
-	v(t) = \frac{dr(t)}{dt} = \left[-2\pi a\omega \ sin(2\pi t\omega),\ 2\pi b\omega \ cos(2\pi t\omega),0 \right]
+	v(t) = \frac{dr(t)}{dt} = \left[-2\pi r\omega \ sin(2\pi t\omega),
+	\ 2\pi r\omega \ cos(2\pi t\omega), 0 \right]
 \end{align}
 
 In order to compute U we simply take the magnitude of our velocity. 
@@ -429,7 +471,7 @@ For low velocities the fluid flow at the sphere's surface can be computed
 based on its velocity.
 
 \begin{align}
-	u_r(r)=-v(t)cos(\theta)\left(1-\frac{3R}{2r}+\frac{R^3}{2r^3}\right)
+	u_r(r)=-|v(t)|^2cos(\theta)\left(1-\frac{3R}{2r}+\frac{R^3}{2r^3}\right)
 \end{align}
 
 Where $\theta$ is the angle from the direction of movement to the point
@@ -438,10 +480,11 @@ taking the partial derivative we can get the shear rate for a particle moving
 through the fluid:
 
 \begin{align}
-	\dot{\gamma}(r) = \left| \frac{\delta u_r(r)}{\delta r}\right| = v(t)cos(\theta)\left(\frac{3R}{r^2} -\frac{2R^3}{r^4} \right)
+	\dot{\gamma}(r) = \left| \frac{\delta u_r(r)}{\delta r}\right| = |v(t)|^2cos(\theta)\left(\frac{3R}{r^2} -\frac{2R^3}{r^4} \right)
 \end{align}
 
-Silica beads ($r=1,57 \mu m$) were trapped and moved along an elliptical path
+Moving a silica bead along an circular path can generate significant fluid 
+flow around a larger volume compared to comparable microspheres.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -455,24 +498,70 @@ was undersaturated. This has been reported prior \cite{Rungsimanon2010, Liao2022
 but was more interesting is how the beam's motion influenced the growth of the nucleus.
 
 Consider below in Fig.~\ref{fig:stationary_beam} the frames taken from a nucleation 
-event in supersaturated glycine solution (S=1.03), the beam is a stationary being 
+event in supersaturated glycine solution ($S=1.03$), the beam is a stationary being 
 $\approx3.5 \mu m$ from the droplet edge. After a period of roughly 5 minutes a 
-nucleus forms at the trap focus, growing quickly until after roughly $6$ seconds 
-the crystal escapes the trap. The key take away to remember is that the beam has no 
-real influence over the crystal front,instead the crystal grows outward from the 
-centre of the focus.
+nucleus forms at the trap focus, growing quickly (growth rate was approximated using
+imageJ to be on the order of $700\ \mu m^2/min$) from the focal point of the trap 
+until after roughly $6$ seconds the crystal escapes. Comparing to previous literature
+using optical tweezers shows that the growth rate is only loosely connected to the 
+solutions supersaturation, local conditions play a much larger role in the growth 
+rate than just the concentration \cite{Flannigan2023}. A likely reason that the trap 
+is escaped is due to the fact that crystal is far too large to be held in place and 
+is in fact still growing as the solution is supersaturated. The key take away to 
+remember is that the beam has no real influence over the crystal shape, instead 
+it grows outward from the trap focus.
 \begin{figure}[h!]
-	\label{fig:stationary_beam}
 	\centering
 	\includegraphics[width=0.7\linewidth]{frames_no_beam_movement.pdf}
 	\caption{Laser induced nucleation at the edge of a droplet of supersaturated 
 	glycine solution. (b) shows the first instance of a crystal nucleus, growing 
-	quickly through (c)-(e) until after $6.665\ s$ the crystal begins to escape the
-	trap.}
+	quickly through (c)-(e) until after $6.665\ s$ the crystal begins to escape the trap.}
+	\label{fig:stationary_beam}
 \end{figure}
 
 Now while trying to induce fluid flow by optically trapping a silica particle and 
 using a galvano-mirror to move the particle through the solution, nucleation events
-were observed in which the crystal front follows the path of the laser. See below 
-in \textcolor{red}{Fig.XX} where we have the laser focus moving in a small elliptical 
-pattern, 
+were observed in which crystal growth follows the laser focus. Shown below in Fig.~\ref{fig:eliptical_beam_1} where we have the laser focus moving in a small elliptical 
+pattern; interestingly, due to the addition of the silica suspension we see the presence
+of small spheres, these appear too small to be silica beads which have a uniform radius
+of $1.57\ \mu m$, we surmise these could be small clusters of Glycine that had previously
+been shown to form when the aqueous solutions where irradiated with a focused laser
+\cite{Tsuboi2009, Gowayed2021}. While no droplets are seen directly entering the focus a 
+nucleus forms close to the droplet edge, unlike in Fig.~\ref{fig:stationary_beam} the 
+crystal does not grow out from the focal point evenly; due to the galvano mirror, 
+the crystal is simultaneously being moved by and growing around the focal point of 
+the trap. Because of this the crystal nucleus lacks a clear morphology at first, 
+until roughly $20\ s$ the crystal reaches a almost prismatic structure, with further 
+irradiation increasing the size. Interestingly the galvano-mirror allows the trap to 
+impart a slight torque on the crystal, as shown in fig.~\ref{fig:eliptical_beam_1}(c) 
+and (d), where even though the crystal is not directly in the trap focus it rotates in 
+the $x-y$ plane and gets trapped again at a corner. The rotation could not be due to fluid
+flow close to the surface of the crystal as trap should have no influence on fluid molecules
+smaller than a few hundred nano-meters. In figs.\ref{fig:eliptical_beam_1}(e) and (f), 
+the crystal growth is localised to the corner, even though previously the crystal growth 
+was roughly uniform (compare figs. \ref{fig:eliptical_beam_1}(b) and (c)). The area growth
+rate between figures \ref{fig:eliptical_beam_1}(a) and (d) was approximated using imageJ at
+$45.03\ \mu m^2 /min$, where as between figures \ref{fig:eliptical_beam_1}(e) and (f) the 
+growth rate at that particular edge was estimated at $42.10\ \mu m^2/min$. 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\linewidth]{frames_eliptical_beam.pdf}
+	\caption{Laser induced nucleation at the edge of a droplet of 
+		supersaturated glycine solution. (b) shows the first instance 
+		of a crystal nucleus, growing quickly through (c)-(e) until 
+		after $6.665\ s$ the crystal begins to escape the trap.}
+	\label{fig:eliptical_beam_1}
+\end{figure}
+
+In this instance $20\ \mu L$ of glycine and water ($S=1.03$) was added to $10\ \mu L$ 
+of a dilute water-silica mixture making the solution undersaturated ($S\approx0.7$). 
+Nucleation in undersaturated conditions has been reported previously in $D_2O$ 
+\cite{Rungsimanon2010} and $H_2O$ \cite{Flannigan2023}. Though notably in both cases the
+crystal morphology is not influenced by the location of the laser focus, it has been
+shown that polarisation can influence the polymorphic control for simple salts 
+\cite{Garetz1996, Garetz2002} but no research has been done into the influence of a 
+moving beam front on the growth of a newly formed nucleus.  
+
+
+\section{Influence of a moving beam front on seed crystals}
+To see if the above phenomena had any direct influence on a  

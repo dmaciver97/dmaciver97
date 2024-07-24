@@ -1,34 +1,41 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import quaternion
-from quaternion import as_spherical_coords
+import scipy.misc as misc
 
-with open('C:\\Users\\xbb16146\\dmaciver97\\python_files\\sphere_in_LCP_Quadrants.txt', 'r') as in_file:
-    lines = in_file.readlines()
-    x_dat, y_dat, z_dat, = [], [], []
-    q1, q2, q3, q4 = [], [], [], []
-    index = []
-    for line in lines[1:-1]:
-        items = line.split(',')
-        x_dat.append(float(items[0])+ float(items[1])- float(items[2]) - float(items[3])) 
-        y_dat.append(float(items[0])+ float(items[2])- float(items[1]) - float(items[3]))
-        z_dat.append(float(items[0])+ float(items[1])+ float(items[2]) + float(items[3]))
-        q1.append(float(items[0]))
-        q2.append(float(items[1]))
-        q3.append(float(items[2]))
-        q4.append(float(items[3]))
-        index.append(int(float(items[4])/1e-5))
+p = 1;                  # Degree of LG mode
+l = 2;                  # Order of LG mode
+w0 = 2.0;               # Beam waist
+k = 2*np.pi/532.0e-9;   # Wavenumber of light
 
-traj = np.load('Sphere_in_LCP_Trajectory.npy')
-x_disp, y_disp, z_disp = [], [], []
-for i in index:
-    x_disp.append(traj[i,0])
-    y_disp.append(traj[i,1])
-    z_disp.append(traj[i,2])
-    q = np.quaternion(traj[i,3],traj[i,4],traj[i,5],traj[i,6])
-    
-plt.scatter(x_disp, x_dat)
+zR = k*w0**2.0/2;       # Calculate the Rayleigh range
+
+# Setup the cartesian grid for the plot at plane z
+z = 0.0;
+xx, yy = np.meshgrid(np.linspace(-5, 5), np.linspace(-5, 5));
+
+# Calculate the cylindrical coordinates
+r = np.sqrt(xx**2 + yy**2);
+phi = np.arctan2(yy, xx);
+
+U00 = 1.0/(1 + 1j*z/zR) * np.exp(-r**2.0/w0**2/(1 + 1j*z/zR));
+w = w0 * np.sqrt(1.0 + z**2/zR**2);
+R = np.sqrt(2.0)*r/w;
+
+# Lpl from OT toolbox (Nieminen et al., 2004)
+Lpl = misc.comb(p+l,p) * np.ones(np.shape(R));   # x = R(r, z).^2
+for m in range(1, p+1):
+    Lpl = Lpl + (-1.0)**m/misc.factorial(m) *misc.comb(p+l,p-m) * R**(2.0*m);
+
+U = U00*R**l*Lpl*np.exp(1j*l*phi)*np.exp(-1j*(2*p + l + 1)*np.arctan(z/zR));
+
+plt.figure()
+plt.title('Intensity')
+plt.pcolor(abs(U)**2);
+plt.axis('equal')
+
+plt.figure()
+plt.title('Phase')
+plt.pcolor(np.angle(U)**2);
+plt.axis('equal')
+
 plt.show()
-
-
-
