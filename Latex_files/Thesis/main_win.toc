@@ -22,19 +22,19 @@
 \contentsline {section}{\numberline {2.2}Electromagnetism and optical tweezing}{16}{section.2.2}%
 \contentsline {subsection}{\numberline {2.2.1}Ray-Optics Regime}{18}{subsection.2.2.1}%
 \contentsline {subsection}{\numberline {2.2.2}Lornez-Mie Theory}{19}{subsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}Rayleigh Regime}{20}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.3}Rayleigh Scattering}{21}{subsection.2.2.3}%
 \contentsline {section}{\numberline {2.3}Scattering methods}{22}{section.2.3}%
 \contentsline {subsection}{\numberline {2.3.1}T-matrix Method}{22}{subsection.2.3.1}%
 \contentsline {subsection}{\numberline {2.3.2}Discrete Dipole Approximation}{23}{subsection.2.3.2}%
 \contentsline {section}{\numberline {2.4}Langevin Equation}{24}{section.2.4}%
 \contentsline {subsection}{\numberline {2.4.1}Finite Difference}{26}{subsection.2.4.1}%
 \contentsline {section}{\numberline {2.5}Calibration Techniques}{27}{section.2.5}%
-\contentsline {subsection}{\numberline {2.5.1}Potential Well Analysis}{28}{subsection.2.5.1}%
-\contentsline {subsection}{\numberline {2.5.2}Equipartition method}{29}{subsection.2.5.2}%
+\contentsline {subsection}{\numberline {2.5.1}Potential Well Analysis}{29}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}Equipartition method}{30}{subsection.2.5.2}%
 \contentsline {subsection}{\numberline {2.5.3}Mean Square Displacement}{30}{subsection.2.5.3}%
-\contentsline {subsubsection}{\numberline {2.5.3.1}Angular Mean Square Displacement (MSAD)}{31}{subsubsection.2.5.3.1}%
+\contentsline {subsubsection}{\numberline {2.5.3.1}Angular Mean Square Displacement (MSAD)}{32}{subsubsection.2.5.3.1}%
 \contentsline {subsection}{\numberline {2.5.4}Power Spectrum Density (PSD)}{33}{subsection.2.5.4}%
-\contentsline {section}{\numberline {2.6}Simulation of spherical aggregates}{35}{section.2.6}%
+\contentsline {section}{\numberline {2.6}Simulation of spherical aggregates}{36}{section.2.6}%
 \contentsline {subsection}{\numberline {2.6.1}Simulated Quadrant Photodiode}{38}{subsection.2.6.1}%
 \contentsline {chapter}{\numberline {3}Effects of localised shearing on crystal growth and nucleation}{42}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Optical Tweezer Equipment}{43}{section.3.1}%
@@ -49,31 +49,32 @@
 \contentsline {section}{\numberline {3.6}Influence of a moving beam front on seed crystals}{60}{section.3.6}%
 \contentsline {chapter}{\numberline {4}Complex Langevin dynamics of spherical dimers}{61}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Positional and Orientational dependence of Trapping forces}{62}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}Non-trivial harmonic traps}{63}{subsection.4.1.1}%
-\contentsline {section}{\numberline {4.2}Continuous rotational motion due to second-order scattering}{66}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Gyroscopic Precession using asymmetric dimers}{71}{subsection.4.2.1}%
-\contentsline {section}{\numberline {4.3}Characterisation of asymmetric dimers via PSD analysis}{73}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Conclusions}{75}{section.4.4}%
-\contentsline {chapter}{\numberline {5}Detection and Characterisation of rotational spherical aggregate rotational dynamics}{76}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Simulative QPD}{77}{section.5.1}%
-\contentsline {subsection}{\numberline {5.1.1}Incident beam}{77}{subsection.5.1.1}%
-\contentsline {subsection}{\numberline {5.1.2}Scattered and Total Fields}{78}{subsection.5.1.2}%
-\contentsline {section}{\numberline {5.2}Rotations and Asymmetric particles}{82}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Power Spectra of single sphere vs spherical aggregates}{82}{section.5.3}%
-\contentsline {section}{\numberline {5.4}Monitoring Stochastic rotational motion using static light scattering}{84}{section.5.4}%
-\contentsline {subsection}{\numberline {5.4.1}Coordinate System}{84}{subsection.5.4.1}%
-\contentsline {subsection}{\numberline {5.4.2}Beam}{84}{subsection.5.4.2}%
-\contentsline {subsection}{\numberline {5.4.3}Dimer}{85}{subsection.5.4.3}%
-\contentsline {subsection}{\numberline {5.4.4}Detectors and Pixels}{85}{subsection.5.4.4}%
-\contentsline {section}{\numberline {5.5}Interpretation of scattering data into orientation estimates}{86}{section.5.5}%
-\contentsline {subsection}{\numberline {5.5.1}Calculation of error}{89}{subsection.5.5.1}%
-\contentsline {subsection}{\numberline {5.5.2}Brownian Simulation}{90}{subsection.5.5.2}%
-\contentsline {subsection}{\numberline {5.5.3}Testing the Model}{92}{subsection.5.5.3}%
-\contentsline {subsection}{\numberline {5.5.4}Asymmetric dimer dynamics}{95}{subsection.5.5.4}%
-\contentsline {subsection}{\numberline {5.5.5}Accounting for sources of error in light scattering measurements}{96}{subsection.5.5.5}%
-\contentsline {subparagraph}{Impact of incorrect dimer sizing}{96}{section*.41}%
-\contentsline {subparagraph}{Impact of measurement noise on model predictions}{98}{section*.44}%
-\contentsline {section}{\numberline {5.6}Conclusion}{100}{section.5.6}%
-\contentsline {chapter}{\numberline {6}Closing Remarks}{102}{chapter.6}%
-\contentsline {chapter}{\numberline {A}Stuff That Didn't Fit Anywhere Else}{103}{appendix.A}%
-\contentsline {chapter}{Bibliography}{103}{appendix.A}%
+\contentsline {paragraph}{Simulation Parameters}{63}{section*.25}%
+\contentsline {subsection}{\numberline {4.1.1}Non-trivial equilibrium configurations}{68}{subsection.4.1.1}%
+\contentsline {section}{\numberline {4.2}Continuous rotational motion due to second-order scattering}{69}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Gyroscopic Precession using asymmetric dimers}{76}{subsection.4.2.1}%
+\contentsline {section}{\numberline {4.3}Characterisation of asymmetric dimers via PSD analysis}{78}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Conclusions}{80}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Detection and Characterisation of rotational spherical aggregate rotational dynamics}{81}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Simulative QPD}{82}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Incident beam}{82}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Scattered and Total Fields}{83}{subsection.5.1.2}%
+\contentsline {section}{\numberline {5.2}Rotations and Asymmetric particles}{87}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Power Spectra of single sphere vs spherical aggregates}{87}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Monitoring Stochastic rotational motion using static light scattering}{89}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Coordinate System}{89}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}Beam}{89}{subsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.4.3}Dimer}{90}{subsection.5.4.3}%
+\contentsline {subsection}{\numberline {5.4.4}Detectors and Pixels}{90}{subsection.5.4.4}%
+\contentsline {section}{\numberline {5.5}Interpretation of scattering data into orientation estimates}{91}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}Calculation of error}{94}{subsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.5.2}Brownian Simulation}{95}{subsection.5.5.2}%
+\contentsline {subsection}{\numberline {5.5.3}Testing the Model}{97}{subsection.5.5.3}%
+\contentsline {subsection}{\numberline {5.5.4}Asymmetric dimer dynamics}{100}{subsection.5.5.4}%
+\contentsline {subsection}{\numberline {5.5.5}Accounting for sources of error in light scattering measurements}{101}{subsection.5.5.5}%
+\contentsline {subparagraph}{Impact of incorrect dimer sizing}{101}{section*.42}%
+\contentsline {subparagraph}{Impact of measurement noise on model predictions}{103}{section*.45}%
+\contentsline {section}{\numberline {5.6}Conclusion}{105}{section.5.6}%
+\contentsline {chapter}{\numberline {6}Closing Remarks}{107}{chapter.6}%
+\contentsline {chapter}{\numberline {A}Stuff That Didn't Fit Anywhere Else}{108}{appendix.A}%
+\contentsline {chapter}{Bibliography}{108}{appendix.A}%
