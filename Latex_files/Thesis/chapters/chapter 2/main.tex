@@ -788,6 +788,18 @@ optical forces can be computed on the order of $10^{-15} N$
 by other calibration techniques while filtering out noise and requiring 
 a relatively small amount of data collected. 
 
+\subsubsection{Power spectral analysis for rotating objects}
+The scattering from rotating objects can be partially characterised via
+the power spectrum density method. Typically papers reporting on the 
+rotation rate of a trapped object will collect a power spectrum and look
+at the maximum frequency term to determine its rotation rate. However this
+often neglects any information on the trapping forces acting on particle
+and only looks at the torque applying around one of the particle's primary 
+axis. There has only been one notable effort to fully characterise the 
+full trapping dynamics on a rotating body, \cite{Yogesha2012} developed 
+a theoretical model for that relates the power spectrum to both the 
+rotational and translational motion simultaneously. 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Simulation of spherical aggregates}
@@ -893,17 +905,47 @@ Vigilante et al compiled together a python package that combines both \textit{ot
 and \textit{MSTM} to simulate the behaviour of spherical aggregates within 
 a predefined optical trap \cite{Vigilante2020}. 
 
+\subsection{Simulation parameters}
 Throughout this PhD we use the work of Vigilante to perform a systematic 
 study of the dynamics demonstrated by asymmetric dimers in both plane and 
-circularly polarised light. But furthermore we expand upon their work to 
-create a fully functional quadrant photo-diode to simulate the response 
-from a calibration test. This builds upon the work from \cite{Rohrbach2002} 
-which applied the fundamental principles of Lorenz-Mie theory to replicate 
-the response signal of a QPD being used in back focal-plane interferometry.
+circularly polarised light. The simulations have two primary frames of 
+reference that require explanation. Firstly, there is the laboratory frame 
+which describes the coordinate system, we define the origin of our simulation
+as the focus of our trapping beam. While the choice in direction for the $x$ 
+and $y$ axis are arbitrary the $z$ axis is specifically chosen so that it is 
+aligned with the direction of beam propagation. 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.6\linewidth]{lab_frame.png}
+	\caption{Ray scattering render of both the laboratory frame and particle 
+		frame for a dimer and a Gaussian beam. The origin of the laboratory 
+		frame is defined as the focus of the trapping beam, with the positive 
+		$z$-axis being aligned with the direction of beam propagation. The 
+		particle frame is centered on the dimer's centre of mass with the 
+		primary axis $U_z$ being aligned with the centres of the two spheres.
+		Black line is scaled to represent $1\ \mu m$.}
+	\label{fig:lab_frame} 
+\end{figure} 
+
+Secondly there is the particle frame which describes the orientation state of 
+the particle, orientations are reported as quaternions which can be readily 
+transformed into rotation matrices. The matrix describes the direction of the 
+particles 3 orientation axis $U_x$, $U_y$, and $U_z$; the latter is oriented 
+so that it is collinear with the centres of the two spheres. The origin of 
+the 3 axis' is set on the particle's centre of mass, this is also used to 
+define it's displacement from the origin of the laboratory frame. 
+
+
+
+Furthermore we expand upon their work to create a fully functional quadrant 
+photo-diode to simulate the response from a calibration test. This builds 
+upon the work from \cite{Rohrbach2002} which applied the fundamental 
+principles of Lorenz-Mie theory to replicate the response signal of a QPD 
+being used in back focal-plane interferometry.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Simulated Quadrant Photodiode}
+\section{Simulated Quadrant Photodiode}
 \label{sec:simulated_QPD}
 In order to simulate a typical experimental set up with a QPD installed 
 as a position detection system we need to evaluate the total magnitude of 
