@@ -74,13 +74,15 @@ against the direction of beam orientation (see figures~\ref{fig:paradigmatic}(b)
 and (d)). 
 
 After computing its $T$-matrix via \textit{mstm} and supplying that 
-to \textit{ott} we compute the optical force via \eqref{eq:optical_force} 
-in the axial direction while the dimer is in its 'standard' orientation. 
-As expected we see a single point where the dimer will be in equilibrium, 
-the linear fit in fig.~\ref{fig:paradigmatic}(a) indicates a that the force 
-can be modelled as a harmonic potential close to the equilibrium position ($F_z\approx-\kappa_z z$). The second point where the axial 
-force goes to 0 cannot be considered as equilibrium position as the positive 
-gradient indicates that the trap is unstable unless Brownian motion is ignored. 
+to \textit{ott} we compute the optical force exerted by a $50\ mW$ laser
+via \eqref{eq:optical_force} in the axial direction while the dimer is 
+in its 'standard' orientation. As expected we see a single point where 
+the dimer will be in equilibrium, the linear fit in fig.~\ref{fig:paradigmatic}
+(a) indicates a that the force can be modelled as a harmonic potential close 
+to the equilibrium position ($F_z\approx-\kappa_z z$). The second point 
+where the axial force goes to 0 cannot be considered as equilibrium position 
+as the positive gradient indicates that the trap is unstable unless Brownian 
+motion is ignored. 
 
 We repeated the same calculation but now while the dimer is in its 'inverted' orientation, instead of a single point where the optical force is minimised we 
 see that there are instead two separate equilibrium positions, one above the focus
@@ -88,7 +90,7 @@ and one below the focus. In this particular example the two positions are far en
 apart that both can be considered as separate harmonic traps.    
 \begin{figure}[h!]
 	\centering
-	\begin{subfigure}{.75\linewidth}
+	\begin{subfigure}{.65\linewidth}
 		\includegraphics[width=\linewidth]{lam=2_theta=0.png}
 		\caption{}
 		\label{lam=2}
@@ -100,7 +102,7 @@ apart that both can be considered as separate harmonic traps.
 		\label{large over small}
 	\end{subfigure}
 	\medskip
-	\begin{subfigure}{.75\linewidth}
+	\begin{subfigure}{.65\linewidth}
 		\includegraphics[width=\linewidth]{lam=2_theta=180.png}
 		\caption{}
 		\label{lam=2_inverted}
@@ -113,20 +115,23 @@ apart that both can be considered as separate harmonic traps.
 	\end{subfigure}
 	\caption{Plots of force vs displacement of the centre of mass of 
 		the dimer (µm) for the case of a dimer of size ratio 2. (a) is 
-		the case where the dimer is in its' 'standard' orientation. 
-		(c) is the case where the dimer is in its' 'inverted' orientation 
+		the case where the dimer is in its' 'standard' orientation, where
+		the dimer is trapped at $z = 1.71\ \mu m$. (c) is the case where 
+		the dimer is in its' 'inverted' orientation, the dimer is trapped 
+		at two positions: $z = 1.20\ \mu m$ \& $z=-1.63\ \mu m$. 
 		(b) and (d) are renders to visualise the dimer orientation are shown 
 		below each plot. The black lines on each force-curve is a linear 
 		fit with the slope being reported as the trap stiffness in the legend.}
 		\label{fig:paradigmatic}
 \end{figure}
 
-We can see that both equilibrium positions have comparable axial trap stiffness 
-($\kappa_z$), however the difference in the transverse trap stiffness ($\kappa_x$) 
-is far more noticeable. As shown in Fig~\ref{fig:transverse_force}, 
-the dimer's orientation and relative position significantly changes the force 
-curve; not only is the trap wider when inverted but the trap stiffness is 
-increased. This highlights one of the challenges involved with studying 
+We can see that both equilibrium positions have comparable axial trap 
+stiffness ($\kappa_z$), however the difference in the transverse trap 
+stiffness ($\kappa_x$) is far more noticeable. The same dimer was trapped
+at each of the axial equilibrium positions and the transverse force was 
+evaluated. While in all three cases the dimer can be trapped the linear
+range where 
+This highlights one of the challenges involved with studying 
 asymmetric particles, even though its a simple enough process to trap them 
 they maybe characterised very differently depending on their relative position 
 and orientation towards the focus. This can have a significant impact on 
@@ -165,13 +170,13 @@ if multiple spheres are trapped simultaneously.
 
 \begin{figure}[h!]
 	\centering
-	\begin{subfigure}{0.85\linewidth}
+	\begin{subfigure}{0.75\linewidth}
 		\includegraphics[width=\linewidth]{Equillibrium_positions.png}
 		\caption{}
 		\label{eq_pos}
 	\end{subfigure}\hfill % <-- "\hfill"
 	\medskip
-	\begin{subfigure}{0.85\linewidth}
+	\begin{subfigure}{0.75\linewidth}
 		\includegraphics[width=\linewidth]{Equillibrium_positions_inverted.png}
 		\caption{}
 		\label{eq_pos_inverted}
@@ -280,7 +285,7 @@ relationship as the mechanism behind their rotation is not as clearly defined.
 To visualise the relationship between the polarisation state of the 
 trapping beam, and the rotation rate we simulated the motion of an 
 optically trapped dimer in beams of varying polarisation ($NA=1.2$, 
-$P=100\ mW$), and the dimer is composed of silica ($n_p=1.59$, 
+$P=100\ mW$), and the dimer is composed of polystyrene ($n_p=1.59$, 
 $n_m=1.33$). Each simulation was run for $1$ second ($\Delta t 
 =10^-5$) and at the end we looked at the orientational time series; 
 the dimer's orientation is recorded as a quaternion which can be easily 
@@ -497,7 +502,7 @@ the same behaviour in an experimental setting can be challenging if dealing
 with a non-birefringent particle.  
 
 As a benchmark we start by considering a single sphere within an optical trap. 
-A single silica sphere suspended in water ($a=1\mu m$, $n_p=1.59$, $n_m=1.33$)
+A single polystyrene sphere suspended in water ($a=1\mu m$, $n_p=1.59$, $n_m=1.33$)
 is trapped by a focus Gaussian beam and its trajectory was recorded. A 3 second 
 is trajectory is a typical measurement time for collecting a power spectrum, 
 the spectra was fitted to eq.~\ref{eq:alaised_lorentzian}.
