@@ -90,7 +90,7 @@ and one below the focus. In this particular example the two positions are far en
 apart that both can be considered as separate harmonic traps.    
 \begin{figure}[h!]
 	\centering
-	\begin{subfigure}{.65\linewidth}
+	\begin{subfigure}{.75\linewidth}
 		\includegraphics[width=\linewidth]{lam=2_theta=0.png}
 		\caption{}
 		\label{lam=2}
@@ -102,7 +102,7 @@ apart that both can be considered as separate harmonic traps.
 		\label{large over small}
 	\end{subfigure}
 	\medskip
-	\begin{subfigure}{.65\linewidth}
+	\begin{subfigure}{.75\linewidth}
 		\includegraphics[width=\linewidth]{lam=2_theta=180.png}
 		\caption{}
 		\label{lam=2_inverted}
@@ -130,7 +130,8 @@ stiffness ($\kappa_z$), however the difference in the transverse trap
 stiffness ($\kappa_x$) is far more noticeable. The same dimer was trapped
 at each of the axial equilibrium positions and the transverse force was 
 evaluated. While in all three cases the dimer can be trapped the linear
-range where 
+range where that would typically associated with a stable trap is far 
+narrower in the 'standard' orientation compared to the 'inverted' cases. 
 This highlights one of the challenges involved with studying 
 asymmetric particles, even though its a simple enough process to trap them 
 they maybe characterised very differently depending on their relative position 
@@ -170,13 +171,13 @@ if multiple spheres are trapped simultaneously.
 
 \begin{figure}[h!]
 	\centering
-	\begin{subfigure}{0.75\linewidth}
+	\begin{subfigure}{0.85\linewidth}
 		\includegraphics[width=\linewidth]{Equillibrium_positions.png}
 		\caption{}
 		\label{eq_pos}
 	\end{subfigure}\hfill % <-- "\hfill"
 	\medskip
-	\begin{subfigure}{0.75\linewidth}
+	\begin{subfigure}{0.85\linewidth}
 		\includegraphics[width=\linewidth]{Equillibrium_positions_inverted.png}
 		\caption{}
 		\label{eq_pos_inverted}
@@ -254,67 +255,47 @@ exceeds a certain maximum value.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Continuous rotational motion due to second-order scattering}
 
-One aspect that has yet to be covered in depth with regards to
-spherical aggregates of any construction is their interaction with
-circularly polarised light. While most homogenous objects are trapped
-no differently in different polarisations, dimers have been shown to
-experience an optical torque \cite{Vigilante2020, Ahn2018, Reimann2018}. 
-Typically the spin density of an electric field cannot be reduced in 
-homogenous medium due to the fact that the spin angular momentum is 
-conserved locally. In which case the only way to transfer angular 
-momentum to use an object that is anisotropic. This is seen most 
-clearly with birefringent materials, due to fact that the crystal 
-lattice itself is anisotropic, a circularly polarised beam will 
-transfer an optical torque that is proportional to the difference in 
-the refractive index of the particle's ordinary and extraordinary axis. 
-The total optical torque is given as:
-\begin{equation}
-	\label{eq:opt_torque}
-	\begin{aligned}
-		\tau_{opt} =& -\frac{\epsilon}{2\omega_{laser}}E_0^2sin(kd(\Delta n))cos2\theta sin2\phi \\ &+  \frac{\epsilon}{2\omega_{laser}}E_0^2 (1-cos(kd(\Delta n))sin2\phi)
-	\end{aligned}
-\end{equation}
+One aspect that has yet to be covered in depth with regards to spherical 
+aggregates of any construction is their interaction with circularly 
+polarised light. For homogenous spheres the optical torque is regarded as
+being negligible as the spin density cannot impart angular momentum while 
+propagating in a homogenous medium. Dimers however, have been shown to
+experience an optical torque \cite{Vigilante2020, Ahn2018, Reimann2018} 
+while trapped in a circular polarised beam. 
 
-Where $\Delta n$ is the difference in refractive indices of the 
-particle, $\phi$ indicates the phase shift in the electric field
-(for circular polarised light $\phi= \pi/4$), and $\theta$ is the angle
-between the particle's main axis and the direction of the electric field.
-The optical torque of non-birefringent spherical aggregates has no such 
-relationship as the mechanism behind their rotation is not as clearly defined. 
-
-To visualise the relationship between the polarisation state of the 
-trapping beam, and the rotation rate we simulated the motion of an 
-optically trapped dimer in beams of varying polarisation ($NA=1.2$, 
-$P=100\ mW$), and the dimer is composed of polystyrene ($n_p=1.59$, 
-$n_m=1.33$). Each simulation was run for $1$ second ($\Delta t 
-=10^-5$) and at the end we looked at the orientational time series; 
-the dimer's orientation is recorded as a quaternion which can be easily 
-converted to a 3-dimensional rotation matrix. By considering only the 
-transverse components ($U_{1,x}$, $U_{1,y}$, $U_{2,x}$, \& $U_{2,y}$) 
-of the rotation matrix and taking the Fourier transformation of their 
-time series reveals the rotational frequency. The laser power is set to 
-$100\ mW$ to avoid large rotational fluctuations and so that the Fourier 
-series of the transverse components approximates $\delta(\omega_{rot}-f)$ 
-- the Dirac delta function centred at the rotational frequency $\omega_{rot}$.
+First we wanted to confirm that the rotation seen in our simulations is
+based on the polarisation of the trapping beam. To that end, we simulated 
+the motion of an optically trapped dimer in beams of varying polarisation 
+($NA=1.2$, $P=100\ mW$), the dimer is composed of polystyrene ($n_p=1.59$, 
+$n_m=1.33$). Each simulation was run for $1$ second ($\Delta t =10^-5$) 
+and at the end we looked at the orientational time series; the dimer's 
+orientation is recorded as a quaternion which can be easily converted to 
+a 3-dimensional rotation matrix. By considering only the transverse 
+components ($U_{1,x}$, $U_{1,y}$, $U_{2,x}$, \& $U_{2,y}$) of the rotation 
+matrix and taking the Fourier transformation of their time series reveals 
+the rotational frequency. The laser power is set to $100\ mW$ to avoid 
+large thermal fluctuations and so that the Fourier series of the transverse 
+components approximates $\delta(\omega_{rot}-f)$ - the Dirac delta function 
+centred at the rotational frequency $\omega_{rot}$.
 
 %% Example plot of rotating beam trajectory and then the same thing but 
 %% Fourier transformed
 \begin{equation}
-\begin{split}
-	q(t) \rightarrow R(t) =& 
-	\begin{pmatrix}
-		U_{1,x}(t) && U_{2,x}(t) && U_{3,x}(t) \\
-		U_{1,y}(t) && U_{2,y}(t) && U_{3,y}(t) \\
-		U_{1,z}(t) && U_{2,z}(t) && U_{3,z}(t) 
-	\end{pmatrix} \\
-	\rightarrow
-	&\int^\infty_{-\infty}R(t)e^{-i2\pi ft} dt = 
-	\begin{pmatrix}
-		\delta(\omega_{rot}-f) && \delta(\omega_{rot}-f) && \delta(f) \\
-		\delta(\omega_{rot}-f) && \delta(\omega_{rot}-f) && \delta(f)\\
-		\delta(f) && \delta(f) && \delta(f)
-	\end{pmatrix}
-\end{split}
+	\begin{split}
+		q(t) \rightarrow R(t) =& 
+		\begin{pmatrix}
+			U_{1,x}(t) && U_{2,x}(t) && U_{3,x}(t) \\
+			U_{1,y}(t) && U_{2,y}(t) && U_{3,y}(t) \\
+			U_{1,z}(t) && U_{2,z}(t) && U_{3,z}(t) 
+		\end{pmatrix} \\
+		\rightarrow
+		&\int^\infty_{-\infty}R(t)e^{-i2\pi ft} dt = 
+		\begin{pmatrix}
+			\delta(\omega_{rot}-f) && \delta(\omega_{rot}-f) && \delta(f) \\
+			\delta(\omega_{rot}-f) && \delta(\omega_{rot}-f) && \delta(f)\\
+			\delta(f) && \delta(f) && \delta(f)
+		\end{pmatrix}
+	\end{split}
 \end{equation}
 
 If the rotational frequency was not immediately obvious the simulation was
@@ -331,31 +312,101 @@ The results of this are displayed in Fig.~\ref{fig:rotation_vs_pol}:
 	\label{fig:rotation_vs_pol}
 \end{figure}
 
-A possible explanation of this phenomena was devised by by \cite{Yevick2017}, 
-who found that highly focused Gaussian beams could produce second 
-order effects in the Rayleigh regime resulting in a photo-kinetic 
-force that results in orbital motion about the beam's central axis.
-This was verified by \cite{Ruffner2012} who found that by trapping 
-a silica bead and recording its position over the course of several 
-minutes; while not immediately evident from the trajectory by measuring 
-the probability flux of finding a particle in a given position 
-revealed a helicity to the sphere's motion which matched the helicity 
-of the trapping beam. This would hardly be considered similar to 
-the behaviour shown by dimers; firstly because the probability flux 
-is an indicator of the sphere's position not its orientation - the 
-sphere can be thought to 'orbit' around the central beam axis with a 
-radius of orbit on the order of $10^{-9}\ m$. Secondly, while 
-\cite{Yevick2017} does compute a rotational frequency, for a single 
-sphere this rotation rate is at most $0.01\ Hz$ whereas the lowest 
-rotation rate recorded for a dimer ($a_{I}/a_{II}$) was around $2\ Hz$, 
-a full two orders of magnitude greater. As such the rotation demonstrated
-cannot be explained due to photo-kinetic forces.
+This shows us that these optical rotations are polarisation dependent 
+and not merely an example of the dimer scattering light asymmetrically. 
+The question then becomes, by what mechanism is the angular momentum of
+the trapping beam being transferred to the dimer.
 
-This rotation was first noted by Vigilante and co-workers who only 
-considered this behaviour for a symmetric dimer \cite{Vigilante2020}; 
-to expand upon this work we looked at how the rotation rate changed
-with the dimers' size ratio ($a_{I}/a_{II}$) and if the orientation
-of the dimer plays any impact on the rotational frequency. By repeating
+The rotation was first noted by Vigilante and co-workers who only 
+considered this behaviour for a symmetric dimer \cite{Vigilante2020}.
+In their work they attribute this to spin-curl effects, in which the 
+curl of the spin density leads to a second order optical force that 
+orbits around the beams central axis \cite{Yevick2017}. While several 
+papers have demonstrated this phenomena \cite{Zhao2007,Zhao2009, Wang2010} 
+it was only properly formalised by by \cite{Ruffner2012}. In which they 
+showed that the seemingly random trajectory of a trapped sphere was biased
+by the polarisation state of the trapping beam. While not immediately evident 
+from the trajectory the helicity of the trapping beam was revealed by 
+computing the particle's probability flux using.
+\begin{align}
+	j(r) = \frac{1}{N-1} \sum_{j=1}^{N-1}
+	\frac{r_{j+1}-r_j}{\tau}\delta_{sigma_j}\left(r-\frac{r_{j+1}+r_j}{2}\right)
+	\label{eq:prob_flux}
+\end{align}
+
+where $\delta_{\sigma_j}$ is the kernel of an adaptive density estimator
+\cite{Silverman1986}. \eqref{eq:prob_flux} describes the direction a trapped
+sphere is most likely move in given our statistical knowledge of the 
+trajectories probability density function. A finite estimation of the density
+function $p(r)$ is used in \cite{Ruffner2012}.
+\begin{align}
+	p(r) = \frac{1}{N}\sum_{j=1}^N \delta_{\sigma_j}(r-r_j)
+	\label{eq:prob_density}
+\end{align}
+
+The probability flux reveals a biased motion in the trajectory of a single 
+sphere (see Fig.~\ref{fig:Ruffner_Grier}). This biased motion results in a
+slight orbital motion about the central axis of the trapping beam, the orbital
+frequency is shown to be proportional to the polarisation state of the trapping
+beam. 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\linewidth]{Ruffner_Grier_2012.pdf}
+	\caption{Figure reused from \cite{Ruffner2012}. (a) shows how the momentum 
+		density of a Gaussian beam is twisted while using circularly polarised 
+		light. The top row (figures (b)-(d)) shows a 7 sphere cluster trapped 
+		in a circularly polarised beam. Due to the clusters asymmetric 
+		susceptibility to polarization the cluster rotates in the $x-y$ plane.   Whereas the bottom row (figures (e) - (g)) show the similar results for a single sphere. In this instance the sphere does not rotate but instead 
+		orbits the beam axis. In both instances the motion is proportional to 
+		the degree of polarisation (see figures (d) and (g)) but for the single
+		sphere this motion is only revealed when using \eqref{eq:prob_flux} \& \eqref{eq:prob_density}. Reused with permission from author}
+	\label{fig:Ruffner_Grier}
+\end{figure}
+
+While the results from \cite{Ruffner2012} suggest that the optical rotation 
+seen in asymmetric dimers is attributed to the same spin-curl forces there 
+are several discrepancies that cannot be explained purely by the spin-curl 
+force. Firstly, there is the question of how the spin-curl force results in
+an optical torque: Comparing figures~\ref{fig:Ruffner_Grier}(c) and (e) we 
+can see that the behaviour of the 7 sphere cluster rotates about the central 
+axis whereas the single sphere has an only slight orbital bias in its motion. 
+The authors attributed this to the fact that the cluster is scattering light 
+where the spin-curl force is more substantial due to it having a wider profile. 
+This would suggest that particles' whose longer axis lies in the plane perpendicular
+to the direction of propagation should experience any notable degree of 
+torque. And indeed this appears to be the case for a number of experiments 
+involving nano-dimers and ellipsoidal particles \cite{Ahn2018, Reimann2018}.
+
+It does raise the question of how come our simulations show that despite the 
+dimer being orientated so their long axis' align with the parallel to the 
+direction of propagation they still readily rotate. You would not expect that
+the addition of a single additional sphere should drastically adjust the torque
+especially if said sphere is relatively small. However when we measured the 
+optical torque of a single sphere and a dimer - $a_{I}/a_{II}=10$ - we found 
+the exact opposite. In both cases we used the same trapping beam as used for
+figure~\ref{fig:rotation_vs_pol} but with a circularly polarised beam. Both 
+the sphere and dimer were rotated in the $x-z$ plane and the all three components 
+of the optical torque were recorded.
+\begin{figure}[h!]
+	\centering	
+	\includegraphics[width=\linewidth]{sphere_dimer_torque.png}
+	\caption{Optical toque experienced by a dimer ($a_{I}/a_{II}=10$) and a 
+	single isotropic sphere. Both were rotated in the $x-z$ plane and the angle 
+	between $U_z$ and the beam axis gives the polar angle.The solid lines denote 
+	the torque experienced by the dimer whereas the dashed lines represent the 
+	torque experienced by the sphere.}
+	\label{fig:sphere_dimer_torque}
+\end{figure}
+
+It should be noted that the difference in magnitude is not clearly shown in 
+figure~\ref{fig:sphere_dimer_torque}. In truth, the optical torque acting on 
+the dimer $10^{13}$ times greater than the torque applied to the single sphere. 
+The torques about the $x$ and $y$ axis can be somewhat understood as the second 
+sphere is being drawn back towards the centre of the trap by the gradient forces. 
+The same cannot be said for the $z$component of the optical torque; while this 
+effect could still be attributed to the spin-curl force, but it is clear that the internal scattering between the two spheres has some unintended effects. 
+
+ By repeating
 the same kinds of simulation as used in \ref{fig:rotation_vs_pol} but for
 a circularly polarised beam $\phi=90\circ$ it was found that not only is 
 the rotation rate dependent on the size of the dimer, but also on its 
@@ -430,20 +481,17 @@ the optical axis.
 \newpage
 
 \subsection{Gyroscopic Precession using asymmetric dimers}
-As mentioned in section~\ref{sec:off-axis} for specificity 
-sized dimers there is the potential for non-vertical trapping 
-orientations in which the dimer is located in a harmonic 
-trap. When trapped by a circularly polarised light these 
-dimers exhibit gyroscopic precession. As shown in fig~\ref{fig:gyro} 
-the dimer's is rotating about it's long axis (as seen by 
-the periodic behaviour of $U_x$ and $U_y$), while also precessing 
-around the optical axis of the beam, resulting in a second 
-order oscillation in $s_z$.
+As mentioned in section~\ref{sec:off-axis} for specificity sized dimers there 
+is the potential for non-vertical trapping orientations in which the dimer is 
+still stably trapped. When a circularly polarised beam is used the dimer exhibits gyroscopic precession. As shown in fig~\ref{fig:gyro} the dimer's trajectory
+exhibits periodic rotation about its long axis $U_z$, precession motion as the
+dimer spins around the central beam axis, and nutation motion as the dimer's
+orientation rocks backwards and forwards. 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=\linewidth]{gyroscopic_precession.png}
 	\caption{3 second trajectory of a dimer ($a_{I}/a_{II}=2$) trapped in an 
-		off axis orientation with a circuarly polarised beam ($P= 100\ mW$). 
+		off axis orientation with a circularly polarised beam ($P= 100\ mW$). 
 		The far left column depicts the dimer's centre of mass position with 
 		time; middle two columns are the $x$, $y$, and $z$ components of the 
 		vectors $u_x$ and $u_y$; last column depicts the components of the 

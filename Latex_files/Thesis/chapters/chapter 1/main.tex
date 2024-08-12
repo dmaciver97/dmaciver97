@@ -1,87 +1,77 @@
 \chapter{Introduction}
-Crystallisation is one of the oldest forms of phase separation 
-used by humanity\cite{Schoen1956}, put simply, it is the 
-formation and growth of a new structured phase within 
-a disordered bulk phase. This has applications in a 
-number of industries such as pharmaceuticals, food 
-production, and electronics \cite{Myerson2002}; where 
-the extraction of dilute materials can help improve 
-product quality while keeping production costs low. 
-The industrialisation of crystallisation has allowed 
-engineers to reliably and efficiently induce the crystal 
-formation within a bulk phase. However, while on a 
-large scale crystallisation is seemingly an understood 
-physical process, just a small amount of investigation 
-into the literature reveals that at a micro scale there 
-is yet to be unifying theory that can accurately explain 
-the process of crystallisation \cite{Fu2021}. Of which 
-there two primary areas of focus, nucleation and crystal 
-growth. The latter focusing on how an already stable 
-crystal grows and how it takes on its final shape; 
-whereas the former is more concerned with which factors 
+Crystallisation is one of the oldest forms of phase separation used by humanity\cite{Schoen1956}, put simply, it is the formation and growth 
+of a new structured phase within a disordered bulk phase. This has 
+applications in a number of industries such as pharmaceuticals, food 
+production, and electronics \cite{Myerson2002}. Where the extraction 
+of dilute materials can help improve product quality while keeping 
+production costs low. The industrialisation of crystallisation has 
+allowed engineers to reliably and efficiently induce the crystal 
+formation within a bulk phase. However, while on a large scale 
+crystallisation is seemingly an understood physical process, just a 
+small amount of investigation into the literature reveals that at a 
+micro scale there is yet to be unifying theory that can accurately 
+explain the process of crystallisation \cite{Fu2021}. Of which there 
+two primary areas of focus, nucleation and crystal growth. The latter 
+focusing on how an already stable crystal grows and how it takes on its 
+final shape. Whereas the former is more concerned with which factors 
 contribute to its formation in order to control crystal growth.
 
-The focus of this research is partly based around investigating
-the impact of a focused electromagnetic field can influence the 
-nucleation process by inducing shear flow within the bulk phase. 
-This in hope that the localised EM field can be used to study 
-different phenomena in nucleation in order to develop a better
-understanding of the underlying mechanisms.
+The focus of this research is partly based around investigating the impact 
+of a focused electromagnetic (EM) field can influence the nucleation process 
+by inducing shear flow within the bulk phase. This in hope that the 
+localised EM field can be used to study different phenomena in nucleation 
+in order to develop a better understanding of the underlying mechanisms.
 
 \section{Nucleation}
-Nucleation is an example of a binary phase separation, 
-where a dilute phase is miscible in a bulk phase, more 
-often called the solute and solvent respectively. Because 
-of thermodynamics, the two can only remain in equilibrium while 
-below a specific concentration ($C_{eq}$) - below which 
-the chemical potential $\mu$ for a miscible solution 
-is greater than the potential required to separate 
-the two phases. Once $C_{eq}$ is exceeded there is a chemical
- potential difference driving the solution to separate the 
-two phases. Since different combinations of solute and solvent
-will have different equilibrium concentrations, researchers often 
-instead measure the ratio between the solute and solvent by using 
-'supersaturation', one form of measuring supersaturation is shown 
-below \cite{Mullin2001}:
+Nucleation is an example of a binary phase separation, where a dilute phase 
+is miscible in a bulk phase, more often called the solute and solvent 
+respectively. Because of thermodynamics, the two can only remain in 
+equilibrium while below a specific concentration ($C_{eq}$) - below which 
+the chemical potential $\mu$ for a miscible solution is greater than the 
+potential required to separate the two phases. Once $C_{eq}$ is exceeded 
+there is a chemical potential difference driving the solution to separate 
+the two phases. Since different combinations of solute and solvent will 
+have different equilibrium concentrations, researchers often instead measure 
+the ratio between the solute and solvent by using 'supersaturation', one 
+form of measuring supersaturation is shown below \cite{Mullin2001}:
 \begin{align}
 	\label{eq:supersaturation}
 	S(T) = \frac{C_{sol}}{C_{eq}(T)}
 \end{align}
 
-Where $C_{sol}$ is just the solute concentration, $C_{eq}(T)$
-is the equilibrium concentration at temperature $T$.
-While the solution remains supersaturated there is a 
-chemical potential driving force for the solute 
-to coalesce and separate from the solution as an ordered solid, 
-the first formation of the crystal is referred to as the 
-nucleus and understanding its formation of has been the 
-focus of researchers for decades now. Typically, for an 
-industrial crystallisation process the working principle 
-is based on controlling and manipulating the supersaturation
-of the system. 
+Where $C_{sol}$ is just the solute concentration, and $C_{eq}(T)$is the 
+equilibrium concentration at temperature $T$. While the solution remains 
+supersaturated there is a chemical potential driving force for the solute 
+to coalesce and separate from the solution as an ordered solid, the first 
+formation of the crystal is referred to as the nucleus and understanding its 
+formation of has been the focus of researchers for decades now. Typically, 
+for an industrial crystallisation process the working principle is based on 
+controlling and manipulating the supersaturation of the system. Of course 
+nucleation events in a variety of different situations which each require 
+their own classification. 
 
 \subsection{Primary \& Secondary nucleation}
-From an industrial perspective, the nucleation process can
-be broadly categorised into either primary of secondary 
-nucleation. The former being described as the formation of an
-initial nucleus within the bulk phase; absent of any external
-stimuli primary nucleation is considered stochastic and is typically
-undesirable for industrial applications where short and consistent 
-residence times are desirable. At a small scale one can estimate the 
-nucleation rate by making repeated measurements of sample solutions 
-and seeing how many have nucleated after a given time, giving us a 
-Poisson distribution.
+From an industrial perspective, the nucleation process can be broadly 
+categorised into either primary of secondary nucleation. The former 
+describes the formation of an initial nucleus within the bulk phase, 
+absent of any external stimuli. Primary nucleation is therefore considered 
+stochastic as there is no reliable means of predicting where a nucleus
+may form, or how long it will take. The only reliable indicator being 
+that higher supersaturations will result in faster nucleation rates. At 
+a small scale one can estimate the nucleation rate by making repeated 
+measurements of sample solutions and seeing how many have nucleated 
+after a given time, giving us a Poisson probability distribution.
 
 \begin{align}
 	P(t) = 1 - exp\left[-JV(t-t_g)\right] = \frac{M^*(t)}{M}
 \end{align}
 
-Where $J$ is the nucleation rate, $t_g$ is the 'growth time', $V$
-is the volume of the individual samples, and $M^*(t)$ \& $M$ are the 
-number of nucleated samples and the total number of samples used respectively.
-While this is useful for studying the effects of different parameters
-at a small scale, for industrial applications there are so many
-additional factors at play that can throw off this estimation.
+Where $J$ is the nucleation rate, $t_g$ is the 'growth time', $V$ is 
+the volume of the individual samples, and $M^*(t)$ \& $M$ are the number 
+of nucleated samples and the total number of samples used respectively.
+While this is useful for studying the effects of different parameters at 
+a small scale, for industrial applications there are to many external 
+factors for primary nucleation to be the only 
 
 In contrast, secondary nucleation is the result of a initial 
 seed crystal inducing further nucleation within the bulk solution
@@ -100,35 +90,39 @@ nucleation rate at an industrial scale.
 
 \section{Nucleation Theories}
 \subsection{Classical Nucleation Theory (CNT)}
-Sometimes referred to as 'Gibs Nucleation Theory' the 
-original theory was first formed from the works of Volmer 
-and Weber, and Frenkel \cite{Frenkel1939, Volmer1926}. 
-While initially it was more focused into describing droplet 
-formation in condensing vapours it was extrapolated to describe
-crystallisation. The central premise of classical theory 
-is that nucleation occurs stochastically throughout the bulk
-phase due to collisions between individual solute molecules,
-ions, or atoms; at the same time the bulk phase is resistant
-to the formation of a new phase. The competition between
-these random collisions and the bulk solution can be used to 
-predict the probability of a newly formed nucleus.
+Sometimes referred to as 'Gibs Nucleation Theory' the original theory 
+was first formed from the works of Volmer and Weber, and Frenkel 
+\cite{Frenkel1939, Volmer1926}. While initially it was more focused 
+into describing droplet formation in condensing vapours it was 
+extrapolated to describe crystallisation. The central premise of 
+classical theory is that nucleation occurs stochastically due to 
+collisions between individual solute molecules, ions, or atoms. At the 
+same time the bulk phase is resistant to the formation of a new phase. 
+The competition between these random collisions and the bulk solution 
+can be used to predict the probability of a newly formed nucleus.
  
 Consider a supersaturated solution, after some time enough individual
-sub units collide, forming a nucleus of volume $4\pi r^3/3$. 
-The newly formed phase has a lower chemical potential than the 
-surrounding solution, reducing the free energy of the system; 
-at the same time, the formation of a new interface is resited 
-by the bulk phase due to surface tension. The net free energy 
-of the system for a nucleus of radius $r$ is given as \cite{Karthika2016}:
+sub units collide, forming a nucleus of volume $4\pi r^3/3$. The newly 
+formed phase has a lower chemical potential than the surrounding solution, 
+reducing the free energy of the system. Simultaneously, the formation of 
+a new interface is resited by the bulk phase due to surface tension. 
+The net free energy of the system for a nucleus of radius $r$ is given 
+as \cite{Karthika2016}:
 \begin{align}
-	\Delta G = \frac{-4\pi r^3}{3v}k_BT\ln(S) + 4\pi r^{2}\sigma_{inf} 
+	\Delta G = \frac{-4\pi r^3}{3v}k_BT\ln(S) + 4\pi r^{2}\sigma_{inf}
+	\label{eq:CNT} 
 \end{align}
 
-Where $v$ is the approximate volume of an individual molecule, $k_B$
-is the Boltzmann constant, and $\sigma_{inf}$ is the interfacial 
-tension of the bulk solution. Plotting the free energy of the system
-against nucleus size reveals a critical size above which the gain 
-in free energy exceeds the interfacial tension. 
+Where $v$ is the approximate volume of an individual molecule, $k_B$ is 
+the Boltzmann constant, and $\sigma_{inf}$ is the interfacial tension of 
+the bulk solution. This assumes that the nucleus will have a spherical 
+morphology so that the surface tension $\sigma_{inf}$ is a scalar value. 
+Looking at \eqref{eq:CNT} suggests that there must be some critical size 
+$r$ where the free energy gain from the nucleus exceeds the surface tension 
+of the surrounding fluid. Plotting the free energy of the system against 
+nucleus size reveals a critical size above which the gain in free energy 
+exceeds the interfacial tension. Furthermore it shows how increasing the 
+supersaturation of the system reduces said barrier. 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\linewidth]{Free_Energy_Diagram.png}
@@ -141,11 +135,10 @@ in free energy exceeds the interfacial tension.
 	     \label{fig:free_energy}
 \end{figure}
 
-The maximum value of $\Delta G_{tot}$ is the free energy barrier 
-that any newly formed nucleus needs to overcome in order to stabilise.
-The nucleation rate (the volume of new crystalline material formed per
-unit time), is therefore commonly defined as being dependent on the 
-energy barrier $\Delta G^*$:
+The maximum value of $\Delta G_{tot}$ is the free energy barrier that any 
+newly formed nucleus needs to overcome in order to stabilise. The nucleation 
+rate (the volume of new crystalline material formed per unit time), is 
+therefore commonly defined as being dependent on the energy barrier $\Delta G^*$:
 \begin{align}
 	J = A \ exp \left[-\frac{\Delta G^*}{k_BT} \right]
 \end{align}
@@ -311,7 +304,7 @@ attempt to introduce a trappable object into the solution, the trapping
 potential has been used to influence the growth of a crystal front 
 \textcolor{red}{[ ]}.
 
-\subsection{Optical Rotation}
+\subsection{Optical Torque}
 For any electromagnetic field it is possible to transfer both linear and 
 angular momentum \cite{Beth1936MechanicalDA}; more accurately the field 
 is said to have both orbital and spin momentum. Though there is some 
@@ -374,7 +367,7 @@ elongated along one major axis; the go to particle shape is a silica dimer
 adhesion. Using a silica dimer research groups have achieved a rotation 
 frequency in the realm of several GHz \cite{Ahn2018} in a vacuum. 
 
-\subsection{Shear induced Nucleation}
+\section{Shear induced Nucleation}
 It has long been known that fluid shear rate plays a role in influencing
 nucleation; however, the exact relationship between shear rate and nucleation
 rate has only been recently understood for specific solutions. Theoretical research 

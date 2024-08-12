@@ -202,8 +202,8 @@ due to its low stability \cite{KonopackaLyskawa2019}. However unlike its
 other polymorphs of calcite and aragonite, when synthesised vaterite will 
 typically form small spherical particles making them ideal for optical 
 trapping and rotation. Synthesis of vaterite micro spheres requires fine 
-control of the nucleation process in order to maintain polymorphic stability, 
-though for the purposes of optical rotation the exact polymorph is not as 
+control of the crystal growth process in order to maintain polymorphic stability. 
+Though for the purposes of optical rotation the exact polymorph is not as 
 important as its morphology as all 3 polymorphs are inherently birefringent. 
 
 Vaterite samples where made by the first preparing equal amounts of 
@@ -244,12 +244,11 @@ while the Lorentzian can be loosely fitted to the end tail there exists
 no current model for describing the power spectra. The closest approximation
 to this was conducted by \cite{Yogesha2012} where they describe the 
 rotational motion of ellipsoidal polystyrene particles. The critical 
-assumption being that the particle perfectly rotates in the $x-y$ plane; 
-however it has long been suspected that birefringent microspheres 
-experience torques outside of the $x-y$ plane \cite{Volpe2023} making 
-it very difficult to characterise the behaviour of rotating birefringent 
-microspheres without a proper understanding of the full optical torque 
-being applied to it.
+assumption being that the particle perfectly rotates in the $x-y$ plane. 
+It has long been suspected that birefringent microspheres experience torques 
+outside of the $x-y$ plane \cite{Volpe2023} making it very difficult to 
+characterise the behaviour of rotating birefringent microspheres without a 
+proper understanding of the full optical torque being applied to it.
 
 \subsection{Liquid Crystal Rotors}
 Liquid crystals are an intriguing example of materials with mixed phase
@@ -324,7 +323,7 @@ tangential rotation speed is calculated via:
 
 Where $d$ is the particle diameter, $\omega$ is the rotation frequency
 reported by the QPD, and $r$ is the distance from the particle's centre. 
-Using Eq.\ref{eq:birefringent_speed} we computed the fluid flow radiating
+Using Eq.\ref{eq:birefringent_speed} we calculated the fluid flow radiating
 outward from the centre of the sphere. The shear rate can then be computed
 as the partial derivative fluid flow (assuming shearing is generated purely
 by the flow field):
@@ -334,7 +333,7 @@ by the flow field):
 \end{align}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Estimation of fluid flow around micro-rotors}
+\subsection{Estimation of fluid flow around micro-rotors in bulk fluid}
 First we determined the upper rotation rate that could be achieved 
 using both Vaterite and liquid crystal spheres. Vaterite samples were 
 synthesised according to \cite{Parkin2009, Bishop2004} (see sec.~
@@ -350,10 +349,10 @@ was estimated using eq.\eqref{eq:birefringent_shear} assuming the spheres
 were operating in the bulk fluid and away from any boundaries.
 \begin{figure}[h!]
 	\centering
-	\begin{subfigure}{0.82\linewidth}
+	\begin{subfigure}{0.75\linewidth}
 		\includegraphics[width=\linewidth]{vaterite_fluid_flow.png}
 	\end{subfigure}
-	\begin{subfigure}{0.82\linewidth}
+	\begin{subfigure}{0.75\linewidth}
 		\includegraphics[width=\linewidth]{vaterite_shear_rate.png}
 	\end{subfigure}
 	\caption{(Top) Fluid flow radiating out from the surface of a rotating 
@@ -377,10 +376,20 @@ The fastest reported rotation rate found during this project was by
 \cite{Arita2016} that achieved a rotation rate of $5\ kHz$, this is plotted 
 on Fig~\ref{fig:vaterite_shear} as the dotted line. Even at that extreme a 
 rotation rate the region in which nucleation is at its optimal likelihood is 
-only $20\ nm$ wide. This suggests that a more complicated fluid flow 
-arrangement is required in order to achieve the necessary shear rate and over 
-a larger volume of fluid.
+only $20\ nm$ wide. If instead the micro-rotor was within the vicinity of a
+solid boundary, the shear rate would be enhanced due to the no-slip boundary
+condition.
 
+\section{Micro-rotors in Supersaturated solution}
+If rotation rates in bulk solution are insufficient then a micro-rotor rotating
+close to an artificial barrier may be able to improve the shear rate of the 
+surrounding fluid. Of course placing a solid barrier in a supersaturated fluid
+may well encourage nucleation somewhere on the surface outside of our control.
+Instead we chose to use the droplet edge of the supersaturated solution, while
+not a hard barrier per say, the molecular mobility close to the droplet edge is
+reduced due to surface tension. Furthermore, it has been shown through multiple 
+results that nucleation is enhanced at the air-solution interface \cite{Liao2022,
+Yuyama2010, Sugiyama2009}. 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\linewidth]{vaterite_diagram.pdf}
@@ -394,16 +403,18 @@ a larger volume of fluid.
 		itself (see Eq.~\ref{eq:birefringent_speed}).}
 \end{figure}
 
-After a period of ten minutes if no nucleation event was 
-observed the particle was released and another particle was 
-trapped. Due to the increased viscosity of the supersaturated 
-solution and the proximity to the droplet edge, as previous works
-have only seen nucleation near the solution-air interface \cite{Gowayed2021, 
-Liao2022, Walton2018}, the observed rotation rate was rather low or 
-non-existent, the results are tabulated below:
+Supersaturated solutions of glycine and water were prepared and stored in
+an incubator prior to use. When ready to be studied $15\ \mu L$ was pipetted 
+into the solution and $20\ \mu L$ was pipetted onto the cover slip. A vaterite
+sphere was located, trapped, and moved as close to the droplet edge as possible.
+After measuring the microsphere's rotational frequency the sphere was left to
+rotate for a period of ten minutes after which, if no nucleation event was 
+observed the particle was released. The overall results are catalogued in 
+table~\ref{tab:Nucleation}
 \begin{table}[h!]
 	\centering
 	\caption{Results from rotating vaterite within supersaturated solution of $H_2O$ and Glycine. Solubility concentration for Glycine at $16^\circ$ was $C^*=0.2016g/g$}
+	\label{tab:Nucleation}
 	\begin{tabular}[width=\textwidth]{|c|c|c|c|}
 		\hline
 		Super Saturation & Particle radius [$\mu$] & $\omega$ [Hz] & Nucleation [$\checkmark/\times$]\\
