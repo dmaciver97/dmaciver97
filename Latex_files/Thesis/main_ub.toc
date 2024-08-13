@@ -1,3 +1,4 @@
+\babel@toc {english}{}\relax 
 \contentsline {chapter}{Abstract}{ii}{chapter*.1}%
 \contentsline {chapter}{List of Figures}{vi}{chapter*.2}%
 \contentsline {chapter}{List of Tables}{xiv}{chapter*.3}%

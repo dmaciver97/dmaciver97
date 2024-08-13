@@ -23,7 +23,7 @@
 \usepackage{mathrsfs}
 \usepackage{color}
 \usepackage[hidelinks]{hyperref}
-\usepackage{cite}
+%\usepackage{cite}
 \usepackage{enumitem}
 \usepackage{epsfig}
 \usepackage{caption}
@@ -35,6 +35,14 @@
 %\usepackage{fontspec}
 %\setmainfont{times}
 %\usepackage{bookman}
+
+\usepackage[
+backend=biber,
+bibstyle=numeric,
+citestyle=numeric,
+minbibnames=3, maxbibnames=3,
+]{biblatex}
+\addbibresource{../../thesis_bib.bib}
 
 
 % Page Margins - Strath Requirement
@@ -71,8 +79,7 @@
 \include{main}
 
 % \bibliographystyle{ieeetran}
-\bibliographystyle{abbrv}
-\bibliography{../../thesis_bib}
+\printbibliography
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

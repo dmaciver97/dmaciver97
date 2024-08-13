@@ -23,7 +23,7 @@
 \usepackage{mathrsfs}
 \usepackage{color}
 \usepackage[hidelinks]{hyperref}
-\usepackage{cite}
+%\usepackage{cite}
 \usepackage{enumitem}
 \usepackage{epsfig}
 \usepackage{caption}
@@ -34,6 +34,17 @@
 \usepackage{sidecap}
 % Page Margins - Strath Requirement
 \usepackage[left=4cm,right=2.5cm,top=2cm,bottom=4cm,includehead,includefoot,headheight=15pt]{geometry}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage[
+backend=biber,
+bibstyle=numeric,
+citestyle=numeric,
+minbibnames=3, maxbibnames=3,
+]{biblatex}
+\addbibresource{thesis_bib.bib}
 
 % Page Headers
 \usepackage{fancyhdr}
@@ -154,7 +165,6 @@ I would like to acknowledge...
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \addcontentsline{toc}{chapter}{Bibliography}
-\bibliographystyle{abbrv}
-\bibliography{thesis_bib}
+\printbibliography
 
 \end{document}
