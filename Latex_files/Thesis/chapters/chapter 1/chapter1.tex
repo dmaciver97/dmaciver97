@@ -23,7 +23,7 @@
 \usepackage{mathrsfs}
 \usepackage{color}
 \usepackage[hidelinks]{hyperref}
-\usepackage{cite}
+%\usepackage{cite}
 \usepackage{enumitem}
 \usepackage{epsfig}
 \usepackage{caption}
@@ -32,6 +32,14 @@
 
 % Page Margins - Strath Requirement
 \usepackage[left=4cm,right=2.5cm,top=2cm,bottom=4cm,includehead,includefoot,headheight=15pt]{geometry}
+
+\usepackage[
+backend=biber,
+bibstyle=numeric,
+citestyle=numeric,
+minbibnames=3, maxbibnames=3,
+]{biblatex}
+\addbibresource{../../thesis_bib.bib}
 
 % Page Headers
 \usepackage{fancyhdr}
@@ -61,7 +69,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \include{main}
-\bibliographystyle{abbrv}
-\bibliography{../../thesis_bib}
+\printbibliography
 
 \end{document}
