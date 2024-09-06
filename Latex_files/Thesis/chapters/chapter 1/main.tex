@@ -132,7 +132,7 @@ supersaturation of the system reduces said barrier.
 		     (green) and the interfacial free energy cost (orange). Dotted
 		     lines are for a higher supersaturation than the solid lines,
 		     the interfacial energy cost is independent of supersaturation.}
-	     \label{fig:free_energy}
+	\label{fig:free_energy}
 \end{figure}
 
 The maximum value of $\Delta G_{tot}$ is the free energy barrier that any 
@@ -192,11 +192,9 @@ For some binary mixtures the supersaturation is heavily dependent on
 the solution temperature, therefore a simple method of producing crystals 
 is by cooling the mixture to induce crystal formation. At ambient 
 temperatures the solute concentration is too high to be fully incorporated
-into the solution ($S\gg 1$), after heating however the solute is fully dissolved
-into the solution ($S<1$). Now as the mixture is allowed to cool to room
-temperature the supersaturation will increase until crystal formation begins,
-the rate of cooling drastically influencing the size and number of crystals
-produced.
+into the solution ($S\gg 1$), after heating however the solute is fully 
+dissolved into the solution ($S<1$). Now as the mixture is allowed to cool 
+to room temperature the supersaturation will increase until crystal formation begins, the rate of cooling drastically influencing the size and number of crystals produced.
 
 If $dT/dt$ is high then the final product will consist of large 
 crystal and be low in number, as the nucleation rate is directly related
@@ -226,6 +224,17 @@ to allow the solvent evaporate and separate from the solute. Depending on the
 total volume of solvent to evaporate this process can take on time scale of 
 several days to complete.
 
+\subsection{Anti-solvent Crystallisation} 
+Anti-solvent crystallisation is a more involved separation method ,
+by adding a new solvent that is miscible with the old solvent but is 
+immiscible with the solute, the solute's effective solubility is decreased.
+As such, the solution becomes supersaturated. This has the trade off in that the overall mass ratio between the solvent and solute is now lower. Careful
+measurement of the anti-solvent is required in order to ensure that the 
+decrease in solubility is not out matched by the decrease in mass ratio.
+Anti-solvent crystallisation is not as common due to the fact that not all
+solutions will have an ideal anti-solvent candidate.
+
+
 
 \section{Optical Tweezers}
 \subsection{Background}
@@ -245,71 +254,122 @@ predictable behaviour of light, optical tweezers have become essential for
 measuring and exerting precise forces on the magnitude of pico-newtons 
 allowing one to probe the material properties of the smallest materials. 
 
+\subsection{Gaussian Beams}
+A Gaussian Beam is a simplistic approximation of a laser beam, in short
+it is an unbounded plane wave whose intensity of the electromagnetic 
+field falls off from the centre similar to a normal distribution. This 
+is perfectly fine for beams with a divergence angle of $0^{\circ}$, but 
+later studies into focused beams has shown that the assumption of a 
+Gaussian intensity profile is inaccurate. A study conducted by Lock and Gouesbet found that as the Gaussian beam was focused the fall off in 
+the electric field would consequentially induce additional electromagnetic fields \cite{Lock1994}. As a result the shape of the beam profile diverges from a Gaussian profile for focused beams. Regardless, for optical trapping experiments it is useful to approximate a Gaussian beam as many descriptions
+of lasers are simply combinations of plane waves (with varying amplitudes
+and wave vectors). More information on electromagnetic theory is covered in 
+chapter 2 but for now any mention of a focused laser can be thought of as a
+Gaussian beam, unless specified otherwise. 
+
 \subsection{Literature related to laser induced nucleation}
 From as early as 1996 it has been known that laser irradiation is a viable
-method of inducing nucleation within a supersaturated solution \cite{Garetz1996}, 
-the first reported case was notable as it used a 1.064 $\mu m$ laser meaning 
-it was unlikely to be a photo-chemical reaction but rather a physical one. 
-Future research has found nucleation can be induced by 1 of 3 routes involving 
-direct laser induction: firstly, Non-photochemical laser induced nucleation 
-(NPLIN) where the solution is irradiated with a pulsed laser \cite{Garetz1996,
-Garetz2002,Sun2006}, several papers have debated the exact mechanism that 
-induces NPLIN \cite{Garetz2002, Knott2011}. Two suggested hypothesis are: 
-an optical Kerr effect, where the solute molecules are aligned to lower the 
-nucleation barrier \cite{Knott2011}; a dielectric polarisation effect, in 
-which solute clusters are stabilised within the electric field which drastically 
-increases the likelihood of nucleation\cite{Alexander2008}. Both hypothesise 
-have their limitations and there has yet to be a single theory that explains 
-NLPIN thoroughly. In either case the mean pulse intensity needs to be kept 
-relatively low (on the order of $0.1-0.01 GW/cm^2$), as high intensity pulses 
-lead to a completely different nucleation mechanism.
+method of inducing nucleation within a supersaturated solution
+\cite{Garetz1996}. The first reported case was notable as it used a 
+1.064 $\mu m$ laser, the glycine solutions would appear transparent to
+such a laser which would suggest there was no photo-chemical reaction.
+Later studies into this phenomena found that the laser polarisation 
+can influence the polymorph produced. With circularly polarised light 
+producing $\alpha$-glycine and linearly polarised light forming
+$\gamma$-glycine \cite{Garetz2002}. Future research has found nucleation 
+can be induced by 1 of 3 routes.
 
+\subsubsection{Non-Photochemical Laser Induced Nucleation}
+Non-photochemical laser induced nucleation (NPLIN) involves irradiating 
+a solution with a pulsed laser \cite{Garetz1996,Garetz2002,Sun2006}. 
+The laser itself does not have to be heavily focused, instead irradiating
+a large region of the solution all at once. The choice of laser is of
+particular importance; with nucleation probability changing depending 
+on the wavelength \cite{Kacker2017}. In addition, the choice of solute will effect the setup, not only because some solute's are unaffected, but also because there is a minimum laser threshold before nucleation is observed 
+\cite{Garetz2002}. Several papers have debated the exact mechanism that 
+induces NPLIN \cite{Garetz2002, Knott2011}. A suggested theory to this is 
+an optical Kerr effect, for anisotropically charged solute molecules the 
+electric field can reorient them to match the propagation direction 
+\cite{Garetz2002}. If enough molecules are co-aligned the free energy 
+barrier is reduced to allow for ambient nucleation \cite{Knott2011}. 
+An alternative theory is the dielectric polarisation effect, in 
+conditions that are unfavourable to cluster formation the polarising 
+effect can stabilise the clusters \cite{Alexander2008}. As the cluster  concentration rises so does the likelihood of nucleation \cite{Vekilov2010}. 
+Both theories are similar to one another but where the optical Kerr theory
+is limited to anisotropic solute molecules, the direct polarisation 
+theory is more flexible. Regardless both theories struggle to explain
+why the phenomena is not observed in all nucleation systems 
+\cite{Korede2023}, such as acetamide which is similar to urea which 
+does nucleate when irradiated \cite{Ward2016}. One of the benefits of 
+NPLIN is that since the pulses are relatively low in their intensity 
+they can be fired off quickly in succession, allowing for continuos 
+crystallisation set ups. Overall, the NPLIN phenomena needs further 
+research to properly describe its effects. The mean pulse intensity 
+needs to be kept relatively low (on the order of $0.1-0.01 GW/cm^2$), 
+as high intensity pulses lead to a completely different nucleation 
+mechanism.
+
+
+\subsubsection{High Intensity Laser Induced Nucleation}
 High intensity laser induced nucleation (HILIN), where the pulse intensity 
 is on the order of several $PW/cm^2$ is far simpler a mechanism to explain 
 in comparison to NPLIN. The production of nuclei can be wholly associated 
 to a cavitation process within the target solution, where the laser focus 
-results in thermo-cavitation and the subsequent pressure change leads to
-a nucleation event around the focus of the laser \textcolor{red}{[ , , ]}. 
-There is still not a general consensus on how cavitation influences the 
-local supersaturation \textcolor{red}{[ , ]}, nor is there a clear 
-understanding of what properties of the crystal can be controlled 
-\textcolor{red}{[ , ]}. It has been suggested that in theory any solution 
-can undergo HILIN \textcolor{red}{[ ]}, proving such a theory requires a 
-strong understanding of the phenomena both before and after cavitation 
-occurs.  
+results in thermo-cavitation and the subsequent pressure wave leads to
+a nucleation event around the focus of the laser \cite{Yoshikawa2005, 
+Soare2011, Barber2019}. What remains in question is both how the physical 
+properties (size, polymorph, etc) are influenced by the cavitation process, 
+and how the pressure change triggers nucleation. The former has already 
+been investigated; by adjusting the focal position Ikeda \textit{et al} 
+could control the polymorph of indomethacin \cite{Ikeda2015}, this is not 
+a universal method however, as it has also been shown that laser power can 
+influence the crystal polymorph \cite{Wang2010}. The latter is a tricky 
+task to address due to the fact that these cavitation bubbles form and collapse in less than $100\ \mu s$. Using fluorescence dyed proteins, researchers were able to observe a sudden spike in fluorescence just 
+as the cavitation bubble began to collapse, they suggested that due 
+to the collapse of the cavitation bubble the protein clusters are brought together at the lasers focal point. However, while the fluorescence 
+imaging indicates a local concentration increase it is difficult to 
+quantify this change depending on the size of the bubble \cite{Korede2023}. It
+has been suggested that in theory any solution can undergo HILIN \cite{Korede2023}, but proving such a theory requires a clear 
+understanding of the phenomena both before and after cavitation occurs. Current research aims to combine experimental research with computer 
+simulations to develop a universal theory, with the hope that this could 
+also be related to NPLIN.   
 
+\subsubsection{Trapping Induced Nucleation}
 Lastly, there is trapping induced nucleation, this is where optical tweezers 
-come into play, the optical trap has been shown to have different effects 
-on supersaturated solutions depending on where it has been focused. When 
-focusing on the cover slip, supersaturated solutions of glycine and $D_2O$ 
-were shown to create a dense liquid droplet of glycine and water 
-\textcolor{red}{[ , ]}, applying DLS analysis showed that the dense liquid 
-region was populated by clusters that would consolidate together upon being 
-focused by the optical trap \textcolor{red}{[ ]}. Molecular simulations of 
-glycine solutions showed that these clusters are unstable when using pure 
-glycine below the saturation point \textcolor{red}{[ ]} suggesting that the 
-clusters are formed due to glycine reaction products. When the optical trap 
-was moved from the cover slip to the air-solution interface nucleation would 
-occur before a dense liquid region could form \textcolor{red}{[ ]}. Repeated 
-experiments where the laser is focused on the air-solution interface have 
-lead to a variety of different nucleation events. In some instances the 
-nucleation occurs spontaneously after a short period of time \textcolor{red}{[ ]}; 
-whereas allowing a solution to age results in the formation of amorphous 
-precursors that when irradiated will nucleate immediately \textcolor{red}{[ ]}. 
-The precursors are only seen when the solution is irradiated by an optical tweezer 
-and the growth rate can be controlled somewhat by varying the laser power 
-\textcolor{red}{[ ]}. Notably the only work has been done with simply 
-irradiating the solution with a trapping potential, there has not been an 
-attempt to introduce a trappable object into the solution, the trapping 
-potential has been used to influence the growth of a crystal front 
-\textcolor{red}{[ ]}.
+come into play. Due to the radiation pressure created by the focused beam,
+it is possible to manipulate the solute, this was demonstrated with amino
+acids such as glycine \cite{Tsuboi2009}. Whether or not a crystal forms is 
+due to the location of the laser focus. When focusing on the cover slip, supersaturated solutions of glycine and $D_2O$ were shown to create a dense liquid droplet of glycine and water \cite{Yuyama2010, Yuyama2012}. The dipole moment of the glycine molecules is too small to be influenced by the optical trap, as such it would suggest that larger aggregates are being manipulated. Applying DLS analysis to the dense liquid region showed that it was populated by clusters that would consolidate together upon being focused by the 
+optical trap \cite{Gowayed2021}. Molecular simulations of glycine solutions showed that these clusters are unstable when using pure glycine below the saturation point suggesting that the clusters are formed due to glycine reaction products \cite{Sweatman2022}. When the optical trap is moved from the cover slip to the air-solution interface, nucleation would occur before a dense liquid region could form \cite{Yuyama2010}.
+Repeated experiments where the laser is focused on the air-solution interface have lead to a variety of different nucleation events. In some instances the nucleation occurs spontaneously after a short period of time \cite{Yuyama2010}. Whereas allowing a solution to age results in the formation of amorphous precursors that when irradiated will nucleate immediately \cite{Liao2022}. The precursors are only seen when the solution is irradiated by an optical tweezer and the growth rate can be controlled somewhat by varying the laser power \cite{Liao2022}. The reason why nucleation is only seen at the air-solution interface is due to the limited molecular mobility close to the interface. Often tweezing experiments will use a hydrophilic 
+coating to minimise the height of the solution droplet and further limit
+the molecular mobility \cite{Yuyama2012, Gowayed2021}.
+
+Walton and Wynne discussed a plausible model for how the tweezer focus
+could result in a nucleation event. Put simply, when the laser is focused
+at the solution the radiation pressure draws in solute material, creating 
+a concentrated region of solute. This also creates a depleted region 
+around the focus and raises the local temperature. When the laser is 
+turned off the depleted region around the focus quickly cools back to the 
+ambient temperature. This sudden cooling allows for nucleation to occur
+just outside the focus.  
+
+Laser induced nucleation has the potential to be a viable method for 
+\textit{in-situ} studying of nucleation events. Using high numerical 
+aperture lenses one can localise the nucleation event to a specific 
+region of the solution. The current issue is that the mechanism behind
+laser induced nucleation is not fully understood, as such it is rather
+difficult to modify the laser for different solution parameters. Instead
+it may be more effective to manipulate the solution using trapped particles.
+An common method is by apply a torque to a trapped particle, creating 
+a micro-rotor that can can generate fluid flow.
 
 \subsection{Optical Torque}
-For any electromagnetic field it is possible to transfer both linear and 
+It has long been known that electromagnetic fields can transfer linear and
 angular momentum \cite{Beth1936MechanicalDA}; more accurately the field 
 is said to have both orbital and spin momentum. Though there is some 
 debate on how to decompose the total momentum into these two components 
-\cite{Bruce2020, Svak2018}, for this thesis we do not need to calculate 
+\cite{Bruce2020, Svak2018}, for this project we do not need to calculate 
 the exact quantities and will instead look at the broader effects of both 
 components. Orbital angular momentum arises from the shape of the wavefront 
 of the particular field in question; for simple Gaussian beams the wavefronts 
@@ -328,87 +388,134 @@ it does not aid in the transport of energy directly \cite{Bliokh2014} and
 so cannot be directly observed in some cases despite being non-zero. This 
 paradox is resolved by representing the wave as an array of spin momentum 
 loops that all together cancel one-another out when the medium is homogeneous.
-Spacial inhomogeneities cause these spin loops to non longer be equal, resulting
+Spacial inhomogeneities cause these spin loops to no longer be equal, resulting
 in non-zero spin density, anisotropic mediums (such as birefringent crystal 
-lattices) experience a transfer of spin angular momentum allowing for optical
-torque transfer. It has even been shown that in the case of homogeneous spheres, 
-the spin component of a focused beam can result in additional orbital angular
-momentum via spin-to-orbital conversion \cite{Yevick2017}. 
+lattices) experience a transfer of spin angular momentum, imparting an optical
+torque.
 
 Birefringence is a material property often seen in crystalline materials, 
-if the crystal lattice has a different structures when viewed at different 
-orientations then light will be refracted differently depending on its 
-polarisation. For circularly polarised light the inhomogeneity results in 
-a high degree of SAM being transferred to the target object \cite{Parkin2009,
-Arita2016}, this has been exploited to rotate microspheres as fast as 1000 Hz 
-while suspended in a bulk medium \cite{Arita2016} as well as a means of 
-measuring the local temperature and shear response of said medium 
-\cite{Millen2014, RodriguezSevilla2018}. Calculating the optical torque 
-applied to a birefringent material is given via:
-
+if the crystal lattice has different refractive indices for varying 
+polarisations of light. For circularly polarised light this inhomogeneity 
+results in a high degree of SAM being transferred to the target object \cite{Parkin2009, Arita2016}, this has been exploited to rotate microspheres 
+as fast as 1000 Hz while suspended in a bulk medium \cite{Arita2016} as well 
+as a means of measuring the local temperature and shear response of said 
+medium \cite{Millen2014, RodriguezSevilla2018}. Calculating the optical 
+torque applied to a birefringent material is given via:
 \begin{equation}
 	\label{eq:opt_torque}
 	\begin{aligned}
-		\tau_{opt} =& -\frac{\epsilon}{2\omega_{laser}}E_0^2sin(kd(\Delta n))cos2\theta sin2\phi \\ &+  \frac{\epsilon}{2\omega_{laser}}E_0^2 (1-cos(kd(\Delta n))sin2\phi)
+		\tau_{opt} =& -\frac{\epsilon}{2\omega_{laser}}E_0^2sin(kd(\Delta n))cos2\theta sin2\phi 
+		\\ &+  \frac{\epsilon}{2\omega_{laser}}E_0^2 (1-cos(kd(\Delta n))sin2\phi)
 	\end{aligned}
 \end{equation}
 
-Where $\theta$ is the angle between the particle's long axis and the Poynting
-vector of the local EM field, and $\phi$ is the phase shift in the EM field.  
-The first term represents the 'orientational' torque which is due to the target 
-particle being aligned along the EM field, when aligned $\theta=0$ meaning 
-the entire term is negligible for particle's with a stable orientation. The 
-second term is due purely to the polarisation of the optical trap, for 
-circularly polarised light $\phi=\pi/4$ thus maximising the torque transferred 
-to the target particle. Birefringence can also be induced if the target 
-particle has an anisotropic shape, in particular if the particle shape is 
-elongated along one major axis; the go to particle shape is a silica dimer 
-(two spheres tangentially attached) due to silica's stability and strong 
-adhesion. Using a silica dimer research groups have achieved a rotation 
-frequency in the realm of several GHz \cite{Ahn2018} in a vacuum. 
+Where $\theta$ is the angle between the particle's long axis and the 
+polarisation vector of the local EM field, and $\phi$ is the phase shift 
+in the EM field. The first term represents the 'orientational' torque which 
+is due to the target particle being aligned with the EM amplitude, when 
+aligned $\theta=0$ meaning the entire term is negligible for particle's with a stable orientation. For sphere's this is always the case as they lack a 
+distinctive major axis. The second term is due purely to the polarisation 
+of the optical trap, for circularly polarised light $\phi=\pi/4$ thus 
+maximising the torque transferred to the target particle. Eq.~\eqref{eq:opt_torque} is only applicable for particles with a known
+birefringence, but there are other mechanisms that result in optical torque.
+
+A common example is shape induced birefringence. If a particle has an 
+anisotropic shape, it is more susceptible to being polarised along its 
+longer axis than its shorter axis. Consider, for example, an ellipsoid 
+elongated along one of its primary axis' ($r_z > r_x = r_y$). In a 
+plane polarised beam such a particle will align with the polarisation
+vector. Therefore, the particle will rotate as angular momentum is 
+transferred along its long axis. The common feature for shape induced
+birefringence is that all of these particles are aligned in the plane
+of polarisation. Often the optical torque experienced is far greater 
+than similar spherical particles that are birefringent. Currently 
+spherical dimers are being rotated in vacuums to measure quantum forces
+and torques \cite{Ahn2018, Reimann2018}. There are some cases alternative 
+cases where particles are rotated while not being aligned in the plane 
+of the polarisation. However in these cases their shape is often 
+specifically engineered to scatter light either clockwise or 
+counter-clockwise \cite{Higurashi1994}. 
+
+Other examples of optical torque is when an anisotropic particle is 
+aligned with the beam's direction of propagation (in which case $\theta
+=\pi/2$ and the first term disappears). This is analogous to an optically trapped sphere, where alongside a restoring force the particle also 
+experiences a restoring torque. This seemingly random rotational motion
+is referred to as libation \cite{Bruce2020}, often in typical suspension
+trapping situations (where the particle is suspended in a fluid) the 
+translational motion is washed out by the translational motion. As such, 
+many experiments elect to trap in low pressure environments to precisely 
+measure the optical torque being exerted by the optical trap \cite{Ahn2018}.
+This has lead to experiments to try and achieve '0 kelvin' motion, where
+by trapping a silica dimer they were able to restrict its motion using 
+3 optical traps simultaneously. Despite this, they found that the dimer's
+rotational motion about its long axis could not be controlled leading to
+the undesired rotational modes \cite{Bang2020}.
+
+The detection and measurement of optical torque is still a field of intense
+research, not only does it have potential to understand quantum fluctuations
+in a particle's motion but also allows for the creation of more effective
+micro-rotors. The latter being especially pertinent for understanding the 
+behaviour of fluids experiencing localised shearing.
 
 \section{Shear induced Nucleation}
 It has long been known that fluid shear rate plays a role in influencing
 nucleation; however, the exact relationship between shear rate and nucleation
-rate has only been recently understood for specific solutions. Theoretical research 
-into shear induced nucleation suggests that there should be a slight increase 
-in the nucleation rate at low shear rates, reaching a maximum increase in 
-nucleation rate, and then at higher shear rates the nucleation rate begins 
-to drop off. This has been shown theoretically for both simple colloidal
-\cite{Mura2016,Debuysschere2023,Richard2015} and ice crystal formation 
-\cite{Goswami2020}; however, no experimental work into these systems has 
-been conducted to prove this is the case.  There is some experimental 
-evidence for this phenomena in simple salt and protein solutions - though 
-the authors emphasise that mechanical agitation cannot be ruled out - 
-there has not been a exhaustive study into the shearing effects apart from 
-in glycine solutions. In \cite{Debuysschere2023} it was found that a shear 
-rate of around $3000\ s^{-1}$ was the maximum shear rate that would yield 
-the highest nucleation rate. Using the theoretical model established in 
-\cite{Mura2016,2001} which modifies the CNT to account for the effects of 
-a nucleus undergoing shearing, accounting for the fact that a nucleus' 
-growth is undergoing competition between flow-mediated molecular transport 
-and the strain applied by the flow field which inhibits the growth of the 
-nucleus. There central conclusion (from both the theoretical and experimental 
-results) is that there is an optimal shear rate in which the nucleation 
-rate is maximised. However, a question that arises from this result, if 
-there is a optimal shear rate in which molecular transport is maximised 
-and strain is minimised, then surely there should also be a shear rate 
-in which the molecular transport and strain are equal - allowing one to 
-suspend a nucleus at a constant radius. In this scenario, the molecular 
-transport would prevent the nucleus from dissolving, but the strain would 
-prevent the nucleus from growing. This however would require one to be 
-able to apply a continuous shear rate to a targeted nucleus with high 
-precision, there is also no model for an individual nucleus undergoing growth.
+rate has only been recently understood for specific solutions. Theoretical research into shear induced nucleation suggests that there should be a 
+slight increase in the nucleation rate at low shear rates, reaching a 
+maximum increase in nucleation rate, and then at higher shear rates the 
+nucleation rate begins to drop off. 
 
-\section{Aims and Objectives}
+This has been shown theoretically for both simple colloidal \cite{Mura2016,
+Debuysschere2023,Richard2015} and ice crystal formation \cite{Goswami2020}; however, no experimental work into these systems has been conducted to prove 
+this is the case. There is some experimental evidence for this phenomena in 
+simple salt and protein solutions - though the authors emphasise that mechanical agitation cannot be ruled out - there has not been a exhaustive study into the shearing effects apart from in glycine solutions. In \cite{Debuysschere2023} it was found that a shear rate of around $3000\ s^{-1}$ was the maximum shear rate that would yield the highest nucleation rate. Using the theoretical model established in \cite{Mura2016,2001} which modifies the CNT to account for the effects of a nucleus undergoing shearing, 
+accounting for the fact that a nucleus' growth is undergoing competition 
+between flow-mediated molecular transport and the strain applied by the 
+flow field which inhibits the growth of the nucleus. There central 
+conclusion (from both the theoretical and experimental results) is that 
+there is an optimal shear rate in which the nucleation rate is maximised. 
+
+However, a question that arises from this result, if there is a optimal 
+shear rate in which molecular transport is maximised and strain is 
+minimised, then surely there should also be a shear rate in which the 
+molecular transport and strain are equal - allowing one to suspend a 
+nucleus at a constant radius. In this scenario, the molecular transport 
+would prevent the nucleus from dissolving, but the strain would prevent 
+the nucleus from growing. This however would require one to be able 
+to apply a continuous shear rate to a targeted nucleus with high precision, there is also no model for an individual nucleus in a continuous fluid 
+field. 
+
+
+\section{Significance of Thesis}
+As I have hoped to make clear in the above introduction, the current 
+state nucleation theory is rather cumbersome at a micro-level. Models
+such as CNT and multi-step nucleation are not sufficient for describing
+the myriad of potential pathways nucleation can go down. As suggested
+by some review articles, the best way to address this is by developing 
+\textit{in-situ} methods that can study the pre nucleation phase in 
+greater detail \cite{Fu2021}. Furthermore, the ability to localise 
+nucleation allows for better characterisation of the kinetics of crystal 
+growth. Laser induced nucleation stands to be an ideal method to study
+nucleation, as the laser output can be concentrated to a small area. 
+In this project we want to consider another application of optical 
+tweezers, their ability to rotate micro-rotors to generate fluid flow.
+Such a method has not been tried before and would allow for us to 
+consider how fluid flow impacts nucleation dynamics at the micro-level. 
+
+\section{Overview}
 Overall the aim of the PhD is to study viability of using micro-rotors to
 generate localised fluid flow around the beam focus. The results are reported
-in chapter 3, this is then succeeded by experimental work where we 
-instead using a galvano-mirror to generate shear flow. While overall unsuccessful
-the addition of a moving beam focus showed that the growth of a nucleus can be localised around the trap focus. 
+in chapter 3, this is then succeeded by experimental work where we instead 
+using a galvano-mirror to generate shear flow. While overall unsuccessful
+the addition of a moving beam focus showed that the growth of a nucleus can be localised around the trap focus. This presents a new insights for controlling
+and studying the growth of a newly formed nucleus by precise movement of the
+trapping focus.
 
 In addition, computer simulations studying the dynamics of asymmetric dimers 
 and their applications as complex micro-rotors are discussed in chapter 4. 
+The latter results are interesting as a potential insight into how optical
+torque is transferred to anisotropic objects.
+
 Lastly two novel methods of measuring rotational motion are discussed in 
 chapter 5; firstly via a novel detection fibre method that allows for 
 instantaneous measurements of the orientational behaviour of optically 

@@ -34,14 +34,12 @@ of the trap. This principle can be generalised to 3 degrees of freedom if we
 consider a focused beam instead of a para-axial beam, typically the trap will be
 weaker along the beam axis compared to the transverse trap strength.
 
-
 \begin{figure}[h!]
   \centering
   \includegraphics[width=0.65\linewidth]{ot_working_principal.png}
   \caption{Working principle for an optical trap, upper image shows a sphere at the centre of a trap experiences equal forces directed towards inwards. Lower image shows that when displaced 'ray a' is refracted far more than 'ray b' resulting in a net force back towards the centre.}
   \label{fig:working_principle}
 \end{figure}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -104,7 +102,7 @@ The latter two are defined by:
 Where $\mathbf{P}$ is the polarization field and $\mathbf{M}$ is the 
 magnetisation field, these fields arise due to the bound charges 
 throughout the medium interacting with the EM field. 
- 
+
 The force exerted by an optical tweezer can be subdivided into the 
 gradient and scattering components, for most modelling research this 
 is how the force fields are reported. The gradient force is a conservative 
@@ -119,9 +117,29 @@ The scattering force arises from the scattered field of the trapping beam
 pushing the target object away from the focal point. The equilibrium position 
 (where the mean squared displacement is minimised) is found when the 
 gradient force far exceeds the both the scattering force, and the thermal 
-energy of the particle. Describing and calculating the optical forces is 
-dependent on the ratio between the particle size and the trapping wavelength. 
+energy of the particle. 
 
+When a sphere is located at the centre of a laser the gradient force will
+try to recentre the sphere if it is displaced. If the restoring force is
+proportional to the sphere's displacement this is referred to as a harmonic
+trap. The ratio of the restoring force to the displacement is called the 
+trap stiffness (denoted by $\kappa$), and is an important characteristic 
+of the trap. Shown below is a typical force displacement curve for a single
+sphere in a focused Gaussian beam. 
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.78\linewidth]{sphere_force_curve.png}
+	\caption{Example of a sphere's ($r=1\ \mu m$) force-displacement curve 
+			while moving along the x-axis, where $x=0$ is the centre of the
+			beam. The harmonic regime is highlight by the black linear fit.}
+	\label{fig:harmonic_trap}
+\end{figure}
+
+The strength of the optical trap is directly proportional to both the laser
+power and the contrast in refractive indices between the medium and the
+particle. Fully describing and calculating the optical forces is dependent on 
+the ratio between the particle size and the trapping wavelength. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Ray-Optics Regime}
 
@@ -862,12 +880,13 @@ we take a sufficiently small time step that $\Delta t~\ll~\kappa_x/\gamma
 \ \& \ \Delta t \ll \kappa_u/\gamma_R$. In doing so we now only need 
 to compute the optical force and torque applied to th dimer. 
 
-Using a  MATLAB package called \textit{Optical Tweezer Toolbox} or \textit{ott} \cite{Nieminen2007} we can compute the beam shape coefficients ($a_{nm}$ \& $b_{nm}$)
-for any desired beam type. Using the results from \cite{Farsund1996} we can then 
-compute both the optical force and torque using the beam coefficients and the 
-scattering coefficients ($q_{nm}$ \& $p_{nm}$) which are found by calculating
-the dimer's $T$-matrix via \textit{mstm} \cite{Mackowski2011} and then using \eqref{eq:t_matrix}. The form given by \cite{Crichton2000THEMD} is an easier 
-form to compute for higher orders of $N_{max}$:
+Using a  MATLAB package called \textit{Optical Tweezer Toolbox} or \textit{ott} \cite{Nieminen2007} we can compute the beam shape coefficients ($a_{nm}$ \& 
+$b_{nm}$) for any desired beam type. Using the results from \cite{Farsund1996} 
+we can then compute both the optical force and torque using the beam coefficients 
+and the scattering coefficients ($q_{nm}$ \& $p_{nm}$) which are found by 
+calculating the dimer's $T$-matrix via \textit{mstm} \cite{Mackowski2011} and 
+then using \eqref{eq:t_matrix}. The form given by \cite{Crichton2000THEMD} is 
+an easier form to compute for higher orders of $N_{max}$:
 \begin{equation}
 	\label{eq:optical_force}
 \begin{split}
@@ -901,11 +920,17 @@ is to compute the Brownian forces and torques which are constrained by the relat
 	\langle q_iq_j\rangle =2D_{ij}\Delta t
 \end{align}
 
-Vigilante et al compiled together a python package that combines both \textit{ott} 
-and \textit{MSTM} to simulate the behaviour of spherical aggregates within 
-a predefined optical trap \cite{Vigilante2020}. 
+Vigilante et al compiled together a python package that combines both 
+\textit{ott} and \textit{mstm} to simulate the behaviour of spherical 
+aggregates within a predefined optical trap \cite{Vigilante2020}. Now 
+\textit{ott} does have inbuilt $T$-matrix modules that can be used to 
+model the scattering from different shaped particles; however, for 
+aggregates of spheres the resultant force is nonsensical (see Chapter 
+4 for further details). As such we rely on the \textit{mstm} for 
+simulating dimers.  
 
 \subsection{Simulation parameters}
+\label{sec:sim_parameters}
 Throughout this PhD we use the work of Vigilante to perform a systematic 
 study of the dynamics demonstrated by asymmetric dimers in both plane and 
 circularly polarised light. The simulations have two primary frames of 
@@ -930,23 +955,29 @@ aligned with the direction of beam propagation.
 Secondly there is the particle frame which describes the orientation state of 
 the particle, orientations are reported as quaternions which can be readily 
 transformed into rotation matrices. The matrix describes the direction of the 
-particles 3 orientation axis $U_x$, $U_y$, and $U_z$; the latter is oriented 
-so that it is collinear with the centres of the two spheres. The origin of 
-the 3 axis' is set on the particle's centre of mass, this is also used to 
-define it's displacement from the origin of the laboratory frame. 
-
-
-
-Furthermore we expand upon their work to create a fully functional quadrant 
-photo-diode to simulate the response from a calibration test. This builds 
-upon the work from \cite{Rohrbach2002} which applied the fundamental 
-principles of Lorenz-Mie theory to replicate the response signal of a QPD 
-being used in back focal-plane interferometry.
-
+particles 3 orientation axis $U_x$, $U_y$, and $U_z$. The latter is oriented 
+so that it is collinear with the centres of the two spheres; the direction of
+vector $U_z$ is such that it goes from the centre of $a_{II}$ to the centre of
+$a_{I}$. The origin of the 3 axis' is set on the particle's centre of mass, 
+this is also used to define it's displacement from the origin of the laboratory 
+frame. The diffusion tensor of the dimer is more complex than a sphere's as we 
+must consider the rotational effects experienced by the dimer. We use the 
+analytical solution of Nir \& Acrivos \cite{Nir1973}, where they provided the 
+solution coefficients depending on the dimer's size ratio ($a_I/a_{II}$). Rather 
+than recalculate the coefficients for every possible configuration of dimer we 
+use a spline fitting function to approximate the diffusion tensor. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Simulated Quadrant Photodiode}
 \label{sec:simulated_QPD}
+
+Beyond merely simulating the forces experienced by a spherical aggregate we
+also developed a simulative quadrant photo diode to replicate the results
+from a typical calibration test. This builds upon the work from \cite{Rohrbach2002} which applied Lorenz-Mie theory to replicate the response signal of a QPD 
+being used in back focal-plane interferometry. However, rather than be 
+constrained to individual spheres we can now consider the expected response 
+from any type of spherical aggregate. 
+
 In order to simulate a typical experimental set up with a QPD installed 
 as a position detection system we need to evaluate the total magnitude of 
 the electric field incident on the photo-diode surface. While trapping a 
