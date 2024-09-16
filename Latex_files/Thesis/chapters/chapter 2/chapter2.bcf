@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bcf:controlfile version="3.9" bltxversion="3.18b" xmlns:bcf="https://sourceforge.net/projects/biblatex">
+<bcf:controlfile version="3.8" bltxversion="3.17" xmlns:bcf="https://sourceforge.net/projects/biblatex">
   <!-- BIBER OPTIONS -->
   <bcf:options component="biber" type="global">
     <bcf:option type="singlevalued">
@@ -135,10 +135,6 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>nosortothers</bcf:key>
-      <bcf:value>0</bcf:value>
-    </bcf:option>
-    <bcf:option type="singlevalued">
-      <bcf:key>pluralothers</bcf:key>
       <bcf:value>0</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
@@ -376,11 +372,11 @@
       <bcf:value>0</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
-      <bcf:key>skipbiblist</bcf:key>
+      <bcf:key>skiplab</bcf:key>
       <bcf:value>0</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
-      <bcf:key>skiplab</bcf:key>
+      <bcf:key>skipbiblist</bcf:key>
       <bcf:value>0</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
@@ -603,7 +599,6 @@
     <bcf:option datatype="boolean">labeltitle</bcf:option>
     <bcf:option datatype="boolean">labeltitleyear</bcf:option>
     <bcf:option datatype="boolean">labeldateparts</bcf:option>
-    <bcf:option datatype="boolean">pluralothers</bcf:option>
     <bcf:option datatype="boolean">nohashothers</bcf:option>
     <bcf:option datatype="boolean">nosortothers</bcf:option>
     <bcf:option datatype="boolean">noroman</bcf:option>
@@ -1048,7 +1043,7 @@
     <bcf:namepart order="3">given</bcf:namepart>
   </bcf:uniquenametemplate>
   <!-- SORTING NAME KEY TEMPLATES -->
-  <bcf:sortingnamekeytemplate name="global" visibility="sort">
+  <bcf:sortingnamekeytemplate name="global">
     <bcf:keypart order="1">
       <bcf:part type="namepart" order="1" use="1">prefix</bcf:part>
       <bcf:part type="namepart" order="2">family</bcf:part>
@@ -2346,56 +2341,86 @@
   <!-- CITATION DATA -->
   <!-- SECTION 0 -->
   <bcf:bibdata section="0">
-    <bcf:datasource type="file" datatype="bibtex" glob="false">thesis_bib.bib</bcf:datasource>
+    <bcf:datasource type="file" datatype="bibtex" glob="false">../../thesis_bib.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1" intorder="1">Ashkin1970</bcf:citekey>
-    <bcf:citekey order="2" intorder="1">Jackson_1975</bcf:citekey>
-    <bcf:citekey order="3" intorder="1">Jackson_1975</bcf:citekey>
-    <bcf:citekey order="4" intorder="1">YasuhiroHarada1996</bcf:citekey>
-    <bcf:citekey order="5" intorder="1">Gordon1973</bcf:citekey>
-    <bcf:citekey order="6" intorder="1">YasuhiroHarada1996</bcf:citekey>
-    <bcf:citekey order="7" intorder="1">Waterman1969</bcf:citekey>
-    <bcf:citekey order="8" intorder="1">Wriedt1998</bcf:citekey>
-    <bcf:citekey order="9" intorder="1">Mackowski2011</bcf:citekey>
-    <bcf:citekey order="10" intorder="1">Mackowski2011</bcf:citekey>
-    <bcf:citekey order="11" intorder="1">Mackowski1996</bcf:citekey>
-    <bcf:citekey order="11" intorder="2">Xu1995</bcf:citekey>
-    <bcf:citekey order="12" intorder="1">Purcell1973</bcf:citekey>
-    <bcf:citekey order="13" intorder="1">Goedecke1988</bcf:citekey>
-    <bcf:citekey order="14" intorder="1">Wriedt1998</bcf:citekey>
-    <bcf:citekey order="15" intorder="1">Gillespie2012</bcf:citekey>
-    <bcf:citekey order="16" intorder="1">Gillespie2012a</bcf:citekey>
-    <bcf:citekey order="17" intorder="1">Gillespie2012a</bcf:citekey>
-    <bcf:citekey order="17" intorder="2">Gillespie2012b</bcf:citekey>
-    <bcf:citekey order="18" intorder="1">Gillespie2012b</bcf:citekey>
-    <bcf:citekey order="19" intorder="1">Gillespie2012c</bcf:citekey>
-    <bcf:citekey order="20" intorder="1">Gillespie2012c</bcf:citekey>
-    <bcf:citekey order="21" intorder="1">Volpe2013</bcf:citekey>
-    <bcf:citekey order="22" intorder="1">BergSoerensen2004</bcf:citekey>
-    <bcf:citekey order="22" intorder="2">Smith2003</bcf:citekey>
-    <bcf:citekey order="23" intorder="1">Vigilante2020</bcf:citekey>
-    <bcf:citekey order="24" intorder="1">Oldham2008</bcf:citekey>
-    <bcf:citekey order="25" intorder="1">BergSoerensen2004</bcf:citekey>
-    <bcf:citekey order="26" intorder="1">Bang2020</bcf:citekey>
-    <bcf:citekey order="27" intorder="1">Yogesha2012</bcf:citekey>
-    <bcf:citekey order="28" intorder="1">BergSoerensen2004</bcf:citekey>
-    <bcf:citekey order="29" intorder="1">BergSoerensen2004</bcf:citekey>
-    <bcf:citekey order="30" intorder="1">Capitanio2002</bcf:citekey>
-    <bcf:citekey order="31" intorder="1">BergSoerensen2004</bcf:citekey>
-    <bcf:citekey order="32" intorder="1">Yogesha2012</bcf:citekey>
-    <bcf:citekey order="33" intorder="1">Li2008</bcf:citekey>
-    <bcf:citekey order="33" intorder="2">Yogesha2011PreciseCO</bcf:citekey>
-    <bcf:citekey order="34" intorder="1">Nieminen2007</bcf:citekey>
-    <bcf:citekey order="35" intorder="1">Farsund1996</bcf:citekey>
-    <bcf:citekey order="36" intorder="1">Mackowski2011</bcf:citekey>
-    <bcf:citekey order="37" intorder="1">Crichton2000THEMD</bcf:citekey>
-    <bcf:citekey order="38" intorder="1">Vigilante2020</bcf:citekey>
-    <bcf:citekey order="39" intorder="1">Rohrbach2002</bcf:citekey>
-    <bcf:citekey order="40" intorder="1">Friedrich2012</bcf:citekey>
-    <bcf:citekey order="41" intorder="1">Rohrbach2002</bcf:citekey>
-    <bcf:citekey order="42" intorder="1">Rohrbach2002</bcf:citekey>
-    <bcf:citekey order="43" intorder="1">Rohrbach2002</bcf:citekey>
+    <bcf:citekey order="1">Ashkin1970</bcf:citekey>
+    <bcf:citekey order="2">Jackson_1975</bcf:citekey>
+    <bcf:citekey order="3">Jackson_1975</bcf:citekey>
+    <bcf:citekey order="4">YasuhiroHarada1996</bcf:citekey>
+    <bcf:citekey order="5">Gordon1973</bcf:citekey>
+    <bcf:citekey order="6">YasuhiroHarada1996</bcf:citekey>
+    <bcf:citekey order="7">Waterman1969</bcf:citekey>
+    <bcf:citekey order="8">Wriedt1998</bcf:citekey>
+    <bcf:citekey order="9">Mackowski2011</bcf:citekey>
+    <bcf:citekey order="10">Mackowski2011</bcf:citekey>
+    <bcf:citekey order="11">Mackowski1996</bcf:citekey>
+    <bcf:citekey order="11">Xu1995</bcf:citekey>
+    <bcf:citekey order="12">Purcell1973</bcf:citekey>
+    <bcf:citekey order="13">Goedecke1988</bcf:citekey>
+    <bcf:citekey order="14">Wriedt1998</bcf:citekey>
+    <bcf:citekey order="15">Gillespie2012</bcf:citekey>
+    <bcf:citekey order="16">Gillespie2012a</bcf:citekey>
+    <bcf:citekey order="17">Gillespie2012a</bcf:citekey>
+    <bcf:citekey order="17">Gillespie2012b</bcf:citekey>
+    <bcf:citekey order="18">Gillespie2012b</bcf:citekey>
+    <bcf:citekey order="19">Gillespie2012c</bcf:citekey>
+    <bcf:citekey order="20">Gillespie2012c</bcf:citekey>
+    <bcf:citekey order="21">Volpe2013</bcf:citekey>
+    <bcf:citekey order="22">BergSoerensen2004</bcf:citekey>
+    <bcf:citekey order="22">Smith2003</bcf:citekey>
+    <bcf:citekey order="23">Vigilante2020</bcf:citekey>
+    <bcf:citekey order="24">Oldham2008</bcf:citekey>
+    <bcf:citekey order="25">BergSoerensen2004</bcf:citekey>
+    <bcf:citekey order="26">Bang2020</bcf:citekey>
+    <bcf:citekey order="27">Yogesha2012</bcf:citekey>
+    <bcf:citekey order="28">BergSoerensen2004</bcf:citekey>
+    <bcf:citekey order="29">BergSoerensen2004</bcf:citekey>
+    <bcf:citekey order="30">Capitanio2002</bcf:citekey>
+    <bcf:citekey order="31">BergSoerensen2004</bcf:citekey>
+    <bcf:citekey order="32">Yogesha2012</bcf:citekey>
+    <bcf:citekey order="33">Li2008</bcf:citekey>
+    <bcf:citekey order="33">Yogesha2011PreciseCO</bcf:citekey>
+    <bcf:citekey order="34">Nieminen2007</bcf:citekey>
+    <bcf:citekey order="35">Farsund1996</bcf:citekey>
+    <bcf:citekey order="36">Mackowski2011</bcf:citekey>
+    <bcf:citekey order="37">Crichton2000THEMD</bcf:citekey>
+    <bcf:citekey order="38">Vigilante2020</bcf:citekey>
+    <bcf:citekey order="39">Rohrbach2002</bcf:citekey>
+    <bcf:citekey order="40">Friedrich2012</bcf:citekey>
+    <bcf:citekey order="41">Rohrbach2002</bcf:citekey>
+    <bcf:citekey order="42">Rohrbach2002</bcf:citekey>
+    <bcf:citekey order="43">Rohrbach2002</bcf:citekey>
+    <bcf:citekey order="44">Ashkin1970</bcf:citekey>
+    <bcf:citekey order="45">Jackson_1975</bcf:citekey>
+    <bcf:citekey order="46">YasuhiroHarada1996</bcf:citekey>
+    <bcf:citekey order="47">Gordon1973</bcf:citekey>
+    <bcf:citekey order="48">Waterman1969</bcf:citekey>
+    <bcf:citekey order="49">Wriedt1998</bcf:citekey>
+    <bcf:citekey order="50">Mackowski2011</bcf:citekey>
+    <bcf:citekey order="51">Mackowski1996</bcf:citekey>
+    <bcf:citekey order="52">Xu1995</bcf:citekey>
+    <bcf:citekey order="53">Purcell1973</bcf:citekey>
+    <bcf:citekey order="54">Goedecke1988</bcf:citekey>
+    <bcf:citekey order="55">Gillespie2012</bcf:citekey>
+    <bcf:citekey order="56">Gillespie2012a</bcf:citekey>
+    <bcf:citekey order="57">Gillespie2012b</bcf:citekey>
+    <bcf:citekey order="58">Gillespie2012c</bcf:citekey>
+    <bcf:citekey order="59">Volpe2013</bcf:citekey>
+    <bcf:citekey order="60">BergSoerensen2004</bcf:citekey>
+    <bcf:citekey order="61">Smith2003</bcf:citekey>
+    <bcf:citekey order="62">Vigilante2020</bcf:citekey>
+    <bcf:citekey order="63">Oldham2008</bcf:citekey>
+    <bcf:citekey order="64">Bang2020</bcf:citekey>
+    <bcf:citekey order="65">Yogesha2012</bcf:citekey>
+    <bcf:citekey order="66">Capitanio2002</bcf:citekey>
+    <bcf:citekey order="67">Li2008</bcf:citekey>
+    <bcf:citekey order="68">Yogesha2011PreciseCO</bcf:citekey>
+    <bcf:citekey order="69">Nieminen2007</bcf:citekey>
+    <bcf:citekey order="70">Farsund1996</bcf:citekey>
+    <bcf:citekey order="71">Crichton2000THEMD</bcf:citekey>
+    <bcf:citekey order="72">Rohrbach2002</bcf:citekey>
+    <bcf:citekey order="73">Friedrich2012</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">
