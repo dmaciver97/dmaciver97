@@ -3,46 +3,11 @@
 The two key areas of this project cover two widely different fields; 
 crystallisation theory, which is covered in the previous introduction 
 section, and tweezing theory. The following chapter summarises the 
-working principles behind optical tweezing, the work being done with 
-optical tweezers in particle classification, and how tweezing has been 
-used to investigate nucleation events. 
+working principles behind optical tweezing, the differences in 
+scattering theories, and the broader theoretical calculations used
+throughout the rest of the Thesis.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Working Principle}
-
-Optical tweezing operates on the principle that light carries both
-linear and angular momentum, which can be transferred to other
-objects. If light is reflected or refracted by a medium part of the
-light's momentum is transferred to the medium itself. While at large
-scales this effect is insignificant in most cases, at micron scales
-the forces imparted by individual photons begin to become significant
-enough to influence the trajectory of individual particles. Ashkin's 
-work into optical tweezing found that micron sized entities could be 
-spatially locked by aiming a laser with a Gaussian intensity profile 
-directly upward at a particle while being suspended in a liquid 
-medium \cite{Ashkin1970}. 
-
-This is demonstrated in fig.~\ref{fig:working_principle} where we have 
-a simple sphere trapped by a circularly symmetrical beam with the intensity
-falling off from the centre in a normal distribution (commonly referred to
-as a Gaussian beam). If we consider two rays of light hitting our sphere 
-we see that while in the centre each ray is refracted in an equal opposite 
-direction to one another and so the net force imparted is 0. When displaced 
-in the x-y plane the net force is unbalanced and points towards the centre 
-of the trap. This principle can be generalised to 3 degrees of freedom if we 
-consider a focused beam instead of a para-axial beam, typically the trap will be
-weaker along the beam axis compared to the transverse trap strength.
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.65\linewidth]{ot_working_principal.png}
-  \caption{Working principle for an optical trap, upper image shows a sphere at the centre of a trap experiences equal forces directed towards inwards. Lower image shows that when displaced 'ray a' is refracted far more than 'ray b' resulting in a net force back towards the centre.}
-  \label{fig:working_principle}
-\end{figure}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Electromagnetism and optical tweezing}
 
 Proper understanding of optical tweezing requires an understanding of
@@ -92,10 +57,8 @@ caused by the presence of free charges in the medium, and $\mathbf{D}$
 and $\mathbf{H}$ are the displacement and magnetising fields respectively. 
 The latter two are defined by:
 \begin{align}
-	\nonumber
 	\mathbf{D} &= \epsilon_0\mathbf{E}+\mathbf{P} 
 	\\ 
-	\nonumber
 	\mathbf{H} &= \frac{1}{\mu_0}\mathbf{B}-\mathbf{M}
 \end{align}
 
@@ -105,42 +68,47 @@ throughout the medium interacting with the EM field.
 
 The force exerted by an optical tweezer can be subdivided into the 
 gradient and scattering components, for most modelling research this 
-is how the force fields are reported. The gradient force is a conservative 
-force brought about by the polarisation of dielectric materials which 
-is directed towards the point of maximum intensity (for a simple Gaussian 
-beam this would be at it's focal point) \cite{YasuhiroHarada1996}. 
-Typically, optical tweezers will utilise higher numerical aperture lenses 
-in order to increase the intensity, thus allowing for stronger 
-gradient forces.
+is how the force fields are reported. The gradient force is a 
+conservative force brought about by the polarisation of dielectric 
+materials which is directed towards the point of maximum intensity 
+(for a simple Gaussian beam this would be at it's focal point) \cite{YasuhiroHarada1996}. Typically, optical tweezers will utilise 
+higher numerical aperture lenses in order to increase the intensity, 
+thus allowing for stronger gradient forces at the trade off of 
+decreased trapping depth.
 
-The scattering force arises from the scattered field of the trapping beam 
-pushing the target object away from the focal point. The equilibrium position 
-(where the mean squared displacement is minimised) is found when the 
-gradient force far exceeds the both the scattering force, and the thermal 
-energy of the particle. 
+The scattering force arises from the scattered field of the trapping 
+beam pushing the target object away from the focal point. While some 
+trapping arrangements can induce transverse scattering forces for 
+simple spheres the scattering force is only significant in the direction
+of propagation \cite{Capitanio2002} The equilibrium position is found 
+when the gradient force far exceeds the both the scattering force, 
+and the thermal energy of the particle. 
 
-When a sphere is located at the centre of a laser the gradient force will
-try to recentre the sphere if it is displaced. If the restoring force is
-proportional to the sphere's displacement this is referred to as a harmonic
-trap. The ratio of the restoring force to the displacement is called the 
-trap stiffness (denoted by $\kappa$), and is an important characteristic 
-of the trap. Shown below is a typical force displacement curve for a single
-sphere in a focused Gaussian beam. 
-
+\subsubsection{Harmonic Traps}
+\label{sec:harmonic_traps}
+When a sphere is located at the centre of a laser the gradient force
+will try to recentre the sphere if it is displaced. If the restoring 
+force is proportional to the sphere's displacement this is referred 
+to as a harmonic trap. The ratio of the restoring force to the 
+displacement is called the trap stiffness (denoted by $\kappa$), and 
+is an important characteristic of the trap. Shown below is a typical 
+force displacement curve for a single sphere in a focused Gaussian beam. 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.78\linewidth]{sphere_force_curve.png}
+	\includegraphics[width=\linewidth]{sphere_force_curve.png}
 	\caption{Example of a sphere's ($r=1\ \mu m$) force-displacement curve 
 			while moving along the x-axis, where $x=0$ is the centre of the
 			beam. The harmonic regime is highlight by the black linear fit.}
 	\label{fig:harmonic_trap}
 \end{figure}
 
-The strength of the optical trap is directly proportional to both the laser
-power and the contrast in refractive indices between the medium and the
-particle. Fully describing and calculating the optical forces is dependent on 
-the ratio between the particle size and the trapping wavelength. 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The strength of the optical trap is directly proportional to both 
+the laser power and the contrast in refractive indices between the 
+medium and the particle. Fully describing and calculating the 
+optical forces is dependent on the ratio between the particle size 
+and the trapping wavelength. Depending on this ratio, the optical 
+forces can be described differently.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Ray-Optics Regime}
 
 The Ray-Optics model is the simplest to understand, this theory models 
@@ -149,10 +117,9 @@ refracted according to Snell's Law. Based on the change in direction
 momentum is transferred to the target particle; with rays closest to 
 the centre of the beam having greater intensity than those rays at 
 the very edge of the beam. Consider a particle struck by two rays in 
-a Gaussian beam (see Fig below), one coming close to the centre, and 
-the other ray coming from the edge. As each ray is refracted by the 
-target sphere a force is imparted onto it, the total force imparted 
-is given by:
+a Gaussian beam, one coming close to the centre, and the other ray 
+coming from the edge. As each ray is refracted by the target sphere a 
+force is imparted onto it, the total force imparted is given by:
 \begin{align}
 	F_i = Q_i\frac{\Delta n P_i}{c}
 \end{align}
@@ -174,11 +141,12 @@ of light when considering interference between different rays.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Lornez-Mie Theory}
 
-The Lorenz-Mie theory provides an exact solution to the Maxwell equations 
-for the scattering caused by an isotropic sphere. This theory describes the 
-scattered wave given off by a dielectric sphere when incident by a plane 
-wave as a summation of partial spherical waves. For any spherical wave the 
-vector fields must solve the Helmholtz wave equation given by:
+The Lorenz-Mie theory provides an exact solution to the Maxwell 
+equations for the scattering caused by an isotropic sphere. This 
+theory describes the scattered wave given off by a dielectric 
+sphere when incident by a plane wave as a summation of partial 
+spherical waves. For any spherical wave the vector fields must 
+solve the Helmholtz wave equation given by:
 \begin{align}
 	\nabla^2\mathbf{E} +k^2\mathbf{E} = 0
 \end{align} 
@@ -233,31 +201,73 @@ shape of the target and what properties of the scattered field are
 desired --- see sec.~\ref{sec:scattering}.  From an optical
 trapping perspective the force exerted by a focused electric field can
 be found by computing the Maxwell stress tensor which only requires
-the total magnitude of the incident and scattered fields. By computing 
-the momentum contained in the incident and scattered fields we can measure
-the total momentum transferred to the target particle. 
+the total magnitude of the incident and scattered fields. An alternative
+method is to compute the momentum carried by the incident and scattered
+beams and taking the difference between to measure the momentum 
+transferred to the particle. This project utilises the results from 
+Farsund \cite{Farsund1996} but in the form used by Crichton 
+\cite{Crichton2000THEMD}. As an example the linear momentum carried 
+by any beam can be computed via:
+\begin{equation}
+	\label{eq:linear_momentum_in}
+	\begin{split}
+		\langle P_{z,\ in} \rangle
+		&=
+		-\frac{1}{4\pi k^2}\sum_{n,m} \left(\frac{m}{n(n+1)}\Im[a_{nm}b^*_{nm}] \right.
+		\\ 
+		&+\frac{1}{n+1}\left[\frac{n(n+2)(n-m+1)(n+m+1)}{(2n+1)(2n+3)} \right]^{1/2}
+		\\
+		& \left.\times\Im[b_{nm}b^*_{nm}+a_{nm}a^*_{n+1m}] \right)
+	\end{split}
+\end{equation}
 
-Lorenz-Mie theory can be applied to describe the scattering from any 
-particle regardless of size, though as the size of the target particle 
-changes - relative to the light being scattered - the theory describing
-the scattered light is better approximated by alternative theories. For 
-particles that are far larger than the wavelength of light the scattering
-is best described by the Ray-Optics theory. In the opposite case the 
-target particle is better approximated as a single electric dipole as 
-described by the Rayleigh scattering field.  
+And the linear momentum carried by the scattered beam is given by:
+\begin{equation}
+	\label{eq:linear_momentum_out}
+	\begin{split}
+		\langle P_{z,\ out} \rangle
+		&=
+		-\frac{1}{4\pi k^2}\sum_{n,m} \left(\frac{m}{n(n+1)}\Im[p_{nm}q^*_{nm}] \right.
+		\\ 
+		&+\frac{1}{n+1}\left[\frac{n(n+2)(n-m+1)(n+m+1)}{(2n+1)(2n+3)} \right]^{1/2}
+		\\
+		& \left.\times\Im[q_{nm}q^*_{nm}+p_{nm}p^*_{n+1m}] \right)
+	\end{split}
+\end{equation}
+
+Therefore the total force imparted to the trapped particle is thus:
+\begin{align}
+	\boldsymbol{F_z} =\frac{dP}{dt} = P_{z,\ in} -P_{z,\ out}
+\end{align}
+
+Where $a_{nm}, b{nm}, p_{nm}, \& q_{nm}$ are the beam expansion 
+coefficients used in \eqref{eq:incident} \& \eqref{eq:scattered}.
+Similar expressions are shown in \ref{sec:simulations} for 
+calculating the optical torque. Lorenz-Mie theory can be applied 
+to describe the scattering from any particle regardless of size, 
+though as the size of the target particle changes - relative to 
+the light being scattered - the theory describing the scattered 
+light is better approximated by alternative theories. For 
+particles that are far larger than the wavelength of light the 
+scattering is best described by the Ray-Optics theory. In the 
+opposite case the target particle is better approximated as a 
+single electric dipole as described by the Rayleigh scattering 
+field.  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Rayleigh Scattering}
 
-The Rayleigh approximation is the limiting approximation for describing 
-a particles motion in an electromagnetic field whose wavelength is several 
-times greater than the particle's size. The underlying theory is that a 
-dielectric sphere can be treated as a dipole while in the presence of the 
-electromagnetic field; in which case the scattering force is given simply 
-by the scattering of the induced dipole, and the gradient force is due 
+The Rayleigh approximation is the limiting approximation for 
+describing a particles scattering in an electromagnetic field 
+whose wavelength is several times greater than the particle's 
+size. The underlying theory is that a dielectric sphere can be 
+treated as a dipole while in the presence of the electromagnetic 
+field. In which case the scattering force is given simply by the 
+scattering of the induced dipole, and the gradient force is due 
 to the Lorentz force \cite{Gordon1973}. The gradient forces in the 
-principle Cartesian axis are described by Harada et al \cite{YasuhiroHarada1996} 
-in MKS units as a restorative rectangular force field:
+principle Cartesian axis are described by Harada et al 
+\cite{YasuhiroHarada1996} in MKS units as a restorative rectangular 
+force field:
 \begin{align}
   F_{grad,x}
   &=-\hat{x} \frac{2\pi n_2 a^3}{c}
@@ -293,14 +303,14 @@ however, is dependent on the effective scattering cross-sectional area.
 
 The Rayleigh regime allows for easy computation of the gradient and 
 scattering forces due to the assumption that the particle is a point 
-dipole. So much so that higher order scattering problems can be 
-simplified by subdividing the particle into discrete dipoles (see 
-Sec~\ref{sec:scattering}). However, as the target particle gets larger 
-this assumption fails to accurately describe the trapping force due 
-to the complexity in the gradient field. For particle sizes close to 
-the laser wavelength the scattered field is best described by Lorenz-Mie 
-theory. 
-
+dipole. Unlike Lorenz-Mie scattering, there is no need to compute the 
+scattered field (see \eqref{eq:scattered}) for an individual sphere. 
+Higher complexity scattering problems can be simplified by subdividing 
+the particle into discrete dipoles (see Sec~\ref{sec:scattering}), 
+in which case the scattered field is now necessary. As the target 
+particle gets larger this assumption fails to accurately describe 
+the trapping force. For particle sizes close to the laser wavelength 
+the trapping force is best described by Lorenz-Mie theory. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -347,26 +357,29 @@ be summarised as:
 	\end{pmatrix}
 \end{align}
 
-Where $q_{mn}$, and $p_{mn}$ are the scattering beam coefficients, and
-$a_{mn}$, and $b_{mn}$ are the coefficients of the incident beam. For 
-this project we utilised an extension of the ECBM known as 
+Where $q_{mn}$, and $p_{mn}$ are the scattering beam coefficients, 
+and $a_{mn}$, and $b_{mn}$ are the coefficients of the incident beam. 
+For this project we utilised an extension of the ECBM known as 
 multi-sphere $T$-matrix method (\textit{mstm}). Developed by Mackowski
-\cite{Mackowski2011} the computational code computes the scattered field 
-from each sphere within the target cluster and the incident field itself. 
-The scattering between spheres slowly converges to a final result but modern 
-codes truncate the calculations to an upper number of iterations (denoted by
-$N_{max}$) to fit a desired accuracy and computational time. 
+\cite{Mackowski2011} the computational code computes the scattered 
+field from each sphere within the target cluster and the incident 
+field itself. The scattering between spheres slowly converges to a 
+final result but modern codes truncate the calculations to an upper 
+number of iterations (denoted by $N_{max}$) to fit a desired accuracy 
+and computational time. 
 
-The $T$-matrix method is exceptionally useful for computing the scattering 
-from any arbitrary spherical aggregate. However, the $T$-matrix method by 
-itself can be computationally taxing as the number of spheres increases 
-\cite{Mackowski2011}. While it is possible to solve for the full electromagnetic 
-field of each the entire cluster this is only applicable for a single 
-orientation and can be even slower for large aggregates \cite{Mackowski1996, 
-Xu1995}. The benefit of \textit{mstm} is that the major scattering properties 
-(scattering and extinction cross sections, scattering matrices, etc) can 
-all be computed both for single orientations, or averaged over multiple 
-orientations to determine the average scattering from the target particle. 
+The $T$-matrix method is exceptionally useful for computing the 
+scattering from any arbitrary spherical aggregate. However, the 
+$T$-matrix method by itself can be computationally taxing as the 
+number of spheres increases \cite{Mackowski2011}. While it is 
+possible to solve for the full electromagnetic field of each the 
+entire cluster this is only applicable for a single orientation 
+and can be even slower for large aggregates \cite{Mackowski1996, 
+Xu1995}. The benefit of \textit{mstm} is that the major scattering 
+properties (scattering and extinction cross sections, scattering 
+matrices, etc) can all be computed both for single orientations, 
+or averaged over multiple orientations to determine the average 
+scattering from the target particle. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Discrete Dipole Approximation}
@@ -441,12 +454,15 @@ to describe its motion over any time scale, unlike the Einstein model:
 	m\frac{dv}{dt} + \gamma_0 v + F(t) = W(t)
 \end{align}
 
-Where the first term accounts for inertial forces, the second term accounts 
-for friction forces which counteract the particles current motion ($\gamma_0$ 
-is the friction coefficient), and the final term accounts for the random 
-Brownian force. The $F(t)$ is there for convention which accounts for any 
-external forces acting on the particle. We can say that the noise term 
-$W(t)$ has a Gaussian probability, with a correlation function of:
+Where the first term accounts for inertial forces, the second term 
+accounts for friction forces which counteract the particles current 
+motion ($\gamma_0$ is the friction coefficient), and the final term 
+accounts for the random Brownian force. The $F(t)$ is there for 
+convention which accounts for any external forces acting on the 
+particle. These three terms are equal to the random Brownian motion 
+of the surrounding fluid. We can say that the noise term $W(t)$ has 
+a normal distribution, being scaled by the thermal energy of the 
+system, with a correlation function of:
 \begin{align}
 	&W(t) = \sqrt{2k_BT\gamma_0}\eta(t) \\
 	&\langle W_i(t)W_j(t')\rangle = 2k_BT\gamma_0\delta(t-t')
@@ -821,7 +837,7 @@ rotational and translational motion simultaneously.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Simulation of spherical aggregates}
-
+\label{sec:simulations}
 Later chapters cover the dynamics of spherical aggregates and anisotropic 
 scatterers, these subjects are particularly difficult to characterise 
 using conventional calibration techniques \cite{Li2008, Yogesha2011PreciseCO}. 
@@ -880,13 +896,15 @@ we take a sufficiently small time step that $\Delta t~\ll~\kappa_x/\gamma
 \ \& \ \Delta t \ll \kappa_u/\gamma_R$. In doing so we now only need 
 to compute the optical force and torque applied to th dimer. 
 
-Using a  MATLAB package called \textit{Optical Tweezer Toolbox} or \textit{ott} \cite{Nieminen2007} we can compute the beam shape coefficients ($a_{nm}$ \& 
-$b_{nm}$) for any desired beam type. Using the results from \cite{Farsund1996} 
-we can then compute both the optical force and torque using the beam coefficients 
-and the scattering coefficients ($q_{nm}$ \& $p_{nm}$) which are found by 
-calculating the dimer's $T$-matrix via \textit{mstm} \cite{Mackowski2011} and 
-then using \eqref{eq:t_matrix}. The form given by \cite{Crichton2000THEMD} is 
-an easier form to compute for higher orders of $N_{max}$:
+Using a  MATLAB package called \textit{Optical Tweezer Toolbox} 
+or \textit{ott} \cite{Nieminen2007} we can compute the beam 
+shape coefficients ($a_{nm}$ \& $b_{nm}$) for any desired beam 
+type. Using the results from \cite{Farsund1996} we can then 
+compute both the optical force and torque using the beam 
+coefficients and the scattering coefficients ($q_{nm}$ \& $p_{nm}$) 
+which are found by calculating the dimer's $T$-matrix via \textit{mstm} \cite{Mackowski2011} and then using \eqref{eq:t_matrix}. The 
+total force in along the z-direction and the total torque about 
+the z-axis are provided
 \begin{equation}
 	\label{eq:optical_force}
 \begin{split}
@@ -929,7 +947,7 @@ aggregates of spheres the resultant force is nonsensical (see Chapter
 4 for further details). As such we rely on the \textit{mstm} for 
 simulating dimers.  
 
-\subsection{Simulation parameters}
+\subsection{Simulation reference frame}
 \label{sec:sim_parameters}
 Throughout this PhD we use the work of Vigilante to perform a systematic 
 study of the dynamics demonstrated by asymmetric dimers in both plane and 
@@ -1012,12 +1030,13 @@ beam of mode $[0.0, 0.0]$ (which is simply a pure Gaussian beam).
 coefficients of the incident field by fitting it to the far field estimate, 
 the beam is of the form:
 \begin{align}
-	E_{\rm inc}(kr)=\sum^\infty_n\sum^n_{m=-n}a_{mn}RgM_{nm}(kr)+b_{nm}RgN_{nm}(kr)
+	E_{\rm inc}(r)=\sum^\infty_n\sum^n_{m=-n}a_{mn}RgM_{nm}(r)+b_{nm}RgN_{nm}(r)
 \end{align}
 
-where $RgM_{nm}(kr)$ \& $RgN_{nm}(kr)$ are regular vector spherical wave 
-functions, these differ from \eqref{eq:incident} in the fact that the 
-field can either be expressed as an incoming/outgoing wave (with a 
+where $RgM_{nm}(kr)$ \& $RgN_{nm}(kr)$ are regular vector spherical 
+wave functions, these differ from \eqref{eq:incident} and 
+\eqref{eq:scattered} in the fact that the field can either be 
+expressed as an incoming/outgoing wave (with a 
 singularity at the origin) or as a regular wave around the origin; for 
 incoming/outgoing waves the wave functions use the first/second forms of 
 the Hankel function respectfully. In order to compute the regular spherical 

@@ -126,6 +126,7 @@ convert the signal to distance units the trap needs to be calibrated
 	Whereas a Lateral effect sensor (right) uses the resistive properties
 	of the photodiode surface to vary the create different photocurrents 
 	passing through the anodes A, B, C, and D.}
+	\label{fig:position_detectors}
 \end{figure}
 
 A lateral-effect sensor has a similar output but works using a the 
@@ -531,77 +532,96 @@ volume.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Nucleation with a Stationary and Moving Beam}
-As mentioned previously, shearing via optical rotation and particle displacement
-did not result in any localised nucleation events even while in the proximity of 
-the droplet edge. During the experiments with the galvano-mirror, it was found 
-that when no particle was present in the optical trap nucleation events would 
-occur while the beam was close to the edge of the droplet, even though the solution
-was unsaturated. This has been reported prior \cite{Rungsimanon2010, Liao2022}, 
-but was more interesting is how the beam's motion influenced the growth of the 
-nucleus.
+As mentioned previously, shearing via optical rotation and particle 
+displacement did not result in any localised nucleation events even 
+while in the proximity of the droplet edge. During the experiments 
+with the galvano-mirror, it was found that when no particle was 
+present in the optical trap nucleation events would occur while the 
+beam was close to the edge of the droplet, even though the solution
+was unsaturated. This has been reported prior \cite{Rungsimanon2010, 
+Liao2022}, but was more interesting is how the beam's motion 
+influenced the growth of the nucleus.
 
 \subsection{Stationary beam}
 \label{sec:stationary}
-Consider below in Fig.~\ref{fig:stationary_beam} the frames taken from a nucleation 
-event in supersaturated glycine solution ($S=1.03$), the beam is a stationary being 
-$\approx3.5 \mu m$ from the droplet edge. After a period of roughly 5 minutes a 
-nucleus forms at the trap focus, growing quickly (growth rate was approximated using
-imageJ to be on the order of $700\ \mu m^2/min$) from the focal point of the trap 
-until after roughly $6$ seconds the crystal escapes. Comparing to previous literature
-using optical tweezers shows that the growth rate is only loosely connected to the 
-solutions supersaturation. Local conditions play a much larger role in the growth 
-rate than just the concentration \cite{Flannigan2023}. A likely reason that the trap 
-is escaped is due to the fact that crystal is far too large to be held in place and 
-is in fact still growing as the solution is supersaturated. The key take away to 
-remember is that the beam has no influence over the crystal shape, instead it 
-grows outward from the trap focus. Furthermore, due to the fact that the solution
-is supersaturated the crystal growth cannot be contained to the trap focus. Instead 
-the crystal escapes as its size exceeds the trap focus. 
+As an example case, consider below in Fig.~\ref{fig:stationary_beam} 
+the frames taken from a nucleation event in supersaturated glycine 
+solution ($S=1.03$), the beam is a stationary being $\approx3.5 
+\mu m$ from the droplet edge. After a period of roughly 5 minutes a 
+nucleus forms at the trap focus, growing quickly from the focal point 
+of the trap until after roughly $6$ seconds the crystal escapes. 
+The growth rate was approximated using imageJ to be on the order of 
+$700\ \mu m^2/min$. Comparing to previous literature using optical 
+tweezers shows that the growth rate is only loosely connected to the 
+solutions supersaturation. Local conditions play a much larger role 
+in the growth rate than just the concentration \cite{Flannigan2023}. 
+A likely reason that the trap is escaped is due to the fact that 
+crystal is far too large to be held in place and is in fact still 
+growing as the solution is supersaturated. The key take away to 
+remember is that the beam has no influence over the crystal shape, 
+instead it grows outward from the trap focus. Furthermore, due to 
+the fact that the solution is supersaturated the crystal growth 
+cannot be contained to the trap focus. Instead the crystal 
+escapes as its size exceeds the trap focus. 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.63\linewidth]{frames_no_beam_movement.pdf}
-	\caption{Laser induced nucleation at the edge of a droplet of supersaturated 
-	glycine solution. (b) shows the first instance of a crystal nucleus, growing 
-	quickly through (c)-(e) until after $6.665\ s$ the crystal begins to escape 
-	the trap.}
+	\caption{Laser induced nucleation at the edge of a droplet of supersaturated glycine solution. (b) shows the first instance 
+	of a crystal nucleus, growing quickly through (c)-(e) until 
+	after $6.665\ s$ the crystal begins to escape the trap.}
 	\label{fig:stationary_beam}
 \end{figure}
 
+Fig.~\ref{fig:stationary_beam} makes it clear that in general, the
+trap focus can be used to induce nucleation. Previous reports
+have shown that this can occur over a range of supersaturations 
+\cite{Rungsimanon2010,Liao2022,Flannigan2023}. In every case they
+utilise a stationary beam as this is often easier to track. Using
+a galvno mirror we now consider the impact of a moving beam.
+
 \subsection{Moving Beam}
 \label{sec:moving}
-To test if a rapidly moving silica bead could generate the necessary shear rate 
-for crystal nucleation we wanted to see if a trapped silica bead could be trapped
-and moved in an aqueous solution. $20\ \mu L$ of glycine and water ($S=1.03$) was 
-added to $10\ \mu L$ of a dilute water-silica mixture making the solution 
-unsaturated ($S\approx0.7$). However, due to the beam's motion we instead 
-encountered several unexpected results. 
+To test if a rapidly moving silica bead could generate the 
+necessary shear rate for crystal nucleation, a silica bead 
+be trapped in an aqueous solution. $20\ \mu L$ of glycine 
+and water ($S=1.03$) was added to $10\ \mu L$ of a dilute 
+water-silica mixture making the solution unsaturated ($S
+\approx0.7$). While trying to bring a silica bead towards
+the droplet edge several smaller droplets were seen within
+the fluid (see figure~\ref{fig:cluster_trapping} for a 
+larger example of these droplets). 
 
-Shown below in Fig.~\ref{fig:eliptical_beam_1} where we have the laser focus 
-moving in a small elliptical pattern; interestingly. After a few minutes we 
-noted the appearance of several small droplets (see figure~\ref{fig:cluster_trapping}
-for a larger example of these droplets). These appear too have a wide distribution
-of sizes, unlike silica microspheres which have a uniform radius of $1.57\ 
-\mu m$. We surmise these could be small clusters of Glycine that had previously 
-been shown to form when the aqueous solutions where irradiated with a 
-focused laser \cite{Tsuboi2009, Gowayed2021}. While no droplets are seen 
-directly entering the focus a nucleus forms close to the droplet edge, 
-unlike in Fig.~\ref{fig:stationary_beam} the crystal does not grow out from 
-the focal point evenly. Due to the galvano mirror, the crystal is simultaneously 
-being moved by and growing around the focal point of the trap. Because of 
-this the crystal nucleus lacks a clear morphology at first. Until roughly 
-$20\ s$ the crystal reaches a almost prismatic structure, with further 
-irradiation increasing the size.
+These appear too have a wide distribution of sizes, unlike 
+silica microspheres which have a uniform radius of $1.57\ 
+\mu m$. We surmise these could be small clusters of Glycine 
+that had previously been shown to form when the aqueous 
+solutions where irradiated with a focused laser \cite{Tsuboi2009, 
+Gowayed2021}. While no droplets are seen directly entering 
+the focus a nucleus forms close to the droplet edge, unlike 
+in Fig.~\ref{fig:stationary_beam} the crystal does not grow 
+out from the focal point evenly. Due to the galvano mirror, 
+the crystal is simultaneously being moved by and growing 
+around the focal point of the trap. Because of this the 
+crystal nucleus lacks a clear morphology at first. This is 
+in contrast to previous works with undersaturated solutions, 
+where even then the laser focus has little to no impact on 
+the crystal form \cite{Rungsimanon2010}. 
  
-Interestingly the galvano-mirror allows the trap to impart a slight torque 
-on the crystal, as shown in fig.~\ref{fig:eliptical_beam_1}(c) and (d), 
-where even though the crystal is not directly in the trap focus it rotates 
-in the $x-y$ plane and gets trapped again at a corner. The rotation could 
-not be due to fluid flow close to the surface of the crystal as the dipole 
-moment of individual water molecules is too small to be influenced by an 
-optical trap. In figs.\ref{fig:eliptical_beam_1}(e) and (f), the crystal 
-growth becomes localised to the corner. The area growth rate between figures \ref{fig:eliptical_beam_1}(a) and (d) was approximated using imageJ at $45.03\ 
-\mu m^2 /min$, where as between figures \ref{fig:eliptical_beam_1}(e) and 
-(f) the growth rate at that particular edge was estimated at $42.10\ \mu m^2/min$. 
+Interestingly the galvano-mirror allows the trap to impart 
+a slight torque on the crystal, as shown in 
+fig.~\ref{fig:eliptical_beam_1}(c) and (d), where even though 
+the crystal is not directly in the trap focus it rotates in 
+the $x-y$ plane and gets trapped again at a corner. The 
+rotation could not be due to fluid flow close to the surface 
+of the crystal as the dipole moment of individual water 
+molecules is too small to be influenced by an optical trap. 
+In figs.\ref{fig:eliptical_beam_1}(e) and (f), the crystal 
+growth becomes localised to the corner. The area growth rate 
+between figures \ref{fig:eliptical_beam_1}(a) and (d) was 
+approximated using imageJ at $45.03\ \mu m^2 /min$, where as 
+between figures \ref{fig:eliptical_beam_1}(e) and (f) the 
+growth rate at that particular edge was estimated at $42.10\ 
+\mu m^2/min$. 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.85\linewidth]{frames_eliptical_beam.pdf}
@@ -615,17 +635,17 @@ growth becomes localised to the corner. The area growth rate between figures \re
 	\label{fig:eliptical_beam_1}
 \end{figure}
  
-Nucleation in undersaturated conditions has been reported previously in $D_2O$ 
-\cite{Rungsimanon2010} and $H_2O$ \cite{Flannigan2023}, though not involving a 
-moving beam. This modification allows for the crystal growth to be localised to
-a specific region of the bulk crystal whereas with a stationary beam there is no
-control over the crystal morphology. In fact this allows for a much finer control
-over the exact shape of the crystal nucleus, in some cases allowing for growth out
-of the viewing plane as shown in 
+Nucleation in undersaturated conditions has been reported 
+previously in $D_2O$ \cite{Rungsimanon2010} and $H_2O$ 
+\cite{Flannigan2023}, though not involving a moving beam. 
+This modification allows for the crystal growth to be 
+localised to a specific region of the bulk crystal whereas 
+with a stationary beam there is no control over the crystal 
+morphology. In fact this allows for a much finer control
+over the exact shape of the crystal nucleus, in some cases 
+allowing for growth out of the viewing plane as shown in
+fig.XX 
 
-\begin{figure}
-	\centering
-\end{figure}
 
 
 \subsection{Direct trapping of Glycine clusters}
@@ -659,11 +679,10 @@ concentration of glycine solution is correlated with the refractive indices
 of the liquid \cite{Gowayed2021, Orttung1963}. This suggests that these droplets 
 serve to provide solute material to the bulk crystal. 
 
-
 \section{Influence of a moving beam front on seed crystals}
-\textcolor{red}{Need to write up these results. To summarise the crystal 
-	dissolved around the laser focus instead of growing as the seed crystals 
-	are in the solution and not close to the air-solution interface}  
+Localised crystal growth could have useful applications for 
+tailoring seed crystals. To understand how the a moving beam
+front could be 
 
 \section{Summary of Moving Beam Phenomena}
 To summarise, the introduction of a moving beam helps to accelerate the 
