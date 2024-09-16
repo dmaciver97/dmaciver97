@@ -156,25 +156,27 @@ suggest classical nucleation is merely one of many possible pathways that can
 be taken to produce a structured crystalline phase. Prompting the development of alternative theories to better describe the nucleation process.
 
 \subsection{Two Step Nucleation}
-The two step nucleation theory is an extension to the CNT, colloid simulations 
-showed that short range (such as in proteins \cite{Wolde1997, Gliko2005}) 
-interactions allow for the formation of a liquid-liquid metastable phase from 
-which a new solid phase could form \cite{Anderson2002, Karthika2016}. 
-\textit{in situ} techniques for studying nucleation several papers reported 
-the presence of stable liquid-like clusters that formed prior to nucleation
-\cite{Savage2009, Wolde1997, Soga1999}. It can be understood by Oswald's rule
-\cite{Ostwald1897}, which says that any crystallising system does not immediately 
-take the path to the lowest possible energy state but instead first transitions 
-to the state with the smallest free energy barrier, further transitions can still 
-occur but this pathway minimises the overall free energy cost. If we consider 
-the free energy diagram from before (fig.~\ref{fig:free_energy}) we can consider 
-a case where the supersaturation is low ($S\approx1.01$) then a dense liquid 
-droplet will have a lower chemical potential than the surrounding fluid but 
-the crystalline phase will have a subsequently lower chemical potential than 
-the dense liquid phase. Initially it was suspected that the formation of the 
-dense liquid phase was a result of stochastic density fluctuations in the system; 
-further simulations suggest that the the local bond order is a stronger driving 
-force than the local density \cite{Tan2013}. 
+The two step nucleation theory is an extension to the CNT that suggests 
+that prior to nucleation, the solute will cluster together. This was 
+shown via colloid simulations showed that short range (such as in proteins \cite{Wolde1997, Gliko2005}) interactions allow for the formation of a liquid-liquid metastable phase from which a new solid phase could form \cite{Anderson2002, Karthika2016}. Several papers later reported the 
+presence of stable liquid-like clusters that formed prior to nucleation \cite{Savage2009, Wolde1997, Soga1999}. The formation of these clusters 
+can be understood by Oswald's rule; which says that any crystallising 
+system does not immediately take the path to the lowest possible energy 
+state but instead first transitions to the state with the smallest free 
+energy barrier \cite{Ostwald1897}. Further phase transitions can still 
+occur but this pathway minimises the overall free energy cost. Initially 
+it was suspected that the formation of the dense liquid phase was a 
+result of stochastic density fluctuations in the system. However, 
+simulations suggest that the the local bond order is a stronger driving 
+force than the local density \cite{Tan2013}. Studies into two step 
+nucleation in Glycine solutions have noted that the solutions need to be 
+aged before the presence of clusters was detected. This suggests that 
+there exist further barriers to the formation of clusters in some systems,
+this has lead to instead calling this phenomena as Multi-step Nucleation.
+
+\subsection{Non-classical Nucleation} 
+
+
 
 The current research into two step nucleation (or now more commonly referred 
 to as multi-step nucleation theory) is developing a robust framework to 
@@ -285,7 +287,9 @@ a solution with a pulsed laser \cite{Garetz1996,Garetz2002,Sun2006}.
 The laser itself does not have to be heavily focused, instead irradiating
 a large region of the solution all at once. The choice of laser is of
 particular importance; with nucleation probability changing depending 
-on the wavelength \cite{Kacker2017}. In addition, the choice of solute will effect the setup, not only because some solute's are unaffected, but also because there is a minimum laser threshold before nucleation is observed 
+on the wavelength \cite{Kacker2017}. In addition, the choice of solute will 
+effect the setup, not only because some solute's are unaffected, but also 
+because there is a minimum laser threshold before nucleation is observed 
 \cite{Garetz2002}. Several papers have debated the exact mechanism that 
 induces NPLIN \cite{Garetz2002, Knott2011}. A suggested theory to this is 
 an optical Kerr effect, for anisotropically charged solute molecules the 
@@ -294,7 +298,8 @@ electric field can reorient them to match the propagation direction
 barrier is reduced to allow for ambient nucleation \cite{Knott2011}. 
 An alternative theory is the dielectric polarisation effect, in 
 conditions that are unfavourable to cluster formation the polarising 
-effect can stabilise the clusters \cite{Alexander2008}. As the cluster  concentration rises so does the likelihood of nucleation \cite{Vekilov2010}. 
+effect can stabilise the clusters \cite{Alexander2008}. As the cluster 
+concentration rises so does the likelihood of nucleation \cite{Vekilov2010}. 
 Both theories are similar to one another but where the optical Kerr theory
 is limited to anisotropic solute molecules, the direct polarisation 
 theory is more flexible. Regardless both theories struggle to explain
@@ -324,45 +329,77 @@ been investigated; by adjusting the focal position Ikeda \textit{et al}
 could control the polymorph of indomethacin \cite{Ikeda2015}, this is not 
 a universal method however, as it has also been shown that laser power can 
 influence the crystal polymorph \cite{Wang2010}. The latter is a tricky 
-task to address due to the fact that these cavitation bubbles form and collapse in less than $100\ \mu s$. Using fluorescence dyed proteins, researchers were able to observe a sudden spike in fluorescence just 
+task to address due to the fact that these cavitation bubbles form and 
+collapse in less than $100\ \mu s$. Using fluorescence dyed proteins, 
+researchers were able to observe a sudden spike in fluorescence just 
 as the cavitation bubble began to collapse, they suggested that due 
-to the collapse of the cavitation bubble the protein clusters are brought together at the lasers focal point. However, while the fluorescence 
+to the collapse of the cavitation bubble the protein clusters are 
+brought together at the lasers focal point. However, while the fluorescence 
 imaging indicates a local concentration increase it is difficult to 
-quantify this change depending on the size of the bubble \cite{Korede2023}. It
-has been suggested that in theory any solution can undergo HILIN \cite{Korede2023}, but proving such a theory requires a clear 
-understanding of the phenomena both before and after cavitation occurs. Current research aims to combine experimental research with computer 
+quantify this change depending on the size of the bubble \cite{Korede2023}. 
+It has been suggested that in theory any solution can undergo HILIN 
+\cite{Korede2023}, but proving such a theory requires a clear 
+understanding of the phenomena both before and after cavitation occurs. 
+Current research aims to combine experimental research with computer 
 simulations to develop a universal theory, with the hope that this could 
 also be related to NPLIN.   
 
 \subsubsection{Trapping Induced Nucleation}
-Lastly, there is trapping induced nucleation, this is where optical tweezers 
-come into play. Due to the radiation pressure created by the focused beam,
-it is possible to manipulate the solute, this was demonstrated with amino
-acids such as glycine \cite{Tsuboi2009}. Whether or not a crystal forms is 
-due to the location of the laser focus. When focusing on the cover slip, supersaturated solutions of glycine and $D_2O$ were shown to create a dense liquid droplet of glycine and water \cite{Yuyama2010, Yuyama2012}. The dipole moment of the glycine molecules is too small to be influenced by the optical trap, as such it would suggest that larger aggregates are being manipulated. Applying DLS analysis to the dense liquid region showed that it was populated by clusters that would consolidate together upon being focused by the 
-optical trap \cite{Gowayed2021}. Molecular simulations of glycine solutions showed that these clusters are unstable when using pure glycine below the saturation point suggesting that the clusters are formed due to glycine reaction products \cite{Sweatman2022}. When the optical trap is moved from the cover slip to the air-solution interface, nucleation would occur before a dense liquid region could form \cite{Yuyama2010}.
-Repeated experiments where the laser is focused on the air-solution interface have lead to a variety of different nucleation events. In some instances the nucleation occurs spontaneously after a short period of time \cite{Yuyama2010}. Whereas allowing a solution to age results in the formation of amorphous precursors that when irradiated will nucleate immediately \cite{Liao2022}. The precursors are only seen when the solution is irradiated by an optical tweezer and the growth rate can be controlled somewhat by varying the laser power \cite{Liao2022}. The reason why nucleation is only seen at the air-solution interface is due to the limited molecular mobility close to the interface. Often tweezing experiments will use a hydrophilic 
-coating to minimise the height of the solution droplet and further limit
+Lastly, there is trapping induced nucleation, this is where optical 
+tweezers come into play. Due to the radiation pressure created by 
+the focused beam, it is possible to manipulate the solute, this was 
+demonstrated with amino acids such as glycine \cite{Tsuboi2009}. 
+Whether or not a crystal forms is due to the location of the laser 
+focus. When focusing on the cover slip, supersaturated solutions 
+of glycine and $D_2O$ were shown to create a dense liquid droplet 
+of glycine and water \cite{Yuyama2010, Yuyama2012}. The dipole 
+moment of the glycine molecules is too small to be influenced by 
+the optical trap, as such it would suggest that larger aggregates 
+are being manipulated. Applying DLS analysis to the dense liquid 
+region showed that it was populated by clusters that would 
+consolidate together upon being focused by the optical trap 
+\cite{Gowayed2021}. Molecular simulations of glycine solutions 
+showed that these clusters are unstable when using pure glycine 
+below the saturation point suggesting that the clusters are 
+formed due to glycine reaction products \cite{Sweatman2022}. 
+When the optical trap is moved from the cover slip to the 
+air-solution interface, nucleation would occur before a dense 
+liquid region could form \cite{Yuyama2010}. Repeated experiments 
+where the laser is focused on the air-solution interface have 
+lead to a variety of different nucleation events. In some 
+instances the nucleation occurs spontaneously after a short 
+period of time \cite{Yuyama2010}. Whereas allowing a solution to 
+age results in the formation of amorphous precursors that when 
+irradiated will nucleate immediately \cite{Liao2022}. The 
+precursors are only seen when the solution is irradiated by an 
+optical tweezer and the growth rate can be controlled somewhat 
+by varying the laser power \cite{Liao2022}. The reason why 
+nucleation is only seen at the air-solution interface is due 
+to the limited molecular mobility close to the interface. 
+Often tweezing experiments will use a hydrophilic coating to 
+minimise the height of the solution droplet and further limit
 the molecular mobility \cite{Yuyama2012, Gowayed2021}.
 
-Walton and Wynne discussed a plausible model for how the tweezer focus
-could result in a nucleation event. Put simply, when the laser is focused
-at the solution the radiation pressure draws in solute material, creating 
-a concentrated region of solute. This also creates a depleted region 
-around the focus and raises the local temperature. When the laser is 
-turned off the depleted region around the focus quickly cools back to the 
-ambient temperature. This sudden cooling allows for nucleation to occur
+Walton and Wynne discussed a plausible model for how the tweezer 
+focus could result in a nucleation event. Put simply, when the 
+laser is focused at the solution the radiation pressure draws 
+in solute material, creating a concentrated region of solute. 
+This also creates a depleted region around the focus and raises 
+the local temperature. When the laser is turned off the depleted 
+region around the focus quickly cools back to the ambient 
+temperature. This sudden cooling allows for nucleation to occur
 just outside the focus.  
 
-Laser induced nucleation has the potential to be a viable method for 
-\textit{in-situ} studying of nucleation events. Using high numerical 
-aperture lenses one can localise the nucleation event to a specific 
-region of the solution. The current issue is that the mechanism behind
-laser induced nucleation is not fully understood, as such it is rather
-difficult to modify the laser for different solution parameters. Instead
-it may be more effective to manipulate the solution using trapped particles.
-An common method is by apply a torque to a trapped particle, creating 
-a micro-rotor that can can generate fluid flow.
+Laser induced nucleation has the potential to be a viable method 
+for \textit{in-situ} studying of nucleation events. Using high 
+numerical aperture lenses one can localise the nucleation event 
+to a specific region of the solution. The current issue is that 
+the mechanism behind laser induced nucleation is not fully 
+understood, as such it is rather difficult to modify the laser 
+for different solution parameters. Instead it may be more 
+effective to manipulate the solution using trapped particles. 
+An common method is by apply a torque to a trapped particle, 
+creating a micro-rotor that can can generate fluid flow.
 
 \subsection{Optical Torque}
 It has long been known that electromagnetic fields can transfer linear and

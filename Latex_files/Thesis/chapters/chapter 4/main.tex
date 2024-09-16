@@ -1,27 +1,22 @@
 \chapter{Complex Langevin dynamics of spherical dimers}
 \label{chapter:langevin_dynamics}
 Much of the calibration theory discussed in Chapter 2 assumes that the
-target particle in question is a single sphere, one who's scattering and 
+target particle in question is a single sphere, one whose scattering and 
 motion is easily computed. However, while working with dense colloidal 
 suspensions, one often ends up trapping more than one sphere. Li and 
 Arlt \cite{Li2008} studied the case of two microspheres trapped in a single 
 OT and found that multiple trapped beads could be mistaken for a single 
-trapped bead with altered trap stiffness. Theoretical studies on the case 
-of two trapped microspheres by Xu~\textit{et~al.} \cite{Xu2005} employed a 
-ray-optics based model to show that the two trapped beads are brought into 
-physical contact with each other by optical forces and they also calculated 
-the axial equilibrium positions of the two trapped beads as a function of 
-their size. Experiments in \cite{Praveen2016} confirmed that the two trapped 
-beads indeed experience different trap stiffnesses in the vicinity of the 
-same potential well. There are further discussions looking into the dynamics 
-of a whole host of asymmetrically shaped particles \cite{Loudet2014, ShengHua2005, 
-Chetana2022}, their results all showing that predicting the behaviour an 
-arbitrary shaped particle comes with great difficulty due to the fact that 
-the optical force is dependent on a greater number of variables such as 
-orientation and size factors.
+trapped bead with altered trap stiffness (see \ref{sec:harmonic_traps}). Theoretical studies on the case of two trapped microspheres by Xu~\textit{et~al.} \cite{Xu2005} employed a ray-optics based model to show 
+that the two trapped beads are brought into physical contact with each 
+other by optical forces and they also calculated the axial equilibrium positions of the two trapped beads as a function of their size. Experiments 
+in \cite{Praveen2016} confirmed that the two trapped beads indeed experience different trap stiffnesses in the vicinity of the same potential well.
+ 
+There are further discussions looking into the dynamics 
+of a whole host of asymmetrically shaped particles \cite{Loudet2014, ShengHua2005, Chetana2022}, their results all showing that predicting the behaviour an arbitrary shaped particle comes with great difficulty due to 
+the fact that the optical force is dependent on a greater number of variables such as orientation and size factors.
 
 With the initial goal of the PhD being to induce nucleation events via a 
-spherical micro-rotor the goal of this chapter is to - in a limited capacity
+spherical micro-rotor, the aim of this chapter is to - in a limited capacity
 simulate and investigate the influence of a second particle being bound to our 
 target sphere. The choice of a dimer, instead of an amorphous solid that 
 might better represent a growing crystalline solid, allows us to consider 
@@ -29,37 +24,36 @@ how the dynamics of the aggregate change by varying the size factor.
 Additionally, attempting to simulate an amorphous aggregate is rather difficult 
 as calculating the optical force and torque is computationally slow. We build 
 upon the works of Vigilante \textit{et al} \cite{Vigilante2020} to consider 
-asymmetric dimers and how varying size parameters alters the dynamics and 
-additionally makes characterising their interactions within an optical trap 
-more cumbersome. 
+asymmetric spherical dimers and how varying size parameters alters the 
+dynamics and additionally makes characterising their interactions within an optical trap more cumbersome. 
 
-In this chapter we will consider how the addition of a second sphere changes 
-the trapping dynamics by introducing multiple equilibrium positions. These 
-positions are dependent on both the size ratio of the dimer and its orientation
-relative to the trap. This is important to address, for while the the dimers' 
-diffusive behaviour is the same, regardless of position and orientation, how it
-interacts with the trap may produce the wildly different results. Furthermore,
-we look at how our dimers interact with circularly polarised light, this is 
-especially pertinent as the original plan was to utilise circularly polarised 
-light to generate fluid flow in a supersaturated solution. The rotational motion 
-of dimers in circularly polarised light goes against much of the established 
-literature and suggests that the transfer of spin angular momentum is enabled 
-by combining spheres together. And lastly, we demonstrate how a quadrant photo 
-diode, performs in characterising the actual interactions between a dimer and 
-the optical trap. We do so to demonstrate that much of the dimer's trajectory
-information is either lost or poorly described by simple calibration techniques, 
+In this chapter we will consider how the addition of a second sphere 
+changes the trapping dynamics by introducing multiple equilibrium 
+positions. These positions are dependent on both the size ratio of 
+the dimer and its orientation relative to the trap. This is important 
+to address, for while the the dimers' diffusive behaviour is the same, regardless of position and orientation, how it interacts with the trap 
+may produce the wildly different results. Furthermore, we look at how 
+our dimers interact with circularly polarised light, this is especially pertinent as the original plan was to utilise circularly polarised 
+light to generate fluid flow in a supersaturated solution. The rotational motion of dimers in circularly polarised light goes against much of the established literature and suggests that the transfer of spin angular 
+momentum is enabled by combining particles together. And lastly, we 
+demonstrate how a quadrant photo diode, performs in characterising 
+the actual interactions between a dimer and the optical trap. We do so 
+to demonstrate that much of the dimer's trajectory information is 
+either lost or poorly described by simple calibration techniques, 
 making their motion difficult to characterise. 
 
 \subsection{Simulation Parameters}
-As a paradigmatic example, consider a dimer suspended in water ($n_p = 1.59, 
-n_m = 1.33$) located at the focus of a Gaussian beam (more specifically a 
-Laguerre-Gaussian beam of mode $[0,0]$), the beam is focused by a objective 
-with numerical aperture of 1.2 and is x polarised. The size ratio of the two 
-sphere's is given by $a_{I}/a_{II} = 2$ where $a_{I}$ is kept at $1\ \mu m$ 
-unless specified otherwise; the dimer's orientation is given by a unit vector 
-connecting the centres of both spheres (see \ref{sec:sim_parameters}). We 
-define the 'standard' orientation as being aligned with the direction of 
-beam propagation direction - and therefore the 'inverted' orientation is 
+As a paradigmatic example, consider a dimer suspended in water 
+($n_p = 1.59, n_m = 1.33$) located at the focus of a Gaussian 
+beam (more specifically a Laguerre-Gaussian beam of mode $[0,0]$, 
+see \eqref{eq:incident}), the beam is focused by a objective with 
+numerical aperture of 1.2 and is x polarised. The size ratio of 
+the two spheres is given by $a_{I}/a_{II} = 2$ where $a_{I}$ is 
+kept at $1\ \mu m$ unless specified otherwise; the dimer's 
+orientation is given by a unit vector connecting the centres of 
+both spheres (see \ref{sec:sim_parameters}). We define the 
+'standard' orientation as being aligned with the direction of beam 
+propagation direction - and therefore the 'inverted' orientation is 
 defined when the dimer is orientated against the direction of beam 
 orientation (see left hand side of figure~\ref{fig:paradigmatic}). 
 
@@ -67,32 +61,32 @@ orientation (see left hand side of figure~\ref{fig:paradigmatic}).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Positional and Orientational dependence of Trapping forces}
 \label{sec:eq_positions}
-If we wanted to start from first principles and determine the trap strength 
-on our target particle the first step would be to locate the equilibrium position
-relative to the trap focus. For a single sphere it is easy to enough to understand 
-that its centre of mass will be drawn to focal point of the laser due to gradient
-forces, once there the force is analogous to a harmonic spring with a fixed trap
-stiffness (see fig.\ref{fig:harmonic_trap}). Now, if we consider instead a dimer, 
-we now have two spheres both being drawn to the focus along by the same gradient 
-force; in addition the scattering force is significantly more complex due to both 
-spheres scattering the electromagnetic fields. This mutual scattering between individual 
-spheres is what makes simulating spherical aggregates far more difficult compared
-to a single sphere, and even harder still to predict the position where the dimer's 
-centre of mass is in equilibrium.
+If we wanted to start from first principles and determine the trap 
+strength on our target particle the first step would be to locate the equilibrium position relative to the trap focus. For a single sphere 
+it is easy to enough to understand that its centre of mass will be 
+drawn to focal point of the laser due to gradient forces, once there 
+the force is analogous to a harmonic spring with a fixed trap stiffness 
+(see fig.\ref{fig:harmonic_trap}). Now, if we consider instead a dimer, 
+we now have two spheres both being drawn to the focus along by the same gradient force; in addition the scattering force is significantly more 
+complex due to both spheres scattering the electromagnetic fields. 
+This mutual scattering between individual spheres is what makes simulating spherical aggregates far more difficult compared to a single sphere, 
+and even harder still to predict the position where the dimer's centre 
+of mass is in equilibrium.
 
-Because the scattering force is only significant in the direction of beam 
-propagation the potential well in the transverse plane can still be assumed 
-to be harmonic around the central beam axis. The axial optical force cannot 
-be assumed to behave as a simple harmonic trap. The methodology for computing 
-optical forces has been covered extensively for a number of different trapping 
-conditions \cite{RanhaNeves2019}, so it is relatively easy to compute the 
-trapping force and determine where a simple sphere would be located relative 
-to focal point of the laser by finding the position that minimises the net 
-optical force in a negative feed back loop ($\delta F/\delta x < 0$) - we can 
-assume that for a dielectric sphere the optical torque is negligible. For a 
-dimer (or any arbitrary spherical aggregate), we now must consider both its 
-position and orientation and find where the net optical force and torque are 
-minimised. 
+Because the scattering force is only significant in the direction of 
+beam propagation \cite{Capitanio2002} we can assume there is only a 
+single potential well in the transverse plane. Along the beam axis, 
+such an assumption is no longer valid due to fact that spherical 
+aggregates experience inter-particle scattering. This is a key reason
+for using \textit{mstm} as it accounts for that behaviour. The 
+methodology for computing optical forces has been covered extensively 
+for a number of different trapping conditions \cite{RanhaNeves2019}. 
+So it is relatively easy to compute the trapping force and determine 
+the equilibrium position by finding the position that minimises the 
+net optical force and the local gradient is negative ($\delta F/
+\delta x < 0$) - we can assume that for a dielectric sphere the 
+optical torque is negligible. For a dimer (or any arbitrary spherical aggregate), we now must consider both its position and orientation 
+and find where the net optical force and torque are minimised. 
 
 After computing its $T$-matrix via \textit{mstm} and supplying that 
 to \textit{ott} we compute the optical force exerted by a $50\ mW$ laser
