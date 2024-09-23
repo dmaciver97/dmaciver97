@@ -303,7 +303,8 @@ is low, we can predict the orientation from the scattering scattering
 by utilising computational techniques such as neural networks. We 
 thus utilised the Python machine learning program \textit{scikit-learn} \cite{Pedregosa2011} to build a neural network for identifying the 
 dimer's orientation from its light scattering signal. The network 
-was trained by generating a database of random orientation vectors, calculating the corresponding light scattering signals, and then 
+was trained by generating a database of random orientation vectors, 
+calculating the corresponding light scattering signals, and then 
 using the network to estimate the probability of a given signal coming 
 from a dimer in a given reference orientation. The network's loss 
 function was evaluated and used to improve the estimation, the 
@@ -340,7 +341,8 @@ the discrete integral over the collection of reference orientations:
 	p(\hat{\bf n}_\alpha)
 \end{align}
 
-From \eqref{eq:bayes} we obtain the key result, a mass probability distribution denoting the probability that our dimer is in 
+From \eqref{eq:bayes} we obtain the key result, a mass probability 
+distribution denoting the probability that our dimer is in 
 orientation $\hat{\bf n}_{\alpha}$ given a measured signal ($y_1$, 
 $y_2$, $y_3$), \textit{i.e.} an estimated mapping from scattering 
 measurement to orientation estimate. 
@@ -348,37 +350,97 @@ measurement to orientation estimate.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Calculation of error}
 \label{sec:divergence}
-To evaluate the above estimation of dimer orientation from scattering signal, we use a Brownian simulation of a dimer in the optical trap (Section~\ref{sec:brownian}) to compare estimated most probable reference orientation, derived from the dimer's scattering through Eq.~\eqref{eq:bayes}, with the dimer's known \emph{actual} orientation $\hat{\bf s}$. MSTM provides calculated light scattering from the simulated dimer $I(\hat{\bf s}, \theta)$ and we use \eqref{eq:scale} to obtain normalized values at each measurement angle $\theta_k$,  $y_1(\hat{\bf s})$, $y_2(\hat{\bf s})$, $y_3(\hat{\bf s})$, from which we obtain $p(\hat{\bf n}_{\alpha}\parallel y_1, y_2, y_3)$. Because we know the actual orientation $\hat{s}$ we can measure the error in the model's estimate by comparing the reference orientation closest to $\hat{s}$, denoted as $\hat{\bf n}_{best}$, with the most probable predicted orientation from Eq.~\eqref{eq:bayes}. An ideal result would be one where the probability distribution is 0 for every $\hat{\bf n}$ apart from $\hat{\bf n}_{best}$:
+Using \eqref{eq:bayes} we get a snapshot estimation of the instantaneous
+orientation of the trapped dimer based on a single measurement from a 
+collection of detector signals. Of course in reality these detectors 
+will be returning a discrete time series representative of the dimer's
+trajectory within the optical trap. 
+
+Using the simulation code from \cite{Vigilante2020} we can replicate 
+this trajectory and furthermore use \textit{mstm}to calculate the far field 
+intensity produced by said dimer. At each time step we measure the signal
+produced at each measurement angle and use our neural network to calculate
+$p(y_k(\hat{\bf s})|\hat{\bf n}_\alpha, t)$. 
+
+Evaluating how well Eq.~\eqref{eq:bayes} performs in predicting $\hat{\bf n}$
+is difficult because we have discretised the orientation space meaning 
+there will always be some degree of inaccuracy in our prediction. The Kullback-Liebler divergence method allows us to compare the divergence 
+between two probability, namely Eq.~\eqref{eq:bayes} and a case scenario.
+\begin{align}
+	D_{KL}(P\parallel p(\hat{\bf n}_\alpha| y_k(\hat{\bf s}), t)) = \sum P(t) \frac{P(t)}{p(\hat{\bf n}_\alpha| y_k(\hat{\bf s}), t)} 
+\end{align} 
+
+Where $P(t)$ is the case scenario we are comparing against. In an ideal
+case our model would correctly predict the dimer's orientation with 
+100\% accuracy:
 \begin{align}
 	\label{eq:best}
-	p_{best} = 
+	p_{best} = P(t) =
 	\begin{cases}
 		1 & \text{when $\hat{\bf n}_\alpha$ = $\hat{\bf n}_{best}$}\\
-		0 & \text{anywhere else}
+		0 & \text{when $\hat{\bf n}_\alpha$ $\neq$ $\hat{\bf n}_{best}$}
 	\end{cases}
 \end{align}
-In reality the distribution from Eq.~\eqref{eq:bayes} will assign some non-zero
-probability to every reference orientation, leading to some level 'confidence' in orientation prediction, which can be quantified by calculating the Kullback-Leibler divergence $K_l$ between the two distributions:
+
+In reality the distribution from Eq.~\eqref{eq:bayes} will assign some 
+non-zero probability to every reference orientation. Therefore the 
+divergence of Eq.~\eqref{eq:bayes} at each time step is given as:
 \begin{align}
-	K_{l, \#}(p_{best}\parallel p(\hat{\bf n}_\alpha| y_1, y_2, y_3))
-	= p_{best}\ln \left[\frac{p_{best}}{p(\hat{\bf n}_{best}| y_1,y_2,y_3))}
+	D_{KL}(p_{best}\parallel p(\hat{\bf n}_\alpha| y_k(\hat{\bf s}), t))
+	= \ln \left[\frac{1}{p(\hat{\bf n}_\alpha| y_k(\hat{\bf s}), t)}
 	\right]
 	\label{eq;kullback}
 \end{align}
-where a larger value of $K_l$ indicates that our model is less confident in its
-prediction of the dimer's orientation. The divergence $K_l$ thus illustrates the 'spread'
-in the estimated dimer orientation probability --- a distribution strongly peaked at 
-some value would give us more confidence in that value than a near-uniform distribution 
-where the scattering measurement could imply a wide range of possible orientations --- 
-but it does not directly indicate our estimates actual accuracy, that can be simply defined as the percentage of our estimations that are correct. 
+
+where a larger value of $D_{KL}$ indicates that our model is less confident 
+in its prediction of the dimer's orientation. The divergence $D_{KL}$ thus 
+illustrates the 'spread' in the estimated dimer orientation probability 
+-- a distribution strongly peaked at some value would give us more 
+confidence in that value than a near-uniform distribution where the 
+scattering measurement could imply a wide range of possible orientations 
+-- but it does not directly indicate our estimates actual accuracy. 
+In order to reflect the accuracy of each prediction by using a weighting
+function such as:
+\begin{align}
+	\omega_\alpha = \frac{1}{2} (\hat{\bf n}_{best} \cdot \hat{\bf n}_\alpha+1)
+\end{align}
+
+Which is just the normalised dot product between our estimate and the
+best possible estimate, so for highly inaccurate estimations $D_{KL}$
+is far greater than if we narrowly missed the $\hat{\bf n}_{best}$. With
+this in mind the divergence for a single measurement is:
+
+\begin{align}
+	D_{KL}(p_{best}\parallel p(\hat{\bf n}_\alpha| y_k(\hat{\bf s}), t))
+	= \ln \left[\frac{1}{p(\hat{\bf n}_\alpha| y_k(\hat{\bf s}), t)\omega_\alpha}
+	\right]
+\end{align}
+
+Later we will show how we set a baseline for evaluating the performance 
+of \eqref{eq:bayes} across an entire trajectory and how it handles common
+errors in a static light scattering setup. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Brownian Simulation}
 \label{sec:brownian}
 
-We use the Brownian OT package developed by Fung~\textit{et~al} \cite{Vigilante2020} to simulate the motion of an asymmetric dimer (Figure~\ref{fig:dimer}a) within an optical trap. Brownian OT combines MSTM \cite{Mackowski1996} and ``Optical Tweezer Toolbox'' (\textit{ott}) \cite{Lenton2020} to simulate the motion of arbitrary
-shaped sphere clusters. We simulate the motion of a dimer trapped in a highly focused Gaussian beam by calculating the optical forces imparted by the laser, and the Brownian force due to the surrounding fluid. MSTM provides the necessary T-matrix to compute the optical force via \textit{ott}. The Brownian force is found by computing the dimer's diffusion tensor according to the analytical solutions provided by Nir and Acrivos \cite{nir_acrivos_1973}. We simulated a polystyrene dimer ($n = 1.59$) in a suspension of water ($n_{med} = 1.33$) over the course of $1 \ s$ with a simulation time step of $1 \times 10^{-5} \ s$. We placed the dimer 4 microns below the trap focus at an angle $30^{\circ}$ from the horizontal, the resulting trajectory is shown below in Sec~\ref{sec:motion}. We chose these initial parameters because it demonstrates our model's performance in non steady state conditions. 
+We use the Brownian OT package developed by Fung~\textit{et~al} 
+\cite{Vigilante2020} to simulate the motion of an asymmetric dimer (Figure~\ref{fig:dimer}a) within an optical trap. We simulate the 
+motion of a dimer trapped in a highly focused Gaussian beam by 
+calculating the optical forces imparted by the laser, and the 
+Brownian force due to the surrounding fluid. MSTM provides the 
+necessary T-matrix to compute the optical force via \textit{ott}. 
+The Brownian force is found by computing the dimer's diffusion 
+tensor according to the analytical solutions provided by Nir and 
+Acrivos \cite{Nir1973}. We simulated a polystyrene dimer ($n = 
+1.59$) in a suspension of water ($n_{med} = 1.33$) over the 
+course of $1 \ s$ with a simulation time step of $1 \times 10^{-5} 
+\ s$. We placed the dimer 4 microns below the trap focus at an 
+angle $30^{\circ}$ from the horizontal, the resulting trajectory 
+is shown below in Sec~\ref{sec:motion}. We chose these initial 
+parameters because it demonstrates our model's performance in non 
+steady state conditions. 
 
 The exact number of detectors was initially assumed to be arbitrary, in that it made no difference to our estimate whether we used 2 angles or 200. For practical purposes it seemed beneficial that we demonstrate our method works for a minimal number of detection angles, as geometric constraints come into play when trying to install a high number of detection fibres for any optical tweezer set up. 
 
@@ -497,7 +559,7 @@ model, since it was previously shown that dimers can be optically rotated
 	\label{fig:motion}
 \end{figure}
 
-In the simulations of Vigilante~\emph{et~al}.\ \cite{Vigilante2020Brownian_OT}, trapped symmetrical dimers were investigated; their findings showed that the optical torque on the dimer goes to zero while aligned vertically and is at its maximum in a horizontal alignment. However as seen in Figure~\ref{fig:motion} asymmetric dimers demonstrate dynamics that do not immediately achieve steady state. We chose to use asymmetric dimers as our benchmark due to this fact, as its orientational motion is far more complex than a symmetric dimer. In the future we hope to further investigate the motion of asymmetric dimers. 
+In the simulations of Vigilante~\emph{et~al}.\ \cite{Vigilante2020}, trapped symmetrical dimers were investigated; their findings showed that the optical torque on the dimer goes to zero while aligned vertically and is at its maximum in a horizontal alignment. However as seen in Figure~\ref{fig:motion} asymmetric dimers demonstrate dynamics that do not immediately achieve steady state. We chose to use asymmetric dimers as our benchmark due to this fact, as its orientational motion is far more complex than a symmetric dimer. In the future we hope to further investigate the motion of asymmetric dimers. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Accounting for sources of error in light scattering measurements}
@@ -525,7 +587,7 @@ One of the main limitations of our model is that we assume that the dimer being 
 	\label{fig:size}
 \end{figure}
 
-As can be seen from Fig~\ref{fig:size}  even the slightest change in size ratio makes a very significant difference to the performance of our model. This amounts to just over $100 \ nm$ in the dimer's overall size, yet results in our model being correct from over 90 \% of the time to now as low as 30 \%. This highlights the importance of correctly sizing trapped entities before performing any in depth analysis of the scattering pattern, as even the slightest deviation can have a serious impact. We addressed this by increasing the number of available reference orientations from 30 to 126 (following the same procedure as given by \cite{Rey2006} to evenly space out the coordinates) and increasing the weighting factor in Eq~\ref{eq:boltz}. While this didn't have a significant improvement on the overall accuracy of the model, in the worst case having a slight increase from 30.5 \% to 40.3 \%, it did help to significantly reduce the magnitude between our model's estimations and the dimer's motion as seen below in Fig~\ref{fig:refs}.
+As can be seen from Fig~\ref{fig:size}  even the slightest change in size ratio makes a very significant difference to the performance of our model. This amounts to just over $100 \ nm$ in the dimer's overall size, yet results in our model being correct from over 90 \% of the time to now as low as 30 \%. This highlights the importance of correctly sizing trapped entities before performing any in depth analysis of the scattering pattern, as even the slightest deviation can have a serious impact. We addressed this by increasing the number of available reference orientations from 30 to 126 (following the same procedure as given by \cite{Reyuthor2006} to evenly space out the coordinates) and increasing the weighting factor in Eq~\ref{eq:boltz}. While this didn't have a significant improvement on the overall accuracy of the model, in the worst case having a slight increase from 30.5 \% to 40.3 \%, it did help to significantly reduce the magnitude between our model's estimations and the dimer's motion as seen below in Fig~\ref{fig:refs}.
 \begin{figure}[h!]
 	\centering
 	\begin{subfigure}{0.31\textwidth}
