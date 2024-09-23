@@ -105,25 +105,19 @@ The dimer is defined by two spheres with refractive indices
 of 1.59 and suspended in water ($n_{med} = 1.33$). \textit{MSTM}
 requires a target origin for setting the scattering expansion, as
 with our simulations we set it as the dimer's centre of diffusion.
-The near field scattering from the dimer is shown in 
-fig.~\ref{fig:nf_scattering}.
 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=\linewidth]{nf_scattering_dimer.png}
-	\caption{Re ${\bf E_z}$ distribution from a symmetric dimer when 
-	irradiated by the probe beam (viewed in the x-y plane). Axis are 
-	given in dimensionless units of $k\hat{x}$ and $k\hat{y}$ respectively.}
-	\label{fig:nf_scattering}
-\end{figure}
-
-\subsection{Detectors and Pixels}
+\subsection{Scattering and Detection}
 Each detector is placed some distance $\bf r$ from the origin, 
 detector positions are defined by angles $\theta$ \& $\phi$. With 
 $\theta=\phi=0$ being directly in front of the probe beam. The 
 position of each detector is given by:
 \begin{align}
-	[x_{fiber}, y_{fiber}, z_{fiber}] = [rcos(\phi)sin(\theta), rsin(\phi)sin(\theta), rcos(\theta)]
+	\begin{pmatrix}
+		x_{fiber} \\ y_{fiber} \\ z_{fiber}
+	\end{pmatrix} = 
+	\begin{pmatrix}
+		rcos(\phi)sin(\theta) \\ rsin(\phi)sin(\theta) \\ rcos(\theta)]
+	\end{pmatrix}
 \end{align}
 Where r is the distance between the detector and the target origin. 
 In an ideal situation the surface of the detector is oriented towards 
@@ -148,32 +142,74 @@ matrix at each point and compute the intensity of the electric field via:
 \end{align}
 Where:
 \begin{align}
-	I_s &= E_{x,\ scat}^2+E_{y,\ scat}^2 \\
+	I_s &= E_{x,\ scat}^2+E_{y,\ scat}^2  \label{eq:intensity} 
+	\\
 	\rightarrow I_s &= S_{11}I_i+S_{12}Q_i+S_{13}U_i+S_{14}V_i
 \end{align}
 
 By computing the scattering at each point on the detectors surface 
-we can compute the average scattering over the detector. As the 
-detectors are moved further away from the target origin the intensity 
-distribution across the detector surface falls off until near uniform.
+we can compute the average scattering over the detector. From a
+experimental perspective the distance from the particle to the 
+detectors must be considered. The near field scattering can be 
+computed with relative ease using \textit{mstm} as shown in 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\linewidth]{near_field_intensity_side_profile.png}
+	\caption{Intensity distribution (as defined by \eqref{eq:intensity}) 
+		from a symmetric dimer when irradiated by the probe beam 
+		propagating in the $k\hat{z}$ direction (viewed in the 
+		z-y plane). Axis are given in dimensionless units of 
+		$k\hat{z}$ and $k\hat{y}$.}
+	\label{fig:nf_scattering}
+\end{figure}
 
+While \textit{mstm} does provide the amplitude matrix it is not
+scaled to account for distance from the target to the detector.
+We amend this by simply scaling according to the inverse square 
+law. As the detector is moved further from the target the 
+intensity distribution across the entire detector will decrease
+substantially. Because of the fall off it is more computationally 7
+efficient to instead consider only the central pixel of the 
+detector rather than across the entire surface. If we consider 
+the difference between the average intensity and the intensity 
+of the central point we can see that after not even $20 \mu$ 
+away from the target particle the average intensity across the 
+surface is within $0.1\%$ of the central pixel. 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\linewidth]{fall_off_with_distance.png}
+	\caption{Normalised difference between the central pixel intensity
+	$I(\theta, \phi)$ and the average pixel intensity over the surface
+	of the optical fibre $\langle I \rangle$ as a function of distance.
+	4 different optical detectors were tested (spherical coordinates 
+	are given in the legend). While the choice of coordinates is 
+	arbitrary they all demonstrate the same exponential decay.}
+\end{figure}
 
-By moving the detectors further back we can treat each detector as single
-point and compute the intensity at the centre of the detector rather than
-consider the full surface.
+By moving the detectors further back we can treat each detector 
+as single point and compute the intensity at the centre of the 
+detector rather than consider the full surface. For computing 
+the instantaneous orientation we only consider the intensity 
+at the centre of the detector.
 
 \section{Interpretation of scattering data into orientation estimates}
-Consider a dimer in the optical trap (Fig.~\ref{fig:dimer}a), we can define at any 
-point in time a unit vector $\hat{s}$ pointing from the centre of the larger sphere 
-to the centre of the smaller sphere. A plane wave probe beam is incident on 
-the trapping laser, is incident on the dimer, generating a scattering pattern
-dependent on the dimer's orientation $I(\hat{\bf s}, \theta, \phi)$ which can be 
-computed using \textit{mstm} \cite{I.Mishchenko1996}. To represent the experimental 
-set up consisting of a set of optical fibres recording scattered light, we choose 
-four sets of spherical angles [$(\theta_1,\ \phi_1), \ (\theta_2,\ \phi_2), \ 
-(\theta_3, \ \phi_3), \ (\theta_4,\ \phi_4)$] and record the calculated intensity 
-at each angle $I(\hat{s},\ \theta_k,\ \phi_k)$. 
+We now discuss the methodology for computing the instantaneous 
+orientation of an optically bound particle based on scattering
+detected by a finite grouping of optical fibres. 
 
+Consider a dimer in the optical trap (Fig.~\ref{fig:dimer}a), 
+we can define at any point in time a unit vector $\hat{s}$ 
+pointing from the centre of the larger sphere to the centre 
+of the smaller sphere. A plane wave probe beam incident, 
+is incident on the dimer, generating a scattering pattern
+dependent on the dimer's orientation $I(\hat{\bf s}, 
+\theta, \phi)$ which is computed using \textit{mstm} 
+\cite{I.Mishchenko1996}. To represent the experimental set 
+up consisting of a set of optical fibres recording scattered 
+light, we choose four sets of spherical angles [$(\theta_1,\ 
+\phi_1), \ (\theta_2,\ \phi_2), \ (\theta_3, \ \phi_3), \ 
+(\theta_4,\ \phi_4)$] and record the calculated intensity at 
+each angle $I(\hat{s},\ \theta_k,\ \phi_k)$. 
 \begin{figure}[h!]
 	\centering
 	\begin{subfigure}{0.49\textwidth}
@@ -188,20 +224,30 @@ at each angle $I(\hat{s},\ \theta_k,\ \phi_k)$.
 	\label{fig:dimer}
 \end{figure}
 
-Our goal is to determine the orientation of the trapped dimer based on the measured 
-intensity $I(\hat{n}, \ \theta_k)$. Rather than aim immediately for an exact estimate 
-of the dimer's orientation, for the purposes of interpretation of the scattering and 
-optimisation of the measurement setup it is more convenient to discretize the possible orientation space into a number of possible reference orientations, which we can then 
-use as 'classification categories' in a neural network methodology to map scattering 
-data to orientation (see below for further discussion).  Here we choose $\textit{n}_{ref} 
-\ = \ 30$ reference orientations $\hat{\bf n}_{\alpha}$  evenly distributed on a 
-unit sphere \cite{Reyuthor2006} (Figure~\ref{fig:dimer}b) leading to a maximum 
-nearest-neighbour spacing between two neighbouring reference orientations of 0.895 
-radians. Using MSTM we compute the raw intensities at each of the measurement angles 
-that would be generated by a dimer in each reference orientation, $I(\hat{\bf n}_{\alpha}, \theta_k)$. While the number and position of detection fibres is technically arbitrary 
-there are several constraining factors that limit our ability to infer useful information 
-from the trapped object, see Section~\ref{sec:detectors} for a detailed breakdown 
-of our choice of detection angles. The raw intensities are normalized according to:
+Our goal is to determine the orientation of the trapped dimer 
+based on the measured intensity $I(\hat{n}, \ \theta_k,\ \phi_k)$. 
+Rather than aim an exact estimate of the dimer's orientation, 
+for the purposes of interpretation of the scattering and 
+optimisation of the measurement setup it is more convenient 
+to discretize the possible orientation space into a number 
+of possible reference orientations. We can then use each as 
+'classification categories' in a neural network methodology 
+to map scattering data to orientation (see below for further 
+discussion). Here we choose $\textit{n}_{ref} \ = \ 30$ 
+reference orientations $\hat{\bf n}_{\alpha}$  evenly 
+distributed on a unit sphere \cite{Reyuthor2006} 
+(Figure~\ref{fig:dimer}b) leading to a maximum nearest 
+neighbour spacing between two neighbouring reference 
+orientations of 0.895 radians. Using \textit{mstm} we 
+compute the raw intensities at each of the measurement angles 
+that would be generated by a dimer in each reference 
+orientation, $I(\hat{\bf n}_{\alpha}, \theta_k)$. While the 
+number and position of detection fibres is technically arbitrary 
+there are several constraining factors that limit our ability 
+to infer useful information from the trapped object, see Section~\ref{sec:brownian} for a detailed breakdown of our 
+choice of detection angles. In order for a neural network
+to properly weight each signal the raw intensities are 
+normalized according to:
 \begin{align}
 	\label{eq:scale}
 	y_k(\hat{\bf n}_\alpha)
@@ -210,57 +256,64 @@ of our choice of detection angles. The raw intensities are normalized according 
 	{\langle I^2(\hat{\bf n},\theta_k) \rangle -\langle I(\hat{\bf n}, \theta_k)\rangle^2}
 \end{align}
 
-where the denominator is simply the standard deviation across the set of values
-$I(\hat{\bf n}, \theta_k)$. The reference orientations, raw intensities, and scaled 
-signals are given in Tables~\ref{tab:A1} and \ref{tab:A2}. 
+where the denominator is simply the standard deviation across 
+the set of values $I(\hat{\bf n}, \theta_k)$. Note that the 
+collected scattering signals are not necessarily simply 
+related to their associated reference orientations: as is well 
+known from such examples of the inverse scattering problem. 
+While it is trivial to compute the light scattering pattern 
+for any given particle with any particular characteristic (i.e. 
+size, shape, or orientation), inferring the light scattering 
+from a unknown particle to determine said characteristic is 
+incredibly difficult due to complex mapping between scattering 
+and said characteristic. Even if the orientation space is 
+divided evenly between reference orientations the subsequent 
+signal space ends up being appearing mixed making simple 
+comparisons of signals useless for inferring information on the 
+particle. 
 
-Note that the collected scattering signals are not necessarily simply related to 
-their associated reference orientations: as is well known from such examples of 
-the inverse scattering problem. While it is trivial to compute the light scattering 
-pattern for any given particle with any particular characteristic (i.e. size, 
-shape, or orientation), inferring the light scattering from a unknown particle 
-to determine said characteristic is incredibly difficult due to complex mapping 
-between scattering and said characteristic. Even if the orientation space is divided 
-evenly between reference orientation the subsequent signal space ends up being 
-appearing mixed making simple comparisons of signals useless for inferring information 
-on the particle. Shown below is two clusters of orientation vectors and there 
-respective measured scattering signals - the points have been coloured based on 
-their proximity to the centre of their respective cluster. While the orientation 
-space appears tightly packed and ordered the signal space quickly spreads out in 
-an asymmetric fashion. Furthermore as seen in Fig~\ref{fig:mixing}b the signal 
-mapping can intersect itself which only further increases the complexity. While 
-in some instances the mapping between one reference orientation and another is 
-discrete, in other instances the mapping becomes far more complex to discern. 
-
+Fig~\ref{fig:mixing} shows two clusters of orientation 
+vectors and their respective signals collected from 3 detectors
+- the points have been coloured based on their proximity 
+to the centre of their respective cluster. While the 
+orientation space appears tightly packed and ordered the 
+signal space quickly spreads out in an asymmetric fashion. 
+Furthermore as seen in Fig~\ref{fig:mixing}b the signal 
+mapping can intersect itself which only further increases 
+the complexity. While in some instances the mapping between 
+one reference orientation and another is discrete, in other 
+instances the mapping becomes far more complex to discern.
+\newpage 
 \begin{figure}[h!]
 	\centering
-	\begin{subfigure}{0.4\textwidth}
+	\begin{subfigure}{0.8\textwidth}
 		\subcaption{}
 		\includegraphics[width=\textwidth]{fig3a.png}
 	\end{subfigure}
-	\begin{subfigure}{0.4\textwidth}
+	\begin{subfigure}{0.8\textwidth}
 		\subcaption{}
 		\includegraphics[width=\textwidth]{fig3b.png}
 	\end{subfigure}
 	\caption{(a) Distribution of orientation vectors and (b) their respective scattering signals. Points are coloured according to their distance from the centre of each cluster (red points centred around [$0.00, 0.00, 1.00$], blue points centred at [$0.71, 0.00, 0.71$])}
 	\label{fig:mixing}
 \end{figure}
+\newpage
+Nevertheless, at least where the uncertainty in signal measurements 
+is low, we can predict the orientation from the scattering scattering 
+by utilising computational techniques such as neural networks. We 
+thus utilised the Python machine learning program \textit{scikit-learn} \cite{Pedregosa2011} to build a neural network for identifying the 
+dimer's orientation from its light scattering signal. The network 
+was trained by generating a database of random orientation vectors, calculating the corresponding light scattering signals, and then 
+using the network to estimate the probability of a given signal coming 
+from a dimer in a given reference orientation. The network's loss 
+function was evaluated and used to improve the estimation, the 
+network being trained until the improvement in the loss function 
+was less than 0.0001. 
 
-Nevertheless, at least where the uncertainty in signal measurements is low (see 
-below), we can predict the orientation from the scattering by utilising 
-computational techniques such as neural networks. We thus utilised the Python 
-machine learning program \textit{scikit-learn} \cite{Pedregosa2011} to build a 
-neural network for identifying the dimer's orientation from its light scattering 
-signal. The network was trained by generating a database of random orientation 
-vectors, calculating the corresponding light scattering signals, and then using 
-the network to estimate the probability of a given signal coming from a dimer in 
-a given reference orientation. The network's loss function was evaluated and used 
-to improve the estimation, the network being trained until the improvement in the 
-loss function was less than 0.0001. 
-
-Importantly, the estimation provided by the neural network can be improved further 
-by accounting for any prior information we know about the dimer, utilising Bayesian 
-inference to update the neural network's estimation: 
+Importantly, the estimation provided by the neural network can be 
+improved further by accounting for any prior information we know 
+about the dimer, utilising Bayesian inference to update the neural 
+network's estimation: 
 \begin{align}
 	\label{eq:bayes}
 	p(\hat{\bf n}_\alpha| y_k(\hat{\bf s}))
@@ -269,26 +322,28 @@ inference to update the neural network's estimation:
 		p(\hat{\bf n}_\alpha)}{p(y_k(\hat{\bf s}))}
 \end{align}
 
-where $p(\hat{\bf n}_\alpha)$ and $p(y_1, y_2, y_3)$ are the prior estimates of 
-the distributions of particle orientations and instantaneous signals, respectively.
-\textit{Without} any prior evidence we must assume that the orientation prior of 
-the dimer $p(\hat{\bf n}_{\alpha})$ is uniform. However, inference about the 
-dimer's possible current orientation from knowledge of previous measurements can 
-be used to inform our estimate of $p(\hat{\bf n}_{\alpha})$. The latter prior 
-$p(y)$ is the probability of measuring a signal ($y_1$, $y_2$, $y_3$). This is 
-given by taking the discrete integral over the collection of reference orientations:
+where $p(\hat{\bf n}_\alpha)$ and $p(y_k(\hat{\bf s}))$ are the prior 
+estimates of the distributions of particle orientations and 
+instantaneous signals, respectively. \textit{Without} any prior 
+evidence we must assume that the orientation prior of the dimer 
+$p(\hat{\bf n}_{\alpha})$ is uniform. However, inference about the 
+dimer's possible current orientation from knowledge of previous 
+measurements can be used to inform our estimate of $p(\hat{\bf 
+n}_{\alpha})$. The latter prior $p(y_k(\hat{s}))$ is the probability of 
+measuring a signal ($y_1$, $y_2$, $y_3$). This is given by taking 
+the discrete integral over the collection of reference orientations:
 \begin{align}
-	p(y_1, y_2, y_3, y_4)
+	p(y_k(\hat{\bf s}))
 	=
 	\sum_{\alpha=1}^{n_{\rm ref}}
 	p(y_1, y_2, y_3, y_4|\hat{\bf n}_\alpha)
 	p(\hat{\bf n}_\alpha)
 \end{align}
 
-From \eqref{eq:bayes} we obtain the key result, a mass probability distribution 
-denoting the probability that our dimer is in orientation $\hat{\bf n}_{\alpha}$ 
-given a measured signal ($y_1$, $y_2$, $y_3$), \textit{i.e.} an estimated mapping 
-from scattering measurement to orientation estimate. 
+From \eqref{eq:bayes} we obtain the key result, a mass probability distribution denoting the probability that our dimer is in 
+orientation $\hat{\bf n}_{\alpha}$ given a measured signal ($y_1$, 
+$y_2$, $y_3$), \textit{i.e.} an estimated mapping from scattering 
+measurement to orientation estimate. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Calculation of error}
@@ -322,7 +377,7 @@ but it does not directly indicate our estimates actual accuracy, that can be sim
 \subsection{Brownian Simulation}
 \label{sec:brownian}
 
-We use the Brownian OT package developed by Fung~\textit{et~al} \cite{Vigilante2020Brownian_OT} to simulate the motion of an asymmetric dimer (Figure~\ref{fig:dimer}a) within an optical trap. Brownian OT combines MSTM \cite{Mishchenko1996MSTM} and ``Optical Tweezer Toolbox'' (\textit{ott}) \cite{Lenton2020} to simulate the motion of arbitrary
+We use the Brownian OT package developed by Fung~\textit{et~al} \cite{Vigilante2020} to simulate the motion of an asymmetric dimer (Figure~\ref{fig:dimer}a) within an optical trap. Brownian OT combines MSTM \cite{Mackowski1996} and ``Optical Tweezer Toolbox'' (\textit{ott}) \cite{Lenton2020} to simulate the motion of arbitrary
 shaped sphere clusters. We simulate the motion of a dimer trapped in a highly focused Gaussian beam by calculating the optical forces imparted by the laser, and the Brownian force due to the surrounding fluid. MSTM provides the necessary T-matrix to compute the optical force via \textit{ott}. The Brownian force is found by computing the dimer's diffusion tensor according to the analytical solutions provided by Nir and Acrivos \cite{nir_acrivos_1973}. We simulated a polystyrene dimer ($n = 1.59$) in a suspension of water ($n_{med} = 1.33$) over the course of $1 \ s$ with a simulation time step of $1 \times 10^{-5} \ s$. We placed the dimer 4 microns below the trap focus at an angle $30^{\circ}$ from the horizontal, the resulting trajectory is shown below in Sec~\ref{sec:motion}. We chose these initial parameters because it demonstrates our model's performance in non steady state conditions. 
 
 The exact number of detectors was initially assumed to be arbitrary, in that it made no difference to our estimate whether we used 2 angles or 200. For practical purposes it seemed beneficial that we demonstrate our method works for a minimal number of detection angles, as geometric constraints come into play when trying to install a high number of detection fibres for any optical tweezer set up. 
@@ -360,18 +415,37 @@ We applied Eq.~\eqref{eq:bayes}, taking the reference orientation with the highe
 	\label{fig:uniform}
 \end{figure} 
 
-One reason we observe such large jumps in orientation estimated from scattering signals is that there is no simple correlation between the 'distance in scattering space' between scattering signals from two different orientations, and their separation in orientation space: even a large change in orientation can involve a small change in scattering. Combining this fact with use of a uniform prior, indicating essentially no knowledge of how orientation should behave, there is no constraint on how much estimated orientation can change from time-step to time-step. To improve the estimation we can therefore use knowledge of the physical limitations of the object in the trap and its dynamics, imposing a more physically grounded prior, accounting in this case for the fact that the motion of the dimer is limited due to the trap stiffness. Here the prior of the reference orientations $p(\hat{\bf n}_\alpha)$ was redefined at each time step as a Boltzmann distribution of the physical distance between the previous estimate $\hat{\bf n}_{est}(t-\Delta t)$ and each reference orientation $\hat{\bf n}_\alpha$. Put simply, we are reweighing our estimation based on the size of rotation required, with smaller movements being favoured over large movements:
+One reason we observe such large jumps in the estimated 
+orientation is simply because the neural network is assuming
+that the signals are unrelated from one another. As demonstrated
+by fig~\ref{fig:mixing} the orientation and signal spaces are 
+uncorrelated with one another which results in the neural network
+to assign orientations incorrectly. Combining this fact with 
+use of a uniform prior ($p(\hat{\bf n}_\alpha)$), there 
+is no constraint on how much estimated orientation can change 
+from time-step to time-step. 
 
+To improve the estimation we can therefore use knowledge of the 
+physical limitations of the object in the trap and its dynamics. 
+Imposing a more physically grounded prior, accounting in this case 
+for the fact that the rotational motion of the dimer is limited by 
+the rotational trap stiffness ($\kappa_r$). Here the prior of the 
+reference orientations $p(\hat{\bf n}_\alpha)$ was redefined at 
+each time step as a Boltzmann distribution of the physical distance 
+between the previous estimate $\hat{\bf n}_{est}(t-\Delta t)$ and 
+each reference orientation $\hat{\bf n}_\alpha$. Put simply, we are 
+reweighing our estimation based on the size of rotation, with smaller movements being favoured over large movements:
 \begin{align}
 	p(\hat{\bf n}_\alpha)
-	&=\frac{e^{\beta (\hat{\bf n}_\alpha 
-			\cdot \hat{\bf n}_{est}(t-\Delta t))}}
+	&=\frac{e^{\hat{\bf n}_\alpha 
+			\cdot \hat{\bf n}_{est}(t-\Delta t)}}
 	{\sum_{\alpha=1}^{n_{\rm ref}}
-		e^{\beta (\hat{\bf n}_\alpha 
+		e^{\hat{\bf n}_\alpha 
 			\cdot \hat{\bf n}_{est}(t-\Delta t)}}
 	\label{eq:boltz}
 \end{align}
-Here $\beta$ is a weighting factor describing the dimer's freedom of motion within the trap. As shown in Figure~\ref{fig:biased} implementation of Eq~\eqref{eq:boltz} helps significantly reduce the large random excursions of estimated orientation away from the 'best' result. 
+
+As shown in Figure~\ref{fig:biased} implementation of Eq~\eqref{eq:boltz} helps significantly reduce the large random excursions of estimated orientation away from the 'best' result. 
 
 \begin{figure}[h]
 	\centering
