@@ -1,46 +1,60 @@
 \chapter{Complex Langevin dynamics of spherical dimers}
 \label{chapter:langevin_dynamics}
-Much of the calibration theory discussed in Chapter 2 assumes that the
-target particle in question is a single sphere, one whose scattering and 
-motion is easily computed. However, while working with dense colloidal 
-suspensions, one often ends up trapping more than one sphere. Li and 
-Arlt \cite{Li2008} studied the case of two microspheres trapped in a single 
-OT and found that multiple trapped beads could be mistaken for a single 
-trapped bead with altered trap stiffness (see \ref{sec:harmonic_traps}). Theoretical studies on the case of two trapped microspheres by Xu~\textit{et~al.} \cite{Xu2005} employed a ray-optics based model to show 
-that the two trapped beads are brought into physical contact with each 
-other by optical forces and they also calculated the axial equilibrium positions of the two trapped beads as a function of their size. Experiments 
-in \cite{Praveen2016} confirmed that the two trapped beads indeed experience different trap stiffnesses in the vicinity of the same potential well.
+Much of the calibration theory discussed in Chapter 2 assumes that 
+the target particle in question is a single sphere, one whose 
+scattering and motion is easily computed. However, while working 
+with dense colloidal suspensions, one often ends up trapping more 
+than one sphere. Li and Arlt \cite{Li2008} studied the case of two 
+microspheres trapped in a single OT and found that multiple trapped 
+beads could be mistaken for a single trapped bead with altered trap 
+stiffness (see \ref{sec:harmonic_traps}). Theoretical studies on the 
+case of two trapped microspheres by Xu~\textit{et~al.} \cite{Xu2005} 
+employed a ray-optics based model to show that the two trapped beads 
+are brought into physical contact with each other by optical forces 
+and they also calculated the axial equilibrium positions of the two 
+trapped beads as a function of their size. Experiments in 
+\cite{Praveen2016} confirmed that the two trapped beads indeed 
+experience different trap stiffnesses in the vicinity of the same 
+potential well.
  
-There are further discussions looking into the dynamics 
-of a whole host of asymmetrically shaped particles \cite{Loudet2014, ShengHua2005, Chetana2022}, their results all showing that predicting the behaviour an arbitrary shaped particle comes with great difficulty due to 
-the fact that the optical force is dependent on a greater number of variables such as orientation and size factors.
+There are further discussions looking into the dynamics of a whole 
+host of asymmetrically shaped particles \cite{Loudet2014, ShengHua2005, Chetana2022}, their results all showing that predicting the behaviour 
+an arbitrary shaped particle comes with great difficulty due to the 
+fact that the optical force is dependent on a greater number of 
+variables such as orientation and size factors.
 
-With the initial goal of the PhD being to induce nucleation events via a 
-spherical micro-rotor, the aim of this chapter is to - in a limited capacity
-simulate and investigate the influence of a second particle being bound to our 
-target sphere. The choice of a dimer, instead of an amorphous solid that 
-might better represent a growing crystalline solid, allows us to consider 
-how the dynamics of the aggregate change by varying the size factor. 
-Additionally, attempting to simulate an amorphous aggregate is rather difficult 
-as calculating the optical force and torque is computationally slow. We build 
-upon the works of Vigilante \textit{et al} \cite{Vigilante2020} to consider 
+With the initial goal of the PhD being to induce nucleation events 
+via a spherical micro-rotor, the aim of this chapter is to - in a 
+limited capacity simulate and investigate the influence of a second 
+particle being bound to our target sphere. The choice of a dimer, 
+instead of an amorphous solid that might better represent a growing 
+crystalline solid, allows us to consider how the dynamics of the 
+aggregate change by varying the size factor. Additionally, attempting 
+to simulate an amorphous aggregate is rather difficult as calculating 
+the optical force and torque is computationally slow. We build upon 
+the works of Vigilante \textit{et al} \cite{Vigilante2020} to consider 
 asymmetric spherical dimers and how varying size parameters alters the 
-dynamics and additionally makes characterising their interactions within an optical trap more cumbersome. 
+dynamics and additionally makes characterising their interactions within 
+an optical trap more cumbersome. 
 
 In this chapter we will consider how the addition of a second sphere 
 changes the trapping dynamics by introducing multiple equilibrium 
 positions. These positions are dependent on both the size ratio of 
 the dimer and its orientation relative to the trap. This is important 
-to address, for while the the dimers' diffusive behaviour is the same, regardless of position and orientation, how it interacts with the trap 
+to address, for while the the dimers' diffusive behaviour is the same, 
+regardless of position and orientation, how it interacts with the trap 
 may produce the wildly different results. Furthermore, we look at how 
-our dimers interact with circularly polarised light, this is especially pertinent as the original plan was to utilise circularly polarised 
-light to generate fluid flow in a supersaturated solution. The rotational motion of dimers in circularly polarised light goes against much of the established literature and suggests that the transfer of spin angular 
-momentum is enabled by combining particles together. And lastly, we 
-demonstrate how a quadrant photo diode, performs in characterising 
-the actual interactions between a dimer and the optical trap. We do so 
-to demonstrate that much of the dimer's trajectory information is 
-either lost or poorly described by simple calibration techniques, 
-making their motion difficult to characterise. 
+our dimers interact with circularly polarised light, this is especially 
+pertinent as the original plan was to utilise circularly polarised 
+light to generate fluid flow in a supersaturated solution. The 
+rotational motion of dimers in circularly polarised light goes against 
+much of the established literature and suggests that the transfer of 
+spin angular momentum is enabled by combining particles together. And 
+lastly, we demonstrate how a quadrant photo diode, performs in 
+characterising the actual interactions between a dimer and the optical 
+trap. We do so to demonstrate that much of the dimer's trajectory 
+information is either lost or poorly described by simple calibration 
+techniques, making their motion difficult to characterise. 
 
 \subsection{Simulation Parameters}
 As a paradigmatic example, consider a dimer suspended in water 
@@ -538,19 +552,34 @@ the same framework could allow for precise measurements of the optical
 torque applied to a target particle, allowing for characterisation of 
 complex shaped particles' interactions with an optical trap. 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Characterisation of asymmetric dimers via PSD analysis}
-As discussed in \ref{sec:simulated_QPD}, one of the methods developed to 
-work in conjunction with \cite{Vigilante2020} is a simulated quadrant photo 
-diode for as a position detection system. While it is possible to extract 
-all of the relevant dynamical information from a simulation, confirming 
-the same behaviour in an experimental setting can be challenging if dealing
-with a non-birefringent particle.  
+As discussed in \ref{sec:simulated_QPD}, one of the methods 
+developed to work in conjunction with \cite{Vigilante2020} 
+is a simulated quadrant photo diode for as a position 
+detection system. While it is possible to extract all of 
+the relevant dynamical information from a simulation, 
+confirming the same behaviour in an experimental setting can 
+be challenging if dealing with a non-birefringent anisotropic 
+scatterer. The QPD is composed of 4 photodiodes that measure
+the intensity of light incident on their surfaces. Using 
+\textit{ott} we can define a region in the far-field that is 
+analogues to the surface of the QPD surface. Evaluating the 
+electric field across this surface gives us an approximation
+of the QPD signal outputted in an experimental situation. This
+does not provide a one-to-one result however as hardware errors
+(i.e. internal resistance, external light sources, and vibrations)
+would distort the signal somewhat. We can use this as a means 
+to examine the limitations of using back-focal plane interferometry
+as a means for characterising anisotropic scatterers. 
 
-As a benchmark we start by considering a single sphere within an optical trap. 
-A single polystyrene sphere suspended in water ($a=1\mu m$, $n_p=1.59$, $n_m=1.33$)
-is trapped by a focus Gaussian beam and its trajectory was recorded. A 3 second 
-is trajectory is a typical measurement time for collecting a power spectrum, 
-the spectra was fitted to eq.~\ref{eq:alaised_lorentzian}.
+As a benchmark we start by considering a single sphere within an 
+optical trap. A single polystyrene sphere suspended in water 
+($a=1\mu m$, $n_p=1.59$, $n_m=1.33$) was trapped by a focus 
+Gaussian beam and its trajectory was recorded. A 3 second is 
+trajectory is a typical measurement time for collecting a power 
+spectrum, the spectra was fitted to eq.~\ref{eq:alaised_lorentzian}.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=\linewidth]{PSD_sphere.png}
@@ -564,7 +593,6 @@ As shown in fig.~\ref{fig:psd_sphere}, the two power spectra report
 different corner frequencies which would be indicate that the trap 
 is not perfectly circular. Using \textit{ott} we can compare the 
 expected trap strength to what is reported by a quadrant photo diode:
-
 \begin{center}
 	\begin{tabular}{ |c|c|c|c|c|c|c| } 
 		\hline

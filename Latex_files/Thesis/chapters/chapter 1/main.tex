@@ -14,14 +14,18 @@ explain the process of crystallisation \cite{Fu2021}. Of which there
 two primary areas of focus, nucleation and crystal growth. The latter 
 focusing on how an already stable crystal grows and how it takes on its 
 final shape. Whereas the former is more concerned with which factors 
-contribute to its formation in order to control crystal growth.
+contribute to its formation in order to control crystal growth.SW
 
-The focus of this research is partly based around investigating the impact 
-of a focused electromagnetic (EM) field can influence the nucleation process 
-by inducing shear flow within the bulk phase. This in hope that the 
-localised EM field can be used to study different phenomena in nucleation 
-in order to develop a better understanding of the underlying mechanisms.
-
+In this chapter we will outline our current understanding of nucleation,
+why there is a gap in the literature, and why there is still a need for
+local control of nucleation events. Furthermore, we will also highlight
+recent developments involving the use of optical tweezers (and other 
+laser based methods) in order to develop our understanding of nucleation.
+Lastly we highlight the connection between optical tweezer's ability to 
+probe fluid viscosity via rotational motion, and the known link between
+nucleation and fluid flow, to propose a novel potential method of 
+creating localised nucleation events.
+ 
 \section{Nucleation}
 Nucleation is an example of a binary phase separation, where a dilute phase 
 is miscible in a bulk phase, more often called the solute and solvent 
@@ -61,7 +65,6 @@ that higher supersaturations will result in faster nucleation rates. At
 a small scale one can estimate the nucleation rate by making repeated 
 measurements of sample solutions and seeing how many have nucleated 
 after a given time, giving us a Poisson probability distribution.
-
 \begin{align}
 	P(t) = 1 - exp\left[-JV(t-t_g)\right] = \frac{M^*(t)}{M}
 \end{align}
@@ -75,20 +78,36 @@ factors for primary nucleation to be the only
 
 In contrast, secondary nucleation is the result of a initial 
 seed crystal inducing further nucleation within the bulk solution
-\cite{Botsaris1976}, in absence of a seed crystal nucleation is
-near impossible. The research of Secondary Nucleation is fascinating
-for its own merits; is it speculated that the supersaturation 
-barrier is non-existent \cite{Cashmore2022}, and furthermore there 
-are a multitude of mechanisms that can induce secondary 
-nucleation making it imperative that researchers can control the
-nucleation rate at an industrial scale. 
-
+\cite{Botsaris1976}. The research of Secondary nucleation is 
+fascinating for its own merits; is it speculated that the 
+supersaturation barrier is non-existent \cite{Cashmore2022}, 
+Furthermore control of secondary nucleation events are crucial 
+for ensuring reliable industrial crystalliser performance, 
+fig.~\ref{fig:secondary} depicts an attempt of classifying  
+every possible mechanism that could lead to secondary nucleation.
 \begin{figure}[h!]
-	\includegraphics[width=\linewidth]{secondary_nucleation.jpg}
-	\caption{Secondary Nucleation mechanisms, classified by Agrawal and Paterson \cite{Agrawal2015}}
+	\centering
+	\includegraphics[width=0.95\linewidth]{secondary_nucleation.jpg}
+	\caption{Secondary Nucleation mechanisms, classified by Agrawal 
+		and Paterson \cite{Agrawal2015}}
+	\label{fig:secondary}
 \end{figure}
 
+Its clear that preventing secondary nucleation is impossible
+with so many possible mechanism, modelling its contribution
+to the nucleation rate has been the area of research for some
+time now \cite{Cashmore2022, Flannigan2023}. In most cases 
+secondary nucleation is actually desirable for large scale 
+production as primary nucleation is a stochastic process.
+
 \section{Nucleation Theories}
+A number of potential theories have been proposed to explain 
+how nucleation occurs at a microscopic scale. In doing so 
+we could potentially predict the expected yield of a given
+crystalliser based on the initial conditions of the 
+solution. Outlined below are some of the most popular theories
+currently used to describe nucleation. 
+
 \subsection{Classical Nucleation Theory (CNT)}
 Sometimes referred to as 'Gibs Nucleation Theory' the original theory 
 was first formed from the works of Volmer and Weber, and Frenkel 
@@ -175,16 +194,15 @@ there exist further barriers to the formation of clusters in some systems,
 this has lead to instead calling this phenomena as Multi-step Nucleation.
 
 \subsection{Non-classical Nucleation} 
+The current research into two step nucleation (or now more commonly 
+referred to as multi-step nucleation theory) is developing a robust 
+framework to describe what nucleation pathway will occur given the 
+initial conditions. Reviews of all currently documented nucleation 
+pathways identified highlighted the fact the need for a the 
+development of \textit{in situ} techniques that can induce nucleation 
+locally but can also reliably identify the nucleation pathway across 
+a broad range of experimental conditions \cite{Karthika2016, Fu2021}. 
 
-
-
-The current research into two step nucleation (or now more commonly referred 
-to as multi-step nucleation theory) is developing a robust framework to 
-describe what nucleation pathway will occur given the initial conditions. 
-Reviews of all currently documented nucleation pathways identified highlighted 
-the fact the need for a the development of \textit{in situ} techniques that 
-can induce nucleation locally but can also reliably identify the nucleation 
-pathway across a broad range of experimental conditions \cite{Karthika2016, Fu2021}. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -236,8 +254,6 @@ decrease in solubility is not out matched by the decrease in mass ratio.
 Anti-solvent crystallisation is not as common due to the fact that not all
 solutions will have an ideal anti-solvent candidate.
 
-
-
 \section{Optical Tweezers}
 \subsection{Background}
 Optical tweezing has been a field of applied optics ever since the 1970s
@@ -257,17 +273,22 @@ measuring and exerting precise forces on the magnitude of pico-newtons
 allowing one to probe the material properties of the smallest materials. 
 
 \subsection{Gaussian Beams}
-A Gaussian Beam is a simplistic approximation of a laser beam, in short
-it is an unbounded plane wave whose intensity of the electromagnetic 
-field falls off from the centre similar to a normal distribution. This 
-is perfectly fine for beams with a divergence angle of $0^{\circ}$, but 
-later studies into focused beams has shown that the assumption of a 
-Gaussian intensity profile is inaccurate. A study conducted by Lock and Gouesbet found that as the Gaussian beam was focused the fall off in 
-the electric field would consequentially induce additional electromagnetic fields \cite{Lock1994}. As a result the shape of the beam profile diverges from a Gaussian profile for focused beams. Regardless, for optical trapping experiments it is useful to approximate a Gaussian beam as many descriptions
-of lasers are simply combinations of plane waves (with varying amplitudes
-and wave vectors). More information on electromagnetic theory is covered in 
-chapter 2 but for now any mention of a focused laser can be thought of as a
-Gaussian beam, unless specified otherwise. 
+A Gaussian Beam is a simplistic approximation of a laser beam, in 
+short it is an unbounded plane wave whose intensity of the 
+electromagnetic field falls off from the centre similar to a normal distribution. This is perfectly fine for beams with a divergence 
+angle of $0^{\circ}$, but later studies into focused beams showed 
+that the assumption of a Gaussian intensity profile is inaccurate. 
+A study conducted by Lock and Gouesbet found that as the Gaussian 
+beam was focused the fall off in the electric field would 
+consequentially induce additional electromagnetic fields 
+\cite{Lock1994}. As a result the shape of the beam profile diverges 
+from a Gaussian profile for focused beams. Regardless, for optical 
+trapping experiments it is useful to assume a near Gaussian beam as 
+many descriptions of lasers are simply combinations of plane waves 
+(with varying amplitudes and wave vectors).  More information on 
+electromagnetic theory is covered in chapter 2 but for now any 
+mention of a focused laser can be thought of as a Gaussian beam, 
+unless specified otherwise. 
 
 \subsection{Literature related to laser induced nucleation}
 From as early as 1996 it has been known that laser irradiation is a viable
@@ -524,39 +545,68 @@ field.
 
 
 \section{Significance of Thesis}
-As I have hoped to make clear in the above introduction, the current 
-state nucleation theory is rather cumbersome at a micro-level. Models
-such as CNT and multi-step nucleation are not sufficient for describing
-the myriad of potential pathways nucleation can go down. As suggested
-by some review articles, the best way to address this is by developing 
-\textit{in-situ} methods that can study the pre nucleation phase in 
-greater detail \cite{Fu2021}. Furthermore, the ability to localise 
-nucleation allows for better characterisation of the kinetics of crystal 
-growth. Laser induced nucleation stands to be an ideal method to study
-nucleation, as the laser output can be concentrated to a small area. 
-In this project we want to consider another application of optical 
-tweezers, their ability to rotate micro-rotors to generate fluid flow.
-Such a method has not been tried before and would allow for us to 
-consider how fluid flow impacts nucleation dynamics at the micro-level. 
+As I have hoped to make clear in the above introduction, the 
+current state nucleation theory is rather cumbersome at a 
+micro-level. Models such as CNT and multi-step nucleation are 
+not sufficient for describing the myriad of potential pathways 
+nucleation can go down. As suggested by some review articles, 
+the best way to address this is by developing \textit{in-situ} 
+methods that can study the pre nucleation phase in greater detail \cite{Fu2021}. Furthermore, the ability to localise nucleation 
+allows for better characterisation of the kinetics of crystal 
+growth. Laser induced nucleation stands to be an ideal method to 
+study nucleation, as the laser output can be concentrated to a 
+small area \cite{Korede2023}. This fine control over the local 
+fluid would allow for individual nucleation events to be
+characterised as a factor of the local fluid properties. One 
+challenge lies in the fact that its clear that the local fluid 
+properties have a direct influence on the likelihood of laser
+induced nucleation from occurring \cite{Korede2023, Ward2016,
+Yuyama2012, Liao2022}. 
+
+A way around this would be to try and induce the local fluid 
+without directly relying on the electromagnetic field. Optical 
+tweezers can reliably do so already by applying an optical 
+torque to a trapped particle in order to induce fluid flow 
+\cite{Bishop2004, RobertsonAnderson2018}. It's already well
+documented that shearing will enhance nucleation events at a
+macro-level \cite{Debuysschere2023}. Micro-rheological studies 
+using optical tweezing have been more interested in probing 
+the local viscosity rather than try and use it as a means of 
+shearing the fluid to induce crystal growth. 
 
 \section{Overview}
-Overall the aim of the PhD is to study viability of using micro-rotors to
-generate localised fluid flow around the beam focus. The results are reported
-in chapter 3, this is then succeeded by experimental work where we instead 
-using a galvano-mirror to generate shear flow. While overall unsuccessful
-the addition of a moving beam focus showed that the growth of a nucleus can be localised around the trap focus. This presents a new insights for controlling
-and studying the growth of a newly formed nucleus by precise movement of the
-trapping focus.
+Overall the aim of the PhD is to study viability of using 
+micro-rotors to generate localised fluid flow around the 
+beam focus. The results are reported in chapter 3, this is 
+then succeeded by experimental work where we instead using 
+a galvano-mirror to generate shear flow. While overall 
+unsuccessful the addition of a moving beam focus showed 
+that the growth of a nucleus can be localised around the 
+trap focus. This presents a new insights for controlling
+and studying the growth of a newly formed nucleus by 
+precise movement of the trapping focus.
 
-In addition, computer simulations studying the dynamics of asymmetric dimers 
-and their applications as complex micro-rotors are discussed in chapter 4. 
-The latter results are interesting as a potential insight into how optical
-torque is transferred to anisotropic objects.
+The latter chapters cover computer simulations into the 
+behaviour of microscopic spherical dimers in an optical
+trap. Prior research into dimers using back focal plane
+interferometry has mostly considered their trapping 
+behaviour to be similar to a single sphere but with a 
+difference in trapping strength. Computer simulations
+reveal a host of new behaviours dependent on the dimer's
+size, orientation, proximity to the trapping focus, and 
+even the polarisation of the trapping beam. The latter in
+particular suggests that multi-spherical particles can act
+as sophisticated micro-rotors. 
 
-Lastly two novel methods of measuring rotational motion are discussed in 
-chapter 5; firstly via a novel detection fibre method that allows for 
-instantaneous measurements of the orientational behaviour of optically 
-trapped ellipsoids/dimers; and secondly we create a simulative quadrant 
-photo diode that replicates laboratory results, utilising linear regression 
-techniques we measure the change in orientation in order to measure the 
-optical torque applied to a non-birefringent particle. 
+However, this raises a its own host of experimental challenges,
+namely how do we characterise the behaviour of an arbitrary
+particle. Relying on current characterisation techniques is not
+possible as they are predicated on the trapping object to behave
+like an isolated sphere. Two novel methods of measuring rotational 
+motion are discussed in chapter 5; firstly via a novel detection 
+fibre method that allows for instantaneous measurements of the 
+orientational behaviour of optically trapped ellipsoids/dimers; 
+and secondly we create a simulative quadrant photo diode that 
+replicates laboratory results, utilising linear regression 
+techniques we measure the change in orientation in order to 
+measure the optical torque applied to a non-birefringent particle. 

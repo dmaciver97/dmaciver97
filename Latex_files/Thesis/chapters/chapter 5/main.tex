@@ -183,7 +183,10 @@ surface is within $0.1\%$ of the central pixel.
 	of the optical fibre $\langle I \rangle$ as a function of distance.
 	4 different optical detectors were tested (spherical coordinates 
 	are given in the legend). While the choice of coordinates is 
-	arbitrary they all demonstrate the same exponential decay.}
+	arbitrary they all demonstrate the same exponential decay. Dashed
+	lines indicate the difference after $20\mu m$ from the trap focus,
+	in most practical cases getting an optical fibre any closer would
+	disrupt the trap stability.}
 \end{figure}
 
 By moving the detectors further back we can treat each detector 
@@ -364,15 +367,20 @@ $p(y_k(\hat{\bf s})|\hat{\bf n}_\alpha, t)$.
 
 Evaluating how well Eq.~\eqref{eq:bayes} performs in predicting $\hat{\bf n}$
 is difficult because we have discretised the orientation space meaning 
-there will always be some degree of inaccuracy in our prediction. The Kullback-Liebler divergence method allows us to compare the divergence 
-between two probability, namely Eq.~\eqref{eq:bayes} and a case scenario.
+there will always be some degree of inaccuracy in our prediction. The Kullback-Liebler divergence method provides a measure of the relative
+entropy change between two probability distributions:
 \begin{align}
-	D_{KL}(P\parallel p(\hat{\bf n}_\alpha| y_k(\hat{\bf s}), t)) = \sum P(t) \frac{P(t)}{p(\hat{\bf n}_\alpha| y_k(\hat{\bf s}), t)} 
+	D_{KL}(P(t)\parallel Q(t)) = \sum P(t) \log_2\left[\frac{P(t)}{Q(t)}\right] 
+	\label{eq:D_KL}
 \end{align} 
 
-Where $P(t)$ is the case scenario we are comparing against. In an ideal
-case our model would correctly predict the dimer's orientation with 
-100\% accuracy:
+Where $P(t)$ and $Q(t)$ are two probability distributions we are
+comparing, often it is common to use a base 2 log as this converts 
+the entropy to base 2. By relative entropy we are talking about 
+the useful information gained/lost by switching from $P(t)$ to 
+$Q(t)$. In our case $Q(t)$ is simply the distribution given by
+Eq.~\eqref{eq:bayes} and $P(t)$ is an idealised distribution, 
+one where the model is accurate with 100\% certainty.
 \begin{align}
 	\label{eq:best}
 	p_{best} = P(t) =
@@ -382,44 +390,24 @@ case our model would correctly predict the dimer's orientation with
 	\end{cases}
 \end{align}
 
-In reality the distribution from Eq.~\eqref{eq:bayes} will assign some 
-non-zero probability to every reference orientation. Therefore the 
-divergence of Eq.~\eqref{eq:bayes} at each time step is given as:
+In reality the distribution from Eq.~\eqref{eq:bayes} will assign 
+some non-zero probability to every reference orientation. Therefore 
+the relative entropy for a single measurement is given as:
 \begin{align}
 	D_{KL}(p_{best}\parallel p(\hat{\bf n}_\alpha| y_k(\hat{\bf s}), t))
-	= \ln \left[\frac{1}{p(\hat{\bf n}_\alpha| y_k(\hat{\bf s}), t)}
+	= \log_2 \left[\frac{1}{p(\hat{\bf n}_\alpha| y_k(\hat{\bf s}), t)}
 	\right]
-	\label{eq;kullback}
+	\label{eq:kullback}
 \end{align}
 
-where a larger value of $D_{KL}$ indicates that our model is less confident 
-in its prediction of the dimer's orientation. The divergence $D_{KL}$ thus 
-illustrates the 'spread' in the estimated dimer orientation probability 
--- a distribution strongly peaked at some value would give us more 
-confidence in that value than a near-uniform distribution where the 
-scattering measurement could imply a wide range of possible orientations 
--- but it does not directly indicate our estimates actual accuracy. 
-In order to reflect the accuracy of each prediction by using a weighting
-function such as:
-\begin{align}
-	\omega_\alpha = \frac{1}{2} (\hat{\bf n}_{best} \cdot \hat{\bf n}_\alpha+1)
-\end{align}
-
-Which is just the normalised dot product between our estimate and the
-best possible estimate, so for highly inaccurate estimations $D_{KL}$
-is far greater than if we narrowly missed the $\hat{\bf n}_{best}$. With
-this in mind the divergence for a single measurement is:
-
-\begin{align}
-	D_{KL}(p_{best}\parallel p(\hat{\bf n}_\alpha| y_k(\hat{\bf s}), t))
-	= \ln \left[\frac{1}{p(\hat{\bf n}_\alpha| y_k(\hat{\bf s}), t)\omega_\alpha}
-	\right]
-\end{align}
-
-Later we will show how we set a baseline for evaluating the performance 
-of \eqref{eq:bayes} across an entire trajectory and how it handles common
-errors in a static light scattering setup. 
-
+The relative entropy is a measure if how spread out our distribution
+is. With larger values of $D_{KL}$ indicating that our prediction is 
+spread out so the correct orientation is unsure about $\hat{\bf n}_
+{best}$. Whereas a low value of $D_{KL}$ means that our model is more 
+confident in $\hat{\bf n}_{best}$. The only draw back being that the 
+relative entropy does nothing to indicate accuracy, only how closely 
+our distribution matches our ideal result. This will be better 
+exemplified later in \ref{sec:test}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Brownian Simulation}
@@ -429,63 +417,97 @@ We use the Brownian OT package developed by Fung~\textit{et~al}
 \cite{Vigilante2020} to simulate the motion of an asymmetric dimer (Figure~\ref{fig:dimer}a) within an optical trap. We simulate the 
 motion of a dimer trapped in a highly focused Gaussian beam by 
 calculating the optical forces imparted by the laser, and the 
-Brownian force due to the surrounding fluid. MSTM provides the 
-necessary T-matrix to compute the optical force via \textit{ott}. 
-The Brownian force is found by computing the dimer's diffusion 
-tensor according to the analytical solutions provided by Nir and 
-Acrivos \cite{Nir1973}. We simulated a polystyrene dimer ($n = 
-1.59$) in a suspension of water ($n_{med} = 1.33$) over the 
-course of $1 \ s$ with a simulation time step of $1 \times 10^{-5} 
-\ s$. We placed the dimer 4 microns below the trap focus at an 
-angle $30^{\circ}$ from the horizontal, the resulting trajectory 
-is shown below in Sec~\ref{sec:motion}. We chose these initial 
-parameters because it demonstrates our model's performance in non 
-steady state conditions. 
-
-The exact number of detectors was initially assumed to be arbitrary, in that it made no difference to our estimate whether we used 2 angles or 200. For practical purposes it seemed beneficial that we demonstrate our method works for a minimal number of detection angles, as geometric constraints come into play when trying to install a high number of detection fibres for any optical tweezer set up. 
-
-
+Brownian force due to the surrounding fluid. We simulated a 
+polystyrene dimer ($n = 1.59$) in a suspension of water ($n_{med} 
+= 1.33$). As discussed in chapter 4 dimers can be stably trapped
+in off-axis orientations. We simulate a dimer (of size ratio 2) that
+is trapped in this off-axis orientation by a $5 mW$ laser, due to 
+the meta-stability of the trap the dimer is only trapped for second
+before it escapes the trap. The dimer's position and orientation 
+is shown below:
 \begin{figure}[h!]
 	\centering
-	\begin{subfigure}{0.49\textwidth}
+	\begin{subfigure}{0.45\textwidth}
 		\subcaption{}
-		\includegraphics[width=\textwidth]{fig4a.png}
+		\includegraphics[width =\textwidth]{fig7a.png}
 	\end{subfigure}
-	\begin{subfigure}{0.4\textwidth}
+	\begin{subfigure}{0.45\textwidth}
 		\subcaption{}
-		\includegraphics[width=\textwidth]{fig4b.png}
+		\includegraphics[width=\textwidth]{fig7b.png}
 	\end{subfigure}
-	\caption{Expected scattered signals from reference orientations -see fig~\ref{fig:dimer} - when: (a) all three detectors are in the X-Y plane, (b) when 1 detector is raised out of the X-Y plane.}
-	\label{fig:detectors}
+	\caption{Simulation results of: (a) the dimer's orientation vector with time, (b) the dimer's [x,y,z] position with time.}
+	\label{fig:motion}
 \end{figure}
 
-When all of the detectors lie in the same plane the expected signal can appear identical despite the dimer being in completely different orientations. This is shown in Figure~\ref{fig:detectors} which plots the expected signals from 30 reference orientations, each point is labelled with its corresponding reference orientation, the fact that points have multiple labels is because the dimer's scattering is indistinguishable in these two reference orientation. It should be noted that these pairs are reflected in one or more axis which suggests that these are due to the arrangement of our detectors. More specifically, if the detectors are placed say in the x-y plane then only when the dimer is pointed nearly fully upright will the expected signal be entirely unique. This is illustrative of the difficulty behind the inverse light scattering problem; as one cannot always map a given signal to a particular parameter value.
+At the same we use \textit{mstm} to replicate the intensity of light
+incident on the surfaces of detectors placed around the focus of the
+optical trap. The exact number of detectors was initially assumed to 
+be arbitrary, in that it made no difference to our estimate whether 
+we used 2 angles or 200. For practical purposes it seemed beneficial 
+that we demonstrate our method works for a minimal number of detection 
+angles, as geometric constraints come into play when trying to install 
+a high number of detection fibres for any optical tweezer set up.
 
-To remedy this we raise the third detector out of the x-y plane; as such the expected signals from each reference orientation is unique. As seen between Figures \ref{fig:detectors}a \& b each reference orientation now has a unique scattering signal, though with only three detectors the difference in expected signals can appear insignificant. By adding a $4^{th}$ detector we can differentiate signals more reliably, improving the neural networks performance.   In line with our goal of making this method viable in a laboratory setting we decided not to increase the number of detectors further than 4. 
+When all of the detectors lie in the same plane the expected signal 
+can appear identical despite the dimer being in completely different orientations. It should be noted that these pairs are reflected in 
+one or more axis which suggests that these are due to the arrangement 
+of our detectors. More specifically, if the detectors are placed say 
+in the x-y plane then only when the dimer is pointed nearly fully 
+upright will the expected signal be entirely unique. This is not an 
+issue with typical analytical static light scattering experiments 
+because the signal being collected is averaged over a population of 
+particles all in different orientations. Whereas in our set up we are concerned with the scattering of a single particle whose scattering is orientationally dependant. 
+
+To remedy this we raise the third detector out of the x-y plane; 
+as such the expected signals from each reference orientation is 
+unique, though with limited resolution. By adding a $4^{th}$ 
+detector we can differentiate signals more reliably, improving the 
+neural networks performance. In line with our goal of making this 
+method viable in a laboratory setting we decided not to increase 
+the number of detectors further than 4. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Testing the Model}
+\subsection{Testing the Neural Network}
 \label{sec:test}
-Using our simulation from Section~\ref{sec:brownian} we simulated the motion of a silica dimer ($n = 1.45$) trapped in water ($n = 1.33$) within a 5 mW optical trap. The trapping laser is 1064nm NIR focused through a 1.25 NA objective. The dimer is comprised of two tangent spheres with radii $1 \mu m$ and $0.5 \mu m$ respectively. We simulated the first 10 seconds of motion, calculating the orientation and position every 1 ms. 
-
-We applied Eq.~\eqref{eq:bayes}, taking the reference orientation with the highest probability  as our estimate of the dimer's instantaneous orientation $\hat{\bf n}_{est}$. To visualise the model's performance  we plotted the radial distance between our estimation $\hat{\bf n}_{est}$ and the dimer's \emph{actual} instantaneous orientation $\hat{\bf s}$ versus time. For comparison, we also plotted the radian distance between the  dimer's instantaneous orientation and the closest reference orientation, denoted $\hat{\bf n}_{best}$. The dotted line indicates the maximum radian distance ($0.896$ radians) between two \textit{neighbouring} reference orientations: if we are under this line then we know our estimate is at least neighbouring the best result. Assuming a uniform prior of the reference orientations $p(\hat{\bf n}_\alpha)$  the neural network's predictions ($\hat{\bf n}_{est}$ from Eq.~\eqref{eq:bayes}) are at times reasonable, but there are significant large and random jumps away from the correct result (Fig.~\ref{fig:uniform}). 
-
+We applied Eq.~\eqref{eq:bayes}, taking the reference orientation 
+with the highest probability  as our estimate of the dimer's 
+instantaneous orientation $\hat{\bf n}_{est}$. To visualise the 
+model's performance we plotted the orientation components of our 
+estimation $\hat{\bf n}_{\alpha}$ and the dimer's \emph{actual} 
+instantaneous orientation $\hat{\bf s}$ versus time. For comparison, 
+we also plotted the orientation components of the closest reference orientation, $\hat{\bf n}_{best}$. Assuming a uniform prior of the 
+reference orientations $p(\hat{\bf n}_\alpha)$ the neural network's predictions ($\hat{\bf n}_{\alpha}$ from Eq.~\eqref{eq:bayes}) are 
+at times reasonable, but there are significant large and random jumps 
+away from the correct result (Fig.~\ref{fig:uniform}). 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{fig5.png}
-	\caption{Model's estimation of dimer orientation over the simulation time, assuming uniform prior $p(\hat{\bf n}_\alpha)$, broken up into x, y, and z components for clarity. Blue line denotes the best result we can achieve (the reference orientation $\hat{\bf n}_{best}$ that is closest to the actual orientation), orange line denotes the result provided by eq~\ref{eq:bayes}: where the orange line is not visible, the model's prediction agrees with $\hat{\bf n}_{best}$. Dotted black line is the instantaneous orientation $\hat{\bf s}$.}
+	\caption{Model's estimation of dimer orientation over the simulation time, assuming uniform prior $p(\hat{\bf n}_\alpha)$, broken up into x, y, and z components for clarity. Blue line denotes the best result we can achieve (the reference orientation $\hat{\bf n}_{best}$ that is closest to the actual orientation), orange line denotes the result provided by eq~\ref{eq:bayes}: where the blue line is not visible, the model's prediction agrees with $\hat{\bf n}_{best}$. Dotted black line is the instantaneous orientation $\hat{\bf s}$.}
 	\label{fig:uniform}
 \end{figure} 
 
 One reason we observe such large jumps in the estimated 
 orientation is simply because the neural network is assuming
-that the signals are unrelated from one another. As demonstrated
-by fig~\ref{fig:mixing} the orientation and signal spaces are 
-uncorrelated with one another which results in the neural network
-to assign orientations incorrectly. Combining this fact with 
-use of a uniform prior ($p(\hat{\bf n}_\alpha)$), there 
-is no constraint on how much estimated orientation can change 
-from time-step to time-step. 
+that the signals are unrelated from one another. We can 
+observe this if we take the average relative entropy change
+across the entire trajectory:
+
+\begin{align}
+	\langle D_{KL}\rangle = \frac{1}{N} \sum_{i=1}^{N} \log_2 \left[\frac{1}{p(\hat{\bf n}_\alpha\parallel y_k(\hat{s}),t_i)}\right]
+	\label{eq:score}
+\end{align}
+
+Where we get an average entropy change of $\approx 0.604$, in 
+base 2 this means that on average the model has narrowed down 
+its options from 1 in 30 to 1 in 1.52. This is not reflected
+though in fig.~\ref{fig:uniform} which indicates that while 
+the model is highly confident in its results it is not at all 
+accurate. As demonstrated by fig~\ref{fig:mixing} the 
+orientation and signal spaces are uncorrelated with one another 
+which results in the neural network to assign orientations 
+incorrectly. Combining this fact with use of a uniform prior 
+($p(\hat{\bf n}_\alpha)$), there is no constraint on how much 
+estimated orientation can change from time-step to time-step. 
 
 To improve the estimation we can therefore use knowledge of the 
 physical limitations of the object in the trap and its dynamics. 
@@ -507,8 +529,8 @@ reweighing our estimation based on the size of rotation, with smaller movements 
 	\label{eq:boltz}
 \end{align}
 
-As shown in Figure~\ref{fig:biased} implementation of Eq~\eqref{eq:boltz} helps significantly reduce the large random excursions of estimated orientation away from the 'best' result. 
-
+As shown in Figure~\ref{fig:biased} implementation of Eq~\eqref{eq:boltz} helps significantly reduce the large random excursions of estimated orientation away from the 'best' result. However at the same 
+time result is still subpar.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=\textwidth]{fig8a.png}
@@ -522,53 +544,38 @@ As shown in Figure~\ref{fig:biased} implementation of Eq~\eqref{eq:boltz} helps 
 	}
 \end{figure} 
 
-The simulation data from Section~\ref{sec:brownian} was used to evaluate our model's performance --- covered in Section~\ref{sec:divergence}. By summing the divergence of each measurement across the entire simulation we get an evaluation of how well the model performed in estimating the dimer's orientation. To compare the effects of changing certain parameters on the performance of our model we compare our result of $K_{l,total}$ to a worst case scenario and evaluate how much it improves upon this, denoted as $F(K_l)$:
-\begin{align}
-	K_{l, \ total} &= \sum\limits_{\# =1}^{timesteps} K_{l,\#}
-	\\
-	K_{l, \ worst} &= \sum\limits_{\#=1}^{timesteps} \ln \left[\frac{1}{1/n_{ref}} \right]
-	\\
-	F(K_l) &= \frac{K_{l,\ worst}}{K_{l, \ total}}
-\end{align}
+Once again using Eq.~\eqref{eq:score} we now get a result of 
+$\approx 0.204$ or a 1 in 1.2 result. This is only a slight 
+improvement in terms of confidence but has drastically reduced 
+the variation in our models predictions. There are other 
+improvements that can be made, which additionally also help with
+potential sources of error in our set up.
 
-The worst case scenario is akin to randomly choosing a reference
-orientation at each time step. The greater the value of $F(K_l)$, the
-better our model's confidence is in characterising the dimer's
-motion. Because our model is dependent on several parameters we need
-to a sophisticated method for understanding how these parameters
-correlate with $F(K_l)$.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Asymmetric dimer dynamics}
-\label{sec:motion}
-A simulation of a asymmetric dimer ($a_1=1\,\mu{\rm m}$, $a_2=0.5\,\mu{\rm m}$) 
-trapped in an off-axis trapping orientation was used as a test case for our 
-model, since it was previously shown that dimers can be optically rotated 
-
-\begin{figure}[h!]
-	\centering
-	\begin{subfigure}{0.45\textwidth}
-		\subcaption{}
-		\includegraphics[width =\textwidth]{fig7a.png}
-	\end{subfigure}
-	\begin{subfigure}{0.45\textwidth}
-		\subcaption{}
-		\includegraphics[width=\textwidth]{fig7b.png}
-	\end{subfigure}
-	\caption{Simulation results of: (a) the dimer's orientation vector with time, (b) the dimer's [x,y,z] position with time.}
-	\label{fig:motion}
-\end{figure}
-
-In the simulations of Vigilante~\emph{et~al}.\ \cite{Vigilante2020}, trapped symmetrical dimers were investigated; their findings showed that the optical torque on the dimer goes to zero while aligned vertically and is at its maximum in a horizontal alignment. However as seen in Figure~\ref{fig:motion} asymmetric dimers demonstrate dynamics that do not immediately achieve steady state. We chose to use asymmetric dimers as our benchmark due to this fact, as its orientational motion is far more complex than a symmetric dimer. In the future we hope to further investigate the motion of asymmetric dimers. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Accounting for sources of error in light scattering measurements}
-When it comes to analysing light scattering from any size particle, error analysis becomes a significant factor. Typically this can be accounted for by averaging over long periods of time to get an assessment of the steady state conditions of the target particle. However in our case where we wish to know the instantaneous orientation, we instead have to rely on our understanding of how uncertainty can effect our model's performance. We identified two areas which are likely sources of error in our estimation: firstly, an incorrect modelling of the target particle, and secondly, signal noise arising from experimental factors. We highlight how we address these areas below. 
+When it comes to analysing light scattering from any size particle,
+error analysis becomes a significant factor. Typically this can be 
+accounted for by averaging over long periods of time to get an 
+assessment of the steady state conditions of the target particle. 
+However in our case where we wish to know the instantaneous 
+orientation, we instead have to rely on our understanding of how 
+uncertainty can effect our model's performance. We identified two 
+areas which are likely sources of error in our estimation: firstly, 
+an incorrect modelling of the target particle, and secondly, signal 
+noise arising from experimental factors. We highlight how we address 
+these areas below. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subparagraph{Impact of incorrect dimer sizing}
 \label{sec:lam}
 
-One of the main limitations of our model is that we assume that the dimer being modelled in MSTM is accurate to the dimer being trapped in the optical tweezer. Sizing molecules accurately is a significant challenge for single particle analysis so there is bound to be some uncertainty with the measurements. We ran our model 3 times with the neural net being trained on a dimer of size ratio $1:1.95$, $1:2.00$ and $1:2.05$.
+One of the main limitations of our model is that we assume that 
+the dimer being modelled in \textit{mstm} is accurate to the 
+dimer being trapped in the optical tweezer. Sizing molecules 
+accurately is a significant challenge for single particle 
+analysis so there is bound to be some uncertainty with the 
+measurements. We ran our model 3 times with the neural net being 
+trained on a dimer of size ratio $1:1.95$, $1:2.00$ and $1:2.05$.
 \begin{figure}[h!]
 	\centering
 	\begin{subfigure}{0.33\textwidth}
@@ -583,7 +590,10 @@ One of the main limitations of our model is that we assume that the dimer being 
 		\subcaption{}
 		\includegraphics[width=\textwidth]{fig8c.png}
 	\end{subfigure}
-	\caption{Model estimates of orientation when neural net has been trained on dimer of size ratio: (a) 1:2 $[F(K_l)=9.456]$, (b) 1:2.05 $[F(K_l)=1.324]$, (c) 1:1.95 $[F(K_l)=1.325]$ ($n_{refs} = 30$)}
+	\caption{Model estimates of orientation when neural net has 
+		been trained on dimer of size ratio: (a) 1:2 $[\langle D_{KL}\rangle=0.519]$, (b) 1:2.05 $[\langle D_{KL}
+		\rangle=3.706]$, (c) 1:1.95 $[\langle D_{KL}\rangle=
+		3.705]$ ($n_{refs} = 30$)}
 	\label{fig:size}
 \end{figure}
 
@@ -602,7 +612,10 @@ As can be seen from Fig~\ref{fig:size}  even the slightest change in size ratio 
 		\subcaption{}
 		\includegraphics[width=\textwidth]{fig9c.png}
 	\end{subfigure}
-	\caption{Model estimates of orientation when neural net has been trained on dimer of size ratio: (a) 1:2 $[F(K_l)=11.756]$, (b) 1:2.05 $[F(K_l)=1.233]$, (c) 1:1.95 $[F(K_l)=2.128]$, ($n_{refs} = 126$)}
+	\caption{Model estimates of orientation when neural net has 
+		been trained on dimer of size ratio: (a) 1:2 $[\langle D_{KL}\rangle=0.593]$, (b) 1:2.05 $[\langle D_{KL}\rangle
+		=5.659]$, (c) 1:1.95 $[\langle D_{KL}\rangle=3.279]$, 
+		($n_{refs} = 126$)}
 	\label{fig:refs}
 \end{figure}
 
@@ -631,13 +644,28 @@ where $\epsilon$ is the percentage error associated with the scattering signal. 
 		\subcaption{}
 		\includegraphics[width=\textwidth]{fig10c.png}
 	\end{subfigure}
-	\caption{Model prediction for signal error of (a) $1\%$ ~  $[F(K_l)=7.246]$, (b) $15\%$ $[F(K_l)=0.511]$, and (c) $25\%$ ~  $[F(K_l)=0.536]$.}
+	\caption{Model prediction for signal error of (a) $1\%$ ~
+		$[\langle D_{KL}\rangle=0.962]$, (b) $15\%$ $[\langle D_{KL}\rangle=13.654]$, and (c) $25\%$ ~  $[\langle D_{KL}\rangle=13.017]$.}
 	\label{fig:epsilon}
 \end{figure}
 
-As can be seen from Figure~\ref{fig:epsilon}, the inclusion of signal noise quickly leads to a decrease in the model's performance. This is due to an inherent feature of the inverse scattering problem: two distinct regions in orientation space can become heavily intertwined and thus no longer well separated when mapped to intensity space (even though the mapping remains continuous): so even small uncertainties in the scattering data can lead to large 'mistakes' in the choice of orientation by the neural network. (Indeed if this was not the case the inverse scattering problem would be quite simple.) 
+As can be seen from Figure~\ref{fig:epsilon}, the inclusion of 
+signal noise quickly leads to a decrease in the model's 
+performance. So much so that beyond 15\% the model is actually 
+worse than just randomly guessing.This is due to an inherent 
+feature of the inverse scattering problem: two distinct regions 
+in orientation space can become heavily intertwined and thus no 
+longer well separated when mapped to intensity space (even 
+though the mapping remains continuous): so even small 
+uncertainties in the scattering data can lead to large 'mistakes' 
+in the choice of orientation by the neural network. (Indeed if 
+this was not the case the inverse scattering problem would be 
+quite simple.) 
 
-To reduce the effects of the signal noise we took the time average of the expected signal over $0.001 s$ and then had our neural network estimate the orientation based on the average signal.
+To reduce the effects of the signal noise we took the time 
+average of the expected signal over $0.001 s$ and then had our 
+neural network estimate the orientation based on the average 
+signal.
 
 \begin{figure}[h!]
 	\centering
@@ -653,16 +681,49 @@ To reduce the effects of the signal noise we took the time average of the expect
 		\subcaption{}
 		\includegraphics[width=\textwidth]{fig11c.png}
 	\end{subfigure}
-	\caption{Model prediction for signal error of (a) $1\%$ $[F(K_l)=4.823]$,  (b) $15\%$ $[F(K_l)=1.494]$, and (c) $25\%$ $[F(K_l)=0.882]$, time averaged over $1\,{\rm ms}$}
+	\caption{Model prediction for signal error of (a) $1\%$ 
+		$[\langle D_{KL}\rangle=1.447]$, (b) $15\%$ $[\langle D_{KL}\rangle=4.670]$, and (c) $25\%$ $[\langle D_{KL}
+		\rangle=7.911]$, time averaged over $1\,{\rm ms}$}
 	\label{fig:time average}
 \end{figure}
-This resulted in a reduction in the overall signal noise and provided a higher degree of accuracy for our model. There appears to be no clear correlation between the length over which we time average and the performance of our model. Time averaging over every 0.05s resulted in a drastically worse performance; this is due to the fact that over longer time periods there is greater uncertainty regarding how the dimer's orientation has changed, thus tracking the instantaneous orientation becomes harder for the neural network. Fortunately, time averaging even over $1\,{\rm ms}$ seems to provide a satisfactory estimation of the dimer's angular dynamics within the optical trap.
+This resulted in a reduction in the overall signal noise and 
+provided a higher degree of accuracy for our model. There 
+appears to be no clear correlation between the length over 
+which we time average and the performance of our model. Time 
+averaging over every 0.05s resulted in a drastically worse 
+performance; this is due to the fact that over longer time 
+periods there is greater uncertainty regarding how the dimer's 
+orientation has changed, thus tracking the instantaneous 
+orientation becomes harder for the neural network. Fortunately, 
+time averaging even over $1\,{\rm ms}$ seems to provide a 
+satisfactory estimation of the dimer's angular dynamics within 
+the optical trap.
 
-From the above discussion it’s clear that estimation of the dimer’s orientation is a problem that can be endlessly tuned to fully maximise our end result. Here we simplify the problem somewhat by employing a relatively small finite number of 'reference orientations' to map between scattering and dimer orientation: the precision of estimation could be improved by utilising a greater number of reference orientations, although there remains a balance between the realisable precision of orientation estimate and the noise level of the scattering measurement. Another avenue to further explore would be using the method to optimise the choice of detection angles, essentially to find the region in the mapping between measured scattering and orientation that others the best degree of confidence through optimal separation of scattering signals for distinct orientations. For sequences of data such as dynamic measurements, a further potential enhancement would be to consider more complex correlations based on prior expectations of the dynamics. Here already we improve the method using a non-uniform prior based on only the immediately previous measurement in time (see Section 2.1): considering a non-uniform grouping of reference orientations might result in a better estimation, if we have information regarding the dimer’s preferred axis of rotation. 
+From the above discussion it’s clear that estimation of the 
+dimer’s orientation is a problem that can be endlessly tuned 
+to fully maximise our end result. Here we simplify the problem 
+somewhat by employing a relatively small finite number of 
+'reference orientations' to map between scattering and dimer 
+orientation: the precision of estimation could be improved by 
+utilising a greater number of reference orientations, although 
+there remains a balance between the realisable precision of 
+orientation estimate and the noise level of the scattering 
+measurement. Another avenue to further explore would be using 
+the method to optimise the choice of detection angles, 
+essentially to find the region in the mapping between measured 
+scattering and orientation that others the best degree of 
+confidence through optimal separation of scattering signals 
+for distinct orientations. For sequences of data such as 
+dynamic measurements, a further potential enhancement would 
+be to consider more complex correlations based on prior 
+expectations of the dynamics. Here already we improve the 
+method using a non-uniform prior based on only the immediately 
+previous measurement in time (see Section 2.1): considering 
+a non-uniform grouping of reference orientations might result 
+in a better estimation, if we have information regarding the 
+dimer’s preferred axis of rotation. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 \section{QPD Simulations}
 A QPD is simply a measure of the total electric field incident on a photo diode, in order to accurately simulate a QPD response careful consideration of how the Electromagnetic fields are defined is required. 
 
@@ -790,4 +851,34 @@ Next we consider a dimer composed of two sphere's similar to the previous sphere
 \section{Conclusion}
 \label{sec:Conclusion}
 
-We have developed a method for measuring the dynamics of an optically-trapped colloidal objects based purely on measurements of the object's light scattering at a small number of detection angles. We demonstrate the method using the orientation of an asymmetric dimer as the dynamic variable and object of interest respectively, but in principle the model can be applied to any characteristic that impacts the light scattering pattern produced by a trapped entity such as size and shape. The MSTM package is a flexible tool for calculating the light scattering of complex objects using a representation of the object as a set of micro-particles, enabling training of a neural network to enable categorisation of the mapping between scattering and trapped object characteristics. By taking account of the physically realistic behaviour of the trapped object and the characteristics of the trap (which impact the dynamics of the object), the Bayesian inference method can be re ned to provide a reliable estimation of object characteristics of interest, even in the presence of measurement noise. Fundamentally, the inverse scattering problem is difficult to solve, since the mapping between object characteristics and scattering can be highly complex. We determined the minimum number of detectors required for a reliable estimation in the presence of measurement noise; furthermore, we demonstrated that the arrangement of these detectors is critical for a reliable estimation of an objects orientation. However, Bayesian inference based on neural network estimation of the mapping provides a powerful method for practical applications, extending the use of optical trapping beyond measuring microscopic force response toward detailed structural and dynamic information about complex trapped entities. 
+We have developed a method for measuring the dynamics of an 
+optically-trapped colloidal objects based purely on 
+measurements of the object's light scattering at a small 
+number of detection angles. We demonstrate the method using 
+the orientation of an asymmetric dimer as the dynamic variable 
+and object of interest respectively, but in principle the 
+model can be applied to any characteristic that impacts the 
+light scattering pattern produced by a trapped entity such 
+as size and shape. The MSTM package is a flexible tool for 
+calculating the light scattering of complex objects using a 
+representation of the object as a set of micro-particles, 
+enabling training of a neural network to enable categorisation 
+of the mapping between scattering and trapped object 
+characteristics. By taking account of the physically realistic 
+behaviour of the trapped object and the characteristics of 
+the trap (which impact the dynamics of the object), the 
+Bayesian inference method can be re ned to provide a reliable 
+estimation of object characteristics of interest, even in the 
+presence of measurement noise. Fundamentally, the inverse 
+scattering problem is difficult to solve, since the mapping 
+between object characteristics and scattering can be highly 
+complex. We determined the minimum number of detectors 
+required for a reliable estimation in the presence of 
+measurement noise; furthermore, we demonstrated that the 
+arrangement of these detectors is critical for a reliable 
+estimation of an objects orientation. However, Bayesian 
+inference based on neural network estimation of the mapping 
+provides a powerful method for practical applications, 
+extending the use of optical trapping beyond measuring 
+microscopic force response toward detailed structural and 
+dynamic information about complex trapped entities. 
