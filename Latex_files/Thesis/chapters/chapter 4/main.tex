@@ -576,10 +576,13 @@ as a means for characterising anisotropic scatterers.
 
 As a benchmark we start by considering a single sphere within an 
 optical trap. A single polystyrene sphere suspended in water 
-($a=1\mu m$, $n_p=1.59$, $n_m=1.33$) was trapped by a focus 
-Gaussian beam and its trajectory was recorded. A 3 second is 
-trajectory is a typical measurement time for collecting a power 
-spectrum, the spectra was fitted to eq.~\ref{eq:alaised_lorentzian}.
+($a=1\mu m$, $n_p=1.59$, $n_m=1.33$) was trapped by a focused 
+Gaussian beam ($NA=1.25$) using circularly polarised light. For 
+the sake of time efficiency the trajectory was sampled every 10
+time steps, meaning the upper bound on the power spectra is
+$f_{Nyq}=f_{sample}/2=5000\ Hz$. To optimise the frequency window
+we fitted the power spectra using the aliased Lorentzian 
+(Eq.~\eqref{eq:aliased_lorentzian}).
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=\linewidth]{PSD_sphere.png}
@@ -591,15 +594,21 @@ spectrum, the spectra was fitted to eq.~\ref{eq:alaised_lorentzian}.
 
 As shown in fig.~\ref{fig:psd_sphere}, the two power spectra report 
 different corner frequencies which would be indicate that the trap 
-is not perfectly circular. Using \textit{ott} we can compare the 
-expected trap strength to what is reported by a quadrant photo diode:
+is not perfectly circular. We can use both \textit{ott} and the 
+trajectory itself to derive an estimation of the trap geometry. 
+The corner frequencies and corresponding trap stiffness are 
+reported below:
+\newpage
+
 \begin{center}
+	\captionof{table}{QPD fitting for single sphere}
 	\begin{tabular}{ |c|c|c|c|c|c|c| } 
 		\hline
-		Fitting parameter & \multicolumn{2}{|c|}{\textit{ott} estimates} & \multicolumn{2}{|c|}{QPD fitting} & \multicolumn{2}{|c|}{Simulation fitting}\\
+		Fitting parameter & \multicolumn{2}{|c|}{\textit{ott} estimates} & \multicolumn{2}{|c|}{QPD fitting} & \multicolumn{2}{|c|}{Trajectory fitting}\\
 		\hline
 		$f_c\ [Hz]$ & 447 & 450 & \parbox{1cm}{\centering 439} & 474 
 		& \parbox{1.25cm}{\centering 523} & 513 \\
+		$\sigma(f_c)\ [Hz]$ & --- & --- & 9.30 & 9.65 & 8.67 & 8.61 \\
 		$\kappa\ [pN/\mu m]$ & 53.05 & 53.40 & 51.96 & 56.09 & 61.94 & 60.7 \\
 		\hline
 		Ellipticity &
@@ -607,27 +616,41 @@ expected trap strength to what is reported by a quadrant photo diode:
 		\multicolumn{2}{|c|}{27.17 \%} &
 		\multicolumn{2}{|c|}{13.8 \%} \\
 		\hline
+		
 	\end{tabular}
 \end{center}
 
-Where the ellipticity of the beam is given by $e = (1-\kappa_y/
-\kappa_x)^{0.5}$ and is a measure of the symmetry of the beam 
-wavefront. Its clear from these initial results that the QPD 
-is more sensitive to changes along the y-axis than the x-axis 
-when compared to the direct \textit{ott} calculations. Typically, 
-even an industrial Gaussian beam will produce an elliptical 
-diffraction limit spot when heavily focused; in their tutorial 
-for optimizing the PSD analysis, Berg and Sorensen reported a 
-ellipticity of around 15 \% after a total calibration time of 
-81 seconds \cite{BergSoerensen2004}. The reason for this 
-discrepancy can be explained partly by the fact that our 
-estimation of the trap geometry via \textit{ott} is based on 
-the force-displacement curve while the sphere is moving in only 
-one direction, whereas the QPD is estimating the trap geometry 
-by extrapolating from far field scattering signals. We now 
-consider a symmetric dimer in identical simulative conditions.
+Where $\sigma(f_c)$ is computed from \cite{BergSoerensen2004}, where
+the variance is based upon our choice of frequency boundaries
+({$f_{min}:f_{max}$} = {$100\ Hz: 5000\ Hz$}). And the ellipticity 
+of the beam is given by $e = (1-\kappa_y/\kappa_x)^{0.5}$ and is a 
+measure of the symmetry of the beam wavefront. Its clear from these 
+initial results that the QPD is more sensitive to changes along the 
+y-axis than the x-axis when compared to the direct \textit{ott} 
+calculations. This is somewhat reflected in the trajectory results. 
+Typically, even an industrial Gaussian beam will produce an 
+elliptical diffraction limit spot when heavily focused; in their 
+tutorial for optimizing the PSD analysis, Berg and Sorensen reported 
+a ellipticity of around 15 \% after a total calibration time of 80 
+seconds \cite{BergSoerensen2004}.
+
+The reason for the discrepancies between all 3 methods is due to what 
+is actually being measured. The \textit{ott} estimates are simply 
+looking at the differences in the trapping strength along the Cartesian 
+axis'. If calibrated over an long enough time frame you would expect 
+that the resulting power spectra would exactly mirror the \textit{ott} predictions. However over a short calibration time a QPD can predict
+large discrepancies in the trap strength. There is a clear trade off 
+in terms of accuracy and computation time as shorter calibration runs 
+are computationally more efficient but prone to errors. This is the case
+even if we know the exact positional data.  
+
+With this in mind, let us consider a symmetric dimer that is optically
+trapped by the same Gaussian beam. Not only does the dimer's equilibrium
+position change but it is subjected to rotational motion due to the 
+beam's angular momentum. This is reflected 
 
 \begin{center}
+	\captionof{table}{QPD fitting for symmetric dimer}
 	\begin{tabular}{ |c|c|c|c|c|c|c| } 
 		\hline
 		Fitting parameter & \multicolumn{2}{|c|}{\textit{ott} estimate} & \multicolumn{2}{|c|}{QPD fitting} & \multicolumn{2}{|c|}{Simulation fitting} \\
@@ -663,17 +686,20 @@ rotational contributions from a single power spectra.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
-Considering the simplicity of a scatterer such as a dimer,
-one would assume that the dynamics of such an object would be
-relatively easy to predict. Simulations of dimers in the Mie regime
-show that not only do they have multiple positions and orientations 
-in which they can be trapped but also that their interaction
-with circularly polarised light is heavily dependent on the axial 
-position and trapping orientation. Dimer's have the potential to be used
-as adaptive micro-rotors, being simple to synthesise and can be made 
-out of any material of choice, but in order for these particles to be
-used as such one needs a means of characterising the optical torque
-applied. While estimations can be made in the Rayleigh regime due to 
-the dimer being treated as point dipole, Mie regime micro rotors require 
-an in-depth theoretical description of the mechanism that is creating 
-this optical torque. 
+Considering the simplicity of a scatterer such as a dimer, one would 
+assume that the dynamics of such an object would be relatively easy 
+to predict. Simulations of dimers in the Mie regime show that not 
+only do they have multiple positions and orientations in which they 
+can be trapped but also that their interaction with circularly 
+polarised light is heavily dependent on the axial position and 
+trapping orientation. 
+
+Dimer's have the potential to be used as tunable micro-rotors, being 
+simple to synthesise and can be made out of any material of choice.
+The rotation demonstrated by dimer's is not accurately described in
+previous literature which raises questions on the interactions between
+circularly polarised light and spherical aggregates. Being made up of
+homogenous materials their is no change in polarisation as expected
+by birefringence. Shape birefringence is also not applicable as the 
+preferred orientation is perpendicular to the polarisation axis, 
+meaning there can be no asymmetry in the dimer's susceptibility. 

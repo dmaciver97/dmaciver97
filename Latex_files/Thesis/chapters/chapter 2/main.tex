@@ -347,51 +347,27 @@ There is a clear difference between Eq.~\eqref{eq:Rayleigh_start}-
 Rayleigh regime is not concerned with the state of the scattered
 field. This is because if the particle is approximated by a point
 dipole we can ignore the momentum transfer calculation and simply
-compute the Lorenz force for a dipole in an electric field. This is 
-not to say that the scattered field is not influenced by the particle, 
-the scattered field can be related to the incident field like so:
-\begin{align}
-	\label{eq:Rayleigh_scattering}
-	\begin{pmatrix}
-		{\bf E}^s_\perp \\
-		{\bf E}^s_\parallel 
-	\end{pmatrix}
-	= \begin{pmatrix}
-		S_{11} & 0 \\
-		0 & S_{22}
-	\end{pmatrix}
-	\begin{pmatrix}
-		{\bf E}^i_\perp \\
-		{\bf E}^i_\parallel
-	\end{pmatrix}
-\end{align}
-
-\noindent
-Where $S_{11}$, and $S_{22}$ are elements of the amplitude scattering 
-matrix, this is analogous to a single plane wave scattering off a 
-sphere. The difference between Eq.~\eqref{eq:Rayleigh_scattering} and
-Eq.~\eqref{eq:t_matrix} is that the $T$-matrix accounts for the 
-scattering from multiple plane waves that make up the laser. Because the 
-particle can be approximated by a point dipole the scattering field is 
-linearly related to the scattered field. While not important for optical 
-force calculation higher complexity scattering problems can be simplified 
-by subdividing the particle into discrete dipoles (see 
-Sec~\ref{sec:scattering}), in which case the scattered field is now 
-significant. As the target particle gets larger this assumption fails 
-to accurately describe the trapping force \cite{Li2021}. For particle 
-sizes close to the laser wavelength the trapping force is best described 
-by Lorenz-Mie theory. 
+compute the Lorenz force for a dipole in an electric field. While 
+not important for optical force calculation higher complexity 
+scattering problems can be simplified by subdividing the particle 
+into discrete dipoles (see Sec~\ref{sec:scattering}), in which case 
+the scattered field is now significant. As the target particle gets 
+larger this assumption fails to accurately describe the trapping force \cite{Li2021}. For larger particles the optical force and scattering 
+is better described via the Lorenz-Mie theory. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Scattering methods}
 \label{sec:scattering}
-There are several methods available to calculate the scattered field 
-produced by a particle. While one can compute this by directly applying
-Lorenz-Mie theory, describing the interactions between focused beams and 
-complicated shapes can be computationally slow and memory intensive. As a
-result, several alternative scattering approaches have been developed that
-allow for faster computation times simplifying the scattering problem.
+There are several methods available to calculate the scattered 
+field produced by a particle. While one can compute this by 
+directly applying Lorenz-Mie theory, describing the interactions 
+between focused beams and complicated shapes can be computationally 
+slow and memory intensive. Several alternative scattering approaches 
+have been developed that allow for faster computation times 
+simplifying the scattering problem. While all of these methods will
+produce identical results the key difference is in how one represents
+the scatterer.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{T-matrix Method}
 
@@ -401,21 +377,25 @@ this would later be extended to electromagnetic waves. Sometimes
 referred to as the extended boundary condition method (ECBM), the 
 method replaces the scatterer with a series of surface currents 
 over the targets surface. These currents are chosen so that the 
-electromagnetic field outside is identical to the original problem \cite{Wriedt1998}. By expanding the fields one can derive the 
-individual elements of \textbf{T} until a desired accuracy is 
-achieved. 
+electromagnetic field outside is identical to the original problem \cite{Wriedt1998}. By expanding the harmonic functions one can 
+derive the individual elements of \textbf{T} until a desired 
+accuracy is achieved. One can either use the ECBM to compute the 
+scattering for a fixed particle orientation and position. Or they
+can evaluate the scattering for any particle orientation by 
+computing its $T$-matrix.
 
 For this project we utilised an extension of the ECBM known as 
-multi-sphere $T$-matrix method (\textit{mstm}). Developed by 
-Mackowski \cite{Mackowski2011} the computational code computes 
-the scattered field from each sphere within the target cluster 
-and the incident field itself. The scattering between spheres 
-will converge to a final result but modern codes truncate 
-the calculations to an upper number of iterations (denoted by 
-$N_{max}$) to fit a desired accuracy and computational time. 
-By centring the expansion at the origin of each sphere the 
-individual sphere $T$-matrices can be computed, then using the
-addition theorem, the target centred $T$-matrix is computed.
+multi-sphere $T$-matrix method (\textit{mstm}) developed by 
+Mackowski \cite{Mackowski2011}. Where Lorenz-Mie Theory centres
+the spherical harmonics expansion about the sphere's origin it
+often struggles to adjust the expansion to any arbitrary origin.
+\textit{mstm} utilises an addition theorem to translate the 
+individual spherical expansions from the centres of each 
+individual sphere to a preset target origin. \textit{mstm}'s 
+primary function is to compute the averaged scattering from 
+large spherical aggregates, but for our purposes it can be
+also utilised to compute $T$ matrices for arbitrary shaped
+spherical aggregates.
 
 The $T$-matrix method is exceptionally useful for computing the 
 scattering from any arbitrary spherical aggregate. However, the 
@@ -435,12 +415,16 @@ scattering from the target particle.
 The discrete dipole approximation (DDA) is a general method that 
 can be applied to the scattering from particles of arbitrary 
 composition and geometry. Developed by Purcell and Pennypacker \cite{Purcell1973}, the DDA method approximates the particle as 
-being constructed of discrete dipoles. Each dipole interacts with 
-both the incident field and the scattered fields from every other 
-dipole surrounding it. The resulting scattered field is identical 
-to the scattered field produced by direct integration of Eq.~\eqref{eq:internal} throughout the full particle volume 
-\cite{Goedecke1988}. The integral form for the total electric field 
-inside a scatterer is given as \cite{Wriedt1998}:
+being constructed of discrete dipoles. This is essentially an 
+extension of the Rayleigh Regime, though in order to compute the 
+optical force one requires a full description of the electric 
+field. Each dipole interacts with both the incident field and the 
+scattered fields from every other dipole surrounding it. The 
+resulting scattered field is identical to the scattered field 
+produced by direct integration of Eq.~\eqref{eq:internal} 
+throughout the full particle volume \cite{Goedecke1988}. The 
+integral form for the total electric field inside a scatterer is 
+given as \cite{Wriedt1998}:
 \begin{align}
 	\mathbf{E(r)} = \mathbf{E}_{inc}(r) + \sum^{N_d}_{i}\mathbf{E}_{scat,i} =  \mathbf{E}_{inc}(r) + \int_{V/V_0}d^3r\mathbf{\bar{G}(r,r')}
 	\chi(\mathbf{r'})\mathbf{E(r')}
@@ -572,7 +556,7 @@ velocity and acceleration can be approximated as:
 	x^{''}(t) &\approx \frac{x'(t+\Delta t)-x'(t)}{\Delta t} = \frac{x(t)-2x(t+\Delta t)+x(t+2\Delta t)}{\Delta t^2}
 \end{align}
 
-By reversing the time step (i.e. use $-\Delta t$) to approximate the \\
+By reversing the time step (i.e. use $-\Delta t$) to approximate the
 velocity and acceleration based on the previous time steps, we can 
 discretise the position by taking finitely small  time steps (i.e. 
 $x(t) = x_i,\ x(t-\Delta t) = x_{i-1}$). The same cannot be done for 
@@ -1012,41 +996,43 @@ we rely on the \textit{mstm} for simulating dimers.
 
 \subsection{Simulation reference frame}
 \label{sec:sim_parameters}
-Throughout this PhD we use the work of Vigilante to perform a systematic 
-study of the dynamics demonstrated by asymmetric dimers in both plane and 
-circularly polarised light. The simulations have two primary frames of 
-reference that require explanation. Firstly, there is the laboratory frame 
-which describes the coordinate system, we define the origin of our simulation
-as the focus of our trapping beam. While the choice in direction for the $x$ 
-and $y$ axis are arbitrary the $z$ axis is specifically chosen so that it is 
-aligned with the direction of beam propagation. 
+Throughout this project we use the work of Vigilante to perform a 
+systematic study of the dynamics demonstrated by asymmetric dimers 
+in both plane and circularly polarised light. The simulations have 
+two primary frames of reference that require explanation. Firstly, 
+there is the laboratory frame which describes the coordinate system, 
+we define the origin of our simulation as the focus of our trapping 
+beam. While the choice in direction for the $x$ and $y$ axis are 
+arbitrary the $z$ axis is specifically chosen so that it is aligned 
+with the direction of beam propagation. 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.6\linewidth]{lab_frame.png}
-	\caption{Ray scattering render of both the laboratory frame and particle 
-		frame for a dimer and a Gaussian beam. The origin of the laboratory 
-		frame is defined as the focus of the trapping beam, with the positive 
-		$z$-axis being aligned with the direction of beam propagation. The 
-		particle frame is centered on the dimer's centre of mass with the 
-		primary axis $U_z$ being aligned with the centres of the two spheres.
-		Black line is scaled to represent $1\ \mu m$.}
+	\caption{Ray scattering render of both the laboratory frame and 
+		particle frame for a dimer and a Gaussian beam. The origin 
+		of the laboratory frame is defined as the focus of the 
+		trapping beam, with the positive $z$-axis being aligned with 
+		the direction of beam propagation. The particle frame is 
+		centred on the dimer's centre of mass with the primary axis 
+		$U_z$ being aligned with the centres of the two spheres. Black 
+		line is scaled to represent $1\ \mu m$.}
 	\label{fig:lab_frame} 
 \end{figure} 
 
-Secondly there is the particle frame which describes the orientation state of 
-the particle, orientations are reported as quaternions which can be readily 
-transformed into rotation matrices. The matrix describes the direction of the 
-particles 3 orientation axis $U_x$, $U_y$, and $U_z$. The latter is oriented 
-so that it is collinear with the centres of the two spheres; the direction of
-vector $U_z$ is such that it goes from the centre of $a_{II}$ to the centre of
-$a_{I}$. The origin of the 3 axis' is set on the particle's centre of mass, 
-this is also used to define it's displacement from the origin of the laboratory 
-frame. The diffusion tensor of the dimer is more complex than a sphere's as we 
-must consider the rotational effects experienced by the dimer. We use the 
-analytical solution of Nir \& Acrivos \cite{Nir1973}, where they provided the 
-solution coefficients depending on the dimer's size ratio ($a_I/a_{II}$). Rather 
-than recalculate the coefficients for every possible configuration of dimer we 
-use a spline fitting function to approximate the diffusion tensor. 
+Secondly there is the particle frame which describes the orientation 
+state of the particle, orientations are reported as quaternions which 
+can be readily transformed into rotation matrices. The matrix describes 
+the direction of the particles 3 orientation axis $U_x$, $U_y$, and 
+$U_z$. The latter is oriented so that it is collinear with the centres
+of the two spheres; the direction of vector $U_z$ is such that it goes 
+from the centre of $a_{II}$ to the centre of $a_{I}$. The origin of the 
+3 axis' is set on the particle's centre of mass, this is also used to 
+define it's displacement from the origin of the laboratory frame. The 
+diffusion tensor of the dimer is more complex than a sphere's as we must consider the rotational effects experienced by the dimer. We use the 
+analytical solution of Nir \& Acrivos \cite{Nir1973}, where they provided 
+the solution coefficients depending on the dimer's size ratio 
+($a_I/a_{II}$). Rather than recalculate the coefficients for every possible configuration of dimer we use a spline fitting function to approximate 
+the diffusion tensor. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Simulated Quadrant Photodiode}

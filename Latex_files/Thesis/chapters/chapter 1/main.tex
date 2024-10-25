@@ -422,7 +422,8 @@ effective to manipulate the solution using trapped particles.
 An common method is by apply a torque to a trapped particle, 
 creating a micro-rotor that can can generate fluid flow.
 
-\subsection{Optical Torque}
+\subsection{Optical Torque and rotation}
+\label{sec:opt_torque}
 It has long been known that electromagnetic fields can transfer linear and
 angular momentum \cite{Beth1936MechanicalDA}; more accurately the field 
 is said to have both orbital and spin momentum. Though there is some 
@@ -453,12 +454,18 @@ torque.
 
 Birefringence is a material property often seen in crystalline materials, 
 if the crystal lattice has different refractive indices for varying 
-polarisations of light. For circularly polarised light this inhomogeneity 
-results in a high degree of SAM being transferred to the target object \cite{Parkin2009, Arita2016}, this has been exploited to rotate microspheres 
-as fast as 1000 Hz while suspended in a bulk medium \cite{Arita2016} as well 
-as a means of measuring the local temperature and shear response of said 
-medium \cite{Millen2014, RodriguezSevilla2018}. Calculating the optical 
-torque applied to a birefringent material is given via:
+polarisations of light. Because of this the material has two different 
+refractive indices depending on the polarisation of light. For circularly 
+polarised light this inhomogeneity results in a high degree of SAM being 
+transferred to the target object \cite{Parkin2009, Arita2016}. The greater 
+the difference between the two refractive indces the greater the angular
+momentum transfer.
+
+The ability to transfer angular momentum has been exploited to rotate 
+microspheres as fast as 1000 Hz while suspended in a bulk medium 
+\cite{Arita2016} as well as a means of measuring the local temperature 
+and shear response of said medium \cite{Millen2014, RodriguezSevilla2018}. 
+Calculating the optical torque applied to a birefringent material is given via:
 \begin{equation}
 	\label{eq:opt_torque}
 	\begin{aligned}
@@ -467,14 +474,17 @@ torque applied to a birefringent material is given via:
 	\end{aligned}
 \end{equation}
 
-Where $\theta$ is the angle between the particle's long axis and the 
-polarisation vector of the local EM field, and $\phi$ is the phase shift 
-in the EM field. The first term represents the 'orientational' torque which 
-is due to the target particle being aligned with the EM amplitude, when 
-aligned $\theta=0$ meaning the entire term is negligible for particle's with a stable orientation. For sphere's this is always the case as they lack a 
-distinctive major axis. The second term is due purely to the polarisation 
-of the optical trap, for circularly polarised light $\phi=\pi/4$ thus 
-maximising the torque transferred to the target particle. Eq.~\eqref{eq:opt_torque} is only applicable for particles with a known
+Where $\Delta n$ is the difference between the two refractive indices, 
+$\theta$ is the angle between the particle's long axis and the polarisation 
+vector of the local EM field, and $\phi$ is the phase shift in the EM 
+field. The first term represents the 'orientational' torque which is 
+due to the target particle being aligned with the EM amplitude, when 
+aligned $\theta=0$ meaning the entire term is negligible for particle's 
+with a stable orientation. For sphere's this is always the case as they 
+lack a distinctive major axis. The second term is due purely to the 
+polarisation of the optical trap, for circularly polarised light 
+$\phi=\pi/4$ thus maximising the torque transferred to the target particle. 
+Eq.~\eqref{eq:opt_torque} is only applicable for particles with a known
 birefringence, but there are other mechanisms that result in optical torque.
 
 A common example is shape induced birefringence. If a particle has an 
@@ -496,7 +506,8 @@ counter-clockwise \cite{Higurashi1994}.
 
 Other examples of optical torque is when an anisotropic particle is 
 aligned with the beam's direction of propagation (in which case $\theta
-=\pi/2$ and the first term disappears). This is analogous to an optically trapped sphere, where alongside a restoring force the particle also 
+=\pi/2$ and the first term disappears). This is analogous to an optically 
+trapped sphere, where alongside a restoring force the particle also 
 experiences a restoring torque. This seemingly random rotational motion
 is referred to as libation \cite{Bruce2020}, often in typical suspension
 trapping situations (where the particle is suspended in a fluid) the 
@@ -518,15 +529,23 @@ behaviour of fluids experiencing localised shearing.
 \section{Shear induced Nucleation}
 It has long been known that fluid shear rate plays a role in influencing
 nucleation; however, the exact relationship between shear rate and nucleation
-rate has only been recently understood for specific solutions. Theoretical research into shear induced nucleation suggests that there should be a 
+rate has only been recently understood for specific solutions. Theoretical 
+research into shear induced nucleation suggests that there should be a 
 slight increase in the nucleation rate at low shear rates, reaching a 
 maximum increase in nucleation rate, and then at higher shear rates the 
 nucleation rate begins to drop off. 
 
 This has been shown theoretically for both simple colloidal \cite{Mura2016,
-Debuysschere2023,Richard2015} and ice crystal formation \cite{Goswami2020}; however, no experimental work into these systems has been conducted to prove 
+Debuysschere2023,Richard2015} and ice crystal formation \cite{Goswami2020}; 
+however, no experimental work into these systems has been conducted to prove 
 this is the case. There is some experimental evidence for this phenomena in 
-simple salt and protein solutions - though the authors emphasise that mechanical agitation cannot be ruled out - there has not been a exhaustive study into the shearing effects apart from in glycine solutions. In \cite{Debuysschere2023} it was found that a shear rate of around $3000\ s^{-1}$ was the maximum shear rate that would yield the highest nucleation rate. Using the theoretical model established in \cite{Mura2016,2001} which modifies the CNT to account for the effects of a nucleus undergoing shearing, 
+simple salt and protein solutions - though the authors emphasise that 
+mechanical agitation cannot be ruled out - there has not been a exhaustive 
+study into the shearing effects apart from in glycine solutions. In 
+\cite{Debuysschere2023} it was found that a shear rate of around $3000\ 
+s^{-1}$ was the maximum shear rate that would yield the highest nucleation rate. 
+Using the theoretical model established in \cite{Mura2016,2001} which modifies 
+the CNT to account for the effects of a nucleus undergoing shearing, 
 accounting for the fact that a nucleus' growth is undergoing competition 
 between flow-mediated molecular transport and the strain applied by the 
 flow field which inhibits the growth of the nucleus. There central 
@@ -540,7 +559,8 @@ molecular transport and strain are equal - allowing one to suspend a
 nucleus at a constant radius. In this scenario, the molecular transport 
 would prevent the nucleus from dissolving, but the strain would prevent 
 the nucleus from growing. This however would require one to be able 
-to apply a continuous shear rate to a targeted nucleus with high precision, there is also no model for an individual nucleus in a continuous fluid 
+to apply a continuous shear rate to a targeted nucleus with high precision, 
+there is also no model for an individual nucleus in a continuous fluid 
 field. 
 
 
@@ -551,7 +571,8 @@ micro-level. Models such as CNT and multi-step nucleation are
 not sufficient for describing the myriad of potential pathways 
 nucleation can go down. As suggested by some review articles, 
 the best way to address this is by developing \textit{in-situ} 
-methods that can study the pre nucleation phase in greater detail \cite{Fu2021}. Furthermore, the ability to localise nucleation 
+methods that can study the pre nucleation phase in greater detail 
+\cite{Fu2021}. Furthermore, the ability to localise nucleation 
 allows for better characterisation of the kinetics of crystal 
 growth. Laser induced nucleation stands to be an ideal method to 
 study nucleation, as the laser output can be concentrated to a 
