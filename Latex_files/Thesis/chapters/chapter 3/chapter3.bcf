@@ -2397,12 +2397,12 @@
     <bcf:citekey order="34" intorder="1">Liao2022</bcf:citekey>
     <bcf:citekey order="34" intorder="2">Yuyama2010</bcf:citekey>
     <bcf:citekey order="34" intorder="3">Sugiyama2009</bcf:citekey>
-    <bcf:citekey order="35" intorder="1">Flannigan2023</bcf:citekey>
+    <bcf:citekey order="35" intorder="1">BergSoerensen2004</bcf:citekey>
     <bcf:citekey order="36" intorder="1">Flannigan2023</bcf:citekey>
-    <bcf:citekey order="37" intorder="1">Liao2022</bcf:citekey>
-    <bcf:citekey order="37" intorder="2">Rungsimanon2010</bcf:citekey>
-    <bcf:citekey order="38" intorder="1">BergSoerensen2004</bcf:citekey>
-    <bcf:citekey order="39" intorder="1">Flannigan2023</bcf:citekey>
+    <bcf:citekey order="37" intorder="1">Flannigan2023</bcf:citekey>
+    <bcf:citekey order="38" intorder="1">Flannigan2023</bcf:citekey>
+    <bcf:citekey order="39" intorder="1">Liao2022</bcf:citekey>
+    <bcf:citekey order="39" intorder="2">Rungsimanon2010</bcf:citekey>
     <bcf:citekey order="40" intorder="1">Liao2022</bcf:citekey>
     <bcf:citekey order="40" intorder="2">Yuyama2010</bcf:citekey>
     <bcf:citekey order="40" intorder="3">Sugiyama2022</bcf:citekey>
@@ -2413,17 +2413,14 @@
     <bcf:citekey order="45" intorder="1">Bruce2020</bcf:citekey>
     <bcf:citekey order="46" intorder="1">Butaite2019</bcf:citekey>
     <bcf:citekey order="47" intorder="1">Flannigan2023</bcf:citekey>
-    <bcf:citekey order="48" intorder="1">Flannigan2023</bcf:citekey>
+    <bcf:citekey order="48" intorder="1">Rungsimanon2010</bcf:citekey>
     <bcf:citekey order="48" intorder="2">Liao2022</bcf:citekey>
-    <bcf:citekey order="48" intorder="3">Rungsimanon2010</bcf:citekey>
-    <bcf:citekey order="49" intorder="1">Rungsimanon2010</bcf:citekey>
-    <bcf:citekey order="49" intorder="2">Liao2022</bcf:citekey>
-    <bcf:citekey order="50" intorder="1">Flannigan2023</bcf:citekey>
-    <bcf:citekey order="51" intorder="1">Tsuboi2009</bcf:citekey>
-    <bcf:citekey order="51" intorder="2">Gowayed2021</bcf:citekey>
-    <bcf:citekey order="52" intorder="1">Rungsimanon2010</bcf:citekey>
-    <bcf:citekey order="53" intorder="1">Flannigan2023</bcf:citekey>
-    <bcf:citekey order="54" intorder="1">Liao2022</bcf:citekey>
+    <bcf:citekey order="49" intorder="1">Flannigan2023</bcf:citekey>
+    <bcf:citekey order="50" intorder="1">Rungsimanon2010</bcf:citekey>
+    <bcf:citekey order="51" intorder="1">Flannigan2023</bcf:citekey>
+    <bcf:citekey order="52" intorder="1">Flannigan2023</bcf:citekey>
+    <bcf:citekey order="53" intorder="1">Rungsimanon2010</bcf:citekey>
+    <bcf:citekey order="54" intorder="1">Flannigan2023</bcf:citekey>
     <bcf:citekey order="55" intorder="1">Tsuboi2009</bcf:citekey>
     <bcf:citekey order="55" intorder="2">Gowayed2021</bcf:citekey>
     <bcf:citekey order="56" intorder="1">Gowayed2021</bcf:citekey>
@@ -2435,11 +2432,26 @@
     <bcf:citekey order="59" intorder="1">Liao2022</bcf:citekey>
     <bcf:citekey order="59" intorder="2">Sugiyama2009</bcf:citekey>
     <bcf:citekey order="59" intorder="3">Gowayed2021</bcf:citekey>
-    <bcf:citekey order="60" intorder="1">Liao2022</bcf:citekey>
-    <bcf:citekey order="60" intorder="2">Tsuboi2009</bcf:citekey>
-    <bcf:citekey order="61" intorder="1">Yi2021</bcf:citekey>
-    <bcf:citekey order="62" intorder="1">Gowayed2021</bcf:citekey>
+    <bcf:citekey order="60" intorder="1">Flannigan2023</bcf:citekey>
+    <bcf:citekey order="60" intorder="2">Rungsimanon2010</bcf:citekey>
+    <bcf:citekey order="60" intorder="3">Liao2022</bcf:citekey>
+    <bcf:citekey order="60" intorder="4">Sugiyama2009</bcf:citekey>
+    <bcf:citekey order="61" intorder="1">Gowayed2021</bcf:citekey>
+    <bcf:citekey order="61" intorder="2">Yuyama2010</bcf:citekey>
+    <bcf:citekey order="61" intorder="3">Yuyama2012</bcf:citekey>
+    <bcf:citekey order="62" intorder="1">Liao2022</bcf:citekey>
     <bcf:citekey order="62" intorder="2">Tsuboi2009</bcf:citekey>
+    <bcf:citekey order="63" intorder="1">Gowayed2021</bcf:citekey>
+    <bcf:citekey order="63" intorder="2">Yuyama2010</bcf:citekey>
+    <bcf:citekey order="63" intorder="3">Yuyama2012</bcf:citekey>
+    <bcf:citekey order="64" intorder="1">Gowayed2021</bcf:citekey>
+    <bcf:citekey order="64" intorder="2">Yuyama2010</bcf:citekey>
+    <bcf:citekey order="64" intorder="3">Yuyama2012</bcf:citekey>
+    <bcf:citekey order="65" intorder="1">Butaite2019</bcf:citekey>
+    <bcf:citekey order="66" intorder="1">Flannigan2023</bcf:citekey>
+    <bcf:citekey order="66" intorder="2">Liao2022</bcf:citekey>
+    <bcf:citekey order="67" intorder="1">Gowayed2021</bcf:citekey>
+    <bcf:citekey order="67" intorder="2">Tsuboi2009</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">

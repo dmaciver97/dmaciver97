@@ -692,39 +692,55 @@ As mentioned previously, shearing via optical rotation did
 not result in any localised nucleation events even while 
 in the proximity of the droplet edge. An alternative approach
 was suggested, using a galvano mirror to move a particle 
-quickly through a supersaturated solution. While a particle
-is within the optical trap the gradient forces are 
-significantly reduced meaning simply trapping a particle is
-insufficient for inducing nucleation \cite{Flannigan2023}. 
-This is why we did not see any nucleation events while 
-rotating the vaterite, there is not a large gradient force
-to draw in material. We did not consider a focus beam by 
-itself as this has already been demonstrated in previous
-experiments \cite{Flannigan2023, Liao2022, Rungsimanon2010}.
+quickly through a supersaturated solution. Preliminary 
+calculations suggested a particle moving rapidly through 
+a fluid could produce significantly greater shear rates 
+(see \emph{Appendix X.X} for breakdown) than a rotating 
+particle. While a particle is within the optical trap the 
+gradient forces are significantly reduced meaning simply 
+trapping a particle is insufficient for inducing nucleation \cite{Flannigan2023}. This is why we did not see any 
+nucleation events while rotating the vaterite, there is 
+not a large gradient force to draw in material. 
 
-Preliminary calculations suggested a particle moving rapidly
-through a fluid could produce significantly greater shear 
-rates (see \emph{Appendix X.X} for breakdown) than a rotating 
-particle. During initial testing using silica beads we found 
-that even in undersaturated solutions the optical trap would 
-produce a crystal nucleus when the trap was empty. This has 
-been reported prior \cite{Rungsimanon2010, Liao2022}, but 
-what is more interesting is how the beam's motion influenced 
-the growth of the nucleus.
+During initial testing using silica beads we found that 
+even in undersaturated solutions the optical trap would 
+produce a crystal nucleus when the trap was empty. This 
+has been reported prior \cite{Rungsimanon2010, Liao2022}, 
+but what is more interesting is how the beam's motion 
+influenced the growth of the nucleus. 
+
+\subsubsection{Choice of Crystal growth rate units}
+The growth rate of a crystal can be described using different
+units depending on the situation. For example, seed crystals 
+often use growth units in the form of \textit{length per unit
+time}. This can either be used to describe the overall length
+of the longest edge of a crystal, or to describe how individual
+faces grow separately. This works well for crystals with a 
+clear morphology, in regards to laser induced nucleation the 
+crystal growth is heavily influenced by the local fluid 
+conditions meaning tracking the length of an individual face 
+is challenging. Instead we utilise image analysis software 
+such as imageJ to measure the area of the crystal after each 
+frame to get a rough estimate of the crystal growth rate in 
+units of \textit{length$^2$ per unit time}. With the addition 
+of the contact angle information from \cite{Flannigan2023} we 
+can approximate the crystal height based on how close it is to 
+the droplet edge.
 
 \subsection{Stationary beam}
 \label{sec:stationary}
 Its well known that a supersaturated solution can nucleate
-if irradiated by a focused beam. We confirmed that our 
-laser was of sufficient power and focus to induce crystal
-nucleation. The laser was focused at the edge of a $20\mu L$
-droplet consisting of water and dissolved glycine ($S=1.03$). 
-The solution was monitored for 10 minutes, if a nucleation 
-event was observed the event was recorded using a high speed 
-CCD. If no nucleation event was observed after 10 minutes 
-the solution was disposed of and a new sample was prepared. 
-After ten repeats only 30\% of the samples observed a 
-nucleation event at the focus. All of which displayed similar 
+if irradiated by a focused beam with sufficient power 
+\cite{Rungsimanon2010}. First we look at how a laser induced
+nucleation event unfolds using a stationary focused beam. 
+The laser was focused at the edge of a $20\mu L$ droplet 
+consisting of water and dissolved glycine ($S=1.03$). The 
+solution was monitored for 10 minutes, if a nucleation event 
+was observed the event was recorded using a high speed CCD. 
+If no nucleation event was observed after 10 minutes the 
+solution was disposed of and a new sample was prepared. After 
+ten repeats only 30\% of the samples observed a nucleation 
+event at the focus. All of which displayed similar growth 
 behaviour to one another.
 
 Consider Fig.~\ref{fig:stationary_beam}, the frames taken from 
@@ -733,24 +749,13 @@ a nucleation event, the beam is a stationary being $\approx3.5
 a nucleus forms at the trap focus, growing quickly (growth rate 
 was approximated using imageJ to be on the order of $700\ \mu 
 m^2/min$) from the focal point of the trap until after roughly 
-$6$ seconds the crystal escapes. Comparing to previous literature
-using optical tweezers shows that the growth rate is only loosely 
-connected to the solutions supersaturation. Crystal growth rates 
-for a solution of glycine and water ($S\approx1.00$) was found to
-vary from as much as $3900 \mu\ m^2/min$ to as low as $675\mu 
-m^2/min$. Local conditions play a much larger role in the growth 
-rate than just the concentration \cite{Flannigan2023}. A likely 
-reason that the trap is escaped is due to the fact that crystal 
-is far too large to be held in place and is in fact still growing 
-as the solution is supersaturated. The key take away to remember 
-is that the beam has no influence over the crystal shape, instead 
-it grows outward from the trap focus. Furthermore, due to the fact 
-that the solution is supersaturated the crystal growth cannot be 
-contained to the trap focus. Instead the crystal escapes as its 
-size exceeds the trap focus. 
+$6$ seconds the crystal escapes. A likely reason that the trap 
+is escaped is due to the fact that crystal is far too large to 
+be held in place and is in fact still growing as the solution is supersaturated. Based on the contact angle measurements from \cite{Flannigan2023}, the droplet height could not have been 
+any more than $2-5\mu m$ at the trap focus.
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.75\linewidth, height=1.1\linewidth]{frames_no_beam_movement.pdf}
+	\includegraphics[width=\linewidth, height=1.3\linewidth]{frames_no_beam_movement.pdf}
 	\caption{Laser induced nucleation at the edge of a droplet of supersaturated 
 	glycine solution. (b) shows the first instance of a crystal nucleus, growing 
 	quickly through (c)-(e) until after $6.665\ s$ the crystal begins to escape 
@@ -758,45 +763,56 @@ size exceeds the trap focus.
 	\label{fig:stationary_beam}
 \end{figure}
 
-\newpage
+Comparing to previous literature using optical tweezers shows 
+that the growth rate is only loosely connected to the solutions 
+supersaturation. Crystal growth rates for a solution of glycine 
+and water ($S\approx1.00$) was found to vary from as much as 
+$3900 \mu\ m^2/min$ to as low as $675\mu m^2/min$ 
+\cite{Flannigan2023}. The reason for such high crystal growth 
+rates is due primarily to the tweezer focus bringing in material 
+due to gradient forces. A study of glycine crystals in water 
+found that for a similarly supersaturated solution the growth 
+rate along the {011} face was around $0.1\ \mu m/min$ where as 
+the {010} face was found to have a growth rate of around $0.01\ 
+\mu m/min$. While its difficult to extrapolate an exact area 
+growth rate from these results we can approximate that if the 
+we looked directly perpendicular to the crystal growth the area 
+would increase at $\approx0.02\ \mu^2/min$ (see X.X for a 
+breakdown of this approximation). 
+
+The key take away to remember is that the beam has no influence 
+over the crystal shape, instead it grows outward from the trap 
+focus. Furthermore, due to the fact that the solution is 
+supersaturated the crystal growth cannot be contained to the 
+trap focus. Instead the crystal escapes as its size exceeds the 
+trap focus. 
+
 \subsection{Moving Beam}
 \label{sec:moving}
-To test if a rapidly moving silica bead could generate the necessary shear rate 
-for crystal nucleation we wanted to see if a trapped silica bead could be trapped
-and moved in an aqueous solution. $20\ \mu L$ of glycine and water ($S=1.03$) was 
-added to $10\ \mu L$ of a dilute water-silica mixture making the solution 
-unsaturated ($S\approx0.7$). However, due to the beam's motion we instead 
-encountered several unexpected results. 
+To test if a rapidly moving silica bead could generate the 
+necessary shear rate for crystal nucleation we wanted to 
+see if a trapped silica bead could be trapped and moved in 
+an aqueous solution. $20\ \mu L$ of glycine and water ($S=
+1.03$) was added to $10\ \mu L$ of a dilute water-silica 
+mixture making the solution unsaturated ($S\approx0.7$). 
+However, due to the beam's motion we instead encountered 
+unexpected growth behaviour. 
 
-Shown below in Fig.~\ref{fig:eliptical_beam_1} where we have the laser focus 
-moving in a small elliptical pattern; interestingly. After a few minutes we 
-noted the appearance of several small droplets (see figure~\ref{fig:cluster_trapping}
-for a larger example of these droplets). These appear too have a wide distribution
-of sizes, unlike silica microspheres which have a uniform radius of $1.57\ 
-\mu m$. We surmise these could be small clusters of Glycine that had previously 
-been shown to form when the aqueous solutions where irradiated with a 
-focused laser \cite{Tsuboi2009, Gowayed2021}. While no droplets are seen 
-directly entering the focus a nucleus forms close to the droplet edge, 
-unlike in Fig.~\ref{fig:stationary_beam} the crystal does not grow out from 
-the focal point evenly. Due to the galvano mirror, the crystal is simultaneously 
-being moved by and growing around the focal point of the trap. Because of 
-this the crystal nucleus lacks a clear morphology at first. Until roughly 
-$20\ s$ the crystal reaches a almost prismatic structure, with further 
-irradiation increasing the size.
- 
-Interestingly the galvano-mirror allows the trap to impart a slight torque 
-on the crystal, as shown in fig.~\ref{fig:eliptical_beam_1}(c) and (d), 
-where even though the crystal is not directly in the trap focus it rotates 
-in the $x-y$ plane and gets trapped again at a corner. The rotation could 
-not be due to fluid flow close to the surface of the crystal as the dipole 
-moment of individual water molecules is too small to be influenced by an 
-optical trap. In figs.\ref{fig:eliptical_beam_1}(e) and (f), the crystal 
-growth becomes localised to the corner. The area growth rate between figures \ref{fig:eliptical_beam_1}(a) and (d) was approximated using imageJ at $45.03\ 
-\mu m^2 /min$, where as between figures \ref{fig:eliptical_beam_1}(e) and 
-(f) the growth rate at that particular edge was estimated at $42.10\ \mu m^2/min$. 
+Shown below in Fig.~\ref{fig:eliptical_beam_1} where 
+we have the laser focus moving in a small elliptical 
+pattern. While nothing is seen directly entering the 
+focus a nucleus forms close to the droplet edge, 
+unlike in fig.~\ref{fig:stationary_beam} the crystal 
+does not grow out from the focal point evenly. Due to 
+the galvano mirror, the crystal is simultaneously 
+being moved by and growing around the focal point of 
+the trap. Because of this the crystal nucleus lacks 
+a clear morphology at first. Until roughly $20\ s$ 
+the crystal reaches a almost prismatic structure, 
+with further irradiation increasing the size.
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.85\linewidth]{frames_eliptical_beam.pdf}
+	\includegraphics[width=0.8\linewidth]{frames_eliptical_beam.pdf}
 	\caption{Frames from a longer video depicting the growth 
 		of a nucleus using a moving beam. Beam power is kept 
 		at 700 mW and the supersaturation was estimated at 
@@ -808,196 +824,298 @@ growth becomes localised to the corner. The area growth rate between figures \re
 		to that region, resulting in an elongated section 
 		forming between frames (e) and (f).}
 	\label{fig:eliptical_beam_1}
-\end{figure}
+\end{figure} 
+
+Interestingly the galvano-mirror allows the trap to 
+impart a slight torque on the crystal, as shown in fig.~\ref{fig:eliptical_beam_1}(c) and (d), where even 
+though the crystal is not directly in the trap focus 
+it rotates in the $x-y$ plane and gets trapped again 
+at a corner. The rotation could not be due to fluid 
+flow close to the surface of the crystal as the 
+dipole moment of individual water molecules is too 
+small to be influenced by an optical trap. In figs.\ref{fig:eliptical_beam_1}(e) and (f), the 
+crystal growth becomes localised to the corner. The 
+area growth rate between figures \ref{fig:eliptical_beam_1}
+(a) and (d) was approximated using imageJ at $45.03\ 
+\mu m^2 /min$, where as between figures 
+\ref{fig:eliptical_beam_1}(e) and (f) the growth rate 
+at that particular edge was estimated at $42.10\ \mu m^2/min$. 
  
-Nucleation in undersaturated conditions has been reported previously in $D_2O$ 
-\cite{Rungsimanon2010} and $H_2O$ \cite{Flannigan2023}, though not involving a 
-moving beam. This modification allows for the crystal growth to be localised to
-a specific region of the bulk crystal whereas with a stationary beam there is no
-control over the crystal morphology. In fact this allows for a much finer control
-over the exact shape of the crystal nucleus, in some cases allowing for growth out
-of the viewing plane as shown in 
-
-\begin{figure}
+Nucleation in undersaturated conditions has been 
+reported previously in $D_2O$ \cite{Rungsimanon2010} 
+and $H_2O$ \cite{Flannigan2023}, though not involving 
+a moving beam. This modification allows for the crystal 
+growth to be localised to a specific region of the bulk 
+crystal whereas with a stationary beam there is no 
+control over the crystal morphology. In fact this allows 
+for a much finer control over the exact shape of the 
+crystal nucleus, in some cases allowing for growth out
+of the viewing plane as shown in fig.~\ref{fig:out_of_plane}.
+\begin{figure}[h!]
 	\centering
+	\includegraphics[width=\linewidth]{out_of_plane.pdf}
+	\caption{Interesting crystal growth on the surface of an
+	existing crystal. Initially the crystal surface seems 
+	flat (a) but eventually a different crystal structure 
+	grows out off of the surface (b).}
+	\label{fig:out_of_plane}
 \end{figure}
 
+Where a large outgrowth forms on the surface of a nucleus,
+over a period of $30\ s$ the outgrowth develops into a 
+rhombic crystal structure. The unique crystal growth 
+demonstrated is likely a factor of the moving beam focus,
+but this raises a question over how the laser can localise
+the growth only around the focus and why the crystal does 
+not grow or shrink when not directly within the trap. There
+should be some material that is being drawn into the trap
+as it scans across the camera frame.
 
 \subsection{Direct trapping of Glycine clusters}
 \label{sec:clusters}
-One common aspect involving these droplets is the fact when brought 
-to the laser focus the droplets would nucleate immediately 
-\cite{Liao2022}. A solution similar to Sec~\ref{sec:stationary} was 
-made up, but without any silica droplets. Once again the beam was 
-focused close to the droplet edge, this time the galvano mirror was 
-scanning a circular path (as shown in figure~\ref{fig:cluster_trapping}). 
-After a few minutes of irradiation droplets were seen entering the 
-camera frame, because no silica had been added these droplets had 
-to be from the glycine solution. Trapping individual droplets did 
-not result in immediate nucleation even after several minutes being 
-trapped. Trying to bring two droplets together resulted in nucleation 
-between the two droplets, compared to \ref{sec:stationary} \& 
-\ref{sec:moving} the growth is much slower, taking nearly 40 seconds 
-before the crystal structure becomes clearer.
+In a repeat experiment a solution similar to sec.~
+\ref{sec:stationary} was made up, but without any 
+silica micro-spheres. Once again the beam was focused 
+close to the droplet edge, this time the galvano 
+mirror was scanning a circular path (as shown in fig.~\ref{fig:cluster_trapping}). After a few 
+minutes of irradiation droplets were seen entering 
+the camera frame. Because no silica had been added, 
+and that the solutions were filtered, these droplets 
+had to be from the glycine solution. Trapping 
+individual droplets did not result in immediate 
+nucleation even after several minutes being trapped. 
+Trying to bring two droplets together resulted in 
+nucleation between the two droplets, compared to 
+\ref{sec:stationary} \& \ref{sec:moving} the growth 
+is much slower, taking nearly 40 seconds before the 
+crystal structure becomes clearer.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.8\linewidth]{cluster_trapping.pdf}
-	\caption{Frames from a longer video demonstrating the trapping of a glycine 
-		droplet. Solution is undersaturated glycine and water (S = 0.86), with the 
-		laser power is set at $750\ mW$. (a) shows a trapped droplet (outlined in 
-		black) being brought into contact with a larger droplet. (b) upon contact 
-		a nucleus can be seen between the two droplets. The growth is rather slow 
-		with the crystal having no clear defined morphology through (c) and (d). 
-		Between frames (e) and (f) the larger droplet finally joins the main crystal.}
+	\caption{Frames from a longer video demonstrating the trapping 
+		of a glycine droplet. Solution is undersaturated glycine 
+		and water (S = 0.86), with the laser power is set at $750\ 
+		mW$. (a) shows a trapped droplet (outlined in black) being 
+		brought into contact with a larger droplet. (b) upon contact 
+		a nucleus can be seen between the two droplets. The growth 
+		is rather slow with the crystal having no clear defined 
+		morphology through (c) and (d). Between frames (e) and (f) 
+		the larger droplet finally joins the main crystal.}
 	\label{fig:cluster_trapping}
 \end{figure}
 
-The fact that these droplets can be trapped indicates they must 
-have a higher refractive index than the surrounding solution. 
-Previous reports have shown that a focused trap will draw in 
-solute material from the bulk \cite{Tsuboi2009, Gowayed2021}. It 
-has been shown that the concentration of glycine solution is correlated 
-with the refractive indices of the liquid \cite{Gowayed2021, Orttung1963}. 
-This suggests that these droplets serve to provide solute material 
-to the bulk crystal. 
-
+The fact that these droplets can be trapped indicates 
+they must have a higher refractive index than the 
+surrounding solution. Previous reports have shown that 
+a focused trap will draw in solute material from the 
+bulk \cite{Tsuboi2009, Gowayed2021}. This suggests that 
+the droplets observed are concentrated spheres of glycine, 
+which also explains how nucleation was initiated when those
+two spheres were brought into contact with one another. The 
+droplets must be providing material for the crystal growth.
+It has been shown that the concentration of glycine solution 
+is correlated with the refractive indices of the liquid 
+\cite{Gowayed2021, Orttung1963}. This suggests that we could
+measure the concentration of individual droplets based on the
+trapping strength of each droplet. 
 \newpage
 
 \subsection{Influence of a moving beam front on seed crystals}
-One potential application of this phenomena would be in using a 
-moving the moving beam front as a method for shaping the final
-crystal morphology. Glycine seed crystals were grown via 
-evaporative crystallisation over night. The resultant crystals
-were as wide as $0.5 mm$ in some cases. Individual crystals were 
-collected and suspended in a water + glycine solution ($S = 1.001$)
-and the laser was scanned along a narrow linear path. 
+\label{sec:seed_crystals}
+One potential application of this phenomena would be in using 
+a moving the moving beam front as a method for shaping the 
+final crystal morphology. Therefore, we wanted to test if a 
+moving beam front could have any influence on the shape of a
+seed crystal submerged in a bulk solution. Glycine seed crystals 
+were grown via evaporative crystallisation over night. The 
+resultant crystals were as wide as $0.5 mm$ in some cases. 
+Individual crystals were collected and suspended in a water 
++ glycine solution ($S = 1.001$) and the laser was scanned 
+along a narrow linear path. It should be noted that the seed 
+crystal was fully submerged in the solution, meaning that there
+is no interface between the air and solution close to the seed.
+Five separate repeats were conducted, all demonstrating similar
+behaviour to one another.  
 
-As shown by fig.~\ref{fig:seed_crystals} the laser does not in fact 
-promote crystal growth but instead forces the crystal to dissolve 
-into the bulk solution. The dissolution rate is not as substantial 
-as the growth rate seen in previous sections. It takes over 20 
-minutes for the for the crystal surface to dissolve more than a 
-few microns. Furthermore we do not report any sightings of droplets
-close to the surface of the crystal nor do we see anything enter the 
-optical trap.
+As shown by fig.~\ref{fig:seed_crystals} the laser does not 
+in fact promote crystal growth but instead forces the crystal 
+to dissolve into the bulk solution. The dissolution rate is not 
+as substantial as the growth rate seen in previous sections. 
+It takes over 20 minutes for the for the crystal surface to 
+dissolve more than a few microns. Furthermore we do not report 
+any sightings of droplets close to the surface of the crystal 
+nor do we see anything enter the optical trap.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\linewidth]{seed_crystals.pdf}
+	\caption{Frames from a seed crystal being irradiated by a 
+		scanning laser. The laser path is shown below in red. 
+		Initially the crystal edge is nearly perpendicular to 
+		the laser path. Over the course of nearly twenty minutes 
+		the crystal around the laser has dissolved leaving a 
+		concave indent.}
 	\label{fig:seed_crystals}
-	\caption{Frames from a seed crystal being irradiated by a scanning
-		laser. The laser path is shown below in red. Initially the 
-		crystal edge is nearly perpendicular to the laser path. However,
-		over the course of nearly twenty minutes the crystal around the 
-		laser has dissolved leaving a concave indent.}
 \end{figure}
 
-This has some implications: Firstly, the lack of supposed glycine 
-droplets suggests that the presence of an interface is crucial in 
-order to promote the formation of these droplets. This is consistent
-with previous reports on laser nucleation, where a air-solution or 
-solution-glass interface is necessary for the trap focus to have any 
-noticeable effect on the solute \cite{Gowayed2021, Liao2022, 
-Rungsimanon2010}. Secondly, the fact that the seed crystal dissolved 
-in a saturated solution suggests that this could be due to a localised
-heating effect. A commonly used heating model for optical tweezers is 
-the Peterman model \cite{Peterman2003} which accounts for the lateral 
-distance between the optical trap and a local heat sink (such as the 
-glass cover slip or microscope objective). Even with the heat sink 
-the predicted temperature rise in pure water would be around $5-10 K$.  
-The fact that the seed crystal dissolves so slowly could simply be due 
-to the fact that the local heating is lessened by the moving beam front.
+This has some implications: Firstly, the lack of supposed 
+glycine droplets suggests that the presence of an interface 
+is crucial in order to promote the formation of these droplets. 
+This is consistent with previous reports on laser nucleation, 
+where a air-solution or solution-glass interface is necessary 
+for the trap focus to have any noticeable effect on the solute \cite{Gowayed2021, Liao2022, Rungsimanon2010}. Secondly, the 
+fact that the seed crystal dissolved in a saturated solution 
+suggests that this could be due to a localised heating effect. 
+A commonly used heating model for optical tweezers is the 
+Peterman model \cite{Peterman2003} which accounts for the lateral 
+distance between the optical trap and a local heat sink (such 
+as the glass cover slip or microscope objective). Even with 
+the heat sink the predicted temperature rise in pure water would 
+be around $5-10 K$.  The fact that the seed crystal dissolves 
+so slowly could simply be due to the fact that the local heating 
+is lessened by the moving beam front.
  
 \section{Summary of Moving Beam Phenomena}
-To summarise, the introduction of a moving beam helps to accelerate the 
-local growth of a newly formed crystal. This is due to the presence of 
-glycine droplets that accumulate near the interface between the liquid 
-solution and air. The theory behind the localised growth can be summarised 
-thusly.
+To summarise, the introduction of a moving beam helps to 
+accelerate the local growth of a newly formed crystal. It 
+seems that this phenomena will only occur when close to 
+interface between the solution and air. We note the presence
+of droplets that can sometimes be seen entering the trap, 
+though this is not always necessary for a nucleation event 
+to occur. A plausible description of the phenomena is described
+thusly. 
 
-Initial nucleation is similar to typical optical trapping induced nucleation,
-with the air solution interface limiting the molecular mobility of the solute
-molecules \cite{Liao2022, Sugiyama2009, Gowayed2021}. The moving beam front 
-can influence the motion of the nucleus initially, but eventually the drag 
-force means the crystal is not moved by the optical trap. Localised crystal
-growth occurs when the trap is close to or partially over the interface of 
-the crystal (see figure~\ref{fig:local_nucleation}(a)). As shown in \ref{sec:clusters}, 
-the optical trap can manipulate these droplets similar 
-to microspheres. When in close proximity to the trap these droplets are 
-brought towards the crystal surface (see figure~\ref{fig:local_nucleation}(b)). 
-These provide material that grows the crystal around that region (see figure~\ref{fig:local_nucleation}(c)). Eventually the local solution is either 
-depleted of solute material or the crystal front has grown to fully encompass 
-the trap, preventing further growth (see figure~\ref{fig:local_nucleation}(d)). 
+Initial nucleation is similar to typical optical trapping 
+induced nucleation, with the air solution interface limiting 
+the molecular mobility of the solute molecules \cite{Liao2022, 
+Sugiyama2009, Gowayed2021}. The moving beam front can influence 
+the motion of the nucleus initially, but eventually the drag 
+force means the crystal is not moved by the optical trap. 
+Localised crystal growth occurs when the trap is close to or 
+partially over the interface of the crystal (see fig.~
+\ref{fig:local_nucleation}(a)). This suggests that the 
+laser itself is bringing in new solute material that can then
+adhere to the crystal surface. Interestingly even when the 
+crystal growth is localised to a small section of the crystal
+we do not observe the crystal dissolving. This is consistent 
+with other observed laser induced nucleation results, where 
+as long as the laser is active the crystal remains stable 
+within the solution \cite{Flannigan2023, Rungsimanon2010,
+Liao2022, Sugiyama2009}. It does raise further questions 
+however, mainly in an undersaturated solution is a moving 
+beam front able to increase the size of the formed nucleus
+compared to a stationary beam? Additionally, it raises the 
+question about what the role the 'glycine droplets' play in 
+the nucleation process.
+
+As shown in \ref{sec:clusters}, the optical trap can manipulate 
+these droplets similar to microspheres. When in close proximity 
+to the trap these droplets are brought towards the crystal 
+surface (see fig.~\ref{fig:local_nucleation}(b)). We have 
+already suggested that these droplets must contain glycine as 
+they are to large to be a silica microsphere, and the solutions 
+were filtered prior to being studied. The droplets provide 
+material that grows the crystal around that region (see fig.~\ref{fig:local_nucleation}(c)). Eventually the local 
+solution is either depleted of solute material or the crystal 
+front has grown to fully encompass the trap, preventing further 
+growth (see fig.~\ref{fig:local_nucleation}(d)). 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.8\linewidth]{galvano_diagram.pdf}
-	\caption{Diagram outlining how a moving beam assists in the growth of a crystal
-		nucleus. (a) a crystal nucleus is partially trapped by a moving beam with 
-		solute droplets close to its surface. (b) droplets close to the laser
-		focus are drawn in by gradient forces and moved towards the crystal surface.
-		(c) these droplets provide material to the main crystal, resulting in
-		localised growth around the laser focus. (d) eventually the crystal area 
-		either fully surrounds the laser focus or the solution surrounding the laser
-		is depleted of solute material.}
+	\caption{Diagram outlining how a moving beam assists in the 
+		growth of a crystal nucleus. (a) a crystal nucleus is 
+		partially trapped by a moving beam with solute droplets 
+		close to its surface. (b) droplets close to the laser
+		focus can be drawn in by gradient forces and moved 
+		towards the crystal surface. (c) the laser brings in 
+		material that is then deposited on the surface of the 
+		crystal. (d) eventually the crystal area either fully 
+		surrounds the laser focus or the solution surrounding 
+		the laser is depleted of solute material.}
 	\label{fig:local_nucleation}
 \end{figure}
 
-The reason the seed crystals saw no further crystal growth when irradiated 
-with the trap is due to the fact that these experiments were carried out 
-in a bulk solution, absent of any interfaces. As such the clusters seen in
-\ref{sec:moving} \& \ref{sec:clusters} are not present and cannot provide
-material to accelerate crystal growth.
+What remains unclear is why the solution interface is necessary
+for localised crystal growth. We know that the glycine droplets 
+will form when the laser is close to the glass-solution interface
+\cite{Gowayed2021, Yuyama2010, Yuyama2012}. This is consistent 
+with our results as being able to image the droplet edge requires 
+that the laser is brought close to the cover slip. However it is 
+not clear how exactly these droplets contribute to localised 
+crystal growth as in sec.~\ref{sec:moving} no droplets are seen 
+entering the trap. It seems likely that the presence of droplets 
+is necessary as we see that the seed crystals dissolve while 
+there are no droplets present. 
 
-There are still several factors that need to be investigated, but due to time
-constraints it was not possible to properly study this phenomena. Firstly, 
-there is the question of what conditions result in the production of concentrated
-droplets, it is not clear if the presence of a laser is required or if these
-droplets naturally occurring. Prior literature would suggest that the laser is 
-required \cite{Liao2022, Tsuboi2009}, but this would not explain why in many 
-cases the droplets are found far outside the influence of the optical trap. It
-has been suggested that optical traps can attract microspheres over a wider 
-area, but it is hard to say that this would result in the creation of liquid 
-droplets \cite{Yi2021}.
+There are still several factors that need to be investigated. 
+Firstly, there is the question of what conditions result in the 
+production of concentrated droplets, it is not clear if the 
+presence of a laser is required or if these droplets naturally 
+occurring. Prior literature would suggest that the laser is 
+required \cite{Liao2022, Tsuboi2009}, but this would not explain 
+why in many cases the droplets are found far outside the influence 
+of the optical trap. It has been shown that phase separation 
+occurs when a trap is focused close to the cover slip 
+\cite{Gowayed2021, Yuyama2010, Yuyama2012}, but there has been 
+no cases of nucleation occurring at the cover slip. Furthermore
+these experiments all occurred in supersaturated condition 
+($S\ge 1.50$) with a much wider focus ($NA \le 1.00$) whereas 
+our results occurred in undersaturated conditions with a 
+tighter focus. We did not not any occurrence of a phase 
+separation as reported by \cite{Gowayed2021, Yuyama2010, Yuyama2012}
+and yet we see the appearance of droplets that we surmise 
+are partially constructed of glycine.
 
-Secondly, there is the question of how these droplets supply material to the 
-bulk crystal. In some instances it is clear that the droplets are being drawn 
-into the trap, however, in other instances while there are no droplets close to
-the vicinity of the optical trap the crystal continues to grow. If these droplets
-are a necessary precursor to induce crystal nucleation then understanding how
-they provide materials to the bulk crystal may help with our understanding of 
-the kinetics of multi-step nucleation. 
+Secondly, there is the question of how these droplets supply 
+material to the bulk crystal. In some instances it is clear 
+that the droplets are being drawn into the trap, however, in 
+other instances while there are no droplets close to the 
+vicinity of the optical trap the crystal continues to grow. 
+If these droplets are a necessary precursor to induce crystal 
+nucleation then understanding how they provide materials to 
+the bulk crystal may help with our understanding of the 
+kinetics of multi-step nucleation. 
 
 \section{Conclusion}
+In conclusion, the experimental results from this chapter 
+provide no affirmative evidence of shear induced crystal 
+nucleation. This is in part due to the limited rotational 
+speed that could be achieved using vaterite microspheres. 
+Simply adding a micro-rotor to a supersaturated solution 
+will not yield a significant fluid flow to induce crystal 
+nucleation. Furthermore, the region in which the local 
+shear rate is significant enough is so small that any 
+nucleation events that could occur there may not grow large 
+enough to be stable. This does not however, suggest that 
+shear induced nucleation is impossible at a micro scale. 
+In fact there have been several developments lately that
+allow for the precise rotation of multiple rotors to 
+control the precise motion of silica beads \cite{Butaite2019}. 
+This would allow for direct control of the shear rate 
+within a given volume of fluid, allowing one to study the 
+impact of fluid flow on a nucleus at a micro-scale.
 
-In conclusion, the experimental results from this chapter provide no 
-affirmative evidence of shear induced crystal nucleation. This is in
-part due to the limited rotational speed that could be achieved using
-vaterite microspheres. Simply adding a micro-rotor to a supersaturated
-solution will not yield a significant fluid flow to induce crystal 
-nucleation. Furthermore, the region in which the local shear rate is 
-significant enough is so small that any nucleation events that could 
-occur there would not grow large enough to be stable. This does not 
-however, suggest that shear induced nucleation is impossible at a 
-micro scale. In fact there have been several developments lately that
-allow for the precise rotation of multiple rotors to control the 
-precise motion of silica beads. The challenge lies in both building the
-optical equipment to form multiple strong traps (~ 3 per rotor). These 
-traps would have to be strong enough to not only hold the rotors but 
-also move them at a sufficiently fast rotational speed that they could
-induce a significant enough fluid flow. 
-
-On the other hand, the results utilising the galvano mirror have some 
-interesting implications for future research into crystal nucleation
-using optical tweezers. We noted that in undersaturated conditions the
-presence of 'droplets' that could be trapped and later nucleated when 
-brought into contact with one another. The fact that these droplets 
-could be trapped suggests they have a higher refractive index to the 
-solution, given that the solutions were filtered prior to irradiation
-dismisses that they could be dust particles. Prior literature suggests
-that optical trapping of a supersaturated solution can lead to the 
-production of nano droplets \cite{Gowayed2021, Tsuboi2009}. Controlling
-the localised growth requires that the growth and trapping are handled
-by two separate lasers. Optical traps for amorphous solids has been 
-shown as a possibility but the algorithm would need to be adaptive 
-to the changing crystal shape.
+On the other hand, the results utilising the galvano mirror 
+have some interesting implications for future research into 
+crystal nucleation using optical tweezers. We noted that a 
+moving beam front is capable of localising the crystal growth
+around the beam focus in undersaturated conditions. Typically
+in laser induced nucleation the final crystal morphology is 
+influenced primarily by the local fluid conditions 
+\cite{Flannigan2023, Liao2022}. If this phenomena could be 
+fully understood we could have a means of directly manipulating 
+the morphology of any nucleating crystal. We noted that in 
+undersaturated conditions the presence of droplets that could 
+be trapped and later nucleated when brought into contact with 
+one another. There remains some uncertainty over the role these 
+droplets play in a nucleation event. Further research is also 
+necessary to understand how the fluid and laser parameters 
+(i.e. supersaturation and numerical aperture) impact the 
+formation of these droplets. The fact that these droplets could 
+be trapped suggests they have a higher refractive index to the 
+solution, given that the solutions were filtered prior to 
+irradiation dismisses that they could be dust particles. Prior 
+literature suggests that optical trapping of a supersaturated 
+solution can lead to the production of nano droplets 
+\cite{Gowayed2021, Tsuboi2009}. 
 
 

@@ -160,7 +160,7 @@ I would like to acknowledge...
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \appendix
-\chapter{Appendix}}
+\chapter{Appendix}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Estimation of fluid shear rates via galvano mirror}
 An alternative approach to generating fluid shear is to use a 
@@ -229,6 +229,41 @@ From figure~\ref{fig:galvano_shear} it is clear that not only is a galvano
 mirror a better option for generating high shear rates but also over a larger 
 volume. The only limitation to this method is the effective drag experienced 
 by the trapped particle. 
+\newpage
+
+\section{Approximation of Area growth rate}
+Data collected from \cite{Li1992} provides face growth rates 
+for glycine seed crystals in supersaturated solutions. The 
+reported growth rates are given in terms of $\mu m/sec$, in 
+order to compare to the laser induced nucleation events we 
+need some method of converting to area units. In \cite{Li1992}
+the seed crystals are viewed from a top down perspective with
+the edges marked $L_b$ and $L_c$. The authors calculated the 
+face growth rates by:
+\begin{align}
+	G_{011} = \frac{1}{2}sin(67.5^\circ)\frac{dL_c}{dt} \\
+	G_{010} = \frac{1}{2}sin(68.5^\circ)\frac{dL_b}{dt}
+\end{align}
+
+The face growth rates are provided in the final paper, its
+easy enough to rearrange the two equations to get $dL_c/dt$
+and $dL_b/dt$. The area growth rate can be computed via the
+chain rule, where we overestimate the area of the glycine 
+crystal to have a rectangular cross section of side lengths
+$L_b$ and $L_c$. Numerically computing the area gives us an
+approximate total growth rate of around $0.02 \mu m^2/min$.
+This is also an over estimation of the crystal growth rates 
+as in \cite{Li1992} they only consider crystals between 
+$30\mu m$ and $80\mu m$ and note that the growth rate of 
+smaller crystals is even slower. 
+
+Overall this demonstrates clearly that the growth rate of a
+single crystal is accelerated by the prescience of an optical
+trap, at least just after nucleation. The presence of an 
+optical trap close to a larger seed crystal is shown to 
+inhibit the growth of the crystal front, both with a stationary
+beam \cite{Flannigan2023} and a moving beam (see sec.~
+\ref{sec:seed_crystals})
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \addcontentsline{toc}{chapter}{Bibliography}
 \printbibliography
