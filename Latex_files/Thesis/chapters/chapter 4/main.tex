@@ -7,7 +7,7 @@ However, while working with dense colloidal suspensions,
 one often ends up trapping more than one sphere. Li and 
 Arlt \cite{Li2008} studied the case of two microspheres 
 trapped in a single OT and found that multiple trapped 
-beads could be mistaken for a single trapped bead with 
+beads could be mistaken for a single trapped bead with an 
 altered trap stiffness (see \ref{sec:harmonic_traps}). 
 Theoretical studies on the case of two trapped microspheres 
 by Xu~\textit{et~al.} \cite{Xu2005} employed a ray-optics 
@@ -20,54 +20,15 @@ trapped beads indeed experience different trap stiffnesses
 in the vicinity of the same potential well.
  
 There are further discussions looking into the dynamics of 
-a whole host of asymmetrically shaped particles \cite{Loudet2014, 
-ShengHua2005, Chetana2022}, their results all showing that 
-predicting the behaviour an arbitrary shaped particle comes 
-with great difficulty due to the fact that the optical force 
-is dependent on a greater number of variables such as 
-orientation and size factors.
+a whole host of asymmetrically shaped particles (e.g. 
+ellipsoids, cylinders, amorphous solids, disks, etc) 
+\cite{Loudet2014, ShengHua2005, Chetana2022}, their results 
+all showing that predicting the behaviour an arbitrary shaped 
+particle comes with great difficulty due to the fact that the 
+optical force is dependent on a greater number of variables 
+such as orientation and size factors.
 
-With the initial goal of the project being to induce 
-nucleation events via a rotating sphere, the aim of this 
-chapter is to - in a limited capacity simulate and investigate 
-the influence of a second particle being bound to our target 
-sphere. The choice of a dimer, instead of an amorphous solid 
-that might better represent a growing crystalline solid, 
-allows us to consider how the dynamics of the aggregate change 
-by varying a single parameter, namely the size ratio of the 
-two spheres. Additionally, attempting to simulate an amorphous 
-aggregate is rather difficult as calculating the optical force 
-and torque is computationally slow. We build upon the works of 
-Vigilante \textit{et al} \cite{Vigilante2020} to consider 
-asymmetric spherical dimers and how varying size parameters 
-alters the dynamics and additionally makes characterising their 
-interactions within an optical trap more cumbersome. 
-
-In this chapter we will consider how the addition of a 
-second sphere changes the trapping dynamics by introducing 
-multiple equilibrium positions. These positions are 
-dependent on both the size ratio of the dimer and its 
-orientation relative to the trap. This is important to 
-address, for while the the dimers' diffusive behaviour 
-is the same, regardless of position and orientation, 
-how it interacts with the trap may produce the wildly 
-different results. Furthermore, we look at how our dimers 
-interact with circularly polarised light, this is especially 
-pertinent as the original plan was to utilise circularly 
-polarised light to generate fluid flow in a supersaturated 
-solution. The rotational motion of dimers in circularly 
-polarised light goes against much of the established 
-literature and suggests that the transfer of spin angular 
-momentum is enabled by combining particles together. And 
-lastly, we demonstrate how a quadrant photo diode, performs 
-in characterising the actual interactions between a dimer 
-and the optical trap. We do so to demonstrate that much 
-of the dimer's trajectory information is either lost or 
-poorly described by simple calibration techniques, making 
-their motion difficult to characterise. 
-
-\subsection{Simulation Parameters}
-As a paradigmatic example, consider a dimer suspended in 
+As a paradigmatic example, we consider a dimer suspended in 
 water ($n_p = 1.59, n_m = 1.33$) located at the focus of 
 a Gaussian beam (more specifically a Laguerre-Gaussian 
 beam of mode $[0,0]$, see \eqref{eq:incident}), the beam 
@@ -83,8 +44,99 @@ orientation is defined when the dimer is orientated against
 the direction of beam orientation (see left hand side of 
 figure~\ref{fig:paradigmatic}). 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+With the initial goal of the project being to induce 
+nucleation events via a rotating sphere, the aim of this 
+chapter is to - in a limited capacity simulate and investigate 
+the influence of a second particle being bound to our target 
+sphere. The choice of a dimer, instead of an amorphous solid 
+that might better represent a growing crystalline solid, 
+allows us to consider how the dynamics of the aggregate change 
+by varying a single parameter, namely the size ratio of the 
+two spheres. Additionally, attempting to simulate an amorphous 
+aggregate is rather difficult as calculating the optical force 
+and torque is computationally slow. 
+
+We utilise a python library that utilises \textit{mstm} and
+\textit{ott} to simulate the dynamical behaviour of spherical
+aggregates. A dimer is defined by its refractive index and the 
+size ratio of the two spheres.  By specifying the optical 
+properties of the target \textit{mstm} generates the targets 
+T-matrix which can then be used by \textit{ott} to compute the 
+optical forces generated by a focused beam. 
+
+In this chapter we will consider how the addition of a 
+second sphere changes the trapping dynamics by introducing 
+multiple equilibrium positions. Furthermore, we look at how 
+dimers interact with circularly polarised light, this is 
+especially pertinent as the original plan was to utilise 
+circularly polarised light to generate fluid flow in a 
+supersaturated solution. And lastly, we demonstrate how a 
+quadrant photo diode, performs in characterising the actual 
+interactions between a dimer and the optical trap. We do so 
+to demonstrate that much of the dimer's trajectory information 
+is either lost or poorly described by simple calibration 
+techniques, making their motion difficult to characterise.
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Simulation Details}
+As a paradigmatic example, consider a dimer suspended in 
+water ($n_p = 1.59, n_m = 1.33$) located at the focus of 
+a Gaussian beam (more specifically a Laguerre-Gaussian 
+beam of mode $[0,0]$, see \eqref{eq:incident}). The beam 
+is focused by a objective with numerical aperture of 1.2.
+The polarisation is defined using the Jones vector (see 
+section \ref{sec:rot_pol} for further details) unless 
+stated otherwise the Jones vector is kept at $[1.0, 0.0i]$. 
+The size ratio of the two spheres is given by $a_{I}/
+a_{II} = 2$ where $a_{I}$ is kept at $1\ \mu m$ unless 
+specified otherwise. The beam focus is used as the 
+origin of the coordinate system, with positive z going 
+in the direction of beam propagation. For simulations 
+we assume that the dimer is suspended in water at room 
+temperature ($T = 298K,\ \eta = 1.0x10^{-3}Pa\ s$).
+
+In order to compute the magnitude of the Brownian forces we
+need to know the dimer's diffusion tensor \textbf{D}. Unlike
+for spheres where the translational and rotational diffusion 
+coefficients are equal along all three Cartesian axis', a
+dimer's translational and rotational diffusion is dependent
+on whether we consider the its long or short axis. We use
+the results from \cite{Nir1973} to compute the dimensionless 
+diffusion tensor and then scale it according to the radius of
+the largest sphere ($a_I$). The dimer's centre of diffusion
+is located a distance of $a_I\zeta$ from the point of contact
+between the two spheres, the coefficient $\zeta$ is based on
+the size ratio of the two spheres. We use the centre of 
+diffusion as the target origin that is provided to \textit{mstm}. 
+
+The dimer's orientation is given by a rotation vector in 
+the form: 
+\begin{align}
+	\begin{pmatrix}
+		U_{1,x} & U_{2,x} & U_{3,x} \\
+		U_{1,y} & U_{2,y} & U_{3,y} \\
+		U_{1,z} & U_{2,z} & U_{3,z}
+	\end{pmatrix}
+\end{align}
+Where $U_3$ represents the orientation vector that passes
+through the centres of both sphere's (see \ref{sec:sim} 
+for a full breakdown), $U_1$, and $U_2$ are orthogonal to 
+$U_3$ but have no physical representation for a dimer. We 
+can represent $U_3$ by it's spherical coordinates ($\theta$ 
+and $\phi$), where $\theta$ is the angle between the 
+orientation vector and the direction of propagation and 
+$\phi$ as the angle between the orientation vector and 
+the x-axis. We define the 'standard' orientation as 
+being aligned with the direction of beam propagation 
+direction ($\theta=0^\circ$) - and therefore the 'inverted' 
+orientation is defined when the dimer is orientated against 
+the direction of beam orientation ($\theta=180^\circ$) - see
+fig~\ref{fig:paradigmatic} for a visual of the laboratory and
+particle frame. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Positional and Orientational dependence of Trapping forces}
 \label{sec:eq_positions}
 If we wanted to start from first principles and determine 
@@ -187,22 +239,28 @@ separate harmonic traps.
 	\label{fig:paradigmatic}
 \end{figure}
 
-We can see that both equilibrium positions have comparable 
-axial trap stiffness ($\kappa_z$), however the difference 
-in the transverse trap stiffness ($\kappa_x$) is far more 
-noticeable. The same dimer was trapped at each of the axial 
-equilibrium positions and the transverse force was evaluated. 
-While in all three cases the dimer can be trapped the linear
-range where that would typically associated with a stable 
-trap is far narrower in the 'standard' orientation compared 
-to the 'inverted' cases. This highlights one of the challenges 
-involved with studying asymmetric particles, even though its 
-a simple enough process to trap them they maybe characterised 
-very differently depending on their relative position and 
-orientation towards the focus. This can have a significant 
-impact on rheological studies - or attempting to probe any 
-local property - as the variance in trap strength can result 
-in large errors over repeated measurements. 
+This is different to a single sphere, namely in that a
+single sphere should only have one equilibrium position
+and that it is much closer to the trap focus ($\approx
+0.05\mu\ m$ from the focus). We can see that both 
+equilibrium positions have comparable axial trap 
+stiffness ($\kappa_z$), however the difference in the 
+transverse trap stiffness ($\kappa_x$) is far more 
+noticeable. The same dimer was trapped at each of the 
+axial equilibrium positions and the transverse force was 
+evaluated. While in all three cases the dimer can be 
+trapped the linear range where that would typically 
+associated with a stable trap is far narrower in the 
+'standard' orientation compared to the 'inverted' cases. 
+This highlights one of the challenges involved with 
+studying asymmetric particles, even though its a 
+simple enough process to trap them they maybe 
+characterised very differently depending on their 
+relative position and orientation towards the focus. 
+This can have a significant impact on rheological 
+studies - or attempting to probe any local property 
+- as the variance in trap strength can result in 
+large errors over repeated measurements. 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\linewidth]{transverse_force.png}
@@ -229,23 +287,13 @@ the dimer begins to approximate a single homogenous sphere
 - at least in terms of location and trap strength. However, 
 for intermediate sized dimers (between $a_{I}/a_{II} = 1.1$ 
 to $a_{I}/a_{II}=4$), a second equilibrium position is found 
-below the trapping focus. Previous work using the ray-optics 
-model have confirmed even in the case that two spheres begin 
-separated the electric field will align the particles as such 
-that they make contact and are trapped together about a single 
-trapping position \cite{Xu2005}. Furthermore it has been shown 
-through proper manipulation of the Gaussian or Bessel beam 
-modes that any number of trapping potentials can be developed 
-\cite{Shahabadi2020} for nanoparticles. This result however, 
-is the first example of an orientation dependent trapping 
-situation using only a $TEM_00$ beam. Typical experimental 
-arrangements cannot determine much information on the axial 
-position of a trapped particle relative to the trap focus; 
-this result indicates not only that dimers can be trapped 
-in multiple axial positions but also their trapping behaviour 
-is heavily dependent on said axial position. As such it is 
-necessary that positional information in the z-axis can be 
-elucidated if multiple spheres are trapped simultaneously. 
+below the trapping focus. We should note that there are also
+unstable traps that exist, these are also depicted in 
+fig.~\ref{fig:eq_positions}. While the optical force
+is zero at these positions the gradient $\delta F_z/\delta z$
+is positive and so any Brownian motion would displace the 
+dimer, either ejecting it from the optical trap or letting
+it be drawn towards another harmonic trap. 
 \begin{figure}[h!]
 	\centering
 	\begin{subfigure}{0.85\linewidth}
@@ -259,82 +307,217 @@ elucidated if multiple spheres are trapped simultaneously.
 		\caption{}
 		\label{eq_pos_inverted}
 	\end{subfigure}
-	\caption{Equilibrium positions of optically trapped dimers with varying 
-		size ratio, dashed lines represent unstable traps whereas solid lines 
-		are for stable equilibrium positions. (a) shows that dimers while in their
-		'standard' orientation will always have a single equilibrium position. 
-		(b) shows that when the same dimer is in its' 'inverted' orientation 
-		can be trapped in two axial positions, one below the focus and one above 
-		the focus.}
+	\caption{Equilibrium positions of optically trapped dimers 
+		with varying size ratio, dashed lines represent unstable 
+		traps whereas solid lines are for stable equilibrium 
+		positions. (a) shows that dimers while in their 
+		'standard' orientation will always have a single 
+		equilibrium position. (b) shows that when the same dimer 
+		is in its' 'inverted' orientation can be trapped in two 
+		axial positions, one below the focus and one above the 
+		focus.}
 	\label{fig:eq_positions}
 \end{figure}
 
+Previous work using the ray-optics model have confirmed even 
+in the case that two spheres begin separated the electric field 
+will align the particles as such that they make contact and 
+are trapped together about a single trapping position 
+\cite{Xu2005}. Furthermore it has been shown through proper 
+manipulation of the Gaussian or Bessel beam modes that any 
+number of trapping potentials can be developed 
+\cite{Shahabadi2020} for nanoparticles. This result however, 
+is the first example of an orientation dependent trapping 
+situation using only a $TEM_00$ beam. Typical experimental 
+arrangements cannot determine much information on the axial 
+position of a trapped particle relative to the trap focus; 
+this result indicates not only that dimers can be trapped 
+in multiple axial positions but also their trapping behaviour 
+is heavily dependent on said axial position. As such it is 
+necessary that positional information in the z-axis can be 
+elucidated if multiple spheres are trapped simultaneously. 
+
 \newpage
-\subsection{Non-trivial equilibrium configurations}
+\section{Non-trivial equilibrium configurations}
 \label{sec:off-axis}
-Computing the equilibrium positions when a dimer is aligned 
-with the electric field is relatively simple as the orientational 
-torque is minimised (see Eq.\ref{eq:opt_torque}). Meaning once 
-trapped the dimer is unlikely to change orientation enough to 
-escape the trap. Regardless, that does not rule out the 
-possibility that there is a stable configuration where the 
-orientation not strictly vertical, in fact most experimental 
-work with symmetric nano-dimers will trap them lying perpendicular 
-to the beam direction \cite{Ahn2018, Reimann2018}. Unlike in Sec.~
-\ref{sec:eq_positions} we cannot simply measure the optical force 
-and torque as the parameter space is too large and determining if 
-a particular position and orientation is stable is not clear based 
-solely on force and torque measurements \cite{Bui2017}. Using the 
-same simulation parameters as before we ran a number short 
-simulations (total simulation time was $0.005$ s) with the laser 
-power increased to $500\ mW$. Each simulation started with the 
-dimer in a different starting position and orientation, due to the 
-high laser power the dimers either escaped the trap or were stably 
-trapped. The $z-\theta$ phase space - where $\theta$ is the angle 
-between the direction of beam propagation and the dimer's orientation 
-vector ($\theta=0^\circ$ is the 'standard' orientation) - can be 
-divided into different regions depending on which equilibrium 
-configuration is reached.
+As mentioned previously in \ref{sec:opt_torque} the 
+torque applied to an anisotropic scatterer can be 
+broken down into two categories: torque generated 
+from the field polarisation and torque generated 
+by the gradient force of the electric field. The 
+former is generally only applicable for objects 
+that are birefringent whereas the latter is 
+applicable to dimers due to their elongated shape.
+Since both spheres are attracted towards the centre
+of intensity via the gradient force a dimer will 
+experience a restoring torque that keeps the it
+in an equilibrium orientation. For any elongated 
+particle the torque is minimised when the long 
+axis is aligned either parallel or perpendicular
+with the direction of the electric field. In this 
+section we try to find equilibrium configurations 
+(positions and orientations where both the optical
+force and torque are minimised).
+
+Computing the equilibrium positions when a dimer is 
+aligned with the electric field is relatively simple 
+as the orientational torque is minimised (see Eq.
+\ref{eq:opt_torque}). Meaning once trapped the 
+dimer is unlikely to change orientation enough to 
+escape the trap. Regardless, that does not rule out 
+the possibility that there is a stable configuration 
+where the orientation not strictly vertical, in fact 
+most experimental work with symmetric nano-dimers will 
+trap them lying perpendicular to the beam direction 
+\cite{Ahn2018, Reimann2018}. Unlike in Sec.~
+\ref{sec:eq_positions} we cannot simply compute the 
+optical force and torque as the parameter space is too 
+large and determining if a particular position and 
+orientation is stable is not clear based solely on 
+force and torque measurements \cite{Bui2017}. Using 
+the same simulation parameters as before we ran a 
+number short simulations (total simulation time was 
+$0.005$ s) with the laser power increased to $500\ mW$. 
+Each simulation started with the dimer in a different 
+starting position and orientation, due to the high 
+laser power the dimers either escaped the trap or 
+were stably trapped. We chose to only consider the $z-
+\theta$ phase space in order to simplify the explanation,
+considering all possible parameters would increase the 
+simulation time significantly. The $z-\theta$ phase space 
+can be divided into different regions depending on which 
+equilibrium configuration is reached.
 \begin{figure}[h!]
 	\centering
 	\begin{subfigure}{0.67\linewidth}
 		\includegraphics[width=\linewidth]{off_axis_trap.png}
 	\end{subfigure}
 	\begin{subfigure}{0.32\linewidth}
-		\raisebox{0pt}[0pt][0pt]{\makebox{}\includegraphics[width=\linewidth, keepaspectratio]{off_axis_render.png}}
-		\caption{}
+		\raisebox{0pt}[0pt][-10pt]{\makebox{}\includegraphics[width=\linewidth, keepaspectratio]{off_axis_render.png}}
 	\end{subfigure}
 	%\captionsetup{hangindent=2.35cm}
-	\caption{Map of $z-\theta$ phase space using a dimer of
-		size ratio 2 with a laser power of 500 mW ($\theta=0
-		\circ$ is the 'standard' orientation and $\theta=180
-		^\circ$ is the 'inverted' orientation). The stable 
-		configurations are indicated by the larger circles 
-		and the starting conditions are colour coded to match 
-		the stable point they end up in. Right hand render 
-		shows a dimer in its off-axis configuration.}
+	\caption{Map of $z-\theta$ phase space using a dimer 
+		of size ratio 2 with a laser power of 500 mW 
+		($\theta=0^\circ$ is the 'standard' orientation 
+		and $\theta=180^\circ$ is the 'inverted' 
+		orientation). The stable configurations are 
+		indicated by the larger circles and the 
+		starting conditions are colour coded to match 
+		the stable point they end up in. Right hand 
+		render shows a dimer in its off-axis configuration.}
 	\label{fig:off_axis}
 \end{figure}
 
-Interestingly while the trap strength of these off-axis traps 
-are similar in magnitude to the vertically aligned dimers, 
-but when the laser power is lowered (around $5\ mW$) the traps 
-become metastable; after reaching its equilibrium configuration 
-the particle behaves similarly to a typically trapped dimer but 
-the trapping potential is small enough that the dimer escapes 
-in as little time as less than a second or after nearly a full 
-3 seconds. Running similar simulations but for vertical 
-configurations sees the dimer remaining trapped, even after 30 
-seconds of run time, indicating that the trapping potential is 
-far greater than the thermal energy. This suggests that the 
-reason this off-axis configuration is metastable is due to the 
-increased rotational freedom. Similar configurations have been 
-explored with ellipsoids; Zhu \textit{et al.} looked at the 
-dynamics of various elliptical particles and found that regardless 
-of shape or initial orientation the particle would tend towards
-either a purely vertical or purely horizontal orientation 
-\cite{Zhu2021}. 
+Where the each starting location is colour coded to
+match the final equilibrium position reached, empty
+regions indicate that the trap was escaped. As 
+expected we see that the dimer has three separate 
+traps when the dimer is close to its vertical 
+orientation, similar to what we see from figs.~
+\ref{fig:paradigmatic} and \ref{fig:eq_positions}. 
+When the beginning orientation is close to horizontal 
+there exists a $4^th$ harmonic trap. Each of these 
+traps, has its own 'basin' of attraction around 
+which the dimer is drawn into, the strange shape 
+of these basins is likely due to how the asymmetric 
+shape interacts with the optical trap.
 
+Interestingly while the trap strength of these off-axis 
+configurations are similar in magnitude to the vertically 
+aligned dimers, but when the laser power is lowered 
+(around $5\ mW$) the traps appear metastable. With the 
+vertical configurations even after $30\ s$ of simulation
+time the dimer is still trapped whereas the off-axis 
+configuration can be escaped after only a few seconds of
+simulation time. The suggested that the configuration is 
+metastable is due to the increased rotational freedom. 
+Similar configurations have been explored with ellipsoids; 
+Zhu \textit{et al.} looked at the dynamics of various 
+elliptical particles and found that regardless of shape or 
+initial orientation the particle would tend towards either 
+a purely vertical or purely horizontal orientation 
+\cite{Zhu2021}. However, in our case the dimer never returns
+to a vertical orientation, suggesting their is a potential 
+barrier separating the different configurations. In order
+to build a better understanding of the potential landscape 
+we need to consider how the force and torque vary for a 
+dimer in the $z-\theta$
+
+\subsection{Force-Torque landscape of an arbitrary dimer}
+We use \textit{ott} to compute the optical force 
+and torque for the same dimer as used in fig.~
+\ref{fig:off_axis} in different positions or 
+orientations, this is depicted in fig.\ref{fig:force_torque}. 
+The magnitude of the force and torque are indicated
+by the colour intensity, with white indicating either
+zero force or torque. This helps show where a
+dimer may end up in equilibrium by finding 
+where both the torque and force go to 0.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\linewidth]{force_torque.png}
+	\caption{Force-Torque landscape over the $z-\theta$ 
+		phase space with a dimer is a size ratio of 2, 
+		laser power of 100mW. Left: 2D plot of the 
+		optical force in the axial direction as a 
+		function of position and orientation. Right: 
+		2D plot of the optical torque about the x-axis 
+		as a function of position and orientation.}
+	\label{fig:force_torque}
+\end{figure}
+
+The force and torque landscape provides some insight 
+into how the dimer can inhabit an off axis equilibrium
+orientation. Firstly, lets consider a typical trap, 
+while the dimer is close to vertical; in all of these 
+cases the optical force and torque directs the dimer 
+back to the configuration. In this case the potential 
+well is positive whether the dimer moves along the 
+z-axis or is rotated. We can assume that in both cases
+the translational and rotational stiffnesses are close
+enough to be modelled as harmonic potentials.
+
+However when in an off-axis configuration ($z\approx0$ 
+\& $90^\circ\le\theta\le115^\circ$) the optical torque 
+is working against the optical force, trying to move it 
+out of equilibrium while the optical force returns it to 
+equilibrium. This means that the potential well is more 
+akin to a saddle point, the only reason that the optical
+trap is not escaped immediately is because the the 
+translational trap stiffness is significantly greater than
+the gradient of the optical torque ($\kappa_z\gg\kappa_
+\theta$). Therefore it is more accurate to say that the 
+trap is not metastable, as when the trap is escaped it 
+is not because the Brownian displacement is greater than
+the potential well, rather the dimer is randomly 
+traversing along the x-axis (aka random Brownian 
+rotation) and has escaped the translational potential 
+well. 
+
+The force-torque landscape also provides an explanation
+to the boundaries between the different trapping 'basins'
+in fig.~\ref{fig:off_axis}. The first point of interest 
+is the 'dead zone' around the orange basin. Looking at 
+fig.~\ref{fig:force_torque} we can see that around that
+region ($z \approx 2.5\mu$ \& $\theta\approx 110^\circ$)
+the optical torque changes sign as you move closer to 
+the trap focus. There is no clear physical reason why
+the optical torque change direction so abruptly but a 
+consequence of it is that dimers that are too close to 
+this region of the torque landscape are ejected from 
+the optical trap as the are drawn down towards the trap
+focus.
+
+The only pellicular result is the observation that the 
+blue basin can still be reached well below the trap 
+focus. As shown by fig.~\ref{fig:off_axis} there are a 
+handful of starting configurations that end up in the 
+upper trap while in the inverted orientation. Even 
+consulting fig.~\ref{fig:force_torque} does not indicate
+any reason why this occurs. The only conclusion we can 
+draw is that the orange and green basins of attraction 
+are small enough that it is possible for a dimer to 
+avoid both. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Continuous rotational motion in circularly polarised light}
@@ -355,63 +538,84 @@ theories into optically induced rotation seem plausible.
 
 \subsection{Polarisation Dependency on Dimer trajectory}
 \label{sec:rot_pol}
-In their paper Vigilante \textit{et al} attribute the rotational motion 
-to the anisotropic shape of the dimer \cite{Vigilante2020}. Anisotropic 
-scattering is a viable theory for describing optical rotation, however
-there is usually an optical axis about which rotation occurs. For a dimer
-this is typically the orientation vector that passes through the centres 
-of both spheres \cite{Ahn2018, Reimann2018, Bruce2020}. There have been 
-cases where the particle's cross sectional shape is engineered to scatter
-light in one particular direction \cite{Higurashi1994}, but if this was
-the case then the dimer should rotate when illuminated by any polarisation
-of light. 
+In their paper Vigilante \textit{et al} attribute the 
+rotational motion to the anisotropic shape of the dimer
+\cite{Vigilante2020}. Anisotropic scattering is a viable 
+theory for describing optical rotation, however there is 
+usually an optical axis about which rotation occurs. For 
+a dimer this is typically the orientation vector that 
+passes through the centres of both spheres \cite{Ahn2018, 
+Reimann2018, Bruce2020}. There have been cases where the 
+particle's cross sectional shape is engineered to scatter
+light in one particular direction \cite{Higurashi1994}, 
+but if this was the case then the dimer should rotate 
+when illuminated by any polarisation of light. 
 
-To that end, we simulated the motion of an optically trapped dimer in 
-beams of varying polarisation ($NA=1.2$, $P=100\ mW$), the dimer is 
-composed of polystyrene ($n_p=1.59$, $n_m=1.33$). Each simulation was 
-run for $1$ second ($\Delta t =10^-5$) and at the end we looked at the 
-orientational time series; the dimer's orientation is recorded as a 
-quaternion which can be easily converted to a 3-dimensional rotation 
-matrix. By considering only the transverse components ($U_{1,x}$, 
-$U_{1,y}$, $U_{2,x}$, \& $U_{2,y}$) of the rotation matrix and taking 
-the Fourier transformation of their time series reveals the rotational 
-frequency. The laser power is set to $100\ mW$ to avoid large thermal 
-fluctuations and so that the Fourier series of the transverse components 
-approximates $\delta(\omega_{rot}-f)$ - the Dirac delta function centred 
-at the rotational frequency $\omega_{rot}$.
+To that end, we simulated the motion of an optically 
+trapped dimer in beams of varying polarisation ($NA=1.2$, 
+$P=100\ mW$). As mentioned previously the beam polarisation
+is given using the Jones vector which describes the magnitude
+of the x and y components of the electric field (so the vector
+$[1.0, 0.0i]$ describes an electric field that only oscillates
+in the x direction). For a linearly polarised beam, both 
+components are in phase with one another, for an elliptical or
+circularly polarised beam we adjust the phase of each component. 
+So a Jones vector of $[1.0, 1.0i]$ describes a beam where the
+y component is $\pi/2$ radians out of phase with the x-component 
+resulting in an electric field that rotates clockwise about
+its direction of propagation. For each simulation we vary
+the phase in increments of $\pi/24$.
 
-%% Example plot of rotating beam trajectory and then the same thing but 
-%% Fourier transformed
-\begin{equation}
-	\begin{split}
-		q(t) \rightarrow R(t) =& 
-		\begin{pmatrix}
-			U_{1,x}(t) && U_{2,x}(t) && U_{3,x}(t) \\
-			U_{1,y}(t) && U_{2,y}(t) && U_{3,y}(t) \\
-			U_{1,z}(t) && U_{2,z}(t) && U_{3,z}(t) 
-		\end{pmatrix} \\
-		\rightarrow
-		&\int^\infty_{-\infty}R(t)e^{-i2\pi ft} dt = 
-		\begin{pmatrix}
-			\delta(\omega_{rot}-f) && \delta(\omega_{rot}-f) && \delta(f) \\
-			\delta(\omega_{rot}-f) && \delta(\omega_{rot}-f) && \delta(f)\\
-			\delta(f) && \delta(f) && \delta(f)
-		\end{pmatrix}
-	\end{split}
-\end{equation}
+\begin{figure}[h!]
+	\begin{subfigure}{\linewidth}
+		\includegraphics[width=\linewidth]{rotating_traj.png}
+	\end{subfigure}
+	$\downarrow$
+	\begin{subfigure}{\linewidth}
+		\includegraphics[width=\linewidth]{rotating_traj_fourier.png}
+	\end{subfigure}
+	\caption{Top: 3 second trajectory of a dimer trapped by a 
+		circularly polarised Gaussian beam. The far left 
+		column depicts the dimer's centre of mass position 
+		with time; the remaining 3 columns show the 9 components 
+		of the dimers' rotation matrix, with each column being
+		associated with one of its three principal axis. Bottom: 
+		The same trajectory but each time series has been 
+		replaced with its Fourier transform. The only non-zero 
+		elements are for the $U_{1,x}$, $U_{1,y}$, $U_{2,x}$, 
+		and $U_{2,y}$ which show a single peak at the rotation frequency.} 
+	\label{fig:fourier_transform}
+\end{figure}
 
-If the rotational frequency was not immediately obvious the simulation was
-repeated but over a longer simulation time. Four different size ratio of 
-dimers were studied, both in their 'standard' and 'inverted' orientations. 
-The results of this are displayed in Fig.~\ref{fig:rotation_vs_pol}:
+Each simulation was run for $1$ second ($\Delta t =10^{-5}\ 
+s$) and at the end we looked at the orientational time series; 
+the dimer's orientation is recorded as a quaternion which can 
+be easily converted to a 3-dimensional rotation matrix. 
+By considering only the transverse components ($U_{1,x}$, 
+$U_{1,y}$, $U_{2,x}$, \& $U_{2,y}$) of the rotation 
+matrix and taking the Fourier transformation of their 
+time series reveals the rotational frequency. The 
+laser power is set to $100\ mW$ to avoid large thermal 
+fluctuations and so that the Fourier series of the 
+transverse components approximates $\delta(\omega_
+{rot}-f)$ - the Dirac delta function centred at the 
+rotational frequency $\omega_{rot}$. This is 
+demonstrated in fig.~\ref{fig:fourier_transform}
+
+If the rotational frequency was not immediately obvious the 
+simulation was repeated but over a longer simulation time. 
+Four different size ratio of dimers were studied, both in 
+their 'standard' and 'inverted' orientations. The results 
+of this are displayed in Fig.~\ref{fig:rotation_vs_pol}:
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\linewidth]{rotation_vs_pol.png}
-	\caption{Rotation frequency vs component phase difference for 
-		differently sized dimers. The solid lines represent the 
-		rotation rate experienced while the dimer is in its standard 
-		orientation, whereas the solid points are for the case 
-		where the orientation is inverted. Laser power = $100\ mW$.}
+	\includegraphics[width=0.9\linewidth]{rotation_rate_vs_pol.png}
+	\caption{Rotation frequency vs electric field phase difference 
+		for differently sized dimers. The solid lines represent 
+		the rotation rate experienced while the dimer is in its 
+		standard orientation, whereas the solid points are for 
+		the case where the orientation is inverted. Laser power = 
+		$100\ mW$.}
 	\label{fig:rotation_vs_pol}
 \end{figure}
 
@@ -517,7 +721,7 @@ torque were recorded.
 \begin{figure}[h!]
 	\centering	
 	\includegraphics[width=\linewidth]{sphere_dimer_torque.png}
-	\caption{Optical toque experienced by a dimer ($a_{I}/a
+	\caption{Optical toque experienced by a dimer ($a_{I}/a_
 	{II}=10$) and a single isotropic sphere. Both were rotated 
 	in the $x-z$ plane and the angle between $U_z$ and the beam 
 	axis gives the polar angle.The solid lines denote the torque 
@@ -565,14 +769,23 @@ and therefore their axial position.
 It is difficult to see from the graph, but the rotation rate never
 truly goes down to zero, reaching a minimum of $2\,{\rm Hz}$, which 
 would imply that a second sphere of radius $200\,{\rm nm}$ is enough 
-to induce rotational motion. What is also interesting is that the 
-rotation rate is not correlated directly with either the particle 
-size or the equilibrium position. This is in stark contrast to previous
-reports of dimer optical rotation; Ahn \textit{et al.} reported that
-the rotational frequency is maximised when the dimer is symmetric 
-\cite{Ahn2018}. Their work was conducted in a vacuum so the only 
-limiting factor to the optical rotational motion is the structural 
-stability of the particle itself. 
+to induce rotational motion. It is not clear if the optical torque 
+calculated for the larger size ratios is accurate as you would not 
+expect the rotation rate to plateau like this. From fig.~
+\ref{fig:sphere_dimer_torque} it seems clear that the torque is not
+merely an error of the numerical calculations as it would not have 
+such a strong angular and positional dependence. Most likely with 
+longer simulation times would reveal the real relationship behind
+the rotation rate and the size ratio. 
+
+What is also interesting is that the rotation rate is not correlated 
+directly with either the particle size or the equilibrium position. 
+This is in stark contrast to previous reports of dimer optical 
+rotation; Ahn \textit{et al.} reported that the rotational frequency 
+is maximised when the dimer is symmetric \cite{Ahn2018}. Their work 
+was conducted experimentally in a vacuum so the only limiting factor 
+to the optical rotational motion is the structural stability of the 
+particle itself. 
 
 \subsection{Gyroscopic Precession using asymmetric dimers}
 As mentioned in section~\ref{sec:off-axis} for specificity sized 
@@ -590,7 +803,7 @@ axis.
 		($P= 100\ mW$). The far left column depicts the dimer's centre 
 		of mass position with time; the remaining 3 columns show the 9
 		components of the dimers' rotation matrix, with each column being
-		associated with one of its three principal axis. }
+		associated with one of its three principal axis.}
 	\label{fig:gyro}
 \end{figure}
 
@@ -609,15 +822,19 @@ which is due to the dimer's Brownian motion being influenced by
 the 'Brownian vortex', as predicted by \cite{Ruffner2012}. And 
 lastly there is rotation, denoted by $\omega$, where the dimer
 spins around its long axis as it did in \ref{sec:rot_pol} \&
-\ref{sec:rot_size}.
+\ref{sec:rot_size}. If the rotation was due to the curl of the 
+spin angular momentum then you would only expect to see 
+precession and nutation, the addition of rotational motion 
+suggests that having multiple particles in close proximity 
+results in a transfer of angular momentum along the long 
+axis.
  
 What is interesting is that while we see the precession and 
 nutation also contribute to the rotation frequency. As can be 
 seen in both fig.~\ref{fig:gyro} and fig.~\ref{fig:gyro_diagram}
 the rotation matrix components $U_{x,x}$, $U_{x,y}$, $U_{y,x}$
 and $U_{y,y}$
- 
-\begin{figure}
+\begin{figure}[h!]
 	\hspace{-2.3cm}
 	\includegraphics[width=1.2\linewidth]{gyroscopic_diagram.pdf}
 	\caption{Representative diagram of the gyroscopic precession 
@@ -639,7 +856,7 @@ is interesting that the precession is seen around the particle's
 optical axis (in the case of a dimer this would be its long 
 axis). Fig.~\ref{fig:gyro} instead shows the precession 
 occurring perpendicular to the optical axis. In the former 
-case the precession can be explained as simply occurring due 
+case the precession was explained as simply occurring due 
 to the reaction torque from the surrounding fluid \cite{Zhu2021}.
 In their analysis of ellipsoidal particles, Zhu \textit{et al.}
 found that when the particle rotated around their minimal inertial 
@@ -663,192 +880,31 @@ unwanted rotational motion from a target particle. Conversely, the
 same framework could allow for precise measurements of the optical 
 torque applied to a target particle, allowing for characterisation 
 of complex shaped particles' interactions with an optical trap. 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Characterisation of asymmetric dimers via PSD \\
-	analysis}
-As discussed in \ref{sec:simulated_QPD}, one of the methods 
-developed to work in conjunction with \cite{Vigilante2020} 
-is a simulated quadrant photo diode for as a position 
-detection system. While it is possible to extract all of 
-the relevant dynamical information from a simulation, 
-confirming the same behaviour in an experimental setting 
-can be challenging if dealing with a non-birefringent 
-anisotropic scatterer. The QPD is composed of 4 photodiodes 
-that measure the intensity of light incident on their 
-surfaces. Using \textit{ott} we can define a region in the 
-far-field that is analogues to the surface of the QPD surface. 
-Evaluating the electric field across this surface gives us 
-an approximation of the QPD signal outputted in an experimental 
-situation. This does not provide a one-to-one result however 
-as hardware errors (i.e. internal resistance, external light 
-sources, and vibrations) would distort the signal somewhat. We 
-can use this as a means to examine the limitations of using 
-back-focal plane interferometry as a means for characterising 
-anisotropic scatterers. 
 
-As a benchmark we start by considering a single sphere within 
-an optical trap. A single polystyrene sphere suspended in water 
-($a=1\mu m$, $n_p=1.59$, $n_m=1.33$) was trapped by a focused 
-Gaussian beam ($NA=1.25$) using circularly polarised light. For 
-the sake of time efficiency the trajectory was sampled every 10
-time steps, meaning the upper bound on the power spectra is
-$f_{Nyq}=f_{sample}/2=5000\ Hz$. To optimise the frequency window
-we fitted the power spectra using the aliased Lorentzian 
-(Eq.~\eqref{eq:aliased_lorentzian}).
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=\linewidth]{PSD_sphere.png}
-	\caption{Recorded power spectra fitted to eq.~
-		\ref{eq:alaised_lorentzian}, scattered points represents 
-		the blocked data ($n_b=100$). Corner frequency for the 
-		Lorentzian curves are reported in the legend.}
-	\label{fig:psd_sphere}
-\end{figure} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-As shown in fig.~\ref{fig:psd_sphere}, the two power spectra 
-report different corner frequencies which would be indicate 
-that the trap is not perfectly circular. We can use both 
-\textit{ott} and the trajectory itself to derive an estimation 
-of the trap geometry. The corner frequencies and corresponding 
-trap stiffness are reported below:
-
-\begin{center}
-	\captionof{table}{QPD fitting for single sphere}
-	\begin{tabular}{ |c|c|c|c|c|c|c| } 
-		\hline
-		Fitting parameter & \multicolumn{2}{|c|}{\textit{ott} estimates} 
-		& \multicolumn{2}{|c|}{QPD fitting} & \multicolumn{2}{|c|}{Trajectory 
-		fitting}\\
-		\hline
-		$f_c\ [Hz]$ & 447 & 450 & \parbox{1cm}{\centering 439} & 474 
-		& \parbox{1.25cm}{\centering 523} & 513 \\
-		$\sigma(f_c)\ [Hz]$ & --- & --- & 9.30 & 9.65 & 8.67 & 8.61 \\
-		$\kappa\ [pN/\mu m]$ & 53.05 & 53.40 & 51.96 & 56.09 & 61.94 & 60.7 \\
-		\hline
-		Ellipticity &
-		\multicolumn{2}{|c|}{8.16 \%} &
-		\multicolumn{2}{|c|}{27.17 \%} &
-		\multicolumn{2}{|c|}{13.8 \%} \\
-		\hline
-		
-	\end{tabular}
-\end{center}
-
-Where $\sigma(f_c)$ is computed from \cite{BergSoerensen2004}, 
-where the variance is based upon our choice of frequency 
-boundaries ({$f_{min}:f_{max}$} = {$100\ Hz: 5000\ Hz$}). And 
-the ellipticity of the beam is given by $e = (1-\kappa_y/
-\kappa_x)^{0.5}$ and is a measure of the symmetry of the beam 
-wavefront. Its clear from these initial results that the QPD 
-is more sensitive to changes along the y-axis than the x-axis 
-when compared to the direct \textit{ott} calculations. This is 
-somewhat reflected in the trajectory results. Typically, even 
-an industrial Gaussian beam will produce an elliptical diffraction 
-limit spot when heavily focused; in their tutorial for optimizing 
-the PSD analysis, Berg and Sorensen reported a ellipticity of 
-around 15 \% after a total calibration time of 80 seconds 
-\cite{BergSoerensen2004}.
-
-The reason for the discrepancies between all 3 methods is due 
-to what is actually being measured. The \textit{ott} estimates 
-are simply looking at the differences in the trapping strength 
-along the Cartesian axis'. If calibrated over an long enough 
-time frame you would expect that the resulting power spectra 
-would exactly mirror the \textit{ott} predictions. However over 
-a short calibration time a QPD will only sample a small trajectory 
-that does not fully explore the trapping plane. There is a clear 
-trade off in terms of accuracy and computation time as shorter 
-calibration runs are computationally more efficient but prone to 
-errors. This is the case even if we know the exact positional data.  
-
-With this in mind, let us consider a symmetric dimer that is 
-optically trapped by the same Gaussian beam. Not only does 
-the dimer's equilibrium position change but it is subjected 
-to rotational motion due to its unequal moments of inertia. 
-This is reflected in the calibration results using the simulated 
-QPD, where we see a drastically different estimation between the 
-\textit{ott} estimate and the QPD estimate.
-
-\begin{center}
-	\captionof{table}{QPD fitting for symmetric dimer}
-	\begin{tabular}{ |c|c|c|c|c|c|c| } 
-		\hline
-		Fitting parameter & \multicolumn{2}{|c|}{\textit{ott} estimate} & 
-		\multicolumn{2}{|c|}{QPD fitting} & \multicolumn{2}{|c|}{Simulation fitting} \\
-		\hline
-		$f_c\ [Hz]$ & 409 & 334 & \parbox{1cm}{\centering 431} & 424 
-		& \parbox{1.25cm}{\centering 274} & 285 \\
-		$\kappa\ [pN/\mu m]$ & 48.51 & 39.58 & 51.13 & 50.26 & 32.45 & 33.75 \\
-		\hline
-		Ellipticity &
-		\multicolumn{2}{|c|}{42.8 \%} &
-		\multicolumn{2}{|c|}{12.7 \%} & 
-		\multicolumn{2}{|c|}{13.8 \%} \\
-		\hline
-	\end{tabular}
-\end{center}
-
-Now we see that the \textit{ott} predicts a more elliptical 
-trap compared to the QPD model which says the trap is far
-more symmetrical while trapping a symmetric dimer. A potential 
-reason that \textit{ott} no longer expects a circular trap 
-could be due to how it computes the beam shape coefficients; 
-by point matching in the far field before the focus means a 
-loss in accuracy for objects that trap above the focus. 
-The change in the QPD estimation can be partially explained 
-by the fact that rotational effects are not accounted for in 
-the Lorentzian power spectra, only translational motion. 
-Typically, rotational motion is only ever detected when it 
-is periodic (take for example Fig.~\ref{fig:vaterite}), when 
-the motion is stochastic the entire power spectra is effected 
-making it near impossible to separate the translational and 
-rotational contributions from a single power spectra. 
-
-\subsection{QPD for angular displacement detection}
-
-The next logical step is to consider whether or not a QPD can at 
-all be utilised for detection of rotational motion. This has been
-shown for nano-particles that exhibit periodic rotational motion
-using by considering the difference in diagonal quadrants. The 
-benefit of detecting rotational motion is that one can begin to 
-build a better understanding about how angular momentum is 
-transferred to a dimer which could be extended to more complex
-particles. 
-
-At just a cursory glance it would appear that there is a clear
-relationship between the QPD signal and the orientation of the 
-dimer. If we look at the QPD signal produced by a dimer is 
-rotated 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
-Considering the simplicity of a scatterer such as a dimer, one would 
-assume that the dynamics of such an object would be relatively easy 
-to predict. Simulations of dimers in the Mie regime show that not 
-only do they have multiple positions and orientations in which they 
-can be trapped but also that their interaction with circularly 
-polarised light is heavily dependent on the axial position and 
-trapping orientation. 
+Considering the simplicity of a scatterer such as a dimer, 
+one would assume that the dynamics of such an object would 
+be relatively easy to predict. Simulations of dimers in 
+the Mie regime show that not only do they have multiple 
+positions and orientations in which they can be trapped but 
+also that their interaction with circularly polarised light 
+is heavily dependent on the axial position and trapping 
+orientation. 
 
-Dimer's have the potential to be used as tunable micro-rotors, being 
-simple to synthesise and can be made out of any material of choice.
-The rotation demonstrated by dimer's is not accurately described in
-previous literature which raises questions on the interactions between
-circularly polarised light and spherical aggregates. Until now, our 
-understanding of angular momentum transfer has been either focused on 
-single particles (where momentum transfer is easily described by 
-Lorenz-Mie theory) or for large aggregates of particles, where the 
-angular momentum transfer between individual particles is not considered. 
-This could provide a greater understanding of angular momentum and help in 
-the development of better torque sensing or torque preventing methods.
+Dimer's have the potential to be used as tunable micro-rotors, 
+being simple to synthesise and can be made out of any material 
+of choice. The rotation demonstrated by dimer's is not accurately
+described in previous literature which raises questions on the
+interactions between circularly polarised light and spherical 
+aggregates. Until now, our understanding of angular momentum 
+transfer has been either focused on single particles (where 
+momentum transfer is easily described by Lorenz-Mie theory) or 
+for large aggregates of particles, where the angular momentum 
+transfer between individual particles is not considered. This 
+could provide a greater understanding of angular momentum and 
+help in the development of better torque sensing or torque 
+preventing methods.
 
-Conventional calibration methods will not be adequate however, while
-angular motion can be detected using complicated set ups \cite{Bang2020},
-this can only provide an estimate of the magnitude of a particle's 
-angular motion. This is perfectly fine in cases where the rotational
-motion is stochastic and intuitively predictable (i.e. a dimer in a
-vertical orientation undergoing stochastic Brownian motion), but in 
-the case the the motion is instead periodic characterising it requires
-instantaneous measurements of the particle's motion. 

@@ -1,6 +1,6 @@
 \chapter{Introduction}
 Crystallisation is one of the oldest forms of phase 
-separation used by humanity\cite{Schoen1956}, put 
+separation used by humanity \cite{Schoen1956}, put 
 simply, it is the formation and growth of a new 
 structured phase within a disordered bulk phase. 
 This has applications in a number of industries such 
@@ -24,7 +24,7 @@ concerned with the first initial moments of a crystals
 formation within a bulk phase.
 
 In this chapter we will outline our current understanding 
-of nucleation,why there is a gap in the literature, and why 
+of nucleation, why there is a gap in the literature, and why 
 there is still a need for local control of nucleation events. 
 Furthermore, we will also highlight recent developments 
 involving the use of optical tweezers (and other laser based 
@@ -200,109 +200,287 @@ Prompting the development of alternative theories to better describe the
 nucleation process.
 
 \subsection{Two Step Nucleation}
-The two step nucleation theory is an extension to the CNT that suggests 
-that prior to nucleation, the solute will cluster together. This has 
-been shown via colloid simulations using protein molecules that have 
-significant short range interactions \cite{Wolde1997, Gliko2005}. These 
-interactions allow for the formation of a liquid-liquid metastable phase 
-from which a new solid phase could form \cite{Anderson2002, Karthika2016}. 
-Several papers later reported the presence of stable liquid-like clusters 
-that formed prior to nucleation \cite{Savage2009, Wolde1997, Soga1999}. 
-The formation of these clusters can be understood by Oswald's rule; which 
-says that any crystallising system does not immediately take the path to 
-the lowest possible energy state but instead first transitions to the state 
-with the smallest free energy barrier \cite{Ostwald1897}. Further phase 
-transitions can still occur but this pathway minimises the overall free 
-energy cost. Initially it was suspected that the formation of the dense 
-liquid phase was a result of stochastic density fluctuations in the system. 
-However, simulations suggest that the the local bond order is a stronger 
-driving force than the local density \cite{Tan2013}. Studies into two step 
-nucleation in Glycine solutions have noted that the solutions need to be 
-aged before the presence of clusters was detected \cite{Liao2022}. This 
-suggests that there exist further barriers to the formation of clusters 
-in some systems, this has lead to instead calling this phenomena as 
-Multi-step Nucleation.
+The two step nucleation theory is an extension to the CNT 
+that suggests that prior to nucleation, the solute will 
+form precursor structures. The CNT assumes that solute 
+structures below the critical radius should be unstable 
+within the solution due to interfacial forces trying to 
+dissolve the solute. This assumption is based on the idea 
+that any interactions between solute molecules are much
+smaller than the surface tension due to the bulk solution.
+If instead the solute molecule interactions are significant
+then it stands to reason that subcritical liquid-like 
+structures are stable. 
 
-\subsection{Non-classical Nucleation} 
-The current research into two step nucleation (or now more commonly 
-referred to as multi-step nucleation theory) is developing a robust 
-framework to describe what nucleation pathway will occur given the 
-initial conditions. Reviews of all currently documented nucleation 
-pathways highlighted the need for the development of \textit{in situ} 
-techniques that can induce nucleation locally but can also reliably 
-identify the nucleation pathway across a broad range of experimental 
-conditions \cite{Karthika2016, Fu2021}. 
+The first observation of a liquid-like structure was in 
+$CaCO_3$ solutions, initially it was assumed that polymers
+were a necessary additive to create a precursor structure 
+\cite{Driessche2017, Karthika2016}. This is not the case when 
+the solution is above its critical temperature, allowing the 
+solution to be in the binodal region of the phase diagram. 
+This would result in the formation of two liquid phases, 
+one being rich in solute, the other being solute poor 
+\cite{Karthika2016, Fu2021}. Several papers later reported 
+the presence of stable liquid-like clusters that formed 
+prior to nucleation \cite{Savage2009, Wolde1997, Soga1999}. 
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Crystallisation methods}
-\subsection{Cooling Crystallisation}
-For some binary mixtures the supersaturation is heavily dependent 
-on the solution temperature, therefore a simple method of producing 
-crystals is by cooling the mixture to induce crystal formation. At 
-ambient temperatures the solute concentration is too high to be 
-fully incorporated into the solution ($S\gg 1$), after heating however 
-the solute is fully dissolved into the solution ($S<1$). Now as the 
-mixture is allowed to cool to room temperature the supersaturation 
-will increase until crystal formation begins, the rate of cooling 
-drastically influences the size and number of crystals produced.
-
-If $dT/dt$ is high then the final product will consist of large 
-crystal and be low in number, as the nucleation rate is directly 
-related to the supersaturation only a handful of nuclei can form 
-before the remaining solute grows onto the surface. If $dT/dt$ is 
-low then the final product will consist of smaller crystals and be 
-far more numerous, as the supersaturation is so large that the new 
-nuclei are forming continuously. Between these two extremes, one 
-can define a meta-stable zone, a region in the temperature-
-concentration phase space where both nucleation and crystal growth
-can be reliably controlled. The lower limit being given by the 
-solubility curve of the binary mixture, and the upper limit being 
-defined by the point where crystals begin to spontaneously nucleate
-within the solution.
-
-\begin{figure}[h!]
-	\includegraphics[width=\linewidth]{MSZW.png}
-	\caption{Typical Concentration vs Temperature plot with the 
-		solubility curve (black) and metastable zone (red). 3 
-		different cooling curves are shown as well: a high rate 
-		of cooling (orange) shows the mixture quickly dropping 
-		below the solubility curve resulting in no new nuclei 
-		forming. A low rate of cooling (green) shows the mixture 
-		exceeding the metastable zone, where now nucleation occurs 
-		spontaneously and cannot be controlled without further 
-		cooling. A typical cooling rate (blue) shows how a 
-		typical cooling crystalliser will operate, sitting in the 
-		middle of the other two curves.}
-	\label{fig:MSZW}
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{oswalds_rule.jpg}
+	\caption{Free energy diagram of Oswald's rule for a 
+	crystal with three possible polymorphs. The diagram 
+	shows that there exist local minima in the free energy 
+	that represent the different polymorphic forms. A similar
+	free energy diagram can be used to describe the two-step
+	nucleation mechanism.}
 \end{figure}
 
-The viability of cooling crystallisation is dependent on the 
-meta-stable zone width, too narrow and the process is difficult to 
-control, too wide and the crystal growth rate may be insufficient 
-for the desired outcome.
+The formation of these clusters can be understood by Oswald's 
+rule; which says that any crystallising system does not 
+immediately take the path to the lowest possible energy state 
+but instead first transitions to the state with the smallest 
+free energy barrier \cite{Ostwald1897}. Oswald's rule was 
+assumed to be applicable for crystal polymorphs but can be
+generalised to describe the nucleation process also. Further phase 
+transitions can still occur but the pathway taken should 
+always minimises the overall free energy cost. It is assumed
+that between the amorphous phase and the crystalline phase 
+the solute undergoes dehydration while changing structurally 
+into a more ordered phase, though there is some discussion 
+whether the process merely undergoes dehydration, or if there 
+is a more complex chemical reaction
+\cite{Karthika2016}.
 
-\subsection{Evaporative Crystallisation}
-In situations where control of the final product size or shape 
-is not the main focus, often the cheapest method of producing a 
-crystalline product is simply to allow the solvent evaporate and 
-separate from the solute. Depending on the total volume of solvent 
-to evaporate this process can take on time scale of several days 
-to complete. This is often used for the formation of seed crystals 
-when larger seed crystals are required \cite{Srinivasan2008, Li1992}.
+With regards to liquid-precursors, there is still a lot of
+discussion about the relationship between the solution 
+conditions and the the precursors. The size and rate at 
+which these precursors agglomerate based on the degree of 
+saturation would provide invaluable information on the 
+kinetics of two-step nucleation \cite{Fu2021}. In some 
+cases it has even been shown that 'ageing' solutions is 
+a necessary step in order to detect the presence of 
+stable amorphous clusters \cite{Liao2022}. This was in 
+solutions that were supersaturated and yet after the 
+formation of precursors spontaneous nucleation was not
+seen even after several days of observation \cite{Liao2022}.
+This suggests that in some cases the precursors are
+metastable and require an external trigger to induce
+crystallisation. The presence of metastable structures
+and other phenomena has lead to development of a more 
+universal theory, namely non-classical nucleation.
 
-\subsection{Anti-solvent Crystallisation} 
-Anti-solvent crystallisation is a more involved separation method,
-by adding a new solvent that is miscible with the old solvent but 
-is immiscible with the solute, the solute's effective solubility 
-is decreased. As such, the solution becomes supersaturated. This 
-has the trade off in that the overall mass ratio between the solvent 
-and solute is now lower. Careful measurement of the anti-solvent is 
-required in order to ensure that the decrease in solubility is not 
-out matched by the decrease in mass ratio.Anti-solvent crystallisation 
-is not as common due to the fact that not all solutions will have an 
-ideal anti-solvent candidate.
+\subsection{Non-classical Nucleation} 
+Two-step nucleation is based on the idea that between
+the bulk solution and the final crystalline phase there
+exists and intermediate stage. While this is broadly an
+accepted concept, research has shown that in some cases
+the intermediate stage can be subdivided into multiple 
+states. This has been shown to be the case with metals
+in both solid and liquid conditions \cite{Cao2020, Ye2023}
+and colloidal simulations have indicated that the 
+precursors undergo structural change over time \cite{Tan2013}. 
+While in some cases it has been possible to directly
+monitor the structural change in the amorphous clusters, 
+many organic compounds have not received such treatment
+due to the difficulty of characterising and monitoring 
+the pre nucleation stage \cite{Fu2021}. This is often 
+why two-step nucleation is simply referred to as 
+multi-step nucleation. 
+
+There are also a myriad of other unique nucleation events
+that deviate significantly from both the classical and 
+two-step nucleation theories. A review paper discussing
+recent advances in non-classical crystallisation highlighted
+that depending on the collision kinetics of the system 
+and the molecular interactions could result in drastically
+different reaction kinetics. In the former case, unstable
+subcritical nuclei have been shown to collide and coalesce
+into a supercritical nucleus, but only in conditions where 
+subcritical nucleation are plentiful despite a low degree
+of supersaturation \cite{Baumgartner2013}. The latter case 
+is more prevalent for dipole solute molecules, the anisotropic 
+attraction results in nuclei with non-spherical geometries, 
+this results in varying kinetics for agglomeration dependent 
+on the orientation of each molecule \cite{Yau2001}. Phenomena 
+such as the above examples has been collectively refereed to 
+as non classical nucleation, it is known that they must be 
+related to both CNT and multi-step nucleation but the connection 
+is not clear based on the current literature.  
+
+As such, much of the research into nucleation theory is 
+focused on developing \textit{in situ} techniques that can 
+monitor and characterise the pre nucleation stage, this
+would glean information on cases when both classical 
+and non-classical nucleation is a possibility 
+\cite{Karthika2016}. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{In situ techniques for studying nucleation}
+There are several different phenomena \cite{Fu2021, Karthika2016} 
+that are not well described by any individual theoretical framework 
+(CNT or multi-step nucleation for example). There is an increasing 
+interest in probing the pre-nucleated solution.
+
+One of the key conclusions is the need for the development of 
+better \textit{in situ} techniques for characterizing and 
+imaging the nucleation pathways. Understanding which specific 
+pathway is unfolding under a certain set of experimental 
+parameters would allow one to develop a map of the thermodynamic 
+landscape available to a pre-nucleation system. The challenge 
+therein lies in developing experimental methods by which one can 
+reproduce similar nucleation events and in turn use 
+characterisation techniques to identify the pathway taken. The 
+method not only needs to be repeatable fora single set of system 
+parameters, but also needs to be flexible enough to replicate 
+results regardless of the system parameters (i.e. varying 
+supersaturation, temperature, and solute choice). There have 
+been several different methods deployed to try and observe 
+crystallisation at a microscopic scale.
+
+\subsection{Computer Simulations}
+While not a direct observation of nucleation events, computer
+simulations have proved an invaluable tool for studying and 
+testing predictions about the pre-nucleated solution. By 
+comparing the simulative nucleation rate to the expected 
+rate given by current models, researchers can test newly 
+developed theories and glean information about the microscopic
+parameters of a system. 
+
+The main challenge facing computer simulations is the issue
+of limited scope. Molecular dynamic simulations are constrained
+by their choice of time and length scale, for example simulations
+in a canonical ensemble face issues where the chemical potential
+is depleted to the point that the driving force for crystallisation
+is halted \cite{DuranOlivencia2015, Finney2023}, this can be 
+addressed but requires an extensive increase in computational 
+resources to maintain the chemical potential equilibria. Like wise
+in most cases the choice of time scale is a crucial factor, shorter
+time scales provide a more accurate evolution of the solution; 
+however, in some cases the time scale magnitude for crystallisation
+is often far greater than the time scale used in the simulation. This
+has led to more advanced sampling techniques that allow for longer 
+time scales which has provided insights into the pre-nucleation 
+solution stage and formation of pre-nucleated clusters \cite{Finney2023}.
+ 
+The study of the pre-nucleated solution and the evolution of 
+precursors has been aided greatly by the use of simulative 
+studies. Early on it was shown in colloidal crystallisation 
+that the structure of the precursor was time dependent; 
+colloidal simulations showed that regardless of the molecular
+interactions between colloids the atomic packing pattern was 
+predominately hexagonal centred, over time the packing
+became dominated by body centred packing in the case 
+where the interactions were longer reaching \cite{Tan2013}. 
+They also confirmed that precursor formation was driven not
+by local density variations, but instead was driven by the 
+local bond order of the colloidal precursors \cite{Tan2013}, 
+providing strong evidence that the colloidal pre-nucleation 
+clusters undergo rearrangement prior to nucleation. Further
+developments in $NaCl$ simulations have shown that by varying
+the density fluctuations the precursor structure could either
+be amorphous, the classical rock-salt structure, or a new 
+structure similar to wurtzite. While this result is difficult
+to confirm it provides a important conclusion, that simulations
+can hint at new nucleation pathways that have not been confirmed
+experimentally. This means that computer simulations can not
+be merely used to confirm theories, but can be used to examine
+and search for novel results. 
+
+Overall computer simulations make up a core area of research 
+in the study of nucleation. The technique is however limited,
+often struggling to examine nucleation over longer time scales
+or larger number of particles. While sampling methods and 
+enhanced simulation techniques has alleviated this somewhat 
+they are still far from being able to describe the behaviour 
+of larger molecules undergoing nucleation. 
+
+
+\subsection{Transmission Electron Microscope (TEM)}
+One of the more well known techniques used for direct observations 
+of crystallisation dynamics is using transmission electron 
+microscopy (TEM). The basic working principle involves creating a 
+focused beam of electrons that are directed onto a target sample.
+Due to the wave-particle duality, the electrons can be treated 
+as a unified beam of light, whose wavelength is dependent on the 
+kinetic energy of the electrons. The wavelength of an individual 
+electron is given by \cite{Williams2009}:
+\begin{align}
+	\lambda_e = \frac{h}{\sqrt{2mE(1+\frac{E}{2mc^2})}}
+\end{align}
+
+\noindent
+When incident on a sample the wave is scattered by the sample 
+and can then be detected by an imaging screen that measures 
+the difference in intensity between the scattered and 
+transmitted beams. The advantage of TEM is that one can bypass
+the diffraction limit imposed by visible light, the maximum 
+resolution that can be achieved by a microscope is given by
+\cite{Champness2020}:
+\begin{align}
+	d = \frac{\lambda}{2NA}
+\end{align} 
+
+\noindent
+where NA is the numerical aperture of the objective lens, and
+$\lambda$ is the wavelength of light used to illuminate a sample.
+For a visible light LED with an average wavelength of $550~nm$, 
+the upper limit for an objective lens (NA of 1.2) is around 
+$230~nm$ whereas a similar lens focusing an electron beam 
+with an average kinetic energy of $100~keV$ will have a maximum 
+resolution of just over $4~pm$ \cite{Champness2020}. There is
+an upper limit to the maximum resolution possible as electron 
+lens are far inferior to what modern optics can achieve 
+\cite{Champness2020} so there is a trade off between quality and 
+resolution. 
+
+TEM technology has proven invaluable to the study of nucleation
+at an atomic level. The samples are often only a few hundred 
+atoms thick in order to optimise the imaging results. Much of 
+the supporting evidence for non-classical nucleation has been 
+demonstrated via TEM \cite{Ye2023}. For example when Cao 
+\textit{et al} observed the formation of amorphous atomic 
+cluster using $\gamma-$Fe,Au, and Re; all three of which 
+underwent continuous transformation before eventually 
+reaching an final ordered state \cite{Cao2020}. The amorphous 
+cluster did not immediately transition to an ordered structure, 
+instead fluctuating somewhat randomly until eventually settling 
+into a crystalline structure \cite{Cao2020}. This was confirmed 
+both in solid growth and liquid growth conditions \cite{Cao2020, 
+Loh2016}, suggesting that the non-classical nucleation path 
+dominates in all cases of metal crystal formation \cite{Ye2023}. 
+Confirmation is necessary for different solute choices, as in 
+the case of organic solids it is believed that non-classical 
+nucleation only dominates in low supersaturations whereas 
+classical nucleation is dominate at higher supersaturations.
+
+TEM analysis has not been extended to the study of organic 
+crystals, proteins, or simple salts at an atomic level 
+however. The main reason being that organic materials can be 
+damaged by the electron beam and therefore need to be frozen 
+prior to being imaged \cite{Champness2020}. This was used to 
+study the polymorphic time dependence of glycine crystals, by 
+varying the time prior to freezing Broadhurst \textit{et al} 
+showed that $\beta$ glycine dominates initially but $\alpha$-
+glycine is more stable after a longer period, $\gamma$-glycine 
+was only found when allowed to dry over an hour on a glass slide \cite{Broadhurst2020}. While this was invaluable for showing 
+the time scales with which polymorphs form, it doesn't provide 
+much information on the kinetics of crystal growth as these 
+were snap shots and not direct observations of the nucleation 
+process.
+
+Overall TEM analysis is invaluable for the study of atomic 
+crystal growth, the secondary scattering from electron 
+beams also allows for chemical and structural information 
+to be gleaned from the target. This has given strong evidence
+for the non-classical nucleation theory, particularly in 
+metal crystal formation. Due to the high energy of the 
+electrons, organic materials have not received the same
+focus outside of cryoTEM analysis. Non-invasive methods
+are therefore necessary to gain an understanding of the
+crystal growth and formation of organic crystals, 
+particularly when both classical and multi-step nucleation 
+can occur.
+
 
 \section{Optical Tweezers}
 \subsection{Background}
@@ -324,7 +502,8 @@ colloidal aggregates \cite{Yi2021} to the drag forces exerted by a
 pure vacuum \cite{Ahn2018, Monteiro2018}. Due to the predictable 
 behaviour of light, optical tweezers have become essential for 
 measuring and exerting precise forces on the magnitude of pico-newtons 
-allowing one to probe the material properties of the smallest materials. 
+allowing one to probe the material properties of the smallest 
+materials. 
 
 \subsection{Literature related to laser induced nucleation}
 From as early as 1996 it has been known that laser irradiation 
@@ -603,6 +782,33 @@ but also allows for the creation of more effective
 micro-rotors. The latter being especially pertinent for 
 understanding the behaviour of fluids experiencing localised 
 shearing.
+
+\subsection{Characterisation of rotational motion}
+
+Rotational motion about a single axis is easiest to account for.  
+When the power spectra of elliptical polystyrene particles was 
+fitted by Yogesh \textit{et al} \cite{Yogesha2011PreciseCO}, they 
+assumed that the rotational motion was purely in the transverse
+plane. As such they did not have to account for any variance in 
+the trapping strength due to orientation nor did they need to
+consider non-periodic rotational behaviour. In the case where 
+rotational motion is stochastic the problem is more complex. 
+For example, when an optical fibre trap characterisation 
+technique was implemented by Saffron \textit{et al} 
+\cite{BarZiv1997, Meller1998}, they were able to use dynamic 
+light scattering to characterise both the axial and lateral 
+trap stiffness acting on microspheres. The only drawback 
+admitted to in their work was that the technique was constrained 
+to isotropic scatters as their theoretical model for describing 
+the auto-correlation function was predicated on the fact that 
+any variations in the signal are due to the particles 
+translational motion within the confines of a cylindrical trap 
+\cite{BarZiv1997}. Where the upper limit of the cylindrical 
+trap is given by the Rayleigh range ($z_R = n\omega_0/NA$).
+However, as demonstrated by the results from Chapter 4.1, 
+the axial traps of spherical aggregates is often situated 
+far beyond the Rayleigh range (for a 1.2 NA laser this is 
+$\pm5.985 \mu m$).
 
 \section{Shear induced Nucleation}
 It has long been known that fluid shear rate plays a role in 

@@ -2355,7 +2355,7 @@
     <bcf:citekey order="4" intorder="1">Loudet2014</bcf:citekey>
     <bcf:citekey order="4" intorder="2">ShengHua2005</bcf:citekey>
     <bcf:citekey order="4" intorder="3">Chetana2022</bcf:citekey>
-    <bcf:citekey order="5" intorder="1">Vigilante2020</bcf:citekey>
+    <bcf:citekey order="5" intorder="1">Nir1973</bcf:citekey>
     <bcf:citekey order="6" intorder="1">Capitanio2002</bcf:citekey>
     <bcf:citekey order="7" intorder="1">RanhaNeves2019</bcf:citekey>
     <bcf:citekey order="8" intorder="1">Xu2005</bcf:citekey>
@@ -2396,10 +2396,6 @@
     <bcf:citekey order="32" intorder="4">Kuhn2016</bcf:citekey>
     <bcf:citekey order="33" intorder="1">Zhu2021</bcf:citekey>
     <bcf:citekey order="34" intorder="1">Bang2020</bcf:citekey>
-    <bcf:citekey order="35" intorder="1">Vigilante2020</bcf:citekey>
-    <bcf:citekey order="36" intorder="1">BergSoerensen2004</bcf:citekey>
-    <bcf:citekey order="37" intorder="1">BergSoerensen2004</bcf:citekey>
-    <bcf:citekey order="38" intorder="1">Bang2020</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">
