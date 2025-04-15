@@ -1,4 +1,4 @@
-\chapter{Detection and Characterisation of rotational spherical aggregate rotational dynamics}
+\chapter{Detection of rotational spherical aggregate rotational dynamics}
 \label{chapter:simulated_detection}
 As outlined in the end of Chapter 4, one of the difficulties 
 in characterising interactions with asymmetric objects is 
@@ -19,67 +19,67 @@ concerted effort to either eliminate rotational motion, or describe
 how the rotational behaviour influences the trajectory reported 
 by the position detector. 
 
-In chapter 4 we showed that while machine learning can be used 
-to accurately predict the translational displacements of an 
-aggregate particle, it fails when trying to account for the 
-rotational behaviour of said particle. In this chapter we 
-build upon \cite{BarZiv1997} but now account for the full 
-rotational motion. This was initially developed in tandem with 
-the work conducted in chapter 3, with the idea being that if a 
-crystal nucleus formed on a rotating sphere how would that 
-nucleus influence the motion of the rotating sphere. Using 
-static light scattering we can map the outputted signal from a 
-optically trapped dimer to its expected orientation in real 
-time. Thus allowing us to estimate the optical torque being 
-applied to the dimer by the trapping beam. As demonstrated 
-in chapter 4, the influence of a circularly polarised beam 
-can result in gyroscopic precession for specifically sized 
+In this chapter we build upon the work of \cite{Rohrbach2002} and
+\cite{BarZiv1997}; the former used to measure the relative position
+of the trapped aggregate, and the latter to measure the orientation
+of the aggregate. This was initially developed in tandem with the 
+work conducted in chapter 3, with the idea being that if a crystal 
+nucleus formed on a rotating sphere how would that nucleus influence 
+the motion of the rotating sphere. Using static light scattering we 
+can map the outputted signal from a optically trapped dimer to its 
+expected orientation in real time. Thus allowing us to estimate the 
+optical torque being applied to the dimer by the trapping beam. As demonstrated in chapter 4, the influence of a circularly polarised 
+beam can result in gyroscopic precession for specifically sized 
 dimers. 
 
-We start by describing a quadrant photo diode system 
-simulated the power spectrum derived from a particle 
-trajectory. We demonstrate that even in idealised 
-circumstances the rotational motion is not revealed 
-from the collected power spectrum. We then go about 
-defining an optical fibre detection system from a 
-mathematical perspective. Before demonstrating how it 
-can be used to instantaneously predict orientational 
-information on a trapped particle. We then consider 
-common factors of error in the characterisation process, 
-such as signal error, and incorrect particle sizing. 
-Both of which have a significant impact on the performance 
-of the model, but by utilising Bayesian inference, and 
-time averaging we can better refine our model.   
+We start by describing a quadrant photo diode system simulating the 
+power spectrum derived from a particle trajectory. We demonstrate 
+that even in idealised circumstances the rotational motion is not 
+revealed from the collected power spectrum. We then go about 
+defining an optical fibre detection system from a mathematical 
+perspective. Before demonstrating how it can be used to 
+instantaneously predict orientational information on a trapped 
+particle. We then consider common factors of error in the 
+characterisation process, such as signal error, and incorrect particle 
+sizing. Both of which have a significant impact on the performance 
+of the model, but by utilising Bayesian inference, and time averaging 
+we can better refine our model.   
 
 \section{Characterisation of asymmetric dimer dynamics via PSD analysis}
 As discussed in \ref{sec:simulated_QPD}, one of the methods 
 developed to work in conjunction with \cite{Vigilante2020} 
 is a simulated quadrant photo diode for as a position 
 detection system. While it is possible to extract all of 
-the relevant dynamical information from a simulation, 
-confirming the same behaviour in an experimental setting 
-can be challenging if dealing with a non-birefringent 
-anisotropic scatterer. The QPD is composed of 4 photodiodes 
-that measure the intensity of light incident on their 
-surfaces. Using \textit{ott} we can define a region in the 
-far-field that is analogues to the surface of the QPD surface. 
-Evaluating the electric field across this surface gives us 
-an approximation of the QPD signal outputted in an experimental 
-situation. This does not provide a one-to-one result however 
-as hardware errors (i.e. internal resistance, external light 
-sources, and vibrations) would distort the signal somewhat. We 
-can use this as a means to examine the limitations of using 
-back-focal plane interferometry as a means for characterising 
-anisotropic scatterers. 
+the relevant dynamics from a simulation, from an experimental
+standpoint characterising those dynamics is dependent on what
+experimental techniques are used. Translational motion can be
+characterised via a position detection system but angular 
+motion is far more difficult to detect, let along characterise. 
 
-As a benchmark we start by considering a single sphere within 
-an optical trap. A single polystyrene sphere suspended in water 
-($a=1\mu m$, $n_p=1.59$, $n_m=1.33$) was trapped by a focused 
-Gaussian beam ($NA=1.25$) using circularly polarised light. For 
-the sake of time efficiency the trajectory was sampled every 10
-time steps, meaning the upper bound on the power spectra is
-$f_{Nyq}=f_{sample}/2=5000\ Hz$. To optimise the frequency window
-we fitted the power spectra using the aliased Lorentzian 
+The simulative QPD is composed of 4 photodiodes that measure the 
+intensity of light incident on their surfaces. Given that the 
+condensing lens will have a maximum acceptance angle given by 
+its numerical aperture ($\theta_{max} = \sin^{-1}\left(NA_c/n_
+{med}\right)$) we define the electric field incident on the QPD 
+surface as the elements of the scattered and incident field that 
+propagate within that angular range of $\pm \theta_{max}$. Using 
+\textit{ott} we can evaluate the total electric field to an 
+arbitrary spacial resolution across the surface of the QPD. The 
+reported signal is found by taking the difference between pairs 
+of quadrant signals (see \ref{sec:simulated_QPD} for further 
+detail). This does not provide a one-to-one result however as 
+hardware errors (i.e. internal resistance, external light sources, 
+and vibrations) would distort the signal. It can be used however to 
+show how if the reported power spectra is an accurate representation 
+of the true particle dynamics or if the additional degrees of freedom 
+have an adverse effect on the scattering. See chapter 2 for a breakdown
+of power spectral analysis. 
+
+As a benchmark we start by considering a single sphere within an optical 
+trap. A single polystyrene sphere suspended in water ($a=1\mu m$, 
+$n_p=1.59$, $n_m=1.33$) was trapped by a focused Gaussian beam ($NA=1.25$) using circularly polarised light. For the sake of time efficiency the trajectory was sampled every 10 time steps, meaning the upper bound on 
+the power spectra is $f_{Nyq}=f_{sample}/2=5000\ Hz$. To optimise the 
+frequency window we fitted the power spectra using the aliased Lorentzian.
 (Eq.~\eqref{eq:aliased_lorentzian}). 
 \begin{figure}[h!]
 	\centering
@@ -141,15 +141,18 @@ around 15 \% after a total calibration time of 80 seconds
 
 The reason for the discrepancies between all 3 methods is due 
 to what is actually being measured. The \textit{ott} estimates 
-are simply looking at the differences in the trapping strength 
-along the Cartesian axis'. If calibrated over an long enough 
-time frame you would expect that the resulting power spectra 
-would exactly mirror the \textit{ott} predictions. However over 
-a short calibration time a QPD will only sample a small trajectory 
-that does not fully explore the trapping plane. There is a clear 
-trade off in terms of accuracy and computation time as shorter 
-calibration runs are computationally more efficient but prone to 
-errors.  
+are simply looking at the change in the trapping force as you
+move along a given axis'. In reality, a particle will be freely
+diffusing within the trap focus meaning over a short calibration 
+time the QPD is only estimating a weighted average of the trapping
+strength. If calibrated over an long enough time frame you would 
+expect that the resulting power spectra would exactly mirror the 
+\textit{ott} predictions. There is a clear trade off in terms of 
+accuracy and computation time as shorter calibration runs are 
+computationally more efficient but prone to errors. However, it
+should be noted that the estimation made by the QPD is still less
+than the results from \cite{BergSoerensen2004}, though this could
+be due to a lack of external noise signals.
 
 With this in mind, let us consider a symmetric dimer that is 
 optically trapped by the same Gaussian beam. Not only does 
@@ -158,7 +161,6 @@ to rotational motion due to its unequal moments of inertia.
 This is reflected in the calibration results using the simulated 
 QPD, where we see a drastically different estimation between the 
 \textit{ott} estimate and the QPD estimate.
-
 \begin{center}
 	\captionof{table}{QPD fitting for symmetric dimer}
 	\label{tab:dimer}
@@ -211,11 +213,13 @@ centre of diffusion remains stationary.
 The next logical step is to consider whether or not a QPD can at 
 all be utilised for detection of rotational motion. This has been
 shown for nano-particles that exhibit periodic rotational motion
-using by considering the difference in diagonal quadrants. The 
-benefit of detecting rotational motion is that one can begin to 
-build a better understanding about how angular momentum is 
-transferred to a dimer which could be extended to more complex
-particles. 
+using by considering the difference in diagonal quadrants 
+\cite{Yifat2021}. The only difference between these results is 
+the fact that rotation occurs perpendicular to the particle's long 
+axis, whereas dimers rotate about their long axis. The benefit of 
+detecting rotational motion is that one can begin to build a better understanding about how angular momentum is transferred to a dimer 
+which could be extended to more complex particles. This could give 
+some understanding to the results of Chapter 4. 
 
 At just a cursory glance it would appear that there is a clear
 relationship between the QPD signal and the orientation of the 
@@ -223,6 +227,15 @@ dimer. If we look at the QPD signal produced by a dimer as it is
 rotated we can see that it is equally sensitive to rotations in
 either the X-Z or Y-Z plane but there is no change in the signal 
 when rotated by in the X-Y plane. 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\linewidth]{rotation_figure}
+	\caption{QPD signals detected by a dimer being rotated while
+			centred at the focus of the optical trap. Top right:
+			rotation in the X-Z plane. Top left: rotation in the
+			Y-Z plane. Bottom: Rotation in the X-Y plane.}
+	\label{fig:QPD_rotation}
+\end{figure}
 
 However if we compare this to fig.~\ref{fig:rohrbach} we can see 
 that the the signal change is dwarfed by the translational motion. 
@@ -244,26 +257,47 @@ not clear. To that end, we utilised machine vector regression,
 which takes as an input the voltage from the 4 quadrants and 
 tries to fit that to the dimer's trajectory. Fitting the QPD
 signal to the dimer's position shows promising results, shown in
-fig.~X.X is a prediction of a symmetric dimer's position based
-on the QPD signal. With the actual displacement on the x-axis 
-and the predicted result y-axis, and the dashed line represents 
-the y=x line - indicating an ideal prediction. 
+fig~\ref{fig:QPD_rotation} is a prediction of a symmetric dimer's 
+position based on the QPD signal. With the actual displacement 
+on the x-axis and the predicted result y-axis, and the dashed 
+line represents the y=x line - indicating an ideal prediction. 
 
-Fig~X.X shows that its relatively trivial to predict a particle's
-position based off the QPD signal, even in axial direction which
-has not been done previously. It should be noted that these 
-displacements are relative to the trap focus and so accurate 
-tracking of the beam movements needs to be taken. This result is
-partially due to the fact that displacement and signal units are
-linearly related by \eqref{eq:conversion_factor}. Interestingly 
-when we run the same protocol for different sized dimer's there 
-seems to be a cut off point when the fit begins to fail. Plotting
-the $R^2$ for each fit vs its size ratio shows that beyond a size
-ratio of 5 the machine learning begins to fall off significantly. 
+Fig~\ref{fig:QPD_rotation} shows that its relatively trivial 
+to predict a particle's position based off the QPD signal, even 
+in axial direction which has not been done previously. It should 
+be noted that these displacements are relative to the trap focus 
+and so accurate tracking of the beam movements needs to be taken. 
+This result is partially due to the fact that displacement and 
+signal units are linearly related by \eqref{eq:conversion_factor}. Interestingly when we run the same protocol for different sized 
+dimer's there seems to be a cut off point when the fit begins to 
+fail. Plotting the $R^2$ for each fit vs its size ratio shows 
+that beyond a size ratio of 5 the machine learning begins to fall 
+off significantly. 
 
 This is surprising because we would expect that as the second 
 sphere shrinks the dynamics should more closely approximate that 
-of a single sphere. We can compare our 
+of a single sphere. This should be reflected in the total field
+incident on the QPD and therefore the machine learning program 
+should be able to easily detect the dimer's translational motion.
+We can therefore only conclude that the dimer's rotational motion
+is contributing to the scattering to the scattered field, even if
+it is miniscule the contribution is enough to throw off a 
+position detection system. Detection of rotational motion was 
+attempted using machine learning, the model was trained on the 
+same trajectory mentioned in \ref{sec:off-axis}, where the dimer 
+is trapped in an off-axis orientation, from a top down perspective
+it should be easy enough to note that the dimer is not vertically 
+trapped even if the exact angle is difficult to determine. 
+
+Overall, the reliance on machine learning to perform vector 
+regression on the collected scattered field is not a viable 
+method for detecting let along characterising the angular 
+displacement of an isotropic scatterer. While there is a 
+clear correlation in the scattered signal and angular 
+displacement the translational motion makes up the majority 
+of the expected signal detected by the QPD. As of now, there
+is no optical arrangement that would allow rotational motion 
+while restricting translational motion. 
 
 \section{Monitoring Stochastic rotational motion using static 
 		light scattering}
@@ -288,7 +322,9 @@ requires a target origin for setting the scattering expansion,
 there is no agreed upon solution for where the target origin 
 should be relative to the sphere positions. In chapter 4 we showed
 that altering the target origin would drastically alter the 
-tmatrix produced  
+tmatrix produced. We choose (somewhat arbitrary) to use 
+the dimer's centre of diffusion which is located $\zeta a_I$ from 
+the centre of the larger sphere. For a discussion see \emph{X.X}.
 
 \subsection{Scattering and Detection}
 Each detector is placed some distance $\bf r$ from the origin, 
@@ -631,10 +667,7 @@ At the same we use \textit{mstm} to replicate the intensity of light
 incident on the surfaces of detectors placed around the focus of the
 optical trap. The exact number of detectors was initially assumed to 
 be arbitrary, in that it made no difference to our estimate whether 
-we used 2 angles or 200. For practical purposes it seemed beneficial 
-that we demonstrate our method works for a minimal number of detection 
-angles, as geometric constraints come into play when trying to install 
-a high number of detection fibres for any optical tweezer set up.
+we used 2 angles or 200.
 
 \subsection{Choice on the number of detectors}
 When all of the detectors lie in the same plane the expected signal 

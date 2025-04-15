@@ -37,12 +37,15 @@ a novel potential method of creating localised nucleation events.
 \section{Nucleation}
 Nucleation is an example of a binary phase separation, 
 where a dilute phase is miscible in a bulk phase, more 
-often called the solute and solvent respectively. Because 
-of thermodynamics, the two can only remain in equilibrium 
-while below a specific concentration ($C_{eq}$) - below 
-which the chemical potential $\mu$ for a miscible solution 
-is greater than the potential required to separate the two 
-phases. Once $C_{eq}$ is exceeded there is a chemical potential 
+often called the solute and solvent respectively. When 
+a small amount of solute is added to the solvent the 
+solute will diffuse throughout the solvent, reaching
+an equilibrium concentration throughout the solution. 
+Because of molecular interactions, the two can only remain 
+in equilibrium while below a specific concentration ($C_{eq}$) 
+- below which the chemical potential $\mu$ for a single phase 
+is greater than the potential required to separate the two. 
+Once $C_{eq}$ is exceeded there is a chemical potential 
 difference driving the solution to separate the two phases. 
 Since different combinations of solute and solvent will 
 have different equilibrium concentrations, researchers often 
@@ -54,11 +57,12 @@ using 'supersaturation' \cite{Mullin2001}:
 \end{align}
 
 Where $C_{sol}$ is just the solute concentration, and 
-$C_{eq}(T)$ is the equilibrium concentration at temperature 
-$T$. While the solution remains supersaturated there 
-is a chemical potential driving the solute to coalesce 
-and separate from the solution as an ordered solid, the 
-first formation of the crystal is referred to as the 
+$C_{eq}(T)$ is the equilibrium concentration of the solute  
+at temperature $T$ based on the main solvent. While the 
+solution remains supersaturated there is a chemical 
+potential driving the solute to coalesce and separate 
+from the solution as an ordered solid, the first 
+formation of the crystal is referred to as the 
 nucleus and understanding its formation has been the 
 focus of researchers for decades now. Typically, for an 
 industrial crystallisation process the working principle 
@@ -71,23 +75,26 @@ be broadly categorised into either primary of secondary
 nucleation. The former describes the formation of an initial
 nucleus within the bulk phase, absent of any external stimuli.
 Primary nucleation is therefore considered stochastic as there 
-is no reliable means of predicting where a nucleus may form, 
-or how long it will take. The only reliable indicator being 
-that higher supersaturations will result in faster nucleation
-rates. At a small scale one can estimate the nucleation rate 
-by making repeated measurements of sample solutions and seeing
-how many have nucleated after a given time, giving us a Poisson
-probability distribution.
+is no means of predicting where a nucleus may form, or how long 
+it will take. The only reliable indicator being that higher 
+supersaturations will result in faster nucleation rates. At a 
+small scale one can estimate the nucleation rate by making 
+repeated measurements of sample solutions and seeing how many 
+have nucleated after a given time, giving us a Poisson probability distribution.
 \begin{align}
 	P(t) = 1 - exp\left[-JV(t-t_g)\right] = \frac{M^*(t)}{M}
+	\label{eq:poisson}
 \end{align}
 
 Where $J$ is the nucleation rate, $t_g$ is the 'growth time', 
 $V$ is the volume of the individual samples, and $M^*(t)$ \& 
 $M$ are the number of nucleated samples and the total number 
-of samples used respectively. While this is useful for studying
-the effects of different parameters at a small scale, for
-industrial applications there are to many external factors 
+of samples used respectively. The nucleation rate is one of 
+the most important factors used in evaluating a crystallisers 
+performance, providing a rough estimation of the final product 
+mass over a given time frame. While \eqref{eq:poisson} is useful 
+for studying the effects of different parameters at a small scale, 
+for industrial applications there are to many external factors 
 for primary nucleation to be measured accurately. 
 
 Secondary nucleation is the result of a initial seed crystal 
@@ -116,12 +123,15 @@ describe nucleation events, this is accurate for both
 secondary and primary nucleation.
 
 \section{Nucleation Theories}
-Several potential theories have been proposed to explain 
-how nucleation occurs at a microscopic scale. In doing so 
-we could potentially predict the expected yield of a given
-crystalliser based on the initial conditions of the solution. 
-Outlined below are some of the most popular theories currently 
-used to describe nucleation. 
+In order to predict the nucleation rate of a given solution
+we need a solid understanding of how the individual molecules
+interact such that they transition from an unordered phase to
+a ordered phase. Over the years several theories have been 
+proposed to explain how nucleation events occur, so far there
+has yet to be a standout candidate that reliably predicts 
+the systems behaviour. Either they fail to accurately predict
+nucleation rates or more generally cannot describe new 
+experimental results.
 
 \subsection{Classical Nucleation Theory (CNT)}
 Sometimes referred to as 'Gibbs Nucleation Theory' the 
@@ -137,9 +147,9 @@ formation of a new phase. The competition between these
 random collisions and the bulk solution can be used to 
 predict the probability of a newly formed nucleus.
  
-Consider a supersaturated solution, after some time 
-enough individual sub units collide, forming a nucleus 
-of volume $4\pi r^3/3$. The newly formed phase has a 
+Consider a supersaturated solution, at some time individual 
+sub units collide rapidly, one after another, forming a 
+nucleus of volume $4\pi r^3/3$. The newly formed phase has a 
 lower chemical potential than the surrounding solution, 
 reducing the free energy of the system. Simultaneously, 
 the formation of a new interface is resited by the bulk 
@@ -186,18 +196,19 @@ energy barrier $\Delta G^*$:
 \end{align}
 
 Where $A$ is a pre-factor that can be fine tuned to the exact 
-demands of the system, the free energy barrier can be found by finding 
-the stationary point of $\Delta G_{tot}$. 
+demands of the system, the free energy barrier can be found by 
+finding the stationary point of $\Delta G_{tot}$. 
 
-CNT is often regarded as a good description of the macro system, its 
-obvious that for all crystallization systems there is an inherent energy 
-barrier that dictates the nucleation rate. Where it falters is in its 
-predictive ability, both in estimating nucleation rates \cite{Gharibeh2005, 
-Vekilov2010}, and in the structure of newly formed nuclei \cite{Lee1999, 
-Yau2001}. Recent studies suggest classical nucleation is merely one of many 
-possible pathways that can be taken to produce a structured crystalline phase. 
-Prompting the development of alternative theories to better describe the 
-nucleation process.
+CNT is often regarded as a good description of the macro system, 
+its obvious that for all crystallization systems there is an 
+inherent energy barrier that dictates the nucleation rate. 
+Where it falters is in its predictive ability, both in estimating 
+nucleation rates \cite{Gharibeh2005, Vekilov2010}, and in the 
+structure of newly formed nuclei \cite{Lee1999, Yau2001}.
+Recent studies suggest classical nucleation is merely one of 
+many possible pathways that can be taken to produce an ordered 
+crystalline phase. Prompting the development of alternative 
+theories to better describe the nucleation process.
 
 \subsection{Two Step Nucleation}
 The two step nucleation theory is an extension to the CNT 
@@ -207,7 +218,7 @@ structures below the critical radius should be unstable
 within the solution due to interfacial forces trying to 
 dissolve the solute. This assumption is based on the idea 
 that any interactions between solute molecules are much
-smaller than the surface tension due to the bulk solution.
+weaker than that between solute and solvent molecules.
 If instead the solute molecule interactions are significant
 then it stands to reason that subcritical liquid-like 
 structures are stable. 
@@ -330,7 +341,7 @@ landscape available to a pre-nucleation system. The challenge
 therein lies in developing experimental methods by which one can 
 reproduce similar nucleation events and in turn use 
 characterisation techniques to identify the pathway taken. The 
-method not only needs to be repeatable fora single set of system 
+method not only needs to be repeatable for a single set of system 
 parameters, but also needs to be flexible enough to replicate 
 results regardless of the system parameters (i.e. varying 
 supersaturation, temperature, and solute choice). There have 
@@ -481,31 +492,7 @@ crystal growth and formation of organic crystals,
 particularly when both classical and multi-step nucleation 
 can occur.
 
-
-\section{Optical Tweezers}
-\subsection{Background}
-Optical tweezing has been a field of applied optics ever since 
-the 1980s when Ashkin \cite{Ashkin1970} first showed that focused 
-light was capable of trapping micron sized particles due to light 
-exerting 'radiation pressure'. The working principle was that a 
-light source such as a laser could trap small objects within a 2D 
-plane, as long as the light source had an approximately Gaussian 
-profile (colloquially called a Gaussian beam). Soon after, Ashkin 
-showed that the introduction of a microscope objective would allow 
-one to focus the light source to a diffraction limited point that 
-would stably trap small objects within a confined volume 
-\cite{Ashkin1980}. This allowed Ashkin and others to study individual 
-biological cells as the overall force was on the order of $10^{-12}\ 
-N$ while being non-invasive to the internal structure. Later it would 
-be used to probe microscopic properties such as the formation of 
-colloidal aggregates \cite{Yi2021} to the drag forces exerted by a 
-pure vacuum \cite{Ahn2018, Monteiro2018}. Due to the predictable 
-behaviour of light, optical tweezers have become essential for 
-measuring and exerting precise forces on the magnitude of pico-newtons 
-allowing one to probe the material properties of the smallest 
-materials. 
-
-\subsection{Literature related to laser induced nucleation}
+\subsection{Laser induced nucleation}
 From as early as 1996 it has been known that laser irradiation 
 using a Gaussian beam is a viable method of inducing nucleation 
 within a supersaturated solution \cite{Garetz1996}. The first 
@@ -599,18 +586,18 @@ could also be related to NPLIN.
 
 \subsubsection{Trapping Induced Nucleation}
 Lastly, there is trapping induced nucleation, this is where optical 
-tweezers come into play. Due to the radiation pressure created by 
-the focused beam, it is possible to manipulate the solute, this was 
-demonstrated with amino acids such as glycine \cite{Tsuboi2009}. 
+tweezers come into play (see below). Due to the radiation pressure 
+created by the focused beam, it is possible to manipulate the solute, 
+this was demonstrated with amino acids such as glycine \cite{Tsuboi2009}. 
 Whether or not a crystal forms is due to the location of the laser 
 focus. When focusing on the cover slip, supersaturated solutions 
 of glycine and $D_2O$ were shown to create a dense liquid droplet 
 of glycine and water \cite{Yuyama2010, Yuyama2012}. The dipole 
 moment of the glycine molecules is too small to be influenced by 
 the optical trap, as such it would suggest that larger aggregates 
-are being manipulated. Applying DLS analysis to the dense liquid 
-region showed that it was populated by clusters that would 
-consolidate together upon being focused by the optical trap 
+are being manipulated. Applying dynamic light scattering analysis to 
+the dense liquid region showed that it was populated by clusters that 
+would consolidate together upon being focused by the optical trap 
 \cite{Gowayed2021}. Molecular simulations of glycine solutions 
 showed that these clusters are unstable when using pure glycine 
 below the saturation point suggesting that the clusters are 
@@ -654,26 +641,44 @@ effective to manipulate the solution using trapped particles.
 One way would to generate an optical torque on a trapped particle
 and therefore shear the surrounding fluid, a method that is 
 already in common use for micro-rheological studies \cite{Bishop2004, 
-RobertsonAnderson2018}
+RobertsonAnderson2018}. 
+
+\section{Optical Tweezers}
+\subsection{Background}
+Optical tweezing has been a field of applied optics ever since 
+the 1980s when Ashkin \cite{Ashkin1970} first showed that focused 
+light was capable of trapping micron sized particles due to light 
+exerting 'radiation pressure'. The working principle was that a 
+light source such as a laser could trap small objects within a 2D 
+plane, as long as the light source had an approximately Gaussian 
+profile (colloquially called a Gaussian beam). Soon after, Ashkin 
+showed that the introduction of a microscope objective would allow 
+one to focus the light source to a diffraction limited point that 
+would stably trap small objects within a confined volume 
+\cite{Ashkin1980}. This allowed Ashkin and others to study individual 
+biological cells as the overall force was on the order of $10^{-12}\ 
+N$ while being non-invasive to the internal structure. Later it would 
+be used to probe microscopic properties such as the formation of 
+colloidal aggregates \cite{Yi2021} to the drag forces exerted by a 
+pure vacuum \cite{Ahn2018, Monteiro2018}. Due to the predictable 
+behaviour of light, optical tweezers have become essential for 
+measuring and exerting precise forces on the magnitude of pico-newtons 
+allowing one to probe the material properties of the smallest 
+materials. 
 
 \subsection{Optical Torque and rotation}
 \label{sec:opt_torque}
-It has long been known that electromagnetic fields can transfer
-linear and angular momentum \cite{Beth1936MechanicalDA}; more 
-accurately the field is said to have both orbital and spin momentum. 
-Though there is some debate on how to decompose the total momentum 
-into these two components \cite{Bruce2020, Svak2018}, for this 
-project we do not need to calculate the exact quantities and will 
-instead look at the broader effects of both components. Orbital 
-angular momentum arises from the shape of the wavefront of the 
-particular field in question; for simple Gaussian beams the wavefronts 
-are uniform and equally spaced resulting in the typical radiation 
-pressure that Ashkin and co demonstrated \cite{Ashkin1980}. However, 
-higher order modes of a Gaussian beam (for example: Laguerre-Gaussian 
-modes) have non-uniform wave fronts meaning the orbital momentum has 
-both angular and linear components; depending on the relative size 
-of the target particle one can induce rotation, or orbiting 
-\cite{Bruce2020, Courtial2000}. 
+Electromagnetic fields can transfer both linear and angular momentum \cite{Beth1936MechanicalDA}; more accurately the field is said to have 
+both orbital and spin momentum. Though there is some debate on how to decompose the total momentum into these two components \cite{Bruce2020, Svak2018}, for this project we do not need to calculate the exact 
+quantities and will instead look at the broader effects of both 
+components. Orbital angular momentum arises from the shape of the 
+wavefront of the particular field in question; for simple Gaussian 
+beams the wavefronts are uniform and equally spaced resulting in the 
+typical radiation pressure that Ashkin and co demonstrated 
+\cite{Ashkin1980}. However, higher order modes of a Gaussian beam (for example: Laguerre-Gaussian modes) have non-uniform wave fronts meaning 
+the orbital momentum has both angular and linear components; depending 
+on the relative size of the target particle one can induce rotation, 
+or orbiting \cite{Bruce2020, Courtial2000}. 
 
 Spin angular momentum (SAM) is attributed to the spin density of 
 the field, early research has shown that the spin density is non-
@@ -784,7 +789,6 @@ understanding the behaviour of fluids experiencing localised
 shearing.
 
 \subsection{Characterisation of rotational motion}
-
 Rotational motion about a single axis is easiest to account for.  
 When the power spectra of elliptical polystyrene particles was 
 fitted by Yogesh \textit{et al} \cite{Yogesha2011PreciseCO}, they 
@@ -863,11 +867,18 @@ methods that can study the pre nucleation phase in greater detail
 \cite{Fu2021}. Furthermore, the ability to localise nucleation 
 allows for better characterisation of the kinetics of crystal 
 growth. Laser induced nucleation stands to be an ideal method to 
-study nucleation, as the laser output can be concentrated to a 
-small area \cite{Korede2023}. This fine control over the local 
-fluid would allow for individual nucleation events to be
-characterised as a factor of the local fluid properties. One 
-challenge lies in the fact that its clear that the local fluid 
+study the nucleation of organic compounds, as the laser output 
+can be concentrated to a small area \cite{Korede2023} while not 
+altering the organic compound - as is the case with TEM. However,
+laser induced nucleation in itself is also poorly understood, 
+meaning trying to study the nucleation kinetics is difficult if the
+effect of the laser. With this in mind we suggest that we instead 
+utilise another application of optical tweezers, manipulation 
+of micro-scale particles to induce nucleation around a small 
+localised area. The most common method for manipulating a fluid is 
+by localised fluid shearing, which has been shown to directly 
+influence nucleation rates \cite{Debuysschere2023}. 
+One challenge lies in the fact that its clear that the local fluid 
 properties have a direct influence on the likelihood of laser
 induced nucleation from occurring \cite{Korede2023, Ward2016,
 Yuyama2012, Liao2022}. 
