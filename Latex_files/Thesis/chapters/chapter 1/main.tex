@@ -8,31 +8,41 @@ as pharmaceuticals \cite{Gao2017}, food production
 \cite{Hartel2002}, and electronics \cite{Myerson2002}. 
 Where the extraction of dilute materials can help 
 improve product quality while keeping production costs 
-low. The industrialisation of crystallisation has 
-allowed engineers to reliably and efficiently induce 
-the crystal formation within a bulk phase. However, 
-while on a large scale crystallisation is seemingly an 
-understood physical process, just a small amount of 
-investigation into the literature reveals that at a 
-micro scale there is yet to be unifying theory that can 
-accurately explain the process of crystallisation 
-\cite{Fu2021}. Crystallisation can be subdivided into 
-two steps: Nucleation and Crystal growth. The latter 
-focusing on how an already stable crystal grows and how 
-it takes on its final shape. Whereas the former is more 
-concerned with the first initial moments of a crystals 
-formation within a bulk phase.
+low. Modern crystallisation methods involve manipulating 
+the solubility of the target chemical (aka the solute) 
+in order to encourage the formation of a separate phase
+that can be easily extracted \cite{Gao2017}. This is 
+simple enough to understand on a macro scale when the 
+concentration can be assumed as a time-dependent 
+variable; but at a micro level the crystallisation process
+is not merely subject to solubility but also due to 
+the inter-molecular forces that can inhibit or enhance 
+the formation of a new phase. Theories attempting to describe
+the phenomena but none have proven viable to explain the 
+various pathways available \cite{Fu2021}. 
 
-In this chapter we will outline our current understanding 
-of nucleation, why there is a gap in the literature, and why 
-there is still a need for local control of nucleation events. 
-Furthermore, we will also highlight recent developments 
-involving the use of optical tweezers (and other laser based 
-methods) in order to develop our understanding of nucleation. 
-Lastly we highlight the connection between optical tweezer's 
-ability to probe fluid viscosity via rotational motion, and 
-the known link between nucleation and fluid flow, to propose 
-a novel potential method of creating localised nucleation events.
+Crystallisation can be subdivided into two stages: The first 
+stage - nucleation - is the formation of a brand new phase 
+within the bulk solution, while nucleation can occur readily 
+in most solutions it is difficult to predict if a nucleus 
+will remain stable within the solution or if it will be 
+dissolve. The latter stage - crystal growth - is focused 
+instead on how an already stable nucleus grows into its 
+final shape depending on the conditions of the surrounding
+fluid, understanding how and where deformities occur within
+the crystal structure are of extreme importance to several 
+industries \cite{Gao2017,Myerson2002}.
+
+This chapter will outline our current understanding of nucleation, 
+where there is a gap in the literature, and why there is still a 
+need for local control of nucleation events. Furthermore, it will 
+also highlight recent developments involving the use of optical 
+tweezers (and other \textit{in situ } methods) in order to develop 
+our understanding of nucleation. Lastly we highlight the connection 
+between optical tweezer's ability to probe fluid viscosity via 
+rotational motion, and the known link between nucleation and fluid 
+flow, to propose a novel potential method of creating localised 
+nucleation events.
  
 \section{Nucleation}
 Nucleation is an example of a binary phase separation, 
@@ -46,7 +56,11 @@ in equilibrium while below a specific concentration ($C_{eq}$)
 - below which the chemical potential $\mu$ for a single phase 
 is greater than the potential required to separate the two. 
 Once $C_{eq}$ is exceeded there is a chemical potential 
-difference driving the solution to separate the two phases. 
+difference driving the solution to separate the two phases.
+This does not mean that nucleation will occur immediately 
+once $C_{eq}$ is exceeded, only that there is a chemical
+potential supporting nucleation.
+ 
 Since different combinations of solute and solvent will 
 have different equilibrium concentrations, researchers often 
 instead measure the ratio between the solute and solvent by 
@@ -70,44 +84,56 @@ is based on controlling and manipulating the supersaturation
 of the system. 
 
 \subsection{Primary \& Secondary nucleation}
-From an industrial perspective, the nucleation process can 
-be broadly categorised into either primary of secondary
-nucleation. The former describes the formation of an initial
-nucleus within the bulk phase, absent of any external stimuli.
-Primary nucleation is therefore considered stochastic as there 
-is no means of predicting where a nucleus may form, or how long 
-it will take. The only reliable indicator being that higher 
-supersaturations will result in faster nucleation rates. At a 
-small scale one can estimate the nucleation rate by making 
-repeated measurements of sample solutions and seeing how many 
-have nucleated after a given time, giving us a Poisson probability distribution.
+nucleation process be broadly categorised into either primary 
+or secondary nucleation. The former describes the formation 
+of an initial nucleus within the bulk phase, absent of any 
+external surfaces. Primary nucleation is dependent only on 
+the local concentrations of the solute which can fluctuate 
+unpredictably, as such it is often modelled at a large scale 
+as a stochastic process. The only reliable factor being 
+that higher supersaturations will result in more nucleation 
+events to occur sooner.
+
+An important metric for crystallisation procedures is the 
+nucleation rate of the solution, a measure of the total 
+volume or mass of crystalline material produced for a given 
+set of initial conditions. At an industrial scale this 
+metric is a contribution of both primary and secondary 
+nucleation events. At a small scale one can estimate the 
+contribution of the primary nucleation pathway by making 
+repeated measurements of sample solutions and seeing how 
+many have nucleated after a given time, giving us a Poisson 
+probability distribution.
 \begin{align}
 	P(t) = 1 - exp\left[-JV(t-t_g)\right] = \frac{M^*(t)}{M}
 	\label{eq:poisson}
 \end{align}
 
-Where $J$ is the nucleation rate, $t_g$ is the 'growth time', 
-$V$ is the volume of the individual samples, and $M^*(t)$ \& 
-$M$ are the number of nucleated samples and the total number 
-of samples used respectively. The nucleation rate is one of 
-the most important factors used in evaluating a crystallisers 
-performance, providing a rough estimation of the final product 
-mass over a given time frame. While \eqref{eq:poisson} is useful 
-for studying the effects of different parameters at a small scale, 
-for industrial applications there are to many external factors 
-for primary nucleation to be measured accurately. 
+Where $J$ is the nucleation rate, $t_g$ is the 'growth time' 
+which accounts for the initial delay due to the stochastic 
+nature of primary nucleation, $V$ is the volume of the individual 
+samples, and $M^*(t)$ \& $M$ are the number of nucleated samples 
+and the total number of samples used respectively. While 
+\eqref{eq:poisson} is useful for studying the effects of different 
+parameters at a small scale, for industrial applications there are 
+to many external factors for primary nucleation to be measured 
+accurately. Overall while the primary nucleation rate is significant 
+when studying solutions for small volumes, the contributions of 
+secondary nucleation is far more significant when considering 
+nucleation rate for an industrial crystalliser.
 
 Secondary nucleation is the result of a initial seed crystal 
 inducing further nucleation within the bulk solution 
-\cite{Botsaris1976}. The seed crystals is often specially 
-prepared ahead of time and added to a supersaturate solution. 
-Due to interactions with the surrounding fluid and the container 
-walls it is possible for the seed crystals to act as a surface
-for further nucleation \cite{Anwar2015}. Control of secondary 
-nucleation events are crucial for ensuring reliable industrial 
-crystalliser performance. Fig.~\ref{fig:secondary} depicts an 
-attempt of classifying every possible mechanism that could lead 
-to secondary nucleation.
+\cite{Botsaris1976}. The seed crystals are often prepared ahead 
+of time and added to a supersaturate solution. Due to interactions 
+with the surrounding fluid and the container walls it is possible 
+for the seed crystals to act as a surface for further nucleation \cite{Anwar2015}. However this is just one possible way in which 
+a seed crystal can enhance the nucleation rate, depending on the 
+conditions of the crystalliser there are multiple mechanism by 
+which the seed crystal can contribute to the nucleation rate of 
+the system. Control of secondary nucleation events are crucial 
+for ensuring reliable industrial crystalliser performance. Fig.~\ref{fig:secondary} depicts an attempt of classifying every 
+possible mechanism that could lead to secondary nucleation.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.95\linewidth]{secondary_nucleation.jpg}
@@ -182,7 +208,9 @@ supersaturation of the system reduces said barrier.
 		     is due to the competition between the volume free energy gain
 		     (green) and the interfacial free energy cost (orange). Dotted
 		     lines are for a higher supersaturation than the solid lines,
-		     the interfacial energy cost is independent of supersaturation.}
+		     the interfacial energy cost is independent of supersaturation.
+		     Diagram was constructed in python using a naive assumption 
+		     of $v=1\times 10^-12\ m^3$ and $\sigma_{inf}=0.0001\ J/m^2$}
 	\label{fig:free_energy}
 \end{figure}
 
@@ -201,14 +229,26 @@ finding the stationary point of $\Delta G_{tot}$.
 
 CNT is often regarded as a good description of the macro system, 
 its obvious that for all crystallization systems there is an 
-inherent energy barrier that dictates the nucleation rate. 
+inherent energy barrier that must be overcome prior to nucleation. 
 Where it falters is in its predictive ability, both in estimating 
 nucleation rates \cite{Gharibeh2005, Vekilov2010}, and in the 
 structure of newly formed nuclei \cite{Lee1999, Yau2001}.
 Recent studies suggest classical nucleation is merely one of 
 many possible pathways that can be taken to produce an ordered 
-crystalline phase. Prompting the development of alternative 
-theories to better describe the nucleation process.
+crystalline phase. In situations where the solution is heavily 
+saturated with solute the driving force promoting nucleation is 
+so large that a nucleus can form in the bulk solution in a single 
+step. 
+
+This is however not accurate at lower supersaturations, closer
+to the saturation point the solvent's surface tension is so 
+significant that the addition of individual solute molecules
+should not be enough to overcome the dissolution of the nucleus. 
+And yet nucleation is still possible, occurring far more reliably
+than predicted by the CNT. This suggests that the formation of 
+a nucleus is due to larger aggregates of solute that are stable 
+within the bulk solution. This has been confirmed experimentally 
+and lead to the development of Two Step Nucleation.
 
 \subsection{Two Step Nucleation}
 The two step nucleation theory is an extension to the CNT 

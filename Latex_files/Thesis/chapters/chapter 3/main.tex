@@ -99,7 +99,7 @@ monitor the position of a trapped particle a quadrant photo diode
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Position detection methods}
+\subsection{Position detection}
 \label{sec:position_detection}
 In order to accurately capture the dynamics of a trapped particle, a 
 position detection system is required. There are 3 possible methods 
@@ -117,31 +117,6 @@ achieve while maintaining a decent resolution \cite{Gibson2008}. In
 comparison off the shelf back-focal plane detectors can achieve temporal 
 resolutions anywhere from $10-100\ kHz$ \cite{BergSoerensen2004}. 
  
-A quadrant photo diode (QPD) is a frequently used position detection 
-system for optical tweezers due to their high sampling rate, high 
-degree of precision, and ease of set up. The QPD is constructed of 
-four photo diodes assembled in a quadrant formation, when a particle 
-is trapped the interference pattern produced is focused onto the QPD, 
-with the maximum intensity mapping to the particle's centre of mass. 
-By summing the voltages of the horizontal and vertical quadrants together 
-the particle's centre of mass is tracked in the x-y plane. Axial 
-displacement can be estimated by observing the change in the total 
-voltage of the QPD. The outputted signal gives an indication of the 
-particle's relative displacement from the beam focus, but in order to 
-convert the signal to distance units the trap needs to be calibrated 
-(assuming a linear response curve).
-\begin{figure}[h!]
-	\centering
-	\includegraphics[height=\linewidth, angle=270]{QPD_Lateral_effect.pdf}
-	\caption{Comparison between QPD and Lateral effect photodiodes.
-	The four quadrants of a QPD (left) experience different photocurrents
-	based on the total intensity of light incident on each section 
-	(labelled A, B, C, D). 
-	Whereas a Lateral effect sensor (right) uses the resistive properties
-	of the photodiode surface to vary the create different photocurrents 
-	passing through the anodes A, B, C, and D.}
-\end{figure}
-
 A lateral-effect sensor has a similar output but works using a the 
 entire sensor as a single cell analogous to the focal plane of the 
 trapping beam. The four corners of the sensor act as anodes connected 
@@ -157,8 +132,33 @@ get a clean signal. As a result, most optical force measurements are
 conducted using a QPD as opposed to a lateral-effect sensor, as often 
 the displacement is small enough that the signal-displacement curve 
 can be considered linear.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[height=\linewidth, angle=270]{QPD_Lateral_effect.pdf}
+	\caption{Comparison between QPD and Lateral effect photodiodes.
+	The four quadrants of a QPD (left) experience different photocurrents
+	based on the total intensity of light incident on each section 
+	(labelled A, B, C, D). 
+	Whereas a Lateral effect sensor (right) uses the resistive properties
+	of the photodiode surface to vary the create different photocurrents 
+	passing through the anodes A, B, C, and D.}
+\end{figure}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+A quadrant photo diode (QPD) is a frequently used position detection 
+system for optical tweezers due to their high sampling rate, high 
+degree of precision, and ease of set up. The QPD is constructed of 
+four photo diodes assembled in a quadrant formation, when a particle 
+is trapped the interference pattern produced is focused onto the QPD, 
+with the maximum intensity mapping to the particle's centre of mass. 
+By summing the voltages of the horizontal and vertical quadrants together 
+the particle's centre of mass is tracked in the x-y plane. Axial 
+displacement can be estimated by observing the change in the total 
+voltage of the QPD. The outputted signal gives an indication of the 
+particle's relative displacement from the beam focus, but in order to 
+convert the signal to distance units the trap needs to be calibrated 
+(assuming a linear response curve).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Fourier Optics and 4f correlators}
 \label{sec:4f_correlation}
 As shown in \ref{fig:setup}, after the Galvano mirror there are a pair
@@ -196,28 +196,30 @@ shown via fig.~\ref{fig:signal_generator}.
 	\label{fig:signal_generator}
 \end{figure}
 
-For our applications a 4f correlator is utilised to ensure that the motion
-of the galvano-mirrors does not move the focal point of the laser, allowing 
-for a stable trap even while in motion. As shown in Fig.~\ref{fig:setup}, after
-the galvano-mirror we have our two lenses - $f_3$ and $f_4$ - the former being 
-installed $150\ mm$ from the second mirror of the galvano, and the latter being 
-installed $200\ mm$ from the back focal plane of the trapping objective. The 
-signal generator used was supplied by 'MCS Test Equipment Ltd', allowing for 
-dual channel signal control. This allowed us to precisely control the alignment,
-amplitude, phase, and frequency of both mirrors making alignment much easier. 
+For our applications a 4f correlator is utilised to ensure that the 
+motion of the galvano-mirrors does not move the focal point of the 
+laser, allowing for a stable trap even while in motion. As shown in Fig.~\ref{fig:setup}, after the galvano-mirror we have our two lenses 
+- $f_3$ and $f_4$ - the former being installed $150\ mm$ from the 
+second mirror of the galvano, and the latter being installed $200\ mm$ 
+from the back focal plane of the trapping objective. The signal 
+generator used was supplied by 'MCS Test Equipment Ltd', allowing for 
+dual channel signal control. This allowed us to precisely control the
+alignment, amplitude, phase, and frequency of both mirrors making 
+alignment much easier. 
 
-While in theory the frequency can be increased until the mechanical limit of the 
-mirrors is reached ($\approx 1000\ Hz$), the practical upper limit is determined 
-by the trap strength. For a silica sphere this is on the order of $300\ Hz$ when
-suspended in water. Likewise while in theory the signal amplitude can be increased
-until the voltage limit of the motors is reached ($\approx 5.0 V$) the geometry 
-of the focal lenses limits the maximum amplitude to $0.5 V$ as any greater will
-move the laser beyond the lens. For basic trapping calibration the galvano-mirrors 
-were set to DC output, providing a fixed spot which operates like a typical optical 
-trap.
+While in theory the frequency can be increased until the mechanical 
+limit of the mirrors is reached ($\approx 1000\ Hz$), the practical 
+upper limit is determined by the trap strength. For a silica sphere 
+this is on the order of $300\ Hz$ when suspended in water. Likewise 
+while in theory the signal amplitude can be increased until the 
+voltage limit of the motors is reached ($\approx 5.0 V$) the geometry 
+of the focal lenses limits the maximum amplitude to $0.5 V$ as any 
+greater will move the laser beyond the lens. For basic trapping 
+calibration the galvano-mirrors were set to DC output, providing a 
+fixed spot which operates like a typical optical trap.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Synthesis of Birefringent Micro spheres}
 \label{sec:vaterite}
 There are several options for particles that can be rotated 
@@ -237,13 +239,13 @@ particles making them ideal for optical trapping and rotation.
 Synthesis of Vaterite micro spheres requires fine control of 
 the crystal growth process in order to maintain polymorphic 
 stability. Though for the purposes of optical rotation the 
-exact polymorph is not as important as its morphology as all 
+exact polymorph is not as important as the morphology as all 
 3 polymorphs are inherently birefringent. 
 
 Vaterite samples where made by the first preparing equal amounts 
 of $CaCl_2$ and $Na_2CO_3$ at a concentration of $0.33M$, at 
 the same time a vial of $0.33M\ MgSO_4$ was prepared and set 
-aside for later. Firsta small vial was filled with $1.5mL$ of 
+aside for later. First a small vial was filled with $1.5mL$ of 
 $CaCl_2$ followed by $60\mu L$ and $90\mu L$ of $MgSO_4$ and 
 $NaCO_3$ respectively, forming a seed solution. Next, a larger 
 vial was filled with $5\ mL$, $1.5\ mL$, and $1\ mL$ of $CaCL_2$, 
@@ -324,11 +326,12 @@ Vaterite spheres, due to their higher degree of birefringence and the fact
 that the droplets are far closer to perfect spheres making angular momentum
 transfer more efficient. 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Rotation of birefringent micro spheres} 
 Optical tweezing has often been used for micro-rheology, by computing the
 exact forces being exerted on the trapped sphere, one can determine the
 local temperature/viscosity of the medium \cite{Millen2014, RodriguezSevilla2018}.
+
 When it comes to optical rotation, a rotating particle will experience a
 fluid drag torque that is proportional to its rotation rate, the maximum 
 rotation rate is when the fluid drag is equal to the optical torque 
