@@ -2346,56 +2346,17 @@
   <!-- CITATION DATA -->
   <!-- SECTION 0 -->
   <bcf:bibdata section="0">
-    <bcf:datasource type="file" datatype="bibtex" glob="false">../../thesis_bib.bib</bcf:datasource>
+    <bcf:datasource type="file" datatype="bibtex" glob="false">thesis_bib.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1" intorder="1">Li2008</bcf:citekey>
-    <bcf:citekey order="2" intorder="1">Xu2005</bcf:citekey>
-    <bcf:citekey order="3" intorder="1">Praveen2016</bcf:citekey>
-    <bcf:citekey order="4" intorder="1">Loudet2014</bcf:citekey>
-    <bcf:citekey order="4" intorder="2">ShengHua2005</bcf:citekey>
-    <bcf:citekey order="4" intorder="3">Chetana2022</bcf:citekey>
-    <bcf:citekey order="5" intorder="1">Nir1973</bcf:citekey>
-    <bcf:citekey order="6" intorder="1">Capitanio2002</bcf:citekey>
-    <bcf:citekey order="7" intorder="1">RanhaNeves2019</bcf:citekey>
-    <bcf:citekey order="8" intorder="1">Xu2005</bcf:citekey>
-    <bcf:citekey order="9" intorder="1">Shahabadi2020</bcf:citekey>
-    <bcf:citekey order="10" intorder="1">Ahn2018</bcf:citekey>
-    <bcf:citekey order="10" intorder="2">Reimann2018</bcf:citekey>
-    <bcf:citekey order="11" intorder="1">Bui2017</bcf:citekey>
-    <bcf:citekey order="12" intorder="1">Zhu2021</bcf:citekey>
-    <bcf:citekey order="13" intorder="1">Vigilante2020</bcf:citekey>
-    <bcf:citekey order="13" intorder="2">Ahn2018</bcf:citekey>
-    <bcf:citekey order="13" intorder="3">Reimann2018</bcf:citekey>
-    <bcf:citekey order="14" intorder="1">Vigilante2020</bcf:citekey>
-    <bcf:citekey order="15" intorder="1">Ahn2018</bcf:citekey>
-    <bcf:citekey order="15" intorder="2">Reimann2018</bcf:citekey>
-    <bcf:citekey order="15" intorder="3">Bruce2020</bcf:citekey>
-    <bcf:citekey order="16" intorder="1">Higurashi1994</bcf:citekey>
-    <bcf:citekey order="17" intorder="1">Ahn2018</bcf:citekey>
-    <bcf:citekey order="17" intorder="2">Reimann2018</bcf:citekey>
-    <bcf:citekey order="18" intorder="1">Brzobohaty2015</bcf:citekey>
-    <bcf:citekey order="19" intorder="1">Brzobohaty2015</bcf:citekey>
-    <bcf:citekey order="20" intorder="1">Ruffner2012</bcf:citekey>
-    <bcf:citekey order="21" intorder="1">Yevick2017</bcf:citekey>
-    <bcf:citekey order="22" intorder="1">Zhao2007</bcf:citekey>
-    <bcf:citekey order="22" intorder="2">Zhao2009</bcf:citekey>
-    <bcf:citekey order="22" intorder="3">Wang2010</bcf:citekey>
-    <bcf:citekey order="23" intorder="1">Ruffner2012</bcf:citekey>
-    <bcf:citekey order="24" intorder="1">Silverman1986</bcf:citekey>
-    <bcf:citekey order="25" intorder="1">Ruffner2012</bcf:citekey>
-    <bcf:citekey order="26" intorder="1">Ruffner2012</bcf:citekey>
-    <bcf:citekey order="27" intorder="1">Ruffner2012</bcf:citekey>
-    <bcf:citekey order="28" intorder="1">Ruffner2012</bcf:citekey>
-    <bcf:citekey order="29" intorder="1">Ahn2018</bcf:citekey>
-    <bcf:citekey order="30" intorder="1">Bruce2020</bcf:citekey>
-    <bcf:citekey order="31" intorder="1">Ruffner2012</bcf:citekey>
-    <bcf:citekey order="32" intorder="1">Zhu2021</bcf:citekey>
-    <bcf:citekey order="32" intorder="2">Rashid2018</bcf:citekey>
-    <bcf:citekey order="32" intorder="3">Hoang2016</bcf:citekey>
-    <bcf:citekey order="32" intorder="4">Kuhn2016</bcf:citekey>
-    <bcf:citekey order="33" intorder="1">Zhu2021</bcf:citekey>
-    <bcf:citekey order="34" intorder="1">Bang2020</bcf:citekey>
+    <bcf:citekey order="1" intorder="1">BarZiv1997</bcf:citekey>
+    <bcf:citekey order="2" intorder="1">I.Mishchenko1996</bcf:citekey>
+    <bcf:citekey order="3" intorder="1">Reyuthor2006</bcf:citekey>
+    <bcf:citekey order="4" intorder="1">Pedregosa2011</bcf:citekey>
+    <bcf:citekey order="5" intorder="1">Vigilante2020</bcf:citekey>
+    <bcf:citekey order="6" intorder="1">Vigilante2020</bcf:citekey>
+    <bcf:citekey order="7" intorder="1">Reyuthor2006</bcf:citekey>
+    <bcf:citekey order="8" intorder="1">Bang2020</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">

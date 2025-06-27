@@ -1,1125 +1,960 @@
-\chapter{Effects of localised shearing on crystal growth and nucleation}
-As outlined in Chapter 1, part of the projects aim is to investigate 
-the possibility of using optical tweezing to induce nucleation by 
-generating fluid flow within a supersaturated solution. The intent 
-of which would be twofold: Firstly to have a repeatable means of 
-inducing nucleation under different solution conditions. And secondly, 
-to understand the influence of shearing on nucleation at a micro 
-level as compared to results in bulk fluid. 
+\chapter{Complex Langevin dynamics of spherical dimers}
+\label{chapter:langevin_dynamics}
+\section{Overview}
+Often in calculation of optical forces and scattering the
+choice of target particle is often either a single sphere 
+or a large agglomeration of spheres. In optical tweezing 
+research the target particle is not guaranteed to be a 
+sphere, instead either being an asymmetrical shape, or being 
+a collection of smaller spheres.  
 
-It has been shown that for macro-scale systems, the likelihood of 
-nucleation increases to a maximum value under increased shearing 
-\cite{Debuysschere2023, Mura2016}. Mura and Zaccone developed a 
-theoretical framework to describe how the a newly formed nucleus 
-experiences two additional growth factors when placed in a moving 
-fluid. Firstly, due to increased molecular transport of solute 
-molecules the nucleation rate is enhanced in low to moderate fluid 
-flows. But in addition, due to shear flow the crystal surface 
-undergoes deformation which suppresses the nucleation rate 
-undergoing faster fluid flow \cite{Mura2016}. Experimental results 
-with glycine solution support this theory; Debuysschere \textit{et 
-al} demonstrated that the nucleation rate of supersaturated glycine 
-was enhanced up until $\dot{\gamma}\approx3000\ s^{-1}$ 
-\cite{Debuysschere2023}. After which the nucleation rate began to 
-decrease but was still greater compared to the case where fluid 
-flow was minimal.
-
-Optical tweezers can been used to rotate a whole host of microscopic 
-objects, with the fastest reported results exceeding $1000\ Hz$ in 
-heavy water \cite{Arita2016}. If such a micro-rotor was suspended in
-a supersaturated solution the fluid flow around it could be fast enough
-that the nucleation rate is locally enhanced. We focused on two 
-primary candidates for rotation, Vaterite and 
-4-Heptyl-4-biphenylcarbonitrile (7CB). The former being a polymorph of 
-calcium carbonate and the latter an example of nematic liquid crystals, 
-both of which have been used repeatedly in previous micro-rotor research
-\cite{Saito2022, Arita2016, Parkin2009}. In addition, we also consider 
-the application of using techniques beam steering to generate fluid 
-flow by trapping silica micro-beads. In this instance the fluid flow is 
-generated not due to the transfer of angular momentum, but due to 
-shearing caused by a moving sphere through stagnant fluid.
-
-To begin with, the discussion of the necessary optical equipment is 
-covered, drawing attention to specialised components and techniques 
-that are not standard in optical trapping set ups.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-\section{Optical Tweezer Equipment}
-In general, all optical tweezers require a laser driver, a focusing 
-microscope objectives, a position controller, and position detector 
-\cite{Gieseler2020}. The laser used for this project was a $1064\ 
-nm$ near infrared laser - provided by CNI Lasers – that was focused 
-by a Nikon 100x oil immersion lens. The choice of an oil immersion 
-lens is important as the optical oil used prevents a loss of focus 
-when used on a glass cover slip. Now, experimental work has shown 
-that the trapping efficiency increases with beam diameter up until 
-it exceeds $\frac{2}{3}D_{obj}$ \cite{kim2003dependence} where 
-$D_{obj}$ is the diameter of the objective aperture. To expand the 
-beam front we utilise a Galilean beam expansion arrangement 
-(indicated by $f_1$, and $f_2$ in Fig.~\ref{fig:setup}) as recommended 
-for high power laser applications. In our initial experiments the 
-beam expansion provides a $4\times$ magnification. Whereas in later 
-experiments we utilised a galvano-mirror the beam expansion is 
-$3\times$ and then the 4f correlator (see \ref{sec:4f_correlation})
-provides a further $1.25\times$ magnification (using $f_3$ and $f_4$) 
-- the magnification is given by.
-\begin{align}
-	\frac{D_2}{D_1} = \frac{f_2}{f_1}
-\end{align}
-
-It should be noted that the galvano-mirror requires the use of a 
-Keplerian beam expansion arrangement which reduces the transmitted 
-laser power due to localised heating of the air. Afterwards the 
-laser is passed through a dichroic mirror that separates incoming 
-infrared and visible light, this is to prevent the laser from 
-damaging the CCD camera used for imaging the trapping plane. The 
-laser is then focused to a diffraction limited spot by the objective. 
-Utilizing a high numerical aperture objective enhances the gradient 
-force at the focal point; the trade-off being that the for higher NA 
-objectives the trapping depth is reduced due to spherical aberrations. 
-While it is possible to increase the trapping depth \cite{Reihani2006} 
-by adjusting the objective's tube length this approach is incompatible 
-with our trapping arrangement. A 0.25 NA condenser objective refocuses 
-the scattered laser light and also provide an aperture for an imaging 
-LED to illuminate the focal plane. Samples are loaded onto a piezo 
-driven table to that is inserted between the trapping and condensing 
-objectives; the piezo drivers allow for sub-micron control of the 
-beam focus position to a degree as small as a 10 nm. To detect and 
-monitor the position of a trapped particle a quadrant photo diode 
-(QPD) was utilised. 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[height=\linewidth, angle=270]{tweezer_setup.pdf}
-	\caption{Optical tweezer set up used for the majority of the PhD. 
-		The focal lengths of $f_1$, $f_2$, $f_3$, \& $f_4$ are $-20\ mm$, 
-		$60\ mm$, $150\ mm$, \& $200\ mm$ respectively [M = mirrors,
-		DM = dichroic mirrors, f = focal lenses]. Diagram not 
-		drawn to scale.}
-	\label{fig:setup}
-\end{figure}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Position detection}
-\label{sec:position_detection}
-In order to accurately capture the dynamics of a trapped particle, a 
-position detection system is required. There are 3 possible methods 
-of position detection: video-analysis, lateral-effect position sensing, 
-and photodiodes. 
-
-Video analysis is ideally suited for multiple traps or situations where 
-precision is not the top priority. Whereas lateral-effect and photodiode 
-position detection are two examples of back-focal plane interferometry, 
-where the interference pattern produced by the target particle is 
-extrapolated to determine its position. In order for video analysis to 
-match the accuracy of back-focal plane interferometry methods requires 
-the camera's frame rate to exceed $1\ kHz$ which can be difficult to 
-achieve while maintaining a decent resolution \cite{Gibson2008}. In 
-comparison off the shelf back-focal plane detectors can achieve temporal 
-resolutions anywhere from $10-100\ kHz$ \cite{BergSoerensen2004}. 
+As an example, while working with dense colloidal suspensions, 
+one often ends up trapping more than one sphere. Li and 
+Arlt \cite{Li2008} studied the case of two microspheres 
+trapped in a single OT and found that multiple trapped 
+beads could be mistaken for a single trapped bead with an  
+altered trap stiffness (see \ref{sec:harmonic_traps}). 
+Theoretical studies on the case of two trapped microspheres 
+by Xu~\textit{et~al.} \cite{Xu2005} employed a ray-optics 
+based model to show that the two trapped beads are brought 
+into physical contact with each other by optical forces 
+and they also calculated the axial equilibrium positions 
+of the two trapped beads as a function of their size. 
+Experiments in \cite{Praveen2016} confirmed that the two 
+trapped beads indeed experience different trap stiffnesses 
+in the vicinity of the same potential well.
  
-A lateral-effect sensor has a similar output but works using a the 
-entire sensor as a single cell analogous to the focal plane of the 
-trapping beam. The four corners of the sensor act as anodes connected 
-to a base plate cathode, as the beam moves across the surface of the 
-detector each anode will experience a different photocurrent depending 
-on how close the centre of the interference pattern is to each anode. 
-The advantage of a lateral effect detector is that the linear regime 
-is much larger than a QPD making it much better for monitoring the 
-position of a trapped particle. However, Lateral-effect sensors are 
-often limited in their spacial resolution due to high signal-to-noise 
-ratios, requiring a high intensity of light on the sensor in order to 
-get a clean signal. As a result, most optical force measurements are 
-conducted using a QPD as opposed to a lateral-effect sensor, as often 
-the displacement is small enough that the signal-displacement curve 
-can be considered linear.
-\begin{figure}[h!]
-	\centering
-	\includegraphics[height=\linewidth, angle=270]{QPD_Lateral_effect.pdf}
-	\caption{Comparison between QPD and Lateral effect photodiodes.
-	The four quadrants of a QPD (left) experience different photocurrents
-	based on the total intensity of light incident on each section 
-	(labelled A, B, C, D). 
-	Whereas a Lateral effect sensor (right) uses the resistive properties
-	of the photodiode surface to vary the create different photocurrents 
-	passing through the anodes A, B, C, and D.}
-\end{figure}
+There are further discussions looking into the dynamics of 
+a whole host of asymmetrically shaped particles (e.g. 
+ellipsoids, cylinders, amorphous solids, disks, etc) 
+\cite{Loudet2014, ShengHua2005, Chetana2022}, their results 
+all showing that predicting the behaviour an arbitrary shaped 
+particle comes with great difficulty due to the fact that the 
+optical force is dependent on a greater number of variables 
+such as orientation and size factors. While these have been 
+noted as important factors, there has not been a concentrated
+effort to discuss their impact over the course of a typical 
+trajectory. 
 
-A quadrant photo diode (QPD) is a frequently used position detection 
-system for optical tweezers due to their high sampling rate, high 
-degree of precision, and ease of set up. The QPD is constructed of 
-four photo diodes assembled in a quadrant formation, when a particle 
-is trapped the interference pattern produced is focused onto the QPD, 
-with the maximum intensity mapping to the particle's centre of mass. 
-By summing the voltages of the horizontal and vertical quadrants together 
-the particle's centre of mass is tracked in the x-y plane. Axial 
-displacement can be estimated by observing the change in the total 
-voltage of the QPD. The outputted signal gives an indication of the 
-particle's relative displacement from the beam focus, but in order to 
-convert the signal to distance units the trap needs to be calibrated 
-(assuming a linear response curve).
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Fourier Optics and 4f correlators}
-\label{sec:4f_correlation}
-As shown in \ref{fig:setup}, after the Galvano mirror there are a pair
-of focal lenses ($f_3$ and $f_4$) that do not seem to serve a clear
-purpose. These are in fact crucial for the operation of the Galvano, the
-pair of them can be more accurately called a 4f correlator. 
-
-A 4f correlator is an example of Fourier optics in practice, understanding
-that a focused lens takes a Fourier transform of the light profile. 
-Consider a laser with a circular Gaussian profile, if you were to place 
-a detector there you would pick up the intensity as a function of its 
-position within the beam. If however you focused the light into a single 
-point (using a +ve focal lens) you are actually seeing a measurement of 
-the phase of your laser with position, in which you would see a diffraction
-limited spot ($d = \lambda/2nsin(\theta)$), indicating that the laser is 
-collimated. In imaging systems, a series of focal lenses can be used to 
-filter out unwanted scattering from an image (or in an inverse case 
-differentiate between different images), the placement of each lens is 
-shown via fig.~\ref{fig:signal_generator}.
-\begin{figure}[h!]
-	\centering
-	\begin{subfigure}{0.475\linewidth}
-		\includegraphics[width=\linewidth]{signal_generator.jpg}
-		\caption{}
-	\end{subfigure}
-	\begin{subfigure}{0.475\linewidth}
-		\includegraphics[width=\linewidth, height=0.7\linewidth]
-		{galvano_mirror_controllers.jpg}
-		\caption{}
-	\end{subfigure}
-
-	\caption{Signal generator galvano mirror controller, channel 1 controls the x-axis 
-		mirror, while channel 2 controls the y-axis mirror. Both channels can be manipulated
-		independently.}
-	\label{fig:signal_generator}
-\end{figure}
-
-For our applications a 4f correlator is utilised to ensure that the 
-motion of the galvano-mirrors does not move the focal point of the 
-laser, allowing for a stable trap even while in motion. As shown in Fig.~\ref{fig:setup}, after the galvano-mirror we have our two lenses 
-- $f_3$ and $f_4$ - the former being installed $150\ mm$ from the 
-second mirror of the galvano, and the latter being installed $200\ mm$ 
-from the back focal plane of the trapping objective. The signal 
-generator used was supplied by 'MCS Test Equipment Ltd', allowing for 
-dual channel signal control. This allowed us to precisely control the
-alignment, amplitude, phase, and frequency of both mirrors making 
-alignment much easier. 
-
-While in theory the frequency can be increased until the mechanical 
-limit of the mirrors is reached ($\approx 1000\ Hz$), the practical 
-upper limit is determined by the trap strength. For a silica sphere 
-this is on the order of $300\ Hz$ when suspended in water. Likewise 
-while in theory the signal amplitude can be increased until the 
-voltage limit of the motors is reached ($\approx 5.0 V$) the geometry 
-of the focal lenses limits the maximum amplitude to $0.5 V$ as any 
-greater will move the laser beyond the lens. For basic trapping 
-calibration the galvano-mirrors were set to DC output, providing a 
-fixed spot which operates like a typical optical trap.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Synthesis of Birefringent Micro spheres}
-\label{sec:vaterite}
-There are several options for particles that can be rotated 
-using optical tweezers \cite{Parkin2009, Saito2022}. Over 
-the course of the project two different micro spheres where 
-investigated, Vaterite and liquid crystal droplets. Both can 
-be readily synthesised in the lab and are will rotate at a 
-variety of sizes (see \ref{sec:opt_torque}).
-
-Vaterite is a polymorph of calcium carbonate that is rarely 
-seen in nature due to its low stability \cite{KonopackaLyskawa2019}. 
-All three polymorphs are inherently birefringent meaning 
-that they can be rotated using circularly polarised light. 
-However unlike its other polymorphs of calcite and aragonite, 
-when synthesised vaterite will typically form small spherical 
-particles making them ideal for optical trapping and rotation. 
-Synthesis of Vaterite micro spheres requires fine control of 
-the crystal growth process in order to maintain polymorphic 
-stability. Though for the purposes of optical rotation the 
-exact polymorph is not as important as the morphology as all 
-3 polymorphs are inherently birefringent. 
-
-Vaterite samples where made by the first preparing equal amounts 
-of $CaCl_2$ and $Na_2CO_3$ at a concentration of $0.33M$, at 
-the same time a vial of $0.33M\ MgSO_4$ was prepared and set 
-aside for later. First a small vial was filled with $1.5mL$ of 
-$CaCl_2$ followed by $60\mu L$ and $90\mu L$ of $MgSO_4$ and 
-$NaCO_3$ respectively, forming a seed solution. Next, a larger 
-vial was filled with $5\ mL$, $1.5\ mL$, and $1\ mL$ of $CaCL_2$, 
-$MgSO_4$, and $NaCO_3$ respectively followed by the seed solution. 
-After 10 minutes of slow but continuous mixing a few drops of 
-Agepon was added to halt the reaction, the solution was filtered 
-and washed 3 times with distilled water before being suspended 
-in water.
+With the initial goal of the project being to induce 
+nucleation events via a rotating sphere, the aim of this 
+chapter is to - in a limited capacity simulate and investigate 
+the influence of a second particle being bound to our target 
+sphere. The choice of a dimer, instead of an amorphous solid 
+that might better represent a growing crystalline solid, 
+allows us to consider how the dynamics of the aggregate change 
+by varying a single parameter, namely the size ratio of the 
+two spheres. Additionally, attempting to simulate an amorphous 
+aggregate is rather difficult as calculating the optical force 
+and torque is computationally slow. 
  
-When trapped in circularly polarised light, the anisotropic 
-crystal lattice allows spin angular momentum to be transferred 
-to the Vaterite particle, resulting in a rotation about the 
-beam axis. Because the particle scatters light anisotropically 
-the signal detected by the QPD shows periodic fluctuations 
-\cite{Yogesha2012}. In addition due to the change in polarisation 
-there is also a periodic variation that appears at twice the 
-rotational frequency \cite{Monteiro2018}. Therefore, the resulting 
-power spectrum is not a Lorentzian but now also displays peaks 
-that appear at integer multiples of the particles rotational 
-frequency. 
+ In this chapter we will consider how the addition of a 
+ second sphere changes the trapping dynamics by introducing 
+ multiple equilibrium positions. In addition we demonstrate 
+ that the angular dependency of the optical force allows for 
+ multiple equilibrium orientations for a single particle. 
+ Furthermore, we look at how dimers interact with circularly 
+ polarised light, noting how our current understanding of 
+ light and particle interactions does not accurately explain 
+ the observed behaviour. We show that a dimer can undergo 
+ gyroscopic precession by utilising this unique interaction 
+ with circularly polarised light.  
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Simulation Details}
+As a paradigmatic example, consider a dimer suspended in 
+water ($n_p = 1.59, n_m = 1.33$) located at the focus of 
+a Gaussian beam (more specifically a Laguerre-Gaussian 
+beam of mode $[0,0]$, see \eqref{eq:incident}). The beam 
+is focused by a objective with numerical aperture of 1.2.
+The polarisation is defined using the Jones vector which 
+describes the magnitude of the x and y components of the 
+electric field (so the vector $[1.0, 0.0i]$ describes an 
+electric field that only oscillates in the x direction). 
+Unless stated otherwise the Jones vector is kept at $[1.0, 
+0.0i]$. 
+
+As a paradigmatic example, we study a simple spherical 
+dimer composed of polystyrene, while there is the 
+possibility of considering absorption we choose to keep 
+the refractive index fixed at 1.59. The ratio of the two 
+sphere radii is given by $a_{I}/a_{II}$ where $a_{I}$ is 
+kept at $1\ \mu m$ unless specified otherwise. For 
+simulations we assume that the dimer is suspended in water 
+at room temperature ($T = 298K,\ \eta = 1.0x10^{-3}Pa\ s$).
+
+In order to compute the magnitude of the Brownian forces we
+need to know the dimer's diffusion tensor \textbf{D}. Unlike
+for spheres where the translational and rotational diffusion 
+coefficients are equal along all three Cartesian axis', a
+dimer's translational and rotational diffusion is dependent
+on whether we consider the its long or short axis. We use
+the results from \cite{Nir1973} to compute the dimensionless 
+diffusion tensor and then scale it according to the radius of
+the largest sphere ($a_I$). The dimer's centre of diffusion
+is located a distance of $a_I\zeta$ from the point of contact
+between the two spheres, the coefficient $\zeta$ is based on
+the size ratio of the two spheres. We use the centre of 
+diffusion as the target origin that is provided to \textit{mstm}
+
+
+Where $U_3$ represents the orientation vector that passes
+through the centres of both sphere's (see \ref{sec:sim} 
+for a full breakdown), $U_1$, and $U_2$ are orthogonal to 
+$U_3$ but have no physical representation for a dimer. We 
+can represent $U_3$ by it's spherical coordinates ($\theta$ 
+and $\phi$), where $\theta$ is the angle between the 
+orientation vector and the direction of propagation and 
+$\phi$ as the angle between the orientation vector and 
+the x-axis. We define the 'standard' orientation as 
+being aligned with the direction of beam propagation 
+direction ($\theta=0^\circ$) - and therefore the 'inverted' 
+orientation is defined when the dimer is orientated against 
+the direction of beam orientation ($\theta=180^\circ$) - see
+fig~\ref{fig:paradigmatic} for a visual of the laboratory and
+particle frame. 
+
+Throughout this project we use the work of Vigilante \cite{Vigilante2020} 
+to perform a systematic study of the dynamics demonstrated by 
+asymmetric dimers in both plane and circularly polarised light. 
+The simulations have two primary frames of reference that require 
+explanation. Firstly, there is the laboratory frame which 
+describes the coordinate system, we define the origin of our 
+simulation as the focus of our trapping beam. While the choice in 
+direction for the $x$ and $y$ axis are arbitrary the $z$ axis is 
+specifically chosen so that it is aligned with the direction of 
+beam propagation. 
 \begin{figure}[h!]
 	\centering
-	\begin{subfigure}{0.4\linewidth}
-		\includegraphics[width=\linewidth]{vaterite_sample.jpg}
-		\subcaption{}
-	\end{subfigure}
-	\begin{subfigure}{0.55\linewidth}
-		\includegraphics[width=\linewidth]{rotating_psd.png}
-		\subcaption{}
-	\end{subfigure}
-	\caption{(a)Sample Vaterite sphere suspended in water and trapped by
-		 circular polarised trap. (b) Collected power spectrum from 
-		 rotating Vaterite, peaks in the power spectrum appear at integer 
-		 multiples of the rotational frequency ($f_{rot} \approx 49.8$ Hz)}
-	\label{fig:vaterite}
-\end{figure}
-
-As shown by Fig.~\ref{fig:vaterite}(b) the power spectra produced still 
-demonstrates a Lorentzian curve but modified with these periodic peaks, 
-while the Lorentzian can be loosely fitted to the end tail there exists 
-no current model for describing the power spectra. The closest approximation
-to this was conducted by \cite{Yogesha2012} where they describe the 
-rotational motion of ellipsoidal polystyrene particles. The critical 
-assumption being that the particle perfectly rotates in the $x-y$ plane. 
-It has long been suspected that birefringent microspheres experience torques 
-outside of the $x-y$ plane \cite{Volpe2023} making it very difficult to 
-characterise the behaviour of rotating birefringent microspheres without a 
-proper understanding of the full optical torque being applied to it.
-
-\subsection{Liquid Crystal Rotors}
-Liquid crystals are an intriguing example of materials with mixed phase
-properties. Unlike typical solutes such as Glycine, a liquid crystal
-can still maintain some degree of order between its individual molecules
-while in the liquid state. This is due to the fact that liquid crystals
-are constructed of ordered molecules that demonstrate a long range
-ordering. There are three main types of liquid crystal transition methods:
-Thermotropic crystals will transition to their liquid crystal phase when 
-sufficiently heated. Lyotropic materials can undergo this transition due 
-to changes in temperature and concentration. And lastly, Metallotropic 
-materials - which are composed of both organic and inorganic molecules - 
-change phase according to the ratio of organic to inorganic molecules present.
-Liquid crystal rotors are rather simple in their production, 
-4-Heptyl-4-biphenylcarbonitrile (7CB) was purchased from Sigma Aldrich
-and a small amount was added to a vial of distilled water. The solution 
-was then heated in a water bath to $25^\circ$ in order to transition the
-solid crystal into its liquid crystal state. The solution can then be 
-loaded onto a sample cover slip and the individual droplets visualised.
-The molecules of 7CB will align with a strong electric field, and due to
-the spherical droplet geometry the droplets are inherently birefringent. 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.5\linewidth]{LC_sample.png}
-	\caption{Liquid crystal undergoing rotation due to the circularly polarised trap.} 
-\end{figure}
-
-The liquid crystal droplets had a much faster rotation rate than comparable 
-Vaterite spheres, due to their higher degree of birefringence and the fact
-that the droplets are far closer to perfect spheres making angular momentum
-transfer more efficient. 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Rotation of birefringent micro spheres} 
-Optical tweezing has often been used for micro-rheology, by computing the
-exact forces being exerted on the trapped sphere, one can determine the
-local temperature/viscosity of the medium \cite{Millen2014, RodriguezSevilla2018}.
-
-When it comes to optical rotation, a rotating particle will experience a
-fluid drag torque that is proportional to its rotation rate, the maximum 
-rotation rate is when the fluid drag is equal to the optical torque 
-of the laser \cite{RodriguezSevilla2018}. Optical rotors have been used
-to measure local temperature changes \cite{Millen2014}, or for understanding 
-how fluid shear propagates through a medium \cite{Knoener2005}. Likewise, 
-one can use a beam steering arrangement to probe the drag force of the 
-fluid, by understanding the trap strength (calibrating using a low 
-frequency signal) one can measure the drag force experienced by the local 
-fluid \cite{RobertsonAnderson2018}. I
-
-For any discussion of fluid flow its important that we know the fluid 
-regime which is given by the Reynolds number. For a sphere submersed in a 
-moving fluid of velocity $U$ this is given by:
-\begin{align}
-	Re = \frac{\rho UD}{\mu}
-\end{align}
-
-Where $D$ is the sphere's diameter, and $\rho$ and $\mu$ are the fluid's 
-density and viscosity respectively. In our case we do not have a fluid
-moving around a sphere but a sphere moving through the fluid at some 
-velocity $U$, assuming a no-slip boundary condition we can model the 
-fluid velocity profile based on the velocity of the particle. Assuming
-that for now the fluid properties are unaffected by the rotating particle
-we see that for an individual sphere the Reynolds number can only change 
-due to increasing/decreasing the fluid velocity. The fluid velocity is 
-directly proportional to the particles rotation rate for low Reynolds
-numbers \cite{Bruce2020}. Given the small size of the particles used 
-($1-10\mu\ m$ in diameter), and the relatively low rotation rates that 
-are possible with an optical tweezer, for the case of our analysis the
-Reynolds number will not never be large enough to consider factors such
-as turbulence. There are two possible avenues for generating shear flow 
-with a trapped particle; rotation of birefringent particles, and fluid 
-flow induced by particle motion. 
-
-Rotating birefringent particles are the more common method for generating 
-and measuring fluid flow in a solution. To see if we can even achieve the 
-theoretical maximum shear rate, Vaterite spheres were synthesised (see 
-Sec.\ref{sec:vaterite}) submerged in water and trapped with the 1064 nm 
-laser at set to 450 mW. The rotation frequency was determined using the 
-QPD, and the particle sizes were computed by image analysis. With the 
-particle size and rotation frequency, the tangential rotation speed is 
-calculated via:
-\begin{align}
-	\label{eq:birefringent_speed}
-	u(r) = \frac{\pi}{4}\frac{d^3}{r^2}\omega
-\end{align}
-
-Where $d$ is the particle diameter, $\omega$ is the rotation frequency
-reported by the QPD, and $r$ is the distance from the particle's centre. 
-Using Eq.\ref{eq:birefringent_speed} we calculated the fluid flow radiating
-outward from the centre of the sphere. The shear rate can then be computed
-as the partial derivative fluid flow (assuming shearing is generated purely
-by the flow field). This approach was used previously with liquid crystal 
-rotors \cite{Saito2022}:
-\begin{align}
-	\label{eq:birefringent_shear}
-	\dot{\gamma}(r)=\left|\frac{\delta u(r)}{\delta r} \right|= 
-	\frac{\pi}{2}\frac{d^3}{r^3}\omega
-\end{align}
-
-One would expect that we set some reference distance where the fluid flow 
-would be considered zero. However, at a microscopic level we are more 
-concerned by the fluid shear for an individual nucleation event. We are
-essentially computing what the shear rate would be for a small volume 
-of fluid between two moving parallel plates. This is similar logic to Mura 
-and Zaccone's work where they considered the shear on a subcritical nucleus
-in a flow field \cite{Mura2016}. They go further in depth to discuss the 
-impact of material transport, overall coming to the conclusion that 
-increasing shear rate leads to an increase the nucleation rate up till some
-maximum. 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Estimation of fluid flow around a rotating particle in bulk fluid}
-First we determined the upper rotation rate that could be achieved 
-using both Vaterite and liquid crystal spheres. Vaterite samples 
-were synthesised according to \cite{Parkin2009, Bishop2004} (see 
-sec.~\ref{sec:vaterite}), and then suspended in distilled water. 
-A sample of $200\ \mu L$ was pipetted and a single microsphere was 
-captured via a circular polarised beam. 
-
-Due to Van der Waal's forces some of the microspheres were stuck 
-together, fortunately individual sphere's were still present. 
-Individual microspheres were trapped and their rotation rate was 
-determined by looking at the peak frequency component of the 
-collected power spectrum. Due to their anisotropic scattering the 
-QPD signal will oscillate periodically. After taking the Fourier
-transform of the QPD signal the power spectrum has distinctive
-peaks at integer multiples of the rotational frequency. The largest 
-peak is often twice the rotational frequency which is due to the 
-polarization modulation of the scattered field, the first peak 
-is due purely to the rotation of vaterite sphere \cite{Monteiro2018}. 
-An example of this is behaviour is shown in fig.~\ref{fig:tdat_fdat}.
-
-\begin{figure}[h!]
-	\begin{subfigure}{0.49\linewidth}
-		\includegraphics[width=\linewidth]{time_domain_data.png}
-	\end{subfigure}
-	\begin{subfigure}{0.49\linewidth}
-		\includegraphics[width=\linewidth]{frequency_domain_data.png}
-	\end{subfigure}
-	\caption{Example of QPD signal being converted from the time 
-		domain to the frequency domain. (left) Raw signal collected
-		from the QPD over the 1st second of its trajectory showing 
-		a periodic spacing with a period of $1/f_{rot}$. (right) 
-		Power spectrum of the QPD signal, the y-axis is a linear 
-		scale to demonstrate the clear peaks in the power spectra. 
-		The rotational frequency is the first instance of a peak 
-		forming, and after that the peaks appear in integer 
-		multiples of $f_{rot}$}
-	\label{fig:tdat_fdat}
-\end{figure}
-
-The accuracy of the rotational frequency is dependent on the sample
-rate of the QPD and the sample duration \cite{BergSoerensen2004}. 
-With higher sampling rates resulting in a wider frequency window 
-(see Sec.\ref{sec:psd}) and longer sampling durations resulting in 
-more distinct rotational peaks. The default QPD sampling rate is 
-$2^{17}\ Hz$ which is more than adequate for detecting even the 
-slightest low frequency signals. And the default sampling duration 
-was $3\ s$ which for most cases gave us clear distinct peaks for 
-even relatively low rotational frequencies. After trapping a 
-vaterite microsphere the power spectrum was recorded and the 
-rotation frequency was acquired. This was repeated several times
-for each sphere trapped, to confirm that the rotational frequency
-was constant and that the sphere had reached its maximum rotation 
-rate.
-    
-After computing the rotational frequency the radial fluid speed 
-could be estimated using Eq.~\eqref{eq:birefringent_speed}. From 
-there we can estimate the shear flow experienced by a small volume 
-of fluid within the flow field (see Eq.\eqref{eq:birefringent_shear}). 
-Here we only consider the fluid flow as it propagates outward from 
-the axis of rotation. While the cover slip will have some effect 
-fluid flow it is difficult to quantify the effects of a hard 
-boundary on a rotating object when the boundary is perpendicular to 
-the axis of rotation. 
-\begin{figure}[h!]
-	\centering
-	\begin{subfigure}{0.7\linewidth}
-		\includegraphics[width=\linewidth]{vaterite_fluid_flow.png}
-		\caption{}
-	\end{subfigure}
-	\begin{subfigure}{0.7\linewidth}
-		\includegraphics[width=\linewidth]{vaterite_shear_rate.png}
-		\caption{}
-	\end{subfigure}
-	\caption{(Top) Fluid flow radiating out from the surface of a
-		rotating Vaterite sphere. (Bottom) Shear rates computed 
-		using Eq.\ref{eq:birefringent_shear}, optimal shear rate is 
-		of $3000 s^{-1}$ is indicated by the dotted line. Vaterite 
-		radii and rotation frequencies are shown, the laser power 
-		was kept constant at 450 mW. Reported rotation rates, and 
-		their corresponding fluid flow and shear rates, for Vaterite 
-		are also plotted alongside lab results. Results from 
-		\cite{Parkin2009, Arita2016} are included as well.}
-	\label{fig:vaterite_shear}
-\end{figure}
-
-From Fig.\ref{fig:vaterite_shear} there is not a strong relationship 
-between particle size and rotation rate, this is contrary to much of 
-the theoretical predictions that predict an exponential decay with 
-particle size. This can be in part due to the fact that synthesising 
-perfectly spherical spheres that have uniform birefringence across the 
-whole population is difficult. Despite our best efforts at controlling 
-the growth rate the smallest particle ever synthesised was around $3\ 
-\mu m$ in diameter. The Vaterite spheres would often stick together 
-while suspended in water after a short period of time. The fastest 
-reported rotation rate within a fluid was by \cite{Arita2016} 
-that achieved a rotation rate of $5\ kHz$, this is plotted in Fig~\ref{fig:vaterite_shear}. In addition we added the results from 
-\cite{Parkin2009} as a more realistic example. 
-
-The optimal shear rate predicted by \cite{Debuysschere2023} is 
-plotted on Fig.~\ref{fig:vaterite_shear}(b), the outer dotted 
-lines represent the point when the nucleation rate is less than 
-90\% of the maximum. We can visualise the fluid around the 
-rotating sphere by dividing it up into radial sections. Assuming 
-the sphere is rotating sufficiently quickly there are three 
-sections of concern, as demonstrated by fig.~\ref{fig:shear_diagram}. 
-The fluid close to the sphere experiences a shear rate that 
-is far greater than the optimal shear rate, in which case 
-nucleation is suppressed \cite{Mura2016}. Secondly, there is 
-a region of fluid that experiences a shear rate close to the 
-optimal value ($\pm 5\%$) where the nucleation rate is enhanced 
-significantly compared to the bulk fluid. Lastly, beyond the 
-optimal region the shear rate drops off exponentially in which 
-case the nucleation rate is barely different compared to the 
-bulk fluid.
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.875\linewidth]{shear_rate_diagram.pdf}
-	\caption{Diagram demonstrating how fluid shear rate varies 
-	radially from a rotating sphere (rotation rate = $f_{rot}$). 
-	(a) the shear rate exceeds the optimal shear rate 
-	($\dot{\gamma}_{opt}$) and suppresses the nucleation rate. 
-	(b) shear rate is close to the optimal amount, enhancing the 
-	nucleation rate. (c) shear rate is far below the optimal 
-	amount and the nucleation rate is comparable to the bulk fluid.}
-	\label{fig:shear_diagram}
-\end{figure}
-
-\section{Rotating spheres in Supersaturated solution}
-If rotation rates in bulk solution are insufficient then a 
-rotating sphere close to an artificial barrier may be able 
-to improve the shear rate of the surrounding fluid. Of course 
-placing a solid barrier in a supersaturated fluid may well 
-encourage nucleation somewhere on the surface outside of our 
-control. Instead we chose to use the droplet edge of the 
-supersaturated solution, while not a hard barrier per say, 
-the molecular mobility close to the droplet edge is reduced 
-due to surface tension. Furthermore, it has been shown through 
-multiple results that nucleation is enhanced at the air-solution 
-interface \cite{Liao2022,Yuyama2010, Sugiyama2009}. 
-
-Estimating the distance from the trap focus to the cover slip
-is difficult to measure directly, often requiring one fits a 
-complex Lorentzian curve to the recorded power spectra in order 
-to measure the fluid drag from being in close proximity to the 
-cover slip \cite{BergSoerensen2004}. We estimate that the 
-vaterite must be at least $15-20\mu\ m$ from the cover slip for 
-us to reliably trap them. The contact angle between the cover 
-slip and solution was previously measured in \cite{Flannigan2023},
-while being loosely dependent on the supersaturation the 
-measured contact angle for supersaturated solutions was between 
-$30^{\circ}$ and $35^{\circ}$. This is shown in fig.\ref{fig:3.9}.
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=\linewidth]{vaterite_diagram.pdf}
-	\caption{Diagram of optical trapping set up for rotating 
-		birefringent particles in a supersaturated solution. 
-		Left: side view of the trapping set up showing the 
-		location of the trap focus at the edge of the droplet 
-		of a supersaturated solution. The approximate contact 
-		angle (calculated by \cite{Flannigan2023}) is used to 
-		provide a scale of how close a trapped particle could 
-		be located. Right: top down view of the glycine droplet 
-		with a trapped birefringent particle shown close to 
-		edge of the trap. As the particle rotates the drag 
-		force from the surrounding fluid generates a flow field 
-		around itself (see Eq.~\ref{eq:birefringent_speed}).}
-	\label{fig:3.9}
-\end{figure}
-
-Supersaturated solutions of glycine and water were prepared 
-and stored in an incubator at $40^\circ C$ prior to use. 
-When ready to be studied $15\ \mu L$ of vaterite suspension 
-was pipetted into the solution and $20\ \mu L$ of the combined 
-solution was pipetted onto the cover slip. A Vaterite sphere 
-was located, trapped, and moved to the droplet edge where the 
-solution meets the cover slip. This removed the need for 
-hydrophilic coatings to achieve a flat fluid layer (as used by 
-\cite{Liao2022, Rungsimanon2010}). 
-
-Particle sizing was achieved by converting the particle diameter 
-from pixels to physical units within an accuracy of $\pm0.05\mu 
-m$. The QPD was used to measure the frequency of fluctuations 
-in the QPD signal. After measuring the rotational frequency the 
-sphere was left to rotate for a period of ten minutes after which, 
-if no nucleation event was observed the particle was released. 
-The overall results are catalogued in table~\ref{tab:Nucleation}.
-\begin{table}[h!]
-	\centering
-	\caption{Results from rotating Vaterite within supersaturated solution of $H_2O$ and Glycine. Solubility concentration for Glycine at $16^\circ$ was $C^*=0.2016g/g$}
-	\label{tab:Nucleation}
-	\begin{tabular}[width=\textwidth]{|c|c|c|c|}
-		\hline
-		Super Saturation & Particle radius [$\mu m$] & $\omega$ [Hz] & Nucleation [$\checkmark/\times$]\\
-		\hline
-		\multirow{3}*{1.01} & 2.34 & 10.4 & $\times$ \\
-		\cline{2-4} & 3.26 & 8.46 & $\times$ \\
-		\cline{2-4} & 5.67 & 9.63 & $\times$ \\
-		\hline
-		\multirow{3}*{1.14} & 1.89 & 1.23 & $\times$ \\
-		\cline{2-4} & 3.75 & 3.54 & $\times$ \\
-		\cline{2-4} & 4.35 & 4.86 & $\times$ \\
-		\hline
-		\multirow{3}*{1.4} & 1.59 & 0.00 & $\times$ \\
-		\cline{2-4} & 3.47 & 0.00 & $\times$ \\
-		\cline{2-4} & 6.24 & 0.00 & $\times$ \\
-		\hline
-		\multirow{3}*{1.45} & 3.68 & 0.00 & $\times$ \\
-		\cline{2-4} & 5.43 & 0.00 & $\times$ \\
-		\cline{2-4} & 6.32 & 0.00 & $\times$ \\
-		\hline
-		\multirow{3}*{1.49} & 1.52 & $0.00$ & $\times$ \\
-		\cline{2-4} & 4.76 & $0.00$ & $\times$ \\
-		\cline{2-4} & 7.27 & $0.00$ & $\times$ \\
-		\hline
-	\end{tabular}
-\end{table}
-
-It should be noted that rotational frequencies equal to 
-$0.00\ Hz$ are not due to a rounding error. Simply looking
-at the live video shows no rotation of the vaterite particles,
-and even looking at the QPD signals shows no discernable 
-fluctuations that would arise due to rotation. Trying to trap 
-a particle close to the edge proved more challenging than 
-expected. Unlike in previous reports where the beam is 
-focused at the upper edge of the droplet \cite{Liao2022, 
-Yuyama2010, Sugiyama2022}, we attempted trapping in close 
-to the contact point of the droplet and the cover slip. 
-
-It is suspected that trapping is much harder at the 
-interface due to increased surface tension and unpredictable 
-scattering forces. The closest we could trap a microsphere to 
-the droplet edge was in the range of $5-10\mu\ m$, at that 
-distance the fluid flow is so low that even the presence of a 
-hard boundary would be insufficient for shearing the fluid. 
-Furthermore, as is evident in Table~\ref{tab:Nucleation}, 
-the rotation rate drops off significantly with increased 
-supersaturation, due to higher fluid viscosities. While in 
-theory a sufficiently focused laser could rotate any 
-microsphere to a fast enough to reach the shear rate 
-predicted by \cite{Debuysschere2023} the localised intensity 
-would be so large that even using $D_2O$ would see a significant 
-increase in temperature. 
-
-It is not impossible that fluid shearing could be used in the 
-future to localise nucleation; but from these results, using 
-individual micro-rotors is not an appropriate method due to
-two key factors. Firstly, the area of influence is far too 
-small to see any noticeable increase in the nucleation rate 
-this is demonstrated most clearly in fig.~\ref{fig:vaterite_shear}. 
-Due to the exponential decay in the expected shear rate it is 
-very difficult trying to shear a large volume of fluid. Even 
-if the optimal shear rate at a micro-level was an order of 
-magnitude less than what was predicted by \cite{Debuysschere2023}, 
-only a small volume of fluid would even experience that shear 
-rate. In order to properly understand the microscopic effects 
-of fluid shear a method of localised shearing over a larger 
-fluid volume is necessary.  
-
-Secondly, increased fluid viscosity significantly reduces 
-the limits the maximum rotation rate possible. As indicated 
-by \ref{tab:Nucleation}, the rotation rate achievable by a
-vaterite sphere falls off significantly with increasing 
-supersaturation. Experimental estimations of relative viscosities
-showed a 12\% increase when looking at undersaturated glycine
-solutions ($S\approx0.34$) \cite{Patyar2020}. As far as we
-are aware there are no reported fluid viscosities for higher
-supersaturations. Extrapolating the results from \cite{Patyar2020}
-suggests that a saturated solution would have a 35\% increase 
-in fluid viscosity (compared to pure water). This also does 
-not account for any other factors such as the fact that close
-to a boundary a rotating particle will experience a reaction
-torque from the stationary surface \cite{Bruce2020}. 
-
-If multiple micro-rotors could be trapped in close proximity 
-to one another they could create a large region of fluid where 
-nucleation is more likely than the bulk fluid. Because optical
-torque is not contingent on the fluid properties the only 
-limiting factor would be the total angular momentum transferred 
-to each particle. Micro-rotors have been created that allow for 
-precise control of suspended micro-particles \cite{Butaite2019} 
-and could potentially be used to generate sufficient shearing. 
-However these could not be used in this project as we lacked the 
-necessary hardware to form multiple gradient traps.  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Nucleation with a Stationary and Moving Beam}
-As mentioned previously, shearing via optical rotation did 
-not result in any localised nucleation events even while 
-in the proximity of the droplet edge. An alternative approach
-was suggested, using a galvano mirror to move a particle 
-quickly through a supersaturated solution. Preliminary 
-calculations suggested a particle moving rapidly through 
-a fluid could produce significantly greater shear rates 
-(see \emph{Appendix X.X} for breakdown) than a rotating 
-particle. While a particle is within the optical trap the 
-gradient forces are significantly reduced meaning simply 
-trapping a particle is insufficient for inducing nucleation \cite{Flannigan2023}. This is why we did not see any 
-nucleation events while rotating the vaterite, there is 
-not a large gradient force to draw in material. 
-
-During initial testing using silica beads we found that 
-even in undersaturated solutions the optical trap would 
-produce a crystal nucleus when the trap was empty. This 
-has been reported prior \cite{Rungsimanon2010, Liao2022}, 
-but what is more interesting is how the beam's motion 
-influenced the growth of the nucleus. 
-
-\subsubsection{Choice of Crystal growth rate units}
-The growth rate of a crystal can be described using different
-units depending on the situation. For example, seed crystals 
-often use growth units in the form of \textit{length per unit
-time}. This can either be used to describe the overall length
-of the longest edge of a crystal, or to describe how individual
-faces grow separately. This works well for crystals with a 
-clear morphology, in regards to laser induced nucleation the 
-crystal growth is heavily influenced by the local fluid 
-conditions meaning tracking the length of an individual face 
-is challenging. Instead we utilise image analysis software 
-such as imageJ to measure the area of the crystal after each 
-frame to get a rough estimate of the crystal growth rate in 
-units of \textit{length$^2$ per unit time}. With the addition 
-of the contact angle information from \cite{Flannigan2023} we 
-can approximate the crystal height based on how close it is to 
-the droplet edge.
-
-\subsection{Stationary beam}
-\label{sec:stationary}
-Its well known that a supersaturated solution can nucleate
-if irradiated by a focused beam with sufficient power 
-\cite{Rungsimanon2010}. First we look at how a laser induced
-nucleation event unfolds using a stationary focused beam. 
-The laser was focused at the edge of a $20\mu L$ droplet 
-consisting of water and dissolved glycine ($S=1.03$). The 
-solution was monitored for 10 minutes, if a nucleation event 
-was observed the event was recorded using a high speed CCD. 
-If no nucleation event was observed after 10 minutes the 
-solution was disposed of and a new sample was prepared. After 
-ten repeats only 30\% of the samples observed a nucleation 
-event at the focus. All of which displayed similar growth 
-behaviour to one another.
-
-Consider Fig.~\ref{fig:stationary_beam}, the frames taken from 
-a nucleation event, the beam is a stationary being $\approx3.5 
-\mu m$ from the droplet edge. After a period of roughly 5 minutes 
-a nucleus forms at the trap focus, growing quickly (growth rate 
-was approximated using imageJ to be on the order of $700\ \mu 
-m^2/min$) from the focal point of the trap until after roughly 
-$6$ seconds the crystal escapes. A likely reason that the trap 
-is escaped is due to the fact that crystal is far too large to 
-be held in place and is in fact still growing as the solution is supersaturated. Based on the contact angle measurements from \cite{Flannigan2023}, the droplet height could not have been 
-any more than $2-5\mu m$ at the trap focus.
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=\linewidth, height=1.3\linewidth]{frames_no_beam_movement.pdf}
-	\caption{Laser induced nucleation at the edge of a droplet of supersaturated 
-	glycine solution. (b) shows the first instance of a crystal nucleus, growing 
-	quickly through (c)-(e) until after $6.665\ s$ the crystal begins to escape 
-	the trap.}
-	\label{fig:stationary_beam}
-\end{figure}
-
-Comparing to previous literature using optical tweezers shows 
-that the growth rate is only loosely connected to the solutions 
-supersaturation. Crystal growth rates for a solution of glycine 
-and water ($S\approx1.00$) was found to vary from as much as 
-$3900 \mu\ m^2/min$ to as low as $675\mu m^2/min$ 
-\cite{Flannigan2023}. The reason for such high crystal growth 
-rates is due primarily to the tweezer focus bringing in material 
-due to gradient forces. A study of glycine crystals in water 
-found that for a similarly supersaturated solution the growth 
-rate along the {011} face was around $0.1\ \mu m/min$ where as 
-the {010} face was found to have a growth rate of around $0.01\ 
-\mu m/min$. While its difficult to extrapolate an exact area 
-growth rate from these results we can approximate that if the 
-we looked directly perpendicular to the crystal growth the area 
-would increase at $\approx0.02\ \mu^2/min$ (see X.X for a 
-breakdown of this approximation). 
-
-The key take away to remember is that the beam has no influence 
-over the crystal shape, instead it grows outward from the trap 
-focus. Furthermore, due to the fact that the solution is 
-supersaturated the crystal growth cannot be contained to the 
-trap focus. Instead the crystal escapes as its size exceeds the 
-trap focus. 
-
-\subsection{Moving Beam}
-\label{sec:moving}
-To test if a rapidly moving silica bead could generate the 
-necessary shear rate for crystal nucleation we wanted to 
-see if a trapped silica bead could be trapped and moved in 
-an aqueous solution. $20\ \mu L$ of glycine and water ($S=
-1.03$) was added to $10\ \mu L$ of a dilute water-silica 
-mixture making the solution unsaturated ($S\approx0.7$). 
-However, due to the beam's motion we instead encountered 
-unexpected growth behaviour. 
-
-Shown below in Fig.~\ref{fig:eliptical_beam_1} where 
-we have the laser focus moving in a small elliptical 
-pattern. While nothing is seen directly entering the 
-focus a nucleus forms close to the droplet edge, 
-unlike in fig.~\ref{fig:stationary_beam} the crystal 
-does not grow out from the focal point evenly. Due to 
-the galvano mirror, the crystal is simultaneously 
-being moved by and growing around the focal point of 
-the trap. Because of this the crystal nucleus lacks 
-a clear morphology at first. Until roughly $20\ s$ 
-the crystal reaches a almost prismatic structure, 
-with further irradiation increasing the size.
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.8\linewidth]{frames_eliptical_beam.pdf}
-	\caption{Frames from a longer video depicting the growth 
-		of a nucleus using a moving beam. Beam power is kept 
-		at 700 mW and the supersaturation was estimated at 
-		S=0.86. Initially the crystal shape is amorphous (a) 
-		but eventually reaches a more regular shape (b). This crystal is still influenced by the optical trap as 
-		even when not directly irradiated by the laser the 
-		crystal rotates between (c) and (d). When the laser 
-		is focused on a corner the crystal growth is localised 
-		to that region, resulting in an elongated section 
-		forming between frames (e) and (f).}
-	\label{fig:eliptical_beam_1}
+	\includegraphics[width=0.6\linewidth]{lab_frame.png}
+	\caption{Ray scattering render of both the laboratory frame and 
+		particle frame for a dimer and a Gaussian beam. The origin 
+		of the laboratory frame is defined as the focus of the 
+		trapping beam, with the positive $z$-axis being aligned with 
+		the direction of beam propagation. The particle frame is 
+		centred on the dimer's centre of mass with the primary axis 
+		$U_z$ being aligned with the centres of the two spheres. Black 
+		line is scaled to represent $1\ \mu m$.}
+	\label{fig:lab_frame} 
 \end{figure} 
 
-Interestingly the galvano-mirror allows the trap to 
-impart a slight torque on the crystal, as shown in fig.~\ref{fig:eliptical_beam_1}(c) and (d), where even 
-though the crystal is not directly in the trap focus 
-it rotates in the $x-y$ plane and gets trapped again 
-at a corner. The rotation could not be due to fluid 
-flow close to the surface of the crystal as the 
-dipole moment of individual water molecules is too 
-small to be influenced by an optical trap. In figs.\ref{fig:eliptical_beam_1}(e) and (f), the 
-crystal growth becomes localised to the corner. The 
-area growth rate between figures \ref{fig:eliptical_beam_1}
-(a) and (d) was approximated using imageJ at $45.03\ 
-\mu m^2 /min$, where as between figures 
-\ref{fig:eliptical_beam_1}(e) and (f) the growth rate 
-at that particular edge was estimated at $42.10\ \mu m^2/min$. 
- 
-Nucleation in undersaturated conditions has been 
-reported previously in $D_2O$ \cite{Rungsimanon2010} 
-and $H_2O$ \cite{Flannigan2023}, though not involving 
-a moving beam. This modification allows for the crystal 
-growth to be localised to a specific region of the bulk 
-crystal whereas with a stationary beam there is no 
-control over the crystal morphology. In fact this allows 
-for a much finer control over the exact shape of the 
-crystal nucleus, in some cases allowing for growth out
-of the viewing plane as shown in fig.~\ref{fig:out_of_plane}.
+Secondly there is the particle frame which describes the orientation 
+state of the particle, orientations are reported as quaternions which 
+can be readily transformed into rotation matrices. The dimer's 
+orientation is given by a rotation matrix in the form: 
+\begin{align}
+	\begin{pmatrix}
+		U_{1,x} & U_{2,x} & U_{3,x} \\
+		U_{1,y} & U_{2,y} & U_{3,y} \\
+		U_{1,z} & U_{2,z} & U_{3,z}
+	\end{pmatrix}
+\end{align}
+The matrix describes the direction of the particles 3 orientation 
+axis $U_1$, $U_2$, and $U_3$. The latter is oriented so that it 
+is collinear with the centres of the two spheres; the direction 
+of vector $U_3$ is such that it goes from the centre of $a_{II}$ 
+to the centre of $a_{I}$. The origin of the 3 axis' is set on the 
+particle's centre of mass, this is also used to define it's 
+displacement from the origin of the laboratory frame. The diffusion 
+tensor of the dimer is more complex than a sphere's as we must 
+consider the rotational effects experienced by the dimer. We use 
+the analytical solution of Nir \& Acrivos \cite{Nir1973}, where 
+they provided the solution coefficients depending on the dimer's 
+size ratio ($a_I/a_{II}$). Rather than recalculate the coefficients 
+for every possible configuration of dimer we use a spline fitting 
+function to approximate the diffusion tensor. 
+
+We utilise a python library that utilises \textit{mstm} and
+\textit{ott} to simulate the dynamical behaviour of spherical
+aggregates. By specifying the optical properties of the target 
+\textit{mstm} generates the targets T-matrix which can then be 
+used by \textit{ott} to compute the optical forces generated by 
+a focused beam. Using the Finite Differences approach we can solve
+the Langevin Equation to take discrete time steps and update the 
+dimer's position and orientation. A time step of $10 \mu s$ is 
+used in line with previous works \cite{Vigilante2020}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Positional and Orientational dependence of Trapping forces}
+\label{sec:eq_positions}
+First, let us look at how the addition of a second sphere
+changes how we go about looking for equilibrium positions
+relative to the beam focus. Typically when trapping a target
+particle we do not care where it is spacially in relation 
+to the trap focus, we assume that it will end up in the same 
+equilibrium position regardless. This assumption can not 
+be taken when considering a dimer, or any aggregate of spheres.  
+
+If we wanted to start from first principles and determine 
+the trap strength on our target particle the first step 
+would be to locate the equilibrium position relative to 
+the trap focus. For a single sphere it is easy to enough 
+to understand that its centre of mass will be drawn to 
+focal point of the laser due to gradient forces, once there 
+the force is analogous to a harmonic spring with a fixed 
+trap stiffness (see fig.\ref{fig:harmonic_trap}). Now, if 
+we consider instead a dimer, we now have two spheres both 
+being drawn to the focus along by the same gradient force; 
+in addition the scattering force is significantly more complex 
+due to both spheres scattering the electromagnetic fields. 
+This mutual scattering between individual spheres is what 
+makes simulating spherical aggregates far more difficult 
+compared to a single sphere, and even harder still to 
+predict the position where the dimer's centre of mass is 
+in equilibrium.
+
+Because the scattering force is only significant in the 
+direction of beam propagation \cite{Capitanio2002} we 
+can assume there will only be a single potential well 
+lying at the centre of the beam. Along the beam axis, 
+such an assumption is no longer valid due to fact that 
+spherical aggregates experience inter-particle scattering. 
+This is a key reason for using \textit{mstm} as it 
+accounts for that behaviour. The methodology for computing 
+optical forces has been covered extensively for a number 
+of different trapping conditions \cite{RanhaNeves2019}. 
+So it is relatively easy to compute the trapping force 
+and determine the equilibrium position by finding the 
+position that minimises the net optical force and the 
+local gradient is negative ($\delta F/\delta x < 0$) - 
+we can assume that for a dielectric sphere the optical 
+torque is negligible. For a dimer (or any arbitrary 
+spherical aggregate), we now must consider both its 
+position and orientation and find where the net optical 
+force and torque are minimised. 
+
+After computing its $T$-matrix via \textit{mstm} and 
+supplying that to \textit{ott} we compute the optical 
+force exerted by a $50\ mW$ laser via \eqref{eq:optical_force} 
+in the axial direction while the dimer is in its 'standard' 
+orientation. As expected we see a single point where 
+the dimer will be in equilibrium, the linear fit in 
+fig.~\ref{fig:paradigmatic}(a) indicates a that the 
+force can be modelled as a harmonic potential close to 
+the equilibrium position ($F_z\approx-\kappa_z z$). 
+The second point where the axial force goes to 0 cannot 
+be considered as equilibrium position as the positive 
+gradient indicates that the trap is unstable unless 
+Brownian motion is ignored. 
+
+We repeated the same calculation but now while the 
+dimer is in its 'inverted' orientation, instead of 
+a single point where the optical force is minimised 
+we see that there are instead two separate equilibrium 
+positions, one above the focus and one below the 
+focus. In this particular example the two positions 
+are far enough apart that both can be considered as 
+separate harmonic traps.    
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\linewidth]{out_of_plane.pdf}
-	\caption{Interesting crystal growth on the surface of an
-	existing crystal. Initially the crystal surface seems 
-	flat (a) but eventually a different crystal structure 
-	grows out off of the surface (b).}
-	\label{fig:out_of_plane}
+	\begin{subfigure}{.65\linewidth}
+		\includegraphics[width=\linewidth]{lam=2_theta=0.png}
+		\caption{}
+		\label{lam=2}
+	\end{subfigure}\hfill % <-- "\hfill"
+	\begin{subfigure}{.25\linewidth}
+		\centering
+		\raisebox{60pt}[0pt][0pt]{\makebox{}\includegraphics[width=0.3\linewidth, keepaspectratio]{theta=0.png}}
+		\label{large over small}
+	\end{subfigure}
+	\medskip
+	\begin{subfigure}{.65\linewidth}
+		\includegraphics[width=\linewidth]{lam=2_theta=180.png}
+		\caption{}
+		\label{lam=2_inverted}
+	\end{subfigure}\hfill % <-- "\hfill"
+	\begin{subfigure}{.25\linewidth}
+		\centering
+		\raisebox{40pt}[0pt][0pt]{\makebox{}\includegraphics[width=0.3\linewidth, keepaspectratio]{theta=180.png}}
+		\label{small_over_large}
+	\end{subfigure}
+	\caption{Plots of force vs displacement of the 
+		centre of mass of the dimer (µm) for the 
+		case of a dimer of size ratio 2. (a) is the 
+		case where the dimer is in its' 'standard' 
+		orientation, where the dimer is trapped at 
+		$z = 1.71\ \mu m$. (b) is the case where the 
+		dimer is in its' 'inverted' orientation, the 
+		dimer is trapped at two positions: $z = 1.20\ 
+		\mu m$ \& $z=-1.63\ \mu m$. On the left are 
+		renders to visualise the dimer orientation 
+		are shown below each plot. The black lines 
+		on each force-curve is a linear fit with the 
+		slope being reported as the trap stiffness in 
+		the legend.}
+	\label{fig:paradigmatic}
 \end{figure}
 
-Where a large outgrowth forms on the surface of a nucleus,
-over a period of $30\ s$ the outgrowth develops into a 
-rhombic crystal structure. The unique crystal growth 
-demonstrated is likely a factor of the moving beam focus,
-but this raises a question over how the laser can localise
-the growth only around the focus and why the crystal does 
-not grow or shrink when not directly within the trap. There
-should be some material that is being drawn into the trap
-as it scans across the camera frame.
+This is different to a single sphere, namely in that a
+single sphere should only have one equilibrium position
+and that it is much closer to the trap focus ($\approx
+0.05\mu\ m$ from the focus). This is also not similar 
+to other works where random clusters of spheres have 
+been shown to oscillate between stable points 
+\cite{Vigilante2020}.
 
-\subsection{Direct trapping of Glycine clusters}
-\label{sec:clusters}
-In a repeat experiment a solution similar to sec.~
-\ref{sec:stationary} was made up, but without any 
-silica micro-spheres. Once again the beam was focused 
-close to the droplet edge, this time the galvano 
-mirror was scanning a circular path (as shown in fig.~\ref{fig:cluster_trapping}). After a few 
-minutes of irradiation droplets were seen entering 
-the camera frame. Because no silica had been added, 
-and that the solutions were filtered, these droplets 
-had to be from the glycine solution. Trapping 
-individual droplets did not result in immediate 
-nucleation even after several minutes being trapped. 
-Trying to bring two droplets together resulted in 
-nucleation between the two droplets, compared to 
-\ref{sec:stationary} \& \ref{sec:moving} the growth 
-is much slower, taking nearly 40 seconds before the 
-crystal structure becomes clearer.
+We can see that both equilibrium positions have 
+comparable axial trap stiffness ($\kappa_z$), 
+however the difference in the transverse trap 
+stiffness ($\kappa_x$) is far more noticeable. 
+The same dimer was trapped at each of the axial 
+equilibrium positions and the transverse force was 
+evaluated. While in all three cases the dimer can be 
+trapped the linear range where that would typically 
+associated with a stable trap is far narrower in the 
+'standard' orientation compared to the 'inverted' cases. 
+This highlights one of the challenges involved with 
+studying asymmetric particles, even though its a 
+simple enough process to trap them they maybe 
+characterised very differently depending on their 
+relative position and orientation towards the focus. 
+This can have a significant impact on rheological 
+studies - or attempting to probe any local property 
+- as the variance in trap strength can result in 
+large errors over repeated measurements. 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.8\linewidth]{cluster_trapping.pdf}
-	\caption{Frames from a longer video demonstrating the trapping 
-		of a glycine droplet. Solution is undersaturated glycine 
-		and water (S = 0.86), with the laser power is set at $750\ 
-		mW$. (a) shows a trapped droplet (outlined in black) being 
-		brought into contact with a larger droplet. (b) upon contact 
-		a nucleus can be seen between the two droplets. The growth 
-		is rather slow with the crystal having no clear defined 
-		morphology through (c) and (d). Between frames (e) and (f) 
-		the larger droplet finally joins the main crystal.}
-	\label{fig:cluster_trapping}
+	\includegraphics[width=\linewidth]{transverse_force.png}
+	\caption{Plots of force vs displacement of the dimer's 
+		centre of mass spheres, where a positive force 
+		indicates the dimer is directed right on the x-axis, 
+		and vice versa for a negative force. The same simulation 
+		parameters are used here as in fig~\ref{fig:paradigmatic}
+		(a) and (c). The blue curve representing the force 
+		response for a dimer in its standard orientation, orange 
+		being the inverted case, and green the same case but 
+		placed below the focus.}
+	\label{fig:transverse_force}
 \end{figure}
 
-The fact that these droplets can be trapped indicates 
-they must have a higher refractive index than the 
-surrounding solution. Previous reports have shown that 
-a focused trap will draw in solute material from the 
-bulk \cite{Tsuboi2009, Gowayed2021}. This suggests that 
-the droplets observed are concentrated spheres of glycine, 
-which also explains how nucleation was initiated when those
-two spheres were brought into contact with one another. The 
-droplets must be providing material for the crystal growth.
-It has been shown that the concentration of glycine solution 
-is correlated with the refractive indices of the liquid 
-\cite{Gowayed2021, Orttung1963}. This suggests that we could
-measure the concentration of individual droplets based on the
-trapping strength of each droplet. 
 \newpage
-
-\subsection{Influence of a moving beam front on seed crystals}
-\label{sec:seed_crystals}
-One potential application of this phenomena would be in using 
-a moving the moving beam front as a method for shaping the 
-final crystal morphology. Therefore, we wanted to test if a 
-moving beam front could have any influence on the shape of a
-seed crystal submerged in a bulk solution. Glycine seed crystals 
-were grown via evaporative crystallisation over night. The 
-resultant crystals were as wide as $0.5 mm$ in some cases. 
-Individual crystals were collected and suspended in a water 
-+ glycine solution ($S = 1.001$) and the laser was scanned 
-along a narrow linear path. It should be noted that the seed 
-crystal was fully submerged in the solution, meaning that there
-is no interface between the air and solution close to the seed.
-Five separate repeats were conducted, all demonstrating similar
-behaviour to one another.  
-
-As shown by fig.~\ref{fig:seed_crystals} the laser does not 
-in fact promote crystal growth but instead forces the crystal 
-to dissolve into the bulk solution. The dissolution rate is not 
-as substantial as the growth rate seen in previous sections. 
-It takes over 20 minutes for the for the crystal surface to 
-dissolve more than a few microns. Furthermore we do not report 
-any sightings of droplets close to the surface of the crystal 
-nor do we see anything enter the optical trap.
+For completeness the harmonic traps were located for dimers
+across a range of size ratios - from $a_{I}/a_{II} = 1$ to 
+$a_{I}/a_{II}=10$ - while also recording the trap stiffness 
+for each trap. The same simulation parameters are used here 
+as for figures \ref{fig:paradigmatic} \& \ref{fig:transverse_force}. 
+As shown in Fig.~\ref{fig:eq_positions} $a_{II}$ decrease 
+the dimer begins to approximate a single homogenous sphere 
+- at least in terms of location and trap strength. However, 
+for intermediate sized dimers (between $a_{I}/a_{II} = 1.1$ 
+to $a_{I}/a_{II}=4$), a second equilibrium position is found 
+below the trapping focus. We should note that there are also
+unstable traps that exist, these are also depicted in 
+fig.~\ref{fig:eq_positions}. While the optical force
+is zero at these positions the gradient $\delta F_z/\delta z$
+is positive and so any Brownian motion would displace the 
+dimer, either ejecting it from the optical trap or letting
+it be drawn towards another harmonic trap. 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\linewidth]{seed_crystals.pdf}
-	\caption{Frames from a seed crystal being irradiated by a 
-		scanning laser. The laser path is shown below in red. 
-		Initially the crystal edge is nearly perpendicular to 
-		the laser path. Over the course of nearly twenty minutes 
-		the crystal around the laser has dissolved leaving a 
-		concave indent.}
-	\label{fig:seed_crystals}
+	\begin{subfigure}{0.85\linewidth}
+		\includegraphics[width=\linewidth]{Equillibrium_positions.png}
+		\caption{}
+		\label{eq_pos}
+	\end{subfigure}\hfill % <-- "\hfill"
+	\medskip
+	\begin{subfigure}{0.85\linewidth}
+		\includegraphics[width=\linewidth]{Equillibrium_positions_inverted.png}
+		\caption{}
+		\label{eq_pos_inverted}
+	\end{subfigure}
+	\caption{Equilibrium positions of optically trapped dimers 
+		with varying size ratio, dashed lines represent unstable 
+		traps whereas solid lines are for stable equilibrium 
+		positions. (a) shows that dimers while in their 
+		'standard' orientation will always have a single 
+		equilibrium position. (b) shows that when the same dimer 
+		is in its' 'inverted' orientation can be trapped in two 
+		axial positions, one below the focus and one above the 
+		focus.}
+	\label{fig:eq_positions}
 \end{figure}
 
-This has some implications: Firstly, the lack of supposed 
-glycine droplets suggests that the presence of an interface 
-is crucial in order to promote the formation of these droplets. 
-This is consistent with previous reports on laser nucleation, 
-where a air-solution or solution-glass interface is necessary 
-for the trap focus to have any noticeable effect on the solute \cite{Gowayed2021, Liao2022, Rungsimanon2010}. Secondly, the 
-fact that the seed crystal dissolved in a saturated solution 
-suggests that this could be due to a localised heating effect. 
-A commonly used heating model for optical tweezers is the 
-Peterman model \cite{Peterman2003} which accounts for the lateral 
-distance between the optical trap and a local heat sink (such 
-as the glass cover slip or microscope objective). Even with 
-the heat sink the predicted temperature rise in pure water would 
-be around $5-10 K$.  The fact that the seed crystal dissolves 
-so slowly could simply be due to the fact that the local heating 
-is lessened by the moving beam front.
+Previous work using the ray-optics model have confirmed even 
+in the case that two spheres begin separated the electric field 
+will align the particles as such that they make contact and 
+are trapped together about a single trapping position 
+\cite{Xu2005}. Furthermore it has been shown through proper 
+manipulation of the Gaussian or Bessel beam modes that any 
+number of trapping potentials can be developed 
+\cite{Shahabadi2020} for nanoparticles. This result however, 
+is the first example of an orientation dependent trapping 
+situation using only a $TEM_00$ beam. Typical experimental 
+arrangements cannot determine much information on the axial 
+position of a trapped particle relative to the trap focus; 
+this result indicates not only that dimers can be trapped 
+in multiple axial positions but also their trapping behaviour 
+is heavily dependent on the axial position. As such it is 
+necessary that positional information in the z-axis can be 
+elucidated if multiple spheres are trapped simultaneously. 
+
+\newpage
+\section{Non-trivial basins of attraction}
+\label{sec:off-axis}
+As mentioned previously in \ref{sec:opt_torque} the 
+torque applied to an anisotropic scatterer can be 
+broken down into two categories: torque generated 
+from the field polarisation and torque generated 
+by the gradient force of the electric field. The 
+former is generally only applicable for objects 
+that are birefringent whereas the latter is 
+applicable to dimers due to their elongated shape.
+Since both spheres are attracted towards the centre
+of intensity via the gradient force a dimer will 
+experience a restoring torque that keeps the it
+in an equilibrium orientation. For any elongated 
+particle the torque is minimised when the long 
+axis is aligned either parallel or perpendicular
+with the direction of the electric field. In this 
+section we try to find equilibrium configurations 
+(positions and orientations where both the optical
+force and torque are minimised).
+
+Computing the equilibrium positions when a dimer is 
+aligned with the electric field is relatively simple 
+as the orientational torque is minimised (see Eq.
+\ref{eq:opt_torque}). Meaning once trapped the 
+dimer is unlikely to change orientation enough to 
+escape the trap. Regardless, that does not rule out 
+the possibility that there is a stable configuration 
+where the orientation not strictly vertical, in fact 
+most experimental work with symmetric nano-dimers will 
+trap them lying perpendicular to the beam direction 
+\cite{Ahn2018, Reimann2018}. Unlike in Sec.~
+\ref{sec:eq_positions} we cannot simply compute the 
+optical force and torque as the parameter space is too 
+large and determining if a particular position and 
+orientation is stable is not clear based solely on 
+force and torque measurements \cite{Bui2017}. Using 
+the same simulation parameters as before we ran a 
+number short simulations (total simulation time was 
+$0.005$ s) with the laser power increased to $500\ mW$. 
+Each simulation started with the dimer in a different 
+starting position and orientation, due to the high 
+laser power the dimers either escaped the trap or 
+were stably trapped. We chose to only consider the $z-
+\theta$ phase space in order to simplify the explanation,
+considering all possible parameters would increase the 
+simulation time significantly. The $z-\theta$ phase space 
+can be divided into different regions depending on which 
+equilibrium configuration is reached.
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}{0.67\linewidth}
+		\includegraphics[width=\linewidth]{off_axis_trap.png}
+	\end{subfigure}
+	\begin{subfigure}{0.32\linewidth}
+		\raisebox{0pt}[0pt][-10pt]{\makebox{}\includegraphics[width=\linewidth, keepaspectratio]{off_axis_render.png}}
+	\end{subfigure}
+	%\captionsetup{hangindent=2.35cm}
+	\caption{Map of $z-\theta$ phase space using a dimer 
+		of size ratio 2 with a laser power of 500 mW 
+		($\theta=0^\circ$ is the 'standard' orientation 
+		and $\theta=180^\circ$ is the 'inverted' 
+		orientation). The stable configurations are 
+		indicated by the larger circles and the 
+		starting conditions are colour coded to match 
+		the stable point they end up in. Right hand 
+		render shows a dimer in its off-axis configuration.}
+	\label{fig:off_axis}
+\end{figure}
+
+Where the each starting location is colour coded to
+match the final equilibrium position reached, empty
+regions indicate that the trap was escaped. As 
+expected we see that the dimer has three separate 
+traps when the dimer is close to its vertical 
+orientation, similar to what we see from figs.~
+\ref{fig:paradigmatic} and \ref{fig:eq_positions}. 
+When the beginning orientation is close to horizontal 
+there exists a $4^th$ harmonic trap. Each of these 
+traps, has its own 'basin' of attraction around 
+which the dimer is drawn into, the strange shape 
+of these basins is likely due to how the asymmetric 
+shape interacts with the optical trap.
+
+Interestingly while the trap strength of these off-axis 
+configurations are similar in magnitude to the vertically 
+aligned dimers, but when the laser power is lowered 
+(around $5\ mW$) the traps appear metastable. With the 
+vertical configurations even after $30\ s$ of simulation
+time the dimer is still trapped whereas the off-axis 
+configuration can be escaped after only a few seconds of
+simulation time. The suggested that the configuration is 
+metastable is due to the increased rotational freedom. 
+Similar configurations have been explored with ellipsoids; 
+Zhu \textit{et al.} looked at the dynamics of various 
+elliptical particles and found that regardless of shape or 
+initial orientation the particle would tend towards either 
+a purely vertical or purely horizontal orientation 
+\cite{Zhu2021}. However, in our case the dimer never returns
+to a vertical orientation, suggesting their is a potential 
+barrier separating the different configurations. In order
+to build a better understanding of the potential landscape 
+we need to consider how the force and torque vary for a 
+dimer in the $z-\theta$ phase space.  
+
+\subsection{Force-Torque landscape of an arbitrary dimer}
+We use \textit{ott} to compute the optical force 
+and torque for the same dimer as used in fig.~
+\ref{fig:off_axis} in different positions or 
+orientations, this is depicted in fig.\ref{fig:force_torque}. 
+
+The optical torques reported by \textit{ott} are
+about their respective axis - so $T_x$ is the torque
+that rotates the dimer about the x-axis in the particle
+frame. 
+
+The magnitude of the force and torque are indicated
+by the colour intensity, with white indicating either
+zero force or torque. This helps show where a
+dimer may end up in equilibrium by finding 
+where both the torque and force go to 0.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\linewidth]{force_torque.png}
+	\caption{Force-Torque landscape over the $z-\theta$ 
+		phase space with a dimer is a size ratio of 2, 
+		laser power of 100mW. Left: 2D plot of the 
+		optical force in the axial direction as a 
+		function of position and orientation. Right: 
+		2D plot of the optical torque about the x-axis 
+		as a function of position and orientation.}
+	\label{fig:force_torque}
+\end{figure}
+
+The force and torque landscape provides some insight 
+into how the dimer can inhabit an off axis equilibrium
+orientation. Firstly, lets consider a typical trap, 
+while the dimer is close to vertical; in all of these 
+cases the optical force and torque directs the dimer 
+back to the configuration. In this case the potential 
+well is positive whether the dimer moves along the 
+z-axis or is rotated. We can assume that in both cases
+the translational and rotational stiffnesses are close
+enough to be modelled as harmonic potentials.
+
+However when in an off-axis configuration ($z\approx0$ 
+\& $90^\circ\le\theta\le115^\circ$) the optical torque 
+is working against the optical force, trying to move it 
+out of equilibrium while the optical force returns it to 
+equilibrium. This means that the potential well is more 
+akin to a saddle point, the only reason that the optical
+trap is not escaped immediately is because the the 
+translational trap stiffness is significantly greater than
+the gradient of the optical torque ($\kappa_z\gg\kappa_
+\theta$). Therefore it is more accurate to say that the 
+trap is not metastable, as when the trap is escaped it 
+is not because the Brownian displacement is greater than
+the potential well, rather the dimer is randomly 
+traversing along the x-axis (aka random Brownian 
+rotation) and has escaped the translational potential 
+well. 
+
+The force-torque landscape also provides an explanation
+to the boundaries between the different trapping 'basins'
+in fig.~\ref{fig:off_axis}. The first point of interest 
+is the 'dead zone' around the orange basin. Looking at 
+fig.~\ref{fig:force_torque} we can see that around that
+region ($z \approx 2.5\mu$ \& $\theta\approx 110^\circ$)
+the optical torque changes sign as you move closer to 
+the trap focus. There is no clear physical reason why
+the optical torque change direction so abruptly but a 
+consequence of it is that dimers that are too close to 
+this region of the torque landscape are ejected from 
+the optical trap as the are drawn down towards the trap
+focus.
+
+The only pellicular result is the observation that the 
+blue basin can still be reached well below the trap 
+focus. As shown by fig.~\ref{fig:off_axis} there are a 
+handful of starting configurations that end up in the 
+upper trap while in the inverted orientation. Even 
+consulting fig.~\ref{fig:force_torque} does not indicate
+any reason why this occurs. The only conclusion we can 
+draw is that the orange and green basins of attraction 
+are small enough that it is possible for a dimer to 
+avoid both. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Continuous rotational motion in circularly polarised light}
+One aspect that has yet to be covered in depth with regards 
+to spherical aggregates of any construction is their interaction 
+with circularly polarised light. For homogenous spheres the 
+optical torque is regarded as being negligible as the spin 
+density cannot impart angular momentum while propagating in a 
+homogenous medium. Dimers however, have been shown to experience 
+an optical torque \cite{Vigilante2020, Ahn2018, Reimann2018} 
+while trapped in a circular polarised beam. In our simulations 
+we found that dimers would rotate about their long axis when 
+trapped in circularly polarised light. In this section we want 
+to discuss how this behaviour is influenced by size, position, 
+and orientation; and furthermore, we wish to address possible 
+explanations for this behaviour, as none of the current
+theories into optically induced rotation seem plausible.
+
+\subsection{Polarisation Dependency on Dimer trajectory}
+\label{sec:rot_pol}
+In their paper Vigilante \textit{et al} attribute the 
+rotational motion to the anisotropic shape of the dimer
+\cite{Vigilante2020}. Anisotropic scattering is a viable 
+theory for describing optical rotation, however there is 
+usually an optical axis about which rotation occurs. For 
+a dimer this is typically the orientation vector that 
+passes through the centres of both spheres \cite{Ahn2018, 
+Reimann2018, Bruce2020}. There have been cases where the 
+particle's cross sectional shape is engineered to scatter
+light in one particular direction \cite{Higurashi1994}, 
+but if this was the case then the dimer should rotate 
+when illuminated by any polarisation of light. 
+
+To that end, we simulated the motion of an optically 
+trapped dimer in beams of varying polarisation ($NA=1.2$, 
+$P=100\ mW$). As mentioned previously the beam polarisation
+is given using the Jones vector, for each simulation we vary
+the phase in increments of $\pi/24$.  
+
+\begin{figure}[h!]
+	\begin{subfigure}{\linewidth}
+		\includegraphics[width=\linewidth]{rotating_traj.png}
+	\end{subfigure}
+	$\downarrow$
+	\begin{subfigure}{\linewidth}
+		\includegraphics[width=\linewidth]{rotating_traj_fourier.png}
+	\end{subfigure}
+	\caption{Top: 3 second trajectory of a dimer trapped by a 
+		circularly polarised Gaussian beam. The far left 
+		column depicts the dimer's centre of mass position 
+		with time; the remaining 3 columns show the 9 components 
+		of the dimers' rotation matrix, with each column being
+		associated with one of its three principal axis. Bottom: 
+		The same trajectory but each time series has been 
+		replaced with its Fourier transform. The only non-zero 
+		elements are for the $U_{1,x}$, $U_{1,y}$, $U_{2,x}$, 
+		and $U_{2,y}$ which show a single peak at the rotation frequency.} 
+	\label{fig:fourier_transform}
+\end{figure}
+
+Each simulation was run for $1$ second ($\Delta t =10^{-5}\ 
+s$) and at the end we looked at the orientational time series; 
+the dimer's orientation is recorded as a quaternion which can 
+be easily converted to a 3-dimensional rotation matrix. 
+By considering only the transverse components ($U_{1,x}$, 
+$U_{1,y}$, $U_{2,x}$, \& $U_{2,y}$) of the rotation 
+matrix and taking the Fourier transformation of their 
+time series reveals the rotational frequency. The 
+laser power is set to $100\ mW$ to avoid large thermal 
+fluctuations and so that the Fourier series of the 
+transverse components approximates $\delta(\omega_
+{rot}-f)$ - the Dirac delta function centred at the 
+rotational frequency $\omega_{rot}$. This is 
+demonstrated in fig.~\ref{fig:fourier_transform}
+
+If the rotational frequency was not immediately obvious the 
+simulation was repeated but over a longer simulation time. 
+Four different size ratio of dimers were studied, both in 
+their 'standard' and 'inverted' orientations. The results 
+of this are displayed in Fig.~\ref{fig:rotation_vs_pol}:
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\linewidth]{rotation_rate_vs_pol.png}
+	\caption{Rotation frequency vs electric field phase difference 
+		for differently sized dimers. The solid lines represent 
+		the rotation rate experienced while the dimer is in its 
+		standard orientation, whereas the solid points are for 
+		the case where the orientation is inverted. Laser power = 
+		$100\ mW$.}
+	\label{fig:rotation_vs_pol}
+\end{figure}
+
+This shows us that these optical rotations are polarisation 
+dependent and not merely an example of the dimer scattering 
+light asymmetrically. We also know that this cannot be a 
+similar mechanism to that of experimental works \cite{Ahn2018, 
+Reimann2018} as in our simulations the dimer's long axis
+is parallel to the electric field. In this orientation 
+the dimer's optical axis is aligned perpendicular to the
+polarisation vector meaning that there should be no angular
+momentum transferred along the optical axis. This is consistent 
+with other experiments involving elongated particles. A dual
+beam trap was used to study the dynamics of "disk like" particles. 
+They found that these particles had one of two stable
+orientations: Either orienting with the 'flat' side perpendicular
+to the beam trap, with no rotation being observed \cite{Brzobohaty2015}. 
+Or orientating with the 'flat' side parallel to the trap, in which 
+case the long axis was aligned with the polarisation vector and 
+thus rotational motion was detected \cite{Brzobohaty2015}.
+
+\subsection{Brownian Vortex via Curl of Spin momentum}
+In their work Vigilante refers to the spin-curl effects 
+demonstrated by Grier \textit{et al} \cite{Ruffner2012}, 
+in which the curl of the spin density leads to a second 
+order optical force that orbits around the beams central 
+axis \cite{Yevick2017}. While several papers have 
+demonstrated this phenomena \cite{Zhao2007, Zhao2009, 
+Wang2010} it was only properly formalised by \cite{Ruffner2012}. 
+In which they showed that the seemingly random trajectory 
+of a trapped sphere was biased by the polarisation state 
+of the trapping beam. While not immediately evident from 
+the trajectory the helicity of the trapping beam was revealed 
+by computing the particle's probability flux using.
+\begin{align}
+	j(r) = \frac{1}{N-1} \sum_{j=1}^{N-1}
+	\frac{r_{j+1}-r_j}{\tau}\delta_{sigma_j}\left(r-\frac{r_{j+1}+r_j}{2}\right)
+	\label{eq:prob_flux}
+\end{align}
+
+where $\delta_{\sigma_j}$ is the kernel of an adaptive 
+density estimator \cite{Silverman1986}. \eqref{eq:prob_flux} 
+describes the direction a trapped sphere is most likely 
+move in given our statistical knowledge of the 
+trajectories probability density function. A finite 
+estimation of the density function $p(r)$ is used in 
+\cite{Ruffner2012}.
+\begin{align}
+	p(r) = \frac{1}{N}\sum_{j=1}^N \delta_{\sigma_j}(r-r_j)
+	\label{eq:prob_density}
+\end{align}
+
+The probability flux reveals a biased motion in the trajectory 
+of a single sphere (see Fig.~\ref{fig:Ruffner_Grier}). This 
+biased motion results in a slight orbital motion about the 
+central axis of the trapping beam, the orbital frequency is 
+shown to be proportional to the polarisation state of the 
+trapping beam. 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\linewidth]{Ruffner_Grier_2012.pdf}
+	\caption{Figure reused from \cite{Ruffner2012}. (a) shows how 
+		the momentum density of a Gaussian beam is twisted while 
+		using circularly polarised light. The top row (figures 
+		(b)-(d)) shows a 7 sphere cluster trapped in a circularly 
+		polarised beam. Due to the clusters asymmetric susceptibility 
+		to polarization the cluster rotates in the $x-y$ plane. 
+		Whereas the bottom row (figures (e) - (g)) show the similar 
+		results for a single sphere. In this instance the sphere 
+		does not rotate but instead orbits the beam axis. In both 
+		instances the motion is proportional to the degree of 
+		polarisation (see figures (d) and (g)) but for the single 
+		sphere this motion is only revealed when using 
+		\eqref{eq:prob_flux} \& \eqref{eq:prob_density}. Reused 
+		with permission from author}
+	\label{fig:Ruffner_Grier}
+\end{figure}
+
+While the results from \cite{Ruffner2012} suggest that the 
+optical rotation seen in asymmetric dimers can be attributed to 
+the same spin-curl forces there are several questions that 
+cannot be explained purely by the spin-curl force. 
+
+\subsection{Optical torque differences}
+In their paper Grier \textit{et al} show that a 7 sphere cluster
+will rotate when trapped in circularly polarised light but a 
+homogenous sphere will have a slight curl to its trajectory. 
+They attribute this to the curl of the spin angular momentum
+generating a "Brownian vortex". But what is more interesting, 
+and something that appears unaddressed, is how the effects of 
+this vortex change based on the overall shape of the target
+particle.
+
+You would not expect that the addition of a single additional 
+sphere should drastically adjust the torque especially if said 
+sphere is relatively small. However when we measured the optical 
+torque of a single sphere and a dimer - $a_{I}/a_{II}=10$ - we 
+found the exact opposite. In both cases we used the same trapping 
+beam as used for fig.~\ref{fig:rotation_vs_pol} but with a 
+circularly polarised beam. Both the sphere and dimer were rotated 
+in the $x-z$ plane and the all three components of the optical 
+torque were recorded.
+\begin{figure}[h!]
+	\centering	
+	\includegraphics[width=\linewidth]{sphere_dimer_torque.png}
+	\caption{Optical toque experienced by a dimer ($a_{I}/a_
+	{II}=10$) and a single isotropic sphere. Both were rotated 
+	in the $x-z$ plane and the angle between $U_z$ and the beam 
+	axis gives the polar angle.The solid lines denote the torque 
+	experienced by the dimer whereas the dashed lines represent 
+	the torque experienced by the sphere.}
+	\label{fig:sphere_dimer_torque}
+\end{figure}
  
-\section{Summary of Moving Beam Phenomena}
-To summarise, the introduction of a moving beam helps to 
-accelerate the local growth of a newly formed crystal. It 
-seems that this phenomena will only occur when close to 
-interface between the solution and air. We note the presence
-of droplets that can sometimes be seen entering the trap, 
-though this is not always necessary for a nucleation event 
-to occur. A plausible description of the phenomena is described
-thusly. 
+The torques about the $x$ and $y$ axis can be somewhat understood 
+as the second sphere is being drawn back towards the centre of the 
+trap by the gradient forces. The same cannot be said for the $z$-
+component of the optical torque, which is non-zero even at a 
+$80^\circ$ angle. This cannot be simply explained via spin-curl 
+effects, as the 'Brownian vortex' should instead be driving the
+dimer around the beam axis - similar to how the 7 sphere cluster 
+behaved. What is clear that the mere combination of two spheres
+results in a unique behaviour that has not been previously 
+investigated. 
 
-Initial nucleation is similar to typical optical trapping 
-induced nucleation, with the air solution interface limiting 
-the molecular mobility of the solute molecules \cite{Liao2022, 
-Sugiyama2009, Gowayed2021}. The moving beam front can influence 
-the motion of the nucleus initially, but eventually the drag 
-force means the crystal is not moved by the optical trap. 
-Localised crystal growth occurs when the trap is close to or 
-partially over the interface of the crystal (see fig.~
-\ref{fig:local_nucleation}(a)). This suggests that the 
-laser itself is bringing in new solute material that can then
-adhere to the crystal surface. Interestingly even when the 
-crystal growth is localised to a small section of the crystal
-we do not observe the crystal dissolving. This is consistent 
-with other observed laser induced nucleation results, where 
-as long as the laser is active the crystal remains stable 
-within the solution \cite{Flannigan2023, Rungsimanon2010,
-Liao2022, Sugiyama2009}. It does raise further questions 
-however, mainly in an undersaturated solution is a moving 
-beam front able to increase the size of the formed nucleus
-compared to a stationary beam? Additionally, it raises the 
-question about what the role the 'glycine droplets' play in 
-the nucleation process.
-
-As shown in \ref{sec:clusters}, the optical trap can manipulate 
-these droplets similar to microspheres. When in close proximity 
-to the trap these droplets are brought towards the crystal 
-surface (see fig.~\ref{fig:local_nucleation}(b)). We have 
-already suggested that these droplets must contain glycine as 
-they are to large to be a silica microsphere, and the solutions 
-were filtered prior to being studied. The droplets provide 
-material that grows the crystal around that region (see fig.~\ref{fig:local_nucleation}(c)). Eventually the local 
-solution is either depleted of solute material or the crystal 
-front has grown to fully encompass the trap, preventing further 
-growth (see fig.~\ref{fig:local_nucleation}(d)). 
+\subsection{Rotational frequency as a function of size ratio and 
+	orientation}
+\label{sec:rot_size}	
+One factor t Intuitively, you would expect that a 
+larger particle would experience a greater torque and therefore 
+rotate faster. By repeating the same kinds of simulation as used 
+in \ref{fig:rotation_vs_pol} but for a circularly polarised beam 
+$\phi=90\circ$ it was found that not only is the rotation rate 
+dependent on the size of the dimer, but also on its orientation 
+and therefore their axial position.
 \begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.8\linewidth]{galvano_diagram.pdf}
-	\caption{Diagram outlining how a moving beam assists in the 
-		growth of a crystal nucleus. (a) a crystal nucleus is 
-		partially trapped by a moving beam with solute droplets 
-		close to its surface. (b) droplets close to the laser
-		focus can be drawn in by gradient forces and moved 
-		towards the crystal surface. (c) the laser brings in 
-		material that is then deposited on the surface of the 
-		crystal. (d) eventually the crystal area either fully 
-		surrounds the laser focus or the solution surrounding 
-		the laser is depleted of solute material.}
-	\label{fig:local_nucleation}
+  \centering
+  \includegraphics[width=\linewidth]{rotation_rate_vs_size.png}
+  \caption{Rotation rate plotted against dimer size ratio while 
+  	trapped in a circularly polarised beam; a positive rotation 
+  	rate indicates clockwise rotation, whereas a negative 
+  	rotation rate indicates counter-clockwise rotation. The red 
+  	line is for the case of a dimer in its 'standard' orientation. 
+  	The blue line is for the case when the dimer is in its 
+  	'inverted' orientation while trapped above the focus of the 
+  	beam. And lastly the green line is for the case when the 
+  	dimer is in its 'inverted' orientation, but when it is trapped 
+  	below the focus of the beam.}
 \end{figure}
 
-What remains unclear is why the solution interface is necessary
-for localised crystal growth. We know that the glycine droplets 
-will form when the laser is close to the glass-solution interface
-\cite{Gowayed2021, Yuyama2010, Yuyama2012}. This is consistent 
-with our results as being able to image the droplet edge requires 
-that the laser is brought close to the cover slip. However it is 
-not clear how exactly these droplets contribute to localised 
-crystal growth as in sec.~\ref{sec:moving} no droplets are seen 
-entering the trap. It seems likely that the presence of droplets 
-is necessary as we see that the seed crystals dissolve while 
-there are no droplets present. 
+It is difficult to see from the graph, but the rotation rate never
+truly goes down to zero, reaching a minimum of $2\,{\rm Hz}$, which 
+would imply that a second sphere of radius $200\,{\rm nm}$ is enough 
+to induce rotational motion. It is not clear if the optical torque 
+calculated for the larger size ratios is accurate as you would not 
+expect the rotation rate to plateau like this. From fig.~
+\ref{fig:sphere_dimer_torque} it seems clear that the torque is not
+merely an error of the numerical calculations as it would not have 
+such a strong angular and positional dependence. Most likely with 
+longer simulation times would reveal the real relationship behind
+the rotation rate and the size ratio. 
 
-There are still several factors that need to be investigated. 
-Firstly, there is the question of what conditions result in the 
-production of concentrated droplets, it is not clear if the 
-presence of a laser is required or if these droplets naturally 
-occurring. Prior literature would suggest that the laser is 
-required \cite{Liao2022, Tsuboi2009}, but this would not explain 
-why in many cases the droplets are found far outside the influence 
-of the optical trap. It has been shown that phase separation 
-occurs when a trap is focused close to the cover slip 
-\cite{Gowayed2021, Yuyama2010, Yuyama2012}, but there has been 
-no cases of nucleation occurring at the cover slip. Furthermore
-these experiments all occurred in supersaturated condition 
-($S\ge 1.50$) with a much wider focus ($NA \le 1.00$) whereas 
-our results occurred in undersaturated conditions with a 
-tighter focus. We did not not any occurrence of a phase 
-separation as reported by \cite{Gowayed2021, Yuyama2010, Yuyama2012}
-and yet we see the appearance of droplets that we surmise 
-are partially constructed of glycine.
+What is also interesting is that the rotation rate is not correlated 
+directly with either the particle size or the equilibrium position. 
+This is in stark contrast to previous reports of dimer optical 
+rotation; Ahn \textit{et al.} reported that the rotational frequency 
+is maximised when the dimer is symmetric \cite{Ahn2018}. Their work 
+was conducted experimentally in a vacuum so the only limiting factor 
+to the optical rotational motion is the structural stability of the 
+particle itself. 
 
-Secondly, there is the question of how these droplets supply 
-material to the bulk crystal. In some instances it is clear 
-that the droplets are being drawn into the trap, however, in 
-other instances while there are no droplets close to the 
-vicinity of the optical trap the crystal continues to grow. 
-If these droplets are a necessary precursor to induce crystal 
-nucleation then understanding how they provide materials to 
-the bulk crystal may help with our understanding of the 
-kinetics of multi-step nucleation. 
+\subsection{Gyroscopic Precession using asymmetric dimers}
+As mentioned in section~\ref{sec:off-axis} for specificity sized 
+dimers there is the potential for non-vertical trapping orientations 
+in which the dimer is still stably trapped. When a circularly 
+polarised beam is used the dimer exhibits gyroscopic precession. 
+As shown in fig.~\ref{fig:gyro} the dimer's trajectory exhibits 
+periodic rotation, both around its long axis and about the beam 
+axis.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\linewidth]{gyroscopic_precession.png}
+	\caption{3 second trajectory of a dimer ($a_{I}/a_{II}=2$) trapped 
+		in an off axis orientation with a circularly polarised beam 
+		($P= 100\ mW$). The far left column depicts the dimer's centre 
+		of mass position with time; the remaining 3 columns show the 9
+		components of the dimers' rotation matrix, with each column being
+		associated with one of its three principal axis.}
+	\label{fig:gyro}
+\end{figure}
 
-\section{Conclusion}
-In conclusion, the experimental results from this chapter 
-provide no affirmative evidence of shear induced crystal 
-nucleation. This is in part due to the limited rotational 
-speed that could be achieved using vaterite microspheres. 
-Simply adding a micro-rotor to a supersaturated solution 
-will not yield a significant fluid flow to induce crystal 
-nucleation. Furthermore, the region in which the local 
-shear rate is significant enough is so small that any 
-nucleation events that could occur there may not grow large 
-enough to be stable. This does not however, suggest that 
-shear induced nucleation is impossible at a micro scale. 
-In fact there have been several developments lately that
-allow for the precise rotation of multiple rotors to 
-control the precise motion of silica beads \cite{Butaite2019}. 
-This would allow for direct control of the shear rate 
-within a given volume of fluid, allowing one to study the 
-impact of fluid flow on a nucleus at a micro-scale.
+Applying a Fourier analysis to the above trajectory reveals 
+the 3 fundamental frequencies typically associated with 
+gyroscopic precession. Fig.~\ref{fig:gyro_diagram} gives 
+a representative idea of the motion seen in fig.~\ref{fig:gyro}.
+Firstly there is precession, is denoted by $\psi$, this
+causes the dimer to rotate in the $XY$ plane while maintaining
+a constant polar angle. The precession can be due to the dimer 
+having inhomogeneous polarisation susceptibility. Since its 
+long axis is more susceptible to being polarised the dimer will
+try to align its long axis with the polarisation vector 
+\cite{Bruce2020}. Second there is nutation, denoted by $\theta$, 
+which is due to the dimer's Brownian motion being influenced by 
+the 'Brownian vortex', as predicted by \cite{Ruffner2012}. And 
+lastly there is rotation, denoted by $\omega$, where the dimer
+spins around its long axis as it did in \ref{sec:rot_pol} \&
+\ref{sec:rot_size}. If the rotation was due to the curl of the 
+spin angular momentum then you would only expect to see 
+precession and nutation, the addition of rotational motion 
+suggests that having multiple particles in close proximity 
+results in a transfer of angular momentum along the long 
+axis.
+ 
+What is interesting is that while we see the precession and 
+nutation also contribute to the rotation frequency. As can be 
+seen in both fig.~\ref{fig:gyro} and fig.~\ref{fig:gyro_diagram}
+the rotation matrix components $U_{x,x}$, $U_{x,y}$, $U_{y,x}$
+and $U_{y,y}$
+\begin{figure}[h!]
+	\hspace{-2.3cm}
+	\includegraphics[width=1.2\linewidth]{gyroscopic_diagram.pdf}
+	\caption{Representative diagram of the gyroscopic precession 
+	from fig.~\ref{fig:gyro}. The dimer has three principal angular
+	frequencies: The rotation ($\omega$) occurs around the 
+	the dimer's long axis. Precession ($\psi$) is seen where the dimer 
+	rotates around the beam axis. Nutation ($\theta$) is due to the dimer's 
+	centre of diffusion orbiting the beam axis. Shown on the right
+	is the power spectra from fig.~\ref{fig:gyro} with the associated 
+	frequencies labelled. The power spectrum have been zoomed in on
+	the relevant frequencies to highlight the precise values.}
+	\label{fig:gyro_diagram}
+\end{figure}
 
-On the other hand, the results utilising the galvano mirror 
-have some interesting implications for future research into 
-crystal nucleation using optical tweezers. We noted that a 
-moving beam front is capable of localising the crystal growth
-around the beam focus in undersaturated conditions. Typically
-in laser induced nucleation the final crystal morphology is 
-influenced primarily by the local fluid conditions 
-\cite{Flannigan2023, Liao2022}. If this phenomena could be 
-fully understood we could have a means of directly manipulating 
-the morphology of any nucleating crystal. We noted that in 
-undersaturated conditions the presence of droplets that could 
-be trapped and later nucleated when brought into contact with 
-one another. There remains some uncertainty over the role these 
-droplets play in a nucleation event. Further research is also 
-necessary to understand how the fluid and laser parameters 
-(i.e. supersaturation and numerical aperture) impact the 
-formation of these droplets. The fact that these droplets could 
-be trapped suggests they have a higher refractive index to the 
-solution, given that the solutions were filtered prior to 
-irradiation dismisses that they could be dust particles. Prior 
-literature suggests that optical trapping of a supersaturated 
-solution can lead to the production of nano droplets 
-\cite{Gowayed2021, Tsuboi2009}. 
+This gyroscopic motion has been demonstrated previously in 
+nanoparticles \cite{Zhu2021, Rashid2018, Hoang2016, Kuhn2016} 
+but has not been observed for micron scale aggregates. What
+is interesting that the precession is seen around the particle's
+optical axis (in the case of a dimer this would be its long 
+axis). Fig.~\ref{fig:gyro} instead shows the precession 
+occurring perpendicular to the optical axis. In the former 
+case the precession was explained as simply occurring due 
+to the reaction torque from the surrounding fluid \cite{Zhu2021}.
+In their analysis of ellipsoidal particles, Zhu \textit{et al.}
+found that when the particle rotated around their minimal inertial 
+axis (similar to the observed behaviour in dimers), the particle 
+would quickly 'stabilise' by aligning its' optical axis with the 
+beam axis. This highlights that a spherical dimer is capable of 
+rotating about its minimal inertial axis while remaining stably
+trapped. This has potential implications beyond simply 
+understanding particle dynamics. 
 
+Further analysis of the mechanism behind the precession of off-axis 
+dimers may provide insights into controlling Brownian motion. An 
+experimental work trying to 'cool' nano-dimers by controlling the 
+motion in all 6 degrees of freedom found that even while the 
+rotation about the short axis' could be controlled the free rotation 
+around the dimers' long axis resulted in an unpredictable torsional 
+vibration \cite{Bang2020}. Understanding how rotational motion 
+arises in the Mie-regime could allow researchers to build a robust 
+theoretical framework to construct beam structures that eliminate any 
+unwanted rotational motion from a target particle. Conversely, the 
+same framework could allow for precise measurements of the optical 
+torque applied to a target particle, allowing for characterisation 
+of complex shaped particles' interactions with an optical trap. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Conclusions}
+Considering the simplicity of a scatterer such as a dimer, 
+one would assume that the dynamics of such an object would 
+be relatively easy to predict. Simulations of dimers in 
+the Mie regime show that not only do they have multiple 
+positions and orientations in which they can be trapped but 
+also that their interaction with circularly polarised light 
+is heavily dependent on the axial position and trapping 
+orientation. 
+
+Dimer's have the potential to be used as tunable micro-rotors, 
+being simple to synthesise and can be made out of any material 
+of choice. The rotation demonstrated by dimer's is not accurately
+described in previous literature which raises questions on the
+interactions between circularly polarised light and spherical 
+aggregates. Until now, our understanding of angular momentum 
+transfer has been either focused on single particles (where 
+momentum transfer is easily described by Lorenz-Mie theory) or 
+for large aggregates of particles, where the angular momentum 
+transfer between individual particles is not considered. This 
+could provide a greater understanding of angular momentum and 
+help in the development of better torque sensing or torque 
+preventing methods.
 

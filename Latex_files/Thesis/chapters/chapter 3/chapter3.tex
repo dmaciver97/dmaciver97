@@ -10,7 +10,6 @@
 %	Using .eps or .pdf is recomended to prduce high quality figures etc.
 %
 %	The Strathclyde logo can be found in other formats at www.strath.ac.uk.
-%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[a4paper,oneside,11pt]{book}
@@ -29,23 +28,27 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage[strict]{changepage}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{floatrow}
+\usepackage{sidecap}
+
+%\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
 %\usepackage{fontspec}
 %\setmainfont{times}
 %\usepackage{bookman}
 
-\usepackage[
-backend=biber,
-bibstyle=ieee,
-citestyle=ieee,
-minbibnames=3, maxbibnames=3,
-]{biblatex}
-\addbibresource{thesis_bib.bib}
-
 
 % Page Margins - Strath Requirement
 \usepackage[left=4cm,right=2.5cm,top=2cm,bottom=4cm,includehead,includefoot,headheight=15pt]{geometry}
+
+\usepackage[
+backend=biber,
+bibstyle=numeric,
+citestyle=numeric,
+minbibnames=3, maxbibnames=3,
+]{biblatex}
+\addbibresource{../../thesis_bib.bib}
 
 % Page Headers
 \usepackage{fancyhdr}
@@ -70,13 +73,23 @@ minbibnames=3, maxbibnames=3,
 \usepackage{titling}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand*\mycommand[1]{\texttt{\emph{#1}}}
+
+\newcommand{\comment}[1]{{\bf\textcolor{red}{#1}}}
+% \newcommand{\comment}[1]{{{#1}}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \setcounter{chapter}{2}
 \include{main}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \bibliographystyle{ieeetran}
 \printbibliography
 
