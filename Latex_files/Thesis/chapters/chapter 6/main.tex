@@ -200,10 +200,10 @@ surface tension $\sigma_{inf}$ is a scalar value. Looking at
 \eqref{eq:CNT} suggests that there must be some critical size 
 $r$ where the free energy gain from the nucleus exceeds the 
 surface tension of the surrounding fluid. This is reflected in 
-fig.~\ref{fig:free_energy} where we plot the free energy of the 
+Fig.~\ref{fig:free_energy} where we plot the free energy of the 
 system against nucleus size. This reveals a critical size above 
 which the gain in free energy exceeds the interfacial tension. 
-Furthermore fig.~\ref{fig:free_energy} shows how increasing the 
+Furthermore Fig.~\ref{fig:free_energy} shows how increasing the 
 supersaturation of the system reduces said barrier. 
 \begin{figure}[h!]
 	\centering
@@ -389,154 +389,19 @@ characterisation techniques to identify the pathway taken. The
 method not only needs to be repeatable for a single set of system 
 parameters, but also needs to be flexible enough to replicate 
 results regardless of the system parameters (i.e. varying 
-supersaturation, temperature, and solute choice). There have 
-been several different methods deployed to try and observe 
-crystallisation at a microscopic scale.
+supersaturation, temperature, and solute choice). 
 
-\subsection{Computer Simulations}
-While not a direct observation of nucleation events, computer
-simulations have proved an invaluable tool for studying and 
-testing predictions about the pre-nucleated solution. By 
-comparing the simulative nucleation rate to the expected 
-rate given by current models, researchers can test newly 
-developed theories and glean information about the microscopic
-parameters of a system. 
-
-The main challenge facing computer simulations is the issue
-of limited scope. Molecular dynamic simulations are constrained
-by their choice of time and length scale, for example simulations
-in a canonical ensemble face issues where the chemical potential
-is depleted to the point that the driving force for crystallisation
-is halted \cite{DuranOlivencia2015, Finney2023}, this can be 
-addressed but requires an extensive increase in computational 
-resources to maintain the chemical potential equilibria. Like wise
-in most cases the choice of time scale is a crucial factor, shorter
-time scales provide a more accurate evolution of the solution; 
-however, in some cases the time scale magnitude for crystallisation
-is often far greater than the time scale used in the simulation. This
-has led to more advanced sampling techniques that allow for longer 
-time scales which has provided insights into the pre-nucleation 
-solution stage and formation of pre-nucleated clusters \cite{Finney2023}.
-
-The study of the pre-nucleated solution and the evolution of 
-precursors has been aided greatly by the use of simulative 
-studies. Early on it was shown in colloidal crystallisation 
-that the structure of the precursor was time dependent; 
-colloidal simulations showed that regardless of the molecular
-interactions between colloids the atomic packing pattern was 
-predominately hexagonal centred, over time the packing
-became dominated by body centred packing in the case 
-where the interactions were longer reaching \cite{Tan2013}. 
-They also confirmed that precursor formation was driven not
-by local density variations, but instead was driven by the 
-local bond order of the colloidal precursors \cite{Tan2013}, 
-providing strong evidence that the colloidal pre-nucleation 
-clusters undergo rearrangement prior to nucleation. Further
-developments in $NaCl$ simulations have shown that by varying
-the density fluctuations the precursor structure could either
-be amorphous, the classical rock-salt structure, or a new 
-structure similar to wurtzite. While this result is difficult
-to confirm it provides a important conclusion, that simulations
-can hint at new nucleation pathways that have not been confirmed
-experimentally. This means that computer simulations can not
-be merely used to confirm theories, but can be used to examine
-and search for novel results. 
-
-Overall computer simulations make up a core area of research 
-in the study of nucleation. The technique is however limited,
-often struggling to examine nucleation over longer time scales
-or larger number of particles. While sampling methods and 
-enhanced simulation techniques has alleviated this somewhat 
-they are still far from being able to describe the behaviour 
-of larger molecules undergoing nucleation. 
-
-
-\subsection{Transmission Electron Microscope (TEM)}
-One of the more well known techniques used for direct observations 
-of crystallisation dynamics is using transmission electron 
-microscopy (TEM). The basic working principle involves creating a 
-focused beam of electrons that are directed onto a target sample.
-Due to the wave-particle duality, the electrons can be treated 
-as a unified beam of light, whose wavelength is dependent on the 
-kinetic energy of the electrons. The wavelength of an individual 
-electron is given by \cite{Williams2009}:
-\begin{align}
-	\lambda_e = \frac{h}{\sqrt{2mE(1+\frac{E}{2mc^2})}}
-\end{align}
-
-\noindent
-When incident on a sample the wave is scattered by the sample 
-and can then be detected by an imaging screen that measures 
-the difference in intensity between the scattered and 
-transmitted beams. The advantage of TEM is that one can bypass
-the diffraction limit imposed by visible light, the maximum 
-resolution that can be achieved by a microscope is given by
-\cite{Champness2020}:
-\begin{align}
-	d = \frac{\lambda}{2NA}
-\end{align} 
-
-\noindent
-where NA is the numerical aperture of the objective lens, and
-$\lambda$ is the wavelength of light used to illuminate a sample.
-For a visible light LED with an average wavelength of $550~nm$, 
-the upper limit for an objective lens (NA of 1.2) is around 
-$230~nm$ whereas a similar lens focusing an electron beam 
-with an average kinetic energy of $100~keV$ will have a maximum 
-resolution of just over $4~pm$ \cite{Champness2020}. There is
-an upper limit to the maximum resolution possible as electron 
-lens are far inferior to what modern optics can achieve 
-\cite{Champness2020} so there is a trade off between quality and 
-resolution. 
-
-TEM technology has proven invaluable to the study of nucleation
-at an atomic level. The samples are often only a few hundred 
-atoms thick in order to optimise the imaging results. Much of 
-the supporting evidence for non-classical nucleation has been 
-demonstrated via TEM \cite{Ye2023}. For example when Cao 
-\textit{et al} observed the formation of amorphous atomic 
-cluster using $\gamma-$Fe,Au, and Re; all three of which 
-underwent continuous transformation before eventually 
-reaching an final ordered state \cite{Cao2020}. The amorphous 
-cluster did not immediately transition to an ordered structure, 
-instead fluctuating somewhat randomly until eventually settling 
-into a crystalline structure \cite{Cao2020}. This was confirmed 
-both in solid growth and liquid growth conditions \cite{Cao2020, 
-	Loh2016}, suggesting that the non-classical nucleation path 
-dominates in all cases of metal crystal formation \cite{Ye2023}. 
-Confirmation is necessary for different solute choices, as in 
-the case of organic solids it is believed that non-classical 
-nucleation only dominates in low supersaturations whereas 
-classical nucleation is dominate at higher supersaturations.
-
-TEM analysis has not been extended to the study of organic 
-crystals, proteins, or simple salts at an atomic level 
-however. The main reason being that organic materials can be 
-damaged by the electron beam and therefore need to be frozen 
-prior to being imaged \cite{Champness2020}. This was used to 
-study the polymorphic time dependence of glycine crystals, by 
-varying the time prior to freezing Broadhurst \textit{et al} 
-showed that $\beta$ glycine dominates initially but $\alpha$-
-glycine is more stable after a longer period, $\gamma$-glycine 
-was only found when allowed to dry over an hour on a glass slide \cite{Broadhurst2020}. While this was invaluable for showing 
-the time scales with which polymorphs form, it doesn't provide 
-much information on the kinetics of crystal growth as these 
-were snap shots and not direct observations of the nucleation 
-process.
-
-Overall TEM analysis is invaluable for the study of atomic 
-crystal growth, the secondary scattering from electron 
-beams also allows for chemical and structural information 
-to be gleaned from the target. This has given strong evidence
-for the non-classical nucleation theory, particularly in 
-metal crystal formation. Due to the high energy of the 
-electrons, organic materials have not received the same
-focus outside of cryoTEM analysis. Non-invasive methods
-are therefore necessary to gain an understanding of the
-crystal growth and formation of organic crystals, 
-particularly when both classical and multi-step nucleation 
-can occur.
-
+This was one of the initial goals of the PhD, to localise nucleation
+using optical tweezing. While tweezing by itself can induce nucleation
+the exact mechanism that causes it is still unclear. Optical interactions
+with sub-wavelength particles are not possible so only a two-step 
+nucleation event can be occur via optical tweezing. In order to accurately 
+characterise the nucleation pathway taken at a given supersaturation, 
+a method is needed that is not dependent on the pathway taken. This is 
+what lead us to consider localised shearing, while still favoured by 
+two-step nucleation it is still possible for the classical nucleation 
+pathway to occur, given that the free energy barrier is low enough to 
+be traversed via localised shearing.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Optical Tweezer Equipment}
@@ -648,7 +513,7 @@ fixed spot which operates like a typical optical trap.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Fourier Optics and 4f correlators}
 \label{sec:4f_correlation}
-As shown in \ref{fig:setup}, after the galvano-mirror there are a pair
+As shown in Fig.~\ref{fig:setup}, after the galvano-mirror there are a pair
 of focal lenses ($f_3$ and $f_4$) that do not seem to serve a clear
 purpose. These are in fact crucial for the operation of the Galvano, the
 pair of them can be more accurately called a 4f correlator. 
@@ -880,7 +745,7 @@ peaks at integer multiples of the rotational frequency. The largest
 peak is often twice the rotational frequency which is due to the 
 polarization modulation of the scattered field, the first peak 
 is due purely to the rotation of vaterite sphere \cite{Monteiro2018}. 
-An example of this is behaviour is shown in fig.~\ref{fig:tdat_fdat}.
+An example of this is behaviour is shown in Fig.~\ref{fig:tdat_fdat}.
 
 \begin{figure}[h!]
 	\begin{subfigure}{0.49\linewidth}
@@ -966,7 +831,7 @@ lines represent the point when the nucleation rate is less than
 90\% of the maximum. We can visualise the fluid around the 
 rotating sphere by dividing it up into radial sections. Assuming 
 the sphere is rotating sufficiently quickly there are three 
-sections of concern, as demonstrated by fig.~\ref{fig:shear_diagram}. 
+sections of concern, as demonstrated by Fig.~\ref{fig:shear_diagram}. 
 The fluid close to the sphere experiences a shear rate that 
 is far greater than the optimal shear rate, in which case 
 nucleation is suppressed \cite{Mura2016}. Secondly, there is 
@@ -1007,12 +872,12 @@ is difficult to measure directly, often requiring one fits a
 complex Lorentzian curve to the recorded power spectra in order 
 to measure the fluid drag from being in close proximity to the 
 cover slip \cite{BergSoerensen2004}. We estimate that the 
-vaterite must be at least $15-20\mu\ m$ from the cover slip for 
+vaterite must be at least $15-20\ \mu m$ from the cover slip for 
 us to reliably trap them. The contact angle between the cover 
 slip and solution was previously measured in \cite{Flannigan2023},
 while being loosely dependent on the supersaturation the 
 measured contact angle for supersaturated solutions was between 
-$30^{\circ}$ and $35^{\circ}$. This is shown in fig.\ref{fig:3.9}.
+$30^{\circ}$ and $35^{\circ}$. This is shown in Fig.\ref{fig:3.9}.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\linewidth]{vaterite_diagram.pdf}
@@ -1092,25 +957,36 @@ to the contact point of the droplet and the cover slip.
 
 It is suspected that trapping is much harder at the 
 interface due to increased surface tension and unpredictable 
-scattering forces. The closest we could trap a microsphere to 
-the droplet edge was in the range of $5-10\mu\ m$, at that 
-distance the fluid flow is so low that even the presence of a 
-hard boundary would be insufficient for shearing the fluid. 
-Furthermore, as is evident in Table~\ref{tab:Nucleation}, 
-the rotation rate drops off significantly with increased 
-supersaturation, due to higher fluid viscosities. While in 
-theory a sufficiently focused laser could rotate any 
-microsphere to a fast enough to reach the shear rate 
-predicted by \cite{Debuysschere2023} the localised intensity 
-would be so large that even using $D_2O$ would see a significant 
-increase in temperature. 
+scattering forces. The drag coefficient is estimated to increase
+by 10\% when approaching a flat boundary \cite{Yao2009} so approaching 
+an angled surface would see an even greater increase.  The 
+closest we could trap a microsphere to the droplet edge was 
+in the range of $5-10\ \mu m$, at that distance the fluid flow 
+is so low that even the presence of a hard boundary would be 
+insufficient for shearing the fluid. Furthermore, as is evident 
+in Table~\ref{tab:Nucleation}, the rotation rate drops off 
+significantly with increased supersaturation, due to higher 
+fluid viscosities. Solution viscosity has been shown to increase 
+with a slight addition of glycine \cite{Patyar2020}, though as 
+best as we can find there have been no studies of solution 
+viscosity when the concentration reaches saturation levels. 
+One would suspect that when $S\geq1$ the chemical potential 
+driving the solute molecules to nucleate would also somewhat 
+resist the velocity field leading to an additional increase in 
+viscosity.
+
+While in theory a sufficiently focused laser could rotate any 
+microsphere to a fast enough to reach the shear rate predicted 
+by \cite{Debuysschere2023} the localised intensity would be so 
+large that even using $D_2O$ would see a significant increase 
+in temperature. 
 
 It is not impossible that fluid shearing could be used in the 
 future to localise nucleation; but from these results, using 
 individual micro-rotors is not an appropriate method due to
 two key factors. Firstly, the area of influence is far too 
 small to see any noticeable increase in the nucleation rate 
-this is demonstrated most clearly in fig.~\ref{fig:vaterite_shear}. 
+this is demonstrated most clearly in Fig.~\ref{fig:vaterite_shear}. 
 Due to the exponential decay in the expected shear rate it is 
 very difficult trying to shear a large volume of fluid. Even 
 if the optimal shear rate at a micro-level was an order of 
@@ -1155,12 +1031,13 @@ was suggested, using a galvano mirror to move a particle
 quickly through a supersaturated solution. Preliminary 
 calculations suggested a particle moving rapidly through 
 a fluid could produce significantly greater shear rates 
-(see \emph{Appendix X.X} for breakdown) than a rotating 
-particle. While a particle is within the optical trap the 
-gradient forces are significantly reduced meaning simply 
-trapping a particle is insufficient for inducing nucleation \cite{Flannigan2023}. This is why we did not see any 
-nucleation events while rotating the vaterite, there is 
-not a large gradient force to draw in material. 
+(see Appendix\ref{sec.shear_rate-calcs} for breakdown) 
+than a rotating particle. While a particle is within the 
+optical trap the gradient forces are significantly reduced 
+meaning simply trapping a particle is insufficient for 
+inducing nucleation \cite{Flannigan2023}. This is why we did 
+not see any nucleation events while rotating the vaterite, 
+there is not a large gradient force to draw in material. 
 
 During initial testing using silica beads we found that 
 even in undersaturated solutions the optical trap would 
@@ -1169,7 +1046,7 @@ has been reported prior \cite{Rungsimanon2010, Liao2022},
 but what is more interesting is how the beam's motion 
 influenced the growth of the nucleus. 
 
-\subsubsection{Choice of Crystal growth rate units}
+\subsection{Choice of Crystal growth rate units}
 The growth rate of a crystal can be described using different
 units depending on the situation. For example, seed crystals 
 often use growth units in the form of \textit{length per unit
@@ -1262,7 +1139,7 @@ Shown below in Fig.~\ref{fig:eliptical_beam_1} where
 we have the laser focus moving in a small elliptical 
 pattern. While nothing is seen directly entering the 
 focus a nucleus forms close to the droplet edge, 
-unlike in fig.~\ref{fig:stationary_beam} the crystal 
+unlike in Fig.~\ref{fig:stationary_beam} the crystal 
 does not grow out from the focal point evenly. Due to 
 the galvano mirror, the crystal is simultaneously 
 being moved by and growing around the focal point of 
@@ -1287,19 +1164,19 @@ with further irradiation increasing the size.
 \end{figure} 
 
 Interestingly the galvano-mirror allows the trap to 
-impart a slight torque on the crystal, as shown in fig.~\ref{fig:eliptical_beam_1}(c) and (d), where even 
+impart a slight torque on the crystal, as shown in Fig.~\ref{fig:eliptical_beam_1}(c) and (d), where even 
 though the crystal is not directly in the trap focus 
 it rotates in the $x-y$ plane and gets trapped again 
 at a corner. The rotation could not be due to fluid 
 flow close to the surface of the crystal as the 
 dipole moment of individual water molecules is too 
-small to be influenced by an optical trap. In figs.\ref{fig:eliptical_beam_1}(e) and (f), the 
+small to be influenced by an optical trap. In Figs.\ref{fig:eliptical_beam_1}(e) and (f), the 
 crystal growth becomes localised to the corner. The 
-area growth rate between figures \ref{fig:eliptical_beam_1}
+area growth rate between Figures \ref{fig:eliptical_beam_1}
 (a) and (d) was approximated using imageJ at $45.03\ 
-\mu m^2 /min$, where as between figures 
-\ref{fig:eliptical_beam_1}(e) and (f) the growth rate 
-at that particular edge was estimated at $42.10\ \mu m^2/min$. 
+\mu m^2 /min$, where as between Figures~.\ref{fig:eliptical_beam_1}
+(e) and (f) the growth rate at that particular edge was estimated 
+at $42.10\ \mu m^2/min$. 
  
 Nucleation in undersaturated conditions has been 
 reported previously in $D_2O$ \cite{Rungsimanon2010} 
@@ -1310,7 +1187,7 @@ crystal whereas with a stationary beam there is no
 control over the crystal morphology. In fact this allows 
 for a much finer control over the exact shape of the 
 crystal nucleus, in some cases allowing for growth out
-of the viewing plane as shown in fig.~\ref{fig:out_of_plane}.
+of the viewing plane as shown in Fig.~\ref{fig:out_of_plane}.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\linewidth]{out_of_plane.pdf}
@@ -1337,7 +1214,7 @@ In a repeat experiment a solution similar to sec.~
 \ref{sec:stationary} was made up, but without any 
 silica micro-spheres. Once again the beam was focused 
 close to the droplet edge, this time the galvano 
-mirror was scanning a circular path (as shown in fig.~\ref{fig:cluster_trapping}). After a few 
+mirror was scanning a circular path (as shown in Fig.~\ref{fig:cluster_trapping}). After a few 
 minutes of irradiation droplets were seen entering 
 the camera frame. Because no silica had been added, 
 and that the solutions were filtered, these droplets 
@@ -1345,7 +1222,7 @@ had to be from the glycine solution. Trapping
 individual droplets did not result in immediate 
 nucleation even after several minutes being trapped. 
 Trying to bring two droplets together resulted in 
-nucleation between the two droplets, compared to 
+nucleation between the two droplets, compared to sections
 \ref{sec:stationary} \& \ref{sec:moving} the growth 
 is much slower, taking nearly 40 seconds before the 
 crystal structure becomes clearer.
@@ -1397,7 +1274,7 @@ is no interface between the air and solution close to the seed.
 Five separate repeats were conducted, all demonstrating similar
 behaviour to one another.  
 
-As shown by fig.~\ref{fig:seed_crystals} the laser does not 
+As shown by Fig.~\ref{fig:seed_crystals} the laser does not 
 in fact promote crystal growth but instead forces the crystal 
 to dissolve into the bulk solution. The dissolution rate is not 
 as substantial as the growth rate seen in previous sections. 
@@ -1451,7 +1328,7 @@ Sugiyama2009, Gowayed2021}. The moving beam front can influence
 the motion of the nucleus initially, but eventually the drag 
 force means the crystal is not moved by the optical trap. 
 Localised crystal growth occurs when the trap is close to or 
-partially over the interface of the crystal (see fig.~
+partially over the interface of the crystal (see Fig.~
 \ref{fig:local_nucleation}(a)). This suggests that the 
 laser itself is bringing in new solute material that can then
 adhere to the crystal surface. Interestingly even when the 
@@ -1470,14 +1347,14 @@ the nucleation process.
 As shown in \ref{sec:clusters}, the optical trap can manipulate 
 these droplets similar to microspheres. When in close proximity 
 to the trap these droplets are brought towards the crystal 
-surface (see fig.~\ref{fig:local_nucleation}(b)). We have 
+surface (see Fig.~\ref{fig:local_nucleation}(b)). We have 
 already suggested that these droplets must contain glycine as 
 they are to large to be a silica microsphere, and the solutions 
 were filtered prior to being studied. The droplets provide 
-material that grows the crystal around that region (see fig.~\ref{fig:local_nucleation}(c)). Eventually the local 
+material that grows the crystal around that region (see Fig.~\ref{fig:local_nucleation}(c)). Eventually the local 
 solution is either depleted of solute material or the crystal 
 front has grown to fully encompass the trap, preventing further 
-growth (see fig.~\ref{fig:local_nucleation}(d)). 
+growth (see Fig.~\ref{fig:local_nucleation}(d)). 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.8\linewidth]{galvano_diagram.pdf}
