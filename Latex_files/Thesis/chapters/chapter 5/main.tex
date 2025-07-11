@@ -2,16 +2,20 @@
 \label{chapter:simulated_QPD}
 
 \section{Introduction}
-
 As demonstrated in Chapter 3, the motion and behaviour of a dimer 
 is significantly different compared to that of a traditional sphere.
 While this is simple enough to demonstrate in a simulation, where the 
 position and orientation can be computed using the finite differences
 method, from an experimental perspective these details can go unnoticed.
 In order to accurately capture the dynamics of a trapped sphere, a 
-position detection system is typically used. This can capture the 
-translational motion of a trapped particle but relating the signals
-produced to the rotational motion is not as straight forward. 
+position detection system is typically used - the most common of which is 
+a Quadrant Photo Diode (QPD). A QPD sends a signal measuring 
+the voltage difference between 4 photo diode quadrants. For purely 
+translational motion the diodes can be split into neighbouring pairs 
+(i.e. left and right, top and bottom - see Fig~\ref{fig:QPD_diagram})
+to estimate the total displacement made by the target particle. 
+However the same method cannot be applied to stochastic rotational 
+motion. 
 
 The relationship between particle translations and light scattering 
 was first demonstrated by Rohrbach, where they showed a linear change 
@@ -41,68 +45,66 @@ arbitrary shaped particle is simple in principle but difficult to
 interpret, we demonstrate as such by comparing the expected signal 
 from a trapped sphere, to that of a trapped dimer.
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Position Detection methods}
-There are 3 common methods of position detection: video-analysis, lateral-effect position sensing, and photodiodes. The former is 
-relies purely on cameras to track particle displacements; whereas 
-the latter two are examples of focal-plane interferometry. 
-Interferometry utilises the interference between the scattered and un-scattered light to measure displacement. Here we 
-provide a brief outline of their applications, and limitations. 
-
-Video analysis is ideally suited for multiple traps or situations where 
-precision is not the top priority. In order for video analysis to 
-match the accuracy of back-focal plane interferometry methods requires 
-the camera's frame rate to exceed $1\ kHz$ which can be difficult to 
-achieve while maintaining a decent resolution \cite{Gibson2008}. In 
-comparison off the shelf back-focal plane detectors can achieve temporal 
-resolutions anywhere from $10-100\ kHz$ \cite{BergSoerensen2004}. 
-
-A quadrant photo diode (QPD) is a frequently used position detection 
-system for optical tweezers due to their high sampling rate, high 
-degree of precision, and ease of set up. The QPD is constructed of 
-four photo diodes assembled in a quadrant formation, when a particle 
-is trapped the interference pattern produced is focused onto the QPD, 
-with the maximum intensity mapping to the particle's centre of mass. 
-By summing the voltages of the horizontal and vertical quadrants together 
-the particle's centre of mass is tracked in the $x-y$ plane. Axial 
-displacement can be estimated by observing the change in the total 
-voltage of the QPD. The outputted signal gives an indication of the 
-particle's relative displacement from the beam focus, but in order to 
-convert the signal to distance units the trap needs to be calibrated 
-(assuming a linear response curve).
+Here we discuss how one can record a trajectory using a QPD and 
+use it to interpret the particle's real time motion. The QPD is 
+constructed of four photo diodes assembled in a quadrant formation, 
+when a particle is trapped the interference pattern produced is 
+focused onto the QPD, with the maximum intensity mapping to the 
+particle's centre of mass. By summing the voltages of the horizontal 
+and vertical quadrants together the particle's centre of mass is 
+tracked in the $x-y$ plane. Axial displacement can be estimated 
+by observing the change in the total voltage of the QPD. The 
+outputted signal gives an indication of the particle's relative 
+displacement from the beam focus, but in order to convert the 
+signal to distance units the trap needs to be calibrated (assuming 
+a linear response curve).
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[height=\linewidth, angle=270]{QPD_Lateral_effect.pdf}
-	\caption{Comparison between QPD and Lateral effect photodiodes.
-		The four quadrants of a QPD (left) experience different photocurrents
-		based on the total intensity of light incident on each section 
-		(labelled A, B, C, D). 
-		Whereas a Lateral effect sensor (right) uses the resistive properties
-		of the photodiode surface to vary the create different photocurrents 
-		passing through the anodes A, B, C, and D.}
+	\includegraphics[height=0.5\linewidth, angle=270]{QPD_diagram.png}
+	\caption{Diagram depicting a typical QPD interface. The four 
+		quadrants of a QPD experience different photocurrents based 
+		on the total intensity of light incident on each section 
+		(labelled A, B, C, D).}
+	\label{fig:QPD_diagram}
 \end{figure}
 
-A lateral-effect sensor works using a single cell analogous to the focal plane of the trapping beam. The four corners of the sensor act as anodes connected to a base plate cathode, as the beam moves across the surface of the detector each anode will experience a different photocurrent depending 
-on how close the centre of the interference pattern is to each anode. 
-The advantage of a lateral effect detector is that the linear regime 
-is much larger than a QPD making it much better for monitoring the 
-position of a trapped particle. However, Lateral-effect sensors are 
-often limited in their spacial resolution due to high signal-to-noise 
-ratios, requiring a high intensity of light on the sensor in order to 
-get a clean signal. As a result, most optical force measurements are 
-conducted using a QPD as opposed to a lateral-effect sensor, as often 
-the displacement is small enough that the signal-displacement curve 
-can be considered linear.
+Now while the signal returned by the QPD is proportional to the particle's
+displacement it cannot be directly interpreted as such until converted
+from voltage units to displacement units. This can be done by taking the 
+ratio of the expected diffusion coefficient $D_{exp}$ and the diffusion 
+coefficient calculated by calibration $D_{cal}$.
+\begin{align}
+	\label{eq:conversion_factor}
+	D_{exp} = \frac{k_BT}{6\pi\eta a} \Rightarrow Conversion\ Factor \ [m/V]= \sqrt{\frac{D_{ext}}{D_{cal}}}
+\end{align}
 
-The above informs how one can - to their best ability - measure small 
-rotational movements in a trajectory. Relying on video analysis is 
-unreliable as the frame rate required to accurately measure the 
-orientation results in a loss of resolution. Likewise, simply measuring
-the total intensity provides no means of separating out rotational and 
-translational motion. Similar to Chapter 4, we need to utilise contrasting signals to estimate the change in orientation, and see if at all it is possible to distinguish between translational and rotational motion.
+The former depends on the exact size and shape of the target particle, 
+using image analysis one can get a fairly accurate estimation of the particles radius (a). The latter can be determined from fitting the QPD signal to a given model, for computing the diffusion coefficient 
+computing the auto correlation function, the mean square displacement, 
+or taking the power spectrum are used. The former two are ideal for 
+simple position detection systems, where the QPD reports the signal at 
+each time step, however they often require longer recording times in 
+order to reach an ideal accuracy. More sophisticated QPD systems can calculate the power spectra of an incoming signal and immediately fit 
+it to a power spectrum. Once the conversion factor is known any further 
+QPD signals can be converted immediately into displacement units to monitor
+the position of the target particle, the spacial resolution being  
+limited by the accuracy of the calibration method. A full tutorial in 
+maximising the accuracy of the power spectral method is provided by 
+Berg and Sorensen \cite{BergSoerensen2004}
 
+For our consideration we will be relying on the power spectrum method 
+to characterise the motion of the trapped particle. Firstly because
+it is sometimes integrated into QPD systems. And secondly, because 
+on of the main advantages of the power spectrum method is its shorter 
+calibration times, and the ability to filter out large sources of signal 
+noise. 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Modelling the QPD response signal of a non-spherical particle}
 In order to simulate a typical experimental set up with a QPD 
 installed as a position detection system we need to evaluate 
@@ -179,11 +181,11 @@ While translational motion has no knock on effects to the QPD signal,
 rotational changes are double counted by both the incident and total 
 field. This results in rotational motion being biased in the QPD signal 
 - even when collecting signals from isotropic scatterers. To prevent 
-this we need to rotate the total field via the inverse rotation matrix
-of the dimer.
+this we rotate the total field via the inverse rotation matrix of the 
+dimer.
 
-To confirm that our method is producing accurate results, we ran a 
-comparison between our simulative QPD and the results from \cite{Rohrbach2002}. Where a $300\ nm$ diameter sphere is scanned 
+To confirm that our method is producing accurate results, we ran a
+comparison test between our simulative QPD and the results from \cite{Rohrbach2002}. Where a $300\ nm$ diameter sphere is scanned 
 across the path of a focused Gaussian beam ($\lambda=1064\ nm$, $NA=1.2$), the sphere has a refractive index of 1.57 and is suspended in water ($n_{med}=1.33$) and the condenser lens has its numerical aperture
 set to 0.5 ($\theta_{max} = 30^\circ$). Scanning across all three primary axis produced the following response curve:
 \begin{figure}[h!]
@@ -211,16 +213,13 @@ the linear regime shown in fig.~\ref{fig:Rohrbach}. In which case
 the error between Rohrbach's model and our own is inconsequential 
 for calibration purposes. 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Characterisation of asymmetric dimer dynamics via PSD analysis}
-As discussed in Sec.~\ref{sec:simulated_QPD}, one of the methods 
-developed to work in conjunction with \cite{Vigilante2020} 
-is a simulated quadrant photo diode for as a position 
-detection system. While it is possible to extract all of 
-the relevant dynamics from a simulation, from an experimental
-standpoint characterising those dynamics is dependent on what
-experimental techniques are used. Translational motion can be
-characterised via a position detection system but angular 
-motion is far more difficult to detect, let along characterise. 
+While it is possible to extract all of the relevant dynamics from a simulation, from an experimental standpoint characterising those 
+dynamics is dependent on what experimental techniques are used. 
+Translational motion can be characterised via a position detection 
+system but angular motion is far more difficult to detect, let along characterise. 
 
 The simulative QPD is composed of 4 photodiodes that measure the 
 intensity of light incident on their surfaces. Given that the 
