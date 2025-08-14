@@ -1,6 +1,5 @@
 \chapter{Theory and methods}
 \label{chapter:theory}
-\textit{\textbf{Add overview here}} \\
 This chapter covers the theory behind light and particle interactions, 
 and how the exact theory varies for differently sized particles. After 
 that we show how this can be applied to existing diffusion models to 
@@ -78,35 +77,6 @@ well formed by the gradient force is equal to the thermal
 energy of the system. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Harmonic Traps}
-\label{sec:harmonic_traps}
-When a sphere is located at the centre of a laser the gradient 
-force will try to recentre the sphere if it is displaced. If 
-the restoring force is proportional to the sphere's displacement 
-this is referred to as a harmonic trap. The ratio of the restoring 
-force to the displacement is called the trap stiffness (denoted 
-by $\kappa$), and is an important characteristic of the trap. Fig.~\ref{fig:harmonic_trap} demonstrates an example case of the
-force-displacement curve for a simple sphere in an optical trap. 
-Laser power and numerical aperture are omitted as the exact shape 
-is not of importance, only the linear region about the origin.
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=1.1\linewidth]{sphere_force_curve.png}
-	\caption{Example of a sphere's ($r=1\ \mu m$) force-displacement
-		curve while moving along the x-axis, where $x=0$ is the 
-		centre of the beam. The harmonic regime is highlight by the 
-		linear fit given in black.}
-	\label{fig:harmonic_trap}
-\end{figure}
-
-The strength of the optical trap is directly proportional to 
-both the laser power and the contrast in refractive indices 
-between the medium and the particle. Fully describing the 
-optical forces is dependent on the ratio between the particle 
-size ($a$) and the trapping wavelength ($\lambda$). The 
-scattering theory that describes the optical force is dependent 
-on this ratio.  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Lornez-Mie Theory}
 
 The Lorenz-Mie theory provides an exact solution to the Maxwell 
@@ -181,12 +151,18 @@ their incident components and the target's 'T-matrix'.
 
 Where the matrix \textbf{T} accounts for the targets shape, 
 and refractive index. The $T$-matrix method can be easily 
-applied to any solution of Maxwell's equations. In order to compute 
-the optical force and torque applied to a given object one simply 
-needs to know the momentum carried by the incident and scattered 
-fields. So long as we know the expansion coefficients of the 
-incident beam we can find the scattered beam coefficients via Eq.~\eqref{eq:t_matrix} to compute the force.
+applied to any solution of Maxwell's equations. The $T$-matrix
+method allows us to relate directly the momentum carried by 
+the incoming wave \ref{eq:incident} to the momentum retained
+by the scattered wave \ref{eq:scattered}, where the difference 
+between these two quantities is the momentum transferred to
+the scattering object. The time averaged change change in 
+this momentum transfer provides an approximation of the force 
+imparted to the target scatterer. 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{TO BE MOVED}
 And the time averaged linear momentum carried by the scattered 
 beam is given by:
 \begin{equation}
@@ -222,6 +198,9 @@ particle radius is $\gg \lambda$ the optical force is best described
 by the Ray-Optics model. In the opposite case the target particle is 
 better approximated as a single electric dipole as described by 
 the Rayleigh approximation.  
+
+\textbf{END OF TO BE MOVED}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{T-matrix Method}
 The $T$-matrix method was first developed by Peter Waterman with 
@@ -239,6 +218,13 @@ can evaluate the scattering for any particle orientation by
 computing its $T$-matrix. Because the T-matrix is based only 
 on the properties of the scatterer it can be reused in 
 calculations regardless of the incident field in question.
+
+This is in truth merely an extension of the Lorenz-Mie theory 
+as the T-matrix of a single sphere can be found from the electric 
+field solutions. The method developed by Waterman allows for any 
+arbitrary shaped particle to produce similar solutions. One of 
+the biggest advantages to the method is the fact that it can 
+leverage symmetries in particle geometries to speed up calculations. 
 
 For this project we utilised an extension of the EBCM known as 
 multi-sphere $T$-matrix method (\textit{mstm}) developed by 
@@ -260,7 +246,7 @@ number of spheres increases \cite{Mackowski2011}. While it is
 possible to solve for the full electromagnetic field for the 
 entire cluster this is only applicable for a single orientation 
 and can be even slower for large aggregates \cite{Mackowski1996, 
-	Xu1995}. The benefit of \textit{mstm} is that the major scattering 
+Xu1995}. The benefit of \textit{mstm} is that the major scattering 
 properties (scattering and extinction cross sections, scattering 
 matrices, etc) can all be computed both for single orientations, 
 or averaged over multiple orientations to determine the average 
@@ -314,14 +300,15 @@ the T-matrix of the target.
 
 The Ray-Optics model is the simplest to understand, this theory models 
 the electromagnetic field as a collection of individual 'rays' that 
-propagate and are refracted according to Snell's Law. Based on the 
-change in direction momentum is transferred to the target particle; 
-with rays closest to the centre of the beam having greater intensity 
-than those rays at the very edge of the beam. Consider a particle 
-struck by two rays in a Gaussian beam, one coming close to the centre, 
-and the other ray coming from the edge. As each ray is refracted by 
-the target sphere a force is imparted onto it, the total force 
-imparted is given by:
+propagate and are refracted according to Snell's Law. The Ray optics
+model is generally only used in cases where the particle size is far
+greater than the wavelength of light  Based on the change in direction 
+momentum is transferred to the target particle; with rays closest to 
+the centre of the beam having greater intensity than those rays at the 
+very edge of the beam. Consider a particle struck by two rays in a 
+Gaussian beam, one coming close to the centre, and the other ray 
+coming from the edge. As each ray is refracted by the target sphere a 
+force is imparted onto it, the total force imparted is given by:
 \begin{align}
 	F_i = Q_i\frac{\Delta n P_i}{c}
 \end{align}
@@ -334,25 +321,26 @@ subdivided into its gradient and scattering components, where the latter
 directs the particle to the centre of the beam, and the former acts on 
 the particle in the direction of beam propagation. For a beam with a
 Gaussian intensity distribution $P_i$ will fall off as you move from
-the centre of the beam. The ray optics model is ideal when dealing 
-with larger particles whose diameter far exceed the wavelength of light
-being scattered. While it can be useful in predicting the forces 
-experienced by said particle's it does not fully capture the behaviour
-of light when considering interference between different rays. And 
-as such no information is learned about the scattered field.
+the centre of the beam. While the ray optics model can be useful in 
+predicting the forces experienced by said particle's it does not fully 
+capture the behaviour of light when considering interference between 
+different rays. And as such no information is learned about the scattered 
+field.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Rayleigh Scattering}
 
 The Rayleigh approximation is for describing a particle when 
-the particle radius is $\ll \lambda$. The underlying theory 
-is that a dielectric sphere can be treated as a dipole while 
-in the presence of the electromagnetic field. In which case 
-the scattering force is given simply by the scattering of 
-the induced dipole, and the gradient force is due to the 
-Lorentz force \cite{Gordon1973}. The gradient forces in the 
-principle Cartesian axis are described by Harada et al \cite{YasuhiroHarada1996} in MKS units as a restorative 
-rectangular force field:
+the particle radius is $\ll \lambda$, as the particle shape 
+decreases we find the effective scattered area approaches 
+zero as the incident light diffracts around the target particle. 
+As such we can approximate a dielectric sphere as a dipole while 
+in the presence of the electromagnetic field. In which case the 
+scattering force is given simply by the scattering of the induced 
+dipole, and the gradient force is due to the Lorentz force 
+\cite{Gordon1973}. The gradient forces in the principle Cartesian 
+axis are described by Harada et al \cite{YasuhiroHarada1996} in MKS 
+units as a restorative rectangular force field:
 \begin{align}
   F_{grad,x}
   &=-\hat{x} \frac{2\pi n_2 a^3}{c}
@@ -394,15 +382,19 @@ effective scattering cross-sectional area.
 \end{align}
 
 There is a clear difference between Eq.~\eqref{eq:Rayleigh_start}-
-\eqref{eq:Rayleigh_end} and Eq.~\eqref{eq:linear_momentum_in}- \eqref{eq:Fz}, namely that the Rayleigh regime is not concerned with 
+\eqref{eq:Rayleigh_end} and Eq.~\eqref{eq:linear_momentum_in}- 
+\eqref{eq:Fz}, namely that the Rayleigh regime is not concerned with 
 the state of the scattered field. This is because if the particle 
 is approximated by a point dipole we can ignore the momentum 
 transfer calculation and simply compute the Lorenz force for a 
-dipole in an electric field. While not important for optical force calculation higher complexity scattering problems can be simplified 
-by subdividing the particle into discrete dipoles (see Sec~\ref{sec:scattering}), in which case the scattered field is now significant. As the target particle gets larger this approximation 
-fails to accurately describe the trapping force \cite{Li2021}. For 
-larger particles the optical force and scattering is better described 
-via the Lorenz-Mie theory. 
+dipole in an electric field. While not important for optical force 
+calculation higher complexity scattering problems can be simplified 
+by subdividing the particle into discrete dipoles (see Sec~\ref{sec:scattering}), 
+in which case the scattered field is now significant. As the 
+target particle gets larger this approximation fails to accurately 
+describe the trapping force \cite{Li2021}. For larger particles 
+the optical force and scattering is better described via the 
+Lorenz-Mie theory. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -411,22 +403,23 @@ via the Lorenz-Mie theory.
 While describing the optical forces is sufficient for 
 theoretical characterisation of an optical trap, in an 
 experimental setting the observed motion is not as 
-simple. As such it is often far simpler to 
-characterise the optical trap by recording the particle's
-trajectory (see \ref{sec:position_detection} for 
-specifics regarding the equipment), and then fitting it 
-to our presumed description of the beam. The trajectory 
-is easily understood if we understand the particle's 
-diffusive behaviour.
+simple. As such it is often far simpler to characterise 
+the optical trap by recording the particle's trajectory 
+(see \ref{sec:position_detection} for specifics 
+regarding the equipment), and then fitting it to our 
+presumed description of the beam. The trajectory is 
+easily understood if we understand the particle's 
+diffusive behaviour. 
 
-\subsection{Langevin Equation}
-Describing any microscopic motion requires an understanding 
-of a molecules diffusive behaviour, for the case of optical 
-tweezers the most complete model of diffusion is the Langevin 
-equation. Models such as the Fickian, and Einstein derivations 
-are sufficient for macroscopic behaviours but the Langevin 
-model better describes the microscopic characteristics of 
-any diffusive behaviour.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Diffusion Models}
+For the case of optical tweezers the most complete model of 
+diffusion is the Langevin equation. Models such as the Fickian, 
+and Einstein derivations are sufficient for macroscopic 
+behaviours but the Langevin model better describes the 
+microscopic characteristics of any diffusive behaviour.
  
 The Fickian model describes the net flux of solute molecules 
 into a finite volume of fluid being proportional to the 
@@ -471,10 +464,13 @@ collisions \cite{Gillespie2012c}. Unlike the Fickian model it
 provides a full description of the interactions between the 
 target molecule and the surrounding fluid; while also being 
 able to describe its motion over any time scale, unlike the 
-Einstein model. The standard form of the Langevin model for 
-a particle undergoing Brownian motion is given as:
+Einstein model. Unlike the Einstein model that views collisions
+as discrete but finite events, the Langevin model instead 
+considers the collisions as one random The standard form of the 
+Langevin model for a particle undergoing Brownian motion is 
+given as:
 \begin{align}
-	m\frac{dv}{dt} + \gamma_0 v + F(t) = W(t)
+	m\frac{d\vec{v}}{dt} = - \gamma_0 \vec{v} + F(t) + W(t)
 \end{align}
 
 Where the first term accounts for inertial forces, the second 
@@ -554,8 +550,8 @@ us to represent the noise using the finite-difference approach as:
 	m\frac{x_i-2x_{i-1}+x_{i-2}}{\Delta t^2} = -\gamma\frac{x_i-x_{i-1}}{\Delta t}+\sqrt{2k_BT\gamma}\frac{w_i}{\sqrt{\Delta t}}
 \end{align}
 
-Where $w_i$ is a random real number between -1 and 1, we can say 
-that it is normally distributed around 0 for simulation purposes. 
+Where $w_i$ is a Gaussian random real number between -1 and 1, we 
+can say that it is normally distributed around 0 for simulation purposes. 
 We can rearrange this for $x_i$ to approximate the Brownian motion 
 of a particle (setting $x_0=0$), where the characteristic time is 
 $\tau = m/\gamma$. Now in the case of an optical trap, the 
@@ -653,59 +649,37 @@ we take a sufficiently small time step that $\Delta t~\ll~\kappa_x/\gamma
 \ \& \ \Delta t \ll \kappa_u/\gamma_R$. In doing so we now only need 
 to compute the optical force and torque applied to the dimer. 
 
-Using a  MATLAB package called \textit{Optical Tweezer Toolbox} 
-or \textit{ott} \cite{Nieminen2007} we can compute the beam 
-shape coefficients ($a_{nm}$ \& $b_{nm}$) for any desired beam 
-type. Using the results from \cite{Farsund1996} we can then 
-compute both the optical force and torque using the beam 
-coefficients and the scattering coefficients ($q_{nm}$ \& $p_{nm}$) 
-which are found by calculating the dimer's $T$-matrix via \textit{mstm} 
-\cite{Mackowski2011} and then using \eqref{eq:t_matrix}. The 
-total force in along the z-direction and the total torque about 
-the z-axis are provided:
-\begin{equation}
-	\label{eq:optical_force}
-	\begin{split}
-		\bold{F_z}
-		&=
-		-\frac{1}{4\pi k^2}\sum_{n,m} \left(\frac{m}{n(n+1)}\Im[a_{nm}b^*_{nm}-p_{nm}q^*_{nm}] \right.
-		\\ 
-		&+\frac{1}{n+1}\left[\frac{n(n+2)(n-m+1)(n+m+1)}{(2n+1)(2n+3)} \right]^{1/2}
-		\\
-		& \left.\times\Im[b_{nm}b^*_{nm}+a_{nm}a^*_{n+1m}-q_{nm}q^*_{nm}+p_{nm}p^*_{n+1m}] \right)
-	\end{split}
-\end{equation}
-\begin{equation}
-	\begin{split}
-		\bold{T_z}
-		&=
-		-\frac{1}{8\pi k^3}\sum_{n,m} \left(\frac{m}{n(n+1)}[|a_{nm}|^2+|b_{nm}|^2-|p_{nm}|^2-|q_{nm}|^2] \right.
-		\\ 
-		&+\frac{2}{n+1}\left[\frac{n(n+2)(n-m+1)(n+m+1)}{(2n+1)(2n+3)} \right]^{1/2}
-		\\
-		& \left.\times\Re[b_{nm}a^*_{nm}+a_{nm}b^*_{n+1m}-p_{nm}q^*_{nm}+q_{nm}p^*_{n+1m}] \right)
-	\end{split}
-\end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Harmonic Traps}
+\label{sec:harmonic_traps}
+When a sphere is located at the centre of a laser the gradient 
+force will try to recentre the sphere if it is displaced. If 
+the restoring force is proportional to the sphere's displacement 
+this is referred to as a harmonic trap. The ratio of the restoring 
+force to the displacement is called the trap stiffness (denoted 
+by $\kappa$), and is an important characteristic of the trap. 
+Fig.~\ref{fig:harmonic_trap} demonstrates an example case of the
+force-displacement curve for a simple sphere in an optical trap. 
+Laser power and numerical aperture are omitted as the exact shape 
+is not of importance, only the linear region about the origin.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=1.1\linewidth]{sphere_force_curve.png}
+	\caption{Example of a sphere's ($r=1\ \mu m$) force-displacement
+		curve while moving along the x-axis, where $x=0$ is the 
+		centre of the beam. The harmonic regime is highlight by the 
+		linear fit given in black.}
+	\label{fig:harmonic_trap}
+\end{figure}
 
-where $a_{nm}$, $b_{nm}$, $p_{nm}$, and $q_{nm}$ are the beam 
-coefficients of the incident and scattered fields respectively. 
-We can get the $x$ and $y$ force and torque components in a 
-similar form by applying a simple rotation transformation. With 
-the optical forces and torques computed all that remains is to 
-compute the Brownian forces and torques which are constrained 
-by the relation.
-\begin{align}
-	\langle q_iq_j\rangle =2D_{ij}\Delta t
-\end{align}
+The strength of the optical trap is directly proportional to 
+both the laser power and the contrast in refractive indices 
+between the medium and the particle. Fully describing the 
+optical forces is dependent on the ratio between the particle 
+size ($a$) and the trapping wavelength ($\lambda$). The 
+scattering theory that describes the optical force is dependent 
+on this ratio.  
 
-Vigilante et al compiled together a python package that combines 
-both \textit{ott} and \textit{mstm} to simulate the behaviour of 
-spherical aggregates within a predefined optical trap 
-\cite{Vigilante2020}. Now \textit{ott} does have inbuilt $T$-matrix 
-modules that can be used to model the scattering from different 
-shaped particles; however, for aggregates of spheres the resultant 
-force is nonsensical (see Chapter 4 for further details). As such 
-we rely on the \textit{mstm} for simulating dimers.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -822,7 +796,8 @@ $\rho(x)$ centred at some equilibrium position $x_0$:
 
 After observing the particles position over a long enough
 period of time we can construct and experimental estimation
-of $\rho(x)$. By inserting \eqref{eq:prob_dist} into \eqref{eq:potential_well} we can fit the potential well in 
+of $\rho(x)$. By inserting \eqref{eq:prob_dist} into 
+\eqref{eq:potential_well} we can fit the potential well in 
 order to determine the trap strength $\kappa_x$. This has 
 some limitations in that the large fluctuations can throw 
 off the fit meaning a longer acquisition time is necessary 
@@ -886,12 +861,13 @@ the MSD as a function of $\tau$:
 	MSD(\tau) = \left<|x(t+\tau) - x(t)|^2\right>
 \end{align}
 
-If we use \eqref{eq:anylitical_lang} for an optical tweezer we can 
-expand out the squared term to get an analytical expression for the 
-MSD as a function of time lags:
+If we sub in \eqref{eq:anylitical_lang} for $x(t)$ we can expand 
+out the squared term to get an analytical expression for the MSD 
+as a function of time lags:
 \begin{align}
 	\label{eq:MSD}
-	MSD(\tau) = \left<|x(t+\tau)^2-2x(t+\tau)x(t)+x(t)^2|\right> = \frac{2k_BT}{\kappa_x}\left[1-e^{-\frac{\tau}{\tau_{OT}}}\right]
+	MSD(\tau) &= \left<|x(t+\tau)^2-2x(t+\tau)x(t)+x(t)^2|\right> \\
+	\rightarrow MSD(\tau) &=\frac{2k_BT}{\kappa_x}\left[1-e^{-\frac{\tau}{\tau_{OT}}}\right]
 \end{align}
 
 From this expression its evident that the mean squared displacement 

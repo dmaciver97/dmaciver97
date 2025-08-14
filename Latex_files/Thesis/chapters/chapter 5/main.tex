@@ -216,29 +216,24 @@ for calibration purposes.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Characterisation of asymmetric dimer dynamics via PSD analysis}
+\label{sec:PSD_analysis}
 While it is possible to extract all of the relevant dynamics from a simulation, from an experimental standpoint characterising those 
 dynamics is dependent on what experimental techniques are used. 
 Translational motion can be characterised via a position detection 
 system but angular motion is far more difficult to detect, let along characterise. 
 
-The simulative QPD is composed of 4 photodiodes that measure the 
-intensity of light incident on their surfaces. Given that the 
-condensing lens will have a maximum acceptance angle given by 
-its numerical aperture ($\theta_{max} = \sin^{-1}\left(NA_c/n_
-{med}\right)$) we define the electric field incident on the QPD 
-surface as the elements of the scattered and incident field that 
-propagate within that angular range of $\pm \theta_{max}$. Using 
-\textit{ott} we can evaluate the total electric field to an 
-arbitrary spacial resolution across the surface of the QPD. The 
-reported signal is found by taking the difference between pairs 
-of quadrant signals (see \ref{sec:simulated_QPD} for further 
-detail). This does not provide a one-to-one result however as 
-hardware errors (i.e. internal resistance, external light sources, 
-and vibrations) would distort the signal. It can be used however to 
-show how if the reported power spectra is an accurate representation 
-of the true particle dynamics or if the additional degrees of freedom 
-have an adverse effect on the scattering. See chapter 2 for a breakdown
-of power spectral analysis. 
+The tweezer setup we are simulating incorporates a dual objective 
+configuration, using one objective lens to focus the beam (NA=1.25)
+where as the condenser lens acts as a means of truncating the electric
+field ($NA_c=0.25$). The electric field falling onto the QPD surface is computed by considering the far field of the combined incident and 
+scattered beams. We can ignore any contributions from the electric
+field that falls outwith the maximum acceptance angle of our condenser
+lens ($\theta_{max}\approx\pm10.8\deg$). This is not perfectly analogous
+of a true QPD as external factors (i.e. internal resistance, external
+light sources, and vibrations) would also contribute to the detected QPD 
+signal. It does provide us a means of showing what elements of a particle's
+trajectory are represented in the power spectrum and which elements are 
+obscured.
 
 As a benchmark we start by considering a single sphere within an optical 
 trap. A single polystyrene sphere suspended in water ($a=1\mu m$, 
@@ -269,6 +264,7 @@ trap stiffness are reported below:
 
 \begin{center}
 	\captionof{table}{QPD fitting for single sphere}
+	\label{tab:sphere}
 	\begin{tabular}{ |c|c|c|c|c|c|c| } 
 		\hline
 		Fitting parameter & \multicolumn{2}{|c|}{\textit{ott} estimates} 
@@ -360,21 +356,25 @@ accurate to assume that the external force $F(x) = \kappa x$
 instead we must consider that it is a function of both the 
 position and orientation simultaneously. 
 
-This coupling of the translational and orientational motion 
-has been highlighted previously \cite{Vigilante2020}, but 
-there effects have not been demonstrated in the context of
-an experimental situation. We can see from the difference in
-trajectory and QPD fittings that while our description of the
-trap shape is very similar (both methods give similar ellipticity
-values) but the magnitude of the trap strength are significantly
-different. This is partially explained by the fact that the
-QPD is not actually measuring the position of the particle
-but instead the intensity distribution of the total field 
-incident on the QPD surface. In which case if the dimer is 
-rotated slightly the QPD signal will change even if the dimers
-centre of diffusion remains stationary. 
+There is still a concern in the fact that both produce similar
+power spectra, enough so that it would be difficult to determine
+if a trapped particle was actually a dimer or a sphere. This is
+because the rotational and translational motion, coupling of the 
+has been highlighted previously \cite{Vigilante2020}, but there 
+effects have not been demonstrated in the context of an experimental situation. We can see from the difference in trajectory and QPD 
+fittings that while our description of the trap shape is very 
+similar (both methods give similar ellipticity values) but the 
+magnitude of the trap strength are significantly different. This 
+is partially explained by the fact that the QPD is not actually 
+measuring the position of the particle but instead the intensity 
+distribution of the total field incident on the QPD surface. In 
+which case if the dimer is rotated slightly the QPD signal will 
+change even if the dimers centre of diffusion remains stationary. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{QPD for angular displacement detection}
+\section{QPD for angular displacement detection}
+\label{sec:angular_displacement}
 The next logical step is to consider whether or not a QPD can at 
 all be utilised for detection of rotational motion. This has been
 shown for nano-particles that exhibit periodic rotational motion
@@ -402,57 +402,153 @@ when rotated by in the X-Y plane.
 	\label{fig:QPD_rotation}
 \end{figure}
 
-However if we compare this to fig.~\ref{fig:rohrbach} we can see 
+However if we compare this to fig.~\ref{fig:Rohrbach} we can see 
 that the the signal change is dwarfed by the translational motion. 
 So while their is a clear relationship between the two trying to
 discern between translational and rotational contributions to the
 QPD signal is not a simple task. This is significant because it 
-means that with regards to the power spectrum fittings in table 
-\ref{tab:dimer} there is no way of ensuring that the measured 
-trap strengths are accurate. The variance $\sigma(f_c)$ is only 
-the variance based upon our fitting parameters and not on the 
-actual dynamics of the dimer. In the case where the particle's
-shape is not known prior its not possible to determine whether 
-any inaccuracies in the power spectra are due to the fit or due
-to the particle's motion.
+means that with regards to the power spectrum fittings in Table 
+\ref{tab:dimer} there is no means of discerning between that of 
+a trapped sphere and that of a trapped dimer. Furthermore the 
+dynamics reported by the power spectrum fitting do not accurately 
+reflect the actual dynamics of the dimer, instead only providing 
+a orientation-averaged trap strength. But unless we have some means
+of at least estimating the degree of rotational freedom, calculating
+the actual trapping strength is impossible. 
 
 The dependence of $S_x$ and $S_y$ and the dimer's orientation
 (defined by the spherical angles $\theta$, $\phi$) is therefore
 not clear. To that end, we utilised machine vector regression,
 which takes as an input the voltage from the 4 quadrants and 
-tries to fit that to the dimer's trajectory. Fitting the QPD
-signal to the dimer's position shows promising results, shown in
-fig~\ref{fig:QPD_rotation} is a prediction of a symmetric dimer's 
-position based on the QPD signal. With the actual displacement 
-on the x-axis and the predicted result y-axis, and the dashed 
-line represents the y=x line - indicating an ideal prediction. 
+tries to fit that to the dimer's trajectory. We utilised the 
+scikit-learn module available in Python to transform the 4D vector
+of the QPD signal to a 2D vector specifying the expected displacement
+of the target particle. Unlike in Chapter 4 where we utilised 
+machine learning to get a probabilistic estimation of the 
+particle's orientation we utilise vector regression as we 
+want to replicate QPD precision as closely as possible. 
 
-Fig~\ref{fig:QPD_rotation} shows that its relatively trivial 
-to predict a particle's position based off the QPD signal, even 
-in axial direction which has not been done previously. It should 
-be noted that these displacements are relative to the trap focus 
-and so accurate tracking of the beam movements needs to be taken. 
-This result is partially due to the fact that displacement and 
+In order to fit the QPD signal to dimer displacements we need
+to train our model. For each size ratio considered a 3 second
+trajectory was ran (using the same conditions in 
+Sec.~\ref{sec:PSD_analysis}) and a normal distribution of the 
+dimer's position was taken and used to construct a training 
+data set of QPD signals. After the training results reached an
+error rate of less than 1\% the same trajectory was used to
+construct a test set that would allow our model to fit the QPD 
+signal to the positional data from the trajectory. Fitting the 
+QPD signal to the dimer's position showed promising results, 
+shown in fig~\ref{fig:QPD_rotation} is a prediction of a 
+symmetric dimer's position based on the QPD signal. With the 
+actual displacement on the x-axis and the predicted result y-axis, 
+and the dashed line represents the y=x line - indicating an 
+ideal prediction. 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\linewidth]{predicted_displacements.png}
+	\caption{Scikit-Learn's best predictions of the displacement 
+		of a symmetric dimer placed in an optical trap, predictions 
+		are based on the QPD signal collected at the 4 quadrants. 
+		(Left) predictions of the $X$ \& $Y$ displacements. 
+		(Right) predictions of the $Z$ displacement, predictions 
+		have been scaled so they represent the displacement from 
+		the beam focus. The dashed black line represents when the 
+		predicted displacement = the true displacement.}
+	\label{fig:predicted_displacements}
+\end{figure}
+
+Fig~\ref{fig:predicted_displacements} shows that its relatively 
+trivial to predict a particle's position based off the QPD signal
+in the $X$-$Y$ plane but harder along the axial direction. If we 
+consider Fig~\ref{fig:Rohrbach} we note that the change in signal
+strength is only truly linear close to the beam focus, as shown in
+Chapter 3, dimers do not trap close to the beam focus but further 
+away. This would suggest that the model cannot accurately predict 
+the displacement of a dimer in the axial direction as there is a 
+non-linear relationship between the change in signal and the change 
+in axial position. It should be noted that even in the worst case 
+the difference between the predicted and true displacements is 
+around $~20 nm$. 
+
+These displacements are relative to the trap focus and 
+so accurate tracking of the beam movements needs to be taken if 
+you want to consider the displacement relative to some larger object. 
+These results are likely due to the fact that displacement and 
 signal units are linearly related by \eqref{eq:conversion_factor}. Interestingly when we run the same protocol for different sized 
 dimer's there seems to be a cut off point when the fit begins to 
-fail. Plotting the $R^2$ for each fit vs its size ratio shows 
-that beyond a size ratio of 5 the machine learning begins to fall 
-off significantly. 
+fail. We can compute the coefficient of determination ($R^2$) for 
+our model's prediction, the $R^2$ for each fit vs its size ratio 
+shows that beyond a size ratio of 5 the machine learning begins 
+to fall off significantly.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\linewidth]{score_results.png}
+	\caption{The coefficient of determination for different sized 
+	dimers using the scikit-learn vector regression model. Each line
+	plot shows the $R^2$ value for either the $X$, $Y$, or $Z$ 
+	displacements. When the size ratio is greater than 5 the $R^2$ 
+	value falls off dramatically, from around 0.95 down to as low as 
+	0.01.}
+\end{figure}
 
 This is surprising because we would expect that as the second 
 sphere shrinks the dynamics should more closely approximate that 
 of a single sphere. This should be reflected in the total field
 incident on the QPD and therefore the machine learning program 
 should be able to easily detect the dimer's translational motion.
-We can therefore only conclude that the dimer's rotational motion
-is contributing to the scattering to the scattered field, even if
-it is miniscule the contribution is enough to throw off a 
-position detection system. Detection of rotational motion was 
-attempted using machine learning, the model was trained on the 
-same trajectory mentioned in \ref{sec:off-axis}, where the dimer 
-is trapped in an off-axis orientation, from a top down perspective
-it should be easy enough to note that the dimer is not vertically 
-trapped even if the exact angle is difficult to determine. 
+We can therefore only conclude that the contribution that the 
+second sphere makes to the scattered beam is not proportional to
+its size. What is interesting is that the axial prediction does 
+not experience as a large a drop in accuracy, suggesting that the
+total field incident on the QPD is not changing drastically, but
+rather that the second sphere is altering the distribution such
+that the $X-Y$ displacements are being incorrectly predicted. 
+This could simply be a limitation of the \textit{mstm} software being 
+unable to accurately represent the T-matrix of the second sphere, 
+however the documentation does not specify any limits on the relative 
+size differences so it is unclear if this is a known issue. The 
+problem is that it is difficult to verify the error between the 
+\textit{mstm} predicted scattering and the true scattering without 
+replicating the exact system experimentally. For now we can say that predictions for size ratios greater than 5 should be for the most 
+part disregarded. 
+
+Detection of rotational motion was attempted using the same method, 
+the model was trained on the same trajectory mentioned in 
+\ref{sec:off-axis}, where the dimer is trapped in an off-axis 
+orientation. We chose this trajectory instead of a strictly vertical
+orientation in order to confirm that the model can distinguish between 
+the polar angle and the azimuthal angle. The results of which are 
+are shown in Fig.\ref{fig:predicted_rotations}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\linewidth]{angular_predictions.png}
+	\caption{Scikit-learn's prediction of the sphericical angles of
+	a dimer trapped in an off-axis configuration (see Sec\ref{sec:off-axis}).
+	(Left) predictions of the azimuthal angle, (Right) predictions 
+	of the Polar angle. Dashed black lines show the ideal prerformance 
+	where the predicted angle = true angle.}
+	\label{fig:predicted_rotations}
+\end{figure}
+
+From here we can see that the vector regression model performs rather
+poorly in predicting the rotations made by the dimer, even in a situation
+where visibly the dimer is an off-axis orientation. While the model can 
+roughly predict the median polar angle (~$102\deg$) it has no means of
+predicting the rotations made by the dimer. This result is reveals two important factors: Firstly, the change in the QPD signal for rotational
+motion is a full order of magnitude smaller than the change in signal 
+for translational motion meaning the model has no means of distinguishing
+between large and small rotations. Secondly, is the fact that unlike 
+translational motion, rotational motion is dependent on the prior 
+orientations in the trajectory. This was already discussed in Chapter 4
+where we improved our machine learning model by accounting for the 
+the priors $p(\hat{\bf n}_\alpha)$, where we weighted our estimation 
+by the distance from our prior estimate. Vector regression is powerful
+for predicting uncorrelated events but has no means for accounting for
+cases where one event is dependent on the next. At the same time, 
+utilising machine learning in the case of a QPD would not be able to 
+provide a high enough orientational resolution without first sampling 
+from a trajectory and creating a unique set of reference orientations
+(see Sec.~ \ref{sec:ref_orientations_explained} for definitions).
 
 Overall, the reliance on machine learning to perform vector 
 regression on the collected scattered field is not a viable 
@@ -464,3 +560,45 @@ of the expected signal detected by the QPD. As of now, there
 is no optical arrangement that would allow rotational motion 
 while restricting translational motion. 
 
+\section{Conclusion}
+We have developed a program that allows one to compute the QPD 
+response signal produced by an arbitrary shaped particle. By 
+utilising \textit{mstm} we can construct any combination of 
+spherical particles and measure the total field incident on the
+focal plane of the condenser lens. This has immediate applications 
+in replicating power spectral data from complex particle structures 
+that experience periodic rotational motion. Furthermore, if all 
+contributions to the QPD response signal are known it would allow 
+researchers to compare the reported dynamics given by an experimental
+QPD to that of our simulated response signal. 
+
+The QPD module shows promising results for dimers who have a size 
+ratio less than 5. Utilising vector regression models allowed for 
+accurate predictions of the displacements made by dimers while 
+confined by an optical trap. The use of vector regression is necessary
+to return a continuos range of positions instead of a probabilistic
+approximation of the particle's position vector. 
+
+As shown in \ref{sec:angular_displacement} random rotational motion 
+is difficult to distinguish from random translational motion. Even
+when utilising a vector regression model the angular displacement
+predicted does not match the trajectory data. This means that at least
+for now utilising focal plane interferometry cannot provide an 
+accurate estimation of angular displacements. While static light 
+scattering methods - as seen in Chapter 4 - do present a possible 
+alternative, the limited angular resolution due to a high mixing 
+of signal and orientation spaces also make the method difficult to 
+implement. Measurements of angular displacement are crucial for 
+measuring torques exerted on trapped particles, current torque 
+measurements assume that only the the polarisation contributes to 
+the applied torque, measuring non-polarisation related torques still 
+eludes us. 
+
+Overall, tracking the angular displacements of non-spherical 
+objects for the purposes of torque measurements will require 
+further study. Fully understanding the torques applied to an 
+arbitrary shaped particle would pave the way for high-precision 
+particle-manipulation techniques and a greater understanding 
+of the interactions between focused beams and aggregate particles.
+
+ 

@@ -63,57 +63,24 @@ and torque is computationally slow.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Simulation Details}
+\subsection{Set up}
 As a paradigmatic example, consider a dimer suspended in 
-water ($n_p = 1.59, n_m = 1.33$) located at the focus of 
-a Gaussian beam (more specifically a Laguerre-Gaussian 
-beam of mode $[0,0]$, see \eqref{eq:incident}). The beam 
-is focused by a objective with numerical aperture of 1.2.
-The polarisation is defined using the Jones vector which 
-describes the magnitude of the x and y components of the 
-electric field (so the vector $[1.0, 0.0i]$ describes an 
-electric field that only oscillates in the x direction). 
+water ($n_p = 1.59$) located at the focus of a Gaussian 
+beam. The dimer is composed of two spheres with radii 
+$a_I$ and $a_{II}$, the size ratio between the two is 
+given as $a_{II}/a_{I}$ - unless stated otherwise we 
+kept $a_I$ fixed at $1\ \mu m$. 
+
+The beam is focused by a objective with numerical aperture 
+of 1.2. The polarisation is defined using the Jones vector 
+which describes the magnitude of the x and y components of 
+the electric field (so the vector $[1.0, 0.0i]$ describes 
+an electric field that only oscillates in the x direction). 
 Unless stated otherwise the Jones vector is kept at $[1.0, 
-0.0i]$. 
+0.0i]$. The conditions of the water are given as - $T = 298K,\ 
+\eta = 1.0x10^{-3}Pa\ s,\ n_m = 1.33$.
 
-As a paradigmatic example, we study a simple spherical 
-dimer composed of polystyrene, while there is the 
-possibility of considering absorption we choose to keep 
-the refractive index fixed at 1.59. The ratio of the two 
-sphere radii is given by $a_{I}/a_{II}$ where $a_{I}$ is 
-kept at $1\ \mu m$ unless specified otherwise. For 
-simulations we assume that the dimer is suspended in water 
-at room temperature ($T = 298K,\ \eta = 1.0x10^{-3}Pa\ s$).
-
-In order to compute the magnitude of the Brownian forces we
-need to know the dimer's diffusion tensor \textbf{D}. Unlike
-for spheres where the translational and rotational diffusion 
-coefficients are equal along all three Cartesian axis', a
-dimer's translational and rotational diffusion is dependent
-on whether we consider the its long or short axis. We use
-the results from \cite{Nir1973} to compute the dimensionless 
-diffusion tensor and then scale it according to the radius of
-the largest sphere ($a_I$). The dimer's centre of diffusion
-is located a distance of $a_I\zeta$ from the point of contact
-between the two spheres, the coefficient $\zeta$ is based on
-the size ratio of the two spheres. We use the centre of 
-diffusion as the target origin that is provided to \textit{mstm}
-
-Where $U_3$ represents the orientation vector that passes
-through the centres of both sphere's (see \ref{sec:sim} 
-for a full breakdown), $U_1$, and $U_2$ are orthogonal to 
-$U_3$ but have no physical representation for a dimer. We 
-can represent $U_3$ by it's spherical coordinates ($\theta$ 
-and $\phi$), where $\theta$ is the angle between the 
-orientation vector and the direction of propagation and 
-$\phi$ as the angle between the orientation vector and 
-the x-axis. We define the 'standard' orientation as 
-being aligned with the direction of beam propagation 
-direction ($\theta=0^\circ$) - and therefore the 'inverted' 
-orientation is defined when the dimer is orientated against 
-the direction of beam orientation ($\theta=180^\circ$) - see
-fig~\ref{fig:paradigmatic} for a visual of the laboratory and
-particle frame. 
-
+\subsection{Coordinate system}
 Throughout this project we use the work of Vigilante \cite{Vigilante2020} 
 to perform a systematic study of the dynamics demonstrated by 
 asymmetric dimers in both plane and circularly polarised light. 
@@ -155,24 +122,154 @@ is collinear with the centres of the two spheres; the direction
 of vector $U_3$ is such that it goes from the centre of $a_{II}$ 
 to the centre of $a_{I}$. The origin of the 3 axis' is set on the 
 particle's centre of mass, this is also used to define it's 
-displacement from the origin of the laboratory frame. The diffusion 
-tensor of the dimer is more complex than a sphere's as we must 
-consider the rotational effects experienced by the dimer. We use 
-the analytical solution of Nir \& Acrivos \cite{Nir1973}, where 
-they provided the solution coefficients depending on the dimer's 
-size ratio ($a_I/a_{II}$). Rather than recalculate the coefficients 
-for every possible configuration of dimer we use a spline fitting 
-function to approximate the diffusion tensor. 
+displacement from the origin of the laboratory frame.
 
-We utilise a python library that utilises \textit{mstm} and
-\textit{ott} to simulate the dynamical behaviour of spherical
-aggregates. By specifying the optical properties of the target 
-\textit{mstm} generates the targets T-matrix which can then be 
-used by \textit{ott} to compute the optical forces generated by 
-a focused beam. Using the Finite Differences approach we can solve
-the Langevin Equation to take discrete time steps and update the 
-dimer's position and orientation. A time step of $10 \mu s$ is 
-used in line with previous works \cite{Vigilante2020}.
+Where $U_3$ represents the orientation vector that passes
+through the centres of both sphere's (see \ref{sec:sim} 
+for a full breakdown), $U_1$, and $U_2$ are orthogonal to 
+$U_3$ but have no physical representation for a dimer. We 
+can represent $U_3$ by it's spherical coordinates ($\theta$ 
+and $\phi$), where $\theta$ is the angle between the 
+orientation vector and the direction of propagation and 
+$\phi$ as the angle between the orientation vector and 
+the x-axis. We define the 'standard' orientation as 
+being aligned with the direction of beam propagation 
+direction ($\theta=0^\circ$) - and therefore the 'inverted' 
+orientation is defined when the dimer is orientated against 
+the direction of beam orientation ($\theta=180^\circ$) - see
+fig~\ref{fig:paradigmatic} for a visual of the laboratory and
+particle frame.  
+
+\subsection{Diffusion Matrix}
+In order to compute the magnitude of the Brownian forces we need to 
+know the dimer's diffusion matrix \textbf{D}. Unlike for spheres 
+where the translational and rotational diffusion coefficients are 
+equal along all three Cartesian axis', a dimer's translational and 
+rotational diffusion is dependent on whether we consider the its 
+long or short axis. We use the results from \cite{Nir1973} to 
+compute the dimensionless diffusion matrix and then scale it 
+according to the radius of the largest sphere ($a_I$). The dimer's 
+centre of diffusion is located a distance of $a_I\zeta$ from the 
+point of contact between the two spheres, the coefficient $\zeta$ 
+is based on the size ratio of the two spheres. We use the centre of 
+diffusion as the target origin that is provided to \textit{mstm}
+
+\subsection{Equations of Motion}
+\label{sec:eq_of_motion}
+The main equation of motion for an optically trapped particle is the 
+Langevin equation. For a dimer the equation remains the same but is 
+altered slightly to account for coupling between rotational and 
+translational motion. 
+\begin{align}
+	\frac{{d}\vec{r}(t)}{{dt}} = \frac{\vec{\kappa}_x}{\gamma}\vec{r}(t) + 
+	\sqrt{2\vec{D}_x}\eta(t)
+\end{align}
+
+Where $x(t)$ is replaced with $\vec{r}(t)$ to signify that the translational 
+motion is generalised to a 3 dimensional case. Here we omit the inertial term 
+as the restoration time of the optical trap is far greater than the characteristic time of the particle ($\kappa/\gamma \gg m/\gamma$). Now, the dimer is undergoing random rotational motion in addition to its Brownian 
+translational motion the first term on the right hand side is no longer 
+purely a function of the dimer's position but also of its orientation. 
+The rotational form of the Langevin equation for a dipole within an external 
+potential is given as \cite{Mazo2008}:
+\begin{align}
+	\frac{{d}\vec{u}(t)}{{dt}}
+	=
+	\frac{\mu}{\gamma_R}\left[\vec{u}(t)\times E(t)\right]\times \vec{u}(t)
+	+ \sqrt{2k_BT\vec{D}_R}\lambda(t)\times \vec{u}(t)
+\end{align}
+
+Where $\vec{u}(t)$ is the unit vector aligned along the centres of 
+the two spheres, $\mu$ is its dipole moment, and $\gamma_R$ is the 
+rotational friction coefficient which is given as $\gamma_R = 8\pi
+\eta r^3$ for a sphere. The term $E(t)$ corresponds to the time 
+dependent electric field vector, however we can assume that over a
+time step as large as ours the time variation in the electric field 
+is so insignificant that it can be treated as a constant. If we assume 
+that over the course of a trajectory the dimer has a 'equilibrium' orientation in which the optical torque is minimised we can say that 
+the first right hand term can be replaced with $\vec{\kappa}_u(\vec{r}
+(t))$ to represent a harmonic potential due to the torque. $\lambda(t)$ 
+is the Brownian rotations from the surrounding fluid, like in the translational case the Brownian torque are normally distributed and are 
+also uncorrelated so that:
+\begin{align}
+	\left<\lambda(t)\lambda(t')\right> = \delta_{ij}\delta(t-t')
+\end{align}
+
+For an asymmetric scatterer whose radius is comparable to that of the 
+electric field's wavelength we now have a system of simultaneous equations:
+\begin{align}
+	\label{eq:full_langevin}
+	\frac{{d}\vec{r}(t)}{{dt}}
+	&=
+	\frac{\vec{\kappa}_x(\vec{u}(t))}{\gamma}\vec{r}(t) + \sqrt{2k_BT\vec{D}}\eta(t)
+	\\
+	\frac{{d}\vec{u}(t)}{{dt}}
+	&=
+	\frac{\vec{\kappa}_u(\vec{r}(t))}{\gamma_R}\times \vec{u}(t)
+	+ \sqrt{2k_BT\vec{D}_R}\lambda(t)\times \vec{u}(t)
+\end{align}
+
+Fortunately, we do not need to solve these directly as the latter two
+random variables can be easily approximated if the thermal energy of
+the system is known, and the rate of change can be assumed as linear if
+we take a sufficiently small time step that $\Delta t~\ll~\kappa_x/\gamma 
+\ \& \ \Delta t \ll \kappa_u/\gamma_R$. In doing so we now only need 
+to compute the optical force and torque applied to the dimer. 
+
+\subsection{Computational methods}
+Using a  MATLAB package called \textit{Optical Tweezer Toolbox} 
+or \textit{ott} \cite{Nieminen2007} we can compute the beam 
+shape coefficients ($a_{nm}$ \& $b_{nm}$) for any desired beam 
+type. Using the results from \cite{Farsund1996} we can then 
+compute both the optical force and torque using the beam 
+coefficients and the scattering coefficients ($q_{nm}$ \& $p_{nm}$) 
+which are found by calculating the dimer's $T$-matrix via \textit{mstm} 
+\cite{Mackowski2011} and then using \eqref{eq:t_matrix}. The 
+total force in along the z-direction and the total torque about 
+the z-axis are provided:
+\begin{equation}
+	\label{eq:optical_force}
+	\begin{split}
+		\bold{F_z}
+		&=
+		-\frac{1}{4\pi k^2}\sum_{n,m} \left(\frac{m}{n(n+1)}\Im[a_{nm}b^*_{nm}-p_{nm}q^*_{nm}] \right.
+		\\ 
+		&+\frac{1}{n+1}\left[\frac{n(n+2)(n-m+1)(n+m+1)}{(2n+1)(2n+3)} \right]^{1/2}
+		\\
+		& \left.\times\Im[b_{nm}b^*_{nm}+a_{nm}a^*_{n+1m}-q_{nm}q^*_{nm}+p_{nm}p^*_{n+1m}] \right)
+	\end{split}
+\end{equation}
+\begin{equation}
+	\begin{split}
+		\bold{T_z}
+		&=
+		-\frac{1}{8\pi k^3}\sum_{n,m} \left(\frac{m}{n(n+1)}[|a_{nm}|^2+|b_{nm}|^2-|p_{nm}|^2-|q_{nm}|^2] \right.
+		\\ 
+		&+\frac{2}{n+1}\left[\frac{n(n+2)(n-m+1)(n+m+1)}{(2n+1)(2n+3)} \right]^{1/2}
+		\\
+		& \left.\times\Re[b_{nm}a^*_{nm}+a_{nm}b^*_{n+1m}-p_{nm}q^*_{nm}+q_{nm}p^*_{n+1m}] \right)
+	\end{split}
+\end{equation}
+
+where $a_{nm}$, $b_{nm}$, $p_{nm}$, and $q_{nm}$ are the beam 
+coefficients of the incident and scattered fields respectively. 
+We can get the $x$ and $y$ force and torque components in a 
+similar form by applying a simple rotation transformation. With 
+the optical forces and torques computed all that remains is to 
+compute the Brownian forces and torques which are constrained 
+by the relation.
+\begin{align}
+	\langle q_iq_j\rangle =2D_{ij}\Delta t
+\end{align}
+
+Vigilante et al compiled together a python package that combines 
+both \textit{ott} and \textit{mstm} to simulate the behaviour of 
+spherical aggregates within a predefined optical trap 
+\cite{Vigilante2020}. Now \textit{ott} does have inbuilt $T$-matrix 
+modules that can be used to model the scattering from different 
+shaped particles; however, for aggregates of spheres the resultant 
+force is nonsensical (see Chapter 4 for further details). As such 
+we rely on the \textit{mstm} for simulating dimers.  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -269,20 +366,16 @@ separate harmonic traps.
 		\raisebox{40pt}[0pt][0pt]{\makebox{}\includegraphics[width=0.3\linewidth, keepaspectratio]{theta=180.png}}
 		\label{small_over_large}
 	\end{subfigure}
-	\caption{Plots of force vs displacement of the 
-		centre of mass of the dimer (µm) for the 
-		case of a dimer of size ratio 2. (a) is the 
-		case where the dimer is in its' 'standard' 
-		orientation, where the dimer is trapped at 
-		$z = 1.71\ \mu m$. (b) is the case where the 
-		dimer is in its' 'inverted' orientation, the 
-		dimer is trapped at two positions: $z = 1.20\ 
-		\mu m$ \& $z=-1.63\ \mu m$. On the left are 
-		renders to visualise the dimer orientation 
-		are shown below each plot. The black lines 
-		on each force-curve is a linear fit with the 
-		slope being reported as the trap stiffness in 
-		the legend.}
+	\caption{Plots of force vs displacement of the centre of mass of the 
+		dimer (µm) for the case of a dimer of size ratio 2. (a) is the 
+		case where the dimer is in its' 'standard' orientation, where 
+		the dimer is trapped at $z = 1.71\ \mu m$. (b) is the case where 
+		the dimer is in its' 'inverted' orientation, the dimer is trapped 
+		at two positions: $z = 1.20\ \mu m$ \& $z=-1.63\ \mu m$. On the 
+		left are renders to visualise the dimer orientation are shown 
+		below each plot. The black lines on each force-curve is a linear 
+		fit with the slope being reported as the trap stiffness in the 
+		legend.}
 	\label{fig:paradigmatic}
 \end{figure}
 
@@ -448,15 +541,13 @@ equilibrium configuration is reached.
 		\raisebox{0pt}[0pt][-10pt]{\makebox{}\includegraphics[width=\linewidth, keepaspectratio]{off_axis_render.png}}
 	\end{subfigure}
 	%\captionsetup{hangindent=2.35cm}
-	\caption{Map of $z-\theta$ phase space using a dimer 
-		of size ratio 2 with a laser power of 500 mW 
-		($\theta=0^\circ$ is the 'standard' orientation 
-		and $\theta=180^\circ$ is the 'inverted' 
-		orientation). The stable configurations are 
-		indicated by the larger circles and the 
-		starting conditions are colour coded to match 
-		the stable point they end up in. Right hand 
-		render shows a dimer in its off-axis configuration.}
+	\caption{Map of $z-\theta$ phase space using a dimer of size ratio 
+		2 with a laser power of 500 mW ($\theta=0^\circ$ is the 
+		'standard' orientation and $\theta=180^\circ$ is the 'inverted' 
+		orientation). The stable configurations are indicated by the 
+		larger circles and the starting conditions are colour coded to 
+		match the stable point they end up in. Right hand render shows a 
+		dimer in its off-axis configuration.}
 	\label{fig:off_axis}
 \end{figure}
 

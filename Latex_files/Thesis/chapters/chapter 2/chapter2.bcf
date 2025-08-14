@@ -2384,25 +2384,19 @@
     <bcf:citekey order="26" intorder="1">Li2008</bcf:citekey>
     <bcf:citekey order="26" intorder="2">Yogesha2011PreciseCO</bcf:citekey>
     <bcf:citekey order="27" intorder="1">Mazo2008</bcf:citekey>
-    <bcf:citekey order="28" intorder="1">Nieminen2007</bcf:citekey>
-    <bcf:citekey order="29" intorder="1">Farsund1996</bcf:citekey>
-    <bcf:citekey order="30" intorder="1">Mackowski2011</bcf:citekey>
+    <bcf:citekey order="28" intorder="1">Gouesbet1988</bcf:citekey>
+    <bcf:citekey order="29" intorder="1">Lock1994</bcf:citekey>
+    <bcf:citekey order="30" intorder="1">BergSoerensen2004</bcf:citekey>
     <bcf:citekey order="31" intorder="1">Vigilante2020</bcf:citekey>
-    <bcf:citekey order="32" intorder="1">Vigilante2020</bcf:citekey>
-    <bcf:citekey order="33" intorder="1">Nir1973</bcf:citekey>
-    <bcf:citekey order="34" intorder="1">Gouesbet1988</bcf:citekey>
-    <bcf:citekey order="35" intorder="1">Lock1994</bcf:citekey>
+    <bcf:citekey order="32" intorder="1">Oldham2008</bcf:citekey>
+    <bcf:citekey order="33" intorder="1">BergSoerensen2004</bcf:citekey>
+    <bcf:citekey order="34" intorder="1">Bang2020</bcf:citekey>
+    <bcf:citekey order="35" intorder="1">Yogesha2012</bcf:citekey>
     <bcf:citekey order="36" intorder="1">BergSoerensen2004</bcf:citekey>
-    <bcf:citekey order="37" intorder="1">Vigilante2020</bcf:citekey>
-    <bcf:citekey order="38" intorder="1">Oldham2008</bcf:citekey>
+    <bcf:citekey order="37" intorder="1">BergSoerensen2004</bcf:citekey>
+    <bcf:citekey order="38" intorder="1">Capitanio2002</bcf:citekey>
     <bcf:citekey order="39" intorder="1">BergSoerensen2004</bcf:citekey>
-    <bcf:citekey order="40" intorder="1">Bang2020</bcf:citekey>
-    <bcf:citekey order="41" intorder="1">Yogesha2012</bcf:citekey>
-    <bcf:citekey order="42" intorder="1">BergSoerensen2004</bcf:citekey>
-    <bcf:citekey order="43" intorder="1">BergSoerensen2004</bcf:citekey>
-    <bcf:citekey order="44" intorder="1">Capitanio2002</bcf:citekey>
-    <bcf:citekey order="45" intorder="1">BergSoerensen2004</bcf:citekey>
-    <bcf:citekey order="46" intorder="1">Yogesha2012</bcf:citekey>
+    <bcf:citekey order="40" intorder="1">Yogesha2012</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">
